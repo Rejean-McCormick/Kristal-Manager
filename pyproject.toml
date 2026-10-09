@@ -1,0 +1,10 @@
+[project]
+name = "kristal-manager"
+version = "0.1.0a11"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[project.optional-dependencies]
+public = ["cryptography>=42"]
