@@ -1,220 +1,101 @@
-# Kristal Manager 0.1.0-alpha.11
+# Kristal Manager
 
-Kristal Manager is the daily operator surface for **Local Kristals**: inventory, validation, migration and synchronization into the bootstrapped Kristal GitHub collections.
+**Recovery update:** `0.1.0-alpha.12` · **Framework target:** `10.0.0-draft.3.1` · **Operational status:** **read-only inventory available; GitHub synchronization disabled**.
 
-## alpha.11: GitHub AI read-surface Sync
+Kristal Manager owns the operational inventory of **existing** Kristal workspaces and, when independently restored and qualified, should orchestrate controlled GitHub v10 read-surface synchronization. It does **not** own the semantic interpretation of knowledge, the archetype library, domain qualifications, or publication/activation.
 
-The important change is that **Sync is no longer state-only**.
+> This update repairs an important source-distribution defect: the supplied alpha.11 snapshot and the publicly accessible GitHub `main` branch both lacked the `kristal_manager/` Python package referenced by the launcher and tests. We have **not reconstructed the missing alpha.11 Git sync engine** from guesswork. Instead, the recovery package provides a working and tested read-only inventory, a desktop GUI, a Konstellation-facing local export, and an intact C2 cryptographic verifier. Any remote mutation remains blocked until the full backend can be recovered and audited.
 
-Kristal Manager now consumes the exact read projection emitted by **Kristal Local/Authoring Kit 3.2.4+**:
+## Quick start (Windows)
 
-```text
-python tools/kristal.py read-surface <Kristal> --require-ready --compact
+1. Extract the entire repository to a local directory.
+2. Install Python **3.11+** (Tkinter is normally available with standard Windows Python).
+3. Double-click **`Kristal-Manager.pyw`** or `Launch-Kristal-Manager.cmd`.
+4. Select the parent folder of your local Kristals and choose **Scan local Kristals**.
+5. Inspect workspace identity, profile, state snapshot source, structural readiness and recorded commitments.
+6. To export locally, choose **Export local inventory JSON**. The file remains on your machine.
+
+The accompanying `kristal-manager.html` can open an exported JSON inventory with your browser's local file picker. It is a convenience table, **not** a duplicate Konstellation semantic explorer.
+
+## CLI (English)
+
+From the repository root:
+
+```bash
+python -m kristal_manager scan "C:\mycode\Kristal\locals"
+python -m kristal_manager inspect "C:\mycode\Kristal\locals\MyKristal"
+python -m kristal_manager export "C:\mycode\Kristal\locals" --output private-local-inventory.json
 ```
 
-The Local Kit, not the Manager, decides which files belong to the GitHub/AI read surface. This preserves one source of operational truth for AI navigation.
+`export` refuses overwriting an existing file unless `--overwrite` is supplied. Absolute local paths are omitted by default; `--include-paths` is a deliberate and potentially sensitive operator opt-in. On POSIX systems the generated file is owner-readable only (`0600`). **Do not place this export in a public GitHub repository or an unauthenticated web server.**
+
+## What the inventory means
+
+| Property | Source / meaning |
+| --- | --- |
+| `state_ref` | Workspace declaration and current v9 state snapshot; explicitly checked for mismatch |
+| `state_commitment` | Digest **reported by** the state snapshot, not independently recomputed or factually qualified |
+| `state_blob_digest` | Byte SHA-256 of the current snapshot file, **not** the logical State Commitment |
+| `readiness` | Locally observed structural readiness (`READY`, `NO STATE`, `STATE CONFLICT`, etc.) |
+| `hosted_network_baseline` | Declared v10 target capability, **not** proof of being hosted |
+| `archetype` | `UNDECLARED` by default; Arketype association requires an explicit mapping |
+| `qualification` / `publication` | `NOT_ESTABLISHED` unless independently validated elsewhere |
+| `availability` | `local`; a local record is not automatically publicly accessible |
+
+The provisional export format is **`kristal.manager-local-inventory/0.1-candidate`**, a local integration proposal, **not a normative Framework format**. It is intended for a future **authenticated, policy-first Konstellation fleet adapter**. Konstellation owns navigation among Kristals and into concepts; Manager only owns operational inventory and access-restricted metadata export. The final producer/consumer contract must be agreed by both repositories before any network endpoint is enabled.
+
+## v10 architecture boundaries
 
 ```text
-Local Kristal
-    ↓
-Validate
-    ↓
-Local Kit build-ai + read-surface
-    ↓
-Sync to GitHub
-    ↓
-kristal-public or kristal-private
-    ↓
-kristals/<slug>/
-    ├── AI_START_HERE.md
-    ├── AI_MANIFEST.json
-    ├── ai/
-    ├── canon/
-    ├── docs/
-    ├── sources/
-    ├── state/
-    └── other files explicitly selected by Local Kit
+Authoring Kit 3.2.4+  --> Local workspace + exact read-surface (when ready)
+                         |
+Kristal Manager    -->   Local inventory + operational verification
+                         | (future, gated and audited)
+                         +--> C1 independent qualification + C2 authorization
+                         +--> GitHub collection sync manifest + derived index
+                         +--> C3 hosted collection verification
+Konstellation      <--   Read-only, policy-scoped inventory + verified hosted sources
+Arketype           -->   Archetype descriptions and noncanonical design patterns
 ```
 
-This is deliberately between two bad extremes:
+A successful check does **not** qualify claims or authorize network exposure. Sync is separate from immutable publication and activation. A push to a public GitHub repository is already **public exposure**, so C1/C2 must be checked **before any public network write**.
 
-```text
-STATE-ONLY SYNC       = too narrow for efficient AI traversal
-FULL WORKSPACE MIRROR = too broad and operationally noisy
-READ-SURFACE SYNC     = exact derived reader projection from Local Kit
+## Recovery capabilities and explicit blockers
+
+| Capability | State in alpha.12 recovery |
+| --- | --- |
+| Local scan, nested workspaces, basic conflict detection | **Implemented** |
+| GUI inventory, search, selected-state inspection | **Implemented** |
+| Local-only policy-minimized JSON export | **Implemented** |
+| Standalone offline HTML inventory viewer | **Implemented** |
+| C2 signed grant / per-revision qualification verifier | **Included** from Bootstrap's candidate verifier; independent security tests run |
+| Kit 3.2.4 readiness and read-surface invocation | **NOT RESTORED**; see docs |
+| C1, C2 and C3 interoperability end-to-end | **NOT VERIFIED** |
+| Local migration, preparation of publish requests | **BLOCKED**, original implementation unavailable |
+| GitHub sync / batch sync / full backup | **BLOCKED**, no remote mutation performed |
+| Live GitHub state, remote branch protections, Windows interactive GUI | **NOT VERIFIED** |
+
+## Tests
+
+```bash
+python -m pip install -e ".[test]"
+python -m pytest -q tests/test_recovery.py tests/test_c2_public_gate.py
 ```
 
-The v9 logical/state commitment does not include GitHub location, Manager metadata or the derived AI read layer.
+The original `tests/test_core.py` remains available as an **unresolved compatibility suite** documenting legacy alpha.11 behavior. Many of those tests expect a synchronization engine not supplied in the source repository. **Do not claim that the historical suite passes** or remove its failed cases to disguise missing behavior. A future source recovery must restore those operations with C1/C2/C3 guards and validate every historical test.
 
-## Collection discovery for thousands of Kristals
+## Relevant documentation
 
-Each collection now maintains a deterministic derived navigation index:
+- [Architecture](ARCHITECTURE.md)
+- [Current recovery status](docs/RECOVERY_STATUS.md)
+- [Konstellation inventory handoff](docs/KONSTELLATION_INVENTORY.md)
+- [v10 alignment and security gates](docs/V10_ALIGNMENT.md)
+- [C2 signed evidence requirements](docs/C2_PUBLICATION_CONTROL.md)
 
-```text
-kristals/index.json
-```
+No public/private Kristal collection was modified or published by this release artifact.
 
-Format:
+## Authentic original runtime found in Git history
 
-```text
-kristal.github-collection-index/1.0
-```
+After preparing this recovery build, an audit of repository history located the full authentic Python backend in commit **`237b1b539332da5d87bed4b185ea03794aad1057`**, from which the current public branch removed its Python package. See [Historical runtime recovery](docs/HISTORICAL_RUNTIME_RECOVERY.md) and `tools/restore_original_backend.py`. This is preferable to treating the recovery's intentionally disabled sync routines as their eventual implementation. The exporter works **offline** against a full local Git clone, stages verifiable source for review, and never changes the checkout or contacts GitHub.
 
-Each entry gives the hosted path, AI entrypoint, state identity, logical commitment and read-surface digest. The index is for discovery/navigation only; it is not semantic authority.
-
-Each hosted Kristal also receives:
-
-```text
-kristals/<slug>/.kristal/sync-manifest.json
-```
-
-Format:
-
-```text
-kristal.github-sync-manifest/1.0
-```
-
-This operational manifest records the exact Local Kit read-surface digest and the files Manager owns in that subtree. It enables fast idempotence and safe deletion of files that were previously Manager-owned but are no longer in the read surface. Unmanaged files in the subtree are not deleted automatically.
-
-## Primary workflow
-
-```text
-Quick Scan
-    ↓
-Validate / Validate All
-    ↓
-Sync to GitHub / Sync All Configured
-```
-
-**Sync is not backup and is not publication.** It updates the mutable hosted reader/ingestion surface.
-
-```text
-SYNC       = current validated GitHub/AI read surface
-PUBLISH    = exact qualified immutable Release/bundle
-ACTIVATE   = explicit channel transition to a publication
-```
-
-## Single Sync performance
-
-For a selected Kristal the Manager:
-
-1. reuses a current `VALID` validation when its cache key still matches;
-2. requires a Local Kit 3.2.4+ read-surface contract;
-3. refreshes the portable AI layer with `build-ai`;
-4. verifies every selected source file against the Local Kit size/SHA-256 metadata;
-5. compares the small hosted sync manifest and `kristals/index.json` through the GitHub API;
-6. returns `ALREADY SYNCED` without fetching the collection when both already describe the exact same surface;
-7. otherwise fast-forwards the collection checkout, updates the read surface and collection index, commits and pushes.
-
-Public Sync additionally refuses sensitive-looking selected paths such as `.env`, private keys and common credential files.
-
-## Batch processing for large collections
-
-`Validate All` remains bounded parallel validation (up to 4 workers by default).
-
-`Sync All Configured` now uses a three-phase transaction model:
-
-```text
-Phase 1: Validate in parallel
-              ↓
-Phase 2: build-ai + read-surface in parallel
-              ↓
-Phase 3: one Git transaction per collection
-```
-
-For one target collection containing 500 changed Kristals:
-
-```text
-old model:
-500 × fetch/commit/push
-
-alpha.11:
-1 × fetch
-500 subtree updates
-1 × kristals/index.json update
-1 × commit
-1 × push
-```
-
-Public and private collection transactions may run concurrently because they are separate repositories. Within one collection there is one mutation transaction, eliminating same-repository Git races and substantially reducing network/process overhead.
-
-## Windows behavior
-
-Launch by double-clicking:
-
-```text
-Kristal-Manager.pyw
-```
-
-External `python`, `node`, `git` and `gh` processes use hidden Windows subprocess flags. No `.cmd` launcher is shipped in alpha.11, so normal Manager operation does not flash command windows.
-
-Long operations post progress into the GUI log window, including validation, AI read-layer refresh, read-surface preparation, collection fetch, commit and push.
-
-## GitHub Sync status
-
-The table uses:
-
-```text
-SYNCED       read-surface Sync has been performed for the current State bytes
-READ SURFACE an older state-only Sync exists; run Sync again to upgrade the hosted subtree
-PENDING      current State differs or no compatible Sync is recorded
-—            no GitHub target configured
-```
-
-A Sync always recomputes the Local Kit read surface before deciding whether GitHub is already current, so canon/docs/AI changes are caught at the mutation boundary even when they do not change the v9 logical commitment.
-
-## Materializations
-
-Local Kit may expose materialization metadata in the AI index/read surface. **Materialization blobs are not implicitly copied into Git by Manager alpha.11.** The sync manifest records that policy explicitly. Large materialization transport remains a host-policy concern for Release assets, GHCR, LFS or another configured transport layer.
-
-## Safety invariants
-
-```text
-LOCAL PATH != KRISTAL IDENTITY
-READ SURFACE != LOGICAL COMMITMENT
-SYNC != PUBLICATION
-PUBLICATION != ACTIVATION
-GITHUB TARGET != LOGICAL COMMITMENT
-COLLECTION INDEX != SEMANTIC AUTHORITY
-REGISTRY ENTRY != SEMANTIC AUTHORITY
-```
-
-Manager refuses:
-
-- `MIGRATE`, `NO STATE`, `LEGACY STATE`, `STATE CONFLICT` or invalid Local Kristals;
-- a Local Kit older than 3.2.4 for read-surface Sync;
-- a v9-only Framework for v10 hosting mutation;
-- dirty collection checkouts;
-- hosted slug/path collisions with a different `state_ref`;
-- duplicate state identities at different paths in `kristals/index.json`;
-- unexpected staged Git paths outside the target Kristal subtree(s) and `kristals/index.json`;
-- sensitive-looking files selected for public hosting.
-
-## Tool discovery
-
-The stable operator paths are supported directly:
-
-```text
-C:\mycode\Kristal\Kristal-Authoring-Kit
-C:\mycode\Kristal\Kristal-Framework
-```
-
-Versioned/sorting-prefixed folders remain supported. `network.toml` continues to define the hosted Framework/network identity; local folder aliases never affect semantic commitments.
-
-## Publication remains separate
-
-**Prepare Publish → GitHub Setup** is unchanged conceptually. Manager hands the selected state to Kristal GitHub Setup for qualification, immutable publication and activation. The mutable read surface is not silently treated as a Release.
-
-## Registry compatibility
-
-The Manager registry remains:
-
-```text
-kristal-local-registry/2.0
-```
-
-for Kompiler compatibility. alpha.11 only adds operational sync metadata fields such as read-surface digest/root/entrypoint.
-
-## C2 (experimental): public-exposure gate
-
-Public Sync now checks independently signed initial approval and per-revision pre-public qualification **before public Git writes**. Private Sync is unchanged. See [C2 publication control](docs/C2_PUBLICATION_CONTROL.md). This patch does not authorize publishing Zoology or replace C1 independent qualification / C3 GitHub branch protections.
+**Operator caution:** `GitSink.bat` is an inherited generic Git helper that may stage/commit/push all changes; it is **not** used by the Manager launcher or recovery tests. Do not invoke it as an alignment or publication step.

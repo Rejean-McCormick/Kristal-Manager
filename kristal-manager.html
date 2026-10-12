@@ -1,1 +1,71 @@
-<!doctype html><meta charset='utf-8'><title>Kristal Local Registry</title><style>body{font-family:Segoe UI,Arial,sans-serif;margin:2rem}table{border-collapse:collapse;width:100%}th,td{border:1px solid #bbb;padding:.45rem;text-align:left}th{background:#eee}code{font-family:Consolas,monospace}</style><h1>Kristal Local Registry</h1><p>Inventory and mutable GitHub Sync metadata are operational only; they are not semantic identity.</p><table><thead><tr><th>Kristal</th><th>Health</th><th>Workspace</th><th>Path</th><th>GitHub Sync</th><th>GitHub target</th><th>Collection repo</th><th>Validation</th><th>State surface</th><th>Commitment</th></tr></thead><tbody></tbody></table>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kristal Manager · Local Inventory</title>
+<style>
+:root{--green:#1e6864;--ink:#193634;--sub:#526c68;--edge:#d4e4df;--bg:#f5f9f7;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+header{background:linear-gradient(115deg,#1e6864,#124844);padding:32px 5vw 28px;color:#fff}header h1{font-size:1.85rem;margin:4px 0 3px;letter-spacing:-.03em}header p{max-width:750px;margin:4px 0;opacity:.9}
+main{max-width:1320px;padding:25px 26px 60px;margin:auto}aside{background:#fff;border:1px solid var(--edge);padding:15px 18px;border-radius:12px;margin-bottom:20px}aside strong{color:var(--green)}
+.controls{display:flex;gap:14px;flex-wrap:wrap;align-items:end;margin-bottom:18px}.control{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--sub)}input[type=file],input[type=search],select{color:var(--ink);background:#fff;border:1px solid #b7cdc8;padding:11px 12px;border-radius:9px;font:inherit;max-width:100%}input[type=search]{min-width:300px}button{padding:10px 14px;border:1px solid var(--green);border-radius:9px;color:var(--green);background:#fff;cursor:pointer;font-weight:600}button:hover{background:#e1efec}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #8dc7bb;outline-offset:2px}
+.summary{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px}.pill{background:#e4f1ec;border:1px solid #cfe1dc;border-radius:100px;padding:5px 12px;color:#205d54;font-size:.9rem}
+.table-wrap{overflow:auto;background:#fff;border:1px solid var(--edge);border-radius:12px}table{border-collapse:collapse;width:100%;min-width:820px}th{text-align:left;background:#e5f1ed;color:#205b54;font-size:.82rem;letter-spacing:.02em;padding:13px;white-space:nowrap}td{border-top:1px solid #e9f0ed;padding:14px 13px;vertical-align:top}tr:hover td{background:#f5faf8}td small{display:block;color:var(--sub)}.empty{text-align:center;color:var(--sub);padding:65px 10px}.badge{display:inline-block;font-size:.78rem;border:1px solid #d5e5df;border-radius:100px;padding:3px 8px;white-space:nowrap}.warn{background:#fff3da;color:#8b6017;border-color:#efdcb4}
+details{margin-top:22px}summary{cursor:pointer;font-weight:700;color:var(--green)}pre{background:#fff;border:1px solid var(--edge);border-radius:9px;padding:14px;overflow:auto;max-height:300px;font:12px/1.5 Consolas,monospace}
+footer{margin-top:30px;color:var(--sub);font-size:.86rem}a{color:var(--green)}
+</style>
+</head>
+<body>
+<header><div style="font-weight:800;letter-spacing:.17em;font-size:.8rem;opacity:.95">KRISTAL MANAGER</div><h1>Local Inventory</h1><p>Inspect a local export of your Kristals. Identity, technical readiness and collection metadata are not factual qualification or publication authority.</p></header>
+<main>
+<aside><strong>Offline, read-only viewer.</strong> Choose a JSON inventory exported by Kristal Manager. The browser reads it locally; this page makes no network requests. Do not open sensitive inventories on an untrusted computer or upload them to a public site. For concept navigation, use <strong>Konstellation</strong>.</aside>
+<div class="controls">
+  <label class="control">Local inventory file <input id="file" type="file" accept=".json,application/json"></label>
+  <label class="control">Search <input id="search" type="search" placeholder="Name, profile, state reference…"></label>
+  <label class="control">Observed readiness <select id="status"><option value="">Any state</option></select></label>
+  <button id="reset" type="button">Reset filters</button>
+</div>
+<div class="summary"><span class="pill" id="total">No inventory loaded</span><span class="pill">Local only</span><span class="pill">No GitHub operations</span></div>
+<div class="table-wrap"><table><thead><tr><th>Kristal</th><th>Readiness</th><th>Model kind / profile</th><th>State identity</th><th>Registered artifacts</th><th>AI files</th></tr></thead><tbody id="rows"><tr><td colspan="6" class="empty">Select a local JSON inventory to begin.</td></tr></tbody></table></div>
+<details><summary>Inspect source metadata (local only)</summary><pre id="source">No inventory loaded.</pre></details>
+<footer>Derived, noncanonical local metadata · `kristal.manager-local-inventory/0.1-candidate` · Alpha.12 recovery edition</footer>
+</main>
+<script>
+'use strict';
+const FORMAT='kristal.manager-local-inventory/0.1-candidate';
+const $=id=>document.getElementById(id);
+let records=[],loaded=null;
+const make=(tag,content)=>{const el=document.createElement(tag);el.textContent=String(content??'—');return el;};
+function draw(){
+ const term=$('search').value.trim().toLocaleLowerCase();const status=$('status').value;
+ const found=records.filter(r=>(!status||r.readiness===status)&&(!term||[r.title,r.slug,r.profile,r.native_kind,r.state_ref].some(x=>String(x??'').toLocaleLowerCase().includes(term))));
+ $('total').textContent=loaded?`${found.length} of ${records.length} records`:'No inventory loaded';
+ const tbody=$('rows');tbody.replaceChildren();
+ if(!found.length){const td=make('td',loaded?'No matching records.':'Select an inventory file.');td.colSpan=6;td.className='empty';const tr=document.createElement('tr');tr.append(td);tbody.append(tr);return;}
+ for(const r of found){const tr=document.createElement('tr');
+  const c1=make('td',r.title||r.slug);const s=make('small',r.slug||'');c1.append(s);tr.append(c1);
+  const c2=document.createElement('td');const b=make('span',r.readiness||'UNKNOWN');b.className='badge'+(r.readiness==='READY'?'':' warn');c2.append(b);tr.append(c2);
+  tr.append(make('td',[r.native_kind,r.profile].filter(Boolean).join(' / ')||'—'));
+  const ref=make('td',r.state_ref);ref.style.overflowWrap='anywhere';tr.append(ref);
+  tr.append(make('td',r.registered_artifacts??'—'));
+  tr.append(make('td',r.ai_entrypoint_present?'Entry present':'Not ready / not present'));tbody.append(tr);
+ }
+}
+$('file').addEventListener('change',async e=>{
+ const file=e.target.files?.[0];if(!file)return;
+ try{
+  if(file.size>15_000_000)throw new Error('Inventory file exceeds the 15 MB local viewer limit.');
+  const data=JSON.parse(await file.text());
+  if(data.format!==FORMAT||!Array.isArray(data.records))throw new Error('This is not a supported Manager local-inventory export.');
+  if(data.records.length>15000)throw new Error('Too many inventory records.');
+  records=data.records.filter(r=>r&&typeof r==='object');loaded=data;
+  $('source').textContent=JSON.stringify({format:data.format,mode:data.mode,record_count:data.record_count,warnings:data.warnings},null,2);
+  const statuses=[...new Set(records.map(r=>r.readiness).filter(Boolean))].sort();$('status').replaceChildren(new Option('Any state',''),...statuses.map(x=>new Option(x,x)));
+  $('search').value='';draw();
+ }catch(error){loaded=null;records=[];$('source').textContent=`ERROR: ${error.message}`;draw();}
+});
+$('search').addEventListener('input',draw);$('status').addEventListener('change',draw);
+$('reset').addEventListener('click',()=>{$('search').value='';$('status').value='';draw();});
+</script>
+</body>
+</html>
