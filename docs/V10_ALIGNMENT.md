@@ -22,3 +22,12 @@
 - Verify hosted index against C3 and exercise a Konstellation read-only round-trip.
 
 **Nothing in this release updates a canonical workspace or remote collection.**
+
+
+## Alpha.13 read-only Discovery 3.3 supplement
+
+Kit 3.3-derived `kristal.discovery/1.0`, `kristal.reader-inventory/1.0`
+and `kristal.reader-profile/1.0` are now inspected locally (optional
+on-demand registered-byte verification). **The historic exact v10 GitHub
+read-surface sync engine is still not restored or tested.** C1, C2, C3 and
+publication/activation gates stay closed.

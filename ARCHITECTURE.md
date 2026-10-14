@@ -1,13 +1,13 @@
 # Kristal Manager — Architecture and Ownership
 
-**Release:** 0.1.0-alpha.12 recovery · **Status:** local inventory recovery; hosted mutation blocked.
+**Release:** 0.1.0-alpha.13 recovery · **Status:** local inventory recovery; hosted mutation blocked.
 
 ## Roles
 
 | Project | Authoritative responsibility |
 | --- | --- |
 | Kristal Framework v10 draft.3.1 | Knowledge-state/commitment contracts, v10 hosting profiles |
-| Authoring Kit 3.2.4+ | Workspace creation, check, v9 build and exact GitHub read-surface |
+| Authoring Kit 3.3+ | Workspace creation, check, v9 build and exact GitHub read-surface |
 | KristalDiag / C1 | Independent qualification of the exact candidate revision |
 | Bootstrap / C2 | Trust policy, independent approval, authorization and publication safeguards |
 | Kristal Manager | **Operational inventory** and future guarded read-surface transport |
@@ -63,3 +63,17 @@ Kit check -> build-v9 -> build-ai -> read-surface --require-ready
 ## Source availability limitation
 
 The supplied original snapshot and current GitHub default branch contain only documentation, launchers, and tests; **`kristal_manager/core.py`, `gui.py`, and `publication_gate.py` were absent**. The alpha.12 recovery supplies a new, explicitly restricted implementation. Restoring the original synchronization backend remains a separate engineering task and must not be inferred from this interface.
+
+
+## Alpha.13 Discovery and KNAV boundary
+
+- Authoring Kit 3.3 remains the sole writer of `kristal.discovery/1.0`,
+  `kristal.reader-inventory/1.0` and `kristal.reader-profile/1.0`.
+- Manager is a read-only consumer, verifies structural agreement, and can
+  explicitly hash registered source files to detect stale metadata.
+- `kristal.manager-local-inventory/0.1-candidate` stays the local operator format.
+  The opt-in `konstellation.manager-inventory-preview/0.1` export is a strict
+  local compatibility projection; it requires an operator-supplied principal.
+- Neither format establishes authorization, C1 qualification, C2 grant,
+  C3 hosting verification, C4 publication, or semantic truth.
+- No network endpoint or GitHub mutation is enabled in this recovery branch.

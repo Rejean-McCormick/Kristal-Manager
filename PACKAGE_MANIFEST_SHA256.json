@@ -1,11 +1,11 @@
 {
   "format": "kristal-manager-package-inventory/1.0",
-  "version": "0.1.0-alpha.12-recovery",
+  "version": "0.1.0-alpha.13-discovery-knav",
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "sha256": "16ef1325a0a6c474af5e4fbd4383b1b2135a0f3f5581b7191db5a6f9ffb234f3",
-      "bytes": 491
+      "sha256": "340f05e8d7b401debb21cb71eb45b97819356df6fa19871568e1e1ed9dd69aa9",
+      "bytes": 523
     },
     {
       "path": ".gitignore",
@@ -14,13 +14,13 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "sha256": "f4054372dad7eb513cd05d4fb6d0f813b33deb374be1ddb1f76b27c475381907",
-      "bytes": 3374
+      "sha256": "0552f964d7aee4c831122d9cbc5fa7056d30b0b00eb338de0952268b48569ac9",
+      "bytes": 4146
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "30c1ab1d6a0a529ed748d39477212a3315ef6494e63d165a11fb6a8e647b3141",
-      "bytes": 982
+      "sha256": "94db4eb02a625e0a0983c490800b651e2e374e26037eff27d6c03be2ecba677b",
+      "bytes": 1643
     },
     {
       "path": "GitSink.bat",
@@ -38,18 +38,28 @@
       "bytes": 299
     },
     {
+      "path": "MISE_A_JOUR_2026-10-13.md",
+      "sha256": "238eae1c387750b86bc37e1e8e7cbf96dbbb9785e98892f841340b8a77e4d427",
+      "bytes": 2807
+    },
+    {
+      "path": "Nettoyer_anciens_fichiers.pyw",
+      "sha256": "51404fc3f570305af52481ddbc059276182acc2230eeced9f67d1d791455350f",
+      "bytes": 4203
+    },
+    {
       "path": "README.md",
-      "sha256": "2293839924afbaefb3f68490e1c0ca418bafbb3bd6b8fbfc03f5893d2c603beb",
-      "bytes": 7622
+      "sha256": "f139477d841128ae549ff88ed6d5a173dc9f64d4b9a4242607679b144b4c06f2",
+      "bytes": 10671
     },
     {
       "path": "TEST_REPORT.md",
-      "sha256": "b418fde0f236906fe38b2dbb2caa99d8a94178ae4308686266e19684ba68021e",
-      "bytes": 2370
+      "sha256": "b6eb3942557297d1acffd75aeb5fc88e4ba6e1fafb812ea985c8f04808e357ca",
+      "bytes": 3619
     },
     {
       "path": "VERSION",
-      "sha256": "7d63afc20ad1235a1d845637ae76bb636f3518fd2be11c56a8dac2a3b6d25097",
+      "sha256": "edae853e6390485e8aa0317eead465da4b2014411a753f2c7a0c009099b7f2fa",
       "bytes": 15
     },
     {
@@ -69,8 +79,8 @@
     },
     {
       "path": "docs/KONSTELLATION_INVENTORY.md",
-      "sha256": "0eac7fa9ccdb44c2ca323bacdcd4e6bd812d5f061682d376ef5e19b3648cd0bc",
-      "bytes": 2169
+      "sha256": "c27c1d08a51a1212ff051b5c7497f4aa4eb87fdc2026edfdade8fcbf07c13d60",
+      "bytes": 3398
     },
     {
       "path": "docs/ORIGINAL_SNAPSHOT_INDEX.txt",
@@ -79,13 +89,28 @@
     },
     {
       "path": "docs/RECOVERY_STATUS.md",
-      "sha256": "8ee975aef5a340601cde9093dd794a310a36986119b5b1192f18904c84fb7a34",
-      "bytes": 1967
+      "sha256": "4b297178bb6194a850a36f9b23e527efbb086b319a3a9f38f325d7f1ebfc5445",
+      "bytes": 2643
     },
     {
       "path": "docs/V10_ALIGNMENT.md",
-      "sha256": "08fa2a42eb8cdcaf9ae39fe3f4c89d70500377b6bad0d20f331d771a7d27fde7",
-      "bytes": 1945
+      "sha256": "de30e3f12aab47f1d5c02628b1298046ac35ab1f635319ab2118f306479345b2",
+      "bytes": 2326
+    },
+    {
+      "path": "docs/snapshots/PACKAGE_MANIFEST_SHA256_alpha12.json",
+      "sha256": "c03b44e201a06e3683cf27e71d468a482172ee27e80a77eb3290e409f175dd82",
+      "bytes": 4803
+    },
+    {
+      "path": "docs/snapshots/README.md",
+      "sha256": "f6909e0890fd13a30fd03bec66017fdf01b4629287d6261bd8c9e9a77ed8b0b1",
+      "bytes": 618
+    },
+    {
+      "path": "docs/snapshots/SNAPSHOT_INDEX_20261013_1042.txt",
+      "sha256": "121722c3b4c6c0129aa9ea19bf9ab7e298f29ca68475351778417a55926404d1",
+      "bytes": 792
     },
     {
       "path": "kristal-manager.html",
@@ -94,7 +119,7 @@
     },
     {
       "path": "kristal_manager/__init__.py",
-      "sha256": "bfdb8cbae1d5e15ef82adf6240acc22a470336d9cf00e3ff64ff2c3ff514b9c9",
+      "sha256": "3426939ee029f2b8757f124708111746ff042a0eec24a02bb9b96ca4cdf4a102",
       "bytes": 97
     },
     {
@@ -104,23 +129,28 @@
     },
     {
       "path": "kristal_manager/cli.py",
-      "sha256": "6a1c121ad763891c7d8c4ba97ff21d342872534a02f82ed70e67b39c98dafd00",
-      "bytes": 2050
+      "sha256": "66310212f92453aa0f1b620ead366d89e26cd6163f2565429cad3634650564d6",
+      "bytes": 3231
     },
     {
       "path": "kristal_manager/core.py",
-      "sha256": "2fa00e6b05d07352ded61ba6887f5a2ba5f4dc37d235ea26d32c9336f425cb52",
-      "bytes": 14822
+      "sha256": "04800c348268d086292e59c4c6a4878108b02973d1340939462f5e7a040615d2",
+      "bytes": 15007
+    },
+    {
+      "path": "kristal_manager/discovery.py",
+      "sha256": "d823f7450861ec528d7ff664bd6484d0ea26f71679989bb5297e53abbee64778",
+      "bytes": 11240
     },
     {
       "path": "kristal_manager/gui.py",
-      "sha256": "3c6f2e06f5d1b9acd57ccd48a43af292fcde69966109035028c4bd515da18432",
-      "bytes": 8037
+      "sha256": "3a3d9d6bd24064ec349bb42a3420cdb72a3073582a4acfac58f3c6978e646bcb",
+      "bytes": 9643
     },
     {
       "path": "kristal_manager/inventory.py",
-      "sha256": "f75d2756a9c07b3a3d19e71ba36a192d339f463d7207e85d6011f3f10f52b6fc",
-      "bytes": 3457
+      "sha256": "9968b3f166e10cdf535ffa7e44ffc13098740aca0a260bad6bbfb2d3ceeea080",
+      "bytes": 7451
     },
     {
       "path": "kristal_manager/publication_gate.py",
@@ -129,7 +159,7 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "d37928c2ba81d7d9832c9e666cb24a20584e791a4841f1aa89462a05108530d0",
+      "sha256": "3d00ea2413dbe68424e47cb756908b8b1b9b0c121430430c872b0ee01311b227",
       "bytes": 392
     },
     {
@@ -141,6 +171,11 @@
       "path": "tests/test_core.py",
       "sha256": "de9b5973cc20c615cf033e5bca406f0dbb2acb014041548724191d8629df5463",
       "bytes": 40823
+    },
+    {
+      "path": "tests/test_discovery_adapter.py",
+      "sha256": "e93c65acb3494a7be41736c531a219262eb0021c676cec78bcef9db1ab3fb5b0",
+      "bytes": 7151
     },
     {
       "path": "tests/test_recovery.py",

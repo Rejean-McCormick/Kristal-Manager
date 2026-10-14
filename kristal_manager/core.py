@@ -96,9 +96,12 @@ def detect_kristal(path: str|Path) -> dict|None:
     elif current:status='READY'
     elif states:status='LEGACY STATE'
     else:status='NO STATE'
+    from .discovery import inspect_discovery
     profile=data.get('profile')
+    discovery=inspect_discovery(folder, state_ref=declaration or (selected['state_ref'] if selected else None))
     meta=dict(path=str(folder),kind='local' if ws.exists() else 'auxiliary',
        title=data.get('title') or folder.name,slug=data.get('slug') or folder.name,
+       discovery=discovery,
        workspace_format=data.get('format'),profile=profile,status=data.get('status'),
        declared_state_ref=declaration,state_ref=selected['state_ref'] if selected else declaration,
        state_source=selected['source'] if selected else None,

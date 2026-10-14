@@ -1,0 +1,156 @@
+{
+  "format": "kristal-manager-package-inventory/1.0",
+  "version": "0.1.0-alpha.12-recovery",
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "16ef1325a0a6c474af5e4fbd4383b1b2135a0f3f5581b7191db5a6f9ffb234f3",
+      "bytes": 491
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "290a9ab12b76bccb3f948f24cf14ec238fff40fffbc1c79568489d9272f7bddf",
+      "bytes": 137
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "sha256": "f4054372dad7eb513cd05d4fb6d0f813b33deb374be1ddb1f76b27c475381907",
+      "bytes": 3374
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "30c1ab1d6a0a529ed748d39477212a3315ef6494e63d165a11fb6a8e647b3141",
+      "bytes": 982
+    },
+    {
+      "path": "GitSink.bat",
+      "sha256": "26c1bd8e8c7dc4d8adb1fe6da128b020ffbb7d90d54ad402ce3e64f2ce10b109",
+      "bytes": 1863
+    },
+    {
+      "path": "Kristal-Manager.pyw",
+      "sha256": "4e4f03ca13119e4ecfa39967f4ee073c82f8437c5814e7b294634d9ab0cd18b9",
+      "bytes": 78
+    },
+    {
+      "path": "Launch-Kristal-Manager.cmd",
+      "sha256": "3e184c583c44042a4d14b271c430036c021344c7cb6af8f7fa6e5fd53428b248",
+      "bytes": 299
+    },
+    {
+      "path": "README.md",
+      "sha256": "2293839924afbaefb3f68490e1c0ca418bafbb3bd6b8fbfc03f5893d2c603beb",
+      "bytes": 7622
+    },
+    {
+      "path": "TEST_REPORT.md",
+      "sha256": "b418fde0f236906fe38b2dbb2caa99d8a94178ae4308686266e19684ba68021e",
+      "bytes": 2370
+    },
+    {
+      "path": "VERSION",
+      "sha256": "7d63afc20ad1235a1d845637ae76bb636f3518fd2be11c56a8dac2a3b6d25097",
+      "bytes": 15
+    },
+    {
+      "path": "ZmartZnap.pyw",
+      "sha256": "53d7b23d20586faaae9ba1277669e01dea8ad61c3601bf0501bc19e5d4ddecca",
+      "bytes": 23524
+    },
+    {
+      "path": "docs/C2_PUBLICATION_CONTROL.md",
+      "sha256": "fc360ba53ad69db97c3ab45eb0c09c42b135ce6e97828c2102a228ec9c10b42f",
+      "bytes": 1784
+    },
+    {
+      "path": "docs/HISTORICAL_RUNTIME_RECOVERY.md",
+      "sha256": "539ea8797589f1cb6288d4829e7f3a045d8c7d9a784501bcee3cc0cccad79276",
+      "bytes": 2203
+    },
+    {
+      "path": "docs/KONSTELLATION_INVENTORY.md",
+      "sha256": "0eac7fa9ccdb44c2ca323bacdcd4e6bd812d5f061682d376ef5e19b3648cd0bc",
+      "bytes": 2169
+    },
+    {
+      "path": "docs/ORIGINAL_SNAPSHOT_INDEX.txt",
+      "sha256": "2314ac3aca335420f56346623c585f2f857389dd8363125bd6aa7c875e467c67",
+      "bytes": 651
+    },
+    {
+      "path": "docs/RECOVERY_STATUS.md",
+      "sha256": "8ee975aef5a340601cde9093dd794a310a36986119b5b1192f18904c84fb7a34",
+      "bytes": 1967
+    },
+    {
+      "path": "docs/V10_ALIGNMENT.md",
+      "sha256": "08fa2a42eb8cdcaf9ae39fe3f4c89d70500377b6bad0d20f331d771a7d27fde7",
+      "bytes": 1945
+    },
+    {
+      "path": "kristal-manager.html",
+      "sha256": "0af45567f98e5744c80c46c02d69179e5f8abc85e8721e4304a2e4ea8103e65c",
+      "bytes": 7225
+    },
+    {
+      "path": "kristal_manager/__init__.py",
+      "sha256": "bfdb8cbae1d5e15ef82adf6240acc22a470336d9cf00e3ff64ff2c3ff514b9c9",
+      "bytes": 97
+    },
+    {
+      "path": "kristal_manager/__main__.py",
+      "sha256": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+      "bytes": 47
+    },
+    {
+      "path": "kristal_manager/cli.py",
+      "sha256": "6a1c121ad763891c7d8c4ba97ff21d342872534a02f82ed70e67b39c98dafd00",
+      "bytes": 2050
+    },
+    {
+      "path": "kristal_manager/core.py",
+      "sha256": "2fa00e6b05d07352ded61ba6887f5a2ba5f4dc37d235ea26d32c9336f425cb52",
+      "bytes": 14822
+    },
+    {
+      "path": "kristal_manager/gui.py",
+      "sha256": "3c6f2e06f5d1b9acd57ccd48a43af292fcde69966109035028c4bd515da18432",
+      "bytes": 8037
+    },
+    {
+      "path": "kristal_manager/inventory.py",
+      "sha256": "f75d2756a9c07b3a3d19e71ba36a192d339f463d7207e85d6011f3f10f52b6fc",
+      "bytes": 3457
+    },
+    {
+      "path": "kristal_manager/publication_gate.py",
+      "sha256": "03b5c5480664c78576b37eb4a833b01092f965122a767c648d21ac9e06cca53f",
+      "bytes": 9042
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "d37928c2ba81d7d9832c9e666cb24a20584e791a4841f1aa89462a05108530d0",
+      "bytes": 392
+    },
+    {
+      "path": "tests/test_c2_public_gate.py",
+      "sha256": "0dd1bfb92b3ea5a3f4bdd9119aeeec0a2782a422cc741f3eeb1e049a4c587b0a",
+      "bytes": 8143
+    },
+    {
+      "path": "tests/test_core.py",
+      "sha256": "de9b5973cc20c615cf033e5bca406f0dbb2acb014041548724191d8629df5463",
+      "bytes": 40823
+    },
+    {
+      "path": "tests/test_recovery.py",
+      "sha256": "eb1f9a52673b39e8d70e4cd3aa2d901aad97c2591facf1a88ac2a00b81d7287c",
+      "bytes": 5626
+    },
+    {
+      "path": "tools/restore_original_backend.py",
+      "sha256": "4189a1be71743b3024c2ff86a7bf392c4b12d5edc0d6e812d3256a69a1cc4f97",
+      "bytes": 2365
+    }
+  ]
+}

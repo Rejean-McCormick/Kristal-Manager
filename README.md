@@ -1,6 +1,6 @@
 # Kristal Manager
 
-**Recovery update:** `0.1.0-alpha.12` · **Framework target:** `10.0.0-draft.3.1` · **Operational status:** **read-only inventory available; GitHub synchronization disabled**.
+**Recovery update:** `0.1.0-alpha.13` · **Framework target:** `10.0.0-draft.3.1` · **Operational status:** **read-only inventory available; GitHub synchronization disabled**.
 
 Kristal Manager owns the operational inventory of **existing** Kristal workspaces and, when independently restored and qualified, should orchestrate controlled GitHub v10 read-surface synchronization. It does **not** own the semantic interpretation of knowledge, the archetype library, domain qualifications, or publication/activation.
 
@@ -42,12 +42,12 @@ python -m kristal_manager export "C:\mycode\Kristal\locals" --output private-loc
 | `qualification` / `publication` | `NOT_ESTABLISHED` unless independently validated elsewhere |
 | `availability` | `local`; a local record is not automatically publicly accessible |
 
-The provisional export format is **`kristal.manager-local-inventory/0.1-candidate`**, a local integration proposal, **not a normative Framework format**. It is intended for a future **authenticated, policy-first Konstellation fleet adapter**. Konstellation owns navigation among Kristals and into concepts; Manager only owns operational inventory and access-restricted metadata export. The final producer/consumer contract must be agreed by both repositories before any network endpoint is enabled.
+The inventory export format remains provisional as **`kristal.manager-local-inventory/0.1-candidate`**, a local integration proposal, **not a normative Framework format**. It is intended for a future **authenticated, policy-first Konstellation fleet adapter**. Konstellation owns navigation among Kristals and into concepts; Manager only owns operational inventory and access-restricted metadata export. The final producer/consumer contract must be agreed by both repositories before any network endpoint is enabled.
 
 ## v10 architecture boundaries
 
 ```text
-Authoring Kit 3.2.4+  --> Local workspace + exact read-surface (when ready)
+Authoring Kit 3.3+    --> Local workspace + exact read-surface (when ready)
                          |
 Kristal Manager    -->   Local inventory + operational verification
                          | (future, gated and audited)
@@ -62,14 +62,14 @@ A successful check does **not** qualify claims or authorize network exposure. Sy
 
 ## Recovery capabilities and explicit blockers
 
-| Capability | State in alpha.12 recovery |
+| Capability | State in alpha.13 recovery |
 | --- | --- |
 | Local scan, nested workspaces, basic conflict detection | **Implemented** |
 | GUI inventory, search, selected-state inspection | **Implemented** |
 | Local-only policy-minimized JSON export | **Implemented** |
 | Standalone offline HTML inventory viewer | **Implemented** |
 | C2 signed grant / per-revision qualification verifier | **Included** from Bootstrap's candidate verifier; independent security tests run |
-| Kit 3.2.4 readiness and read-surface invocation | **NOT RESTORED**; see docs |
+| Kit readiness and read-surface invocation | **NOT RESTORED**; see docs |
 | C1, C2 and C3 interoperability end-to-end | **NOT VERIFIED** |
 | Local migration, preparation of publish requests | **BLOCKED**, original implementation unavailable |
 | GitHub sync / batch sync / full backup | **BLOCKED**, no remote mutation performed |
@@ -99,3 +99,65 @@ No public/private Kristal collection was modified or published by this release a
 After preparing this recovery build, an audit of repository history located the full authentic Python backend in commit **`237b1b539332da5d87bed4b185ea03794aad1057`**, from which the current public branch removed its Python package. See [Historical runtime recovery](docs/HISTORICAL_RUNTIME_RECOVERY.md) and `tools/restore_original_backend.py`. This is preferable to treating the recovery's intentionally disabled sync routines as their eventual implementation. The exporter works **offline** against a full local Git clone, stages verifiable source for review, and never changes the checkout or contacts GitHub.
 
 **Operator caution:** `GitSink.bat` is an inherited generic Git helper that may stage/commit/push all changes; it is **not** used by the Manager launcher or recovery tests. Do not invoke it as an alignment or publication step.
+
+
+## Authoring Kit 3.3 Discovery (alpha.13)
+
+Manager now **reads, but never generates or modifies**, the following Kit 3.3
+noncanonical files in each local workspace:
+
+- `kristal.discovery.json` (`kristal.discovery/1.0`)
+- `derived/reader-inventory.json` (`kristal.reader-inventory/1.0`)
+- `derived/reader-profile.json` (`kristal.reader-profile/1.0`)
+
+A missing set is allowed for historical Kristals. An incomplete, structurally
+invalid, or internally inconsistent set is reported under `discovery.status`
+without changing v9 state readiness. Matching fingerprints are shown as
+`consistent_unverified` (NOT proof that local files are still unchanged).
+For a costly explicit check of registered source bytes, use:
+
+```bash
+python -m kristal_manager inspect /path/to/Kristal --verify-discovery
+```
+
+This verification matches the Kit 3.3 fingerprint of its *recorded* source
+files/segments; it does not discover unregistered content or confer authority.
+Never treat reader hints as permission to open source files.
+
+## Private Konstellation preview export (experimental)
+
+The existing Konstellation My Kristals preview presently consumes a **different**
+format. An opt-in adapter now emits precisely
+`konstellation.manager-inventory-preview/0.1`:
+
+```bash
+python -m kristal_manager export-konstellation /path/to/locals \
+  --principal-id local-user --output private-konstellation-preview.json
+```
+
+On Windows, use **Export My Kristals (opt-in)** in the Manager GUI, where the
+principal and disclosure of *all inventoried titles* must be confirmed.
+The operator must independently decide that the named local principal is
+entitled to see every listed Kristal; Manager does NOT evaluate ACLs or issue
+access grants. **Default deny** applies if no principal is supplied. Export is
+private, local-only, file-based, capped by the existing consumer's limits, and
+includes **no paths, secrets, canonical payloads or inferred publication status**.
+All entries remain `visibility=private`, `availability=unknown`, and
+`viewKind=inventory_only` when consumed by the current Konstellation preview.
+The presence of READY in the Manager's local scan is **not** translated to
+reader `ready`; no publication, remote write, or server endpoint is enabled.
+
+The two JSON outputs serve different purposes: `export` produces a richer
+restricted operational report, and `export-konstellation` produces the narrow
+KNAV preview shape. Neither is a ratified Framework format.
+
+## Local migration / cleanup
+
+Only the stale root `SNAPSHOT_INDEX.txt` was relocated to
+`docs/snapshots/SNAPSHOT_INDEX_20261013_1042.txt`. The updated ZIP contains
+an optional **`Nettoyer_anciens_fichiers.pyw`** with a French desktop GUI.
+It previews the exact obsolete root file, compares its original SHA-256 and
+requires checkbox + confirmation before deleting an unchanged local copy.
+It never deletes modified files or recursively scans workspaces.
+Old package-manifest evidence is archived in `docs/snapshots/`; the new
+root package manifest is regenerated for this distribution.

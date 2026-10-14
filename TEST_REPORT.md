@@ -1,4 +1,4 @@
-# Kristal Manager alpha.12 — Verification Report
+# Kristal Manager — Recovery and Discovery Verification Report
 
 **Date:** 2026-10-12  
 **Deliverable:** English-language **local recovery source package**, not a GitHub commit or production sync release.
@@ -27,3 +27,22 @@ No canonical truth verification, no live GitHub push, no read-surface synchroniz
 ## Next integration step
 
 Recover the authentic 4 historical files from a full local Git clone using `tools/restore_original_backend.py`, review their functionality and replay **all** historical tests and C2 denial tests before merging changes and enabling remote writes. Then negotiate the read-only Konstellation inventory contract and test it with authenticated Reader Policy.
+
+
+## 2026-10-13 — alpha.13 Discovery / Konstellation adapter
+
+New regression file: `tests/test_discovery_adapter.py`.
+
+Verified in isolated environment:
+
+- `python -m pytest -q tests/test_discovery_adapter.py tests/test_recovery.py tests/test_c2_public_gate.py`: **31 passed**.
+- Authoring Kit **3.3.0** actually initialized and classified a test Kristal (`ARK-08`, `PRF-15`); Manager `inspect --verify-discovery` returned `verified_registered_sources` and `kristal.reader/causal-graph-v1`.
+- Konstellation's unmodified `server/integrations/fleet.mjs` successfully read the new private preview export and filtered **all rows** for an unauthorized principal in a Node.js smoke test.
+- Cleanup GUI safety check is limited to an exact SHA-256-matched root snapshot index; no removal was performed in the test checkout.
+
+**Not verified:** desktop GUI on Windows; remote synchronization, C1/C2/C3/C4 end-to-end,
+full historical `tests/test_core.py`, all supported reader types or large-volume performance.
+
+The source fingerprints are `consistent_unverified` by default. Deep verification
+requires explicit CLI opt-in and may read large source payloads. No semantic,
+authorization or publication qualification is implied by these checks.

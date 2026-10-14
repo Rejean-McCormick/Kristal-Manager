@@ -20,3 +20,15 @@ The alpha.11 API names for migration, `prepare_github_read_surface`, `sync_local
 ## Required inputs to finish M-01 / M-02 / M-03
 
 Obtain the authentic former `kristal_manager/` package from the original operator workstation or Git history, together with its dependencies and exact commit/source SHA. Compare its behavior with historical tests and the independently reviewed C1/C2/C3 contracts. Restore one feature at a time behind negative safety tests, starting with read-surface preparation, then staging-only private sync. Only then consider C2-authorized public sync.
+
+
+## Alpha.13 addendum (2026-10-13)
+
+- Authoring Kit 3.3 Discovery/reader files are inspected read-only, with absence tolerated,
+  inconsistent/incomplete metadata flagged, and optional byte-level fingerprint checking.
+- An operator-controlled, no-network KNAV preview export adapts to Konstellation's
+  existing experimental `konstellation.manager-inventory-preview/0.1` consumer.
+- The adapter requires an explicitly supplied principal, does not infer eligibility,
+  does not authorize artifact reads and does not claim hosted availability.
+- Windows GUI validation, original GitHub sync backend recovery and independent
+  qualification/publication gates are still pending.

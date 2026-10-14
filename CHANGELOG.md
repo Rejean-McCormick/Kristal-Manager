@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0-alpha.13 — Kit 3.3 discovery + local KNAV adapter (2026-10-13)
+
+- Consume the three Kit 3.3 noncanonical Discovery/reader files with fail-closed consistency checks.
+- Add optional byte-level registered-source verification, with explicit unverified status by default.
+- Add a strict, opt-in local Konstellation preview export with operator-chosen principal and no inferred permissions.
+- Display Discovery metadata in the local GUI; keep existing scan/readiness and blocked sync.
+- Archive the stale root snapshot index; add an optional SHA-pinned local cleanup GUI.
+- Update docs, tests, and package inventory without enabling C2/C3/C4 operations.
+
+
 ## 0.1.0-alpha.12 — Local Inventory Recovery (2026-10-12)
 
 - Added the previously missing `kristal_manager` package as a **restricted recovery implementation**.

@@ -26,3 +26,24 @@ Absolute `local_path` is **not** present unless the operator explicitly uses `--
 ## Not implemented here
 
 No Konstellation adapter, authentication integration, public synchronization, publication, activation or v9 canonical concept decoding has been added. The Manager exporter is a local producer only.
+
+
+## Alpha.13 opt-in export against the existing KNAV consumer
+
+Use `python -m kristal_manager export-konstellation <roots> --principal-id <trusted-id> --output <private.json>`.
+This separately versioned projection uses
+`konstellation.manager-inventory-preview/0.1` with exactly the consumer's
+whitelisted `entries[]` fields. The operator explicitly chooses the principal
+allowed to see **every** included local title; Manager cannot infer ACLs.
+There is no automatic state authorization, and a malicious or careless operator
+can still expose sensitive metadata by granting broad access. Protect this file
+as sensitive and load it only in Konstellation's authenticated **local** profile.
+
+Readiness remains `not_checked` for structurally READY local Kristals because
+Manager does not verify the reader surface; conflicts are `blocked`. Availability
+is always `unknown`; identity is a stable opaque path-bound local ID, not a
+slug and not a canonical identity commitment. Arketype is emitted only when
+explicitly declared in mutually consistent Kit 3.3 Discovery metadata.
+
+The original operational `records[]` export remains unchanged at the top level.
+No network API, publication, activation, or reader implementation is added.

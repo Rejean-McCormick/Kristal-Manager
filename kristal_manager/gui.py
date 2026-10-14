@@ -9,9 +9,9 @@ from queue import Queue,Empty
 from threading import Thread
 import json
 import tkinter as tk
-from tkinter import ttk, filedialog, messagebox
+from tkinter import ttk, filedialog, messagebox, simpledialog
 from .core import scan_roots
-from .inventory import inventory,save_private_inventory
+from .inventory import inventory,save_private_inventory,konstellation_preview
 
 BG='#f7faf9'; TEAL='#1e6864'; TEXT='#173230'
 
@@ -45,6 +45,7 @@ class ManagerWindow(tk.Tk):
         ttk.Label(filterbar,text='Filter').pack(side='left',padx=(0,8))
         ttk.Entry(filterbar,textvariable=self.filter_var).pack(side='left',fill='x',expand=True)
         ttk.Button(filterbar,text='Export local inventory JSON',command=self.export).pack(side='left',padx=(12,0))
+        ttk.Button(filterbar,text='Export My Kristals (opt-in)',command=self.export_konstellation).pack(side='left',padx=(8,0))
         self.filter_var.trace_add('write',lambda *_:self.refresh())
         grid=ttk.Frame(self,padding=(22,0,22,10));grid.pack(fill='both',expand=True)
         cols=('title','readiness','profile','source','state_ref','artifacts')
@@ -108,10 +109,31 @@ class ManagerWindow(tk.Tk):
         row=self.rows[int(selected[0])]
         show={k:row.get(k) for k in ('title','slug','path','state_ref','workspace_format','native_kind',
                                     'readiness','state_commitment','state_blob_digest','state_conflict_reasons',
-                                    'portable_ai_enabled','ai_entrypoint_present','hosted_network_baseline')}
+                                    'portable_ai_enabled','ai_entrypoint_present','hosted_network_baseline','discovery')}
         self.details.configure(state='normal');self.details.delete('1.0','end')
         self.details.insert('end',json.dumps(show,ensure_ascii=False,indent=2))
         self.details.configure(state='disabled')
+    def export_konstellation(self):
+        if self.busy or not self.roots:
+            messagebox.showinfo('Scan first','Scan local Kristals before exporting.');return
+        principal=simpledialog.askstring('Explicit local access grant',
+            'Enter the local Konstellation principal ID you are authorized to expose ALL listed Kristals to.\nNo automatic permission check is performed.\nCancel to deny all.',parent=self)
+        if not principal:return
+        if not messagebox.askyesno('Private preview only',
+            'This explicitly authorizes the named local preview principal to see ALL inventoried Kristal titles.\nContinue?'):
+            return
+        file=filedialog.asksaveasfilename(title='Private KNAV preview file',defaultextension='.json',
+                     initialfile='private-konstellation-preview.json',filetypes=[('JSON','*.json')])
+        if not file:return
+        dest=Path(file)
+        allow=dest.exists() and messagebox.askyesno('Confirm replacement',f'Replace existing local file?\n{dest}')
+        if dest.exists() and not allow:return
+        try:
+            result=konstellation_preview(self.roots,allowed_principals=[principal])
+            save_private_inventory(result,dest,overwrite=allow)
+            self.status_var.set(f'Private KNAV preview: {len(result["entries"])} entries, not published')
+        except Exception as exc:messagebox.showerror('Preview failed',str(exc))
+
     def export(self):
         if self.busy or not self.roots:
             messagebox.showinfo('Scan first','Scan a local root before exporting.');return
