@@ -14,7 +14,7 @@ from .core import scan_roots, ManagerError
 FORMAT='kristal.manager-local-inventory/0.1-candidate'
 
 
-def inventory(roots: list[str|Path], *, include_paths: bool=False) -> dict:
+def inventory(roots: list[str|Path], *, include_paths: bool=False, verify_sources: bool=False) -> dict:
     """Fresh scan without domain file contents; local-only, may reveal metadata."""
     entries=[]
     for row in scan_roots(roots):
@@ -29,6 +29,14 @@ def inventory(roots: list[str|Path], *, include_paths: bool=False) -> dict:
         record['qualification']='NOT_ESTABLISHED'
         record['publication']='NOT_ESTABLISHED'
         record['archetype']=((row.get('discovery') or {}).get('classification') or {}).get('primary_archetype') or 'UNDECLARED'
+        if verify_sources:
+            from .operational import assess_local
+            report = assess_local(row['path'])
+            # Keep the operational result/flags, never report filesystem paths,
+            # unbounded detailed diagnostics or assert C1/C2/hosting authorization.
+            record['operational_result'] = report['operational_result']
+            record['discovery'] = report['discovery']
+            record['framework_state_verification'] = report['framework_state_verification']['status']
         if include_paths:
             record['local_path']=row['path']
         entries.append(record)
@@ -55,7 +63,8 @@ def inventory(roots: list[str|Path], *, include_paths: bool=False) -> dict:
            'The declared v10 baseline does not prove a hosted or published state.',
            'Arketype identity is displayed only when explicitly declared in consistent Kit metadata.',
            'Discovery fingerprint consistency does not verify current source bytes.',
-           'Reader hints do not authorize access, execution, qualification or publication.'
+           'Reader hints do not authorize access, execution, qualification or publication.',
+           'Use --verify-sources for on-demand registered-byte verification; this does not establish domain validity.'
        ]
     }
 

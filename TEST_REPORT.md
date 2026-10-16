@@ -46,3 +46,13 @@ full historical `tests/test_core.py`, all supported reader types or large-volume
 The source fingerprints are `consistent_unverified` by default. Deep verification
 requires explicit CLI opt-in and may read large source payloads. No semantic,
 authorization or publication qualification is implied by these checks.
+
+## 2026-10-16 — alpha.14 operational validation (Framework v10 draft.3.2)
+
+- Targeted local recovery, C2, Discovery and operational tests: **39 passed**.
+- Historical `tests/test_core.py` with C2 tests: **42 passed, 14 failed**, as expected for the missing alpha.11 GitHub sync/read-surface and the obsolete structural `VALID` cache expectation. This is not a full suite pass.
+- `python -m compileall -q kristal_manager`: passed.
+- CLI startup/help and `verify` on Catho: passed smoke test (exit `3` because there is a derived-metadata warning).
+- Catho snapshot read-only verification: local `READY`, registered-source `stale` (`tracked file size changed`); Framework reference v10 draft.3.2 **verified** v9 state commitment; operational result `ATTENTION_REQUIRED`.
+- Framework exact contract-set SHA-256: `e4baf0b197162be963f29848623a1e4454911c3133e6993629ea994d12dd6942`.
+- Not tested: Windows GUI interaction, authorized hosted v10 sync, C1/C2/C3 end-to-end, other Kristal profiles or large-scale performance.

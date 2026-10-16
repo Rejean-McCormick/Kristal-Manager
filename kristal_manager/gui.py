@@ -12,6 +12,7 @@ import tkinter as tk
 from tkinter import ttk, filedialog, messagebox, simpledialog
 from .core import scan_roots
 from .inventory import inventory,save_private_inventory,konstellation_preview
+from .operational import assess_local
 
 BG='#f7faf9'; TEAL='#1e6864'; TEXT='#173230'
 
@@ -46,6 +47,8 @@ class ManagerWindow(tk.Tk):
         ttk.Entry(filterbar,textvariable=self.filter_var).pack(side='left',fill='x',expand=True)
         ttk.Button(filterbar,text='Export local inventory JSON',command=self.export).pack(side='left',padx=(12,0))
         ttk.Button(filterbar,text='Export My Kristals (opt-in)',command=self.export_konstellation).pack(side='left',padx=(8,0))
+        self.verify_button=ttk.Button(filterbar,text='Verify selected (local)',command=self.start_verify)
+        self.verify_button.pack(side='left',padx=(8,0))
         self.filter_var.trace_add('write',lambda *_:self.refresh())
         grid=ttk.Frame(self,padding=(22,0,22,10));grid.pack(fill='both',expand=True)
         cols=('title','readiness','profile','source','state_ref','artifacts')
@@ -83,8 +86,14 @@ class ManagerWindow(tk.Tk):
         try:
             while True:
                 kind,payload,folder=self.events.get_nowait()
-                self.busy=False;self.scan_button.configure(state='normal')
-                if kind=='error':
+                self.busy=False;self.scan_button.configure(state='normal');self.verify_button.configure(state='normal')
+                if kind=='verification':
+                    index,report=payload
+                    if index<len(self.rows):
+                        self.rows[index]['operational_assessment']=report
+                        self.show_details()
+                    self.status_var.set('Operational check: '+report['operational_result']+' · no publication or access grant')
+                elif kind=='error':
                     messagebox.showerror('Scan failed',payload)
                     self.status_var.set('Local scan failed; no files changed')
                 else:
@@ -109,10 +118,23 @@ class ManagerWindow(tk.Tk):
         row=self.rows[int(selected[0])]
         show={k:row.get(k) for k in ('title','slug','path','state_ref','workspace_format','native_kind',
                                     'readiness','state_commitment','state_blob_digest','state_conflict_reasons',
-                                    'portable_ai_enabled','ai_entrypoint_present','hosted_network_baseline','discovery')}
+                                    'portable_ai_enabled','ai_entrypoint_present','hosted_network_baseline','discovery',
+                                    'operational_assessment')}
         self.details.configure(state='normal');self.details.delete('1.0','end')
         self.details.insert('end',json.dumps(show,ensure_ascii=False,indent=2))
         self.details.configure(state='disabled')
+    def start_verify(self):
+        if self.busy or not self.tree.selection():
+            messagebox.showinfo('Select a Kristal','Choose a local Kristal to verify.');return
+        index=int(self.tree.selection()[0]);folder=Path(self.rows[index]['path'])
+        self.busy=True;self.scan_button.configure(state='disabled')
+        self.verify_button.configure(state='disabled')
+        self.status_var.set('Checking registered bytes locally…')
+        def work():
+            try:self.events.put(('verification',(index,assess_local(folder)),folder))
+            except Exception as exc:self.events.put(('error',str(exc),folder))
+        Thread(target=work,daemon=True).start()
+
     def export_konstellation(self):
         if self.busy or not self.roots:
             messagebox.showinfo('Scan first','Scan local Kristals before exporting.');return

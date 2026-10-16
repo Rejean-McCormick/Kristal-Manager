@@ -1,6 +1,6 @@
 # Kristal Manager
 
-**Recovery update:** `0.1.0-alpha.13` · **Framework target:** `10.0.0-draft.3.1` · **Operational status:** **read-only inventory available; GitHub synchronization disabled**.
+**Recovery update:** `0.1.0-alpha.14` · **Framework target:** `10.0.0-draft.3.2` · **Operational status:** **read-only inventory available; GitHub synchronization disabled**.
 
 Kristal Manager owns the operational inventory of **existing** Kristal workspaces and, when independently restored and qualified, should orchestrate controlled GitHub v10 read-surface synchronization. It does **not** own the semantic interpretation of knowledge, the archetype library, domain qualifications, or publication/activation.
 
@@ -16,6 +16,44 @@ Kristal Manager owns the operational inventory of **existing** Kristal workspace
 6. To export locally, choose **Export local inventory JSON**. The file remains on your machine.
 
 The accompanying `kristal-manager.html` can open an exported JSON inventory with your browser's local file picker. It is a convenience table, **not** a duplicate Konstellation semantic explorer.
+
+## Operational verification (alpha.14, Kristal v10 baseline)
+
+Manager coordinates **read-only, local operational checks**. It does not claim to
+be the independent Framework/C1 validator or publication authority. Use:
+
+```bash
+python -m kristal_manager verify "C:\mycode\Kristal\locals\MyKristal"
+python -m kristal_manager scan "C:\mycode\Kristal\locals" --verify-sources
+python -m kristal_manager export "C:\mycode\Kristal\locals" --verify-sources --output inventory-private.json
+```
+
+`verify` computes the current Kit 3.3 registered-source fingerprints using local
+bytes. It distinguishes `LOCAL_CHECKS_PASSED`, `LOCAL_STRUCTURE_ONLY`,
+`ATTENTION_REQUIRED`, and `BLOCKED`. A stale Discovery triple does **not** by
+itself invalidate a canonical v9 state. CLI `verify` exits with code `3` for
+attention/blockers, `0` otherwise, and `2` on invocation errors.
+
+For optional **independent semantic State Commitment checking** using your own
+trusted, exact *Kristal Framework* v10 checkout:
+
+```bash
+python -m kristal_manager verify "C:\mycode\Kristal\locals\MyKristal" --framework-root "C:\mycode\Kristal\Kristal-Framework"
+```
+
+Requires Node.js and Framework reference scripts. Manager checks the exact
+Framework `contracts/contract-set.json` SHA-256 from the supplied 10.0.0-draft.3.2
+snapshot before invoking its `verify-state-v9`. This is the v9 **semantic state
+baseline within v10**, not an obsolete Framework version. Executing the local
+Framework scripts requires **trusting that checkout**; Manager does not install
+code or fetch remote files. If the Framework is absent or unpinned, semantic
+verification remains `NOT_EVALUATED`.
+
+The GUI adds **Verify selected (local)**, which checks registered bytes without
+calling external code. Neither the GUI nor CLI regenerates Discovery, modifies
+canon, sends data, syncs to GitHub, or declares C1 qualification, C2 grants,
+C3 hosting, publication, activation or read authorization. Repair stale derived
+metadata using the Authoring Kit's `build-discovery`, then run Manager again.
 
 ## CLI (English)
 
@@ -65,6 +103,8 @@ A successful check does **not** qualify claims or authorize network exposure. Sy
 | Capability | State in alpha.13 recovery |
 | --- | --- |
 | Local scan, nested workspaces, basic conflict detection | **Implemented** |
+| On-demand registered-byte verification and operational report | **Implemented (alpha.14)** |
+| Pinned, trusted Framework state verification | **Optional integration (alpha.14)** |
 | GUI inventory, search, selected-state inspection | **Implemented** |
 | Local-only policy-minimized JSON export | **Implemented** |
 | Standalone offline HTML inventory viewer | **Implemented** |

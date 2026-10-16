@@ -1,0 +1,43 @@
+ZmartZnap snapshot file index
+Files included: 38
+
+.github/workflows/ci.yml
+.gitignore
+ARCHITECTURE.md
+CHANGELOG.md
+docs/C2_PUBLICATION_CONTROL.md
+docs/HISTORICAL_RUNTIME_RECOVERY.md
+docs/KONSTELLATION_INVENTORY.md
+docs/ORIGINAL_SNAPSHOT_INDEX.txt
+docs/RECOVERY_STATUS.md
+docs/snapshots/PACKAGE_MANIFEST_SHA256_alpha12.json
+docs/snapshots/README.md
+docs/snapshots/SNAPSHOT_INDEX_20261013_1042.txt
+docs/V10_ALIGNMENT.md
+GitSink.bat
+kristal-manager.html
+Kristal-Manager.pyw
+kristal_manager/__init__.py
+kristal_manager/__main__.py
+kristal_manager/cli.py
+kristal_manager/core.py
+kristal_manager/discovery.py
+kristal_manager/gui.py
+kristal_manager/inventory.py
+kristal_manager/publication_gate.py
+Launch-Kristal-Manager.cmd
+MISE_A_JOUR_2026-10-13.md
+Nettoyer_anciens_fichiers.pyw
+PACKAGE_MANIFEST_SHA256.json
+pyproject.toml
+README.md
+TEST_REPORT.md
+tests/test_c2_public_gate.py
+tests/test_core.py
+tests/test_discovery_adapter.py
+tests/test_recovery.py
+tools/restore_original_backend.py
+VERSION
+ZmartZnap.pyw
+
+Index file: SNAPSHOT_INDEX.txt

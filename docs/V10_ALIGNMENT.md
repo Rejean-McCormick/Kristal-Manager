@@ -31,3 +31,27 @@ and `kristal.reader-profile/1.0` are now inspected locally (optional
 on-demand registered-byte verification). **The historic exact v10 GitHub
 read-surface sync engine is still not restored or tested.** C1, C2, C3 and
 publication/activation gates stay closed.
+
+## Alpha.14 operational verification — Framework draft.3.2
+
+**Current target:** `10.0.0-draft.3.2`, supplied Framework contract-set SHA-256
+`e4baf0b197162be963f29848623a1e4454911c3133e6993629ea994d12dd6942`.
+The original draft.3.1 notes above remain historical; do not confuse target
+version with production certification. v9 is still the frozen semantic-state
+baseline under v10.
+
+Manager's `verify` is a local multi-evidence operational assessment:
+
+1. Structural workspace detection (without interpreting domain truth).
+2. Kit 3.3 Discovery/reader-inventory/profile consistency and current registered
+   source *bytes* (optional metadata missing is normal for legacy workspaces).
+3. If explicitly configured with an operator-trusted, exactly pinned Framework
+   checkout, reference `verify-state-v9` of the selected local current state.
+4. Explicit `NOT_ESTABLISHED` for C1, C2, C3, publication, activation and
+   reader authorization. It never issues a grant or infers publication.
+
+A stale Discovery is a warning; it should be regenerated **by Authoring Kit**,
+not patched by Manager and not confused with a failed state commitment.
+`verify` results cannot be promoted to certified release or network permission.
+Public GitHub writes, exact hosted read-surface restoration and historical
+M-01/M-02/M-03 requirements remain blocked.

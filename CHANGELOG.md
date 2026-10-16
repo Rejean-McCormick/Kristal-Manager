@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0-alpha.14 — Operational verification / Framework v10 pin (2026-10-16)
+
+- Add read-only `verify` and bulk `--verify-sources` to detect stale physical reader inventories, retaining legacy Discovery-absent support.
+- Keep structural readiness, advisory Discovery, pinned Framework state-verification, qualification, publication and access as distinct evidence classes.
+- Allow explicit execution of a *trusted* Framework 10.0.0-draft.3.2 reference (contract-set SHA pinned) for v9 semantic State Commitment checking; no bundled external code.
+- Replace misleading cached structural `VALID` reports with fresh scoped statuses (the historical alpha.11 expectation is intentionally obsolete).
+- Add a local GUI Verify selected action, regression tests and Catho integration evidence.
+- Keep sync/publication/activation blocked and leave canonical inputs unchanged.
+
+
 ## 0.1.0-alpha.13 — Kit 3.3 discovery + local KNAV adapter (2026-10-13)
 
 - Consume the three Kit 3.3 noncanonical Discovery/reader files with fail-closed consistency checks.

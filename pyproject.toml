@@ -1,6 +1,6 @@
 [project]
 name = "kristal-manager"
-version = "0.1.0a13"
+version = "0.1.0a14"
 description = "Local Kristal inventory and safeguarded v10 operator tooling"
 requires-python = ">=3.11"
 dependencies = []

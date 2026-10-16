@@ -49,7 +49,7 @@ def state_candidates(folder: str|Path) -> list[dict]:
            ('node-v9','legacy','.kristal/v9/state-snapshot.json'))
     for source,role,relative in fixed:
         file=root/relative
-        if not file.is_file():continue
+        if not file.is_file() or file.is_symlink() or not file.resolve().is_relative_to(root) or file.stat().st_size > 32*1024*1024:continue
         blob=file.read_bytes()
         state=_read_json(file)
         candidates.append(dict(source=source,role=role,path=str(file),
@@ -59,12 +59,14 @@ def state_candidates(folder: str|Path) -> list[dict]:
     release_dir=root/'release/v9'
     if release_dir.is_dir():
         for file in sorted(release_dir.rglob('state-snapshot.json')):
+            if file.is_symlink() or not file.resolve().is_relative_to(root) or file.stat().st_size > 32*1024*1024:continue
             state=_read_json(file)
             candidates.append(dict(source='release-v9',role='release',path=str(file),
                   state_ref=state.get('state_ref'),
                   logical_commitment=(state.get('logical_commitment') or {}).get('digest'),
                   state_blob_digest=_sha(file.read_bytes())))
         for file in sorted(release_dir.glob('states/*.json')):
+            if file.is_symlink() or not file.resolve().is_relative_to(root) or file.stat().st_size > 32*1024*1024:continue
             state=_read_json(file)
             candidates.append(dict(source='release-v9',role='release',path=str(file),
                   state_ref=state.get('state_ref'),
@@ -182,15 +184,21 @@ def validation_cache_key(record: dict, *,workspace_root=None,network_config=None
     return _sha(json.dumps(stable,sort_keys=True,default=str).encode())
 
 def validate_local_cached(path, *,previous=None,workspace_root=None,network_config=None,progress=None):
-    p=_path(path);rec=detect_kristal(p)
-    if not rec:raise ManagerError('Not a recognized local Kristal.')
-    key=validation_cache_key(rec,workspace_root=workspace_root,network_config=network_config)
-    if previous and previous.get('last_validation_result')=='VALID' and previous.get('last_validation_cache_key')==key:
-        return dict(result='VALID',cached=True,validation_cache_key=key)
-    if progress:progress(f'{p.name}: inspecting local workspace')
-    return dict(result='VALID' if rec['readiness']=='READY' else 'BLOCKED',
-                cached=False,validation_cache_key=key,readiness=rec['readiness'],
-                note='Structural inspection only; not independent domain qualification.')
+    """Fresh operational assessment; old structural VALID caches are never trusted.
+
+    The retained legacy name is for compatibility with the local GUI/tests.
+    Hashing Discovery source bytes on every call is intentional: a cache based
+    only on state identity would miss changed registered bytes.
+    """
+    from .operational import assess_local
+    p=_path(path)
+    if progress:progress(f'{p.name}: verifying local registered sources')
+    assessment=assess_local(p)
+    return {'result':assessment['operational_result'],'cached':False,
+            'validation_cache_key':None,'readiness':assessment['local_readiness'],
+            'discovery':assessment['discovery'],
+            'framework_state_verification':assessment['framework_state_verification'],
+            'note':'Operational evidence only; no C1 qualification, C2 authorization, or publication.'}
 
 def validate_entries_parallel(entries, *,workspace_root,network_config,max_workers=4,progress=None):
     if progress:progress(f'Validating entries using {max_workers} parallel worker(s).')

@@ -32,3 +32,8 @@ Obtain the authentic former `kristal_manager/` package from the original operato
   does not authorize artifact reads and does not claim hosted availability.
 - Windows GUI validation, original GitHub sync backend recovery and independent
   qualification/publication gates are still pending.
+
+
+## 2026-10-16 — alpha.14 operational assessment
+
+The current local ZIP adds on-demand operational verification and a pinned optional Framework state verifier, not restoration of the historical GitHub backend. The root SNAPSHOT_INDEX.txt is an original source-snapshot index; use PACKAGE_MANIFEST_SHA256.json to check this release instead.
