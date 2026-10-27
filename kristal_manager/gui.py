@@ -19,6 +19,7 @@ from tkinter import filedialog, messagebox, ttk
 import webbrowser
 
 from .core import detect_kristal, scan_roots
+from .diag_bridge import DiagConfigurationError, validate_config, run_diagnostic
 from .inventory import inventory, konstellation_preview, save_private_inventory
 from .operational import assess_local
 from .ui_prefs import default_root, load_settings, save_settings
@@ -126,7 +127,10 @@ class ManagerWindow(tk.Tk):
         filemenu.add_command(label='Quitter', command=self.destroy)
         bar.add_cascade(label='Fichier', menu=filemenu)
         actions = tk.Menu(bar, tearoff=False)
-        actions.add_command(label='Vérifier le Kristal sélectionné', command=self.start_verify)
+        actions.add_command(label='Vérifier le Kristal sélectionné (local)', command=self.start_verify)
+        actions.add_command(label='Diagnostiquer avec KristalDiag (C1 externe)…', command=self.start_diag_selected)
+        actions.add_command(label='Configurer KristalDiag…', command=self.configure_diag)
+        actions.add_command(label='Exporter les diagnostics observés (JSON)…', command=self.export_diag_report)
         actions.add_command(label='Cataloguer le Kristal sélectionné', command=self.start_catalog_selected)
         actions.add_command(label='Cataloguer tous les Kristals du dossier', command=self.start_catalog_all)
         actions.add_command(label='Ouvrir un aperçu de contenu HTML…', command=self.open_content_overview)
@@ -162,7 +166,7 @@ class ManagerWindow(tk.Tk):
         names.pack(side='left', fill='x', expand=True)
         ttk.Label(names, text='KRISTAL MANAGER', style='Title.TLabel').pack(anchor='w')
         ttk.Label(names,
-                  text='Explorer  ·  Vérifier localement  ·  Cataloguer  |  Aucun accès réseau ou publication',
+                  text='Explorer · Vérifier · Cataloguer · KristalDiag externe | Pas de publication par le Manager',
                   style='BrandHeader.TLabel').pack(anchor='w')
 
         source = ttk.LabelFrame(self, text='1 · Dossier à examiner', style='Section.TLabelframe')
@@ -199,6 +203,9 @@ class ManagerWindow(tk.Tk):
         self.actions_menu.add_command(label='Analyser le dossier', command=self.start_scan)
         self.actions_menu.add_separator()
         self.actions_menu.add_command(label='Vérifier le Kristal sélectionné', command=self.start_verify)
+        self.actions_menu.add_command(label='Diagnostiquer avec KristalDiag…', command=self.start_diag_selected)
+        self.actions_menu.add_command(label='Configurer KristalDiag…', command=self.configure_diag)
+        self.actions_menu.add_command(label='Exporter les diagnostics observés (JSON)…', command=self.export_diag_report)
         self.actions_menu.add_command(label='Cataloguer le Kristal sélectionné', command=self.start_catalog_selected)
         self.actions_menu.add_command(label='Cataloguer tous les Kristals du dossier', command=self.start_catalog_all)
         self.actions_menu.add_command(label='Ouvrir un aperçu HTML', command=self.open_content_overview)
@@ -232,10 +239,11 @@ class ManagerWindow(tk.Tk):
         lower = ttk.Frame(paned)
         paned.add(lower, weight=2)
 
-        cols = ('title', 'category', 'readiness', 'profile', 'state_ref', 'artifacts', 'content')
+        cols = ('title', 'category', 'readiness', 'diag', 'profile', 'state_ref', 'artifacts', 'content')
         self.tree = ttk.Treeview(upper, columns=cols, show='headings', selectmode='browse', height=10)
         for key, heading, width in [
             ('title', 'Kristal', 245), ('category', 'Catégorie', 175), ('readiness', 'État local', 106),
+            ('diag', 'KristalDiag', 135),
             ('profile', 'Profil', 140), ('state_ref', 'Identité d’état', 320),
             ('artifacts', 'Artefacts', 90), ('content', 'Contenu observé', 190),
         ]:
@@ -256,6 +264,8 @@ class ManagerWindow(tk.Tk):
         quick = ttk.Frame(lower)
         quick.pack(fill='x', pady=(6, 2))
         ttk.Label(quick, textvariable=self.selection_var, style='H2.TLabel').pack(side='left', fill='x', expand=True)
+        self.diag_button = ttk.Button(quick, text='KristalDiag (C1)…', command=self.start_diag_selected)
+        self.diag_button.pack(side='right', padx=(5, 0))
         self.verify_button = ttk.Button(quick, text='Vérifier ce Kristal', command=self.start_verify)
         self.verify_button.pack(side='right', padx=(5, 0))
         self.selected_catalog_button = ttk.Button(quick, text='Cataloguer ce Kristal', command=self.start_catalog_selected)
@@ -476,6 +486,7 @@ class ManagerWindow(tk.Tk):
         idle = not self.busy
         self.scan_button.configure(state='normal' if idle else 'disabled')
         self.verify_button.configure(state='normal' if idle and selected else 'disabled')
+        self.diag_button.configure(state='normal' if idle and selected and supports_catalog and not is_historical(row) else 'disabled')
         self.selected_catalog_button.configure(state='normal' if idle and supports_catalog else 'disabled')
         self.copy_path_button.configure(state='normal' if selected else 'disabled')
         self.organize_button.configure(state='normal' if idle and supports_catalog and not is_historical(row) else 'disabled')
@@ -518,6 +529,136 @@ class ManagerWindow(tk.Tk):
         path = Path(row['path'])
         self._start(f'Vérification locale de « {row["title"]} »…',
                     lambda: (str(path), assess_local(path)), folder=path, job='verify')
+
+    def configure_diag(self):
+        """Operator explicitly chooses the trusted KristalDiag entrypoint and CLI syntax."""
+        if self.busy:
+            return
+        dialog = tk.Toplevel(self)
+        dialog.title('Configurer KristalDiag — outil indépendant C1')
+        dialog.geometry('790x405')
+        dialog.minsize(680, 360)
+        dialog.transient(self)
+        dialog.grab_set()
+        outer = ttk.Frame(dialog, padding=16)
+        outer.pack(fill='both', expand=True)
+        ttk.Label(outer, text='Chemin du programme KristalDiag', style='H2.TLabel').pack(anchor='w')
+        program_var = tk.StringVar(value=self.settings.get('diag_program', ''))
+        argv_var = tk.StringVar(value=self.settings.get('diag_arguments', '{workspace}'))
+        location = ttk.Frame(outer)
+        location.pack(fill='x', pady=(7, 12))
+        ttk.Entry(location, textvariable=program_var).pack(side='left', expand=True, fill='x')
+        def browse():
+            choice = filedialog.askopenfilename(parent=dialog, title='Programme de confiance KristalDiag',
+                filetypes=[('Programmes', '*.exe *.py *.js *.mjs'), ('Tous les fichiers', '*.*')])
+            if choice:
+                program_var.set(choice)
+        ttk.Button(location, text='Parcourir…', command=browse).pack(side='left', padx=(7, 0))
+        ttk.Label(outer, text='Arguments du programme (à confirmer dans la documentation KristalDiag)').pack(anchor='w')
+        ttk.Entry(outer, textvariable=argv_var).pack(fill='x', pady=(6, 8))
+        ttk.Label(outer, text='Variables : {workspace} = chemin du Kristal ; {report} = fichier JSON temporaire.').pack(anchor='w')
+        explanation = (
+            'Exemple de syntaxe fictive, à ne PAS utiliser sans confirmation de KristalDiag :\n'
+            '  validate --workspace {workspace} --output {report}\n\n'
+            'Le Manager n’invente pas les arguments officiels. L’exécutable ou le script doit être fourni\n'
+            'par vous et installé hors de C:\\mycode\\Kristal\\locals.\n'
+            'Une exécution externe peut modifier des fichiers ou accéder au réseau selon l’outil.\n'
+            'Un code de sortie 0 ne vaut pas attestation C1.'
+        )
+        ttk.Label(outer, text=explanation, justify='left', style='Sub.TLabel').pack(anchor='w', pady=(12, 8))
+        bar = ttk.Frame(outer)
+        bar.pack(side='bottom', fill='x')
+        def save():
+            try:
+                validate_config(program_var.get().strip(), argv_var.get().strip(),
+                    root=self.roots[0] if self.roots else self.path_var.get())
+            except (OSError, DiagConfigurationError) as exc:
+                messagebox.showerror('Configuration incomplète', str(exc), parent=dialog)
+                return
+            self.settings['diag_program'] = program_var.get().strip()
+            self.settings['diag_arguments'] = argv_var.get().strip()
+            try:
+                save_settings(self.settings)
+            except OSError as exc:
+                messagebox.showerror('Préférences non enregistrées', str(exc), parent=dialog)
+                return
+            self.log('CONFIG', f'KristalDiag externe configuré : {self.settings["diag_program"]}')
+            self.status_var.set('KristalDiag configuré ; exécution uniquement après confirmation.')
+            dialog.destroy()
+        ttk.Button(bar, text='Annuler', command=dialog.destroy).pack(side='right')
+        ttk.Button(bar, text='Enregistrer', style='Primary.TButton', command=save).pack(side='right', padx=(0, 8))
+        dialog.wait_window()
+
+    def start_diag_selected(self):
+        if self.busy:
+            return
+        row = self._selected_row()
+        if not row or is_historical(row) or not (Path(row['path']) / 'kristal.workspace.json').is_file():
+            messagebox.showinfo('Kristal principal requis',
+                'Sélectionnez un Kristal principal, et non une copie historique.', parent=self)
+            return
+        program = self.settings.get('diag_program')
+        arguments = self.settings.get('diag_arguments')
+        if not program or not arguments:
+            messagebox.showinfo('KristalDiag à configurer',
+                'KristalDiag n’est pas inclus dans le Manager. Sélectionnez son programme et renseignez ses vrais arguments.',
+                parent=self)
+            self.configure_diag()
+            return
+        try:
+            validate_config(program, arguments, root=self.roots[0] if self.roots else row['path'])
+        except (OSError, DiagConfigurationError) as exc:
+            messagebox.showerror('Configuration KristalDiag invalide', str(exc), parent=self)
+            return
+        if not messagebox.askyesno('Exécuter KristalDiag ?',
+            f'Kristal sélectionné : {row["title"]}\n'
+            f'Dossier : {row["path"]}\n\n'
+            f'Programme externe : {program}\n'
+            f'Arguments configurés : {arguments}\n\n'
+            'Le Manager n’a pas audité ce programme : il pourrait écrire dans les fichiers\n'
+            'ou accéder au réseau. Vérifiez qu’il est fiable avant de continuer.\n\n'
+            'Le résultat sera affiché comme diagnostic externe observé, jamais comme\n'
+            'qualification C1 vérifiée sans protocole officiel. Continuer ?', parent=self):
+            return
+        path = Path(row['path'])
+        workspace_root = self.roots[0] if self.roots else path
+        self._start(f'KristalDiag externe : {row["title"]}…',
+                    lambda: (str(path), run_diagnostic(path, program=program,
+                                                        arguments=arguments, source_root=workspace_root)),
+                    folder=path, job='diag')
+
+    def export_diag_report(self):
+        if self.busy:
+            return
+        results = [r for r in self.rows if not is_historical(r) and r.get('diag_report') is not None]
+        if not results:
+            messagebox.showinfo('Aucun diagnostic',
+                'Aucun rapport KristalDiag externe n’a été observé pendant cette session.', parent=self)
+            return
+        chosen = filedialog.asksaveasfilename(parent=self, title='Exporter les résultats KristalDiag observés',
+            initialfile='kristal-diag-observations.json', defaultextension='.json', filetypes=[('JSON', '*.json')])
+        if not chosen:
+            return
+        destination = Path(chosen)
+        if not self._safe_output(destination):
+            return
+        if destination.exists() and not messagebox.askyesno('Remplacer ?', f'Remplacer {destination} ?', parent=self):
+            return
+        data = {
+            'format': 'kristal.manager-diag-observations/0.1-experimental',
+            'generated_at': datetime.now().astimezone().isoformat(),
+            'scope': 'observations in the current Manager session only',
+            'qualification': 'NOT_ESTABLISHED',
+            'records': [{'title': r['title'], 'path': r['path'], 'state_ref': r.get('state_ref'),
+                         'diag_report': r['diag_report']} for r in results],
+        }
+        try:
+            destination.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
+        except OSError as exc:
+            self._fail('Export des observations KristalDiag', exc)
+            return
+        self.log('SUCCÈS', f'{len(results)} observations KristalDiag exportées : {destination}')
+        self.status_var.set(f'{len(results)} diagnostics externes exportés · qualification non établie')
 
     def _catalog_destination(self, suggested):
         folder = Path.home() / 'Desktop'
@@ -625,6 +766,18 @@ class ManagerWindow(tk.Tk):
                                         ' · PAS une conformité Framework')
                     self.log('RÉSULTAT', f'{Path(path).name} : {report.get("operational_result")}; '
                            f'Framework : {report.get("framework_state_verification", {}).get("status")}')
+                elif kind == 'diag':
+                    path, report = payload
+                    row = next((r for r in self.rows if r['path'] == path), None)
+                    if row:
+                        row['diag_report'] = report
+                    self.refresh(prefer=path)
+                    self.tabs.select(0)
+                    self.status_var.set('KristalDiag : ' + report['process_status'] +
+                        ' · rapport observé, qualification C1 NON établie')
+                    self.log('DIAG', f'{Path(path).name} : {report["process_status"]} · '
+                             f'fichier JSON : {"oui" if report.get("external_report") is not None else "non"} · '
+                             f'sources modifiées : {"OUI" if report["input_changed_during_run"] else "non détectées"}')
                 elif kind == 'archive_export':
                     self.status_var.set(f'Archive locale créée : {payload["path"]}')
                     self.log('SUCCÈS', f'Export {payload["format"]} : {payload["files"]} fichiers · {payload["path"]}')
@@ -728,13 +881,17 @@ class ManagerWindow(tk.Tk):
             metrics = (row.get('content_summary') or {}).get('metrics') or {}
             n = metrics.get('assertions')
             content = f'{n:,} assertions' if isinstance(n, int) else ('mesuré, non quantifié' if row.get('content_summary') else 'non analysé')
-            values = (row['title'], cat, row['readiness'], row.get('profile') or '—',
+            diag = row.get('diag_report') or {}
+            diag_label = ('Non lancé' if not diag else
+                          'Exécuté' if diag.get('process_status') == 'EXECUTED_EXIT_0' else
+                          'Échec / délai' if diag.get('process_status') in ('TIMEOUT', 'EXECUTED_NONZERO') else 'À examiner')
+            values = (row['title'], cat, row['readiness'], diag_label, row.get('profile') or '—',
                       row.get('state_ref') or '—', row.get('registered_artifacts', 0), content)
             visible.append((i, row, values, historic))
-        mapping = {'title': 0, 'category': 1, 'readiness': 2, 'profile': 3,
-                   'state_ref': 4, 'artifacts': 5, 'content': 6}
+        mapping = {'title': 0, 'category': 1, 'readiness': 2, 'diag': 3, 'profile': 4,
+                   'state_ref': 5, 'artifacts': 6, 'content': 7}
         pos = mapping.get(self.sort_field, 0)
-        visible.sort(key=lambda v: (v[2][pos] if pos == 5 else str(v[2][pos]).casefold(),
+        visible.sort(key=lambda v: (v[2][pos] if pos == 6 else str(v[2][pos]).casefold(),
                                     v[1]['path'].casefold()), reverse=self.sort_desc)
         for i, row, values, historic in visible:
             tags = ('alert',) if row.get('state_conflict') or row.get('needs_migration') else ('historic',) if historic else ()
@@ -768,7 +925,7 @@ class ManagerWindow(tk.Tk):
         keys = ('title', 'slug', 'path', 'state_ref', 'workspace_format', 'native_kind',
                 'readiness', 'state_commitment', 'state_blob_digest', 'state_conflict_reasons',
                 'portable_ai_enabled', 'ai_entrypoint_present', 'hosted_network_baseline',
-                'discovery', 'operational_assessment', 'content_summary')
+                'discovery', 'operational_assessment', 'content_summary', 'diag_report')
         self._set_text(self.details, json.dumps({**{k: row.get(k) for k in keys},
                                                      'manager_category': category_of(row),
                                                      'manager_historical_archive': is_historical(row)},
@@ -778,6 +935,7 @@ class ManagerWindow(tk.Tk):
         framework = operational.get('framework_state_verification') or {}
         content = row.get('content_summary') or {}
         outcome = operational.get('operational_result') or 'non effectué'
+        diag = row.get('diag_report') or {}
         metrics = content.get('metrics') or {}
         info = [
             f'KRISTAL : {row["title"]}',
@@ -791,13 +949,21 @@ class ManagerWindow(tk.Tk):
             f'Contrôle local : {outcome}',
             f'Intégrité Discovery : {discovery.get("integrity") or "non mesurée"}',
             f'Verification Framework : {framework.get("status") or "non effectuée"}',
+            f'KristalDiag / C1 externe : {diag.get("process_status") or "non exécuté"}',
+            f'Attestation C1 vérifiée : non (protocole officiel non fourni)',
             f'Contenu : {content.get("content_status") or "non catalogué"}',
             f'Assertions observées : {metrics.get("assertions", "non mesurées")}',
             '',
             'À FAIRE : « Vérifier ce Kristal » pour contrôler les fichiers enregistrés,',
-            'puis « Cataloguer ce Kristal » pour mesurer le contenu descriptif.',
-            'Ces contrôles ne prouvent ni conformité Framework, ni qualification, ni publication.',
+            '« KristalDiag (C1) » pour faire appel à votre outil externe configuré,',
+            'et « Cataloguer ce Kristal » pour mesurer le contenu descriptif.',
+            'Aucun de ces résultats ne vaut une attestation C1 vérifiée par le Manager.',
         ]
+        if diag:
+            info.extend(['', f'Rapport externe JSON : {"reçu" if diag.get("external_report") is not None else "absent"}',
+                         f'Fichiers d’état connus modifiés pendant le diagnostic : {"OUI" if diag.get("input_changed_during_run") else "non détecté"}',
+                         f'Code retour : {diag.get("returncode")}',
+                         'Voir l’onglet Détails JSON pour le rapport externe.'])
         if row.get('needs_migration') or row.get('state_conflict'):
             info.extend(['', 'ATTENTION : structure à migrer ou conflit d’état signalé.'])
         if operational.get('issues'):
@@ -876,8 +1042,10 @@ class ManagerWindow(tk.Tk):
            '2. Analyser le dossier : identifier les Kristals, sans écriture sur les sources.\n'
            '3. Choisir un Kristal dans le tableau et lire sa fiche.\n'
            '4. Vérifier ce Kristal : contrôler les sources enregistrées.\n'
-           '5. Cataloguer ce Kristal : créer une base SQLite et un HTML descriptifs, hors des sources.\n'
-           '6. Ouvrir le HTML avec « Actions » ou « Toutes les fonctions ».\n\n'
+           '5. Configurer KristalDiag : choisir le programme externe de confiance et ses vrais arguments.\n'
+           '6. Diagnostiquer avec KristalDiag : résultat observé, sans présumer l’attestation C1.\n'
+           '7. Cataloguer ce Kristal : créer une base SQLite et un HTML descriptifs, hors des sources.\n'
+           '8. Ouvrir le HTML avec « Actions » ou « Toutes les fonctions ».\n\n'
            'FONCTIONS GLOBALES\n'
            '« Cataloguer tous les Kristals du dossier » agit sur la racine saisie, PAS uniquement sur la ligne sélectionnée.\n'
            '« Exporter inventaire » écrit un JSON local privé.\n'
@@ -892,6 +1060,8 @@ class ManagerWindow(tk.Tk):
            'Effacer retire seulement le texte de l’interface, sans toucher aux Kristals.\n\n'
            'LIMITES\n'
            'READY = état structurel local. LOCAL_CHECKS_PASSED = sources enregistrées contrôlées.\n'
+           'Le diagnostic externe peut modifier les données ; l’opérateur doit vérifier la confiance du programme.\n'
+           'Le Manager enregistre les rapports sans prétendre à une attestation C1.\n'
            'Le catalogue mesure le contenu ; aucun de ces résultats ne qualifie automatiquement '
            'la conformité Framework, C1/C2/C3, l’autorisation, la publication ou l’activation.')
         window = tk.Toplevel(self)

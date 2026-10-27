@@ -68,3 +68,12 @@
 ## 0.1.0-alpha.11 (historical source contract)
 
 - Historical docs and tests describe exact Authoring Kit read-surface synchronization and C2 gates; the corresponding runtime source was absent from the available snapshot. That historical functionality is **not** represented as operational in alpha.12.
+
+## 2026-10-27 — Pont KristalDiag externe expérimental
+
+- Configuration d'un programme de diagnostic externe local (.exe/.py/.js/.mjs) avec arguments explicites (`{workspace}`, `{report}`), sans shell.
+- Nouvelle commande pour diagnostiquer le Kristal principal sélectionné, après confirmation de confiance.
+- Nouvelle colonne KristalDiag et présence du diagnostic observé dans la fiche JSON.
+- Export JSON des diagnostics observés en session, sans qualifier automatiquement un résultat d'attestation C1.
+- Protection des sorties temporaires, délais et bornes de lecture; empreintes des surfaces d’état connues avant/après la commande.
+- KristalDiag, sa CLI et son format C1 ne sont pas inclus ; voir `KRISTALDIAG_INTEGRATION.md`.

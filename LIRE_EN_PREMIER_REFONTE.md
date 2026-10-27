@@ -77,3 +77,9 @@ Les fonctions moins fréquentes restent disponibles via **Toutes les fonctions �
 - Essai réel avec `Kristal-Architecture.zip` : classe `architecture`, 1 sous-dossier historique distinct, export de 233 fichiers en ZIP et `.kristal`, CRC validés. Aucune modification de l'archive d'origine.
 - Les 14 tests du backend historique (publication/synchronisation/migration) demeurent en échec **préexistant** dans la suite globale, car ces fonctions sont intentionnellement bloquées dans le code fourni.
 - Les manipulations de dossiers et archives restent à valider physiquement sous Windows, notamment sur les volumes non-NTFS.
+
+## Extension optionnelle — KristalDiag (pont expérimental)
+
+L’interface comprend désormais une colonne **KristalDiag**, un bouton **KristalDiag (C1)…** pour le Kristal principal sélectionné, une configuration de programme externe et un **export des diagnostics observés en JSON**.
+
+**Attention : KristalDiag n'était pas présent dans les archives remises.** Cette version sait lancer un programme local explicitement configuré, mais **ne connaît pas encore la commande officielle de KristalDiag ni son schéma d’attestation**. Un code de sortie 0 n'est pas une conformité Framework. Consulter `KRISTALDIAG_INTEGRATION.md` avant utilisation.

@@ -1,6 +1,6 @@
 {
   "format": "kristal-manager-package-inventory/1.0",
-  "version": "0.1.0-alpha.15+ui-organize-2026-10-27",
+  "version": "0.1.0-alpha.15+ui-organize-diagbridge-2026-10-27",
   "files": [
     {
       "path": ".github/workflows/ci.yml",
@@ -19,13 +19,18 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "7f5505884e24c5870944ec08bef096a0ea0f210361f96949910afec41580a8f1",
-      "bytes": 5775
+      "sha256": "92cb2a0b60fd052a519c8d70bb653a93e80bad74d21cd971ea3fc11ab0e9a74f",
+      "bytes": 6521
     },
     {
       "path": "GitSink.bat",
       "sha256": "26c1bd8e8c7dc4d8adb1fe6da128b020ffbb7d90d54ad402ce3e64f2ce10b109",
       "bytes": 1863
+    },
+    {
+      "path": "KRISTALDIAG_INTEGRATION.md",
+      "sha256": "d72ccc1ec1fbcd648dad938feb93690af3aa4590043cf9a6187b65d678364a67",
+      "bytes": 4172
     },
     {
       "path": "Kristal-Manager.pyw",
@@ -39,8 +44,8 @@
     },
     {
       "path": "LIRE_EN_PREMIER_REFONTE.md",
-      "sha256": "1c9eaef439bf937983a31e0f9392fe6dae7754402fa646f7e195f7b66903f16b",
-      "bytes": 8899
+      "sha256": "41e413230cc0ed7aa7ea5bd31bed318b9cbf8c37018c5e4c2578850569cfa7f9",
+      "bytes": 9558
     },
     {
       "path": "Launch-Kristal-Manager.cmd",
@@ -84,8 +89,8 @@
     },
     {
       "path": "VERSION",
-      "sha256": "993f15637c3583eaa8ee55a1c05d27d51c10d299b4e44895e3cbb7e452767398",
-      "bytes": 38
+      "sha256": "5dbdb3988b9da0f9803d5a06de8542cf5101f276a76e1661fa289ec8a65631e3",
+      "bytes": 49
     },
     {
       "path": "ZmartZnap.pyw",
@@ -228,14 +233,19 @@
       "bytes": 15515
     },
     {
+      "path": "kristal_manager/diag_bridge.py",
+      "sha256": "6a1879f7b2259a8e330174448974d5a9997f44cfe4284dd7ef45920508e1e857",
+      "bytes": 7968
+    },
+    {
       "path": "kristal_manager/discovery.py",
       "sha256": "d823f7450861ec528d7ff664bd6484d0ea26f71679989bb5297e53abbee64778",
       "bytes": 11240
     },
     {
       "path": "kristal_manager/gui.py",
-      "sha256": "996a88d761b92f8384e46a713c8c28d02470c508d714a28282a13ba02b95c845",
-      "bytes": 51677
+      "sha256": "9473dd532bcbf616060ba61487653ae35604970051a9463b56d47f8078bd5bcc",
+      "bytes": 62677
     },
     {
       "path": "kristal_manager/inventory.py",
@@ -281,6 +291,11 @@
       "path": "tests/test_core.py",
       "sha256": "de9b5973cc20c615cf033e5bca406f0dbb2acb014041548724191d8629df5463",
       "bytes": 40823
+    },
+    {
+      "path": "tests/test_diag_bridge.py",
+      "sha256": "72c77e289c2b2efbd5929acfcd61915bd8707c8e98fb75940052bee2356597ef",
+      "bytes": 5646
     },
     {
       "path": "tests/test_discovery_adapter.py",
