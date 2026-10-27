@@ -1,6 +1,6 @@
 {
   "format": "kristal-manager-package-inventory/1.0",
-  "version": "0.1.0-alpha.15-content-scan",
+  "version": "0.1.0-alpha.15+ui-brand-2026-10-27",
   "files": [
     {
       "path": ".github/workflows/ci.yml",
@@ -19,8 +19,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "b9b739e5c61b7604a09f4e262b9dc847f9c0bd74e512d043baca5da3e9caff25",
-      "bytes": 3333
+      "sha256": "f2b13862a16b53507eb05ecbb191970e85af0ff47f6ae900d7f99b71c96d2c46",
+      "bytes": 4499
     },
     {
       "path": "GitSink.bat",
@@ -36,6 +36,11 @@
       "path": "LIRE_CONTENU.md",
       "sha256": "a73abbb7b36020f14e226cff2c1d25fdd493f4556e433f6e682b05fad175e0a9",
       "bytes": 1843
+    },
+    {
+      "path": "LIRE_EN_PREMIER_REFONTE.md",
+      "sha256": "6b9606f0770761dc20cd14d7fbda4c0cc2b8113e61977b8366417c57e4d504ab",
+      "bytes": 6517
     },
     {
       "path": "Launch-Kristal-Manager.cmd",
@@ -64,8 +69,8 @@
     },
     {
       "path": "SNAPSHOT_INDEX.txt",
-      "sha256": "63da5d5037f3908e4ab462ba0ebc824d6068564eee4d30827483787e876bfb7b",
-      "bytes": 166
+      "sha256": "123a000499553ef1dac55602b8cffb5ef4db24591691ba1b396c89a359a6322f",
+      "bytes": 1477
     },
     {
       "path": "Scanner_Contenu.cmd",
@@ -79,8 +84,8 @@
     },
     {
       "path": "VERSION",
-      "sha256": "59e5b66d8787e63ab8377d205c772e79370f9a239b1c1fb6efaf5fa53e656b39",
-      "bytes": 15
+      "sha256": "43143c9ade058981e8561de5455efaf087c7ed4cba5372b007cdd1cc8b34a673",
+      "bytes": 35
     },
     {
       "path": "ZmartZnap.pyw",
@@ -169,8 +174,8 @@
     },
     {
       "path": "kristal-manager.html",
-      "sha256": "0af45567f98e5744c80c46c02d69179e5f8abc85e8721e4304a2e4ea8103e65c",
-      "bytes": 7225
+      "sha256": "342ceea2b6b89da5eef786a4b4bf84e80d6ae0a370d11aee1bbd223d0f48b3a1",
+      "bytes": 10170
     },
     {
       "path": "kristal_manager/__init__.py",
@@ -183,14 +188,39 @@
       "bytes": 47
     },
     {
+      "path": "kristal_manager/assets/app_icon.ico",
+      "sha256": "fc118bc059763989e1af191a293d4ea11aeb347df77b52788ebcc5e5570d9835",
+      "bytes": 17710
+    },
+    {
+      "path": "kristal_manager/assets/app_icon.png",
+      "sha256": "66b101ae22344f40a417f8c1579649ba19ec889f1a5f8bacbf771280e23802b6",
+      "bytes": 5383
+    },
+    {
+      "path": "kristal_manager/assets/logo_header.png",
+      "sha256": "6577ab16a33e49d737f400ab27f11bf4b0fffb19b8a74597e959b0788c065fe0",
+      "bytes": 2022
+    },
+    {
+      "path": "kristal_manager/assets/logo_k.svg",
+      "sha256": "6b02eaf8ab47803f58e8fd56c942c9438639c7a303fdb6a5ba4c5a3f9e137b28",
+      "bytes": 1578
+    },
+    {
+      "path": "kristal_manager/assets/logo_large.png",
+      "sha256": "54f3f69047ab5d4fa56eacbb74c788180f3dd7f7e52755a76af62eca8d6f14dd",
+      "bytes": 7876
+    },
+    {
       "path": "kristal_manager/cli.py",
       "sha256": "08e68dc0445972a46bcdbd841afeeb78dd3c77beccda8235daed450ffc7b3a2f",
       "bytes": 6344
     },
     {
       "path": "kristal_manager/content_catalog.py",
-      "sha256": "439234e14787eb2d2418dba805e7fd1701592832f87660fffab6290b64240ae3",
-      "bytes": 29420
+      "sha256": "222db0775f2658f83e020ff761e566e08ea564964f15d67ee500628a205d4ca0",
+      "bytes": 30069
     },
     {
       "path": "kristal_manager/core.py",
@@ -204,8 +234,8 @@
     },
     {
       "path": "kristal_manager/gui.py",
-      "sha256": "f34bf7b8a40004fd14ebc1b89ed6b7dee5d6a2a1e2a0b02768642d1a7666bf93",
-      "bytes": 14059
+      "sha256": "fd146c7d1c57296e0c196011cd7c5aa88a00e82298482081a382dd6c4f9f69ae",
+      "bytes": 41726
     },
     {
       "path": "kristal_manager/inventory.py",
@@ -221,6 +251,11 @@
       "path": "kristal_manager/publication_gate.py",
       "sha256": "03b5c5480664c78576b37eb4a833b01092f965122a767c648d21ac9e06cca53f",
       "bytes": 9042
+    },
+    {
+      "path": "kristal_manager/ui_prefs.py",
+      "sha256": "55d9b9c2a1e11a9e6a5de0f2fb7bed8e3bde93ce28798c62f09065785706c257",
+      "bytes": 3187
     },
     {
       "path": "pyproject.toml",
@@ -256,6 +291,16 @@
       "path": "tests/test_recovery.py",
       "sha256": "eb1f9a52673b39e8d70e4cd3aa2d901aad97c2591facf1a88ac2a00b81d7287c",
       "bytes": 5626
+    },
+    {
+      "path": "tests/test_ui_branding.py",
+      "sha256": "88e696dbd3150c7c171fa51590c2f4045e4b81c5651b2edb6987682f58270f48",
+      "bytes": 2159
+    },
+    {
+      "path": "tests/test_ui_refonte.py",
+      "sha256": "7f5b3a1ea1818cc6b6caf8e5397f5f2b99446502acb98b43d164f9b2f878ffeb",
+      "bytes": 3530
     },
     {
       "path": "tools/restore_original_backend.py",

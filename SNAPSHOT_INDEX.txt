@@ -1,3 +1,57 @@
-Kristal Manager 0.1.0-alpha.15 — local content scanner distribution
-Generated package inventory: PACKAGE_MANIFEST_SHA256.json
-Read LIRE_CONTENU.md for the scanner.
+ZmartZnap snapshot file index
+Files included: 52
+
+.github/workflows/ci.yml
+.gitignore
+ARCHITECTURE.md
+CHANGELOG.md
+docs/C2_PUBLICATION_CONTROL.md
+docs/CONTENT_CATALOG.md
+docs/HISTORICAL_RUNTIME_RECOVERY.md
+docs/KONSTELLATION_INVENTORY.md
+docs/ORIGINAL_SNAPSHOT_INDEX.txt
+docs/RECOVERY_STATUS.md
+docs/snapshots/PACKAGE_MANIFEST_SHA256_alpha12.json
+docs/snapshots/PACKAGE_MANIFEST_SHA256_alpha14.json
+docs/snapshots/README.md
+docs/snapshots/SNAPSHOT_INDEX_20261013_1042.txt
+docs/snapshots/TEST_REPORT_alpha14.md
+docs/V10_ALIGNMENT.md
+docs/VALIDATION_MANAGER_ALPHA14.md
+exemple-16-cristaux/apercu.html
+exemple-16-cristaux/catalogue.sqlite3
+exemple-16-cristaux/VALIDATION.json
+GitSink.bat
+kristal-manager.html
+Kristal-Manager.pyw
+kristal_manager/__init__.py
+kristal_manager/__main__.py
+kristal_manager/cli.py
+kristal_manager/content_catalog.py
+kristal_manager/core.py
+kristal_manager/discovery.py
+kristal_manager/gui.py
+kristal_manager/inventory.py
+kristal_manager/operational.py
+kristal_manager/publication_gate.py
+Launch-Kristal-Manager.cmd
+LIRE_CONTENU.md
+MISE_A_JOUR_2026-10-13.md
+MISE_A_JOUR_2026-10-16.md
+Nettoyer_anciens_fichiers.pyw
+PACKAGE_MANIFEST_SHA256.json
+pyproject.toml
+README.md
+Scanner_Contenu.cmd
+TEST_REPORT.md
+tests/test_c2_public_gate.py
+tests/test_content_catalog.py
+tests/test_core.py
+tests/test_discovery_adapter.py
+tests/test_operational_v10.py
+tests/test_recovery.py
+tools/restore_original_backend.py
+VERSION
+ZmartZnap.pyw
+
+Index file: SNAPSHOT_INDEX.txt

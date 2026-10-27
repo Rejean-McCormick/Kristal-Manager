@@ -9,14 +9,14 @@ SCHEMA=1
 ENGINE_VERSION='0.1.0a15'
 PRUNE={'.git','node_modules','__pycache__','.venv','external-source-library','build','derived','canon','.kristal','knowledge-base','ai','state','release','projections','runtime','HISTORY','OPTIMIZATION_TOOLS','FINALIZATION_TOOLS'}
 def encoded(x):return json.dumps(x,ensure_ascii=False,separators=(',',':'),sort_keys=True)
-def candidates(roots):
+def candidates(roots, *, direct_only=False):
     seen=set()
     def walk_error(exc):raise ManagerError('Cannot complete source discovery: '+str(exc))
     for source in roots:
         root=Path(source).expanduser().resolve()
         if not root.is_dir():raise ManagerError(f'Root does not exist: {root}')
         for base,dirs,files in os.walk(root,followlinks=False,onerror=walk_error):
-            dirs[:]=sorted(d for d in dirs if d not in PRUNE and not (Path(base)/d).is_symlink())
+            dirs[:]=[] if direct_only else sorted(d for d in dirs if d not in PRUNE and not (Path(base)/d).is_symlink())
             p=Path(base)
             if p in seen:continue
             seen.add(p)
@@ -153,8 +153,8 @@ def inspect_content(root,max_bytes=64*1024*1024):
     return summary,nodes,assertions,terms,r.deps
 
 DDL='''CREATE TABLE meta(key TEXT PRIMARY KEY,value TEXT); CREATE TABLE workspaces(id TEXT PRIMARY KEY,path TEXT UNIQUE,summary TEXT,deps TEXT); CREATE TABLE nodes(workspace TEXT,id TEXT,kind TEXT,label TEXT,external_id TEXT,PRIMARY KEY(workspace,id)); CREATE INDEX node_label ON nodes(label); CREATE INDEX node_external ON nodes(external_id); CREATE TABLE terms(workspace TEXT,id TEXT,language TEXT,term TEXT,search TEXT); CREATE INDEX term_search ON terms(search); CREATE TABLE assertions(workspace TEXT,id TEXT,subject TEXT,predicate TEXT,object TEXT,sources TEXT,qualifiers TEXT,rank TEXT,regime TEXT,PRIMARY KEY(workspace,id)); CREATE INDEX assertion_subject ON assertions(workspace,subject,predicate); CREATE INDEX assertion_predicate ON assertions(workspace,predicate);'''
-def _populate_catalog(roots,destination,force=False,max_bytes=64*1024*1024):
-    roots=[Path(p).expanduser().resolve() for p in roots];projects=list(candidates(roots));dest=Path(destination).expanduser().absolute()
+def _populate_catalog(roots,destination,force=False,max_bytes=64*1024*1024,*,direct_only=False):
+    roots=[Path(p).expanduser().resolve() for p in roots];projects=list(candidates(roots,direct_only=direct_only));dest=Path(destination).expanduser().absolute()
     if dest.is_symlink() or any(dest.resolve().is_relative_to(p) for p in projects):raise ManagerError('The derived database must be outside source Kristal workspaces')
     dest.parent.mkdir(parents=True,exist_ok=True);exists=dest.exists()
     if not exists:
@@ -214,7 +214,10 @@ def search_catalog(database,text,limit=100):
 def write_overview(database,destination,overwrite=False):
     # HTML embeds JSON as inert data and renders every source string with textContent.
     payload=summaries(database);data=json.dumps(payload,ensure_ascii=False).replace('<','\\u003c').replace('>','\\u003e').replace('&','\\u0026')
-    page='''<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kristal — catalogue du contenu</title><style>body{font:16px system-ui;background:#f2f6f5;color:#173630;margin:0}header,main{max-width:1150px;margin:auto;padding:26px}h1{margin:0}input{box-sizing:border-box;width:100%;padding:13px;border:1px solid #9ebcb4;border-radius:10px;margin:18px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px}article{background:white;padding:20px;border-radius:14px;border:1px solid #d7e5df}h2{margin:0 0 8px}.muted{color:#526e65;font-size:14px}.counts{font-weight:650;margin:14px 0}details{margin-top:12px}li{margin:5px 0}pre{white-space:pre-wrap;word-break:break-word;font-size:12px}.issue{color:#8b430f}</style><header><h1>Les cristaux, côté contenu</h1><p>Catalogue local descriptif · sources en lecture seule · aucun statut de vérité déduit</p><input id="filter" placeholder="Filtrer les aperçus : cristal, domaine, sujets présentés…"><div id="status"></div></header><main><div class="grid" id="grid"></div></main><script id="data" type="application/json">DATA</script><script>const records=JSON.parse(document.getElementById('data').textContent).records;const q=document.getElementById('filter'),grid=document.getElementById('grid');function el(tag,text,cls){const n=document.createElement(tag);n.textContent=text;if(cls)n.className=cls;return n}function render(){grid.replaceChildren();let shown=0;for(const r of records){if(q.value&&!JSON.stringify(r).toLocaleLowerCase().includes(q.value.toLocaleLowerCase()))continue;shown++;const c=el('article','');c.append(el('h2',r.title),el('div',`${r.content_status} · ${r.mode} · ${r.native_kind||'modèle non déclaré'}`,'muted'));if(r.identity_collision)c.append(el('p','Identité partagée avec une autre copie : les entrées restent distinctes.','issue'));const desc=r.descriptors.subject||{};c.append(el('p',desc.description||desc.orientation||desc.domain||r.descriptors.state_scope?.domain||'Domaine non déclaré'));const m=r.metrics;const fmt=x=>x==null?'non mesuré':Number(x).toLocaleString('fr');c.append(el('p',`${fmt(m.entities)} entités · ${fmt(m.properties)} propriétés · ${fmt(m.assertions)} assertions`,'counts'));c.append(el('p',`${fmt(m.main_assertions)} assertions principales · ${fmt(m.structured_components)} composantes de valeurs`,'muted'));c.append(el('p',`Libellés descriptifs : ${fmt(m.entities_with_descriptive_labels)} entités, ${fmt(m.properties_with_descriptive_labels)} propriétés`,'muted'));c.append(el('p',`Wikidata : ${fmt(m.wikidata_source_claims)} déclarations identifiées · ${fmt(m.wikidata_candidates)} correspondances candidates`,'muted'));for(const [title,rows]of [['Sujets les plus décrits',r.top_subjects],['Relations les plus fréquentes',r.top_relations]]){const d=el('details','');d.append(el('summary',title));const ul=el('ul','');for(const x of rows)ul.append(el('li',`${x.label||x.external_id||x.id} — ${x.assertions} assertions${x.display_source?.kind==='reported_legacy_key'?' · clé native déclarée':''}`));d.append(ul);c.append(d)}if(r.issues.length)c.append(el('p',r.issues.join(' · '),'issue'));const d=el('details','');d.append(el('summary','Structure, sources et limites observées'),el('pre',JSON.stringify({state_ref:r.state_ref,graph:r.graph_path,structure:r.structure,descriptors:r.descriptors,metrics:r.metrics,coverage:r.coverage_note},null,2)));c.append(d);grid.append(c)}document.getElementById('status').textContent=`${shown} / ${records.length} cristaux · importance éditoriale non évaluée`;}q.addEventListener('input',render);render();</script></html>'''.replace('DATA',data)
+    from base64 import b64encode
+    logo_file = Path(__file__).resolve().parent / 'assets' / 'logo_header.png'
+    logo_uri = 'data:image/png;base64,' + b64encode(logo_file.read_bytes()).decode('ascii') if logo_file.is_file() else ''
+    page='''<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kristal — catalogue du contenu</title><style>body{font:16px system-ui;background:#f2f6f5;color:#173630;margin:0}header,main{max-width:1150px;margin:auto;padding:26px}h1{margin:0;color:#1E6864}.catalog-brand{display:flex;align-items:center;gap:17px}.catalog-brand img{object-fit:contain}input{box-sizing:border-box;width:100%;padding:13px;border:1px solid #9ebcb4;border-radius:10px;margin:18px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px}article{background:white;padding:20px;border-radius:14px;border:1px solid #d7e5df}h2{margin:0 0 8px}.muted{color:#526e65;font-size:14px}.counts{font-weight:650;margin:14px 0}details{margin-top:12px}li{margin:5px 0}pre{white-space:pre-wrap;word-break:break-word;font-size:12px}.issue{color:#8b430f}</style><header><div class="catalog-brand"><img src="KRISTAL_BRAND_LOGO" alt="Symbole Kristal" width="88" height="39"><h1>Les cristaux, côté contenu</h1></div><p>Catalogue local descriptif · sources en lecture seule · aucun statut de vérité déduit</p><input id="filter" placeholder="Filtrer les aperçus : cristal, domaine, sujets présentés…"><div id="status"></div></header><main><div class="grid" id="grid"></div></main><script id="data" type="application/json">DATA</script><script>const records=JSON.parse(document.getElementById('data').textContent).records;const q=document.getElementById('filter'),grid=document.getElementById('grid');function el(tag,text,cls){const n=document.createElement(tag);n.textContent=text;if(cls)n.className=cls;return n}function render(){grid.replaceChildren();let shown=0;for(const r of records){if(q.value&&!JSON.stringify(r).toLocaleLowerCase().includes(q.value.toLocaleLowerCase()))continue;shown++;const c=el('article','');c.append(el('h2',r.title),el('div',`${r.content_status} · ${r.mode} · ${r.native_kind||'modèle non déclaré'}`,'muted'));if(r.identity_collision)c.append(el('p','Identité partagée avec une autre copie : les entrées restent distinctes.','issue'));const desc=r.descriptors.subject||{};c.append(el('p',desc.description||desc.orientation||desc.domain||r.descriptors.state_scope?.domain||'Domaine non déclaré'));const m=r.metrics;const fmt=x=>x==null?'non mesuré':Number(x).toLocaleString('fr');c.append(el('p',`${fmt(m.entities)} entités · ${fmt(m.properties)} propriétés · ${fmt(m.assertions)} assertions`,'counts'));c.append(el('p',`${fmt(m.main_assertions)} assertions principales · ${fmt(m.structured_components)} composantes de valeurs`,'muted'));c.append(el('p',`Libellés descriptifs : ${fmt(m.entities_with_descriptive_labels)} entités, ${fmt(m.properties_with_descriptive_labels)} propriétés`,'muted'));c.append(el('p',`Wikidata : ${fmt(m.wikidata_source_claims)} déclarations identifiées · ${fmt(m.wikidata_candidates)} correspondances candidates`,'muted'));for(const [title,rows]of [['Sujets les plus décrits',r.top_subjects],['Relations les plus fréquentes',r.top_relations]]){const d=el('details','');d.append(el('summary',title));const ul=el('ul','');for(const x of rows)ul.append(el('li',`${x.label||x.external_id||x.id} — ${x.assertions} assertions${x.display_source?.kind==='reported_legacy_key'?' · clé native déclarée':''}`));d.append(ul);c.append(d)}if(r.issues.length)c.append(el('p',r.issues.join(' · '),'issue'));const d=el('details','');d.append(el('summary','Structure, sources et limites observées'),el('pre',JSON.stringify({state_ref:r.state_ref,graph:r.graph_path,structure:r.structure,descriptors:r.descriptors,metrics:r.metrics,coverage:r.coverage_note},null,2)));c.append(d);grid.append(c)}document.getElementById('status').textContent=`${shown} / ${records.length} cristaux · importance éditoriale non évaluée`;}q.addEventListener('input',render);render();</script></html>'''.replace('DATA',data).replace('KRISTAL_BRAND_LOGO', logo_uri)
     dest=Path(destination)
     db=sqlite3.connect(Path(database).resolve().as_uri()+'?mode=ro',uri=True)
     try:
@@ -249,12 +252,12 @@ def show_concept(database,text,catalog_id=None,limit=50):
     finally:db.close()
 
 
-def build_catalog(roots,destination,force=False,max_bytes=64*1024*1024):
+def build_catalog(roots,destination,force=False,max_bytes=64*1024*1024,*,direct_only=False):
     """Publish a complete SQLite snapshot atomically; failed scans retain the old DB."""
     import uuid
     roots=[Path(p).expanduser().resolve() for p in roots]
     if not roots:raise ManagerError('Supply at least one source root')
-    projects=list(candidates(roots));dest=Path(destination).expanduser().absolute()
+    projects=list(candidates(roots,direct_only=direct_only));dest=Path(destination).expanduser().absolute()
     if dest.is_symlink() or any(dest.resolve().is_relative_to(p) for p in projects):raise ManagerError('The derived database must be outside source Kristal workspaces')
     dest.parent.mkdir(parents=True,exist_ok=True)
     stage=dest.parent/(dest.name+'.'+uuid.uuid4().hex+'.building')
@@ -268,12 +271,12 @@ def build_catalog(roots,destination,force=False,max_bytes=64*1024*1024):
                 try:original.backup(copy)
                 finally:copy.close()
             finally:original.close()
-        result=_populate_catalog(roots,stage,force,max_bytes)
+        result=_populate_catalog(roots,stage,force,max_bytes,direct_only=direct_only)
         check=sqlite3.connect(stage)
         try:
             if check.execute('PRAGMA quick_check').fetchone()[0]!='ok':raise ManagerError('Catalog integrity check failed; previous database retained')
         finally:check.close()
-        with stage.open('rb') as f:os.fsync(f.fileno())
+        with stage.open('r+b') as f:os.fsync(f.fileno())
         os.replace(stage,dest)
         result['database']=str(dest.resolve());result['atomic_snapshot']=True
         return result

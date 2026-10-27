@@ -1,4 +1,21 @@
+## Identité visuelle — 2026-10-27
+
+- Logo SVG fourni par l’utilisateur intégré au GUI Tkinter (en-tête et icône de fenêtre).
+- Couleur officielle #1E6864 appliquée aux contrôles principaux, à la sélection et aux titres.
+- Logo embarqué sans accès réseau dans le lecteur HTML et dans les aperçus HTML de catalogue.
+- Ressources PNG/ICO pré-rendues, aucune dépendance graphique nouvelle à l’exécution.
+
 # Changelog
+
+## Refonte locale de l’interface — 2026-10-27 (sur base alpha.15)
+
+- Priorité au chemin `C:\mycode\Kristal\locals` sur Windows, avec dernier dossier valide mémorisé hors des sources.
+- Interface française unifiée : parcours dossier → sélection → contrôle → catalogue, menus accessibles et contexte préservé.
+- Journal dédié avec Copier, Effacer et Enregistrer ; détails JSON copiables, recherche, indicateurs et navigation guidée.
+- Distinguer le catalogue du cristal choisi du catalogue global, sans scan implicite des autres cristaux.
+- Fix Windows pour la synchronisation du fichier SQLite temporaire (`r+b` au lieu de `rb`).
+- Aucun élargissement des autorisations ou capacités de publication/synchronisation.
+
 
 ## 0.1.0-alpha.15 — Read-only content catalogue (2026-10-26)
 
