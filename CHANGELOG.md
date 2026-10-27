@@ -1,3 +1,14 @@
+## 2026-10-27 — Catégories, snapshots et exports locaux (refonte expérimentale)
+
+- Terminologie de l'interface : « Kristal » / « Kristals », jamais « cristal ».
+- Catégorie lue depuis la classification Discovery si présente, sinon depuis le domaine/genre déclaré dans `kristal.workspace.json` ; filtre, colonne et tri au clic.
+- Les snapshots historiques imbriqués (ex. `archive/original-snapshot-before-activation`) sont identifiés et masqués par défaut, mais jamais supprimés. Ils ne sont plus comptés comme Kristals principaux.
+- Nouveau menu contextuel « Organiser / exporter » : prévisualisation du dossier renommé depuis `title` ou `slug` interne, confirmation obligatoire, détection de collision, restriction aux sous-dossiers directs de `locals`.
+- Export intégral en `.zip`, et en `.kristal` (conteneur ZIP avec manifeste Manager **expérimental**, distinct de tout format Framework officiel), avec contrôle CRC et création sans écrasement.
+- Préservation des dossiers vides ; blocage des liens symboliques, fichiers supérieurs à 4 Gio et exports dans le dossier source.
+- Boutons, logo SVG fourni et palette #1E6864 préservés.
+- Tests d'organisation, sécurité, GUI et essais de l'archive réelle `Kristal-Architecture` ajoutés.
+
 ## Identité visuelle — 2026-10-27
 
 - Logo SVG fourni par l’utilisateur intégré au GUI Tkinter (en-tête et icône de fenêtre).

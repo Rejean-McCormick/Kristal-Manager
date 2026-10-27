@@ -1,6 +1,6 @@
 {
   "format": "kristal-manager-package-inventory/1.0",
-  "version": "0.1.0-alpha.15+ui-brand-2026-10-27",
+  "version": "0.1.0-alpha.15+ui-organize-2026-10-27",
   "files": [
     {
       "path": ".github/workflows/ci.yml",
@@ -19,8 +19,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "f2b13862a16b53507eb05ecbb191970e85af0ff47f6ae900d7f99b71c96d2c46",
-      "bytes": 4499
+      "sha256": "7f5505884e24c5870944ec08bef096a0ea0f210361f96949910afec41580a8f1",
+      "bytes": 5775
     },
     {
       "path": "GitSink.bat",
@@ -39,8 +39,8 @@
     },
     {
       "path": "LIRE_EN_PREMIER_REFONTE.md",
-      "sha256": "6b9606f0770761dc20cd14d7fbda4c0cc2b8113e61977b8366417c57e4d504ab",
-      "bytes": 6517
+      "sha256": "1c9eaef439bf937983a31e0f9392fe6dae7754402fa646f7e195f7b66903f16b",
+      "bytes": 8899
     },
     {
       "path": "Launch-Kristal-Manager.cmd",
@@ -74,8 +74,8 @@
     },
     {
       "path": "Scanner_Contenu.cmd",
-      "sha256": "d6ffa44afcd47136375c6137e7ea6180da2d9fdb1e4b83bf3c6e4e15e97e9e4c",
-      "bytes": 519
+      "sha256": "5061e09cba73d2e22d2d7572f41de19b2e4d309f01783098b505c16e572ea86d",
+      "bytes": 507
     },
     {
       "path": "TEST_REPORT.md",
@@ -84,8 +84,8 @@
     },
     {
       "path": "VERSION",
-      "sha256": "43143c9ade058981e8561de5455efaf087c7ed4cba5372b007cdd1cc8b34a673",
-      "bytes": 35
+      "sha256": "993f15637c3583eaa8ee55a1c05d27d51c10d299b4e44895e3cbb7e452767398",
+      "bytes": 38
     },
     {
       "path": "ZmartZnap.pyw",
@@ -164,7 +164,7 @@
     },
     {
       "path": "exemple-16-cristaux/apercu.html",
-      "sha256": "a9c9345d755e60303beb453745fd01c8b19d86510bb0df6c550679a1d7fe1433",
+      "sha256": "ab44bc4db8f92b24b2cd99069e85fe3cd79fcd0f1b497bf0abb4e53f1ff5cb04",
       "bytes": 215722
     },
     {
@@ -219,7 +219,7 @@
     },
     {
       "path": "kristal_manager/content_catalog.py",
-      "sha256": "222db0775f2658f83e020ff761e566e08ea564964f15d67ee500628a205d4ca0",
+      "sha256": "61aaf20fd104e59625235aa438930372fd5ddd6e5d91dea54e482e4bba23297b",
       "bytes": 30069
     },
     {
@@ -234,8 +234,8 @@
     },
     {
       "path": "kristal_manager/gui.py",
-      "sha256": "fd146c7d1c57296e0c196011cd7c5aa88a00e82298482081a382dd6c4f9f69ae",
-      "bytes": 41726
+      "sha256": "996a88d761b92f8384e46a713c8c28d02470c508d714a28282a13ba02b95c845",
+      "bytes": 51677
     },
     {
       "path": "kristal_manager/inventory.py",
@@ -256,6 +256,11 @@
       "path": "kristal_manager/ui_prefs.py",
       "sha256": "55d9b9c2a1e11a9e6a5de0f2fb7bed8e3bde93ce28798c62f09065785706c257",
       "bytes": 3187
+    },
+    {
+      "path": "kristal_manager/workspace_tools.py",
+      "sha256": "b2089cb4bf4cd540ee60806f8bf3c06766bb21cecd600a9f97b377d1a109833c",
+      "bytes": 9070
     },
     {
       "path": "pyproject.toml",
@@ -301,6 +306,11 @@
       "path": "tests/test_ui_refonte.py",
       "sha256": "7f5b3a1ea1818cc6b6caf8e5397f5f2b99446502acb98b43d164f9b2f878ffeb",
       "bytes": 3530
+    },
+    {
+      "path": "tests/test_workspace_tools.py",
+      "sha256": "8d6ad47ca9048907deb1cd7160900c797c2466affa5646a14c06b1441c0a70d1",
+      "bytes": 6472
     },
     {
       "path": "tools/restore_original_backend.py",

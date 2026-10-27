@@ -1,7 +1,8 @@
 """Kristal Manager: French-first local inventory, checks and descriptive catalog.
 
-All source operations are read-only. Publishing and access authorization are not
-inferred from structural/registered-source checks. UI Tk work stays on main thread.
+Inventory, verification and catalog operations remain read-only. The separately
+confirmed folder-rename action changes one workspace path but never its files.
+Publishing and access authorization are not inferred from local checks.
 """
 from __future__ import annotations
 
@@ -21,6 +22,7 @@ from .core import detect_kristal, scan_roots
 from .inventory import inventory, konstellation_preview, save_private_inventory
 from .operational import assess_local
 from .ui_prefs import default_root, load_settings, save_settings
+from .workspace_tools import category_of, is_historical, plan_rename, apply_rename, export_workspace
 
 BG = '#f5f8f8'
 TEXT = '#243e3c'
@@ -52,12 +54,16 @@ class ManagerWindow(tk.Tk):
         self._unfiltered_count = 0
         self.path_var = tk.StringVar(value=default_root(self.settings))
         self.filter_var = tk.StringVar()
+        self.category_var = tk.StringVar(value='Toutes catégories')
+        self.show_history_var = tk.BooleanVar(value=False)
+        self.sort_field = 'title'
+        self.sort_desc = False
         self.status_var = tk.StringVar(value='Choisissez un dossier, puis cliquez sur « Analyser le dossier ».')
         self.scope_var = tk.StringVar(value='Dossier non analysé')
-        self.count_var = tk.StringVar(value='— cristaux')
+        self.count_var = tk.StringVar(value='— Kristals')
         self.ready_var = tk.StringVar(value='— prêts')
         self.issue_var = tk.StringVar(value='— à examiner')
-        self.selection_var = tk.StringVar(value='Aucun cristal sélectionné')
+        self.selection_var = tk.StringVar(value='Aucun Kristal sélectionné')
 
         self._configure_style()
         self._create_menu()
@@ -65,7 +71,7 @@ class ManagerWindow(tk.Tk):
         self._create_browser()
         self._create_footer()
         self._refresh_actions()
-        self.log('INFO', 'Application ouverte. Aucun scan automatique ni écriture dans les cristaux.')
+        self.log('INFO', 'Application ouverte. Aucun scan automatique ni écriture dans les Kristals.')
         self.log('INFO', f'Dossier proposé : {self.path_var.get()}')
         self.after(120, self.poll)
 
@@ -120,10 +126,14 @@ class ManagerWindow(tk.Tk):
         filemenu.add_command(label='Quitter', command=self.destroy)
         bar.add_cascade(label='Fichier', menu=filemenu)
         actions = tk.Menu(bar, tearoff=False)
-        actions.add_command(label='Vérifier le cristal sélectionné', command=self.start_verify)
-        actions.add_command(label='Cataloguer le cristal sélectionné', command=self.start_catalog_selected)
-        actions.add_command(label='Cataloguer tous les cristaux du dossier', command=self.start_catalog_all)
+        actions.add_command(label='Vérifier le Kristal sélectionné', command=self.start_verify)
+        actions.add_command(label='Cataloguer le Kristal sélectionné', command=self.start_catalog_selected)
+        actions.add_command(label='Cataloguer tous les Kristals du dossier', command=self.start_catalog_all)
         actions.add_command(label='Ouvrir un aperçu de contenu HTML…', command=self.open_content_overview)
+        actions.add_separator()
+        actions.add_command(label='Prévisualiser / renommer le dossier sélectionné…', command=self.rename_selected)
+        actions.add_command(label='Exporter le Kristal sélectionné en ZIP…', command=lambda: self.export_selected('zip'))
+        actions.add_command(label='Exporter le Kristal sélectionné en .kristal (expérimental)…', command=lambda: self.export_selected('kristal'))
         bar.add_cascade(label='Actions', menu=actions)
         logs = tk.Menu(bar, tearoff=False)
         logs.add_command(label='Copier le journal', command=self.copy_log)
@@ -166,7 +176,7 @@ class ManagerWindow(tk.Tk):
         self.scan_button = ttk.Button(pathline, text='Analyser le dossier', style='Primary.TButton', command=self.start_scan)
         self.scan_button.pack(side='left', padx=(7, 0))
         self.path_var.trace_add('write', self._path_changed)
-        ttk.Label(source, text='Le chemin ci-dessus est le périmètre des scans globaux. Le catalogue du cristal sélectionné est une action distincte.',
+        ttk.Label(source, text='Le chemin ci-dessus est le périmètre des scans globaux. Le catalogue du Kristal sélectionné est une action distincte.',
                   style='Sub.TLabel').pack(anchor='w', pady=(6, 0))
 
         summary = ttk.Frame(self, padding=(20, 4))
@@ -176,7 +186,7 @@ class ManagerWindow(tk.Tk):
         ttk.Label(summary, textvariable=self.scope_var, style='Sub.TLabel').pack(side='right')
 
     def _create_browser(self):
-        wrapper = ttk.LabelFrame(self, text='2 · Explorer les cristaux', style='Section.TLabelframe')
+        wrapper = ttk.LabelFrame(self, text='2 · Explorer les Kristals', style='Section.TLabelframe')
         wrapper.pack(fill='both', expand=True, padx=18, pady=(6, 6))
         controls = ttk.Frame(wrapper)
         controls.pack(fill='x', pady=(0, 7))
@@ -188,10 +198,13 @@ class ManagerWindow(tk.Tk):
         self.actions_menu = tk.Menu(self, tearoff=0)
         self.actions_menu.add_command(label='Analyser le dossier', command=self.start_scan)
         self.actions_menu.add_separator()
-        self.actions_menu.add_command(label='Vérifier le cristal sélectionné', command=self.start_verify)
-        self.actions_menu.add_command(label='Cataloguer le cristal sélectionné', command=self.start_catalog_selected)
-        self.actions_menu.add_command(label='Cataloguer tous les cristaux du dossier', command=self.start_catalog_all)
+        self.actions_menu.add_command(label='Vérifier le Kristal sélectionné', command=self.start_verify)
+        self.actions_menu.add_command(label='Cataloguer le Kristal sélectionné', command=self.start_catalog_selected)
+        self.actions_menu.add_command(label='Cataloguer tous les Kristals du dossier', command=self.start_catalog_all)
         self.actions_menu.add_command(label='Ouvrir un aperçu HTML', command=self.open_content_overview)
+        self.actions_menu.add_command(label='Prévisualiser / renommer le dossier sélectionné…', command=self.rename_selected)
+        self.actions_menu.add_command(label='Exporter le Kristal en ZIP…', command=lambda: self.export_selected('zip'))
+        self.actions_menu.add_command(label='Exporter le Kristal en .kristal (expérimental)…', command=lambda: self.export_selected('kristal'))
         self.actions_menu.add_separator()
         self.actions_menu.add_command(label='Exporter l’inventaire JSON', command=self.export)
         self.actions_menu.add_command(label='Exporter un aperçu privé Konstellation', command=self.export_konstellation)
@@ -201,6 +214,16 @@ class ManagerWindow(tk.Tk):
         self.actions_button = ttk.Menubutton(controls, text='Toutes les fonctions ▾', menu=self.actions_menu)
         self.actions_button.pack(side='left', padx=(9, 0))
         self.filter_var.trace_add('write', lambda *_: self.refresh())
+        selectors = ttk.Frame(wrapper)
+        selectors.pack(fill='x', pady=(0, 6))
+        ttk.Label(selectors, text='Catégorie').pack(side='left')
+        self.category_choice = ttk.Combobox(selectors, textvariable=self.category_var, state='readonly',
+                                             values=['Toutes catégories'], width=33)
+        self.category_choice.pack(side='left', padx=(8, 16))
+        self.category_choice.bind('<<ComboboxSelected>>', self._change_category)
+        ttk.Checkbutton(selectors, text='Afficher les archives internes / snapshots',
+                        variable=self.show_history_var, command=self.refresh).pack(side='left')
+        ttk.Label(selectors, text='Cliquer sur un titre de colonne pour trier', style='Sub.TLabel').pack(side='right')
 
         paned = ttk.Panedwindow(wrapper, orient='vertical')
         paned.pack(fill='both', expand=True)
@@ -209,14 +232,14 @@ class ManagerWindow(tk.Tk):
         lower = ttk.Frame(paned)
         paned.add(lower, weight=2)
 
-        cols = ('title', 'readiness', 'profile', 'state_ref', 'artifacts', 'content')
+        cols = ('title', 'category', 'readiness', 'profile', 'state_ref', 'artifacts', 'content')
         self.tree = ttk.Treeview(upper, columns=cols, show='headings', selectmode='browse', height=10)
         for key, heading, width in [
-            ('title', 'Cristal', 290), ('readiness', 'État local', 110),
+            ('title', 'Kristal', 245), ('category', 'Catégorie', 175), ('readiness', 'État local', 106),
             ('profile', 'Profil', 140), ('state_ref', 'Identité d’état', 320),
             ('artifacts', 'Artefacts', 90), ('content', 'Contenu observé', 190),
         ]:
-            self.tree.heading(key, text=heading)
+            self.tree.heading(key, text=heading, command=lambda field=key: self.change_sort(field))
             self.tree.column(key, width=width, minwidth=75, stretch=key in ('title', 'state_ref'))
         yscroll = ttk.Scrollbar(upper, orient='vertical', command=self.tree.yview)
         xscroll = ttk.Scrollbar(upper, orient='horizontal', command=self.tree.xview)
@@ -227,17 +250,25 @@ class ManagerWindow(tk.Tk):
         yscroll.grid(row=0, column=1, sticky='ns')
         xscroll.grid(row=1, column=0, sticky='ew')
         self.tree.tag_configure('alert', foreground='#a04d25')
+        self.tree.tag_configure('historic', foreground='#717d7b')
         self.tree.bind('<<TreeviewSelect>>', self.show_details)
 
         quick = ttk.Frame(lower)
         quick.pack(fill='x', pady=(6, 2))
         ttk.Label(quick, textvariable=self.selection_var, style='H2.TLabel').pack(side='left', fill='x', expand=True)
-        self.verify_button = ttk.Button(quick, text='Vérifier ce cristal', command=self.start_verify)
+        self.verify_button = ttk.Button(quick, text='Vérifier ce Kristal', command=self.start_verify)
         self.verify_button.pack(side='right', padx=(5, 0))
-        self.selected_catalog_button = ttk.Button(quick, text='Cataloguer ce cristal', command=self.start_catalog_selected)
+        self.selected_catalog_button = ttk.Button(quick, text='Cataloguer ce Kristal', command=self.start_catalog_selected)
         self.selected_catalog_button.pack(side='right', padx=(5, 0))
         self.copy_path_button = ttk.Button(quick, text='Copier son chemin', command=self.copy_selected_path)
         self.copy_path_button.pack(side='right', padx=(5, 0))
+        self.organize_menu = tk.Menu(self, tearoff=False)
+        self.organize_menu.add_command(label='Prévisualiser / renommer le dossier…', command=self.rename_selected)
+        self.organize_menu.add_separator()
+        self.organize_menu.add_command(label='Exporter en .zip…', command=lambda: self.export_selected('zip'))
+        self.organize_menu.add_command(label='Exporter en .kristal (format Manager)…', command=lambda: self.export_selected('kristal'))
+        self.organize_button = ttk.Menubutton(quick, text='Organiser / exporter ▾', menu=self.organize_menu)
+        self.organize_button.pack(side='right', padx=(5, 0))
 
         self.tabs = ttk.Notebook(lower)
         self.tabs.pack(fill='both', expand=True, pady=(4, 0))
@@ -258,8 +289,8 @@ class ManagerWindow(tk.Tk):
         ttk.Button(logbuttons, text='Copier le journal', command=self.copy_log).pack(side='left')
         ttk.Button(logbuttons, text='Effacer le journal', command=self.clear_log).pack(side='left', padx=(7, 0))
         ttk.Button(logbuttons, text='Enregistrer le journal…', command=self.save_log).pack(side='left', padx=(7, 0))
-        self._set_text(self.summary_text, 'Sélectionnez un cristal pour afficher son état et les actions possibles.')
-        self._set_text(self.details, 'Sélectionnez un cristal pour afficher ses informations JSON.')
+        self._set_text(self.summary_text, 'Sélectionnez un Kristal pour afficher son état et les actions possibles.')
+        self._set_text(self.details, 'Sélectionnez un Kristal pour afficher ses informations JSON.')
 
     def _readonly_text(self, parent, *, font, height, wrap='word'):
         frame = ttk.Frame(parent)
@@ -320,7 +351,7 @@ class ManagerWindow(tk.Tk):
         for root in protected:
             if dest.is_relative_to(root.resolve()):
                 messagebox.showerror('Destination protégée',
-                    'Choisissez un emplacement EN DEHORS des dossiers de cristaux.\n'
+                    'Choisissez un emplacement EN DEHORS des dossiers de Kristals.\n'
                     f'Destination refusée : {destination}\nDossier protégé : {root}', parent=self)
                 self.log('REFUS', f'Fichier dérivé dans un dossier source : {destination}')
                 return False
@@ -350,7 +381,67 @@ class ManagerWindow(tk.Tk):
     def copy_selected_path(self):
         row = self._selected_row()
         if row:
-            self._clipboard(row['path'], 'Chemin du cristal')
+            self._clipboard(row['path'], 'Chemin du Kristal')
+
+    def rename_selected(self):
+        if self.busy:
+            return
+        row = self._selected_row()
+        if not row or not self.roots:
+            messagebox.showinfo('Kristal nécessaire', 'Sélectionnez un Kristal inventorié.', parent=self)
+            return
+        try:
+            plan = plan_rename(row['path'], self.roots[0])
+        except (OSError, ValueError, RuntimeError) as exc:
+            messagebox.showinfo('Renommage non disponible', str(exc), parent=self)
+            return
+        self.log('APERÇU', f'Renommage : {plan.source} → {plan.destination} (aucune écriture)')
+        warning = ('\nCe Kristal contient des archives historiques.' if plan.has_history else '')
+        if not messagebox.askyesno('Confirmer le renommage du dossier',
+             f'Nom déclaré dans les données : {plan.declared_title}\n\n'
+             f'DE : {plan.source}\nVERS : {plan.destination}\n\n'
+             'Seul le dossier sera renommé, aucun fichier interne ne sera modifié.\n'
+             'ATTENTION : les raccourcis, scripts et références contenant le chemin absolu peuvent cesser de fonctionner.'
+             + warning + '\n\nEffectuer ce renommage sur le disque ?', parent=self):
+            self.log('INFO', 'Renommage annulé après prévisualisation.')
+            return
+        try:
+            new_path = apply_rename(plan, scan_root=self.roots[0])
+            self.log('SUCCÈS', f'Dossier renommé : {new_path}')
+            self.status_var.set(f'Dossier renommé : {new_path.name} · relance de l’inventaire')
+            self.start_scan()
+        except (OSError, ValueError, RuntimeError) as exc:
+            self._fail('Renommage refusé ou impossible', exc, diagnostic=traceback.format_exc())
+
+    def export_selected(self, format: str):
+        if self.busy:
+            return
+        row = self._selected_row()
+        if not row:
+            messagebox.showinfo('Kristal nécessaire', 'Sélectionnez un Kristal à exporter.', parent=self)
+            return
+        source = Path(row['path'])
+        if not (source / 'kristal.workspace.json').is_file() or is_historical(row):
+            messagebox.showinfo('Export non disponible', 'Sélectionnez un Kristal, pas une archive interne.', parent=self)
+            return
+        title = 'Archive ZIP du Kristal' if format == 'zip' else 'Archive .kristal — format expérimental du Manager'
+        name = filedialog.asksaveasfilename(parent=self, title=title, defaultextension='.' + format,
+             initialfile=source.name + '.' + format, filetypes=[(title, '*.' + format)],
+             confirmoverwrite=False)
+        if not name:
+            return
+        target = Path(name)
+        if not self._safe_output(target, source=source):
+            return
+        if target.exists():
+            messagebox.showerror('Fichier existant', 'Le Manager ne remplace pas les archives existantes. Choisissez un autre nom.', parent=self)
+            return
+        if format == 'kristal' and not messagebox.askyesno('Format expérimental',
+             'Le .kristal créé ici est une archive ZIP locale avec un manifeste Manager.\n'
+             'Ce n’est PAS un format de paquet officiel certifié par Kristal Framework.\n\nContinuer ?', parent=self):
+            return
+        self._start(f'Export {format.upper()} de « {row["title"]} »…',
+                    lambda: export_workspace(source, target, format=format), folder=source, job='archive_export')
 
     def focus_filter(self):
         self.filter_entry.focus_set()
@@ -364,7 +455,7 @@ class ManagerWindow(tk.Tk):
     def select_root(self):
         current = Path(self.path_var.get()).expanduser()
         initial = current if current.is_dir() else (current.parent if current.parent.is_dir() else Path.home())
-        root = filedialog.askdirectory(parent=self, title='Choisir le dossier racine ou le cristal à analyser',
+        root = filedialog.askdirectory(parent=self, title='Choisir le dossier racine ou le Kristal à analyser',
                                        initialdir=str(initial), mustexist=True)
         if root:
             self.path_var.set(root)
@@ -387,6 +478,7 @@ class ManagerWindow(tk.Tk):
         self.verify_button.configure(state='normal' if idle and selected else 'disabled')
         self.selected_catalog_button.configure(state='normal' if idle and supports_catalog else 'disabled')
         self.copy_path_button.configure(state='normal' if selected else 'disabled')
+        self.organize_button.configure(state='normal' if idle and supports_catalog and not is_historical(row) else 'disabled')
         self.actions_button.configure(state='normal' if idle else 'disabled')
         if self.busy:
             self.progress.start(15)
@@ -421,7 +513,7 @@ class ManagerWindow(tk.Tk):
     def start_verify(self):
         row = self._selected_row()
         if not row:
-            messagebox.showinfo('Sélection nécessaire', 'Sélectionnez d’abord un cristal dans la liste.', parent=self)
+            messagebox.showinfo('Sélection nécessaire', 'Sélectionnez d’abord un Kristal dans la liste.', parent=self)
             return
         path = Path(row['path'])
         self._start(f'Vérification locale de « {row["title"]} »…',
@@ -432,7 +524,7 @@ class ManagerWindow(tk.Tk):
         if not folder.is_dir():
             folder = Path.home()
         name = filedialog.asksaveasfilename(parent=self,
-                title='Catalogue SQLite dérivé (EN DEHORS des dossiers de cristaux)',
+                title='Catalogue SQLite dérivé (EN DEHORS des dossiers de Kristals)',
                 initialdir=str(folder), initialfile=suggested, defaultextension='.sqlite3',
                 filetypes=[('Catalogue SQLite', '*.sqlite3')], confirmoverwrite=False)
         if not name:
@@ -450,13 +542,13 @@ class ManagerWindow(tk.Tk):
             return
         row = self._selected_row()
         if not row:
-            messagebox.showinfo('Sélection nécessaire', 'Sélectionnez le cristal à cataloguer.', parent=self)
+            messagebox.showinfo('Sélection nécessaire', 'Sélectionnez le Kristal à cataloguer.', parent=self)
             return
         folder = Path(row['path'])
         if not (folder / 'kristal.workspace.json').is_file():
             messagebox.showinfo('Catalogue non disponible',
                 'Cette entrée est un état/artefact auxiliaire, sans kristal.workspace.json.\n'
-                'Le catalogue descriptif exige un cristal reconnu.', parent=self)
+                'Le catalogue descriptif exige un Kristal reconnu.', parent=self)
             return
         database = self._catalog_destination(f'{row["slug"]}-contenu.sqlite3')
         if database:
@@ -470,8 +562,8 @@ class ManagerWindow(tk.Tk):
             messagebox.showerror('Dossier introuvable', 'Choisissez un dossier existant.', parent=self)
             return
         if not messagebox.askyesno('Catalogue global',
-             'Cette opération parcourra tous les cristaux reconnus sous :\n'
-             f'{folder}\n\nElle crée uniquement des fichiers dérivés hors des cristaux. Continuer ?', parent=self):
+             'Cette opération parcourra tous les Kristals reconnus sous :\n'
+             f'{folder}\n\nElle crée uniquement des fichiers dérivés hors des Kristals. Continuer ?', parent=self):
             return
         database = self._catalog_destination('kristal-contenu-global.sqlite3')
         if database:
@@ -496,7 +588,7 @@ class ManagerWindow(tk.Tk):
             write_overview(database, overview, overwrite=True)
             return {'result': result, 'rows': observed, 'overview': overview, 'mode': mode,
                     'inventory': scan_roots([folder]) if mode == 'all' else None}
-        self._start(f'Catalogue {"du cristal" if mode == "selected" else "du dossier"} en cours…',
+        self._start(f'Catalogue {"du Kristal" if mode == "selected" else "du dossier"} en cours…',
                     work, folder=folder, job='catalog')
 
     def poll(self):
@@ -514,11 +606,14 @@ class ManagerWindow(tk.Tk):
                     self.roots = [folder]
                     self.path_var.set(str(folder))
                     self._unfiltered_count = len(self.rows)
+                    self._refresh_category_choices()
                     self._remember_root(folder)
                     self.refresh(prefer=before)
                     self.scope_var.set(f'Inventaire de : {folder}')
-                    self.status_var.set(f'{len(self.rows)} cristaux détectés · lecture seule · conformité non établie')
-                    self.log('SUCCÈS', f'Inventaire : {len(self.rows)} cristaux sous {folder}')
+                    self.status_var.set(f'{sum(not is_historical(r) for r in self.rows)} Kristals · '
+                                        f'{sum(is_historical(r) for r in self.rows)} archives internes masquées · conformité non établie')
+                    self.log('SUCCÈS', f'Inventaire : {sum(not is_historical(r) for r in self.rows)} Kristals et '
+                           f'{sum(is_historical(r) for r in self.rows)} archives internes sous {folder}')
                 elif kind == 'verify':
                     path, report = payload
                     row = next((r for r in self.rows if r['path'] == path), None)
@@ -530,6 +625,11 @@ class ManagerWindow(tk.Tk):
                                         ' · PAS une conformité Framework')
                     self.log('RÉSULTAT', f'{Path(path).name} : {report.get("operational_result")}; '
                            f'Framework : {report.get("framework_state_verification", {}).get("status")}')
+                elif kind == 'archive_export':
+                    self.status_var.set(f'Archive locale créée : {payload["path"]}')
+                    self.log('SUCCÈS', f'Export {payload["format"]} : {payload["files"]} fichiers · {payload["path"]}')
+                    if payload['format'] == 'kristal':
+                        self.log('LIMITE', 'Format .kristal expérimental Manager, non certifié par Framework.')
                 elif kind == 'catalog':
                     observed = payload['rows']
                     for existing in self.rows:
@@ -549,19 +649,21 @@ class ManagerWindow(tk.Tk):
                             if row['path'] in observed:
                                 row['content_summary'] = observed[row['path']].get('content_summary')
                         self.roots = [folder]
+                        self._refresh_category_choices()
                         self.path_var.set(str(folder))
                         self._remember_root(folder)
                         self.scope_var.set(f'Inventaire de : {folder}')
                     elif not self.rows:
                         self.rows = list(observed.values())
                         self.roots = [folder]
+                        self._refresh_category_choices()
                     current = self._selected_path()
                     self.catalog_overview = payload['overview']
                     self.refresh(prefer=current)
                     result = payload['result']
-                    self.status_var.set(f'Catalogue terminé : {result["workspaces"]} cristal(aux) · '
+                    self.status_var.set(f'Catalogue terminé : {result["workspaces"]} Kristal(aux) · '
                                         f'{result["updated"]} actualisé(s), {result["cached"]} inchangé(s)')
-                    self.log('SUCCÈS', f'Catalogue : {result["workspaces"]} cristaux. '
+                    self.log('SUCCÈS', f'Catalogue : {result["workspaces"]} Kristals. '
                            f'SQLite : {result["database"]} · HTML : {self.catalog_overview}')
                     self.tabs.select(0)
                 self._refresh_actions()
@@ -584,6 +686,25 @@ class ManagerWindow(tk.Tk):
         self.status_var.set(f'{label} · consulter le journal (les sources n’ont pas été modifiées).')
         messagebox.showerror(label, str(exc) + '\n\nLe détail est dans l’onglet Journal des opérations.', parent=self)
 
+    def _change_category(self, _event=None):
+        if self.category_var.get() == 'Archive historique':
+            self.show_history_var.set(True)
+        self.refresh()
+
+    def _refresh_category_choices(self):
+        categories = sorted({category_of(r) for r in self.rows if not is_historical(r)}, key=str.casefold)
+        values = ['Toutes catégories', *categories, 'Archive historique']
+        self.category_choice.configure(values=values)
+        if self.category_var.get() not in values:
+            self.category_var.set('Toutes catégories')
+
+    def change_sort(self, field: str):
+        if self.sort_field == field:
+            self.sort_desc = not self.sort_desc
+        else:
+            self.sort_field, self.sort_desc = field, False
+        self.refresh()
+
     def refresh(self, *, prefer: str | None = None):
         if not hasattr(self, 'tree'):
             return
@@ -591,17 +712,33 @@ class ManagerWindow(tk.Tk):
         for item in self.tree.get_children():
             self.tree.delete(item)
         q = self.filter_var.get().strip().casefold()
+        category = self.category_var.get()
+        visible = []
         for i, row in enumerate(self.rows):
+            historic = is_historical(row)
+            if historic and not self.show_history_var.get():
+                continue
+            cat = category_of(row)
+            if category != 'Toutes catégories' and cat != category:
+                continue
             corpus = ' '.join(str(row.get(k, '')) for k in
-                              ('title', 'slug', 'state_ref', 'profile', 'readiness', 'native_kind', 'content_summary'))
+                              ('title', 'slug', 'state_ref', 'profile', 'readiness', 'native_kind', 'content_summary')) + ' ' + cat
             if q and q not in corpus.casefold():
                 continue
             metrics = (row.get('content_summary') or {}).get('metrics') or {}
             n = metrics.get('assertions')
             content = f'{n:,} assertions' if isinstance(n, int) else ('mesuré, non quantifié' if row.get('content_summary') else 'non analysé')
-            self.tree.insert('', 'end', iid=str(i), values=(row['title'], row['readiness'], row.get('profile') or '—',
-                            row.get('state_ref') or '—', row.get('registered_artifacts', 0), content),
-                            tags=('alert',) if row.get('state_conflict') or row.get('needs_migration') else ())
+            values = (row['title'], cat, row['readiness'], row.get('profile') or '—',
+                      row.get('state_ref') or '—', row.get('registered_artifacts', 0), content)
+            visible.append((i, row, values, historic))
+        mapping = {'title': 0, 'category': 1, 'readiness': 2, 'profile': 3,
+                   'state_ref': 4, 'artifacts': 5, 'content': 6}
+        pos = mapping.get(self.sort_field, 0)
+        visible.sort(key=lambda v: (v[2][pos] if pos == 5 else str(v[2][pos]).casefold(),
+                                    v[1]['path'].casefold()), reverse=self.sort_desc)
+        for i, row, values, historic in visible:
+            tags = ('alert',) if row.get('state_conflict') or row.get('needs_migration') else ('historic',) if historic else ()
+            self.tree.insert('', 'end', iid=str(i), values=values, tags=tags)
         match = next((iid for iid in self.tree.get_children() if self.rows[int(iid)]['path'] == selected), None)
         if match is None:
             match = self.tree.get_children()[0] if self.tree.get_children() else None
@@ -609,13 +746,15 @@ class ManagerWindow(tk.Tk):
             self.tree.selection_set(match)
             self.tree.see(match)
         else:
-            self.selection_var.set('Aucun cristal sélectionné')
-            self._set_text(self.summary_text, 'Aucun cristal dans ce périmètre / filtre.')
+            self.selection_var.set('Aucun Kristal sélectionné')
+            self._set_text(self.summary_text, 'Aucun Kristal dans ce périmètre / filtre.')
             self._set_text(self.details, '')
-        self.count_var.set(f'{len(self.rows)} cristaux')
-        ready = sum(row.get('readiness') == 'READY' for row in self.rows)
+        normal = [r for r in self.rows if not is_historical(r)]
+        hidden = len(self.rows) - len(normal)
+        self.count_var.set(f'{len(normal)} Kristal' + ('s' if len(normal) != 1 else ''))
+        ready = sum(row.get('readiness') == 'READY' for row in normal)
         self.ready_var.set(f'{ready} prêts')
-        self.issue_var.set(f'{len(self.rows) - ready} à examiner')
+        self.issue_var.set(f'{len(normal) - ready} à examiner · {hidden} archives internes')
         self._refresh_actions()
         if match:
             self.show_details()
@@ -625,12 +764,15 @@ class ManagerWindow(tk.Tk):
         if not row:
             self._refresh_actions()
             return
-        self.selection_var.set(row.get('title', 'Cristal'))
+        self.selection_var.set(row.get('title', 'Kristal'))
         keys = ('title', 'slug', 'path', 'state_ref', 'workspace_format', 'native_kind',
                 'readiness', 'state_commitment', 'state_blob_digest', 'state_conflict_reasons',
                 'portable_ai_enabled', 'ai_entrypoint_present', 'hosted_network_baseline',
                 'discovery', 'operational_assessment', 'content_summary')
-        self._set_text(self.details, json.dumps({k: row.get(k) for k in keys}, ensure_ascii=False, indent=2))
+        self._set_text(self.details, json.dumps({**{k: row.get(k) for k in keys},
+                                                     'manager_category': category_of(row),
+                                                     'manager_historical_archive': is_historical(row)},
+                                                    ensure_ascii=False, indent=2))
         operational = row.get('operational_assessment') or {}
         discovery = operational.get('discovery') or row.get('discovery') or {}
         framework = operational.get('framework_state_verification') or {}
@@ -638,8 +780,10 @@ class ManagerWindow(tk.Tk):
         outcome = operational.get('operational_result') or 'non effectué'
         metrics = content.get('metrics') or {}
         info = [
-            f'CRISTAL : {row["title"]}',
+            f'KRISTAL : {row["title"]}',
             f'Dossier : {row["path"]}',
+            f'Catégorie : {category_of(row)}',
+            f'Copie historique imbriquée : {"oui" if is_historical(row) else "non"}',
             f'État local : {row["readiness"]}  |  Profil : {row.get("profile") or "—"}',
             f'Identité : {row.get("state_ref") or "—"}',
             f'Artefacts enregistrés : {row.get("registered_artifacts", 0)}',
@@ -650,8 +794,8 @@ class ManagerWindow(tk.Tk):
             f'Contenu : {content.get("content_status") or "non catalogué"}',
             f'Assertions observées : {metrics.get("assertions", "non mesurées")}',
             '',
-            'À FAIRE : « Vérifier ce cristal » pour contrôler les fichiers enregistrés,',
-            'puis « Cataloguer ce cristal » pour mesurer le contenu descriptif.',
+            'À FAIRE : « Vérifier ce Kristal » pour contrôler les fichiers enregistrés,',
+            'puis « Cataloguer ce Kristal » pour mesurer le contenu descriptif.',
             'Ces contrôles ne prouvent ni conformité Framework, ni qualification, ni publication.',
         ]
         if row.get('needs_migration') or row.get('state_conflict'):
@@ -729,18 +873,23 @@ class ManagerWindow(tk.Tk):
     def open_help(self):
         helptext = ('PARCOURS RECOMMANDÉ\n\n'
            '1. Choisir un dossier racine (par défaut : C:\\mycode\\Kristal\\locals sous Windows).\n'
-           '2. Analyser le dossier : identifier les cristaux, sans écriture sur les sources.\n'
-           '3. Choisir un cristal dans le tableau et lire sa fiche.\n'
-           '4. Vérifier ce cristal : contrôler les sources enregistrées.\n'
-           '5. Cataloguer ce cristal : créer une base SQLite et un HTML descriptifs, hors des sources.\n'
+           '2. Analyser le dossier : identifier les Kristals, sans écriture sur les sources.\n'
+           '3. Choisir un Kristal dans le tableau et lire sa fiche.\n'
+           '4. Vérifier ce Kristal : contrôler les sources enregistrées.\n'
+           '5. Cataloguer ce Kristal : créer une base SQLite et un HTML descriptifs, hors des sources.\n'
            '6. Ouvrir le HTML avec « Actions » ou « Toutes les fonctions ».\n\n'
            'FONCTIONS GLOBALES\n'
-           '« Cataloguer tous les cristaux du dossier » agit sur la racine saisie, PAS uniquement sur la ligne sélectionnée.\n'
+           '« Cataloguer tous les Kristals du dossier » agit sur la racine saisie, PAS uniquement sur la ligne sélectionnée.\n'
            '« Exporter inventaire » écrit un JSON local privé.\n'
-           '« Exporter aperçu privé Konstellation » nécessite un accord et un principal explicites.\n\n'
+           '« Exporter aperçu privé Konstellation » nécessite un accord et un principal explicites.\n'
+           'Catégorie : lecture des données internes et/ou classification Discovery; clic sur en-tête pour trier.\n'
+           'Les snapshots imbriqués dans archive/ sont masqués par défaut, sans suppression.\n'
+           'Renommer : aperçu du nom lu dans kristal.workspace.json, puis confirmation. Les chemins absolus peuvent être affectés.\n'
+           'Exporter ZIP : copie complète du Kristal sélectionné, hors des sources.\n'
+           'Exporter .kristal : ZIP avec manifeste expérimental Manager, PAS un format Framework certifié.\n\n'
            'JOURNAL\n'
            'L’onglet Journal des opérations propose Copier, Effacer et Enregistrer.\n'
-           'Effacer retire seulement le texte de l’interface, sans toucher aux cristaux.\n\n'
+           'Effacer retire seulement le texte de l’interface, sans toucher aux Kristals.\n\n'
            'LIMITES\n'
            'READY = état structurel local. LOCAL_CHECKS_PASSED = sources enregistrées contrôlées.\n'
            'Le catalogue mesure le contenu ; aucun de ces résultats ne qualifie automatiquement '
