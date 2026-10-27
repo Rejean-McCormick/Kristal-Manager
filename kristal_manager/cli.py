@@ -30,9 +30,36 @@ def main(argv=None):
     p=sub.add_parser('inspect',help='Inspect one local workspace (no domain file contents)')
     p.add_argument('workspace',type=Path)
     p.add_argument('--verify-discovery',action='store_true',help='Read source bytes to verify Kit 3.3 fingerprint (can be slow)')
+    p=sub.add_parser('catalog',help='Scan selected canonical content into a private local SQLite catalog')
+    p.add_argument('roots',nargs='+',type=Path)
+    p.add_argument('--db',type=Path,required=True)
+    p.add_argument('--overview',type=Path,help='Optional local HTML content overview')
+    p.add_argument('--overwrite-overview',action='store_true')
+    p.add_argument('--force',action='store_true',help='Reparse unchanged selected inputs')
+    p.add_argument('--max-file-mib',type=int,default=64)
+    p=sub.add_parser('catalog-query',help='Search concepts across an existing private content catalog')
+    p.add_argument('text');p.add_argument('--db',type=Path,required=True);p.add_argument('--limit',type=int,default=100)
+    p=sub.add_parser('catalog-show',help='Show scoped assertions and typed value fields for a concept')
+    p.add_argument('text');p.add_argument('--db',type=Path,required=True);p.add_argument('--catalog-id');p.add_argument('--limit',type=int,default=50)
+    p=sub.add_parser('catalog-overview',help='Render an existing content catalog as local HTML')
+    p.add_argument('--db',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--overwrite',action='store_true')
     args=parser.parse_args(argv)
     try:
-        if args.command=='scan':
+        if args.command=='catalog':
+            from .content_catalog import build_catalog,write_overview
+            if not 1<=args.max_file_mib<=512:raise ManagerError('--max-file-mib must be between 1 and 512')
+            result=build_catalog(args.roots,args.db,force=args.force,max_bytes=args.max_file_mib*1024*1024)
+            if args.overview:result['overview']=str(write_overview(args.db,args.overview,overwrite=args.overwrite_overview))
+        elif args.command=='catalog-query':
+            from .content_catalog import search_catalog
+            result=search_catalog(args.db,args.text,args.limit)
+        elif args.command=='catalog-show':
+            from .content_catalog import show_concept
+            result=show_concept(args.db,args.text,args.catalog_id,args.limit)
+        elif args.command=='catalog-overview':
+            from .content_catalog import write_overview
+            result={'overview':str(write_overview(args.db,args.output,overwrite=args.overwrite))}
+        elif args.command=='scan':
             result=inventory(args.roots,verify_sources=args.verify_sources)
         elif args.command=='export':
             result=inventory(args.roots,include_paths=args.include_paths,verify_sources=args.verify_sources)

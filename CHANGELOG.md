@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.15 — Read-only content catalogue (2026-10-26)
+
+- Add an incremental SQLite catalogue of selected v11 content and recognized v6 native assertions, retaining provenance, semantic identity scope, multilingual terms, and explicit partial/unsupported states.
+- Add content CLI/GUI actions and a local HTML summary viewer; operational inventory and Konstellation disclosure formats remain unchanged.
+- Separate source claims, value components, reported Wikidata ranks and candidate alignments; no editorial or factual authority is inferred.
+- Prune generated/source-snapshot directories during content discovery, hash only selected inputs, and refuse output inside source Kristals.
+- Add scanner regressions and a worked 16-Kristal example. Existing synchronization/publication recovery limitations remain.
+
 ## 0.1.0-alpha.14 — Operational verification / Framework v10 pin (2026-10-16)
 
 - Add read-only `verify` and bulk `--verify-sources` to detect stale physical reader inventories, retaining legacy Discovery-absent support.

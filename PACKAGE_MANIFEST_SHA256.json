@@ -1,11 +1,11 @@
 {
   "format": "kristal-manager-package-inventory/1.0",
-  "version": "0.1.0-alpha.14-local-validation",
+  "version": "0.1.0-alpha.15-content-scan",
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "sha256": "89646388c33d6ad8f690123cb9318ddac5add53efe001cc63344b91c210ea769",
-      "bytes": 553
+      "sha256": "a97e99afc62ed364584f59069aeb97d6a012dc8420e523e747d9a4a2ff69d4a8",
+      "bytes": 583
     },
     {
       "path": ".gitignore",
@@ -19,8 +19,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "0332ebea3a8074e3f744788acb01bfbcb3080a06dfb1db9c5ea0e7ae996b3fcb",
-      "bytes": 2514
+      "sha256": "b9b739e5c61b7604a09f4e262b9dc847f9c0bd74e512d043baca5da3e9caff25",
+      "bytes": 3333
     },
     {
       "path": "GitSink.bat",
@@ -31,6 +31,11 @@
       "path": "Kristal-Manager.pyw",
       "sha256": "4e4f03ca13119e4ecfa39967f4ee073c82f8437c5814e7b294634d9ab0cd18b9",
       "bytes": 78
+    },
+    {
+      "path": "LIRE_CONTENU.md",
+      "sha256": "a73abbb7b36020f14e226cff2c1d25fdd493f4556e433f6e682b05fad175e0a9",
+      "bytes": 1843
     },
     {
       "path": "Launch-Kristal-Manager.cmd",
@@ -54,22 +59,27 @@
     },
     {
       "path": "README.md",
-      "sha256": "a33701bea3440416755a21cbcd559223323a7127e523c04de7aec4e8124f0a84",
-      "bytes": 12885
+      "sha256": "58e630b27b300c3ce83308118edfbcd570693997c660978b15403d13ad1eb95a",
+      "bytes": 14408
     },
     {
       "path": "SNAPSHOT_INDEX.txt",
-      "sha256": "2d8a215b11cdc640440579e449882a8860be9e2e84b0cc808bdeed6550358622",
-      "bytes": 1034
+      "sha256": "63da5d5037f3908e4ab462ba0ebc824d6068564eee4d30827483787e876bfb7b",
+      "bytes": 166
+    },
+    {
+      "path": "Scanner_Contenu.cmd",
+      "sha256": "d6ffa44afcd47136375c6137e7ea6180da2d9fdb1e4b83bf3c6e4e15e97e9e4c",
+      "bytes": 519
     },
     {
       "path": "TEST_REPORT.md",
-      "sha256": "7a5e05e58de6636658e32c0e376f42a43e27e5e1a1c55e7438d27a8abea7d0cf",
-      "bytes": 4637
+      "sha256": "47c78d8bb6888089b5c2dd18386a1075abba87657e902212b36f214411d6d1a4",
+      "bytes": 1579
     },
     {
       "path": "VERSION",
-      "sha256": "f42aa323cd0630932d71ff1fefc517cf2364238dbdbe1c7d49970abcc5582fe1",
+      "sha256": "59e5b66d8787e63ab8377d205c772e79370f9a239b1c1fb6efaf5fa53e656b39",
       "bytes": 15
     },
     {
@@ -81,6 +91,11 @@
       "path": "docs/C2_PUBLICATION_CONTROL.md",
       "sha256": "fc360ba53ad69db97c3ab45eb0c09c42b135ce6e97828c2102a228ec9c10b42f",
       "bytes": 1784
+    },
+    {
+      "path": "docs/CONTENT_CATALOG.md",
+      "sha256": "d26b5165ce0037040252d1ce5b919e47aca24d3821c85a8385e03a06cdce7de4",
+      "bytes": 6973
     },
     {
       "path": "docs/HISTORICAL_RUNTIME_RECOVERY.md",
@@ -118,6 +133,11 @@
       "bytes": 4803
     },
     {
+      "path": "docs/snapshots/PACKAGE_MANIFEST_SHA256_alpha14.json",
+      "sha256": "9f3d5ddc6e236a4ed69a4b6f1c0489c9ce8f290ec8b0fdb9d4ca0932f0f8b126",
+      "bytes": 6804
+    },
+    {
       "path": "docs/snapshots/README.md",
       "sha256": "f6909e0890fd13a30fd03bec66017fdf01b4629287d6261bd8c9e9a77ed8b0b1",
       "bytes": 618
@@ -128,13 +148,33 @@
       "bytes": 792
     },
     {
+      "path": "docs/snapshots/TEST_REPORT_alpha14.md",
+      "sha256": "7a5e05e58de6636658e32c0e376f42a43e27e5e1a1c55e7438d27a8abea7d0cf",
+      "bytes": 4637
+    },
+    {
+      "path": "exemple-16-cristaux/VALIDATION.json",
+      "sha256": "6eab0a79df9f45f9f72f81fb12df069349bc6f4a4aa63b548e757a6a38fbcec1",
+      "bytes": 572
+    },
+    {
+      "path": "exemple-16-cristaux/apercu.html",
+      "sha256": "a9c9345d755e60303beb453745fd01c8b19d86510bb0df6c550679a1d7fe1433",
+      "bytes": 215722
+    },
+    {
+      "path": "exemple-16-cristaux/catalogue.sqlite3",
+      "sha256": "06478c5799472069738b884c5ea38c18dbc88c04194e95785a95a2ee49c57c28",
+      "bytes": 96997376
+    },
+    {
       "path": "kristal-manager.html",
       "sha256": "0af45567f98e5744c80c46c02d69179e5f8abc85e8721e4304a2e4ea8103e65c",
       "bytes": 7225
     },
     {
       "path": "kristal_manager/__init__.py",
-      "sha256": "20e07c9707e574f78cf1d9ec335ad0e8052c717fa456025e7e8aefdfaa1ac19f",
+      "sha256": "f4f236145c5587fd4e3ea518119dfc9c26906fa20a93e6e576c0cae840ac567d",
       "bytes": 97
     },
     {
@@ -144,8 +184,13 @@
     },
     {
       "path": "kristal_manager/cli.py",
-      "sha256": "42c316f9eea4e29360bac68c2edabf815492b9e80097dc6f73dffce18af3d785",
-      "bytes": 4122
+      "sha256": "08e68dc0445972a46bcdbd841afeeb78dd3c77beccda8235daed450ffc7b3a2f",
+      "bytes": 6344
+    },
+    {
+      "path": "kristal_manager/content_catalog.py",
+      "sha256": "439234e14787eb2d2418dba805e7fd1701592832f87660fffab6290b64240ae3",
+      "bytes": 29420
     },
     {
       "path": "kristal_manager/core.py",
@@ -159,8 +204,8 @@
     },
     {
       "path": "kristal_manager/gui.py",
-      "sha256": "0915ec66a508b50ea3ce131c89433833a5637c7a9a28f4ad3758b703d4af1762",
-      "bytes": 11007
+      "sha256": "f34bf7b8a40004fd14ebc1b89ed6b7dee5d6a2a1e2a0b02768642d1a7666bf93",
+      "bytes": 14059
     },
     {
       "path": "kristal_manager/inventory.py",
@@ -179,13 +224,18 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "7099dd4e533077e815764ec38d51d384cd8eb95af1a73088b558fc436cfb22ec",
+      "sha256": "cd8f243d4a0037d05690bc4c418b0dcd399aa0cce8c5f10a9a11e248e0b0833a",
       "bytes": 392
     },
     {
       "path": "tests/test_c2_public_gate.py",
       "sha256": "0dd1bfb92b3ea5a3f4bdd9119aeeec0a2782a422cc741f3eeb1e049a4c587b0a",
       "bytes": 8143
+    },
+    {
+      "path": "tests/test_content_catalog.py",
+      "sha256": "042999bf5bbad02e706d649d3f905bfda213194ef960c670ad66fc1978f9a267",
+      "bytes": 10387
     },
     {
       "path": "tests/test_core.py",

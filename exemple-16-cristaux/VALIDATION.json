@@ -1,0 +1,20 @@
+{
+  "projects": 16,
+  "metrics": {
+    "assertions": 53948,
+    "main_assertions": 39791,
+    "structured_components": 14157,
+    "wikidata_source_claims": 29304,
+    "entities": 17851,
+    "properties": 5700
+  },
+  "all_active_graphs_observed": true,
+  "audited_source_files_unchanged": 293,
+  "full_scan_seconds": 7.9975572390003435,
+  "unchanged_scan_seconds": 0.736668532999829,
+  "cached_workspaces": 16,
+  "sqlite_full_integrity_check": "passed",
+  "atomic_snapshot": true,
+  "scan_output_is_derived": true,
+  "factual_or_framework_qualification_performed": false
+}

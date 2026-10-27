@@ -1,10 +1,23 @@
 # Kristal Manager
 
-**Recovery update:** `0.1.0-alpha.14` · **Framework target:** `10.0.0-draft.3.2` · **Operational status:** **read-only inventory available; GitHub synchronization disabled**.
+**Local content update:** `0.1.0-alpha.15` · **Framework target:** `10.0.0-draft.3.2` · **Operational status:** **read-only inventory and content catalogue available; GitHub synchronization disabled**.
 
 Kristal Manager owns the operational inventory of **existing** Kristal workspaces and, when independently restored and qualified, should orchestrate controlled GitHub v10 read-surface synchronization. It does **not** own the semantic interpretation of knowledge, the archetype library, domain qualifications, or publication/activation.
 
 > This update repairs an important source-distribution defect: the supplied alpha.11 snapshot and the publicly accessible GitHub `main` branch both lacked the `kristal_manager/` Python package referenced by the launcher and tests. We have **not reconstructed the missing alpha.11 Git sync engine** from guesswork. Instead, the recovery package provides a working and tested read-only inventory, a desktop GUI, a Konstellation-facing local export, and an intact C2 cryptographic verifier. Any remote mutation remains blocked until the full backend can be recovered and audited.
+
+## Content scanner and SQLite overview (alpha.15)
+
+Manager now provides an optional, local descriptive content catalogue in addition to its operational inventory. It reads the selected registered v11 graph and dictionaries, or a recognized native v6 assertion payload, without executing Kristal code or modifying sources. It separates structured value components from main assertions, reports source/lexical coverage and Wikidata alignment states, and ranks subjects by observed assertion count rather than inferring semantic importance.
+
+```text
+python -m kristal_manager catalog C:\Kristals --db C:\Catalogues\content.sqlite3 --overview C:\Catalogues\content.html
+python -m kristal_manager catalog-query Terre --db C:\Catalogues\content.sqlite3
+```
+
+The desktop GUI adds **Scan content → SQLite + overview** and **Open content overview**. The HTML page is an offline, searchable overview of summaries; the database/CLI searches all indexed concepts. Incremental scans hash only selected inputs and reparse changed projects. Unsupported or bounded content is explicitly partial/unknown. No dump validation, network endpoint, public export or semantic qualification is implied.
+
+See [the scanner contract and limits](docs/CONTENT_CATALOG.md) or [French quick start](LIRE_CONTENU.md). The example in `exemple-16-cristaux` was computed from the 16 structured Wikidata projects supplied in this session.
 
 ## Quick start (Windows)
 
@@ -119,7 +132,7 @@ A successful check does **not** qualify claims or authorize network exposure. Sy
 
 ```bash
 python -m pip install -e ".[test]"
-python -m pytest -q tests/test_recovery.py tests/test_c2_public_gate.py
+python -m pytest -q tests/test_recovery.py tests/test_c2_public_gate.py tests/test_discovery_adapter.py tests/test_operational_v10.py tests/test_content_catalog.py
 ```
 
 The original `tests/test_core.py` remains available as an **unresolved compatibility suite** documenting legacy alpha.11 behavior. Many of those tests expect a synchronization engine not supplied in the source repository. **Do not claim that the historical suite passes** or remove its failed cases to disguise missing behavior. A future source recovery must restore those operations with C1/C2/C3 guards and validate every historical test.
