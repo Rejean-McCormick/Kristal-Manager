@@ -1,3 +1,21 @@
+## 2026-10-27 — Framework v7 UNESCO Thesaurus and ISCED-F reading
+
+- Bundled the pinned Framework v7 UNESCO reference: 7 domains, 88 microthesauri, 100 Subject seed examples. UNESCO identifiers and URIs are preserved; no invented classifications.
+- Kept UNESCO knowledge navigation separate from ISCED-F 2013 codes used by the Windows icon generator, as well as Arketype, PRF, and technical profile.
+- Added read-only UNESCO/ISCED classification columns, filters, detailed provenance and private JSON/HTML classification audit overlay.
+- Validates explicit codes and internal inconsistencies, preserves legacy domains as free text, and exports taxonomy observations with inventory JSON.
+- Example tested with Kristal-Architecture: icon field ISCED 07, UNESCO microthesaurus not yet declared in local workspace; Framework seed KQ5058 not applied without matching KQ identity.
+- No schema migration, no edits to source Kristals, no network access or publication.
+
+## 2026-10-27 — English UI / batch folder normalization
+
+- Integrated a preview-first batch folder rename window, with explicit selection, full ZIP backups, durable JSON journal and guarded undo.
+- Preserved local inventory, categories, integrated KristalDiag, icon generator, reports and exports.
+- Moved selected icon to the lower details panel; removed icon column from inventory table.
+- Displayed compact State ID in table; full state_ref URN retained in JSON.
+- Adopted the English desktop interface and title-case “Kristal Manager”.
+- Added focused regression tests and release instructions.
+
 ## Intégration des icônes sur Manager 19 h 24 — 2026-10-27
 
 - Portage ciblé du lecteur de `desktop.ini`, profils .kristal et icônes Registry en lecture seule.

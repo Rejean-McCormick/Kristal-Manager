@@ -1,4 +1,4 @@
-"""Kristal Manager: French-first local inventory, checks and descriptive catalog.
+"""Kristal Manager: English-first local inventory, checks and descriptive catalog.
 
 Inventory, verification and catalog operations remain read-only. The separately
 confirmed folder-rename action changes one workspace path but never its files.
@@ -22,25 +22,49 @@ import webbrowser
 from .core import detect_kristal, scan_roots
 from .diag_bridge import DiagConfigurationError, validate_config, run_diagnostic, run_official_diagnostic
 from .diag_panel import DiagnosticPanel
+from .batch_panel import BatchRenamePanel
+from .classification_panel import ClassificationPanel
+from .classification_bridge import (observe, reference, display_domain, display_micro, display_isced)
 from .inventory import inventory, konstellation_preview, save_private_inventory
 from .icon_bridge import discover_icon, read_registry_icon_index, tk_photo_from_icon, IconInfo
 from .operational import assess_local
 from .ui_prefs import default_root, load_settings, save_settings
-from .workspace_tools import category_of, is_historical, plan_rename, apply_rename, export_workspace
+from .workspace_tools import (category_of, classification_of, arketype_of, usage_profile_of,
+                              is_historical, plan_rename, apply_rename, export_workspace)
 
 BG = '#f5f8f8'
 TEXT = '#243e3c'
-BRAND = '#1E6864'  # Couleur officielle de Kristal
+BRAND = '#1E6864'  # Official Kristal brand color
 BRAND_DARK = '#155451'
 BRAND_TINT = '#eaf3f0'
 TEAL = BRAND
 SUB = '#506865'
 
 
+def display_state_id(state_ref: str | None) -> str:
+    """Compact presentation only; original identifier is retained in JSON detail."""
+    if not state_ref:
+        return '—'
+    components = state_ref.split(':')
+    if len(components) >= 4 and components[0] == 'urn' and components[1] == 'kristal':
+        if components[2] == 'state':
+            return ':'.join(components[3:])
+        if components[-1] == 'state':
+            return ':'.join(components[2:-1])
+    return state_ref
+
+
+def display_category(row: dict) -> str:
+    value = category_of(row)
+    return {'Historical archive':'Historical archive',
+            'Non catégorisé':'Uncategorized',
+            'Kristal imbriqué':'Nested Kristal'}.get(value, value)
+
+
 class ManagerWindow(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title('Kristal Manager — Inventaire & diagnostics')
+        self.title('Kristal Manager — Inventory & diagnostics')
         self.geometry('1260x830')
         self.minsize(900, 620)
         self.configure(bg=BG)
@@ -61,16 +85,21 @@ class ManagerWindow(tk.Tk):
         self._unfiltered_count = 0
         self.path_var = tk.StringVar(value=default_root(self.settings))
         self.filter_var = tk.StringVar()
-        self.category_var = tk.StringVar(value='Toutes catégories')
+        self.category_var = tk.StringVar(value='All UNESCO domains')
+        self.micro_var = tk.StringVar(value='All microthesauri')
+        self.isced_var = tk.StringVar(value='All ISCED fields')
+        self.taxonomy_cache: dict[str, dict] = {}
+        self.arketype_var = tk.StringVar(value='All Arketypes')
+        self.usage_var = tk.StringVar(value='All usage profiles')
         self.show_history_var = tk.BooleanVar(value=False)
         self.sort_field = 'title'
         self.sort_desc = False
-        self.status_var = tk.StringVar(value='Choisissez un dossier, puis cliquez sur « Analyser le dossier ».')
-        self.scope_var = tk.StringVar(value='Dossier non analysé')
+        self.status_var = tk.StringVar(value='Choose a folder, then click Scan folder.')
+        self.scope_var = tk.StringVar(value='Folder not scanned')
         self.count_var = tk.StringVar(value='— Kristals')
-        self.ready_var = tk.StringVar(value='— prêts')
-        self.issue_var = tk.StringVar(value='— à examiner')
-        self.selection_var = tk.StringVar(value='Aucun Kristal sélectionné')
+        self.ready_var = tk.StringVar(value='— ready')
+        self.issue_var = tk.StringVar(value='— to review')
+        self.selection_var = tk.StringVar(value='No Kristal selected')
 
         self._configure_style()
         self._create_menu()
@@ -78,8 +107,8 @@ class ManagerWindow(tk.Tk):
         self._create_browser()
         self._create_footer()
         self._refresh_actions()
-        self.log('INFO', 'Application ouverte. Aucun scan automatique ni écriture dans les Kristals.')
-        self.log('INFO', f'Dossier proposé : {self.path_var.get()}')
+        self.log('INFO', 'Manager opened. No automatic scan or writes to Kristals.')
+        self.log('INFO', f'Suggested folder: {self.path_var.get()}')
         self.after(120, self.poll)
 
     @staticmethod
@@ -132,42 +161,44 @@ class ManagerWindow(tk.Tk):
     def _create_menu(self):
         bar = tk.Menu(self)
         filemenu = tk.Menu(bar, tearoff=False)
-        filemenu.add_command(label='Choisir le dossier…', command=self.select_root)
-        filemenu.add_command(label='Analyser le dossier      Ctrl+R', command=self.start_scan)
+        filemenu.add_command(label='Choose folder…', command=self.select_root)
+        filemenu.add_command(label='Scan folder      Ctrl+R', command=self.start_scan)
         filemenu.add_separator()
-        filemenu.add_command(label='Exporter inventaire JSON…', command=self.export)
-        filemenu.add_command(label='Exporter aperçu privé Konstellation…', command=self.export_konstellation)
+        filemenu.add_command(label='Export inventory JSON…', command=self.export)
+        filemenu.add_command(label='Export private Konstellation preview…', command=self.export_konstellation)
         filemenu.add_separator()
-        filemenu.add_command(label='Quitter', command=self.destroy)
-        bar.add_cascade(label='Fichier', menu=filemenu)
+        filemenu.add_command(label='Exit', command=self.destroy)
+        bar.add_cascade(label='File', menu=filemenu)
         actions = tk.Menu(bar, tearoff=False)
-        actions.add_command(label='Vérifier le Kristal sélectionné (local)', command=self.start_verify)
-        actions.add_command(label='Ouvrir le centre de diagnostic…', command=self.start_diag_selected)
-        actions.add_command(label='Configurer KristalDiag externe (avancé)…', command=self.configure_diag)
-        actions.add_command(label='Exporter les diagnostics observés (JSON)…', command=self.export_diag_report)
-        actions.add_command(label='Cataloguer le Kristal sélectionné', command=self.start_catalog_selected)
-        actions.add_command(label='Cataloguer tous les Kristals du dossier', command=self.start_catalog_all)
-        actions.add_command(label='Ouvrir un aperçu de contenu HTML…', command=self.open_content_overview)
+        actions.add_command(label='Verify selected Kristal (local)', command=self.start_verify)
+        actions.add_command(label='Open diagnostic center…', command=self.start_diag_selected)
+        actions.add_command(label='Configure external KristalDiag (advanced)…', command=self.configure_diag)
+        actions.add_command(label='Export diagnostic observations (JSON)…', command=self.export_diag_report)
+        actions.add_command(label='Catalog selected Kristal', command=self.start_catalog_selected)
+        actions.add_command(label='Catalog all Kristals in folder', command=self.start_catalog_all)
+        actions.add_command(label='Open content HTML overview…', command=self.open_content_overview)
         actions.add_separator()
-        actions.add_command(label='Prévisualiser / renommer le dossier sélectionné…', command=self.rename_selected)
-        actions.add_command(label='Exporter le Kristal sélectionné en ZIP…', command=lambda: self.export_selected('zip'))
-        actions.add_command(label='Exporter le Kristal sélectionné en .kristal (expérimental)…', command=lambda: self.export_selected('kristal'))
+        actions.add_command(label='UNESCO classification audit…', command=self.open_classification_audit)
+        actions.add_command(label='Normalize folders in batch…', command=self.open_batch_rename)
+        actions.add_command(label='Preview / rename selected folder…', command=self.rename_selected)
+        actions.add_command(label='Export selected Kristal as ZIP…', command=lambda: self.export_selected('zip'))
+        actions.add_command(label='Export selected Kristal as .kristal (experimental)…', command=lambda: self.export_selected('kristal'))
         bar.add_cascade(label='Actions', menu=actions)
         icons_menu = tk.Menu(bar, tearoff=False)
-        icons_menu.add_command(label='Actualiser les icônes (lecture seule)', command=self.refresh_icons)
-        icons_menu.add_command(label='Information sur l’icône sélectionnée', command=self.icon_info)
+        icons_menu.add_command(label='Refresh icons (read-only)', command=self.refresh_icons)
+        icons_menu.add_command(label='Selected icon information', command=self.icon_info)
         icons_menu.add_separator()
-        icons_menu.add_command(label='Ouvrir Kristal Icon Generator (Windows)…', command=self.launch_icon_generator)
-        bar.add_cascade(label='Icônes', menu=icons_menu)
+        icons_menu.add_command(label='Open Kristal Icon Generator (Windows)…', command=self.launch_icon_generator)
+        bar.add_cascade(label='Icons', menu=icons_menu)
         logs = tk.Menu(bar, tearoff=False)
-        logs.add_command(label='Copier le journal', command=self.copy_log)
-        logs.add_command(label='Effacer le journal', command=self.clear_log)
-        logs.add_command(label='Enregistrer le journal…', command=self.save_log)
-        bar.add_cascade(label='Journal', menu=logs)
+        logs.add_command(label='Copy log', command=self.copy_log)
+        logs.add_command(label='Clear log', command=self.clear_log)
+        logs.add_command(label='Save log…', command=self.save_log)
+        bar.add_cascade(label='Log', menu=logs)
         helpmenu = tk.Menu(bar, tearoff=False)
-        helpmenu.add_command(label='Comprendre les statuts et fonctions', command=self.open_help)
-        helpmenu.add_command(label='À propos / limites', command=self.show_limits)
-        bar.add_cascade(label='Aide', menu=helpmenu)
+        helpmenu.add_command(label='Understanding statuses and actions', command=self.open_help)
+        helpmenu.add_command(label='About / limitations', command=self.show_limits)
+        bar.add_cascade(label='Help', menu=helpmenu)
         self.configure(menu=bar)
         self.bind_all('<Control-r>', lambda _: self.start_scan())
         self.bind_all('<Control-f>', lambda _: self.focus_filter())
@@ -184,23 +215,23 @@ class ManagerWindow(tk.Tk):
             self._logo_image = None
         names = ttk.Frame(heading, style='BrandHeader.TFrame')
         names.pack(side='left', fill='x', expand=True)
-        ttk.Label(names, text='KRISTAL MANAGER', style='Title.TLabel').pack(anchor='w')
+        ttk.Label(names, text='Kristal Manager', style='Title.TLabel').pack(anchor='w')
         ttk.Label(names,
-                  text='Explorer · Vérifier · Cataloguer · KristalDiag externe | Pas de publication par le Manager',
+                  text='Browse · Verify · Catalog · Integrated KristalDiag | No publishing',
                   style='BrandHeader.TLabel').pack(anchor='w')
 
-        source = ttk.LabelFrame(self, text='1 · Dossier à examiner', style='Section.TLabelframe')
+        source = ttk.LabelFrame(self, text='1 · Folder to scan', style='Section.TLabelframe')
         source.pack(fill='x', padx=18, pady=(5, 5))
         pathline = ttk.Frame(source)
         pathline.pack(fill='x')
         self.root_entry = ttk.Entry(pathline, textvariable=self.path_var, font=('Consolas', 10))
         self.root_entry.pack(side='left', fill='x', expand=True)
         self.root_entry.bind('<Return>', lambda _: self.start_scan())
-        ttk.Button(pathline, text='Parcourir…', command=self.select_root).pack(side='left', padx=(7, 0))
-        self.scan_button = ttk.Button(pathline, text='Analyser le dossier', style='Primary.TButton', command=self.start_scan)
+        ttk.Button(pathline, text='Browse…', command=self.select_root).pack(side='left', padx=(7, 0))
+        self.scan_button = ttk.Button(pathline, text='Scan folder', style='Primary.TButton', command=self.start_scan)
         self.scan_button.pack(side='left', padx=(7, 0))
         self.path_var.trace_add('write', self._path_changed)
-        ttk.Label(source, text='Le chemin ci-dessus est le périmètre des scans globaux. Le catalogue du Kristal sélectionné est une action distincte.',
+        ttk.Label(source, text='The path above controls global scans. Cataloging the selected Kristal is a separate action.',
                   style='Sub.TLabel').pack(anchor='w', pady=(6, 0))
 
         summary = ttk.Frame(self, padding=(20, 4))
@@ -210,50 +241,76 @@ class ManagerWindow(tk.Tk):
         ttk.Label(summary, textvariable=self.scope_var, style='Sub.TLabel').pack(side='right')
 
     def _create_browser(self):
-        wrapper = ttk.LabelFrame(self, text='2 · Explorer les Kristals', style='Section.TLabelframe')
+        wrapper = ttk.LabelFrame(self, text='2 · Browse Kristals', style='Section.TLabelframe')
         wrapper.pack(fill='both', expand=True, padx=18, pady=(6, 6))
         controls = ttk.Frame(wrapper)
         controls.pack(fill='x', pady=(0, 7))
-        ttk.Label(controls, text='Rechercher').pack(side='left')
+        ttk.Label(controls, text='Search').pack(side='left')
         filter_entry = ttk.Entry(controls, textvariable=self.filter_var)
         filter_entry.pack(side='left', fill='x', expand=True, padx=(8, 5))
         self.filter_entry = filter_entry
-        ttk.Button(controls, text='Effacer filtre', command=lambda: self.filter_var.set('')).pack(side='left')
+        ttk.Button(controls, text='Clear filter', command=lambda: self.filter_var.set('')).pack(side='left')
         self.actions_menu = tk.Menu(self, tearoff=0)
-        self.actions_menu.add_command(label='Analyser le dossier', command=self.start_scan)
-        self.actions_menu.add_command(label='Actualiser les icônes', command=self.refresh_icons)
-        self.actions_menu.add_command(label='Information sur l’icône', command=self.icon_info)
-        self.actions_menu.add_command(label='Ouvrir le générateur Windows…', command=self.launch_icon_generator)
+        self.actions_menu.add_command(label='Scan folder', command=self.start_scan)
+        self.actions_menu.add_command(label='Refresh icons', command=self.refresh_icons)
+        self.actions_menu.add_command(label='Icon information', command=self.icon_info)
+        self.actions_menu.add_command(label='Open Windows icon generator…', command=self.launch_icon_generator)
         self.actions_menu.add_separator()
-        self.actions_menu.add_command(label='Vérifier le Kristal sélectionné', command=self.start_verify)
-        self.actions_menu.add_command(label='Ouvrir le centre de diagnostic…', command=self.start_diag_selected)
-        self.actions_menu.add_command(label='Configurer KristalDiag externe (avancé)…', command=self.configure_diag)
-        self.actions_menu.add_command(label='Exporter les diagnostics observés (JSON)…', command=self.export_diag_report)
-        self.actions_menu.add_command(label='Cataloguer le Kristal sélectionné', command=self.start_catalog_selected)
-        self.actions_menu.add_command(label='Cataloguer tous les Kristals du dossier', command=self.start_catalog_all)
-        self.actions_menu.add_command(label='Ouvrir un aperçu HTML', command=self.open_content_overview)
-        self.actions_menu.add_command(label='Prévisualiser / renommer le dossier sélectionné…', command=self.rename_selected)
-        self.actions_menu.add_command(label='Exporter le Kristal en ZIP…', command=lambda: self.export_selected('zip'))
-        self.actions_menu.add_command(label='Exporter le Kristal en .kristal (expérimental)…', command=lambda: self.export_selected('kristal'))
+        self.actions_menu.add_command(label='Verify selected Kristal', command=self.start_verify)
+        self.actions_menu.add_command(label='Open diagnostic center…', command=self.start_diag_selected)
+        self.actions_menu.add_command(label='Configure external KristalDiag (advanced)…', command=self.configure_diag)
+        self.actions_menu.add_command(label='Export diagnostic observations (JSON)…', command=self.export_diag_report)
+        self.actions_menu.add_command(label='Catalog selected Kristal', command=self.start_catalog_selected)
+        self.actions_menu.add_command(label='Catalog all Kristals in folder', command=self.start_catalog_all)
+        self.actions_menu.add_command(label='Open HTML overview', command=self.open_content_overview)
+        self.actions_menu.add_command(label='UNESCO classification audit…', command=self.open_classification_audit)
+        self.actions_menu.add_command(label='Normalize folders in batch…', command=self.open_batch_rename)
+        self.actions_menu.add_command(label='Preview / rename selected folder…', command=self.rename_selected)
+        self.actions_menu.add_command(label='Export Kristal as ZIP…', command=lambda: self.export_selected('zip'))
+        self.actions_menu.add_command(label='Export Kristal as .kristal (experimental)…', command=lambda: self.export_selected('kristal'))
         self.actions_menu.add_separator()
-        self.actions_menu.add_command(label='Exporter l’inventaire JSON', command=self.export)
-        self.actions_menu.add_command(label='Exporter un aperçu privé Konstellation', command=self.export_konstellation)
+        self.actions_menu.add_command(label='Export inventory JSON', command=self.export)
+        self.actions_menu.add_command(label='Export private Konstellation preview', command=self.export_konstellation)
         self.actions_menu.add_separator()
-        self.actions_menu.add_command(label='Copier le journal', command=self.copy_log)
-        self.actions_menu.add_command(label='Effacer le journal', command=self.clear_log)
-        self.actions_button = ttk.Menubutton(controls, text='Toutes les fonctions ▾', menu=self.actions_menu)
+        self.actions_menu.add_command(label='Copy log', command=self.copy_log)
+        self.actions_menu.add_command(label='Clear log', command=self.clear_log)
+        self.actions_button = ttk.Menubutton(controls, text='All actions ▾', menu=self.actions_menu)
         self.actions_button.pack(side='left', padx=(9, 0))
         self.filter_var.trace_add('write', lambda *_: self.refresh())
         selectors = ttk.Frame(wrapper)
         selectors.pack(fill='x', pady=(0, 6))
-        ttk.Label(selectors, text='Catégorie').pack(side='left')
+        ttk.Label(selectors, text='UNESCO domain').pack(side='left')
         self.category_choice = ttk.Combobox(selectors, textvariable=self.category_var, state='readonly',
-                                             values=['Toutes catégories'], width=33)
-        self.category_choice.pack(side='left', padx=(8, 16))
-        self.category_choice.bind('<<ComboboxSelected>>', self._change_category)
-        ttk.Checkbutton(selectors, text='Afficher les archives internes / snapshots',
+                                             values=['All UNESCO domains'], width=30)
+        self.category_choice.pack(side='left', padx=(7, 12))
+        self.category_choice.bind('<<ComboboxSelected>>', lambda _: self.refresh())
+        ttk.Label(selectors, text='Microthesaurus').pack(side='left')
+        self.micro_choice = ttk.Combobox(selectors, textvariable=self.micro_var, state='readonly',
+                                         values=['All microthesauri'], width=33)
+        self.micro_choice.pack(side='left', padx=(7, 12))
+        self.micro_choice.bind('<<ComboboxSelected>>', lambda _: self.refresh())
+        ttk.Label(selectors, text='ISCED-F (icon)').pack(side='left')
+        self.isced_choice = ttk.Combobox(selectors, textvariable=self.isced_var, state='readonly',
+                                         values=['All ISCED fields'], width=13)
+        self.isced_choice.pack(side='left', padx=(7, 12))
+        self.isced_choice.bind('<<ComboboxSelected>>', lambda _: self.refresh())
+        ttk.Label(selectors, text='Filter by UNESCO codes; not inferred from names', style='Sub.TLabel').pack(side='right')
+        other_selectors = ttk.Frame(wrapper)
+        other_selectors.pack(fill='x', pady=(0,6))
+        selectors = other_selectors
+        ttk.Label(selectors, text='Arketype').pack(side='left')
+        self.arketype_choice = ttk.Combobox(selectors, textvariable=self.arketype_var,
+                                            state='readonly', values=['All Arketypes'], width=18)
+        self.arketype_choice.pack(side='left', padx=(8, 12))
+        self.arketype_choice.bind('<<ComboboxSelected>>', lambda _: self.refresh())
+        ttk.Label(selectors, text='Usage').pack(side='left')
+        self.usage_choice = ttk.Combobox(selectors, textvariable=self.usage_var,
+                                         state='readonly', values=['All usage profiles'], width=18)
+        self.usage_choice.pack(side='left', padx=(8, 12))
+        self.usage_choice.bind('<<ComboboxSelected>>', lambda _: self.refresh())
+        ttk.Checkbutton(selectors, text='Show internal archives / snapshots',
                         variable=self.show_history_var, command=self.refresh).pack(side='left')
-        ttk.Label(selectors, text='Cliquer sur un titre de colonne pour trier', style='Sub.TLabel').pack(side='right')
+        ttk.Label(selectors, text='Click column headers to sort', style='Sub.TLabel').pack(side='right')
 
         paned = ttk.Panedwindow(wrapper, orient='vertical')
         paned.pack(fill='both', expand=True)
@@ -262,20 +319,19 @@ class ManagerWindow(tk.Tk):
         lower = ttk.Frame(paned)
         paned.add(lower, weight=2)
 
-        cols = ('title', 'category', 'icon_nature', 'readiness', 'diag', 'profile', 'state_ref', 'artifacts', 'content')
-        # Tkinter Treeview images require its tree column (#0) to be visible.
-        # Keep the new 19:24 columns, sorting and categorization intact.
-        self.tree = ttk.Treeview(upper, columns=cols[1:], show='tree headings', selectmode='browse', height=10)
-        self.tree.heading('#0', text='Kristal (icône)', command=lambda: self.change_sort('title'))
-        self.tree.column('#0', width=260, minwidth=185, stretch=True)
+        cols = ('title', 'category', 'micro', 'isced', 'arketype', 'usage', 'readiness', 'diag', 'profile', 'state_ref', 'artifacts', 'content')
+        # Keep icons with the selected Kristal's detail card, not in the table.
+        self.tree = ttk.Treeview(upper, columns=cols, show='headings', selectmode='browse', height=10)
         for key, heading, width in [
-            ('category', 'Catégorie', 175), ('icon_nature', 'Icône / nature', 145), ('readiness', 'État local', 106),
-            ('diag', 'KristalDiag', 135),
-            ('profile', 'Profil', 140), ('state_ref', 'Identité d’état', 320),
-            ('artifacts', 'Artefacts', 90), ('content', 'Contenu observé', 190),
+            ('title', 'Kristal', 210), ('category', 'UNESCO domain', 180),
+            ('micro', 'Microthesaurus', 210), ('isced', 'ISCED-F', 85),
+            ('arketype', 'Arketype', 95), ('usage', 'Usage (PRF)', 100),
+            ('readiness', 'Local status', 108), ('diag', 'KristalDiag', 116),
+            ('profile', 'Technical profile', 125), ('state_ref', 'State ID', 130),
+            ('artifacts', 'Artifacts', 88), ('content', 'Content', 155),
         ]:
             self.tree.heading(key, text=heading, command=lambda field=key: self.change_sort(field))
-            self.tree.column(key, width=width, minwidth=75, stretch=key in ('title', 'state_ref'))
+            self.tree.column(key, width=width, minwidth=75, stretch=key in ('title', 'category'))
         yscroll = ttk.Scrollbar(upper, orient='vertical', command=self.tree.yview)
         xscroll = ttk.Scrollbar(upper, orient='horizontal', command=self.tree.xview)
         self.tree.configure(yscrollcommand=yscroll.set, xscrollcommand=xscroll.set)
@@ -287,27 +343,29 @@ class ManagerWindow(tk.Tk):
         self.tree.tag_configure('alert', foreground='#a04d25')
         self.tree.tag_configure('historic', foreground='#717d7b')
         self.tree.bind('<<TreeviewSelect>>', self.show_details)
-        self.tree.bind('<Double-1>', lambda _: self.icon_info())
+        self.tree.bind('<Double-1>', lambda _: self.start_diag_selected())
 
         quick = ttk.Frame(lower)
         quick.pack(fill='x', pady=(6, 2))
         ttk.Label(quick, textvariable=self.selection_var, style='H2.TLabel').pack(side='left', fill='x', expand=True)
         self.diag_button = ttk.Button(quick, text='Diagnostic…', command=self.start_diag_selected)
         self.diag_button.pack(side='right', padx=(5, 0))
-        self.verify_button = ttk.Button(quick, text='Vérifier ce Kristal', command=self.start_verify)
+        self.verify_button = ttk.Button(quick, text='Verify this Kristal', command=self.start_verify)
         self.verify_button.pack(side='right', padx=(5, 0))
-        self.selected_catalog_button = ttk.Button(quick, text='Cataloguer ce Kristal', command=self.start_catalog_selected)
+        self.selected_catalog_button = ttk.Button(quick, text='Catalog this Kristal', command=self.start_catalog_selected)
         self.selected_catalog_button.pack(side='right', padx=(5, 0))
-        self.copy_path_button = ttk.Button(quick, text='Copier son chemin', command=self.copy_selected_path)
+        self.copy_path_button = ttk.Button(quick, text='Copy path', command=self.copy_selected_path)
         self.copy_path_button.pack(side='right', padx=(5, 0))
-        self.icon_info_button = ttk.Button(quick, text='Info icône', command=self.icon_info)
+        self.icon_info_button = ttk.Button(quick, text='Icon info', command=self.icon_info)
         self.icon_info_button.pack(side='right', padx=(5, 0))
         self.organize_menu = tk.Menu(self, tearoff=False)
-        self.organize_menu.add_command(label='Prévisualiser / renommer le dossier…', command=self.rename_selected)
+        self.organize_menu.add_command(label='Preview / rename folder…', command=self.rename_selected)
+        self.organize_menu.add_command(label='Normalize folders in batch…', command=self.open_batch_rename)
+        self.organize_menu.add_command(label='UNESCO classification audit…', command=self.open_classification_audit)
         self.organize_menu.add_separator()
-        self.organize_menu.add_command(label='Exporter en .zip…', command=lambda: self.export_selected('zip'))
-        self.organize_menu.add_command(label='Exporter en .kristal (format Manager)…', command=lambda: self.export_selected('kristal'))
-        self.organize_button = ttk.Menubutton(quick, text='Organiser / exporter ▾', menu=self.organize_menu)
+        self.organize_menu.add_command(label='Export as ZIP…', command=lambda: self.export_selected('zip'))
+        self.organize_menu.add_command(label='Export as .kristal (Manager format)…', command=lambda: self.export_selected('kristal'))
+        self.organize_button = ttk.Menubutton(quick, text='Organize / export ▾', menu=self.organize_menu)
         self.organize_button.pack(side='right', padx=(5, 0))
 
         self.tabs = ttk.Notebook(lower)
@@ -315,22 +373,33 @@ class ManagerWindow(tk.Tk):
         summary_tab = ttk.Frame(self.tabs, padding=8)
         raw_tab = ttk.Frame(self.tabs, padding=8)
         log_tab = ttk.Frame(self.tabs, padding=8)
-        self.tabs.add(summary_tab, text='Fiche / prochaine étape')
-        self.tabs.add(raw_tab, text='Détails JSON')
-        self.tabs.add(log_tab, text='Journal des opérations')
+        self.tabs.add(summary_tab, text='Overview / next steps')
+        self.tabs.add(raw_tab, text='JSON details')
+        self.tabs.add(log_tab, text='Operation log')
+        # Selection icon: deliberately outside the scrollable text panel.
+        self.selected_icon_frame = ttk.Frame(summary_tab, width=112)
+        self.selected_icon_frame.pack(side='left', fill='y', padx=(0, 12))
+        self.selected_icon_frame.pack_propagate(False)
+        self.selected_icon_label = ttk.Label(self.selected_icon_frame, text='No icon',
+                                             anchor='center', style='Sub.TLabel')
+        self.selected_icon_label.pack(fill='x', pady=(14, 4))
+        self.selected_icon_caption = ttk.Label(self.selected_icon_frame, text='',
+                                               anchor='center', style='Sub.TLabel', wraplength=100)
+        self.selected_icon_caption.pack(fill='x')
+        self.selected_icon_image = None
         self.summary_text = self._readonly_text(summary_tab, font=('Segoe UI', 10), height=8)
         self.details = self._readonly_text(raw_tab, font=('Consolas', 9), height=8)
         raw_buttons = ttk.Frame(raw_tab)
         raw_buttons.pack(fill='x', pady=(5, 0))
-        ttk.Button(raw_buttons, text='Copier les détails JSON', command=self.copy_details).pack(side='left')
+        ttk.Button(raw_buttons, text='Copy JSON details', command=self.copy_details).pack(side='left')
         self.journal = self._readonly_text(log_tab, font=('Consolas', 9), height=8, wrap='word')
         logbuttons = ttk.Frame(log_tab)
         logbuttons.pack(fill='x', pady=(5, 0))
-        ttk.Button(logbuttons, text='Copier le journal', command=self.copy_log).pack(side='left')
-        ttk.Button(logbuttons, text='Effacer le journal', command=self.clear_log).pack(side='left', padx=(7, 0))
-        ttk.Button(logbuttons, text='Enregistrer le journal…', command=self.save_log).pack(side='left', padx=(7, 0))
-        self._set_text(self.summary_text, 'Sélectionnez un Kristal pour afficher son état et les actions possibles.')
-        self._set_text(self.details, 'Sélectionnez un Kristal pour afficher ses informations JSON.')
+        ttk.Button(logbuttons, text='Copy log', command=self.copy_log).pack(side='left')
+        ttk.Button(logbuttons, text='Clear log', command=self.clear_log).pack(side='left', padx=(7, 0))
+        ttk.Button(logbuttons, text='Save log…', command=self.save_log).pack(side='left', padx=(7, 0))
+        self._set_text(self.summary_text, 'Select a Kristal to view its status and available actions.')
+        self._set_text(self.details, 'Select a Kristal to view its JSON details.')
 
     def _readonly_text(self, parent, *, font, height, wrap='word'):
         frame = ttk.Frame(parent)
@@ -368,19 +437,19 @@ class ManagerWindow(tk.Tk):
 
     def _clipboard(self, value: str, subject: str):
         if not value:
-            self.status_var.set(f'Rien à copier : {subject}.')
+            self.status_var.set(f'Nothing to copy: {subject}.')
             return
         self.clipboard_clear()
         self.clipboard_append(value)
         self.update_idletasks()
-        self.status_var.set(f'{subject} copié dans le presse-papiers.')
+        self.status_var.set(f'{subject} copied to clipboard.')
 
     def copy_log(self):
-        self._clipboard(self._text(self.journal), 'Journal')
+        self._clipboard(self._text(self.journal), 'Log')
 
     def clear_log(self):
         self._set_text(self.journal, '')
-        self.status_var.set('Journal effacé (les analyses et fichiers restent inchangés).')
+        self.status_var.set('Log cleared (files and scan results are unchanged).')
 
     def _safe_output(self, destination: Path, *, source: Path | None = None) -> bool:
         # Prevent user-chosen derived outputs under managed source roots.
@@ -390,81 +459,81 @@ class ManagerWindow(tk.Tk):
             protected.append(source)
         for root in protected:
             if dest.is_relative_to(root.resolve()):
-                messagebox.showerror('Destination protégée',
-                    'Choisissez un emplacement EN DEHORS des dossiers de Kristals.\n'
-                    f'Destination refusée : {destination}\nDossier protégé : {root}', parent=self)
-                self.log('REFUS', f'Fichier dérivé dans un dossier source : {destination}')
+                messagebox.showerror('Protected destination',
+                    'Choose a location OUTSIDE the Kristal folders.\n'
+                    f'Rejected destination: {destination}\nProtected folder: {root}', parent=self)
+                self.log('BLOCKED', f'Derived file inside source folder: {destination}')
                 return False
         return True
 
     def save_log(self):
-        name = filedialog.asksaveasfilename(parent=self, title='Enregistrer le journal local',
+        name = filedialog.asksaveasfilename(parent=self, title='Save local log',
                                             defaultextension='.txt', initialfile='kristal-manager-journal.txt',
-                                            filetypes=[('Texte', '*.txt')])
+                                            filetypes=[('Text', '*.txt')])
         if not name:
             return
         p = Path(name)
         if not self._safe_output(p):
             return
-        if p.exists() and not messagebox.askyesno('Remplacer ?', f'Remplacer ce fichier ?\n{p}', parent=self):
+        if p.exists() and not messagebox.askyesno('Replace?', f'Replace this file?\n{p}', parent=self):
             return
         try:
             p.write_text(self._text(self.journal), encoding='utf-8')
-            self.status_var.set(f'Journal enregistré : {p}')
-            self.log('INFO', f'Journal enregistré hors de l’application : {p}')
+            self.status_var.set(f'Log saved: {p}')
+            self.log('INFO', f'Log saved: {p}')
         except OSError as exc:
-            self._fail('Enregistrement du journal', exc)
+            self._fail('Save log', exc)
 
     def copy_details(self):
-        self._clipboard(self._text(self.details), 'Détails JSON')
+        self._clipboard(self._text(self.details), 'JSON details')
 
     def copy_selected_path(self):
         row = self._selected_row()
         if row:
-            self._clipboard(row['path'], 'Chemin du Kristal')
+            self._clipboard(row['path'], 'Kristal path')
 
     def rename_selected(self):
         if self.busy:
             return
         row = self._selected_row()
         if not row or not self.roots:
-            messagebox.showinfo('Kristal nécessaire', 'Sélectionnez un Kristal inventorié.', parent=self)
+            messagebox.showinfo('Kristal required', 'Select a scanned Kristal.', parent=self)
             return
         try:
             plan = plan_rename(row['path'], self.roots[0])
         except (OSError, ValueError, RuntimeError) as exc:
-            messagebox.showinfo('Renommage non disponible', str(exc), parent=self)
+            messagebox.showinfo('Rename unavailable', str(exc), parent=self)
             return
-        self.log('APERÇU', f'Renommage : {plan.source} → {plan.destination} (aucune écriture)')
-        warning = ('\nCe Kristal contient des archives historiques.' if plan.has_history else '')
-        if not messagebox.askyesno('Confirmer le renommage du dossier',
-             f'Nom déclaré dans les données : {plan.declared_title}\n\n'
-             f'DE : {plan.source}\nVERS : {plan.destination}\n\n'
-             'Seul le dossier sera renommé, aucun fichier interne ne sera modifié.\n'
-             'ATTENTION : les raccourcis, scripts et références contenant le chemin absolu peuvent cesser de fonctionner.'
-             + warning + '\n\nEffectuer ce renommage sur le disque ?', parent=self):
-            self.log('INFO', 'Renommage annulé après prévisualisation.')
+        self.log('PREVIEW', f'Renommage : {plan.source} → {plan.destination} (aucune écriture)')
+        warning = ('\nThis Kristal contains internal historical archives.' if plan.has_history else '')
+        if not messagebox.askyesno('Confirm folder rename',
+             f'Declared name: {plan.declared_title}\n\n'
+             f'FROM: {plan.source}\nTO: {plan.destination}\n\n'
+             'Only the folder will be renamed; no internal files are edited.\n'
+             'WARNING: shortcuts, scripts, and absolute references may stop working.'
+             + warning + '\n\nRename this folder on disk?', parent=self):
+            self.log('INFO', 'Rename canceled after preview.')
             return
         try:
             new_path = apply_rename(plan, scan_root=self.roots[0])
-            self.log('SUCCÈS', f'Dossier renommé : {new_path}')
-            self.status_var.set(f'Dossier renommé : {new_path.name} · relance de l’inventaire')
+            self.log('SUCCESS', f'Folder renamed: {new_path}')
+            self.status_var.set(f'Folder renamed: {new_path.name} · relance de l’inventaire')
             self.start_scan()
         except (OSError, ValueError, RuntimeError) as exc:
-            self._fail('Renommage refusé ou impossible', exc, diagnostic=traceback.format_exc())
+            self._fail('Rename rejected or unavailable', exc, diagnostic=traceback.format_exc())
 
     def export_selected(self, format: str):
         if self.busy:
             return
         row = self._selected_row()
         if not row:
-            messagebox.showinfo('Kristal nécessaire', 'Sélectionnez un Kristal à exporter.', parent=self)
+            messagebox.showinfo('Kristal required', 'Select a Kristal to export.', parent=self)
             return
         source = Path(row['path'])
         if not (source / 'kristal.workspace.json').is_file() or is_historical(row):
-            messagebox.showinfo('Export non disponible', 'Sélectionnez un Kristal, pas une archive interne.', parent=self)
+            messagebox.showinfo('Export unavailable', 'Select a Kristal, not an internal archive.', parent=self)
             return
-        title = 'Archive ZIP du Kristal' if format == 'zip' else 'Archive .kristal — format expérimental du Manager'
+        title = 'Kristal ZIP archive' if format == 'zip' else 'Experimental Manager .kristal archive'
         name = filedialog.asksaveasfilename(parent=self, title=title, defaultextension='.' + format,
              initialfile=source.name + '.' + format, filetypes=[(title, '*.' + format)],
              confirmoverwrite=False)
@@ -474,11 +543,11 @@ class ManagerWindow(tk.Tk):
         if not self._safe_output(target, source=source):
             return
         if target.exists():
-            messagebox.showerror('Fichier existant', 'Le Manager ne remplace pas les archives existantes. Choisissez un autre nom.', parent=self)
+            messagebox.showerror('File existant', 'The Manager does not replace existing archives. Choose another name.', parent=self)
             return
-        if format == 'kristal' and not messagebox.askyesno('Format expérimental',
-             'Le .kristal créé ici est une archive ZIP locale avec un manifeste Manager.\n'
-             'Ce n’est PAS un format de paquet officiel certifié par Kristal Framework.\n\nContinuer ?', parent=self):
+        if format == 'kristal' and not messagebox.askyesno('Experimental format',
+             'The .kristal file is a local ZIP archive with a Manager manifest.\n'
+             'This is NOT an official Kristal Framework package.\n\nContinue?', parent=self):
             return
         self._start(f'Export {format.upper()} de « {row["title"]} »…',
                     lambda: export_workspace(source, target, format=format), folder=source, job='archive_export')
@@ -490,16 +559,16 @@ class ManagerWindow(tk.Tk):
     def _path_changed(self, *_):
         if hasattr(self, 'scope_var') and self.roots:
             if Path(self.path_var.get()).expanduser() != self.roots[0]:
-                self.scope_var.set('Chemin modifié · analyse à relancer')
+                self.scope_var.set('Path changed · rescan required')
 
     def select_root(self):
         current = Path(self.path_var.get()).expanduser()
         initial = current if current.is_dir() else (current.parent if current.parent.is_dir() else Path.home())
-        root = filedialog.askdirectory(parent=self, title='Choisir le dossier racine ou le Kristal à analyser',
+        root = filedialog.askdirectory(parent=self, title='Choose root folder or Kristal to scan',
                                        initialdir=str(initial), mustexist=True)
         if root:
             self.path_var.set(root)
-            self.log('INFO', f'Dossier saisi : {root} (cliquer sur Analyser le dossier).')
+            self.log('INFO', f'Dossier saisi : {root} (cliquer sur Scan folder).')
 
     def _selected_row(self):
         chosen = self.tree.selection()
@@ -533,7 +602,7 @@ class ManagerWindow(tk.Tk):
         self.busy = True
         self._current_job = job
         self.status_var.set(label)
-        self.log('DÉBUT', label)
+        self.log('START', label)
         self._refresh_actions()
 
         def worker():
@@ -547,15 +616,15 @@ class ManagerWindow(tk.Tk):
     def start_scan(self):
         folder = Path(self.path_var.get().strip()).expanduser()
         if not folder.is_dir():
-            messagebox.showerror('Dossier introuvable', f'Le dossier indiqué n’existe pas :\n{folder}', parent=self)
+            messagebox.showerror('Folder not found', f'Le dossier indiqué n’existe pas :\n{folder}', parent=self)
             return
-        self._start('Inventaire structurel en cours…', lambda: scan_roots([folder]),
+        self._start('Scanning local inventory…', lambda: scan_roots([folder]),
                     folder=folder.resolve(), job='scan')
 
     def start_verify(self):
         row = self._selected_row()
         if not row:
-            messagebox.showinfo('Sélection nécessaire', 'Sélectionnez d’abord un Kristal dans la liste.', parent=self)
+            messagebox.showinfo('Selection required', 'Select a Kristal in the list first.', parent=self)
             return
         path = Path(row['path'])
         self._start(f'Vérification locale de « {row["title"]} »…',
@@ -566,28 +635,28 @@ class ManagerWindow(tk.Tk):
         if self.busy:
             return
         dialog = tk.Toplevel(self)
-        dialog.title('Configurer KristalDiag — outil indépendant C1')
+        dialog.title('Configure external KristalDiag — independent C1 tool')
         dialog.geometry('790x405')
         dialog.minsize(680, 360)
         dialog.transient(self)
         dialog.grab_set()
         outer = ttk.Frame(dialog, padding=16)
         outer.pack(fill='both', expand=True)
-        ttk.Label(outer, text='Chemin du programme KristalDiag', style='H2.TLabel').pack(anchor='w')
+        ttk.Label(outer, text='KristalDiag executable or script', style='H2.TLabel').pack(anchor='w')
         program_var = tk.StringVar(value=self.settings.get('diag_program', ''))
         argv_var = tk.StringVar(value=self.settings.get('diag_arguments', '{workspace}'))
         location = ttk.Frame(outer)
         location.pack(fill='x', pady=(7, 12))
         ttk.Entry(location, textvariable=program_var).pack(side='left', expand=True, fill='x')
         def browse():
-            choice = filedialog.askopenfilename(parent=dialog, title='Programme de confiance KristalDiag',
-                filetypes=[('Programmes', '*.exe *.py *.js *.mjs'), ('Tous les fichiers', '*.*')])
+            choice = filedialog.askopenfilename(parent=dialog, title='Trusted KristalDiag executable',
+                filetypes=[('Programmes', '*.exe *.py *.js *.mjs'), ('All files', '*.*')])
             if choice:
                 program_var.set(choice)
-        ttk.Button(location, text='Parcourir…', command=browse).pack(side='left', padx=(7, 0))
-        ttk.Label(outer, text='Arguments du programme (à confirmer dans la documentation KristalDiag)').pack(anchor='w')
+        ttk.Button(location, text='Browse…', command=browse).pack(side='left', padx=(7, 0))
+        ttk.Label(outer, text='Arguments (confirm against KristalDiag documentation)').pack(anchor='w')
         ttk.Entry(outer, textvariable=argv_var).pack(fill='x', pady=(6, 8))
-        ttk.Label(outer, text='Variables : {workspace} = chemin du Kristal ; {report} = fichier JSON temporaire.').pack(anchor='w')
+        ttk.Label(outer, text='Variables: {workspace} = Kristal folder; {report} = temporary JSON report.').pack(anchor='w')
         explanation = (
             'Exemple de syntaxe fictive, à ne PAS utiliser sans confirmation de KristalDiag :\n'
             '  validate --workspace {workspace} --output {report}\n\n'
@@ -604,31 +673,31 @@ class ManagerWindow(tk.Tk):
                 validate_config(program_var.get().strip(), argv_var.get().strip(),
                     root=self.roots[0] if self.roots else self.path_var.get())
             except (OSError, DiagConfigurationError) as exc:
-                messagebox.showerror('Configuration incomplète', str(exc), parent=dialog)
+                messagebox.showerror('Incomplete configuration', str(exc), parent=dialog)
                 return
             self.settings['diag_program'] = program_var.get().strip()
             self.settings['diag_arguments'] = argv_var.get().strip()
             try:
                 save_settings(self.settings)
             except OSError as exc:
-                messagebox.showerror('Préférences non enregistrées', str(exc), parent=dialog)
+                messagebox.showerror('Preferences not saved', str(exc), parent=dialog)
                 return
             self.log('CONFIG', f'KristalDiag externe configuré : {self.settings["diag_program"]}')
             self.status_var.set('KristalDiag configuré ; exécution uniquement après confirmation.')
             dialog.destroy()
-        ttk.Button(bar, text='Annuler', command=dialog.destroy).pack(side='right')
-        ttk.Button(bar, text='Enregistrer', style='Primary.TButton', command=save).pack(side='right', padx=(0, 8))
+        ttk.Button(bar, text='Cancel', command=dialog.destroy).pack(side='right')
+        ttk.Button(bar, text='Save', style='Primary.TButton', command=save).pack(side='right', padx=(0, 8))
         dialog.wait_window()
 
     def start_diag_selected(self):
         """Open a guided panel: no manual executable path or CLI arguments."""
         row = self._selected_row()
         if not row or is_historical(row) or not (Path(row['path']) / 'kristal.workspace.json').is_file():
-            messagebox.showinfo('Kristal principal requis',
-                'Sélectionnez un Kristal principal et non une copie historique.', parent=self)
+            messagebox.showinfo('Primary Kristal required',
+                'Select a primary Kristal, not an internal archive.', parent=self)
             return
         if self.busy:
-            messagebox.showinfo('Opération en cours', 'Terminez l’opération en cours.', parent=self)
+            messagebox.showinfo('Operation in progress', 'Finish the current operation first.', parent=self)
             return
         if self._diag_dialog and self._diag_dialog.winfo_exists():
             self._diag_dialog.lift()
@@ -648,17 +717,17 @@ class ManagerWindow(tk.Tk):
             return
         results = [r for r in self.rows if not is_historical(r) and r.get('diag_report') is not None]
         if not results:
-            messagebox.showinfo('Aucun diagnostic',
-                'Aucun rapport KristalDiag externe n’a été observé pendant cette session.', parent=self)
+            messagebox.showinfo('No diagnostic',
+                'No KristalDiag report was observed in this session.', parent=self)
             return
-        chosen = filedialog.asksaveasfilename(parent=self, title='Exporter les résultats KristalDiag observés',
+        chosen = filedialog.asksaveasfilename(parent=self, title='Export observed KristalDiag results',
             initialfile='kristal-diag-observations.json', defaultextension='.json', filetypes=[('JSON', '*.json')])
         if not chosen:
             return
         destination = Path(chosen)
         if not self._safe_output(destination):
             return
-        if destination.exists() and not messagebox.askyesno('Remplacer ?', f'Remplacer {destination} ?', parent=self):
+        if destination.exists() and not messagebox.askyesno('Replace?', f'Remplacer {destination} ?', parent=self):
             return
         data = {
             'format': 'kristal.manager-diag-observations/0.1-experimental',
@@ -671,25 +740,25 @@ class ManagerWindow(tk.Tk):
         try:
             destination.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
         except OSError as exc:
-            self._fail('Export des observations KristalDiag', exc)
+            self._fail('Export KristalDiag observations', exc)
             return
-        self.log('SUCCÈS', f'{len(results)} observations KristalDiag exportées : {destination}')
-        self.status_var.set(f'{len(results)} diagnostics externes exportés · qualification non établie')
+        self.log('SUCCESS', f'{len(results)} KristalDiag observations exported: {destination}')
+        self.status_var.set(f'{len(results)} external diagnostic reports exported · qualification not established')
 
     def _catalog_destination(self, suggested):
         folder = Path.home() / 'Desktop'
         if not folder.is_dir():
             folder = Path.home()
         name = filedialog.asksaveasfilename(parent=self,
-                title='Catalogue SQLite dérivé (EN DEHORS des dossiers de Kristals)',
+                title='Derived SQLite catalog (OUTSIDE Kristal folders)',
                 initialdir=str(folder), initialfile=suggested, defaultextension='.sqlite3',
-                filetypes=[('Catalogue SQLite', '*.sqlite3')], confirmoverwrite=False)
+                filetypes=[('SQLite catalog', '*.sqlite3')], confirmoverwrite=False)
         if not name:
             return None
         target = Path(name).expanduser().absolute()
         if not self._safe_output(target):
             return None
-        if target.exists() and not messagebox.askyesno('Mettre à jour le catalogue ?',
+        if target.exists() and not messagebox.askyesno('Replace catalog?',
                 f'Un catalogue existe déjà à cet emplacement. Le remplacer après validation ?\n\n{target}', parent=self):
             return None
         return target
@@ -699,13 +768,13 @@ class ManagerWindow(tk.Tk):
             return
         row = self._selected_row()
         if not row:
-            messagebox.showinfo('Sélection nécessaire', 'Sélectionnez le Kristal à cataloguer.', parent=self)
+            messagebox.showinfo('Selection required', 'Select the Kristal to catalog.', parent=self)
             return
         folder = Path(row['path'])
         if not (folder / 'kristal.workspace.json').is_file():
-            messagebox.showinfo('Catalogue non disponible',
-                'Cette entrée est un état/artefact auxiliaire, sans kristal.workspace.json.\n'
-                'Le catalogue descriptif exige un Kristal reconnu.', parent=self)
+            messagebox.showinfo('Catalog unavailable',
+                'This entry is auxiliary state without kristal.workspace.json.\n'
+                'Cataloging requires a recognized Kristal.', parent=self)
             return
         database = self._catalog_destination(f'{row["slug"]}-contenu.sqlite3')
         if database:
@@ -716,10 +785,10 @@ class ManagerWindow(tk.Tk):
             return
         folder = Path(self.path_var.get().strip()).expanduser()
         if not folder.is_dir():
-            messagebox.showerror('Dossier introuvable', 'Choisissez un dossier existant.', parent=self)
+            messagebox.showerror('Folder not found', 'Choose an existing folder.', parent=self)
             return
-        if not messagebox.askyesno('Catalogue global',
-             'Cette opération parcourra tous les Kristals reconnus sous :\n'
+        if not messagebox.askyesno('Catalog all Kristals',
+             'This scans all Kristals under:\n'
              f'{folder}\n\nElle crée uniquement des fichiers dérivés hors des Kristals. Continuer ?', parent=self):
             return
         database = self._catalog_destination('kristal-contenu-global.sqlite3')
@@ -758,7 +827,7 @@ class ManagerWindow(tk.Tk):
                 if kind == 'error':
                     if self._diag_dialog and self._diag_dialog.winfo_exists():
                         self._diag_dialog.render_error(payload)
-                    self._fail('Opération interrompue', RuntimeError(payload), diagnostic=diagnostic)
+                    self._fail('Operation interrupted', RuntimeError(payload), diagnostic=diagnostic)
                 elif kind == 'diag_dependency':
                     dialog, result = payload
                     if dialog.winfo_exists():
@@ -774,11 +843,11 @@ class ManagerWindow(tk.Tk):
                     self._refresh_category_choices()
                     self._remember_root(folder)
                     self.refresh(prefer=before)
-                    self.scope_var.set(f'Inventaire de : {folder}')
+                    self.scope_var.set(f'Inventory: {folder}')
                     self.status_var.set(f'{sum(not is_historical(r) for r in self.rows)} Kristals · '
-                                        f'{sum(is_historical(r) for r in self.rows)} archives internes masquées · conformité non établie')
-                    self.log('SUCCÈS', f'Inventaire : {sum(not is_historical(r) for r in self.rows)} Kristals et '
-                           f'{sum(is_historical(r) for r in self.rows)} archives internes sous {folder}')
+                                        f'{sum(is_historical(r) for r in self.rows)} internal archives masquées · conformité non établie')
+                    self.log('SUCCESS', f'Inventaire : {sum(not is_historical(r) for r in self.rows)} Kristals et '
+                           f'{sum(is_historical(r) for r in self.rows)} internal archives sous {folder}')
                 elif kind == 'verify':
                     path, report = payload
                     row = next((r for r in self.rows if r['path'] == path), None)
@@ -786,9 +855,9 @@ class ManagerWindow(tk.Tk):
                         row['operational_assessment'] = report
                         if self._selected_path() == path:
                             self.show_details()
-                    self.status_var.set('Contrôle local : ' + str(report.get('operational_result')) +
+                    self.status_var.set('Local check: ' + str(report.get('operational_result')) +
                                         ' · PAS une conformité Framework')
-                    self.log('RÉSULTAT', f'{Path(path).name} : {report.get("operational_result")}; '
+                    self.log('RESULT', f'{Path(path).name} : {report.get("operational_result")}; '
                            f'Framework : {report.get("framework_state_verification", {}).get("status")}')
                 elif kind == 'diag':
                     path, report = payload
@@ -801,15 +870,15 @@ class ManagerWindow(tk.Tk):
                             and self._diag_dialog.row['path'] == path):
                         self._diag_dialog.render_result(report)
                     self.status_var.set('KristalDiag : ' + str(report.get('verdict') or report['process_status']) +
-                        ' · rapport observé, qualification C1 NON établie')
+                        ' · report observed; C1 qualification not established')
                     self.log('DIAG', f'{Path(path).name} : {report["process_status"]} · '
                              f'fichier JSON : {"oui" if report.get("external_report") is not None else "non"} · '
-                             f'sources modifiées : {"OUI" if report["input_changed_during_run"] else "non détectées"}')
+                             f'sources modifiées : {"OUI" if report["input_changed_during_run"] else "not detected"}')
                 elif kind == 'archive_export':
-                    self.status_var.set(f'Archive locale créée : {payload["path"]}')
-                    self.log('SUCCÈS', f'Export {payload["format"]} : {payload["files"]} fichiers · {payload["path"]}')
+                    self.status_var.set(f'Local archive created: {payload["path"]}')
+                    self.log('SUCCESS', f'Export {payload["format"]} : {payload["files"]} fichiers · {payload["path"]}')
                     if payload['format'] == 'kristal':
-                        self.log('LIMITE', 'Format .kristal expérimental Manager, non certifié par Framework.')
+                        self.log('LIMITE', 'Experimental Manager .kristal format; not certified by Framework.')
                 elif kind == 'catalog':
                     observed = payload['rows']
                     for existing in self.rows:
@@ -833,7 +902,7 @@ class ManagerWindow(tk.Tk):
                         self._refresh_category_choices()
                         self.path_var.set(str(folder))
                         self._remember_root(folder)
-                        self.scope_var.set(f'Inventaire de : {folder}')
+                        self.scope_var.set(f'Inventory: {folder}')
                     elif not self.rows:
                         self.rows = list(observed.values())
                         self._load_icons()
@@ -843,9 +912,9 @@ class ManagerWindow(tk.Tk):
                     self.catalog_overview = payload['overview']
                     self.refresh(prefer=current)
                     result = payload['result']
-                    self.status_var.set(f'Catalogue terminé : {result["workspaces"]} Kristal(aux) · '
+                    self.status_var.set(f'Catalog completed: {result["workspaces"]} Kristal(aux) · '
                                         f'{result["updated"]} actualisé(s), {result["cached"]} inchangé(s)')
-                    self.log('SUCCÈS', f'Catalogue : {result["workspaces"]} Kristals. '
+                    self.log('SUCCESS', f'Catalogue : {result["workspaces"]} Kristals. '
                            f'SQLite : {result["database"]} · HTML : {self.catalog_overview}')
                     self.tabs.select(0)
                 self._refresh_actions()
@@ -858,15 +927,15 @@ class ManagerWindow(tk.Tk):
         try:
             save_settings(self.settings)
         except OSError as exc:
-            self.log('ATTENTION', f'Préférences non enregistrées : {exc}')
+            self.log('WARNING', f'Could not save preferences: {exc}')
 
     def _fail(self, label, exc, *, diagnostic=None):
-        self.log('ERREUR', f'{label} : {exc}')
+        self.log('ERROR', f'{label} : {exc}')
         if diagnostic:
             self.log('TRACE', diagnostic.rstrip())
         self.tabs.select(2)
-        self.status_var.set(f'{label} · consulter le journal (les sources n’ont pas été modifiées).')
-        messagebox.showerror(label, str(exc) + '\n\nLe détail est dans l’onglet Journal des opérations.', parent=self)
+        self.status_var.set(f'{label} · see the log (no source files were modified).')
+        messagebox.showerror(label, str(exc) + '\n\nLe détail est dans l’onglet Operation log.', parent=self)
 
     def _load_icons(self):
         """Only read already applied icons and optional exact-name Registry cache.
@@ -877,11 +946,12 @@ class ManagerWindow(tk.Tk):
         from tkinter import TclError
         self.icons = {}
         self.icon_images = {}
+        self.taxonomy_cache = {}
         try:
             registry = read_registry_icon_index()
         except (OSError, ValueError) as exc:
             registry = {}
-            self.log('ATTENTION', f'Cache Registry icônes indisponible : {exc}')
+            self.log('WARNING', f'Icon Registry cache unavailable: {exc}')
         for row in self.rows:
             path = row['path']
             try:
@@ -893,7 +963,7 @@ class ManagerWindow(tk.Tk):
                         self.icon_images[path] = picture
             except (OSError, ValueError, TclError) as exc:
                 self.icons[path] = IconInfo('error', None, note=str(exc))
-        self.log('ICÔNES', f'{len(self.icon_images)} icônes visibles sur {len(self.rows)} entrées; aucune source modifiée.')
+        self.log('ICONS', f'{len(self.icon_images)} icons found in {len(self.rows)} entries; no source changes.')
 
     def refresh_icons(self):
         if self.busy:
@@ -901,24 +971,24 @@ class ManagerWindow(tk.Tk):
         before = self._selected_path()
         self._load_icons()
         self.refresh(prefer=before)
-        self.status_var.set(f'{len(self.icon_images)} icônes affichées ; lecture seule')
+        self.status_var.set(f'{len(self.icon_images)} icons found; read-only')
 
     def icon_info(self):
         row = self._selected_row()
         if not row:
-            messagebox.showinfo('Information icône', 'Sélectionnez d’abord un Kristal.', parent=self)
+            messagebox.showinfo('Icon information', 'Select a Kristal first.', parent=self)
             return
         icon = self.icons.get(row['path']) or discover_icon(row['path'])
         info = (f'Kristal : {row["title"]}\n'
-                f'Provenance : {icon.source}\n'
-                f'Fichier ICO : {icon.ico or "aucun fichier résolu"}\n'
-                f'Nature : {icon.nature or "non définie"}\n'
-                f'Maturité : {icon.maturity if icon.maturity is not None else "non définie"}\n'
-                f'Domaines : {", ".join(icon.domains) or "—"}\n\n'
-                f'{icon.note or "Lecture seule"}\n\n'
+                f'Source: {icon.source}\n'
+                f'ICO file: {icon.ico or "no file found"}\n'
+                f'Nature: {icon.nature or "undefined"}\n'
+                f'Maturity: {icon.maturity if icon.maturity is not None else "undefined"}\n'
+                f'Domains: {", ".join(icon.domains) or "—"}\n\n'
+                f'{icon.note or "Read-only"}\n\n'
                 'Le Registry fournit une icône de présentation, pas la preuve '
                 'd’une icône Windows appliquée dans locals.')
-        messagebox.showinfo('Provenance de l’icône', info, parent=self)
+        messagebox.showinfo('Icon provenance', info, parent=self)
 
     def launch_icon_generator(self):
         """Separate original Windows generator; no implicit metadata or Explorer writes."""
@@ -926,13 +996,13 @@ class ManagerWindow(tk.Tk):
             return
         program = Path(__file__).resolve().parent.parent / 'tools' / 'icon-generator' / 'Ouvrir_Generateur.cmd'
         if os.name != 'nt':
-            messagebox.showinfo('Générateur Windows',
-                'Cette fonction exige Windows et le Node.js requis par le générateur original.', parent=self)
+            messagebox.showinfo('Windows icon generator',
+                'This feature requires Windows and the Node.js runtime required by the icon generator.', parent=self)
             return
         if not program.is_file():
-            messagebox.showerror('Générateur absent', f'Lanceur introuvable : {program}', parent=self)
+            messagebox.showerror('Icon generator not found', f'Lanceur introuvable : {program}', parent=self)
             return
-        if not messagebox.askyesno('Ouvrir le générateur Windows ?',
+        if not messagebox.askyesno('Open Windows icon generator?',
                 'Kristal Icon Generator est un outil indépendant.\n'
                 'Il utilise normalement C:\\mycode\\Kristal\\Kristal-Kollection, '
                 'et NON le dossier locals de Manager.\n\n'
@@ -943,21 +1013,44 @@ class ManagerWindow(tk.Tk):
             return
         try:
             os.startfile(str(program))
-            self.log('INFO', 'Générateur ouvert : l’actualisation des icônes reste manuelle.')
+            self.log('INFO', 'Icon generator opened; icon refresh remains manual.')
         except OSError as exc:
-            self._fail('Lancement du générateur', exc, diagnostic=traceback.format_exc())
+            self._fail('Launch icon generator', exc, diagnostic=traceback.format_exc())
 
     def _change_category(self, _event=None):
-        if self.category_var.get() == 'Archive historique':
+        if self.category_var.get() == 'Historical archive':
             self.show_history_var.set(True)
         self.refresh()
 
+    def _classify(self, row: dict) -> dict:
+        key = row['path']
+        if key not in self.taxonomy_cache:
+            self.taxonomy_cache[key] = observe(row, self.icons.get(key))
+        return self.taxonomy_cache[key]
+
     def _refresh_category_choices(self):
-        categories = sorted({category_of(r) for r in self.rows if not is_historical(r)}, key=str.casefold)
-        values = ['Toutes catégories', *categories, 'Archive historique']
-        self.category_choice.configure(values=values)
-        if self.category_var.get() not in values:
-            self.category_var.set('Toutes catégories')
+        pinned = reference()
+        domains = [f'{key} {val["label_en"]}' for key,val in pinned['domains'].items()]
+        micro = [f'{key} {val["label_en"]}' for key,val in pinned['microthesauri'].items()]
+        fields = [f'{key} {val}' for key,val in pinned['isced'].items()]
+        for variable,combo,values,default in (
+            (self.category_var,self.category_choice,['All UNESCO domains',*domains,'Unmapped'],'All UNESCO domains'),
+            (self.micro_var,self.micro_choice,['All microthesauri',*micro,'Unmapped'],'All microthesauri'),
+            (self.isced_var,self.isced_choice,['All ISCED fields',*fields,'Unmapped'],'All ISCED fields')):
+            combo.configure(values=values)
+            if variable.get() not in values:variable.set(default)
+        primary = sorted({x for r in self.rows if not is_historical(r)
+                          if (x := arketype_of(r))}, key=str.casefold)
+        usages = sorted({x for r in self.rows if not is_historical(r)
+                         if (x := usage_profile_of(r))}, key=str.casefold)
+        arketype_values = ['All Arketypes', *primary, 'Unclassified']
+        usage_values = ['All usage profiles', *usages, 'Unclassified']
+        self.arketype_choice.configure(values=arketype_values)
+        self.usage_choice.configure(values=usage_values)
+        if self.arketype_var.get() not in arketype_values:
+            self.arketype_var.set('All Arketypes')
+        if self.usage_var.get() not in usage_values:
+            self.usage_var.set('All usage profiles')
 
     def change_sort(self, field: str):
         if self.sort_field == field:
@@ -974,40 +1067,67 @@ class ManagerWindow(tk.Tk):
             self.tree.delete(item)
         q = self.filter_var.get().strip().casefold()
         category = self.category_var.get()
+        micro_filter = self.micro_var.get()
+        isced_filter = self.isced_var.get()
+        selected_arketype = self.arketype_var.get()
+        selected_usage = self.usage_var.get()
         visible = []
         for i, row in enumerate(self.rows):
             historic = is_historical(row)
             if historic and not self.show_history_var.get():
                 continue
-            cat = category_of(row)
-            if category != 'Toutes catégories' and cat != category:
+            classified = self._classify(row)
+            cat = display_domain(classified)
+            micro = display_micro(classified)
+            isced = display_isced(classified)
+            if category not in ('All UNESCO domains', 'All categories', 'Toutes catégories') and category != 'Unmapped' and not any(
+                    category.startswith(code + ' ') for code in classified['unesco']['domain_codes']):
+                continue
+            if category == 'Unmapped' and classified['unesco']['domain_codes']:
+                continue
+            if micro_filter != 'All microthesauri' and micro_filter != 'Unmapped' and not any(
+                    micro_filter.startswith(code + ' ') for code in classified['unesco']['microthesaurus_codes']):
+                continue
+            if micro_filter == 'Unmapped' and classified['unesco']['microthesaurus_codes']:
+                continue
+            if isced_filter != 'All ISCED fields' and isced_filter != 'Unmapped' and not any(
+                    isced_filter.startswith(code + ' ') for code in classified['isced_f2013']['codes']):
+                continue
+            if isced_filter == 'Unmapped' and classified['isced_f2013']['codes']:
+                continue
+            ark = arketype_of(row) or 'Unclassified'
+            usage = usage_profile_of(row) or 'Unclassified'
+            if selected_arketype != 'All Arketypes' and ark != selected_arketype:
+                continue
+            if selected_usage != 'All usage profiles' and usage != selected_usage:
                 continue
             corpus = ' '.join(str(row.get(k, '')) for k in
-                              ('title', 'slug', 'state_ref', 'profile', 'readiness', 'native_kind', 'content_summary')) + ' ' + cat + ' ' + (self.icons.get(row['path']).nature if self.icons.get(row['path']) else '')
+                              ('title', 'slug', 'state_ref', 'profile', 'readiness', 'native_kind', 'content_summary')) + ' ' + cat + ' ' + micro + ' ' + isced + ' ' + display_category(row) + ' ' + ark + ' ' + usage + ' ' + (self.icons.get(row['path']).nature if self.icons.get(row['path']) else '')
             if q and q not in corpus.casefold():
                 continue
             metrics = (row.get('content_summary') or {}).get('metrics') or {}
             n = metrics.get('assertions')
-            content = f'{n:,} assertions' if isinstance(n, int) else ('mesuré, non quantifié' if row.get('content_summary') else 'non analysé')
+            content = f'{n:,} assertions' if isinstance(n, int) else ('measured, not quantified' if row.get('content_summary') else 'not scanned')
             diag = row.get('diag_report') or {}
-            diag_label = ('Non lancé' if not diag else
+            diag_label = ('Not run' if not diag else
                           str(diag.get('verdict')) if diag.get('verdict') else
-                          'Exécuté' if diag.get('process_status') == 'EXECUTED_EXIT_0' else
-                          'Échec / délai' if diag.get('process_status') in ('TIMEOUT', 'EXECUTED_NONZERO') else 'À examiner')
+                          'Executed' if diag.get('process_status') == 'EXECUTED_EXIT_0' else
+                          'Failed / timed out' if diag.get('process_status') in ('TIMEOUT', 'EXECUTED_NONZERO') else 'Review')
             ico = self.icons.get(row['path'])
-            nature = ((ico.nature or ico.source) + (f' · M{ico.maturity}' if ico.maturity is not None else '')) if ico else '—'
-            values = (row['title'], cat, nature, row['readiness'], diag_label, row.get('profile') or '—',
-                      row.get('state_ref') or '—', row.get('registered_artifacts', 0), content)
+            values = (row['title'], cat, micro, isced, ark if ark != 'Unclassified' else '—',
+                      usage if usage != 'Unclassified' else '—',
+                      row['readiness'], diag_label, row.get('profile') or '—',
+                      display_state_id(row.get('state_ref')), row.get('registered_artifacts', 0), content)
             visible.append((i, row, values, historic))
-        mapping = {'title': 0, 'category': 1, 'icon_nature': 2, 'readiness': 3, 'diag': 4,
-                   'profile': 5, 'state_ref': 6, 'artifacts': 7, 'content': 8}
+        mapping = {'title': 0, 'category': 1, 'micro': 2, 'isced': 3,
+                   'arketype': 4, 'usage': 5, 'readiness': 6, 'diag': 7,
+                   'profile': 8, 'state_ref': 9, 'artifacts': 10, 'content': 11}
         pos = mapping.get(self.sort_field, 0)
-        visible.sort(key=lambda v: (v[2][pos] if pos == 7 else str(v[2][pos]).casefold(),
+        visible.sort(key=lambda v: (v[2][pos] if pos == 10 else str(v[2][pos]).casefold(),
                                     v[1]['path'].casefold()), reverse=self.sort_desc)
         for i, row, values, historic in visible:
             tags = ('alert',) if row.get('state_conflict') or row.get('needs_migration') else ('historic',) if historic else ()
-            self.tree.insert('', 'end', iid=str(i), text=row['title'],
-                             image=self.icon_images.get(row['path'], ''), values=values[1:], tags=tags)
+            self.tree.insert('', 'end', iid=str(i), values=values, tags=tags)
         match = next((iid for iid in self.tree.get_children() if self.rows[int(iid)]['path'] == selected), None)
         if match is None:
             match = self.tree.get_children()[0] if self.tree.get_children() else None
@@ -1015,15 +1135,16 @@ class ManagerWindow(tk.Tk):
             self.tree.selection_set(match)
             self.tree.see(match)
         else:
-            self.selection_var.set('Aucun Kristal sélectionné')
-            self._set_text(self.summary_text, 'Aucun Kristal dans ce périmètre / filtre.')
+            self.selection_var.set('No Kristal selected')
+            self._set_text(self.summary_text, 'No Kristals match this folder / filter.')
             self._set_text(self.details, '')
+            self._show_selection_icon(None)
         normal = [r for r in self.rows if not is_historical(r)]
         hidden = len(self.rows) - len(normal)
         self.count_var.set(f'{len(normal)} Kristal' + ('s' if len(normal) != 1 else ''))
         ready = sum(row.get('readiness') == 'READY' for row in normal)
-        self.ready_var.set(f'{ready} prêts')
-        self.issue_var.set(f'{len(normal) - ready} à examiner · {hidden} archives internes')
+        self.ready_var.set(f'{ready} ready')
+        self.issue_var.set(f'{len(normal) - ready} to review · {hidden} internal archives')
         self._refresh_actions()
         if match:
             self.show_details()
@@ -1035,77 +1156,129 @@ class ManagerWindow(tk.Tk):
             return
         self.selection_var.set(row.get('title', 'Kristal'))
         keys = ('title', 'slug', 'path', 'state_ref', 'workspace_format', 'native_kind',
-                'readiness', 'state_commitment', 'state_blob_digest', 'state_conflict_reasons',
+                'readiness', 'profile', 'state_commitment', 'state_blob_digest', 'state_conflict_reasons',
                 'portable_ai_enabled', 'ai_entrypoint_present', 'hosted_network_baseline',
                 'discovery', 'operational_assessment', 'content_summary', 'diag_report')
         icon = self.icons.get(row['path'])
+        taxonomy = self._classify(row)
         icon_json = {'source': icon.source, 'ico_path': str(icon.ico) if icon.ico else None,
                      'nature': icon.nature, 'maturity': icon.maturity,
                      'domains': list(icon.domains), 'note': icon.note} if icon else None
         self._set_text(self.details, json.dumps({**{k: row.get(k) for k in keys},
                                                      'manager_icon': icon_json,
                                                      'manager_category': category_of(row),
+                                                     'manager_unesco_taxonomy': taxonomy,
+                                                     'manager_arketype_classification': classification_of(row),
                                                      'manager_historical_archive': is_historical(row)},
                                                     ensure_ascii=False, indent=2))
         operational = row.get('operational_assessment') or {}
         discovery = operational.get('discovery') or row.get('discovery') or {}
         framework = operational.get('framework_state_verification') or {}
         content = row.get('content_summary') or {}
-        outcome = operational.get('operational_result') or 'non effectué'
+        outcome = operational.get('operational_result') or 'not run'
         diag = row.get('diag_report') or {}
         metrics = content.get('metrics') or {}
         info = [
             f'KRISTAL : {row["title"]}',
-            f'Dossier : {row["path"]}',
-            f'Catégorie : {category_of(row)}',
-            f'Copie historique imbriquée : {"oui" if is_historical(row) else "non"}',
-            f'État local : {row["readiness"]}  |  Profil : {row.get("profile") or "—"}',
-            f'Identité : {row.get("state_ref") or "—"}',
-            f'Artefacts enregistrés : {row.get("registered_artifacts", 0)}',
-            f'Icône : {icon.source if icon else "non analysée"}'
+            f'Folder: {row["path"]}',
+            f'UNESCO domain: {display_domain(taxonomy)}',
+            f'UNESCO microthesaurus: {display_micro(taxonomy)}',
+            f'UNESCO mapping: {taxonomy["unesco"]["status"]} (not independently verified)',
+            f'ISCED-F visual field: {display_isced(taxonomy)} ({taxonomy["isced_f2013"]["source"]})',
+            f'Legacy domain (free text): {display_category(row)}',
+            f'Classification review: {"; ".join(taxonomy["issues"]) or "none flagged"}',
+            f'Arketype: {arketype_of(row) or "Unclassified"}',
+            f'Usage profile (PRF): {usage_profile_of(row) or "Unclassified"}',
+            f'Supporting Arketypes: {", ".join(classification_of(row).get("supporting_archetypes") or []) or "—"}',
+            f'Classification: declared metadata; not independently verified',
+            f'Nested historical archive: {"yes" if is_historical(row) else "no"}',
+            f'Local status: {row["readiness"]}  |  Technical profile: {row.get("profile") or "—"}',
+            f'State identity: {row.get("state_ref") or "—"}',
+            f'Registered artifacts: {row.get("registered_artifacts", 0)}',
+            f'Icon: {icon.source if icon else "not scanned"}'
             + (f' · {icon.nature}' if icon and icon.nature else ''),
             '',
-            f'Contrôle local : {outcome}',
-            f'Intégrité Discovery : {discovery.get("integrity") or "non mesurée"}',
-            f'Verification Framework : {framework.get("status") or "non effectuée"}',
-            f'KristalDiag : {diag.get("verdict") or diag.get("process_status") or "non exécuté"}',
-            f'Attestation C1 signée vérifiée : non établie',
-            f'Contenu : {content.get("content_status") or "non catalogué"}',
-            f'Assertions observées : {metrics.get("assertions", "non mesurées")}',
+            f'Local check: {outcome}',
+            f'Discovery integrity: {discovery.get("integrity") or "not measured"}',
+            f'Framework verification: {framework.get("status") or "not run"}',
+            f'KristalDiag : {diag.get("verdict") or diag.get("process_status") or "not run"}',
+            f'Verified signed C1 attestation: not established',
+            f'Content: {content.get("content_status") or "not cataloged"}',
+            f'Observed assertions: {metrics.get("assertions", "not measured")}',
             '',
-            'À FAIRE : « Vérifier ce Kristal » pour contrôler les fichiers enregistrés,',
-            '« Diagnostic… » ouvre un panneau guidé avec le moteur KristalDiag intégré,',
-            'et « Cataloguer ce Kristal » pour mesurer le contenu descriptif.',
-            'Aucun de ces résultats ne vaut une attestation C1 vérifiée par le Manager.',
+            'NEXT: Verify this Kristal to check registered files,',
+            'use Diagnostic… to run the bundled KristalDiag,',
+            'and Catalog this Kristal to inspect descriptive content.',
+            'These checks do not establish a verified C1 attestation.',
         ]
         if diag:
-            info.extend(['', f'Rapport externe JSON : {"reçu" if diag.get("external_report") is not None else "absent"}',
-                         f'Fichiers d’état connus modifiés pendant le diagnostic : {"OUI" if diag.get("input_changed_during_run") else "non détecté"}',
-                         f'Code retour : {diag.get("returncode")}',
-                         'Voir l’onglet Détails JSON pour le rapport externe.'])
+            info.extend(['', f'External JSON report: {"received" if diag.get("external_report") is not None else "absent"}',
+                         f'Known state files changed during diagnosis: {"OUI" if diag.get("input_changed_during_run") else "not detected"}',
+                         f'Exit code: {diag.get("returncode")}',
+                         'See JSON details for the external report.'])
         if row.get('needs_migration') or row.get('state_conflict'):
-            info.extend(['', 'ATTENTION : structure à migrer ou conflit d’état signalé.'])
+            info.extend(['', 'WARNING: structure migration or state conflict reported.'])
         if operational.get('issues'):
-            info.extend(['', 'Points signalés :', *('• ' + str(x) for x in operational['issues'])])
+            info.extend(['', 'Reported issues:', *('• ' + str(x) for x in operational['issues'])])
+        self._show_selection_icon(row)
         self._set_text(self.summary_text, '\n'.join(info))
         self._refresh_actions()
+
+    def _show_selection_icon(self, row):
+        """Render selected Kristal's ICO beside the detail text, not in the list."""
+        self.selected_icon_image = None
+        if not row:
+            self.selected_icon_label.configure(image='', text='No icon')
+            self.selected_icon_caption.configure(text='')
+            return
+        icon = self.icons.get(row['path'])
+        if icon and icon.ico:
+            try:
+                image = tk_photo_from_icon(tk, icon.ico, preferred=64)
+                if image is not None:
+                    self.selected_icon_image = image
+                    self.selected_icon_label.configure(image=image, text='')
+                else:
+                    self.selected_icon_label.configure(image='', text='No preview')
+            except (tk.TclError, OSError):
+                self.selected_icon_label.configure(image='', text='No preview')
+        else:
+            self.selected_icon_label.configure(image='', text='No icon')
+        self.selected_icon_caption.configure(text=(icon.nature or icon.source) if icon else 'No icon')
+
+    def open_classification_audit(self):
+        if not self.rows:
+            messagebox.showinfo('Scan required','Scan the Kristal folder first.',parent=self)
+            return
+        ClassificationPanel(self)
+
+    def open_batch_rename(self):
+        if self.busy:
+            return
+        if not self.roots:
+            messagebox.showinfo('Scan required', 'Scan the local folder first.', parent=self)
+            return
+        try:
+            BatchRenamePanel(self, self.roots[0])
+        except Exception as exc:
+            messagebox.showerror('Batch normalization', str(exc), parent=self)
 
     def open_content_overview(self):
         overview = self.catalog_overview
         if not overview or not overview.is_file():
-            chosen = filedialog.askopenfilename(parent=self, title='Ouvrir un aperçu HTML existant',
-                filetypes=[('HTML', '*.html'), ('Tous les fichiers', '*.*')])
+            chosen = filedialog.askopenfilename(parent=self, title='Open existing HTML overview',
+                filetypes=[('HTML', '*.html'), ('All files', '*.*')])
             if not chosen:
                 return
             overview = Path(chosen)
         webbrowser.open(overview.resolve().as_uri())
-        self.log('INFO', f'Aperçu HTML ouvert : {overview}')
+        self.log('INFO', f'HTML overview opened: {overview}')
 
     def export(self):
         if self.busy or not self.roots:
-            messagebox.showinfo('Inventaire nécessaire', 'Analysez d’abord un dossier.', parent=self)
+            messagebox.showinfo('Inventory required', 'Scan a folder first.', parent=self)
             return
-        name = filedialog.asksaveasfilename(parent=self, title='Inventaire privé, JSON',
+        name = filedialog.asksaveasfilename(parent=self, title='Private inventory JSON',
                 defaultextension='.json', initialfile='kristal-inventaire-local.json', filetypes=[('JSON', '*.json')])
         if not name:
             return
@@ -1113,31 +1286,31 @@ class ManagerWindow(tk.Tk):
         if not self._safe_output(target):
             return
         overwrite = target.exists()
-        if overwrite and not messagebox.askyesno('Remplacer ?', f'Remplacer le fichier ?\n{target}', parent=self):
+        if overwrite and not messagebox.askyesno('Replace?', f'Remplacer le fichier ?\n{target}', parent=self):
             return
         try:
             result = inventory(self.roots)
             save_private_inventory(result, target, overwrite=overwrite)
-            self.log('SUCCÈS', f'Inventaire JSON exporté : {result["record_count"]} entrées · {target}')
-            self.status_var.set(f'{result["record_count"]} enregistrements exportés · local uniquement')
+            self.log('SUCCESS', f'Inventory JSON exported: {result["record_count"]} entries · {target}')
+            self.status_var.set(f'{result["record_count"]} entries exported · local only')
         except Exception as exc:
-            self._fail('Export de l’inventaire', exc, diagnostic=traceback.format_exc())
+            self._fail('Inventory export', exc, diagnostic=traceback.format_exc())
 
     def export_konstellation(self):
         if self.busy or not self.roots:
-            messagebox.showinfo('Inventaire nécessaire', 'Analysez d’abord un dossier.', parent=self)
+            messagebox.showinfo('Inventory required', 'Scan a folder first.', parent=self)
             return
         from tkinter import simpledialog
-        principal = simpledialog.askstring('Autorisation explicite (aperçu local)',
-                'Identifiant du principal local autorisé à voir TOUS les titres inventoriés.\n'
-                'Aucune permission n’est vérifiée automatiquement.\nAnnuler = refuser.', parent=self)
+        principal = simpledialog.askstring('Explicit authorization (local preview)',
+                'Local principal identifier authorized to view ALL inventoried titles.\n'
+                'Permissions are not checked automatically.\nCancel to decline.', parent=self)
         if not principal:
             return
-        if not messagebox.askyesno('Aperçu privé seulement',
-             'Vous autorisez explicitement ce principal à voir TOUS les titres de ce dossier dans un aperçu local.\n'
-             'Aucune publication ou activation ne sera faite. Continuer ?', parent=self):
+        if not messagebox.askyesno('Private preview only',
+             'You explicitly authorize this principal to view ALL titles in a local preview.\n'
+             'No publication or activation will occur. Continue?', parent=self):
             return
-        name = filedialog.asksaveasfilename(parent=self, title='Aperçu privé Konstellation',
+        name = filedialog.asksaveasfilename(parent=self, title='Private Konstellation preview',
              defaultextension='.json', initialfile='kristal-konstellation-prive.json', filetypes=[('JSON', '*.json')])
         if not name:
             return
@@ -1145,65 +1318,62 @@ class ManagerWindow(tk.Tk):
         if not self._safe_output(dest):
             return
         overwrite = dest.exists()
-        if overwrite and not messagebox.askyesno('Remplacer ?', f'Remplacer le fichier ?\n{dest}', parent=self):
+        if overwrite and not messagebox.askyesno('Replace?', f'Remplacer le fichier ?\n{dest}', parent=self):
             return
         try:
             result = konstellation_preview(self.roots, allowed_principals=[principal])
             save_private_inventory(result, dest, overwrite=overwrite)
-            self.status_var.set(f'Aperçu local privé : {len(result["entries"])} entrées · non publié')
-            self.log('SUCCÈS', f'Aperçu Konstellation privé généré : {dest}')
+            self.status_var.set(f'Private local preview: {len(result["entries"])} entries · unpublished')
+            self.log('SUCCESS', f'Private Konstellation preview created: {dest}')
         except Exception as exc:
-            self._fail('Export Konstellation', exc, diagnostic=traceback.format_exc())
+            self._fail('Konstellation export', exc, diagnostic=traceback.format_exc())
 
     def open_help(self):
-        helptext = ('PARCOURS RECOMMANDÉ\n\n'
-           '1. Choisir un dossier racine (par défaut : C:\\mycode\\Kristal\\locals sous Windows).\n'
-           '2. Analyser le dossier : identifier les Kristals, sans écriture sur les sources.\n'
-           '3. Choisir un Kristal dans le tableau et lire sa fiche.\n'
-           '4. Vérifier ce Kristal : contrôler les sources enregistrées.\n'
-           '5. Cliquer sur « Diagnostic… » : choisir le contrôle et lancer KristalDiag sans commandes.\n'
-           '6. Lire le verdict et les anomalies dans la fenêtre de diagnostic.\n'
-           '7. Cataloguer ce Kristal : créer une base SQLite et un HTML descriptifs, hors des sources.\n'
-           '8. Ouvrir le HTML avec « Actions » ou « Toutes les fonctions ».\n'
-           '9. Icônes : le Manager lit desktop.ini et les profils / Registry sans écriture.\n'
-           '   Menu Icônes : actualiser, voir la provenance ou lancer le générateur Windows avec confirmation.\n\n'
-           'FONCTIONS GLOBALES\n'
-           '« Cataloguer tous les Kristals du dossier » agit sur la racine saisie, PAS uniquement sur la ligne sélectionnée.\n'
-           '« Exporter inventaire » écrit un JSON local privé.\n'
-           '« Exporter aperçu privé Konstellation » nécessite un accord et un principal explicites.\n'
-           'Catégorie : lecture des données internes et/ou classification Discovery; clic sur en-tête pour trier.\n'
-           'Les snapshots imbriqués dans archive/ sont masqués par défaut, sans suppression.\n'
-           'Renommer : aperçu du nom lu dans kristal.workspace.json, puis confirmation. Les chemins absolus peuvent être affectés.\n'
-           'Exporter ZIP : copie complète du Kristal sélectionné, hors des sources.\n'
-           'Exporter .kristal : ZIP avec manifeste expérimental Manager, PAS un format Framework certifié.\n\n'
-           'JOURNAL\n'
-           'L’onglet Journal des opérations propose Copier, Effacer et Enregistrer.\n'
-           'Effacer retire seulement le texte de l’interface, sans toucher aux Kristals.\n\n'
-           'LIMITES\n'
-           'READY = état structurel local. LOCAL_CHECKS_PASSED = sources enregistrées contrôlées.\n'
-           'Le diagnostic externe peut modifier les données ; l’opérateur doit vérifier la confiance du programme.\n'
-           'Le Manager enregistre les rapports sans prétendre à une attestation C1.\n'
-           'Le catalogue mesure le contenu ; aucun de ces résultats ne qualifie automatiquement '
-           'la conformité Framework, C1/C2/C3, l’autorisation, la publication ou l’activation.')
+        helptext = (
+            'GETTING STARTED\n\n'
+            '1. Set the root folder (Windows default: C:\\mycode\\Kristal\\locals).\n'
+            '2. Click Scan folder to build the inventory without changing source files.\n'
+            '3. Select a Kristal to view its profile and icon in the lower panel.\n'
+            '4. Verify this Kristal to check registered source files.\n'
+            '5. Diagnostic… runs bundled KristalDiag in a guided window.\n'
+            '6. Catalog this Kristal produces descriptive SQLite/HTML outside source folders.\n\n'
+            'ORGANIZE AND EXPORT\n'
+            '• Organize / export → Preview / rename folder changes one top-level Kristal path.\n'
+            '• Organize / export → Normalize folders in batch previews every proposed name.\n'
+            '  Nothing is selected by default. You must explicitly select folders and approve.\n'
+            '  Each selected folder is backed up to ZIP before any rename.\n'
+            '  Undo from journal can restore folder names when paths and metadata still match.\n'
+            '• The batch operation does not rewrite absolute paths in scripts or outside references.\n'
+            '• ZIP exports copy the selected Kristal; .kristal is experimental (not an official package).\n\n'
+            'PRESENTATION\n'
+            '• The selected Kristal icon appears next to its overview at the bottom.\n'
+            '• State ID in the list is abbreviated; the authoritative URN stays in JSON details.\n'
+            '• Historical snapshots are hidden by default, without deleting anything.\n'
+            '• Sort using a column header; filter by category or search text.\n\n'
+            'LIMITS\n'
+            'READY is a local structural status, not Framework conformance.\n'
+            'Local verification and KristalDiag do not establish publication, access grants, or V11 certification.\n'
+            'No GitHub publishing is performed by the Manager.'
+        )
         window = tk.Toplevel(self)
-        window.title('Aide — parcours et limites')
+        window.title('Help — workflows and limitations')
         window.geometry('770x560')
         box = ttk.Frame(window, padding=12)
         box.pack(fill='both', expand=True)
-        text = tk.Text(box, wrap='word', padx=12, pady=12, font=('Segoe UI', 10))
-        text.insert('1.0', helptext)
-        text.configure(state='disabled')
-        text.pack(fill='both', expand=True)
-        ttk.Button(box, text='Fermer', command=window.destroy).pack(anchor='e', pady=(8, 0))
+        widget = tk.Text(box, wrap='word', padx=12, pady=12, font=('Segoe UI', 10))
+        widget.insert('1.0', helptext)
+        widget.configure(state='disabled')
+        widget.pack(fill='both', expand=True)
+        ttk.Button(box, text='Close', command=window.destroy).pack(anchor='e', pady=(8, 0))
         window.transient(self)
 
     def show_limits(self):
-        messagebox.showinfo('Kristal Manager · limites de l’outil',
-            'Interface locale de récupération et de diagnostic.\n\n'
-            'Aucune écriture GitHub, publication ou activation.\n'
-            'La vérification est limitée aux sources enregistrées.\n'
-            'Les engagements d’état restent non vérifiés sans référence Framework compatible.\n'
-            'La conformité v11 doit faire l’objet d’une qualification indépendante.', parent=self)
+        messagebox.showinfo('Kristal Manager — limitations',
+            'Local inventory and diagnostics application.\n\n'
+            'No GitHub publication or activation.\n'
+            'Local verification only covers registered sources.\n'
+            'State commitments require a compatible Framework reference to be verified.\n'
+            'Framework V11 conformance still requires independent qualification.', parent=self)
 
 
 def main():

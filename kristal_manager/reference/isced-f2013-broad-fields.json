@@ -1,0 +1,23 @@
+{
+  "source": "Kristal Icon Generator 2.4 \u2014 ISCED_F2013_POLICY.md",
+  "scheme": "ISCED-F 2013",
+  "publisher": "UNESCO Institute for Statistics",
+  "level": "broad field",
+  "codes": {
+    "00": "Generic programmes and qualifications",
+    "01": "Education",
+    "02": "Arts and humanities",
+    "03": "Social sciences, journalism and information",
+    "04": "Business, administration and law",
+    "05": "Natural sciences, mathematics and statistics",
+    "06": "Information and Communication Technologies (ICTs)",
+    "07": "Engineering, manufacturing and construction",
+    "08": "Agriculture, forestry, fisheries and veterinary",
+    "09": "Health and welfare",
+    "10": "Services"
+  },
+  "notes": [
+    "Titles in English are display translations; codes and 11-domain scope come from the bundled policy.",
+    "Kristal multi-domain icons are a local extension, not an UNESCO multi-code rule."
+  ]
+}

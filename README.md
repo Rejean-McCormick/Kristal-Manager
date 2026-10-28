@@ -1,3 +1,5 @@
+> **UNESCO taxonomy integration (2026-10-27):** Kristal Manager now reads the pinned Framework v7 UNESCO Thesaurus reference (7 domains, 88 microthesauri) alongside ISCED-F 2013 icon broad fields. These are separate axes, not guessed classifications. The **Actions → UNESCO classification audit…** overlay exports offline JSON and HTML; no Kristal source is modified. See [UNESCO_CLASSIFICATION_2026-10-27.md](UNESCO_CLASSIFICATION_2026-10-27.md).
+
 **Édition consolidée — icônes Windows + diagnostic guidé :** consulter [CONSOLIDATION_2026-10-27.md](CONSOLIDATION_2026-10-27.md).
 
 # Kristal Manager

@@ -141,7 +141,7 @@ def test_ui_diag_action_updates_fiche(tmp_path, monkeypatch):
         app.start_diag_selected()
         panel = app._diag_dialog
         assert panel and panel.winfo_exists()
-        assert 'V9-State-Reader' in str(gui.DiagnosticPanel.__module__) or panel.profile.get() == 'État du Kristal — recommandé'
+        assert 'V9-State-Reader' in str(gui.DiagnosticPanel.__module__) or panel.profile.get() == 'Kristal state — recommended'
         panel._run()
         deadline=monotonic()+10
         while app.busy and monotonic()<deadline:

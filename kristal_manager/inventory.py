@@ -10,6 +10,8 @@ from datetime import datetime,timezone
 import json
 import os
 from .core import scan_roots, ManagerError
+from .workspace_tools import arketype_of, usage_profile_of, classification_of, category_of
+from .classification_bridge import observe
 
 FORMAT='kristal.manager-local-inventory/0.1-candidate'
 
@@ -28,7 +30,15 @@ def inventory(roots: list[str|Path], *, include_paths: bool=False, verify_source
         record['availability']='local'
         record['qualification']='NOT_ESTABLISHED'
         record['publication']='NOT_ESTABLISHED'
-        record['archetype']=((row.get('discovery') or {}).get('classification') or {}).get('primary_archetype') or 'UNDECLARED'
+        record['archetype']=arketype_of(row) or 'UNDECLARED'
+        record['usage_profile']=usage_profile_of(row) or 'UNDECLARED'
+        record['domain_category']=category_of(row)
+        record['arketype_classification']=classification_of(row)
+        record['classification_verified']=False
+        taxonomy=observe(row)
+        record['unesco_thesaurus']=taxonomy['unesco']
+        record['isced_f2013']=taxonomy['isced_f2013']
+        record['classification_review_issues']=taxonomy['issues']
         if verify_sources:
             from .operational import assess_local
             report = assess_local(row['path'])
@@ -62,6 +72,7 @@ def inventory(roots: list[str|Path], *, include_paths: bool=False, verify_source
            'READY indicates a structurally present local state, not C1 qualification.',
            'The declared v10 baseline does not prove a hosted or published state.',
            'Arketype identity is displayed only when explicitly declared in consistent Kit metadata.',
+           'UNESCO Thesaurus/ISCED-F classification is metadata observation, not C1 validation; seed hints are not declarations.',
            'Discovery fingerprint consistency does not verify current source bytes.',
            'Reader hints do not authorize access, execution, qualification or publication.',
            'Use --verify-sources for on-demand registered-byte verification; this does not establish domain validity.'

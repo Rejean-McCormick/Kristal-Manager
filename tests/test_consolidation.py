@@ -49,8 +49,8 @@ def test_gui_guided_diag_and_icon_column_on_same_window(tmp_path, monkeypatch):
             time.sleep(.01)
         app.update()
         assert not app.busy
-        assert app.tree.heading('#0')['text']=='Kristal (icône)'
-        assert 'icon_nature' in app.tree['columns']
+        assert app.tree.heading('title')['text']=='Kristal'
+        assert 'icon_nature' not in app.tree['columns']
         assert hasattr(app, 'refresh_icons')
         app.start_diag_selected()
         panel=app._diag_dialog
@@ -63,7 +63,7 @@ def test_gui_guided_diag_and_icon_column_on_same_window(tmp_path, monkeypatch):
         app.update()
         assert app._selected_row()['diag_report']['verdict']=='PASS'
         assert 'PASS' in app._text(panel.summary)
-        assert 'icône' in app.tree.heading('#0')['text'].casefold()
+        assert 'icon_nature' not in app.tree['columns']
         panel._close()
     finally:
         app.destroy()

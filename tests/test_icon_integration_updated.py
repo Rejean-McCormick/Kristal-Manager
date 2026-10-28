@@ -103,12 +103,13 @@ def test_gui_icons_preserve_categories_sort_and_diag(tmp_path, monkeypatch):
         assert row['path'] in app.icon_images
         assert app.icons[row['path']].nature == 'REF'
         item=app.tree.selection()[0]
-        assert app.tree.item(item,'image')
-        assert any('REF' in str(v) for v in app.tree.item(item,'values'))
-        assert app.tree.heading('#0')['text'] == 'Kristal (icône)'
-        assert 'Icône : desktop.ini' in app._text(app.summary_text)
+        assert not app.tree.item(item,'image')
+        assert 'icon_nature' not in app.tree['columns']
+        assert app.tree.heading('title')['text'] == 'Kristal'
+        assert 'Icon: desktop.ini' in app._text(app.summary_text)
+        assert app.selected_icon_image is not None
         assert json.loads(app._text(app.details))['manager_icon']['source']=='desktop.ini'
-        app.change_sort('icon_nature')
+        app.change_sort('state_ref')
         assert app._selected_row()['title'] == 'Kristal-Icons'
         app.category_var.set('Toutes catégories'); app.refresh()
         app.refresh_icons()

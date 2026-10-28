@@ -30,7 +30,34 @@ def is_historical(row: dict) -> bool:
     return False
 
 
+def classification_of(row: dict) -> dict:
+    """Read *declared* Arketype classification; never infer ARK/PRF IDs.
+
+    The workspace declaration is the primary design input. The discovery copy
+    is derived metadata and is only used if no workspace classification exists.
+    These are classification hints, not C1 verification or semantic authority.
+    """
+    discovery = (row.get('discovery') or {}).get('classification')
+    path = row.get('path')
+    data = _read_json(Path(path) / 'kristal.workspace.json') if path else {}
+    declared = data.get('classification')
+    if isinstance(declared, dict) and declared:
+        return declared
+    return discovery if isinstance(discovery, dict) else {}
+
+
+def arketype_of(row: dict) -> str | None:
+    value = classification_of(row).get('primary_archetype')
+    return value if isinstance(value, str) and re.fullmatch(r'ARK-[0-9]{2,}', value) else None
+
+
+def usage_profile_of(row: dict) -> str | None:
+    value = classification_of(row).get('primary_usage')
+    return value if isinstance(value, str) and re.fullmatch(r'PRF-[0-9]{2,}', value) else None
+
+
 def category_of(row: dict) -> str:
+    """Domain category only; ARK and PRF are independent classification axes."""
     if is_historical(row):
         return 'Archive historique'
     if row.get('nested_under'):
@@ -39,14 +66,13 @@ def category_of(row: dict) -> str:
         return 'Auxiliaire'
     if row.get('kind') != 'local' or row.get('readiness') == 'STATE-ONLY':
         return 'État isolé'
-    d = row.get('discovery') or {}
-    classified = (d.get('classification') or {})
-    for v in (classified.get('primary_archetype'), classified.get('primary_usage')):
-        if isinstance(v, str) and v.strip():
-            return v.strip()
-    data = _read_json(Path(row['path']) / 'kristal.workspace.json')
-    for obj, field in ((data.get('subject'), 'domain'), (data.get('state_scope'), 'domain'),
-                       (data.get('native_model'), 'kind')):
+    classified = classification_of(row)
+    domain = classified.get('domain')
+    if isinstance(domain, str) and domain.strip():
+        return domain.strip()
+    path = row.get('path')
+    data = _read_json(Path(path) / 'kristal.workspace.json') if path else {}
+    for obj, field in ((data.get('subject'), 'domain'), (data.get('state_scope'), 'domain')):
         if isinstance(obj, dict):
             value = obj.get(field)
             if isinstance(value, str) and value.strip():
