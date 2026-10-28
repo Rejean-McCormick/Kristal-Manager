@@ -70,7 +70,7 @@
 <div class="app">
 <header>
   <div><h1>Kristal Icon Generator</h1><div class="subtitle">Charge automatiquement <b>Kristal Registry</b> depuis la collection connue. Le générateur scanne automatiquement les nouveaux <b>Kristal-*</b>, complète leur profil de présentation quand il manque, puis recharge le <b>Kristal Registry</b>. Rien n’est appliqué au shell avant ton clic.</div></div>
-  <div class="badge">v2.4.0 · ISCED-F 2013 · scan auto</div>
+  <div class="badge">v2.6.0 · Thésaurus UNESCO · scan auto</div>
 </header>
 
 <div class="grid">
@@ -89,6 +89,8 @@
   </div>
   <div class="registry-details" id="registryDetails">Au lancement, <code>domains\Kristal-*</code> est scanné avant la reconstruction du Registry. Les métadonnées explicites gagnent toujours. <b>Aucune icône ni desktop.ini n’est appliqué avant ton clic.</b></div>
   <div class="checkrow"><label><input type="checkbox" id="registryPngToo"> Exporter aussi les PNG du Registry</label></div>
+  <div class="checkrow" id="localApplyRow" style="display:none"><label><input type="checkbox" id="localApplyConfirm"> Autoriser l’application d’icônes personnalisées aux dossiers locaux Windows (décoché par défaut)</label></div>
+  <div class="note" id="localModeNotice" style="display:none">Mode locals : analyse en mémoire, aucun changement au démarrage. Les Kristals sans classification UNESCO explicite sont ignorés. Les anciennes classifications ISCED ne sont jamais converties.</div>
   <div class="buttons">
     <button id="registryDownloadIco" disabled>Télécharger l’ICO sélectionné</button>
     <button class="primary" id="registryGenerateAll" disabled>Générer et appliquer toutes les icônes</button>
@@ -147,15 +149,15 @@
   <div class="note" id="fsNote">Sur Chrome/Edge, le bouton écrit directement les fichiers dans un dossier choisi. Les ICO sont rangés dans <code>ico/</code>; les PNG optionnels dans un sous-dossier <code>png/&lt;taille&gt;</code> pour chacune des 10 résolutions.</div>
 
   <h3>Nomenclature</h3>
-  <div class="note"><code>KR-{TYPE}-{ISCED1}[-ISCED2][-ISCED3]-M{0..5}.ico</code><br>Le domaine principal est toujours le premier. La taille n’est pas dans le nom du fichier ICO, car chaque ICO contient déjà toutes les résolutions.</div>
+  <div class="note"><code>KR-{TYPE}-UT{1..7}[-UT{1..7}][-UT{1..7}]-M{0..5}.ico</code><br>Le domaine principal est toujours le premier. La taille n’est pas dans le nom du fichier ICO, car chaque ICO contient déjà toutes les résolutions.</div>
 
-  <h3>Charte des domaines — ISCED-F 2013 (UNESCO)</h3>
+  <h3>Charte des domaines — Thésaurus UNESCO</h3>
   <table class="domain-table">
-    <thead><tr><th>Actif</th><th>Code ISCED</th><th>Domaine (UNESCO)</th><th>Couleur Kristal</th></tr></thead>
+    <thead><tr><th>Actif</th><th>Domaine UNESCO</th><th>Domaine (UNESCO)</th><th>Couleur Kristal</th></tr></thead>
     <tbody id="domainRows"></tbody>
   </table>
-  <div class="buttons"><button id="resetDomains">Réinitialiser ISCED-F</button></div>
-  <div class="tiny">Les codes et noms suivent ISCED-F 2013 de l’UNESCO. Les couleurs sont une convention de présentation Kristal, pas des couleurs officielles UNESCO. Extension Kristal : jusqu’à 3 grands domaines peuvent être affichés, même si le codage statistique ISCED-F officiel utilise normalement un seul code de champ.</div>
+  <div class="buttons"><button id="resetDomains">Réinitialiser UNESCO</button></div>
+  <div class="tiny">Les 7 domaines sont ceux du Thésaurus UNESCO (88 microthésaurus). Les couleurs et codes UT1–UT7 sont une convention visuelle Kristal, pas une palette officielle UNESCO. Le domaine 7 est une facette géographique.</div>
 </section>
 </div>
 </div>
@@ -177,21 +179,51 @@ const TYPES = [
   {id:'SRC', label:'Sources'}
 ];
 const DEFAULT_DOMAINS = [
-  {id:'00', name:'Programmes et certifications génériques', color:'#7A7F87', active:true},
-  {id:'01', name:'Éducation', color:'#2E86AB', active:true},
-  {id:'02', name:'Arts et lettres', color:'#A85AA3', active:true},
-  {id:'03', name:'Sciences sociales, journalisme et information', color:'#D97B29', active:true},
-  {id:'04', name:'Commerce, administration et droit', color:'#B85C5C', active:true},
-  {id:'05', name:'Sciences naturelles, mathématiques et statistiques', color:'#2E8B57', active:true},
-  {id:'06', name:'Technologies de l’information et de la communication', color:'#4F46E5', active:true},
-  {id:'07', name:'Ingénierie, industries de transformation et construction', color:'#D97706', active:true},
-  {id:'08', name:'Agriculture, sylviculture, halieutique et sciences vétérinaires', color:'#6B8E23', active:true},
-  {id:'09', name:'Santé et protection sociale', color:'#D94F70', active:true},
-  {id:'10', name:'Services', color:'#2A9D8F', active:true}
+  {
+    "id": "1",
+    "name": "Éducation",
+    "color": "#2E86AB",
+    "active": true
+  },
+  {
+    "id": "2",
+    "name": "Science",
+    "color": "#2E8B57",
+    "active": true
+  },
+  {
+    "id": "3",
+    "name": "Culture",
+    "color": "#A85AA3",
+    "active": true
+  },
+  {
+    "id": "4",
+    "name": "Sciences sociales et humaines",
+    "color": "#D97B29",
+    "active": true
+  },
+  {
+    "id": "5",
+    "name": "Information et communication",
+    "color": "#B85C5C",
+    "active": true
+  },
+  {
+    "id": "6",
+    "name": "Politique, droit et économie",
+    "color": "#4F46E5",
+    "active": true
+  },
+  {
+    "id": "7",
+    "name": "Pays et groupes de pays",
+    "color": "#65727F",
+    "active": true
+  }
 ];
-const LEGACY_TO_ISCED = {
-  ACCT:'04',AERO:'07',AGING:'09',AGRI:'08',AI:'06',ANTHRO:'03',ARCH:'07',ASTRO:'05',ATMOS:'05',AUTO:'07',BIO:'05',BIODIV:'05',BOT:'05',CARTO:'05',CHEM:'05',CIVIL:'07',CLIM:'05',COMP:'06',COSMO:'05',CRAFT:'02',CTRL:'07',CYBER:'06',DATA:'06',DEMO:'03',DESIGN:'02',DEV:'03',DISAST:'05',EARTH:'05',ECO:'05',ECON:'03',EDU:'01',ELEC:'07',ELECTR:'07',ENERGY:'07',ENGC:'07',EPI:'02',ETH:'02',EVOL:'05',FIN:'04',FOOD:'10',FOODSCI:'07',FORENS:'05',FOREST:'08',FUNGI:'05',GAME:'02',GEN:'05',GEO:'05',GEOL:'05',GOV:'03',HAZ:'05',HCI:'06',HIST:'02',HOME:'09',HYDRO:'05',INFRA:'07',LAW:'04',LING:'02',LIT:'02',LOG:'10',LOGIC:'02',MAR:'10',MAT:'07',MATH:'05',MECH:'07',MED:'09',MEDIA:'03',METRO:'07',MFG:'07',MICRO:'05',MIN:'05',MIND:'03',MUSIC:'02',MYTH:'02',NET:'06',NEURO:'09',NUTR:'09',OCEAN:'05',OPS:'04',ORG:'04',PALEO:'05',PHARM:'09',PHIL:'02',PHYS:'05',PUBHLTH:'09',REL:'02',ROBOT:'07',SOC:'03',SOIL:'08',SOLAR:'05',SPORT:'10',STD:'00',SW:'06',TECH:'07',TELECOM:'06',TEXT:'07',THEATRE:'02',TIME:'05',TRANS:'10',URBAN:'07',VET:'08',VIRO:'05',VISART:'02',WEATHER:'05',WORK:'04',ZOO:'05'
-};
+const VALID_UNESCO_CODES = new Set(DEFAULT_DOMAINS.map(d=>d.id));
+const UNESCO_URIS = {"1": "http://vocabularies.unesco.org/thesaurus/domain1", "2": "http://vocabularies.unesco.org/thesaurus/domain2", "3": "http://vocabularies.unesco.org/thesaurus/domain3", "4": "http://vocabularies.unesco.org/thesaurus/domain4", "5": "http://vocabularies.unesco.org/thesaurus/domain5", "6": "http://vocabularies.unesco.org/thesaurus/domain6", "7": "http://vocabularies.unesco.org/thesaurus/domain7"};
 let domains = structuredClone(DEFAULT_DOMAINS);
 let cancelled = false;
 let registryCatalog = null;
@@ -329,21 +361,21 @@ function refreshPreview(){
 function typeLabel(id){return TYPES.find(t=>t.id===id)?.label || id;}
 function upsertDomain(d){
   const raw=safe(d.id||d.code||''); if(!raw)return null;
-  const id=LEGACY_TO_ISCED[raw]||raw;
+  const id=raw;
   const hit=domains.find(x=>x.id===id);
   if(hit){hit.active=true;return hit;}
   return null;
 }
 function registryIconSpec(entry){
-  const icon=entry?.presentation?.icon;if(!icon)return null;
+  const icon=entry?.presentation?.icon;if(!icon||icon.classification?.scheme!=='UNESCO Thesaurus'||icon.classification?.kos_id!=='kos:unesco-thesaurus')return null;
   const nature=String(icon.nature||'');const maturity=Number(icon.maturity);
   if(!TYPES.some(t=>t.id===nature)||!Number.isInteger(maturity)||maturity<0||maturity>5)return null;
   if(!Array.isArray(icon.domains)||icon.domains.length<1||icon.domains.length>3)return null;
   const profile=[]; const seen=new Set();
   for(const raw of icon.domains){
     const rawId=safe(typeof raw==='string'?raw:(raw?.code||raw?.id||''));
-    const id=LEGACY_TO_ISCED[rawId]||rawId;
-    const hit=domainById(id); if(!hit)return null;
+    const id=rawId;
+    const hit=domainById(id); if(!hit||!VALID_UNESCO_CODES.has(id)||typeof raw!=='object'||raw?.uri!==UNESCO_URIS[id]||raw?.icon_token!=='UT'+id)return null;
     if(!seen.has(id)){seen.add(id);profile.push({...hit});}
   }
   if(!profile.length)return null;
@@ -369,7 +401,7 @@ function updateRegistryStats(){
   $('#registryNormalized').textContent=normalized.toLocaleString('fr-CA');
   $('#registryRenderable').textContent=specs.length.toLocaleString('fr-CA');
   $('#registryUnique').textContent=grouped.groups.length.toLocaleString('fr-CA');
-  $('#registryGenerateAll').disabled=!specs.length||!!grouped.conflicts.length;
+  $('#registryGenerateAll').disabled=!specs.length||!!grouped.conflicts.length || ($('#localApplyRow').style.display!=='none' && !$('#localApplyConfirm').checked);
   if(grouped.conflicts.length)registryLog(`CONFLIT : ${grouped.conflicts.join(', ')} possède plusieurs définitions visuelles.`,true);
 }
 function populateRegistrySelect(){
@@ -378,6 +410,7 @@ function populateRegistrySelect(){
   const first=registryEntries.findIndex(e=>registryIconSpec(e));
   el.disabled=first<0;if(first>=0){el.value=String(first);applyRegistrySelection();}
 }
+function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function applyRegistrySelection(){
   const i=Number($('#registryEntry').value),entry=registryEntries[i],spec=registryIconSpec(entry);
   $('#registryDownloadIco').disabled=!spec;
@@ -387,7 +420,7 @@ function applyRegistrySelection(){
   $('#type').value=spec.type;$('#maturity').value=String(spec.maturity);refreshPreview();
   $('#filenamePreview').textContent=spec.filename;
   const norm=entry.normalization?.profile?` · ${entry.normalization.profile}`:'';
-  $('#registryDetails').innerHTML=`<b>${entry.title||entry.kristal_id}</b> · ${typeLabel(spec.type)} · ${spec.profile.map(d=>d.name).join(' / ')} · M${spec.maturity}/5${norm}<br><code>${entry.locator||''}</code>`;
+  $('#registryDetails').innerHTML=`<b>${escapeHtml(entry.title||entry.kristal_id)}</b> · ${escapeHtml(typeLabel(spec.type))} · ${spec.profile.map(d=>escapeHtml(d.name)).join(' / ')} · M${spec.maturity}/5${escapeHtml(norm)}<br><code>${escapeHtml(entry.locator||'')}</code>`;
 }
 function loadRegistryData(data, sourceLabel='Registry'){
   if(!['kristal-registry.catalog/1.1','kristal-registry.catalog/1.0'].includes(data?.format)||!Array.isArray(data?.entries))throw new Error(`Format non supporté : ${data?.format||'inconnu'}`);
@@ -410,14 +443,25 @@ async function tryAutoLoadRegistry(){
     const resp=await fetch('/api/registry',{cache:'no-store'});
     if(!resp.ok)throw new Error(`HTTP ${resp.status}`);
     const data=await resp.json();
-    loadRegistryData(data, 'Registry auto-détecté');
+    loadRegistryData(data, status.mode==='locals'?'Aperçu locals (lecture seule)':'Registry auto-détecté');
+    if(status.mode==='locals') {
+      $('#localApplyRow').style.display='block';
+      $('#localModeNotice').style.display='block';
+      $('#localApplyConfirm').checked=false;
+      $('#localApplyConfirm').disabled=!status.local_apply_enabled;
+      $('#registryGenerateAll').disabled=true;
+      $('#localApplyConfirm').addEventListener('change',()=>{
+        $('#registryGenerateAll').disabled=!status.local_apply_enabled || !$('#localApplyConfirm').checked || !registrySpecs().length || !!registryGroups().conflicts.length;
+      });
+      $('#registryDetails').textContent=`Mode locals : ${status.collection_root} · ${registryEntries.length} Kristals · ${(status.scan?.unresolved_unesco||[]).length} classifications UNESCO manquantes. Aucun dossier modifié au lancement.`;
+    }
     const scan=status.scan||{};
     $('#scanGenerated').textContent=String(scan.generated||0);
     if(scan.generated){
       const names=[...(scan.new_kristals||[]),...(scan.repaired_incomplete||[])];
       registryLog(`Scan automatique : ${scan.generated} profil(s) de présentation généré(s).${names.length?' '+names.join(', '):''}`);
     }else if(scan.warning){registryLog(`Scan automatique : avertissement — ${scan.warning}`);}
-    $('#registryDetails').innerHTML=`<b>Prêt.</b> Registry auto-détecté · <code>${status.registry_display||'kristal-registry.catalog.json'}</code><br>Collection : <code>${status.collection_root||''}</code><br>Scan : <b>${scan.scanned||0}</b> domaines, <b>${scan.generated||0}</b> profil(s) généré(s), <b>${(scan.unresolved_isced||[]).length}</b> ISCED à réviser.<br><b>Clique « Générer et appliquer toutes les icônes » pour lancer l’écriture.</b>`;
+    if(status.mode!=='locals') $('#registryDetails').innerHTML=`<b>Prêt.</b> Registry auto-détecté · <code>${status.registry_display||'kristal-registry.catalog.json'}</code><br>Collection : <code>${status.collection_root||''}</code><br>Scan : <b>${scan.scanned||0}</b> domaines, <b>${scan.generated||0}</b> profil(s) généré(s), <b>${(scan.unresolved_unesco||[]).length}</b> alignements UNESCO à réviser.<br><b>Clique « Générer et appliquer toutes les icônes » pour lancer l’écriture.</b>`;
     return true;
   }catch(err){registryLog('Auto-chargement Registry impossible : '+err.message,true);return false;}
 }
@@ -467,6 +511,11 @@ async function generateRegistryAndApply(){
   if(!registryCatalog)return;
   const status=await serverStatus();
   if(!status){return generateRegistryPackToFolder();}
+  if(status.mode==='locals') {
+    if(!status.local_apply_enabled) {registryLog('Application locale désactivée dans Kristal-Manager. Ouvre le générateur après activation explicite.');return;}
+    if(!$('#localApplyConfirm').checked) {registryLog('Coche d’abord l’autorisation des icônes Windows locales.');return;}
+    if(!window.confirm('Appliquer les icônes personnalisées aux Kristals locaux classés UNESCO ?\n\nLes fichiers .ico, .kristal/icon-profile.json, desktop.ini et attributs Windows pourront être modifiés.')) return;
+  }
   const {groups,conflicts}=registryGroups();
   if(conflicts.length){registryLog(`ARRÊT : conflit d’icônes : ${conflicts.join(', ')}`,true);return;}
   cancelled=false;$('#registryGenerateAll').disabled=true;$('#registryCancel').disabled=false;
@@ -495,7 +544,7 @@ async function generateRegistryAndApply(){
   const c=report.counts||{};
   registryLog(`TERMINÉ · ${c.generated_unique_icons||done} ICO uniques · ${c.applied||0} dossiers appliqués · ${c.skipped||skipped} ignorés · ${c.errors||0} erreur(s).`);
   registryLog(`Rapport : ${report.report||''}`);
-  $('#registryDetails').innerHTML=`<b>Terminé automatiquement</b> · ${c.applied||0} dossiers Kristal mis à jour.<br><code>${status.collection_root}</code><br>Tu peux fermer cette page.`;
+  $('#registryDetails').innerHTML=`<b>Terminé automatiquement</b> · ${c.applied||0} dossiers Kristal mis à jour.<br><code>${escapeHtml(status.collection_root)}</code><br>Tu peux fermer cette page.`;
   $('#registryGenerateAll').disabled=false;$('#registryCancel').disabled=true;
 }
 function renderDomainTable(){
@@ -556,7 +605,7 @@ function makeIco(images){
   for(const img of images){const s=img.size;entries.push(s===256?0:s,s===256?0:s,0,0,...u16le(1),...u16le(32),...u32le(img.bytes.length),...u32le(offset));offset+=img.bytes.length;}
   return new Blob([new Uint8Array(header),new Uint8Array(entries),...images.map(x=>x.bytes)],{type:'image/x-icon'});
 }
-function fileBase(profile,type,maturity){return `KR-${type}-${profile.map(d=>safe(d.id)).join('-')}-M${maturity}`;}
+function fileBase(profile,type,maturity){return `KR-${type}-${profile.map(d=>'UT'+safe(d.id)).join('-')}-M${maturity}`;}
 async function buildIco(profile,type,maturity){
   const images=[];for(const size of ICON_SIZES) images.push({size,bytes:await canvasPngBytes(size,profile,type,maturity)});return makeIco(images);
 }

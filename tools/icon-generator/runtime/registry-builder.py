@@ -188,6 +188,7 @@ def enrich_presentation(
 
 
 VALID_NATURES = {'REF', 'COL', 'MOD', 'PRT', 'TWN', 'INV', 'SRC'}
+UNESCO_URIS = {'1': 'http://vocabularies.unesco.org/thesaurus/domain1', '2': 'http://vocabularies.unesco.org/thesaurus/domain2', '3': 'http://vocabularies.unesco.org/thesaurus/domain3', '4': 'http://vocabularies.unesco.org/thesaurus/domain4', '5': 'http://vocabularies.unesco.org/thesaurus/domain5', '6': 'http://vocabularies.unesco.org/thesaurus/domain6', '7': 'http://vocabularies.unesco.org/thesaurus/domain7'}
 
 
 def sanitize_icon_profile(value: dict[str, Any]) -> dict[str, Any] | None:
@@ -200,6 +201,8 @@ def sanitize_icon_profile(value: dict[str, Any]) -> dict[str, Any] | None:
         return None
     if not isinstance(raw_domains, list) or not (1 <= len(raw_domains) <= 3):
         return None
+    if value.get('classification',{}).get('scheme')!='UNESCO Thesaurus' or value.get('classification',{}).get('kos_id')!='kos:unesco-thesaurus':
+        return None
     domains: list[dict[str, str]] = []
     for d in raw_domains:
         if not isinstance(d, dict):
@@ -207,19 +210,22 @@ def sanitize_icon_profile(value: dict[str, Any]) -> dict[str, Any] | None:
         code = str(d.get('code') or '').strip().upper()
         color = str(d.get('color') or '').strip()
         name = str(d.get('name') or code).strip()
-        if not re.fullmatch(r'[A-Z0-9]{2,8}', code) or not re.fullmatch(r'#[0-9A-Fa-f]{6}', color):
+        uri = d.get('uri')
+        token = d.get('icon_token')
+        if code not in UNESCO_URIS or uri != UNESCO_URIS[code] or token!=f'UT{code}' or not re.fullmatch(r'#[0-9A-Fa-f]{6}', color):
             return None
-        domains.append({'code': code, 'name': name, 'color': color.upper()})
+        domains.append({'code': code, 'name': name, 'uri': uri, 'icon_token':token, 'color': color.upper()})
     rendering = value.get('rendering') if isinstance(value.get('rendering'), dict) else {}
     filename = rendering.get('filename')
     if not filename:
-        filename = f"KR-{nature}-{'-'.join(d['code'] for d in domains)}-M{maturity}.ico"
+        filename = f"KR-{nature}-{'-'.join(d['icon_token'] for d in domains)}-M{maturity}.ico"
     return {
         'profile': 'kristal-icon/1.0',
         'kristal_ref': value.get('kristal_ref'),
         'nature': nature,
         'maturity': maturity,
         'domains': domains,
+        'classification': value['classification'],
         'rendering': {
             'nature_icon_color': rendering.get('nature_icon_color') or '#1e6864',
             'sizes': rendering.get('sizes') or [16,20,24,32,40,48,64,96,128,256],
@@ -372,15 +378,17 @@ def apply_meta_overlay(entries: list[dict[str, Any]], overlay: Path, source_coll
 
 
 def icon_is_renderable(icon: dict[str, Any]) -> bool:
-    if icon.get('nature') not in VALID_NATURES:
+    if icon.get('nature') not in VALID_NATURES or icon.get('classification',{}).get('scheme')!='UNESCO Thesaurus':
+        return False
+    if icon.get('classification',{}).get('kos_id')!='kos:unesco-thesaurus':
         return False
     if not isinstance(icon.get('maturity'), int) or not 0 <= icon['maturity'] <= 5:
         return False
     ds = icon.get('domains')
-    return isinstance(ds, list) and 1 <= len(ds) <= 3 and all(
-        isinstance(d, dict) and re.fullmatch(r'[A-Z0-9]{2,8}', str(d.get('code') or '')) and re.fullmatch(r'#[0-9A-Fa-f]{6}', str(d.get('color') or ''))
-        for d in ds
-    )
+    return isinstance(ds,list) and 1<=len(ds)<=3 and all(
+        isinstance(d,dict) and d.get('code') in UNESCO_URIS and d.get('uri')==UNESCO_URIS[d['code']]
+        and d.get('icon_token')==f"UT{d['code']}" and re.fullmatch(r'#[0-9A-Fa-f]{6}',str(d.get('color') or ''))
+        for d in ds)
 
 
 def apply_mediatheque_binding(entries: list[dict[str, Any]], db_path: Path | None) -> None:

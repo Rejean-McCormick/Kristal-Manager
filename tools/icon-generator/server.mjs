@@ -3,22 +3,28 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawn, spawnSync } from 'node:child_process';
+import os from 'node:os';
+import { buildLocalRegistry } from './runtime/local-registry.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const VERSION = '2.5.0';
+const VERSION = '2.7.0';
 const DEFAULT_COLLECTION = 'C:\\mycode\\Kristal\\Kristal-Kollection';
 const args = process.argv.slice(2);
 const manualMode = args.includes('--manual');
 function argValue(name){ const i=args.indexOf(name); return i>=0 && args[i+1] ? args[i+1] : null; }
-const collectionRoot = path.resolve(argValue('--collection') || process.env.KRISTAL_COLLECTION_ROOT || DEFAULT_COLLECTION);
-const registryRoot = path.join(collectionRoot, '_registry');
-const registryPath = path.join(registryRoot, 'knowledge-base', 'registry', 'kristal-registry.catalog.json');
+const localsMode = !!argValue('--locals');
+const localApplyEnabled = localsMode && args.includes('--enable-local-apply');
+const collectionRoot = path.resolve(localsMode ? argValue('--locals') : (argValue('--collection') || process.env.KRISTAL_COLLECTION_ROOT || DEFAULT_COLLECTION));
+const registryRoot = localsMode ? path.join(process.env.LOCALAPPDATA || path.join(os.homedir(), '.config'), 'Kristal-Manager', 'icon-reports') : path.join(collectionRoot, '_registry');
+const registryPath = localsMode ? null : path.join(registryRoot, 'knowledge-base', 'registry', 'kristal-registry.catalog.json');
 const builderPath = path.join(here, 'runtime', 'registry-builder.py');
 const overlayPath = path.join(here, 'runtime', 'Kristal-v8-full-normalization-overlay.zip');
 const scannerPath = path.join(here, 'runtime', 'scan-kristals.mjs');
 const palettePath = path.join(here, 'runtime', 'kristal-domain-palette.json');
 const bootstrapRegistry = path.join(here, 'runtime', 'bootstrap', 'kristal-registry.catalog.json');
-const iconLibrary = path.join(registryRoot, 'icons', 'ico');
+const iconLibrary = localsMode ? null : path.join(registryRoot, 'icons', 'ico');
+const unescoPalette=JSON.parse(fs.readFileSync(palettePath,'utf8'));
+const unescoCodes=new Map(unescoPalette.domains.map(d=>[d.code,d]));
 
 function isFile(p){ try{return fs.statSync(p).isFile();}catch{return false;} }
 function isDir(p){ try{return fs.statSync(p).isDirectory();}catch{return false;} }
@@ -101,26 +107,37 @@ function tryRebuildRegistry(){
   return {rebuilt:false,engine:'bootstrap',log:'Registry bootstrap installé; aucune interaction requise.'};
 }
 
-let scanSummary;
-try { scanSummary=runKristalScanner(); }
-catch(e){ scanSummary={ok:false,generated:0,new_kristals:[],repaired_incomplete:[],warning:e.message}; }
-let preparation;
-try { preparation=tryRebuildRegistry(); }
-catch(e){ console.error(`[Kristal Icon Generator] ${e.message}`); process.exit(2); }
-
-let registryCatalog;
-try{ registryCatalog=JSON.parse(fs.readFileSync(registryPath,'utf8')); }
-catch(e){ console.error(`[Kristal Icon Generator] Registry illisible: ${e.message}`); process.exit(3); }
-
-const registryFallbackMerges=mergeEmbeddedScansIntoRegistry(registryCatalog);
+let scanSummary,preparation,registryCatalog,registryFallbackMerges=0;
+if (localsMode) {
+  if(!isDir(collectionRoot)) { console.error(`Dossier locals introuvable: ${collectionRoot}`); process.exit(2); }
+  // Startup is strictly read-only, independent of the apply opt-in.
+  const local=buildLocalRegistry(collectionRoot,palettePath,path.join(here,'runtime','unesco-thesaurus-profile.json'));
+  registryCatalog=local.catalog;
+  scanSummary={ok:true,scanned:local.scanned,generated:0,unresolved_unesco:local.unresolved.map(x=>x.folder),
+    unresolved_details:local.unresolved,new_kristals:[],repaired_incomplete:[]};
+  preparation={rebuilt:false,engine:null,log:'Locals : aperçu en mémoire, aucune écriture au démarrage.'};
+} else {
+  try { scanSummary=runKristalScanner(); }
+  catch(e){ scanSummary={ok:false,generated:0,new_kristals:[],repaired_incomplete:[],warning:e.message}; }
+  try { preparation=tryRebuildRegistry(); }
+  catch(e){ console.error(`[Kristal Icon Generator] ${e.message}`); process.exit(2); }
+  try { registryCatalog=JSON.parse(fs.readFileSync(registryPath,'utf8')); }
+  catch(e){ console.error(`[Kristal Icon Generator] Registry illisible: ${e.message}`); process.exit(3); }
+  registryFallbackMerges=mergeEmbeddedScansIntoRegistry(registryCatalog);
+}
 
 function completeIconProfile(i){
-  return i?.profile==='kristal-icon/1.0' && /^(REF|COL|MOD|PRT|TWN|INV|SRC)$/.test(String(i.nature||'')) && Number.isInteger(i.maturity) && i.maturity>=0 && i.maturity<=5 && Array.isArray(i.domains) && i.domains.length>=1 && i.domains.length<=3 && i.domains.every(d=>d&&/^[A-Z0-9]{2,8}$/.test(String(d.code||''))&&/^#[0-9A-Fa-f]{6}$/.test(String(d.color||'')));
+  return i?.profile==='kristal-icon/1.0' && i.classification?.scheme==='UNESCO Thesaurus' &&
+    i.classification?.kos_id==='kos:unesco-thesaurus' && /^(REF|COL|MOD|PRT|TWN|INV|SRC)$/.test(String(i.nature||'')) &&
+    Number.isInteger(i.maturity) && i.maturity>=0 && i.maturity<=5 &&
+    Array.isArray(i.domains) && i.domains.length>=1 && i.domains.length<=3 &&
+    i.domains.every(d=>d && unescoCodes.has(String(d.code||'')) && d.uri===unescoCodes.get(String(d.code)).uri &&
+    d.icon_token===unescoCodes.get(String(d.code)).icon_token && /^#[0-9A-Fa-f]{6}$/.test(String(d.color||'')));
 }
 function normalizeProfileForRegistry(profile){
   if(!completeIconProfile(profile)) return null;
   const out=structuredClone(profile);
-  const fn=out.rendering?.filename || `KR-${out.nature}-${out.domains.map(d=>d.code).join('-')}-M${out.maturity}.ico`;
+  const fn=`KR-${out.nature}-${out.domains.map(d=>d.icon_token).join('-')}-M${out.maturity}.ico`;
   out.rendering={...(out.rendering||{}),nature_icon_color:out.rendering?.nature_icon_color||'#1e6864',sizes:out.rendering?.sizes||[16,20,24,32,40,48,64,96,128,256],filename:fn};
   out.icon_code=fn.replace(/\.ico$/i,'');
   out.classification_origin=out.classification?.origin||'embedded.icon-profile';
@@ -151,8 +168,8 @@ function mergeEmbeddedScansIntoRegistry(catalog){
 const natureLabels={REF:'Référence',COL:'Collection',MOD:'Modèle',PRT:'Protocole',TWN:'Twin',INV:'Investigation',SRC:'Sources'};
 function iconFilename(entry){
   const i=entry?.presentation?.icon||{};
-  const f=i?.rendering?.filename || (i.icon_code ? `${i.icon_code}.ico` : '');
-  return /^KR-(REF|COL|MOD|PRT|TWN|INV|SRC)-[A-Z0-9-]+-M[0-5]\.ico$/.test(f) ? f : null;
+  const f=`KR-${i.nature}-${(i.domains||[]).map(d=>d.icon_token).join('-')}-M${i.maturity}.ico`;
+  return completeIconProfile(i) && /^KR-(REF|COL|MOD|PRT|TWN|INV|SRC)-UT[1-7](?:-UT[1-7]){0,2}-M[0-5]\.ico$/.test(f) ? f : null;
 }
 const iconConsumers=new Map();
 for(const entry of registryCatalog.entries||[]){
@@ -167,6 +184,11 @@ function targetDir(entry){
   if(!rel) return null;
   const target=path.resolve(collectionRoot,rel);
   if(!inside(collectionRoot,target) || !isDir(target)) return null;
+  if(localsMode) {
+    try { if(!inside(fs.realpathSync(collectionRoot),fs.realpathSync(target)) || fs.realpathSync(target)===fs.realpathSync(collectionRoot)) return null; }
+    catch { return null; }
+    if(!/^Kristal-[A-Za-z0-9][A-Za-z0-9._-]*$/.test(entry.locator||'')) return null;
+  }
   return target;
 }
 function volumeCounts(entry){
@@ -212,7 +234,7 @@ function desktopUpdates(entry,filename){
     kristal:{
       Profile:'kristal-desktop/1.0', IconProfile:'kristal-icon/1.0', IconCode:filename.replace(/\.ico$/i,''),
       Title:desktop.title||entry.title||entry.kristal_id, KristalRef:entry.kristal_ref||icon.kristal_ref||entry.kristal_id,
-      Nature:icon.nature, DomainScheme:'ISCED-F 2013', DomainLevel:'broad-field', Domain1:domains[0]||null, Domain2:domains[1]||null, Domain3:domains[2]||null,
+      Nature:icon.nature, DomainScheme:'UNESCO Thesaurus', DomainLevel:'domain', Domain1:domains[0]||null, Domain2:domains[1]||null, Domain3:domains[2]||null,
       Maturity:icon.maturity, Assertions:counts.assertions, Sources:counts.sources, Generator:`Kristal-Icon-Generator/${VERSION}`
     }
   };
@@ -273,37 +295,54 @@ let shutdownTimer=null;
 const server=http.createServer(async (req,res)=>{
   const u=new URL(req.url,'http://127.0.0.1');
   try{
-    if(u.pathname==='/api/status') return sendJson(res,200,{version:VERSION,registry_found:true,registry_display:registryPath,collection_root:collectionRoot,registry_root:registryRoot,registry_rebuilt:preparation.rebuilt,registry_engine:preparation.engine,scan:{ok:!!scanSummary?.ok,scanned:scanSummary?.scanned||0,generated:scanSummary?.generated||0,already_complete:scanSummary?.already_complete||0,new_kristals:scanSummary?.new_kristals||[],repaired_incomplete:scanSummary?.repaired_incomplete||[],unresolved_isced:scanSummary?.unresolved_isced||[],warning:scanSummary?.warning||null,fallback_registry_merges:registryFallbackMerges},autorun:false,ui_action_required:true,renderable_entries:[...iconConsumers.values()].reduce((n,x)=>n+x.length,0),unique_icons:iconConsumers.size});
-    if(u.pathname==='/api/registry') return send(res,200,fs.readFileSync(registryPath),'application/json; charset=utf-8');
+    if(req.method==='POST' && req.headers.origin && req.headers.origin!==`http://127.0.0.1:${port}`)
+      return sendJson(res,403,{error:'cross_origin_write_rejected'});
+    if(u.pathname==='/api/status') return sendJson(res,200,{version:VERSION,mode:localsMode?'locals':'collection',local_apply_enabled:localApplyEnabled,registry_found:true,registry_display:localsMode?'Aperçu en mémoire (aucun Registry écrit)':registryPath,collection_root:collectionRoot,registry_root:localsMode?null:registryRoot,registry_rebuilt:preparation.rebuilt,registry_engine:preparation.engine,scan:{ok:!!scanSummary?.ok,scanned:scanSummary?.scanned||0,generated:scanSummary?.generated||0,already_complete:scanSummary?.already_complete||0,new_kristals:scanSummary?.new_kristals||[],repaired_incomplete:scanSummary?.repaired_incomplete||[],unresolved_unesco:scanSummary?.unresolved_unesco||[],warning:scanSummary?.warning||null,fallback_registry_merges:registryFallbackMerges},autorun:false,ui_action_required:true,renderable_entries:[...iconConsumers.values()].reduce((n,x)=>n+x.length,0),unique_icons:iconConsumers.size});
+    if(u.pathname==='/api/registry') return send(res,200,localsMode?JSON.stringify(registryCatalog):fs.readFileSync(registryPath),'application/json; charset=utf-8');
     if(u.pathname==='/api/icon' && req.method==='POST'){
+      if(localsMode && !localApplyEnabled) return sendJson(res,403,{error:'local_folder_icons_disabled'});
       const filename=path.basename(u.searchParams.get('filename')||'');
       if(!iconConsumers.has(filename)) return sendJson(res,400,{error:'unknown_icon',filename});
       const bytes=await readBody(req);
-      if(bytes.length<32) return sendJson(res,400,{error:'invalid_icon_payload'});
-      mkdirp(iconLibrary); fs.writeFileSync(path.join(iconLibrary,filename),bytes);
+      if(bytes.length<32 || bytes.length>8*1024*1024 || bytes.readUInt16LE(0)!==0 || bytes.readUInt16LE(2)!==1 || bytes.readUInt16LE(4)<1) return sendJson(res,400,{error:'invalid_icon_payload'});
+      if(iconLibrary) { mkdirp(iconLibrary); fs.writeFileSync(path.join(iconLibrary,filename),bytes); }
       let copied=0,skipped=0;
       for(const entry of iconConsumers.get(filename)){
         const dir=targetDir(entry); if(!dir){skipped++;continue;}
-        const kd=path.join(dir,'.kristal'); mkdirp(kd); cleanupOldIcons(dir,filename); fs.writeFileSync(path.join(kd,filename),bytes); copied++;
+        const kd=path.join(dir,'.kristal'); mkdirp(kd);
+        if(!localsMode) cleanupOldIcons(dir,filename); // Do not delete historical local icons.
+        fs.writeFileSync(path.join(kd,filename),bytes); copied++;
       }
       generatedIcons.add(filename);
       return sendJson(res,200,{ok:true,filename,copied,skipped});
     }
     if(u.pathname==='/api/finalize' && req.method==='POST'){
+      if(localsMode && !localApplyEnabled) return sendJson(res,403,{error:'local_folder_icons_disabled'});
       let client={}; try{client=JSON.parse((await readBody(req,4*1024*1024)).toString('utf8')||'{}');}catch{}
-      mkdirp(registryRoot);
-      if(client.manifest) fs.writeFileSync(path.join(registryRoot,'manifest.json'),JSON.stringify(client.manifest,null,2)+'\n','utf8');
-      if(client.bindings) fs.writeFileSync(path.join(registryRoot,'registry-icon-bindings.json'),JSON.stringify(client.bindings,null,2)+'\n','utf8');
+      if(!localsMode) {
+        mkdirp(registryRoot);
+        if(client.manifest) fs.writeFileSync(path.join(registryRoot,'manifest.json'),JSON.stringify(client.manifest,null,2)+'\n','utf8');
+        if(client.bindings) fs.writeFileSync(path.join(registryRoot,'registry-icon-bindings.json'),JSON.stringify(client.bindings,null,2)+'\n','utf8');
+      }
       const results=[];
       for(const [filename,entries] of iconConsumers){
         if(!generatedIcons.has(filename)) continue;
         for(const entry of entries){
-          try{ results.push({kristal_id:entry.kristal_id,locator:entry.locator,icon:filename,...applyDesktopIni(entry,filename)}); }
+          try{
+            const result=applyDesktopIni(entry,filename);
+            if(localsMode && result.status==='applied') {
+              const folder=targetDir(entry);
+              // Cache presentation metadata only after explicit application. No canonical state writes.
+              fs.writeFileSync(path.join(folder,'.kristal','icon-profile.json'),JSON.stringify(entry.presentation.icon,null,2)+'\n','utf8');
+            }
+            results.push({kristal_id:entry.kristal_id,locator:entry.locator,icon:filename,...result});
+          }
           catch(e){ results.push({kristal_id:entry.kristal_id,locator:entry.locator,icon:filename,status:'error',error:e.message}); }
         }
       }
       const counts={generated_unique_icons:generatedIcons.size,applied:results.filter(x=>x.status==='applied').length,skipped:results.filter(x=>x.status==='skipped').length,errors:results.filter(x=>x.status==='error').length};
       finalReport={profile:'kristal-icon-auto-apply/1.1',generator_version:VERSION,generated_at:new Date().toISOString(),collection_root:collectionRoot,registry_path:registryPath,registry_format:registryCatalog.format,scan:scanSummary,counts,results};
+      mkdirp(registryRoot);
       fs.writeFileSync(path.join(registryRoot,'icon-generation-report.json'),JSON.stringify(finalReport,null,2)+'\n','utf8');
       refreshExplorer();
       sendJson(res,200,{ok:counts.errors===0,counts,report:path.join(registryRoot,'icon-generation-report.json'),registry_root:registryRoot});
@@ -323,7 +362,7 @@ function listen(){
     const url=`http://127.0.0.1:${port}/`; 
     console.log(`Kristal Icon Generator ${VERSION}`);
     console.log(`Collection: ${collectionRoot}`);
-    console.log(`Registry:   ${registryPath}`);
+    console.log(`Registry:   ${registryPath||'mémoire seulement (locals)'}`);
     if(scanSummary?.ok) console.log(`Scan:       ${scanSummary.scanned||0} domaines · ${scanSummary.generated||0} profil(s) généré(s) · ${(scanSummary.new_kristals||[]).length} nouveau(x)`);
     else if(scanSummary?.warning) console.log(`Scan:       avertissement: ${scanSummary.warning}`);
     console.log(preparation.log||'');

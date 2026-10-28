@@ -2,7 +2,7 @@
   "format": "kristal.ecosystem-integration/9.0",
   "standard_target": "9.0.0-draft.1",
   "component": "Kristal Icon Generator",
-  "component_version": "2.5.0",
+  "component_version": "2.6.0",
   "role": "derived_presentation_tool",
   "authority": "presentation only; no semantic, source, registry, or activation authority",
   "reads": [
@@ -31,5 +31,6 @@
     "RUNTIME/DERIVED != CANON",
     "INTEGRITY != AUTHORITY"
   ],
-  "generated_at": "2026-10-06T22:06:00Z"
+  "generated_at": "2026-10-06T22:06:00Z",
+  "subject_domain_taxonomy": "UNESCO Thesaurus; 7 pinned domains; 88 microthesauri; explicit workspace mappings only"
 }

@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
-from .classification_bridge import build_audit, audit_html, display_domain, display_micro, display_isced, save_private_html
+from .classification_bridge import build_audit, audit_html, display_domain, display_micro, save_private_html
 from .inventory import save_private_inventory
 
 
@@ -23,8 +23,8 @@ class ClassificationPanel(tk.Toplevel):
         ttk.Label(head, text='UNESCO Classification Audit', style='H2.TLabel').pack(anchor='w')
         c = self.report['counts']
         ttk.Label(head, text=f'{c["kristals"]} Kristals  ·  {c["unesco_declared"]} UNESCO declared  ·  '
-                    f'{c["isced_observed"]} ISCED observed  ·  {c["needs_review"]} flagged for review').pack(anchor='w', pady=(5,0))
-        ttk.Label(head, text='Framework v7: 7 domains / 88 microthesauri  •  Icon Generator: ISCED-F 2013. '
+                    f'{c["legacy_icons_pending"]} legacy icons  ·  {c["needs_review"]} flagged for review').pack(anchor='w', pady=(5,0))
+        ttk.Label(head, text='Framework v7: 7 domains / 88 microthesauri  •  Icon Generator: UNESCO Thesaurus. '
                     'No automatic assignment or source modifications.', style='Sub.TLabel').pack(anchor='w',pady=(6,0))
         actions = ttk.Frame(self, padding=(16,2))
         actions.pack(fill='x')
@@ -32,10 +32,10 @@ class ClassificationPanel(tk.Toplevel):
         ttk.Button(actions, text='Export HTML…', command=self.export_html).pack(side='left', padx=8)
         ttk.Button(actions, text='Close', command=self.destroy).pack(side='right')
         main = ttk.Frame(self,padding=(16,7,16,16));main.pack(fill='both',expand=True)
-        cols = ('title','domain','micro','isced','status','flags')
+        cols = ('title','domain','micro','legacy','status','flags')
         self.tree = ttk.Treeview(main,columns=cols,show='headings',height=12)
         for key, title, width in [('title','Kristal',180),('domain','UNESCO domain',220),
-                                  ('micro','UNESCO microthesaurus',230),('isced','ISCED',65),
+                                  ('micro','UNESCO microthesaurus',230),('legacy','Legacy icon?',85),
                                   ('status','Mapping',100),('flags','Issues',190)]:
             self.tree.heading(key,text=title)
             self.tree.column(key,width=width,minwidth=65,stretch=key in ('title','micro'))
@@ -45,7 +45,7 @@ class ClassificationPanel(tk.Toplevel):
         scroll.pack(side='right',fill='y')
         for i,rec in enumerate(self.report['entries']):
             self.tree.insert('','end',iid=str(i),values=(rec['title'],display_domain(rec),
-                display_micro(rec),display_isced(rec),rec['unesco']['status'],
+                display_micro(rec),'Yes' if rec['legacy_icon_migration_needed'] else 'No',rec['unesco']['status'],
                 '; '.join(rec['issues']) or '—'))
         self.tree.bind('<<TreeviewSelect>>',self._show)
         self.detail=tk.Text(self,height=8,wrap='word',font=('Consolas',9),background='#ffffff')

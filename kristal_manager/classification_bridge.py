@@ -1,8 +1,5 @@
-"""Read-only UNESCO Thesaurus and ISCED-F classification observation.
-
-Pinned Framework v7 KOS reference (7 domains, 88 microthesauri) and icon
-policy (ISCED-F 2013 broad fields). These are DIFFERENT vocabularies.
-Never infer a UNESCO URI/code from a Kristal title, legacy domain or icon.
+"""Read-only UNESCO Thesaurus reference-spine observation.
+Never infer UNESCO classification from a legacy ISCED icon, title or domain.
 """
 from __future__ import annotations
 
@@ -26,7 +23,6 @@ def reference() -> dict:
     profile = json.loads((REFERENCE / 'unesco-thesaurus-profile.json').read_text('utf-8'))
     baseline = json.loads((REFERENCE / 'unesco-thesaurus-baseline.json').read_text('utf-8'))
     seed = json.loads((REFERENCE / 'toc-registry-100-seed.example.json').read_text('utf-8'))
-    isced = json.loads((REFERENCE / 'isced-f2013-broad-fields.json').read_text('utf-8'))
     domains, micros = {}, {}
     for d in profile['domains']:
         notation = d['notation']
@@ -40,12 +36,10 @@ def reference() -> dict:
             micros[code] = {**mt,'domain':notation}
     if (len(domains), len(micros)) != (7, 88) or (baseline['baseline']['domains'], baseline['baseline']['microthesauri']) != (7, 88):
         raise ValueError('Bundled UNESCO profile differs from the pinned v7 reference')
-    if len(isced['codes']) != 11 or set(isced['codes']) != {f'{i:02}' for i in range(11)}:
-        raise ValueError('Bundled ISCED-F broad-field list differs from Icon Generator policy')
     categories = {x['category_id']: x for x in seed['categories']}
     subjects = {s['subject_id']:s for s in seed['subjects']}
     return {'profile':profile, 'baseline':baseline, 'domains':domains, 'microthesauri':micros,
-            'isced':isced['codes'], 'seed_subjects':subjects,'seed_categories':categories}
+            'seed_subjects':subjects,'seed_categories':categories}
 
 
 def _many(value) -> list[str]:
@@ -68,13 +62,6 @@ def _notations(values, refs: dict) -> tuple[list[str], list[str]]:
         elif not code:
             invalid.append(val)
     return result, invalid
-
-
-def _code_list(value):
-    """Accept only explicit structured values, never descriptive labels."""
-    if isinstance(value, dict):
-        return _many(value.get('broad_fields') or value.get('codes') or value.get('domains') or value.get('code'))
-    return _many(value)
 
 
 def observe(row: dict, icon=None) -> dict:
@@ -109,6 +96,11 @@ def observe(row: dict, icon=None) -> dict:
     domains, unknown_domains = _notations(raw_domains,ref['domains'])
     micros, unknown_micros = _notations(raw_micros,ref['microthesauri'])
     issues = []
+    if u and u.get('kos_id') not in (None,'kos:unesco-thesaurus','unesco-thesaurus'):
+        issues.append('UNESCO KOS identifier mismatch')
+        domains=[];micros=[]
+    if u.get('mapping_status') == 'candidate':
+        issues.append('UNESCO mapping candidate requires review')
     if unknown_domains:
         issues.append('Unknown UNESCO domain code/URI: ' + ', '.join(unknown_domains))
     if unknown_micros:
@@ -131,23 +123,17 @@ def observe(row: dict, icon=None) -> dict:
                               'placement':placement.get('placement'), 'confidence':placement.get('confidence')})
         seed_hint = {'subject_kq':kq,'seed_label':entry.get('label'),'placements':codes,
                      'note':'Framework v7 seed example, not a declaration or approved mapping of this workspace'}
-    icon_codes = list(getattr(icon,'domains',()) or []) if icon else []
+    # Legacy ISCED-F is a historical migration indicator only, NOT an active taxonomy.
     icon_profile = _read_json(root / '.kristal/icon-profile.json') if row.get('path') else {}
-    if icon_profile.get('profile') == 'kristal-icon/1.0':
-        icon_codes = [d.get('code') for d in icon_profile.get('domains',[]) if isinstance(d,dict)]
-    icon_codes = [x for x in icon_codes if isinstance(x,str)]
-    raw_isced = _code_list(meta.get('isced_f2013') or meta.get('isced_f') or {})
-    isced_declared, invalid_isced_declared = _notations(raw_isced,{k:{'uri':f'IS:code:{k}'} for k in ref['isced']})
-    isced_icon, invalid_isced_icon = _notations(icon_codes,{k:{'uri':f'IS:code:{k}'} for k in ref['isced']})
-    if invalid_isced_declared:
-        issues.append('Unknown declared ISCED-F code: '+', '.join(invalid_isced_declared))
-    if invalid_isced_icon:
-        issues.append('Unrecognized icon domain code (may be legacy): '+', '.join(invalid_isced_icon))
-    if isced_declared and isced_icon and set(isced_declared)!=set(isced_icon):
-        issues.append('ISCED-F declaration and icon profile disagree')
-    if len(isced_icon)>3:
-        issues.append('Icon lists more than 3 ISCED-F broad fields (Kristal extension limit)')
-    isced_codes = isced_declared or isced_icon
+    legacy_icon = bool(icon_profile and icon_profile.get('classification',{}).get('scheme') != 'UNESCO Thesaurus')
+    legacy_metadata = 'isced_f2013' in meta or 'isced_f' in meta
+    needs_migration = legacy_icon or legacy_metadata
+    if icon_profile.get('classification',{}).get('scheme') == 'UNESCO Thesaurus':
+        icon_domain_codes=[d.get('code') for d in icon_profile.get('domains',[]) if isinstance(d,dict)]
+        if not declared:
+            issues.append('UNESCO icon profile exists without a workspace UNESCO declaration')
+        elif any(code not in domains for code in icon_domain_codes):
+            issues.append('UNESCO icon domains differ from declared UNESCO domains')
     status = 'Review' if issues else 'Declared' if declared else 'Seed hint only' if seed_hint else 'Not mapped'
     return {'unesco':{'status':status,'source':source if declared else 'none',
                       'domain_codes':domains,'domain_labels':[ref['domains'][x]['label_en'] for x in domains],
@@ -156,10 +142,7 @@ def observe(row: dict, icon=None) -> dict:
                       'domain_7_is_facet':'7' in domains,
                       'seed_hint':seed_hint,
                       'concept_uris':_many(u.get('concept_uris'))},
-            'isced_f2013':{'codes':isced_codes,'labels':[ref['isced'][x] for x in isced_codes],
-                           'declared_codes':isced_declared,'icon_codes':isced_icon,
-                           'source':'workspace/discovery declaration' if isced_declared else 'icon-profile' if isced_icon else 'unavailable',
-                           'status':'Review' if any('ISCED' in x or 'icon domain' in x for x in issues) else 'Observed' if isced_codes else 'Not mapped'},
+            'legacy_icon_migration_needed':needs_migration,
             'legacy_domain':category_of(row),
             'issues':issues,'conformity':'NOT_EVALUATED',
             'warning':'Taxonomy observation only. No C1, semantic verification, or UNESCO endorsement.'}
@@ -175,11 +158,6 @@ def display_micro(result: dict) -> str:
     return ' / '.join(f'{c} {label}' for c,label in zip(codes,labels)) if codes else 'Unmapped'
 
 
-def display_isced(result: dict) -> str:
-    codes = result['isced_f2013']['codes']
-    return ', '.join(codes) if codes else 'Unmapped'
-
-
 def build_audit(rows: list[dict], icons: dict | None=None) -> dict:
     """Report observations for current Kristals only; internal histories excluded."""
     output=[]; icons=icons or {}
@@ -192,16 +170,16 @@ def build_audit(rows: list[dict], icons: dict | None=None) -> dict:
     return {'format':FORMAT,'generated_at':datetime.now(timezone.utc).isoformat(),
             'reference':{'name':'UNESCO Thesaurus, Framework v7 pinned reference spine',
                          'domains':7,'microthesauri':88,
-                         'isced':'ISCED-F 2013 broad fields, Kristal Icon Generator 2.4 policy'},
+                         'icon_scheme':'UNESCO Thesaurus (UT1–UT7)'},
             'counts':{'kristals':len(output),
                       'unesco_declared':sum(bool(x['unesco']['domain_codes'] or x['unesco']['microthesaurus_codes']) and x['unesco']['source']!='none' for x in output),
                       'unesco_unmapped':sum(not x['unesco']['domain_codes'] and not x['unesco']['microthesaurus_codes'] for x in output),
-                      'isced_observed':sum(bool(x['isced_f2013']['codes']) for x in output),
+                      'legacy_icons_pending':sum(bool(x['legacy_icon_migration_needed']) for x in output),
                       'needs_review':sum(bool(x['issues']) for x in output)},
             'entries':output,
             'limits':['No automatic UNESCO concept or category inference from free text or names.',
                       'Framework v7 subject seed placements are hints only, and require explicit KQ identity.',
-                      'An observed icon ISCED code is presentation metadata, not a semantic or C1 check.',
+                      'Legacy icon metadata is reported only for migration; it is never mapped to UNESCO automatically.',
                       'No source Kristal was modified.']}
 
 
@@ -210,7 +188,7 @@ def audit_html(report: dict) -> str:
     cells=[]
     for rec in report['entries']:
         cells.append('<tr>'+''.join('<td>'+escape(str(text))+'</td>' for text in (
-            rec['title'],display_domain(rec),display_micro(rec),display_isced(rec),
+            rec['title'],display_domain(rec),display_micro(rec),'Yes' if rec['legacy_icon_migration_needed'] else 'No',
             rec['unesco']['status'], '; '.join(rec['issues']) or '—'))+'</tr>')
     counts=report['counts']
     return ('<!doctype html><html lang="en"><meta charset="utf-8"><title>Kristal UNESCO Classification Audit</title>'
@@ -219,9 +197,9 @@ def audit_html(report: dict) -> str:
             'thead{background:#eaf3f0}small{color:#506865}</style>'
             '<h1>Kristal Manager — UNESCO classification audit</h1>'
             f'<p>{counts["kristals"]} Kristals · {counts["unesco_declared"]} declared UNESCO mappings · '
-            f'{counts["isced_observed"]} ISCED observed · {counts["needs_review"]} review flags</p>'
-            '<small>Framework v7 pinned UNESCO reference, ISCED-F 2013 for icons. Read-only, not conformance certification.</small>'
-            '<table><thead><tr><th>Kristal</th><th>UNESCO domain</th><th>Microthesaurus</th><th>ISCED icon</th><th>Status</th><th>Review</th></tr></thead><tbody>'
+            f'{counts["legacy_icons_pending"]} legacy icons · {counts["needs_review"]} review flags</p>'
+            '<small>Framework v7 pinned UNESCO reference; icons use UT1–UT7. Read-only, not conformance certification.</small>'
+            '<table><thead><tr><th>Kristal</th><th>UNESCO domain</th><th>Microthesaurus</th><th>Legacy icon?</th><th>Status</th><th>Review</th></tr></thead><tbody>'
             +''.join(cells)+'</tbody></table></html>')
 
 

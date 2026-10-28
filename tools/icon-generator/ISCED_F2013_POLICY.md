@@ -1,3 +1,5 @@
+> **ARCHIVE HISTORIQUE — N’EST PLUS UNE POLITIQUE ACTIVE.** La classification des icônes se fait maintenant uniquement via le [Thésaurus UNESCO](UNESCO_THESAURUS_POLICY.md). Aucun code ISCED-F ne peut être converti automatiquement en domaine UNESCO.
+
 # Politique des domaines — ISCED-F 2013
 
 Kristal Icon Generator 2.4 utilise la **Classification internationale type de l’éducation — Domaines d’études et de formation 2013 (ISCED-F 2013)** de l’Institut de statistique de l’UNESCO comme taxonomie canonique de domaines.

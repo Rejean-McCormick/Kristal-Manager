@@ -1,3 +1,27 @@
+## Mode `locals` (Manager, v2.7.0) — lecture seule par défaut
+
+Le Manager démarre le générateur inclus sur le dossier local sélectionné, sans passer par `Kristal-Kollection`. À l'ouverture, seuls les fichiers `kristal.workspace.json` des dossiers `Kristal-*` immédiatement sous la racine sont **lus**. Le Registry d'aperçu est en mémoire ; aucune écriture de profil, de rapport, d'icône ou de `desktop.ini` n'est effectuée automatiquement.
+
+- Dans le menu **Icons** de Manager, l'autorisation d'appliquer des icônes Windows est **OFF au démarrage de chaque session** (pas de préférence persistée).
+- Même autorisé, le navigateur exige une deuxième coche, désactivée par défaut, et une confirmation avant application de tous les Kristals éligibles.
+- Les anciens codes ISCED et les catégories déduites des noms ne qualifient jamais les domaines UNESCO. Les mappings candidats, inconnus ou incohérents sont exclus.
+- Après application uniquement : écriture de `.kristal/KR-...-UTx-...ico`, `.kristal/icon-profile.json` et `desktop.ini` sur les Kristals éligibles ; rapport privé dans le profil utilisateur de Manager. Les identités et états canoniques ne sont pas modifiés.
+- Désactiver l'option ou fermer Manager interrompt les serveurs locaux lancés par Manager. Le lanceur autonome `Ouvrir_Generateur.cmd` continue de cibler `Kristal-Kollection` (flux historique distinct).
+
+Exécution technique de prévisualisation : `node server.mjs --locals "C:\mycode\Kristal\locals"`. Le drapeau `--enable-local-apply` n'est transmis par Manager qu'après autorisation. Sans celui-ci, toute requête d'écriture locale renvoie HTTP 403.
+
+---
+
+# Kristal Icon Generator — UNESCO Thesaurus unifié
+
+**Politique active :** [UNESCO_THESAURUS_POLICY.md](UNESCO_THESAURUS_POLICY.md). Les domaines des icônes sont désormais exclusivement les 7 domaines UNESCO (les 88 microthésaurus servent au classement fin), avec métadonnées explicites contrôlées. **ISCED-F est retiré du fonctionnement actif**, ainsi que toute tentative de convertir automatiquement des codes ISCED-F en UNESCO. Les anciens profils non alignés sont signalés `unresolved_unesco` ; ils ne sont ni réécrits ni convertis silencieusement. La nature et la maturité restent indépendantes.
+
+Le scanner génère des profils UNESCO sur la base de `kristal.workspace.json` et écrit des fichiers de métadonnées uniquement pour les alignements explicitement déclarés et cohérents. La génération/applique des ICO ou des fichiers Windows `desktop.ini` reste subordonnée à une action explicite dans l’UI.
+
+---
+
+## Documentation historique (avant consolidation)
+
 # Kristal Icon Generator — UI OneClick + Auto Scan
 
 Version **2.5.0**.
@@ -16,7 +40,7 @@ C:\mycode\Kristal\Kristal-Kollection\domains\Kristal-*
 
 avant de reconstruire le Registry.
 
-## Domaines : ISCED-F 2013 (UNESCO)
+## Domaines historiques : ISCED-F 2013 (obsolète)
 
 La charte maison est remplacée par les **11 grands domaines ISCED-F 2013** de l’Institut de statistique de l’UNESCO. Les codes `00` à `10` deviennent les codes de domaine canoniques des icônes et de `desktop.ini`.
 

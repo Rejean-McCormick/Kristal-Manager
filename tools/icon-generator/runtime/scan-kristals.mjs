@@ -20,13 +20,30 @@ function norm(s){return String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/
 function compact(s){return norm(s).replace(/\s+/g,'');}
 function clamp(n,a,b){return Math.max(a,Math.min(b,n));}
 
-const paletteDoc=readJson(palettePath)||{domains:[],aliases:{},legacy_to_isced:{}};
+const paletteDoc=readJson(palettePath)||{domains:[]};
+const kosProfile=readJson(path.join(here,'unesco-thesaurus-profile.json'));
+if(paletteDoc.classification?.kos_id!=='kos:unesco-thesaurus'||kosProfile?.domains?.length!==7)throw new Error('Pinned UNESCO Thesaurus reference missing or invalid');
+const validMicros=new Map(kosProfile.domains.flatMap(d=>d.microthesauri.map(m=>[m.notation,{...m,domain:d.notation}])));
 const palette=Array.isArray(paletteDoc.domains)?paletteDoc.domains:[];
 const byCode=new Map(palette.map(d=>[String(d.code).toUpperCase(),d]));
-const byNormName=new Map();
-for(const d of palette){byNormName.set(compact(d.name),d);if(d.name_en)byNormName.set(compact(d.name_en),d);byNormName.set(compact(d.code),d);}
-const aliases=Object.fromEntries(Object.entries(paletteDoc.aliases||{}).map(([k,v])=>[compact(k),String(v).toUpperCase()]));
-const legacyToIsced=Object.fromEntries(Object.entries(paletteDoc.legacy_to_isced||{}).map(([k,v])=>[String(k).toUpperCase(),String(v).toUpperCase()]));
+const domainUris=new Map(palette.map(d=>[d.uri,d.code]));
+const microUris=new Map([...validMicros.entries()].map(([code,m])=>[m.uri,code]));
+function values(v){return typeof v==='string'?[v]:Array.isArray(v)?v.filter(x=>typeof x==='string'):[];}
+function resolveNotations(codes,uris,requested){const result=[];const unknown=[];for(const raw of values(requested)){const val=String(raw).trim();const code=codes.has(val)?val:uris.get(val);if(code){if(!result.includes(code))result.push(code);}else unknown.push(val);}return {result,unknown};}
+function declaredUnesco(workspace){
+ const c=workspace?.classification||{};const u=c.unesco_thesaurus||c.unesco||workspace?.subject?.unesco_thesaurus||workspace?.subject?.unesco;
+ if(!u||typeof u!=='object'||(u.kos_id&&u.kos_id!=='kos:unesco-thesaurus'))return {domains:[],issues:['missing_explicit_unesco_classification']};
+ if(u.mapping_status==='candidate')return {domains:[],issues:['unesco_mapping_candidate_requires_review']};
+ const ds=resolveNotations(byCode,domainUris,u.domains||u.domain||u.domain_notations);
+ const ms=resolveNotations(validMicros,microUris,u.microthesauri||u.microthesaurus||u.microthesaurus_notations);
+ const issues=[...ds.unknown.map(x=>`unknown_unesco_domain:${x}`),...ms.unknown.map(x=>`unknown_unesco_microthesaurus:${x}`)];
+ if(issues.length)return {domains:[],issues};
+ const implied=[...new Set(ms.result.map(x=>validMicros.get(x).domain))];
+ if(ds.result.length&&implied.some(code=>!ds.result.includes(code)))return {domains:[],issues:['unesco_domain_microthesaurus_mismatch']};
+ const codes=ds.result.length?ds.result:implied;
+ if(codes.length>3)return {domains:[],issues:['more_than_three_unesco_domains_requires_review']};
+ return {domains:codes.slice(0,3).map(code=>byCode.get(code)),microthesauri:ms.result,issues:codes.length?[]:['unesco_domain_not_declared']};
+}
 
 const natureRules=[
   ['SRC',/(^|\b)(sources?|source material|bibliograph|raw corpus|evidence library|catalogue de sources|references brutes)(\b|$)/i,0.96],
@@ -45,33 +62,44 @@ function chooseState(files){const c=files.filter(p=>/\.json$/i.test(p)&&(/krista
 function metadataTextFromJson(obj,limit=20000){const parts=[];let used=0;const skip=new Set(['assertions','source_refs','provenance','evidence','records','items','edges','nodes','referents','entities']);function rec(v,key='',depth=0){if(used>limit||depth>5)return;if(typeof v==='string'){if(v.length<=500){parts.push(key+' '+v);used+=v.length;}return;}if(typeof v==='number'||typeof v==='boolean'){parts.push(key+' '+String(v));used+=20;return;}if(Array.isArray(v)){if(skip.has(key))return;for(const x of v.slice(0,20))rec(x,key,depth+1);return;}if(v&&typeof v==='object'){for(const [k,x] of Object.entries(v)){if(skip.has(k))continue;rec(x,k,depth+1);}}}rec(obj);return parts.join('\n').slice(0,limit);}
 function countArray(obj,key){return Array.isArray(obj?.[key])?obj[key].length:0;}
 
-function explicitDomainCandidates(desktop,state){const vals=[];for(const k of ['Domain1','Domain2','Domain3'])if(desktop[k])vals.push(desktop[k]);function add(v){if(typeof v==='string')vals.push(v);else if(Array.isArray(v))for(const x of v)add(x);else if(v&&typeof v==='object')for(const k of ['code','name','domain','subdomain'])if(v[k])add(v[k]);}
-  add(state?.domain);add(state?.domains);add(state?.applicability?.domain);add(state?.applicability?.subdomain);return vals;}
-function paletteMatch(value){const c=String(value??'').trim().toUpperCase();if(byCode.has(c))return byCode.get(c);if(legacyToIsced[c]&&byCode.has(legacyToIsced[c]))return byCode.get(legacyToIsced[c]);const n=compact(value);if(byNormName.has(n))return byNormName.get(n);if(aliases[n]&&byCode.has(aliases[n]))return byCode.get(aliases[n]);return null;}
-function scoreDomains(folderName,text,desktop,state){const picked=[];const scores=new Map();function score(d,n,why){if(!d)return;const code=d.code;const prev=scores.get(code)||{score:0,reasons:[]};prev.score+=n;prev.reasons.push(why);scores.set(code,prev);}for(const v of explicitDomainCandidates(desktop,state)){const d=paletteMatch(v);if(d)score(d,100,'explicit:'+v);}const suffix=folderName.replace(/^Kristal[-_ ]*/i,'');let d=paletteMatch(suffix);if(d)score(d,80,'folder:'+suffix);const ntext=' '+norm(`${suffix}\n${text}`)+' ';for(const [alias,code] of Object.entries(aliases)){const phrase=' '+norm(alias)+' ';if(ntext.includes(phrase)&&byCode.has(code))score(byCode.get(code),alias.length>=6?18:9,'keyword:'+alias);}for(const pd of palette){const nn=norm(pd.name);if(nn.length>=4&&ntext.includes(' '+nn+' '))score(pd,12,'palette-name:'+pd.name);}const ordered=[...scores.entries()].sort((a,b)=>b[1].score-a[1].score);for(const [code,meta] of ordered){if(picked.length>=3)break;if(meta.score<12&&picked.length)continue;picked.push({...byCode.get(code),confidence:clamp(meta.score/100,0.55,1),evidence:meta.reasons});}
-  return picked;
-}
 function inferNature(text,desktop,state,files){const explicit=String(desktop.Nature||state?.nature||state?.icon_nature||'').toUpperCase();if(NATURES.has(explicit))return{value:explicit,confidence:1,evidence:['explicit-metadata']};const at=String(state?.artifact_type||'');const fmt=String(state?.format||'');const hay=`${text}\n${at}\n${fmt}`;if(!state&&files.some(p=>/source|bibliograph|references?/i.test(p)))return{value:'SRC',confidence:.88,evidence:['sources-only-structure']};for(const [value,re,c] of natureRules){if(re.test(hay))return{value,confidence:c,evidence:['semantic-keyword']};}if(/catalog|collection/i.test(at+fmt))return{value:'COL',confidence:.88,evidence:['artifact-type']};if(/protocol|procedure/i.test(at+fmt))return{value:'PRT',confidence:.9,evidence:['artifact-type']};if(/model/i.test(at+fmt))return{value:'MOD',confidence:.86,evidence:['artifact-type']};return{value:'REF',confidence:.68,evidence:['conservative-reference-default']};}
 function inferMaturity(desktop,state,files,readme){const dm=Number(desktop.Maturity);if(Number.isInteger(dm)&&dm>=0&&dm<=5)return{value:dm,confidence:1,evidence:['desktop-explicit']};const sm=Number(state?.maturity);if(Number.isInteger(sm)&&sm>=0&&sm<=5)return{value:sm,confidence:1,evidence:['state-explicit']};const assertions=countArray(state,'assertions'),sources=countArray(state,'source_refs');const schema=parseFloat(String(state?.schema_version||'0'))||0;let v=0,reasons=[];if(files.length>0){v=1;reasons.push('package-present');}if(state||files.some(p=>/\.json$/i.test(p))){v=Math.max(v,2);reasons.push('structured-metadata');}if(state&&(assertions>=50||sources>=3||files.length>=8)){v=Math.max(v,3);reasons.push('mapped-structure');}if(state&&schema>=6&&assertions>=500&&sources>=10){v=Math.max(v,4);reasons.push('strong-structural-validation');}if(readme&&readme.length>1000&&state&&assertions>=100)v=Math.max(v,3);return{value:v,confidence:v>=3?.84:.76,evidence:reasons};}
-function validDomain(d){return d&&/^[A-Z0-9]{2,8}$/.test(String(d.code||''))&&/^#[0-9A-F]{6}$/i.test(String(d.color||''));}
-function validProfile(p){return p?.profile==='kristal-icon/1.0'&&NATURES.has(p.nature)&&Number.isInteger(p.maturity)&&p.maturity>=0&&p.maturity<=5&&Array.isArray(p.domains)&&p.domains.length>=1&&p.domains.length<=3&&p.domains.every(validDomain);}
-function iconName(nature,domains,maturity){return `KR-${nature}-${domains.map(d=>d.code).join('-')}-M${maturity}.ico`;}
+function validDomain(d){return d&&byCode.has(String(d.code||''))&&byCode.get(String(d.code)).uri===d.uri&&/^#[0-9A-F]{6}$/i.test(String(d.color||''));}
+function validProfile(p){return p?.profile==='kristal-icon/1.0'&&NATURES.has(p.nature)&&Number.isInteger(p.maturity)&&p.maturity>=0&&p.maturity<=5&&Array.isArray(p.domains)&&p.domains.length>=1&&p.domains.length<=3&&p.classification?.scheme==='UNESCO Thesaurus'&&p.classification?.kos_id==='kos:unesco-thesaurus'&&p.domains.every(validDomain);}
+function iconName(nature,domains,maturity){return `KR-${nature}-${domains.map(d=>d.icon_token).join('-')}-M${maturity}.ico`;}
 
 let oldRegistry={entries:[]};if(isFile(registryPath))oldRegistry=readJson(registryPath)||oldRegistry;const oldById=new Map((oldRegistry.entries||[]).map(e=>[e.kristal_id,e]));
-const result={profile:'kristal-icon-auto-scan/1.1',generated_at:new Date().toISOString(),collection_root:collection,scanned:0,already_complete:0,generated:0,new_kristals:[],repaired_incomplete:[],unresolved_isced:[],items:[]};
+const result={profile:'kristal-icon-auto-scan/1.2',generated_at:new Date().toISOString(),collection_root:collection,scanned:0,already_complete:0,generated:0,new_kristals:[],repaired_incomplete:[],unresolved_unesco:[],items:[]};
 if(!isDir(domainsRoot)){console.error(`domains introuvable: ${domainsRoot}`);process.exit(2);}
 for(const ent of fs.readdirSync(domainsRoot,{withFileTypes:true}).filter(e=>e.isDirectory()&&e.name.startsWith('Kristal-')).sort((a,b)=>a.name.localeCompare(b.name))){
-  result.scanned++;const dir=path.join(domainsRoot,ent.name),metaDir=path.join(dir,'.kristal'),profilePath=path.join(metaDir,'icon-profile.json'),scanPath=path.join(metaDir,'auto-scan.json');const existing=readJson(profilePath);const old=oldById.get(ent.name);const oldComplete=old&&validProfile(old?.presentation?.icon);const existingIsced=validProfile(existing)&&existing.domains.every(d=>byCode.has(String(d.code).toUpperCase()));const oldIsced=oldComplete&&old.presentation.icon.domains.every(d=>byCode.has(String(d.code).toUpperCase()));if(existingIsced||oldIsced){result.already_complete++;continue;}
-  const files=walkFiles(dir,4);const statePath=chooseState(files);const state=statePath?readJson(statePath):null;const v9Path=path.join(dir,'.kristal','v9','state-snapshot.json');const v9State=isFile(v9Path)?readJson(v9Path):null;let readme='';for(const n of ['README.md','Readme.md','readme.md']){const rp=path.join(dir,n);if(isFile(rp)){try{readme=fs.readFileSync(rp,'utf8').slice(0,50000);}catch{}break;}}
-  const desktop=parseDesktopIni(path.join(dir,'desktop.ini'));const stateMeta=state?metadataTextFromJson(state,20000):'';const fileNames=files.slice(0,200).map(p=>path.relative(dir,p)).join('\n');const v9Meta=v9State?metadataTextFromJson({state_ref:v9State.state_ref,scope:v9State.scope,members:v9State.members?.length,references:v9State.references?.length},4000):'';const text=`${ent.name}\n${desktop.Title||''}\n${readme}\n${stateMeta}\n${v9Meta}\n${fileNames}`;
-  let domains=scoreDomains(ent.name,text,desktop,state).slice(0,3);const nat=inferNature(text,desktop,state,files);const mat=inferMaturity(desktop,state,files,readme);
-  // Preserve explicit pieces, but normalize legacy domain codes into ISCED-F broad fields.
-  if(existing&&Array.isArray(existing.domains)&&existing.domains.length){const converted=existing.domains.map(d=>paletteMatch(d?.code||d?.name||d)).filter(Boolean);if(converted.length)domains=[...new Map(converted.map(d=>[d.code,{...d,confidence:1,evidence:['partial-profile-explicit-isced-normalized']}])).values()].slice(0,3);}
-  if(!domains.length){result.unresolved_isced.push(ent.name);result.items.push({kristal_id:ent.name,status:'unresolved_isced',reason:'No defensible ISCED-F 2013 broad field match; no residual field invented.'});continue;}
-  const nature=NATURES.has(existing?.nature)?existing.nature:nat.value;const maturity=Number.isInteger(existing?.maturity)&&existing.maturity>=0&&existing.maturity<=5?existing.maturity:mat.value;
-  const cleanDomains=domains.map(d=>({code:String(d.code).toUpperCase(),name:d.name||d.code,color:String(d.color).toUpperCase()}));const filename=iconName(nature,cleanDomains,maturity);const confidence=Math.min(existing?.nature?1:nat.confidence,existing?.maturity!==undefined?1:mat.confidence,...domains.map(d=>d.confidence??.5));
-  const profile={profile:'kristal-icon/1.0',kristal_ref:ent.name,nature,maturity,domains:cleanDomains,rendering:{nature_icon_color:'#1e6864',sizes:SIZES,filename},classification:{origin:'kristal-icon-auto-scan/1.1',scheme:'ISCED-F 2013',level:'broad-field',publisher:'UNESCO Institute for Statistics',confidence:Number(confidence.toFixed(2)),policy:'explicit metadata > ISCED legacy mapping > structured metadata > deterministic semantic scan; unresolved cases are not forced into ISCED 00'}};
-  const report={profile:'kristal-icon-auto-scan.record/1.1',generated_at:new Date().toISOString(),kristal_id:ent.name,status:'generated',was_in_registry:!!old,registry_profile_complete_before:!!oldComplete,state_file:statePath?path.relative(dir,statePath).replace(/\\/g,'/'):null,state_schema:state?.schema_version||null,v9_state_ref:v9State?.state_ref||null,v9_logical_commitment:v9State?.logical_commitment?.digest||null,assertions:countArray(state,'assertions'),sources:countArray(state,'source_refs'),file_count:files.length,inference:{nature:nat,maturity:mat,domains:domains.map(d=>({code:d.code,confidence:d.confidence,evidence:d.evidence}))},result:{nature,maturity,domains:cleanDomains,filename,confidence:Number(confidence.toFixed(2))}};
-  mkdirp(metaDir);fs.writeFileSync(profilePath,JSON.stringify(profile,null,2)+'\n','utf8');fs.writeFileSync(scanPath,JSON.stringify(report,null,2)+'\n','utf8');result.generated++;if(!old)result.new_kristals.push(ent.name);else result.repaired_incomplete.push(ent.name);result.items.push(report);
+  result.scanned++;
+  const dir=path.join(domainsRoot,ent.name),metaDir=path.join(dir,'.kristal'),profilePath=path.join(metaDir,'icon-profile.json'),scanPath=path.join(metaDir,'auto-scan.json');
+  const existing=readJson(profilePath);const old=oldById.get(ent.name);
+  const oldComplete=validProfile(old?.presentation?.icon);
+  // The old ISCED-F profile is NEVER a source of UNESCO classification.
+  const workspace=readJson(path.join(dir,'kristal.workspace.json'));
+  const mapping=declaredUnesco(workspace);
+  if(!mapping.domains.length){result.unresolved_unesco.push(ent.name);result.items.push({kristal_id:ent.name,status:'unresolved_unesco',issues:mapping.issues});continue;}
+  const domains=mapping.domains;
+  const existingUnesco=validProfile(existing)&&existing.domains.map(d=>d.code).join(',')===domains.map(d=>d.code).join(',')&&existing.rendering?.filename===iconName(existing.nature,domains,existing.maturity);
+  if(existingUnesco){result.already_complete++;continue;}
+  const files=walkFiles(dir,4);const statePath=chooseState(files);const state=statePath?readJson(statePath):null;
+  let readme='';for(const n of ['README.md','Readme.md','readme.md']){const rp=path.join(dir,n);if(isFile(rp)){try{readme=fs.readFileSync(rp,'utf8').slice(0,50000);}catch{}break;}}
+  const desktop=parseDesktopIni(path.join(dir,'desktop.ini'));
+  const text=`${ent.name}\n${desktop.Title||''}\n${readme}\n${metadataTextFromJson(state||{},20000)}`;
+  const nat=inferNature(text,desktop,state,files);const mat=inferMaturity(desktop,state,files,readme);
+  const nature=NATURES.has(existing?.nature)?existing.nature:nat.value;
+  const maturity=Number.isInteger(existing?.maturity)&&existing.maturity>=0&&existing.maturity<=5?existing.maturity:mat.value;
+  const cleanDomains=domains.map(d=>({code:d.code,icon_token:d.icon_token,name:d.name,uri:d.uri,color:d.color.toUpperCase()}));
+  const filename=iconName(nature,domains,maturity);
+  const parsed=workspace?.classification?.unesco_thesaurus||workspace?.classification?.unesco||workspace?.subject?.unesco_thesaurus||workspace?.subject?.unesco||{};
+  const profile={profile:'kristal-icon/1.0',kristal_ref:ent.name,nature,maturity,domains:cleanDomains,
+    rendering:{nature_icon_color:'#1e6864',sizes:SIZES,filename},
+    classification:{origin:'kristal-icon-auto-scan/unesco-1.0',scheme:'UNESCO Thesaurus',kos_id:'kos:unesco-thesaurus',level:'domain',publisher:'UNESCO',domain_uris:domains.map(d=>d.uri),microthesauri:mapping.microthesauri||[],mapping_status:parsed.mapping_status||'declared',policy:'only explicit, internally consistent UNESCO workspace declarations; no ISCED-F fallback'}};
+  const report={profile:'kristal-icon-auto-scan.record/1.2',generated_at:new Date().toISOString(),kristal_id:ent.name,status:'generated',was_in_registry:!!old,registry_profile_complete_before:!!oldComplete,
+    state_file:statePath?path.relative(dir,statePath).replace(/\\/g,'/'):null,assertions:countArray(state,'assertions'),sources:countArray(state,'source_refs'),file_count:files.length,
+    inference:{nature:nat,maturity:mat,domains:{source:'explicit-unesco-workspace',codes:domains.map(d=>d.code)}},result:{nature,maturity,domains:cleanDomains,filename}};
+  mkdirp(metaDir);fs.writeFileSync(profilePath,JSON.stringify(profile,null,2)+'\n','utf8');fs.writeFileSync(scanPath,JSON.stringify(report,null,2)+'\n','utf8');
+  result.generated++;if(!old)result.new_kristals.push(ent.name);else result.repaired_incomplete.push(ent.name);result.items.push(report);
 }
 mkdirp(path.join(collection,'_registry'));fs.writeFileSync(path.join(collection,'_registry','icon-scan-report.json'),JSON.stringify(result,null,2)+'\n','utf8');console.log(JSON.stringify(result,null,2));

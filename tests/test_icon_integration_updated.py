@@ -78,7 +78,7 @@ def test_original_windows_generator_unchanged_and_available():
     assert (root/'Ouvrir_Generateur.cmd').is_file()
     assert (root/'server.mjs').is_file()
     assert (root/'index.html').is_file()
-    assert (root/'VERSION').read_text(encoding='utf-8').strip() == '2.5.0'
+    assert (root/'VERSION').read_text(encoding='utf-8').strip() == '2.7.0'
 
 
 @pytest.mark.skipif(os.name != 'nt' and not os.environ.get('DISPLAY'), reason='Tk display required')

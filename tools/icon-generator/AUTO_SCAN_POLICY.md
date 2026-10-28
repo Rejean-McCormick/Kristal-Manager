@@ -1,3 +1,5 @@
+> **Politique active :** [UNESCO_THESAURUS_POLICY.md](UNESCO_THESAURUS_POLICY.md). Le texte ci-dessous décrit le comportement historique ISCED-F et n’est plus appliqué.
+
 # Politique d'auto-scan Kristal Icon Generator 2.4
 
 ## But

@@ -37,7 +37,7 @@ def inventory(roots: list[str|Path], *, include_paths: bool=False, verify_source
         record['classification_verified']=False
         taxonomy=observe(row)
         record['unesco_thesaurus']=taxonomy['unesco']
-        record['isced_f2013']=taxonomy['isced_f2013']
+        record['legacy_icon_migration_needed']=taxonomy['legacy_icon_migration_needed']
         record['classification_review_issues']=taxonomy['issues']
         if verify_sources:
             from .operational import assess_local
@@ -72,7 +72,7 @@ def inventory(roots: list[str|Path], *, include_paths: bool=False, verify_source
            'READY indicates a structurally present local state, not C1 qualification.',
            'The declared v10 baseline does not prove a hosted or published state.',
            'Arketype identity is displayed only when explicitly declared in consistent Kit metadata.',
-           'UNESCO Thesaurus/ISCED-F classification is metadata observation, not C1 validation; seed hints are not declarations.',
+           'UNESCO Thesaurus classification is an external mapping observation, not C1 validation; no ISCED-F auto-migration.',
            'Discovery fingerprint consistency does not verify current source bytes.',
            'Reader hints do not authorize access, execution, qualification or publication.',
            'Use --verify-sources for on-demand registered-byte verification; this does not establish domain validity.'

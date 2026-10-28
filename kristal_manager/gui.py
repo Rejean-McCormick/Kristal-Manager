@@ -10,6 +10,7 @@ from datetime import datetime
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 from pathlib import Path
 from queue import Empty, Queue
@@ -24,7 +25,7 @@ from .diag_bridge import DiagConfigurationError, validate_config, run_diagnostic
 from .diag_panel import DiagnosticPanel
 from .batch_panel import BatchRenamePanel
 from .classification_panel import ClassificationPanel
-from .classification_bridge import (observe, reference, display_domain, display_micro, display_isced)
+from .classification_bridge import (observe, reference, display_domain, display_micro)
 from .inventory import inventory, konstellation_preview, save_private_inventory
 from .icon_bridge import discover_icon, read_registry_icon_index, tk_photo_from_icon, IconInfo
 from .operational import assess_local
@@ -73,6 +74,9 @@ class ManagerWindow(tk.Tk):
         self._apply_window_icon()
 
         self.settings = load_settings()
+        # Session-only opt-in: never persist this permission; reset OFF at each launch.
+        self.custom_folder_icons_enabled = tk.BooleanVar(value=False)
+        self._local_icon_processes: list[tuple[subprocess.Popen, bool]] = []
         self.events = Queue()
         self.rows: list[dict] = []
         self.icons: dict[str, IconInfo] = {}
@@ -87,7 +91,6 @@ class ManagerWindow(tk.Tk):
         self.filter_var = tk.StringVar()
         self.category_var = tk.StringVar(value='All UNESCO domains')
         self.micro_var = tk.StringVar(value='All microthesauri')
-        self.isced_var = tk.StringVar(value='All ISCED fields')
         self.taxonomy_cache: dict[str, dict] = {}
         self.arketype_var = tk.StringVar(value='All Arketypes')
         self.usage_var = tk.StringVar(value='All usage profiles')
@@ -188,7 +191,11 @@ class ManagerWindow(tk.Tk):
         icons_menu.add_command(label='Refresh icons (read-only)', command=self.refresh_icons)
         icons_menu.add_command(label='Selected icon information', command=self.icon_info)
         icons_menu.add_separator()
-        icons_menu.add_command(label='Open Kristal Icon Generator (Windows)…', command=self.launch_icon_generator)
+        icons_menu.add_checkbutton(label='Activer icônes personnalisées sur dossiers Windows (session)',
+                                   variable=self.custom_folder_icons_enabled,
+                                   command=self._toggle_local_icons)
+        icons_menu.add_command(label='Gérer les icônes de locals… (aperçu / application)',
+                               command=self.launch_icon_generator)
         bar.add_cascade(label='Icons', menu=icons_menu)
         logs = tk.Menu(bar, tearoff=False)
         logs.add_command(label='Copy log', command=self.copy_log)
@@ -254,7 +261,7 @@ class ManagerWindow(tk.Tk):
         self.actions_menu.add_command(label='Scan folder', command=self.start_scan)
         self.actions_menu.add_command(label='Refresh icons', command=self.refresh_icons)
         self.actions_menu.add_command(label='Icon information', command=self.icon_info)
-        self.actions_menu.add_command(label='Open Windows icon generator…', command=self.launch_icon_generator)
+        self.actions_menu.add_command(label='Gérer les icônes locales…', command=self.launch_icon_generator)
         self.actions_menu.add_separator()
         self.actions_menu.add_command(label='Verify selected Kristal', command=self.start_verify)
         self.actions_menu.add_command(label='Open diagnostic center…', command=self.start_diag_selected)
@@ -289,11 +296,6 @@ class ManagerWindow(tk.Tk):
                                          values=['All microthesauri'], width=33)
         self.micro_choice.pack(side='left', padx=(7, 12))
         self.micro_choice.bind('<<ComboboxSelected>>', lambda _: self.refresh())
-        ttk.Label(selectors, text='ISCED-F (icon)').pack(side='left')
-        self.isced_choice = ttk.Combobox(selectors, textvariable=self.isced_var, state='readonly',
-                                         values=['All ISCED fields'], width=13)
-        self.isced_choice.pack(side='left', padx=(7, 12))
-        self.isced_choice.bind('<<ComboboxSelected>>', lambda _: self.refresh())
         ttk.Label(selectors, text='Filter by UNESCO codes; not inferred from names', style='Sub.TLabel').pack(side='right')
         other_selectors = ttk.Frame(wrapper)
         other_selectors.pack(fill='x', pady=(0,6))
@@ -319,12 +321,12 @@ class ManagerWindow(tk.Tk):
         lower = ttk.Frame(paned)
         paned.add(lower, weight=2)
 
-        cols = ('title', 'category', 'micro', 'isced', 'arketype', 'usage', 'readiness', 'diag', 'profile', 'state_ref', 'artifacts', 'content')
+        cols = ('title', 'category', 'micro', 'arketype', 'usage', 'readiness', 'diag', 'profile', 'state_ref', 'artifacts', 'content')
         # Keep icons with the selected Kristal's detail card, not in the table.
         self.tree = ttk.Treeview(upper, columns=cols, show='headings', selectmode='browse', height=10)
         for key, heading, width in [
             ('title', 'Kristal', 210), ('category', 'UNESCO domain', 180),
-            ('micro', 'Microthesaurus', 210), ('isced', 'ISCED-F', 85),
+            ('micro', 'Microthesaurus', 210),
             ('arketype', 'Arketype', 95), ('usage', 'Usage (PRF)', 100),
             ('readiness', 'Local status', 108), ('diag', 'KristalDiag', 116),
             ('profile', 'Technical profile', 125), ('state_ref', 'State ID', 130),
@@ -990,32 +992,76 @@ class ManagerWindow(tk.Tk):
                 'd’une icône Windows appliquée dans locals.')
         messagebox.showinfo('Icon provenance', info, parent=self)
 
+    def _toggle_local_icons(self):
+        """Make writes a deliberate session-only choice; closing Manager resets it."""
+        if self.custom_folder_icons_enabled.get():
+            approved = messagebox.askyesno(
+                'Activer les icônes de dossiers Windows ?',
+                'Autoriser temporairement la personnalisation des icônes des dossiers '
+                'du dossier locals sélectionné ?\n\n'
+                'Cette option est désactivée par défaut et se réinitialise au prochain démarrage.\n'
+                'L’application effective demandera encore une confirmation dans le générateur.\n'
+                'Le scan et les aperçus restent toujours en lecture seule.', parent=self)
+            if not approved:
+                self.custom_folder_icons_enabled.set(False)
+        if not self.custom_folder_icons_enabled.get():
+            # Revocation must also stop already opened apply-capable servers.
+            still_running = []
+            for process, was_enabled in self._local_icon_processes:
+                if process.poll() is None and was_enabled:
+                    process.terminate()
+                elif process.poll() is None:
+                    still_running.append((process, was_enabled))
+            self._local_icon_processes = still_running
+        self.log('ICONS', 'Application d’icônes Windows : ' +
+                 ('activée pour cette session (confirmation requise)' if self.custom_folder_icons_enabled.get()
+                  else 'désactivée (aperçu seul)'))
+
     def launch_icon_generator(self):
-        """Separate original Windows generator; no implicit metadata or Explorer writes."""
+        """Run the embedded generator for the selected locals root, never the collection."""
         if self.busy:
             return
-        program = Path(__file__).resolve().parent.parent / 'tools' / 'icon-generator' / 'Ouvrir_Generateur.cmd'
         if os.name != 'nt':
-            messagebox.showinfo('Windows icon generator',
-                'This feature requires Windows and the Node.js runtime required by the icon generator.', parent=self)
+            messagebox.showinfo('Icônes Windows',
+                'Les icônes de dossiers Windows nécessitent Windows et Node.js.', parent=self)
             return
-        if not program.is_file():
-            messagebox.showerror('Icon generator not found', f'Lanceur introuvable : {program}', parent=self)
+        root = Path(self.path_var.get()).expanduser()
+        if not root.is_dir():
+            messagebox.showerror('Dossier introuvable', f'Dossier locals inaccessible : {root}', parent=self)
             return
-        if not messagebox.askyesno('Open Windows icon generator?',
-                'Kristal Icon Generator est un outil indépendant.\n'
-                'Il utilise normalement C:\\mycode\\Kristal\\Kristal-Kollection, '
-                'et NON le dossier locals de Manager.\n\n'
-                'Son scan de démarrage peut écrire des métadonnées de présentation. '
-                'La personnalisation des dossiers Windows n’est appliquée '
-                'qu’après confirmation dans le générateur.\n\n'
-                'Ouvrir cet outil ?', parent=self):
+        server = Path(__file__).resolve().parent.parent / 'tools' / 'icon-generator' / 'server.mjs'
+        node = shutil.which('node')
+        if not server.is_file() or not node:
+            messagebox.showerror('Générateur indisponible',
+                'Le serveur Icon Generator intégré et Node.js doivent être installés.', parent=self)
+            return
+        enabled = self.custom_folder_icons_enabled.get()
+        argv = [node, str(server), '--locals', str(root)]
+        if enabled:
+            argv.append('--enable-local-apply')
+        if not messagebox.askyesno('Gestion des icônes locales',
+                f'Dossier : {root}\n\n'
+                + ('Mode autorisé : aperçu et application sur confirmation explicite.' if enabled
+                   else 'Mode lecture seule : génération et application Windows interdites.')
+                + '\n\nLancer le générateur intégré ?', parent=self):
             return
         try:
-            os.startfile(str(program))
-            self.log('INFO', 'Icon generator opened; icon refresh remains manual.')
+            flags = getattr(subprocess, 'CREATE_NEW_CONSOLE', 0)
+            child = subprocess.Popen(argv, cwd=str(server.parent), creationflags=flags)
+            self._local_icon_processes.append((child, enabled))
+            self.log('ICONS', f'Générateur locals ouvert en mode {"application autorisée" if enabled else "lecture seule"} : {root}')
         except OSError as exc:
-            self._fail('Launch icon generator', exc, diagnostic=traceback.format_exc())
+            self._fail('Lancer Icon Generator', exc, diagnostic=traceback.format_exc())
+
+    def destroy(self):
+        """No local icon server retains Manager's write permission after exit."""
+        for process, _ in getattr(self, '_local_icon_processes', []):
+            if process.poll() is None:
+                try:
+                    process.terminate()
+                except OSError:
+                    pass
+        super().destroy()
 
     def _change_category(self, _event=None):
         if self.category_var.get() == 'Historical archive':
@@ -1032,11 +1078,9 @@ class ManagerWindow(tk.Tk):
         pinned = reference()
         domains = [f'{key} {val["label_en"]}' for key,val in pinned['domains'].items()]
         micro = [f'{key} {val["label_en"]}' for key,val in pinned['microthesauri'].items()]
-        fields = [f'{key} {val}' for key,val in pinned['isced'].items()]
         for variable,combo,values,default in (
             (self.category_var,self.category_choice,['All UNESCO domains',*domains,'Unmapped'],'All UNESCO domains'),
-            (self.micro_var,self.micro_choice,['All microthesauri',*micro,'Unmapped'],'All microthesauri'),
-            (self.isced_var,self.isced_choice,['All ISCED fields',*fields,'Unmapped'],'All ISCED fields')):
+            (self.micro_var,self.micro_choice,['All microthesauri',*micro,'Unmapped'],'All microthesauri')):
             combo.configure(values=values)
             if variable.get() not in values:variable.set(default)
         primary = sorted({x for r in self.rows if not is_historical(r)
@@ -1068,7 +1112,6 @@ class ManagerWindow(tk.Tk):
         q = self.filter_var.get().strip().casefold()
         category = self.category_var.get()
         micro_filter = self.micro_var.get()
-        isced_filter = self.isced_var.get()
         selected_arketype = self.arketype_var.get()
         selected_usage = self.usage_var.get()
         visible = []
@@ -1079,7 +1122,6 @@ class ManagerWindow(tk.Tk):
             classified = self._classify(row)
             cat = display_domain(classified)
             micro = display_micro(classified)
-            isced = display_isced(classified)
             if category not in ('All UNESCO domains', 'All categories', 'Toutes catégories') and category != 'Unmapped' and not any(
                     category.startswith(code + ' ') for code in classified['unesco']['domain_codes']):
                 continue
@@ -1090,11 +1132,6 @@ class ManagerWindow(tk.Tk):
                 continue
             if micro_filter == 'Unmapped' and classified['unesco']['microthesaurus_codes']:
                 continue
-            if isced_filter != 'All ISCED fields' and isced_filter != 'Unmapped' and not any(
-                    isced_filter.startswith(code + ' ') for code in classified['isced_f2013']['codes']):
-                continue
-            if isced_filter == 'Unmapped' and classified['isced_f2013']['codes']:
-                continue
             ark = arketype_of(row) or 'Unclassified'
             usage = usage_profile_of(row) or 'Unclassified'
             if selected_arketype != 'All Arketypes' and ark != selected_arketype:
@@ -1102,7 +1139,7 @@ class ManagerWindow(tk.Tk):
             if selected_usage != 'All usage profiles' and usage != selected_usage:
                 continue
             corpus = ' '.join(str(row.get(k, '')) for k in
-                              ('title', 'slug', 'state_ref', 'profile', 'readiness', 'native_kind', 'content_summary')) + ' ' + cat + ' ' + micro + ' ' + isced + ' ' + display_category(row) + ' ' + ark + ' ' + usage + ' ' + (self.icons.get(row['path']).nature if self.icons.get(row['path']) else '')
+                              ('title', 'slug', 'state_ref', 'profile', 'readiness', 'native_kind', 'content_summary')) + ' ' + cat + ' ' + micro + ' ' + display_category(row) + ' ' + ark + ' ' + usage + ' ' + (self.icons.get(row['path']).nature if self.icons.get(row['path']) else '')
             if q and q not in corpus.casefold():
                 continue
             metrics = (row.get('content_summary') or {}).get('metrics') or {}
@@ -1114,16 +1151,16 @@ class ManagerWindow(tk.Tk):
                           'Executed' if diag.get('process_status') == 'EXECUTED_EXIT_0' else
                           'Failed / timed out' if diag.get('process_status') in ('TIMEOUT', 'EXECUTED_NONZERO') else 'Review')
             ico = self.icons.get(row['path'])
-            values = (row['title'], cat, micro, isced, ark if ark != 'Unclassified' else '—',
+            values = (row['title'], cat, micro, ark if ark != 'Unclassified' else '—',
                       usage if usage != 'Unclassified' else '—',
                       row['readiness'], diag_label, row.get('profile') or '—',
                       display_state_id(row.get('state_ref')), row.get('registered_artifacts', 0), content)
             visible.append((i, row, values, historic))
-        mapping = {'title': 0, 'category': 1, 'micro': 2, 'isced': 3,
-                   'arketype': 4, 'usage': 5, 'readiness': 6, 'diag': 7,
-                   'profile': 8, 'state_ref': 9, 'artifacts': 10, 'content': 11}
+        mapping = {'title': 0, 'category': 1, 'micro': 2, 'arketype': 3, 'usage': 4,
+                   'readiness': 5, 'diag': 6, 'profile': 7, 'state_ref': 8,
+                   'artifacts': 9, 'content': 10}
         pos = mapping.get(self.sort_field, 0)
-        visible.sort(key=lambda v: (v[2][pos] if pos == 10 else str(v[2][pos]).casefold(),
+        visible.sort(key=lambda v: (v[2][pos] if pos == 9 else str(v[2][pos]).casefold(),
                                     v[1]['path'].casefold()), reverse=self.sort_desc)
         for i, row, values, historic in visible:
             tags = ('alert',) if row.get('state_conflict') or row.get('needs_migration') else ('historic',) if historic else ()
@@ -1184,7 +1221,7 @@ class ManagerWindow(tk.Tk):
             f'UNESCO domain: {display_domain(taxonomy)}',
             f'UNESCO microthesaurus: {display_micro(taxonomy)}',
             f'UNESCO mapping: {taxonomy["unesco"]["status"]} (not independently verified)',
-            f'ISCED-F visual field: {display_isced(taxonomy)} ({taxonomy["isced_f2013"]["source"]})',
+            f'Legacy icon requiring UNESCO alignment: {taxonomy["legacy_icon_migration_needed"]}',
             f'Legacy domain (free text): {display_category(row)}',
             f'Classification review: {"; ".join(taxonomy["issues"]) or "none flagged"}',
             f'Arketype: {arketype_of(row) or "Unclassified"}',

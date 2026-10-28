@@ -1,3 +1,18 @@
+## 2.7.0 — 2026-10-28
+
+- Nouveau mode `--locals` : inventaire UNESCO direct des Kristals locaux, en mémoire, sans écriture au démarrage.
+- Écriture des ICO et `desktop.ini` locale strictement bloquée à moins de `--enable-local-apply`, même si une requête HTTP tente d'écrire.
+- Activation dans Kristal-Manager à chaque session, OFF par défaut, suivie d'une seconde coche et confirmation dans l'interface.
+- Jamais de conversion ISCED → UNESCO ; exclusion des workspaces non classés ou incohérents.
+- Actualisation de la présentation locale après application ; aucun effet sur le canon et les engagements d'identité.
+
+## 2.6.0 — 2026-10-28
+
+- Consolidation des domaines sur le Thésaurus UNESCO (7 domaines, 88 microthésaurus).
+- Élimination d’ISCED-F du scanner et de la sélection active ; les anciens profils sont à réviser, jamais convertis automatiquement.
+- Icônes à noms distincts `UT1` à `UT7`, conservation des vrais codes et URI UNESCO en métadonnées.
+- Registry, validateur et génération de `desktop.ini` alignés ; l’écriture reste une action explicite.
+
 ## 2.5.0 — 2026-10-06
 
 - observes Kristal v9 `state_ref` and logical commitment during collection scans as presentation evidence only;

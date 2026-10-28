@@ -1,4 +1,4 @@
-"""Read-only presentation bridge for Kristal Icon Generator 2.5.0.
+"""Read-only presentation bridge; legacy Windows icons may remain until manual UNESCO re-render.
 
 Desktop.ini remains the authority for the Windows folder icon. This module
 never generates an icon, writes a profile, or changes Explorer attributes.
