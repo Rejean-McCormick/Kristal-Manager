@@ -129,18 +129,29 @@ def test_ui_diag_action_updates_fiche(tmp_path, monkeypatch):
         assert app._selected_row()['title']=='Kristal-Architecture'
         assert 'KristalDiag' in app.tree['columns'] or 'diag' in app.tree['columns']
         assert str(app.diag_button['state'])=='normal'
-        app.settings['diag_program'] = str(stub)
-        app.settings['diag_arguments'] = '{workspace}'
-        monkeypatch.setattr(gui.messagebox, 'askyesno', lambda *a,**k: True)
+        # New GUI uses a guided overlay and its bundled official diagnostic, no CLI text.
+        def sample_official(path, *, profile):
+            return {
+                'process_status': 'EXECUTED_EXIT_0', 'profile': profile,
+                'external_report': {'schema': 'kristaldiag.summary.v1', 'verdict': 'PASS'},
+                'verdict': 'PASS', 'counts': {'PASS': 14}, 'findings': [],
+                'input_changed_during_run': False,
+            }
+        monkeypatch.setattr(gui, 'run_official_diagnostic', sample_official)
         app.start_diag_selected()
+        panel = app._diag_dialog
+        assert panel and panel.winfo_exists()
+        assert 'V9-State-Reader' in str(gui.DiagnosticPanel.__module__) or panel.profile.get() == 'État du Kristal — recommandé'
+        panel._run()
         deadline=monotonic()+10
         while app.busy and monotonic()<deadline:
             app.update()
             sleep(.01)
         app.update()
         assert not app.busy
-        assert app._selected_row()['diag_report']['process_status']=='EXECUTED_EXIT_0'
-        assert 'Attestation C1 vérifiée : non' in app._text(app.summary_text)
-        assert 'stub-only' in app._text(app.details)
+        assert app._selected_row()['diag_report']['verdict']=='PASS'
+        assert 'PASS' in app._text(panel.summary)
+        assert 'KristalDiag' in app._text(app.summary_text)
+        panel._close()
     finally:
         app.destroy()

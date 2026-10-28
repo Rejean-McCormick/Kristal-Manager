@@ -1,0 +1,16 @@
+{
+  "schema": "kristaldiag.driver.v1",
+  "implementation": "Example Kristal v9 implementation",
+  "claimed_profile": "V9-Full",
+  "actions": {
+    "self_test": {
+      "argv": [
+        "python",
+        "-m",
+        "myimpl",
+        "self-test"
+      ],
+      "description": "Implementation-owned self-test"
+    }
+  }
+}

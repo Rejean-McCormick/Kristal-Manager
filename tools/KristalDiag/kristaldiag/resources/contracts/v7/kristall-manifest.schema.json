@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kristal.example/schema/v7/kristall-manifest.schema.json",
+  "title": "Kristall Manifest",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "artifact_status",
+    "created_at",
+    "kristall_id",
+    "namespace_id",
+    "compatibility",
+    "sources",
+    "registries",
+    "policies"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "7.0"
+    },
+    "artifact_type": {
+      "const": "kristall_manifest"
+    },
+    "artifact_status": {
+      "enum": [
+        "working",
+        "reference",
+        "published",
+        "retired"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "kristall_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "canonicalization_profile": {
+      "const": "kristal.v7:jcs-rfc8785"
+    },
+    "compatibility": {
+      "type": "object",
+      "required": [
+        "accepts_kristal_state_versions",
+        "preferred_projection_profile"
+      ],
+      "properties": {
+        "accepts_kristal_state_versions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "preferred_projection_profile": {
+          "const": "v6_compatible"
+        }
+      },
+      "additionalProperties": true
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "source_id",
+          "role"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "source_kristal",
+              "generated_projection",
+              "supporting_artifact"
+            ]
+          },
+          "state_id": {
+            "type": "string"
+          },
+          "content_hash": {
+            "type": "string"
+          },
+          "uri": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "active",
+              "withdrawn",
+              "superseded"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "subjects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "subject_id",
+          "label"
+        ],
+        "properties": {
+          "subject_id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "selector_ref": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "registries": {
+      "type": "object",
+      "required": [
+        "entities",
+        "properties",
+        "assertions",
+        "sources",
+        "assertion_families",
+        "axes",
+        "mesh"
+      ],
+      "properties": {
+        "entities": {
+          "type": "string"
+        },
+        "axes": {
+          "type": "string"
+        },
+        "mesh": {
+          "type": "string"
+        },
+        "projection_recipes": {
+          "type": "string"
+        },
+        "crystallization_ledger": {
+          "type": "string"
+        },
+        "assertion_families": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "string"
+        },
+        "assertions": {
+          "type": "string"
+        },
+        "sources": {
+          "type": "string"
+        },
+        "resonance": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "policies": {
+      "type": "object",
+      "required": [
+        "conflict_strategy",
+        "path_semantics",
+        "max_orientation_axes"
+      ],
+      "properties": {
+        "conflict_strategy": {
+          "const": "preserve_disagreement"
+        },
+        "path_semantics": {
+          "const": "exploratory_not_assertive"
+        },
+        "max_orientation_axes": {
+          "const": 2
+        },
+        "entity_resolution_policy": {
+          "type": "string"
+        },
+        "axis_promotion_policy": {
+          "type": "string"
+        },
+        "resonance_policy": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "provenance": {
+      "type": "array"
+    },
+    "content_hash": {
+      "type": "object"
+    },
+    "signatures": {
+      "type": "array"
+    },
+    "namespace_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

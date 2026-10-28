@@ -15,7 +15,7 @@ import zipfile
 
 from .core import ManagerError, _read_json
 
-HISTORIC_NAMES = {'original-snapshot-before-activation', 'original-snapshot', 'snapshots', 'historical-v9-materializations'}
+HISTORIC_NAMES = {'original-snapshot-before-activation', 'original-snapshot', 'snapshots', 'historical-v9-materializations', '_historique_avant_kristalizer'}
 HISTORIC_PARENT = {'archive', 'archives', 'backup', 'backups', 'history', 'historique', 'snapshots'}
 
 

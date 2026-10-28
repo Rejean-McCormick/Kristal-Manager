@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "semantic_resonance_set",
+  "profile_id": "kristal-orgo-semantic-resonance",
+  "profile_version": "1.0.0",
+  "observations": [
+    {
+      "resonance_id": "res:001",
+      "left": {
+        "system": "kristall",
+        "kind": "entity",
+        "id": "KQ1001"
+      },
+      "right": {
+        "system": "kristal-source",
+        "kind": "referent",
+        "id": "urn:actor:ministre-quebec"
+      },
+      "directionality": "symmetric",
+      "context": {
+        "axis_refs": [
+          {
+            "system": "kristall",
+            "kind": "axis",
+            "id": "KQ2001"
+          }
+        ]
+      },
+      "dimensions": [
+        {
+          "dimension_id": "lexical",
+          "value": 0.91,
+          "polarity": "alignment",
+          "method": "normalized_alias_match",
+          "confidence": 0.95
+        },
+        {
+          "dimension_id": "structural",
+          "value": 0.88,
+          "polarity": "alignment",
+          "method": "graph_neighborhood_overlap",
+          "confidence": 0.82
+        }
+      ],
+      "aggregate": {
+        "value": 0.895,
+        "method": "example_weighted_mean",
+        "non_authoritative": true
+      },
+      "status": "computed",
+      "created_at": "2026-10-02T18:39:16Z",
+      "provenance": {
+        "generator": "example"
+      }
+    }
+  ]
+}

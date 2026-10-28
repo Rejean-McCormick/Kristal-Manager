@@ -1,0 +1,58 @@
+{
+  "schema_version": "7.0",
+  "artifact_type": "kristall_manifest",
+  "artifact_status": "working",
+  "created_at": "2026-10-02T17:00:00Z",
+  "kristall_id": "urn:kristall:main",
+  "title": "Kristall example",
+  "canonicalization_profile": "kristal.v7:jcs-rfc8785",
+  "compatibility": {
+    "accepts_kristal_state_versions": [
+      "6.0"
+    ],
+    "preferred_projection_profile": "v6_compatible"
+  },
+  "sources": [
+    {
+      "source_id": "urn:kristal:power-formal",
+      "role": "source_kristal",
+      "state_id": "sha256:source-formal",
+      "status": "active"
+    },
+    {
+      "source_id": "urn:kristal:power-informal",
+      "role": "source_kristal",
+      "state_id": "sha256:source-informal",
+      "status": "active"
+    }
+  ],
+  "subjects": [
+    {
+      "subject_id": "subject:power-canada-quebec",
+      "label": "Power in Canada and Quebec",
+      "selector_ref": "selector:power-ca-qc"
+    }
+  ],
+  "registries": {
+    "entities": "entity-registry.example.json",
+    "axes": "axis-registry.example.json",
+    "mesh": "mesh.example.json",
+    "projection_recipes": "projection-recipe.example.json",
+    "crystallization_ledger": "crystallization-record.example.json",
+    "assertion_families": "assertion-family-registry.example.json",
+    "properties": "property-registry.example.json",
+    "assertions": "assertion-registry.example.json",
+    "sources": "source-registry.example.json",
+    "resonance": "resonance.example.json"
+  },
+  "policies": {
+    "conflict_strategy": "preserve_disagreement",
+    "path_semantics": "exploratory_not_assertive",
+    "max_orientation_axes": 2,
+    "entity_resolution_policy": "policy:reviewed-resolution",
+    "axis_promotion_policy": "policy:traceable-promotion",
+    "resonance_policy": "policy:resonance-candidate-only"
+  },
+  "provenance": [],
+  "namespace_id": "kristall-main"
+}

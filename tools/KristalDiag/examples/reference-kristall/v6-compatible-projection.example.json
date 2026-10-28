@@ -1,0 +1,61 @@
+{
+  "schema_version": "6.0",
+  "artifact_type": "kristal_state",
+  "artifact_status": "working",
+  "created_at": "2026-10-02T17:20:00Z",
+  "applicability": {
+    "domain": "power",
+    "jurisdiction": "Canada and Quebec",
+    "language": "en"
+  },
+  "assertions": [
+    {
+      "assertion_id": "proj:001",
+      "statement": {
+        "subject": {
+          "kind": "office",
+          "id": "entity:ca-qc:office:ministre"
+        },
+        "predicate": "power.is_bounded_by",
+        "object": {
+          "kind": "concept",
+          "id": "entity:concept:legal-authority"
+        }
+      },
+      "assertion_status": "sourced",
+      "record_role": "derived_state",
+      "actionability": {
+        "mode": "not_applicable"
+      },
+      "lineage": {
+        "derived_from": [
+          "source:formal:assertion:12"
+        ]
+      }
+    }
+  ],
+  "provenance": [],
+  "extensions": {
+    "kristal_v7": {
+      "role": "projection",
+      "kristall_id": "urn:kristall:main",
+      "projection_id": "projection:power-legal:001",
+      "subject": {
+        "subject_id": "subject:power-canada-quebec"
+      },
+      "orientation": {
+        "primary_axis": "KQ2001"
+      },
+      "generated_from": {
+        "manifest_id": "urn:kristall:main",
+        "recipe_id": "recipe:power-legal",
+        "source_state_refs": [
+          "sha256:source-formal",
+          "sha256:source-informal"
+        ],
+        "build_id": "build:001"
+      },
+      "generated_at": "2026-10-02T17:20:00Z"
+    }
+  }
+}

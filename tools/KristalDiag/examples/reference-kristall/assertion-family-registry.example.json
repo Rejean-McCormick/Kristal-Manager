@@ -1,0 +1,35 @@
+{
+  "schema_version": "7.0",
+  "artifact_type": "kristall_assertion_family_registry",
+  "registry_id": "urn:kristall:registry:assertion-families",
+  "families": [
+    {
+      "family_id": "family:minister-limits:001",
+      "family_type": "semantic_equivalent",
+      "status": "accepted",
+      "members": [
+        {
+          "source_id": "urn:kristal:power-formal",
+          "assertion_id": "POUVOIR-022",
+          "global_assertion_id": "KA1"
+        },
+        {
+          "source_id": "urn:kristal:power-formal-legacy",
+          "assertion_id": "POWER-118",
+          "global_assertion_id": "KA2"
+        }
+      ],
+      "representative": {
+        "source_id": "urn:kristal:power-formal",
+        "assertion_id": "POUVOIR-022",
+        "global_assertion_id": "KA1"
+      },
+      "scope_notes": "Same legal proposition after preserving jurisdiction and office scope.",
+      "provenance": {
+        "record_id": "crystallization:001",
+        "decision": "reviewed-equivalence"
+      }
+    }
+  ],
+  "namespace_id": "kristall-main"
+}

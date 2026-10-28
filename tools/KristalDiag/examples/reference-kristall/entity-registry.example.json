@@ -1,0 +1,53 @@
+{
+  "schema_version": "7.0",
+  "artifact_type": "kristall_entity_registry",
+  "namespace_id": "kristall-main",
+  "registry_id": "urn:kristall:registry:entities",
+  "entities": [
+    {
+      "entity_id": "KQ1001",
+      "entity_kind": "office",
+      "preferred_label": "Ministre",
+      "aliases": [
+        "minister"
+      ],
+      "status": "stable",
+      "external_ids": [],
+      "source_referents": [
+        {
+          "source_id": "urn:kristal:power-formal",
+          "referent_id": "urn:actor:ministre-quebec",
+          "global_source_id": "KS1",
+          "mapping_record_id": "resolution:001"
+        },
+        {
+          "source_id": "urn:kristal:power-informal",
+          "referent_id": "urn:bridge:politician:ministre",
+          "global_source_id": "KS2",
+          "mapping_record_id": "resolution:001"
+        }
+      ]
+    },
+    {
+      "entity_id": "KQ2001",
+      "entity_kind": "orientation_axis",
+      "preferred_label": "Juridique",
+      "aliases": [
+        "legal"
+      ],
+      "status": "stable",
+      "source_referents": []
+    },
+    {
+      "entity_id": "KQ2002",
+      "entity_kind": "orientation_axis",
+      "preferred_label": "Influence informelle",
+      "aliases": [
+        "informal influence"
+      ],
+      "status": "stable",
+      "source_referents": []
+    }
+  ],
+  "resolution_candidates": []
+}

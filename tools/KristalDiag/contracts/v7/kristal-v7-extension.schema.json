@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kristal.example/schema/v7/kristal-v7-extension.schema.json",
+  "title": "Kristal v7 extension for a v6 kristal_state",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "role",
+    "kristall_id",
+    "projection_id",
+    "subject",
+    "orientation",
+    "generated_from"
+  ],
+  "properties": {
+    "role": {
+      "const": "projection"
+    },
+    "kristall_id": {
+      "type": "string"
+    },
+    "projection_id": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "object",
+      "required": [
+        "subject_id"
+      ],
+      "properties": {
+        "subject_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "orientation": {
+      "type": "object",
+      "required": [
+        "primary_axis"
+      ],
+      "properties": {
+        "primary_axis": {
+          "type": "string"
+        },
+        "secondary_axis": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "generated_from": {
+      "type": "object",
+      "required": [
+        "manifest_id",
+        "recipe_id",
+        "source_state_refs"
+      ],
+      "properties": {
+        "manifest_id": {
+          "type": "string"
+        },
+        "recipe_id": {
+          "type": "string"
+        },
+        "source_state_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "build_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "reconstruction_of": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

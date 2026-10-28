@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kristal.example/schema/v7/kristall-mesh.schema.json",
+  "title": "Kristall Mesh",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "namespace_id",
+    "mesh_id",
+    "edges"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "7.0"
+    },
+    "artifact_type": {
+      "const": "kristall_mesh"
+    },
+    "mesh_id": {
+      "type": "string"
+    },
+    "shard": {
+      "type": "object"
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "edge_id",
+          "from",
+          "relation",
+          "to",
+          "edge_semantics",
+          "status"
+        ],
+        "properties": {
+          "edge_id": {
+            "type": "string"
+          },
+          "from": {
+            "$ref": "#/$defs/node_ref"
+          },
+          "relation": {
+            "type": "string",
+            "pattern": "^KP[1-9][0-9]*$"
+          },
+          "to": {
+            "$ref": "#/$defs/node_ref"
+          },
+          "edge_semantics": {
+            "enum": [
+              "factual",
+              "structural",
+              "identity_resolution",
+              "similarity",
+              "orientation_affinity",
+              "derivation",
+              "membership",
+              "conflict",
+              "lineage"
+            ]
+          },
+          "status": {
+            "enum": [
+              "source_backed",
+              "derived",
+              "candidate",
+              "accepted",
+              "rejected",
+              "superseded"
+            ]
+          },
+          "source_assertion_refs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "source_id",
+                "assertion_id"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string"
+                },
+                "assertion_id": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "derivation_record_id": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "resonance_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "namespace_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "$defs": {
+    "node_ref": {
+      "type": "object",
+      "required": [
+        "kind",
+        "id"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "entity",
+            "assertion",
+            "assertion_family",
+            "source_kristal",
+            "subject",
+            "axis",
+            "projection",
+            "derivation"
+          ]
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

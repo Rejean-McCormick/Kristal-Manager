@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "kristal_publication_bundle_manifest",
+  "profile": "kristal.publication-bundle/1.0",
+  "state": {
+    "state_ref": "urn:kristal:state:example-recipes",
+    "logical_commitment": {
+      "profile": "kristal.state-commitment/jcs-sha256-v1",
+      "digest": "sha256:80a4e55e7d73cbd9902f8c6cc2bbc3fbfceefc51f597da68cd58685e55856445"
+    }
+  },
+  "payloads": [
+    {
+      "role": "state_snapshot",
+      "path": "state-snapshot.json",
+      "media_type": "application/json",
+      "size": 910,
+      "blob_digest": "sha256:b2e3f0379ee761490d622e15a28dd2d2ecf6ad4eac13e86d148405d72e888677"
+    }
+  ],
+  "source": {
+    "commit": "0123456789abcdef0123456789abcdef01234567"
+  }
+}

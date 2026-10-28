@@ -1,4 +1,8 @@
+**Édition consolidée — icônes Windows + diagnostic guidé :** consulter [CONSOLIDATION_2026-10-27.md](CONSOLIDATION_2026-10-27.md).
+
 # Kristal Manager
+
+**Mise à jour icônes sur le Manager 19 h 24 :** lire [MISE_A_JOUR_ICONES_1924.md](MISE_A_JOUR_ICONES_1924.md). Les icônes Windows existantes sont affichées dans la table ; le générateur Windows original reste séparé.
 
 **Local content update:** `0.1.0-alpha.15` · **Framework target:** `10.0.0-draft.3.2` · **Operational status:** **read-only inventory and content catalogue available; GitHub synchronization disabled**.
 

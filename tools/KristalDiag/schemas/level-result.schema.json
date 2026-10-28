@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kristal.local/kristaldiag/level-result.schema.json",
+  "title": "KristalDiag Level Result",
+  "type": "object",
+  "required": [
+    "schema",
+    "standard",
+    "standard_version",
+    "run_id",
+    "level_id",
+    "level_name",
+    "target_root",
+    "verdict",
+    "findings"
+  ],
+  "properties": {
+    "schema": {
+      "const": "kristaldiag.level-result.v1"
+    },
+    "standard": {
+      "const": "KristalDiag"
+    },
+    "standard_version": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profile": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "level_id": {
+      "pattern": "^(?:N0[0-6]|K(?:0[0-9]|1[0-9]|2[0-9]|3[0-2])|R0[0-4])$"
+    },
+    "level_name": {
+      "type": "string"
+    },
+    "target_root": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": "string"
+    },
+    "ended_at": {
+      "type": "string"
+    },
+    "duration_seconds": {
+      "type": "number",
+      "minimum": 0
+    },
+    "verdict": {
+      "enum": [
+        "PASS",
+        "WARN",
+        "FAIL",
+        "SKIP",
+        "BLOCKED",
+        "PARTIAL",
+        "ERROR",
+        "INFRA_ERROR",
+        "CONFIG_ERROR"
+      ]
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "verdict",
+          "category",
+          "message"
+        ]
+      }
+    },
+    "artifacts": {
+      "type": "array"
+    },
+    "metadata": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

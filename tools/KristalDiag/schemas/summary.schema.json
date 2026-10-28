@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kristal.local/kristaldiag/summary.schema.json",
+  "title": "KristalDiag Run Summary",
+  "type": "object",
+  "required": [
+    "schema",
+    "tool",
+    "tool_version",
+    "kristal_standard_target",
+    "run_id",
+    "target_root",
+    "verdict",
+    "levels"
+  ],
+  "properties": {
+    "schema": {
+      "const": "kristaldiag.summary.v1"
+    },
+    "tool": {
+      "const": "KristalDiag"
+    },
+    "verdict": {
+      "enum": [
+        "PASS",
+        "WARN",
+        "FAIL",
+        "SKIP",
+        "BLOCKED",
+        "PARTIAL",
+        "ERROR",
+        "INFRA_ERROR",
+        "CONFIG_ERROR"
+      ]
+    },
+    "levels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "verdict",
+          "result"
+        ]
+      }
+    }
+  },
+  "additionalProperties": true
+}

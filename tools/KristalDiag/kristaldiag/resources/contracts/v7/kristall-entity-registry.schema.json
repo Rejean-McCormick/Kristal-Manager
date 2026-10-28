@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kristal.example/schema/v7/kristall-entity-registry.schema.json",
+  "title": "Kristall Entity Registry",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "namespace_id",
+    "registry_id",
+    "entities",
+    "resolution_candidates"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "7.0"
+    },
+    "artifact_type": {
+      "const": "kristall_entity_registry"
+    },
+    "registry_id": {
+      "type": "string"
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "entity_id",
+          "entity_kind",
+          "preferred_label",
+          "source_referents"
+        ],
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "pattern": "^KQ[1-9][0-9]*$"
+          },
+          "entity_kind": {
+            "type": "string"
+          },
+          "preferred_label": {
+            "type": "string"
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "enum": [
+              "provisional",
+              "stable",
+              "deprecated"
+            ]
+          },
+          "source_referents": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "source_id",
+                "referent_id"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string"
+                },
+                "referent_id": {
+                  "type": "string"
+                },
+                "mapping_record_id": {
+                  "type": "string"
+                },
+                "global_source_id": {
+                  "type": "string",
+                  "pattern": "^KS[1-9][0-9]*$"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "external_ids": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true,
+              "required": [
+                "system",
+                "id",
+                "mapping_semantics"
+              ],
+              "properties": {
+                "system": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "mapping_semantics": {
+                  "enum": [
+                    "exact",
+                    "close",
+                    "broader",
+                    "narrower",
+                    "related"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "resolution_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "candidate_id",
+          "left",
+          "right",
+          "status",
+          "signals"
+        ],
+        "properties": {
+          "candidate_id": {
+            "type": "string"
+          },
+          "left": {
+            "type": "string"
+          },
+          "right": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "candidate",
+              "accepted",
+              "rejected",
+              "superseded"
+            ]
+          },
+          "signals": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "decision_record_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "namespace_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

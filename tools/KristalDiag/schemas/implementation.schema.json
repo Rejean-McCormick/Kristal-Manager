@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kristal.local/kristaldiag/implementation.schema.json",
+  "title": "KristalDiag Implementation Declaration",
+  "type": "object",
+  "required": [
+    "schema",
+    "name",
+    "claimed_profile",
+    "standard_target"
+  ],
+  "properties": {
+    "schema": {
+      "const": "kristaldiag.implementation.v1"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string"
+    },
+    "claimed_profile": {
+      "enum": [
+        "V7-Reader",
+        "V7-Mesh",
+        "V7-Projection",
+        "V7-Kristall",
+        "V9-State-Reader",
+        "V9-Builder",
+        "V9-Materializer",
+        "V9-Publisher",
+        "V9-Full"
+      ]
+    },
+    "standard_target": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

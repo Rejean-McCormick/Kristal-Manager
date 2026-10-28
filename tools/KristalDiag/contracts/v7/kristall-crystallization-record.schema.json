@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kristal.example/schema/v7/kristall-crystallization-record.schema.json",
+  "title": "Kristall Crystallization Record",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "record_id",
+    "created_at",
+    "inputs",
+    "stages",
+    "proposals",
+    "accepted_changes"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "7.0"
+    },
+    "artifact_type": {
+      "const": "kristall_crystallization_record"
+    },
+    "record_id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "stage",
+          "status"
+        ],
+        "properties": {
+          "stage": {
+            "enum": [
+              "ingest",
+              "verify_identity",
+              "normalize",
+              "entity_resolution",
+              "assertion_family_build",
+              "mesh_update",
+              "surface_compare",
+              "axis_discovery",
+              "factorize",
+              "reconstruction_test"
+            ]
+          },
+          "status": {
+            "enum": [
+              "skipped",
+              "completed",
+              "partial",
+              "failed"
+            ]
+          },
+          "metrics": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "proposals": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "accepted_changes": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "rejected_changes": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "representation_compression": {
+          "type": "number"
+        },
+        "source_coverage": {
+          "type": "number"
+        },
+        "provenance_retention": {
+          "type": "number"
+        },
+        "projection_reconstruction_coverage": {
+          "type": "number"
+        },
+        "unresolved_identity_candidates": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "conflicts_preserved": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

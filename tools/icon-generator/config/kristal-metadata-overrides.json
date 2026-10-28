@@ -1,0 +1,18 @@
+{
+  "format": "kristal-mediatheque.overrides/1.0",
+  "defaults": {
+    "nature": "REF"
+  },
+  "entries": {
+    "Kristal-Recipes": {"nature": "COL"},
+    "Kristal-KingKlown-MEDIA": {"nature": "COL"},
+    "Kristal-VehiculeDiag": {"nature": "MOD"},
+    "Kristal-HomeCare": {"nature": "MOD"},
+    "Kristal-Power": {"nature": "MOD"},
+    "Kristal-PoliceOps": {"nature": "PRT"},
+    "Kristal-HospitalOps": {"nature": "PRT"},
+    "Kristal-FoodBrands": {"nature": "SRC"},
+    "Kristal-kOA-Ecosystem": {"nature": "TWN"},
+    "urn:uckk:kristal:universite": {"nature": "TWN"}
+  }
+}

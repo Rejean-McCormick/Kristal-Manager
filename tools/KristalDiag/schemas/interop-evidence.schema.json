@@ -1,0 +1,14 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://kristal.local/kristaldiag/interop-evidence.schema.json",
+  "title":"KristalDiag A-B-A Interoperability Evidence",
+  "type":"object",
+  "required":["schema","run_id","producer","consumer","verdict","steps"],
+  "properties":{
+    "schema":{"const":"kristaldiag.interop-evidence.v1"},
+    "verdict":{"enum":["PASS","FAIL","BLOCKED","ERROR"]},
+    "steps":{"type":"array"},
+    "artifact":{"type":"object"}
+  },
+  "additionalProperties":true
+}

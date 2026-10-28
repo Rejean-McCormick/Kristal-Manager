@@ -1,0 +1,51 @@
+{
+  "profile": "kristal-domain-palette/isced-f2013/2.0",
+  "classification": {
+    "scheme": "ISCED-F 2013",
+    "publisher": "UNESCO Institute for Statistics",
+    "level": "broad-field",
+    "codes": "00-10",
+    "source": "https://uis.unesco.org/sites/default/files/documents/isced-fields-of-education-and-training-2013-en.pdf"
+  },
+  "authority": "classification-codes-and-names-from-ISCED-F-2013; colors-are-kristal-presentation-only",
+  "color_policy": "Kristal-assigned stable presentation colors. UNESCO does not prescribe these colors.",
+  "multi_domain_policy": "Kristal visual extension: up to 3 ISCED-F broad fields may be shown. Official ISCED-F statistical coding normally uses one field code.",
+  "domains": [
+    {"code":"00","name":"Programmes et certifications génériques","name_en":"Generic programmes and qualifications","color":"#7A7F87"},
+    {"code":"01","name":"Éducation","name_en":"Education","color":"#2E86AB"},
+    {"code":"02","name":"Arts et lettres","name_en":"Arts and humanities","color":"#A85AA3"},
+    {"code":"03","name":"Sciences sociales, journalisme et information","name_en":"Social sciences, journalism and information","color":"#D97B29"},
+    {"code":"04","name":"Commerce, administration et droit","name_en":"Business, administration and law","color":"#B85C5C"},
+    {"code":"05","name":"Sciences naturelles, mathématiques et statistiques","name_en":"Natural sciences, mathematics and statistics","color":"#2E8B57"},
+    {"code":"06","name":"Technologies de l’information et de la communication","name_en":"Information and Communication Technologies","color":"#4F46E5"},
+    {"code":"07","name":"Ingénierie, industries de transformation et construction","name_en":"Engineering, manufacturing and construction","color":"#D97706"},
+    {"code":"08","name":"Agriculture, sylviculture, halieutique et sciences vétérinaires","name_en":"Agriculture, forestry, fisheries and veterinary","color":"#6B8E23"},
+    {"code":"09","name":"Santé et protection sociale","name_en":"Health and welfare","color":"#D94F70"},
+    {"code":"10","name":"Services","name_en":"Services","color":"#2A9D8F"}
+  ],
+  "legacy_to_isced": {
+    "ACCT":"04","AERO":"07","AGING":"09","AGRI":"08","AI":"06","ANTHRO":"03","ARCH":"07","ASTRO":"05","ATMOS":"05","AUTO":"07",
+    "BIO":"05","BIODIV":"05","BOT":"05","CARTO":"05","CHEM":"05","CIVIL":"07","CLIM":"05","COMP":"06","COSMO":"05","CRAFT":"02",
+    "CTRL":"07","CYBER":"06","DATA":"06","DEMO":"03","DESIGN":"02","DEV":"03","DISAST":"05","EARTH":"05","ECO":"05","ECON":"03",
+    "EDU":"01","ELEC":"07","ELECTR":"07","ENERGY":"07","ENGC":"07","EPI":"02","ETH":"02","EVOL":"05","FIN":"04","FOOD":"10",
+    "FOODSCI":"07","FORENS":"05","FOREST":"08","FUNGI":"05","GAME":"02","GEN":"05","GEO":"05","GEOL":"05","GOV":"03","HAZ":"05",
+    "HCI":"06","HIST":"02","HOME":"09","HYDRO":"05","INFRA":"07","LAW":"04","LING":"02","LIT":"02","LOG":"10","LOGIC":"02",
+    "MAR":"10","MAT":"07","MATH":"05","MECH":"07","MED":"09","MEDIA":"03","METRO":"07","MFG":"07","MICRO":"05","MIN":"05",
+    "MIND":"03","MUSIC":"02","MYTH":"02","NET":"06","NEURO":"09","NUTR":"09","OCEAN":"05","OPS":"04","ORG":"04","PALEO":"05",
+    "PHARM":"09","PHIL":"02","PHYS":"05","PUBHLTH":"09","REL":"02","ROBOT":"07","SOC":"03","SOIL":"08","SOLAR":"05","SPORT":"10",
+    "STD":"00","SW":"06","TECH":"07","TELECOM":"06","TEXT":"07","THEATRE":"02","TIME":"05","TRANS":"10","URBAN":"07","VET":"08",
+    "VIRO":"05","VISART":"02","WEATHER":"05","WORK":"04","ZOO":"05"
+  },
+  "aliases": {
+    "education":"01","teacher":"01","pedagogy":"01","school":"01","scolaire":"01","enseignement":"01",
+    "art":"02","arts":"02","history":"02","histoire":"02","philosophy":"02","philosophie":"02","ethics":"02","ethique":"02","religion":"02","theology":"02","theologie":"02","language":"02","langue":"02","linguistics":"02","linguistique":"02","literature":"02","litterature":"02","music":"02","musique":"02","theatre":"02","mythology":"02","mythologie":"02","pokemon":"02","pokémon":"02","game":"02","games":"02","gaming":"02","jeu":"02","jeux":"02","design":"02","craft":"02",
+    "economics":"03","economie":"03","sociology":"03","sociologie":"03","anthropology":"03","anthropologie":"03","psychology":"03","psychologie":"03","politics":"03","politique":"03","governance":"03","gouvernance":"03","journalism":"03","journalisme":"03","media":"03","demography":"03","demographie":"03",
+    "business":"04","commerce":"04","administration":"04","management":"04","accounting":"04","comptabilite":"04","finance":"04","law":"04","droit":"04","legal":"04","organisation":"04","organization":"04",
+    "biology":"05","biologie":"05","chemistry":"05","chimie":"05","physics":"05","physique":"05","mathematics":"05","math":"05","mathematiques":"05","statistics":"05","statistiques":"05","astronomy":"05","astronomie":"05","geology":"05","geologie":"05","earth":"05","ecology":"05","ecologie":"05","climate":"05","climat":"05","weather":"05","ocean":"05","genetics":"05","genetique":"05","microbiology":"05","virology":"05","zoology":"05","botany":"05",
+    "ict":"06","tic":"06","computing":"06","informatique":"06","software":"06","logiciel":"06","programming":"06","code":"06","data":"06","donnees":"06","database":"06","ai":"06","ia":"06","artificialintelligence":"06","intelligenceartificielle":"06","cybersecurity":"06","cybersecurite":"06","internet":"06","network":"06","reseau":"06","telecommunications":"06",
+    "engineering":"07","ingenierie":"07","architecture":"07","construction":"07","manufacturing":"07","fabrication":"07","mechanical":"07","mecanique":"07","electrical":"07","electrique":"07","electronics":"07","electronique":"07","robotics":"07","robotique":"07","automobile":"07","vehicle":"07","vehicule":"07","aerospace":"07","materials":"07","materiaux":"07","energy":"07","energie":"07","infrastructure":"07","urbanism":"07","urbanisme":"07",
+    "agriculture":"08","forestry":"08","sylviculture":"08","fisheries":"08","peche":"08","veterinary":"08","veterinaire":"08","soil":"08","sol":"08",
+    "health":"09","sante":"09","medicine":"09","medecine":"09","medical":"09","welfare":"09","socialwork":"09","travailsocial":"09","pharmacology":"09","pharmacie":"09","nutrition":"09","neuroscience":"09","aging":"09","homecare":"09",
+    "services":"10","sport":"10","sports":"10","transport":"10","transportation":"10","logistics":"10","logistique":"10","maritime":"10","security":"10","securite":"10","police":"10","hospitality":"10","tourism":"10","tourisme":"10","food":"10","alimentation":"10","recipe":"10","recipes":"10","cuisine":"10"
+  }
+}

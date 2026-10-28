@@ -1,0 +1,108 @@
+{
+  "format": "kristal-package-manifest/1.0",
+  "artifact": "Kristal-Icon-Generator-UI-OneClick",
+  "version": "2.5.0",
+  "generated_at": "2026-10-06T22:06:00Z",
+  "files": [
+    {
+      "path": "AUTO_SCAN_POLICY.md",
+      "sha256": "f536b3cb6e0e01f4d561712a1aac507179222f1c3e9a52a50811e6d34ee2b3bc",
+      "bytes": 1881
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "4f04170f43bd1388c1d91320fe4e9632b9828c37ab46eb3f971b42a3b6bece39",
+      "bytes": 2887
+    },
+    {
+      "path": "ISCED_F2013_POLICY.md",
+      "sha256": "2958f5341fcef25325edf437814170c104abb5a5159e64d4031bdb7c848b63bc",
+      "bytes": 3019
+    },
+    {
+      "path": "KRISTAL_V9.md",
+      "sha256": "f1f454ee4b7d8565f6f01b97b7b5716a927137288f995deba58aa6b4a53593c3",
+      "bytes": 285
+    },
+    {
+      "path": "Ouvrir_Generateur.cmd",
+      "sha256": "a500e76c510a09b3f9c4d7e4ddefb91fb6bf6231e537eff850cfc235f0812341",
+      "bytes": 866
+    },
+    {
+      "path": "Ouvrir_Mode_Manuel.cmd",
+      "sha256": "3fcf7a9f1411c36a1d4e48330cdada287f7e8106b9f12028dcf5a8634c2419d0",
+      "bytes": 244
+    },
+    {
+      "path": "README.md",
+      "sha256": "58d11bdd60ac730cc120606fbca0f49cc77071a8a2fa5860f4da64a8cd5ab4db",
+      "bytes": 5819
+    },
+    {
+      "path": "VERSION",
+      "sha256": "732f64d874f90788c0199b0c19bfd9b3b6436e140114e53e462832532d74c61c",
+      "bytes": 6
+    },
+    {
+      "path": "config/kristal-metadata-overrides.json",
+      "sha256": "2f65c48619073f802d3f2a01d36828957479a1449ab2d084d8065caebe3c0eb4",
+      "bytes": 571
+    },
+    {
+      "path": "examples/kristal-registry.catalog.example.json",
+      "sha256": "85c3ebfa5ba2c3e92cf3992e4a15c3c376b85bb2418a8c85250cb186dbed902f",
+      "bytes": 709855
+    },
+    {
+      "path": "index.html",
+      "sha256": "66e47cae4f5a2961b887f50e14ef5c397df1e8006e9a595601ebcd38c5eb7ad3",
+      "bytes": 43125
+    },
+    {
+      "path": "kristal-v9.integration.json",
+      "sha256": "325510ea1889704a31af752c8c85d8794e44abfe26e5ceff9e067258021d27c0",
+      "bytes": 986
+    },
+    {
+      "path": "runtime/Kristal-v8-full-normalization-overlay.zip",
+      "sha256": "07ee0639c77f044f97a8fff3f1f3270dbf881978fd0b04d8c2b6f94f6e171b22",
+      "bytes": 20953518
+    },
+    {
+      "path": "runtime/bootstrap/kristal-registry.catalog.json",
+      "sha256": "85c3ebfa5ba2c3e92cf3992e4a15c3c376b85bb2418a8c85250cb186dbed902f",
+      "bytes": 709855
+    },
+    {
+      "path": "runtime/kristal-domain-palette.json",
+      "sha256": "02b5355cbff761abf111f0c7d5b7a0a3db688905a9c6937b545881e19985870c",
+      "bytes": 6585
+    },
+    {
+      "path": "runtime/kristal_v9_package.py",
+      "sha256": "1a967ac1a817ac38b0d5c8e0116cf628613094cdedea8f75e36ce7997f9972e6",
+      "bytes": 6503
+    },
+    {
+      "path": "runtime/registry-builder.py",
+      "sha256": "7a1fbc07261cef7a3b5ab8c368fbb65b6df40311057c069ee65eaf0f83fffcdd",
+      "bytes": 47101
+    },
+    {
+      "path": "runtime/scan-kristals.mjs",
+      "sha256": "49e134a3053ee634989e937ccb185470545408acbcae2f7033e41abffb5c0dd2",
+      "bytes": 14686
+    },
+    {
+      "path": "server.mjs",
+      "sha256": "48e709eee59bc2b1228f256b4b182027880590806e3c001ad4ffada1e9cf2675",
+      "bytes": 21210
+    },
+    {
+      "path": "tools/Validate-Registry-Icons.py",
+      "sha256": "3d7ba4eda1ebfbf45457757abff943952205bec07ab7c3bc6af0ba09103a9113",
+      "bytes": 2506
+    }
+  ]
+}

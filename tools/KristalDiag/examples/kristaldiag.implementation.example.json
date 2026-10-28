@@ -1,0 +1,10 @@
+{
+  "schema": "kristaldiag.implementation.v1",
+  "name": "Example Kristal v10 implementation",
+  "version": "0.1.0",
+  "claimed_profile": "V10-Full",
+  "standard_target": "10.0.0-draft.3.1",
+  "notes": [
+    "Qualification only; no execution authority is granted."
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kristal.example/schema/v7/kristall-projection-recipe.schema.json",
+  "title": "Kristall Projection Recipe",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "recipe_id",
+    "subject",
+    "orientation",
+    "output"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "7.0"
+    },
+    "artifact_type": {
+      "const": "kristall_projection_recipe"
+    },
+    "recipe_id": {
+      "type": "string"
+    },
+    "recipe_version": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "object",
+      "required": [
+        "subject_id"
+      ],
+      "properties": {
+        "subject_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "orientation": {
+      "type": "object",
+      "required": [
+        "primary_axis"
+      ],
+      "properties": {
+        "primary_axis": {
+          "type": "string"
+        },
+        "secondary_axis": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "source_policy": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "conflict_policy": {
+      "const": "preserve_disagreement"
+    },
+    "transform": {
+      "type": "object",
+      "properties": {
+        "engine": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "output": {
+      "type": "object",
+      "required": [
+        "artifact_type",
+        "schema_version",
+        "profile"
+      ],
+      "properties": {
+        "artifact_type": {
+          "const": "kristal_state"
+        },
+        "schema_version": {
+          "const": "6.0"
+        },
+        "profile": {
+          "const": "v6_compatible"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

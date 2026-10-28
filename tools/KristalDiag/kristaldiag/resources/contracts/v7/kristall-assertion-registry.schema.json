@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kristal.example/schema/v7/kristall-assertion-registry.schema.json",
+  "title": "Kristall Assertion Registry",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "namespace_id",
+    "registry_id",
+    "assertions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "7.0"
+    },
+    "artifact_type": {
+      "const": "kristall_assertion_registry"
+    },
+    "namespace_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "registry_id": {
+      "type": "string"
+    },
+    "assertions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "assertion_id",
+          "assertion_kind",
+          "status"
+        ],
+        "properties": {
+          "assertion_id": {
+            "type": "string",
+            "pattern": "^KA[1-9][0-9]*$"
+          },
+          "assertion_kind": {
+            "enum": [
+              "source_mapped",
+              "derived",
+              "meta"
+            ]
+          },
+          "status": {
+            "enum": [
+              "active",
+              "superseded",
+              "retracted"
+            ]
+          },
+          "source_binding": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": [
+              "source_kristal_id",
+              "source_assertion_id"
+            ],
+            "properties": {
+              "source_kristal_id": {
+                "type": "string"
+              },
+              "source_assertion_id": {
+                "type": "string"
+              }
+            }
+          },
+          "statement": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "subject": {
+                "type": "string",
+                "pattern": "^KQ[1-9][0-9]*$"
+              },
+              "predicate": {
+                "type": "string",
+                "pattern": "^KP[1-9][0-9]*$"
+              },
+              "object": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "object",
+                  "array",
+                  "null"
+                ]
+              }
+            }
+          },
+          "derived_from": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "derivation_record_id": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kristal.example/schema/v7/kristall-axis-registry.schema.json",
+  "title": "Kristall Axis Registry",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "namespace_id",
+    "registry_id",
+    "axes"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "7.0"
+    },
+    "artifact_type": {
+      "const": "kristall_axis_registry"
+    },
+    "registry_id": {
+      "type": "string"
+    },
+    "axes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "axis_id",
+          "axis_type",
+          "label",
+          "description",
+          "status",
+          "semantics",
+          "provenance"
+        ],
+        "properties": {
+          "axis_id": {
+            "type": "string",
+            "pattern": "^KQ[1-9][0-9]*$"
+          },
+          "axis_type": {
+            "const": "orientation"
+          },
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "candidate",
+              "active",
+              "deprecated"
+            ]
+          },
+          "scope": {
+            "type": "object"
+          },
+          "semantics": {
+            "type": "object",
+            "required": [
+              "intent"
+            ],
+            "properties": {
+              "intent": {
+                "type": "string"
+              },
+              "signals": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "anti_signals": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": true
+          },
+          "provenance": {
+            "type": "object",
+            "required": [
+              "mode"
+            ],
+            "properties": {
+              "mode": {
+                "enum": [
+                  "authored",
+                  "discovered",
+                  "hybrid"
+                ]
+              },
+              "crystallization_record_id": {
+                "type": "string"
+              },
+              "accepted_by": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "namespace_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

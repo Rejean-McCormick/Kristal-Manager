@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kristal.example/schema/v7/semantic-resonance.schema.json",
+  "title": "Shared Semantic Resonance Set",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "profile_id",
+    "observations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "artifact_type": {
+      "const": "semantic_resonance_set"
+    },
+    "profile_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profile_version": {
+      "type": "string"
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/observation"
+      }
+    }
+  },
+  "$defs": {
+    "ref": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "system",
+        "kind",
+        "id"
+      ],
+      "properties": {
+        "system": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "dimension": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "dimension_id",
+        "value",
+        "method"
+      ],
+      "properties": {
+        "dimension_id": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "polarity": {
+          "enum": [
+            "alignment",
+            "dissonance",
+            "neutral"
+          ]
+        },
+        "method": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "resonance_id",
+        "left",
+        "right",
+        "directionality",
+        "dimensions",
+        "status",
+        "created_at",
+        "provenance"
+      ],
+      "properties": {
+        "resonance_id": {
+          "type": "string"
+        },
+        "left": {
+          "$ref": "#/$defs/ref"
+        },
+        "right": {
+          "$ref": "#/$defs/ref"
+        },
+        "directionality": {
+          "enum": [
+            "symmetric",
+            "left_to_right",
+            "right_to_left"
+          ]
+        },
+        "context": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "subject_ref": {
+              "$ref": "#/$defs/ref"
+            },
+            "axis_refs": {
+              "type": "array",
+              "maxItems": 2,
+              "items": {
+                "$ref": "#/$defs/ref"
+              }
+            }
+          }
+        },
+        "dimensions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/dimension"
+          }
+        },
+        "aggregate": {
+          "type": "object",
+          "additionalProperties": true,
+          "required": [
+            "value",
+            "method",
+            "non_authoritative"
+          ],
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "method": {
+              "type": "string"
+            },
+            "non_authoritative": {
+              "const": true
+            }
+          }
+        },
+        "status": {
+          "enum": [
+            "computed",
+            "reviewed",
+            "superseded",
+            "expired"
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "provenance": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

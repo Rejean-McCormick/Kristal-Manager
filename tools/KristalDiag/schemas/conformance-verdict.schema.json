@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kristal.local/kristaldiag/conformance-verdict.schema.json",
+  "title": "KristalDiag Conformance Verdict",
+  "type": "object",
+  "required": [
+    "schema",
+    "tool",
+    "tool_version",
+    "kristal_standard_target",
+    "run_id",
+    "subject",
+    "verdict",
+    "qualification_only",
+    "authority_granted",
+    "evidence_root",
+    "issued_at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "kristaldiag.conformance-verdict.v1"
+    },
+    "tool": {
+      "const": "KristalDiag"
+    },
+    "qualification_only": {
+      "const": true
+    },
+    "authority_granted": {
+      "const": false
+    },
+    "verdict": {
+      "enum": [
+        "PASS",
+        "WARN",
+        "FAIL",
+        "SKIP",
+        "BLOCKED",
+        "PARTIAL",
+        "ERROR",
+        "INFRA_ERROR",
+        "CONFIG_ERROR"
+      ]
+    },
+    "profile": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "required_levels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

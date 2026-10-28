@@ -1,0 +1,16 @@
+# Kristal v5 JCS test vectors — expected hashes
+# Hash algorithm: SHA-256
+# Hash input: UTF-8 bytes of expected_canonical (RFC 8785 JCS output)
+# Canonicalization profile: kristal.v5:jcs-rfc8785
+# Canonicalization version: 1
+# Format: <vector_id> <sha256_hex>
+
+jcs-001 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+jcs-002 f45ed16183caf10d3a60b77fe6b2db8cae797c847bd81391b43887abd68fe7c2
+jcs-003 68defeb9da2ff00fb2f129615c50f62cc7a4f6dc7255e9b3958e0df41c785673
+jcs-004 ee7ebf24d933706ec2abdef203464c9bcc2bc0d149e72336668d65eb04ab536f
+jcs-005 561287ce34bd41afdf847454fe2d74ba86e803ecc7494494bfdb6c8f93da1012
+jcs-006 3c732cc156f035153e129992aed5c0e7f8097bc90d5b5e9fc574208f2c5ee32d
+jcs-007 83cb4e99d3c052bd4f2e4c3a909f1435b8b8a9014be158b8ab2478a99d133891
+jcs-008 2d5e01a318d0f0879ab568c4be289c8b1f64ef8921a53c6277d5e069978baacb
+jcs-009 5e321556d22018a9656991a9e94f77ec175fa193e52a2429d312f8419ec8b08c

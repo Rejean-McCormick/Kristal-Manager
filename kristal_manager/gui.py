@@ -10,6 +10,7 @@ from datetime import datetime
 import hashlib
 import json
 import os
+import subprocess
 from pathlib import Path
 from queue import Empty, Queue
 import traceback
@@ -19,8 +20,10 @@ from tkinter import filedialog, messagebox, ttk
 import webbrowser
 
 from .core import detect_kristal, scan_roots
-from .diag_bridge import DiagConfigurationError, validate_config, run_diagnostic
+from .diag_bridge import DiagConfigurationError, validate_config, run_diagnostic, run_official_diagnostic
+from .diag_panel import DiagnosticPanel
 from .inventory import inventory, konstellation_preview, save_private_inventory
+from .icon_bridge import discover_icon, read_registry_icon_index, tk_photo_from_icon, IconInfo
 from .operational import assess_local
 from .ui_prefs import default_root, load_settings, save_settings
 from .workspace_tools import category_of, is_historical, plan_rename, apply_rename, export_workspace
@@ -48,10 +51,13 @@ class ManagerWindow(tk.Tk):
         self.settings = load_settings()
         self.events = Queue()
         self.rows: list[dict] = []
+        self.icons: dict[str, IconInfo] = {}
+        self.icon_images: dict[str, tk.PhotoImage] = {}
         self.roots: list[Path] = []
         self.busy = False
         self.catalog_overview: Path | None = None
         self._current_job = None
+        self._diag_dialog = None
         self._unfiltered_count = 0
         self.path_var = tk.StringVar(value=default_root(self.settings))
         self.filter_var = tk.StringVar()
@@ -82,12 +88,20 @@ class ManagerWindow(tk.Tk):
         return Path(__file__).resolve().parent / 'assets' / name
 
     def _apply_window_icon(self):
+        # Tk's iconphoto handles cross-platform PNG; on Windows the native ICO
+        # also enables the branded titlebar/taskbar representation.
         try:
             self._app_icon_image = tk.PhotoImage(file=str(self._asset_path('app_icon.png')))
             self.iconphoto(True, self._app_icon_image)
         except (tk.TclError, OSError):
-            # Branding must not block local inventory when an asset is missing.
             self._app_icon_image = None
+        if os.name == 'nt':
+            for candidate in ('window.ico', 'app_icon.ico'):
+                try:
+                    self.iconbitmap(str(self._asset_path(candidate)))
+                    break
+                except (tk.TclError, OSError):
+                    pass  # Missing/bad icon must not prevent launching Manager.
 
     def _configure_style(self):
         s = ttk.Style(self)
@@ -128,8 +142,8 @@ class ManagerWindow(tk.Tk):
         bar.add_cascade(label='Fichier', menu=filemenu)
         actions = tk.Menu(bar, tearoff=False)
         actions.add_command(label='Vérifier le Kristal sélectionné (local)', command=self.start_verify)
-        actions.add_command(label='Diagnostiquer avec KristalDiag (C1 externe)…', command=self.start_diag_selected)
-        actions.add_command(label='Configurer KristalDiag…', command=self.configure_diag)
+        actions.add_command(label='Ouvrir le centre de diagnostic…', command=self.start_diag_selected)
+        actions.add_command(label='Configurer KristalDiag externe (avancé)…', command=self.configure_diag)
         actions.add_command(label='Exporter les diagnostics observés (JSON)…', command=self.export_diag_report)
         actions.add_command(label='Cataloguer le Kristal sélectionné', command=self.start_catalog_selected)
         actions.add_command(label='Cataloguer tous les Kristals du dossier', command=self.start_catalog_all)
@@ -139,6 +153,12 @@ class ManagerWindow(tk.Tk):
         actions.add_command(label='Exporter le Kristal sélectionné en ZIP…', command=lambda: self.export_selected('zip'))
         actions.add_command(label='Exporter le Kristal sélectionné en .kristal (expérimental)…', command=lambda: self.export_selected('kristal'))
         bar.add_cascade(label='Actions', menu=actions)
+        icons_menu = tk.Menu(bar, tearoff=False)
+        icons_menu.add_command(label='Actualiser les icônes (lecture seule)', command=self.refresh_icons)
+        icons_menu.add_command(label='Information sur l’icône sélectionnée', command=self.icon_info)
+        icons_menu.add_separator()
+        icons_menu.add_command(label='Ouvrir Kristal Icon Generator (Windows)…', command=self.launch_icon_generator)
+        bar.add_cascade(label='Icônes', menu=icons_menu)
         logs = tk.Menu(bar, tearoff=False)
         logs.add_command(label='Copier le journal', command=self.copy_log)
         logs.add_command(label='Effacer le journal', command=self.clear_log)
@@ -201,10 +221,13 @@ class ManagerWindow(tk.Tk):
         ttk.Button(controls, text='Effacer filtre', command=lambda: self.filter_var.set('')).pack(side='left')
         self.actions_menu = tk.Menu(self, tearoff=0)
         self.actions_menu.add_command(label='Analyser le dossier', command=self.start_scan)
+        self.actions_menu.add_command(label='Actualiser les icônes', command=self.refresh_icons)
+        self.actions_menu.add_command(label='Information sur l’icône', command=self.icon_info)
+        self.actions_menu.add_command(label='Ouvrir le générateur Windows…', command=self.launch_icon_generator)
         self.actions_menu.add_separator()
         self.actions_menu.add_command(label='Vérifier le Kristal sélectionné', command=self.start_verify)
-        self.actions_menu.add_command(label='Diagnostiquer avec KristalDiag…', command=self.start_diag_selected)
-        self.actions_menu.add_command(label='Configurer KristalDiag…', command=self.configure_diag)
+        self.actions_menu.add_command(label='Ouvrir le centre de diagnostic…', command=self.start_diag_selected)
+        self.actions_menu.add_command(label='Configurer KristalDiag externe (avancé)…', command=self.configure_diag)
         self.actions_menu.add_command(label='Exporter les diagnostics observés (JSON)…', command=self.export_diag_report)
         self.actions_menu.add_command(label='Cataloguer le Kristal sélectionné', command=self.start_catalog_selected)
         self.actions_menu.add_command(label='Cataloguer tous les Kristals du dossier', command=self.start_catalog_all)
@@ -239,10 +262,14 @@ class ManagerWindow(tk.Tk):
         lower = ttk.Frame(paned)
         paned.add(lower, weight=2)
 
-        cols = ('title', 'category', 'readiness', 'diag', 'profile', 'state_ref', 'artifacts', 'content')
-        self.tree = ttk.Treeview(upper, columns=cols, show='headings', selectmode='browse', height=10)
+        cols = ('title', 'category', 'icon_nature', 'readiness', 'diag', 'profile', 'state_ref', 'artifacts', 'content')
+        # Tkinter Treeview images require its tree column (#0) to be visible.
+        # Keep the new 19:24 columns, sorting and categorization intact.
+        self.tree = ttk.Treeview(upper, columns=cols[1:], show='tree headings', selectmode='browse', height=10)
+        self.tree.heading('#0', text='Kristal (icône)', command=lambda: self.change_sort('title'))
+        self.tree.column('#0', width=260, minwidth=185, stretch=True)
         for key, heading, width in [
-            ('title', 'Kristal', 245), ('category', 'Catégorie', 175), ('readiness', 'État local', 106),
+            ('category', 'Catégorie', 175), ('icon_nature', 'Icône / nature', 145), ('readiness', 'État local', 106),
             ('diag', 'KristalDiag', 135),
             ('profile', 'Profil', 140), ('state_ref', 'Identité d’état', 320),
             ('artifacts', 'Artefacts', 90), ('content', 'Contenu observé', 190),
@@ -260,11 +287,12 @@ class ManagerWindow(tk.Tk):
         self.tree.tag_configure('alert', foreground='#a04d25')
         self.tree.tag_configure('historic', foreground='#717d7b')
         self.tree.bind('<<TreeviewSelect>>', self.show_details)
+        self.tree.bind('<Double-1>', lambda _: self.icon_info())
 
         quick = ttk.Frame(lower)
         quick.pack(fill='x', pady=(6, 2))
         ttk.Label(quick, textvariable=self.selection_var, style='H2.TLabel').pack(side='left', fill='x', expand=True)
-        self.diag_button = ttk.Button(quick, text='KristalDiag (C1)…', command=self.start_diag_selected)
+        self.diag_button = ttk.Button(quick, text='Diagnostic…', command=self.start_diag_selected)
         self.diag_button.pack(side='right', padx=(5, 0))
         self.verify_button = ttk.Button(quick, text='Vérifier ce Kristal', command=self.start_verify)
         self.verify_button.pack(side='right', padx=(5, 0))
@@ -272,6 +300,8 @@ class ManagerWindow(tk.Tk):
         self.selected_catalog_button.pack(side='right', padx=(5, 0))
         self.copy_path_button = ttk.Button(quick, text='Copier son chemin', command=self.copy_selected_path)
         self.copy_path_button.pack(side='right', padx=(5, 0))
+        self.icon_info_button = ttk.Button(quick, text='Info icône', command=self.icon_info)
+        self.icon_info_button.pack(side='right', padx=(5, 0))
         self.organize_menu = tk.Menu(self, tearoff=False)
         self.organize_menu.add_command(label='Prévisualiser / renommer le dossier…', command=self.rename_selected)
         self.organize_menu.add_separator()
@@ -489,6 +519,7 @@ class ManagerWindow(tk.Tk):
         self.diag_button.configure(state='normal' if idle and selected and supports_catalog and not is_historical(row) else 'disabled')
         self.selected_catalog_button.configure(state='normal' if idle and supports_catalog else 'disabled')
         self.copy_path_button.configure(state='normal' if selected else 'disabled')
+        self.icon_info_button.configure(state='normal' if selected else 'disabled')
         self.organize_button.configure(state='normal' if idle and supports_catalog and not is_historical(row) else 'disabled')
         self.actions_button.configure(state='normal' if idle else 'disabled')
         if self.busy:
@@ -590,41 +621,26 @@ class ManagerWindow(tk.Tk):
         dialog.wait_window()
 
     def start_diag_selected(self):
-        if self.busy:
-            return
+        """Open a guided panel: no manual executable path or CLI arguments."""
         row = self._selected_row()
         if not row or is_historical(row) or not (Path(row['path']) / 'kristal.workspace.json').is_file():
             messagebox.showinfo('Kristal principal requis',
-                'Sélectionnez un Kristal principal, et non une copie historique.', parent=self)
+                'Sélectionnez un Kristal principal et non une copie historique.', parent=self)
             return
-        program = self.settings.get('diag_program')
-        arguments = self.settings.get('diag_arguments')
-        if not program or not arguments:
-            messagebox.showinfo('KristalDiag à configurer',
-                'KristalDiag n’est pas inclus dans le Manager. Sélectionnez son programme et renseignez ses vrais arguments.',
-                parent=self)
-            self.configure_diag()
+        if self.busy:
+            messagebox.showinfo('Opération en cours', 'Terminez l’opération en cours.', parent=self)
             return
-        try:
-            validate_config(program, arguments, root=self.roots[0] if self.roots else row['path'])
-        except (OSError, DiagConfigurationError) as exc:
-            messagebox.showerror('Configuration KristalDiag invalide', str(exc), parent=self)
+        if self._diag_dialog and self._diag_dialog.winfo_exists():
+            self._diag_dialog.lift()
+            self._diag_dialog.focus_set()
             return
-        if not messagebox.askyesno('Exécuter KristalDiag ?',
-            f'Kristal sélectionné : {row["title"]}\n'
-            f'Dossier : {row["path"]}\n\n'
-            f'Programme externe : {program}\n'
-            f'Arguments configurés : {arguments}\n\n'
-            'Le Manager n’a pas audité ce programme : il pourrait écrire dans les fichiers\n'
-            'ou accéder au réseau. Vérifiez qu’il est fiable avant de continuer.\n\n'
-            'Le résultat sera affiché comme diagnostic externe observé, jamais comme\n'
-            'qualification C1 vérifiée sans protocole officiel. Continuer ?', parent=self):
-            return
+        self._diag_dialog = DiagnosticPanel(self, row)
+
+    def run_diag_from_panel(self, row: dict, profile: str):
+        """Run the bundled KristalDiag in a worker thread, never in the Tk thread."""
         path = Path(row['path'])
-        workspace_root = self.roots[0] if self.roots else path
-        self._start(f'KristalDiag externe : {row["title"]}…',
-                    lambda: (str(path), run_diagnostic(path, program=program,
-                                                        arguments=arguments, source_root=workspace_root)),
+        self._start(f'KristalDiag {profile} : {row["title"]}…',
+                    lambda: (str(path), run_official_diagnostic(path, profile=profile)),
                     folder=path, job='diag')
 
     def export_diag_report(self):
@@ -736,14 +752,22 @@ class ManagerWindow(tk.Tk):
         try:
             while True:
                 kind, payload, folder, diagnostic = self.events.get_nowait()
-                self.busy = False
-                self._current_job = None
+                if kind != 'diag_dependency':
+                    self.busy = False
+                    self._current_job = None
                 if kind == 'error':
+                    if self._diag_dialog and self._diag_dialog.winfo_exists():
+                        self._diag_dialog.render_error(payload)
                     self._fail('Opération interrompue', RuntimeError(payload), diagnostic=diagnostic)
+                elif kind == 'diag_dependency':
+                    dialog, result = payload
+                    if dialog.winfo_exists():
+                        dialog._dependency_done(result)
                 elif kind == 'scan':
                     before = self._selected_path()
                     # A new structural scan invalidates previous checks/catalogue readings; never show stale results.
                     self.rows = [r for r in payload if not r.get('hidden_auxiliary')]
+                    self._load_icons()
                     self.roots = [folder]
                     self.path_var.set(str(folder))
                     self._unfiltered_count = len(self.rows)
@@ -773,7 +797,10 @@ class ManagerWindow(tk.Tk):
                         row['diag_report'] = report
                     self.refresh(prefer=path)
                     self.tabs.select(0)
-                    self.status_var.set('KristalDiag : ' + report['process_status'] +
+                    if (self._diag_dialog and self._diag_dialog.winfo_exists()
+                            and self._diag_dialog.row['path'] == path):
+                        self._diag_dialog.render_result(report)
+                    self.status_var.set('KristalDiag : ' + str(report.get('verdict') or report['process_status']) +
                         ' · rapport observé, qualification C1 NON établie')
                     self.log('DIAG', f'{Path(path).name} : {report["process_status"]} · '
                              f'fichier JSON : {"oui" if report.get("external_report") is not None else "non"} · '
@@ -802,12 +829,14 @@ class ManagerWindow(tk.Tk):
                             if row['path'] in observed:
                                 row['content_summary'] = observed[row['path']].get('content_summary')
                         self.roots = [folder]
+                        self._load_icons()
                         self._refresh_category_choices()
                         self.path_var.set(str(folder))
                         self._remember_root(folder)
                         self.scope_var.set(f'Inventaire de : {folder}')
                     elif not self.rows:
                         self.rows = list(observed.values())
+                        self._load_icons()
                         self.roots = [folder]
                         self._refresh_category_choices()
                     current = self._selected_path()
@@ -838,6 +867,85 @@ class ManagerWindow(tk.Tk):
         self.tabs.select(2)
         self.status_var.set(f'{label} · consulter le journal (les sources n’ont pas été modifiées).')
         messagebox.showerror(label, str(exc) + '\n\nLe détail est dans l’onglet Journal des opérations.', parent=self)
+
+    def _load_icons(self):
+        """Only read already applied icons and optional exact-name Registry cache.
+
+        This is invoked after structural changes; does not modify sources.
+        PhotoImage creation happens in the Tk main thread, never in workers.
+        """
+        from tkinter import TclError
+        self.icons = {}
+        self.icon_images = {}
+        try:
+            registry = read_registry_icon_index()
+        except (OSError, ValueError) as exc:
+            registry = {}
+            self.log('ATTENTION', f'Cache Registry icônes indisponible : {exc}')
+        for row in self.rows:
+            path = row['path']
+            try:
+                icon = discover_icon(path, registry_icons=registry)
+                self.icons[path] = icon
+                if icon.ico is not None:
+                    picture = tk_photo_from_icon(tk, icon.ico, preferred=32)
+                    if picture is not None:
+                        self.icon_images[path] = picture
+            except (OSError, ValueError, TclError) as exc:
+                self.icons[path] = IconInfo('error', None, note=str(exc))
+        self.log('ICÔNES', f'{len(self.icon_images)} icônes visibles sur {len(self.rows)} entrées; aucune source modifiée.')
+
+    def refresh_icons(self):
+        if self.busy:
+            return
+        before = self._selected_path()
+        self._load_icons()
+        self.refresh(prefer=before)
+        self.status_var.set(f'{len(self.icon_images)} icônes affichées ; lecture seule')
+
+    def icon_info(self):
+        row = self._selected_row()
+        if not row:
+            messagebox.showinfo('Information icône', 'Sélectionnez d’abord un Kristal.', parent=self)
+            return
+        icon = self.icons.get(row['path']) or discover_icon(row['path'])
+        info = (f'Kristal : {row["title"]}\n'
+                f'Provenance : {icon.source}\n'
+                f'Fichier ICO : {icon.ico or "aucun fichier résolu"}\n'
+                f'Nature : {icon.nature or "non définie"}\n'
+                f'Maturité : {icon.maturity if icon.maturity is not None else "non définie"}\n'
+                f'Domaines : {", ".join(icon.domains) or "—"}\n\n'
+                f'{icon.note or "Lecture seule"}\n\n'
+                'Le Registry fournit une icône de présentation, pas la preuve '
+                'd’une icône Windows appliquée dans locals.')
+        messagebox.showinfo('Provenance de l’icône', info, parent=self)
+
+    def launch_icon_generator(self):
+        """Separate original Windows generator; no implicit metadata or Explorer writes."""
+        if self.busy:
+            return
+        program = Path(__file__).resolve().parent.parent / 'tools' / 'icon-generator' / 'Ouvrir_Generateur.cmd'
+        if os.name != 'nt':
+            messagebox.showinfo('Générateur Windows',
+                'Cette fonction exige Windows et le Node.js requis par le générateur original.', parent=self)
+            return
+        if not program.is_file():
+            messagebox.showerror('Générateur absent', f'Lanceur introuvable : {program}', parent=self)
+            return
+        if not messagebox.askyesno('Ouvrir le générateur Windows ?',
+                'Kristal Icon Generator est un outil indépendant.\n'
+                'Il utilise normalement C:\\mycode\\Kristal\\Kristal-Kollection, '
+                'et NON le dossier locals de Manager.\n\n'
+                'Son scan de démarrage peut écrire des métadonnées de présentation. '
+                'La personnalisation des dossiers Windows n’est appliquée '
+                'qu’après confirmation dans le générateur.\n\n'
+                'Ouvrir cet outil ?', parent=self):
+            return
+        try:
+            os.startfile(str(program))
+            self.log('INFO', 'Générateur ouvert : l’actualisation des icônes reste manuelle.')
+        except OSError as exc:
+            self._fail('Lancement du générateur', exc, diagnostic=traceback.format_exc())
 
     def _change_category(self, _event=None):
         if self.category_var.get() == 'Archive historique':
@@ -875,7 +983,7 @@ class ManagerWindow(tk.Tk):
             if category != 'Toutes catégories' and cat != category:
                 continue
             corpus = ' '.join(str(row.get(k, '')) for k in
-                              ('title', 'slug', 'state_ref', 'profile', 'readiness', 'native_kind', 'content_summary')) + ' ' + cat
+                              ('title', 'slug', 'state_ref', 'profile', 'readiness', 'native_kind', 'content_summary')) + ' ' + cat + ' ' + (self.icons.get(row['path']).nature if self.icons.get(row['path']) else '')
             if q and q not in corpus.casefold():
                 continue
             metrics = (row.get('content_summary') or {}).get('metrics') or {}
@@ -883,19 +991,23 @@ class ManagerWindow(tk.Tk):
             content = f'{n:,} assertions' if isinstance(n, int) else ('mesuré, non quantifié' if row.get('content_summary') else 'non analysé')
             diag = row.get('diag_report') or {}
             diag_label = ('Non lancé' if not diag else
+                          str(diag.get('verdict')) if diag.get('verdict') else
                           'Exécuté' if diag.get('process_status') == 'EXECUTED_EXIT_0' else
                           'Échec / délai' if diag.get('process_status') in ('TIMEOUT', 'EXECUTED_NONZERO') else 'À examiner')
-            values = (row['title'], cat, row['readiness'], diag_label, row.get('profile') or '—',
+            ico = self.icons.get(row['path'])
+            nature = ((ico.nature or ico.source) + (f' · M{ico.maturity}' if ico.maturity is not None else '')) if ico else '—'
+            values = (row['title'], cat, nature, row['readiness'], diag_label, row.get('profile') or '—',
                       row.get('state_ref') or '—', row.get('registered_artifacts', 0), content)
             visible.append((i, row, values, historic))
-        mapping = {'title': 0, 'category': 1, 'readiness': 2, 'diag': 3, 'profile': 4,
-                   'state_ref': 5, 'artifacts': 6, 'content': 7}
+        mapping = {'title': 0, 'category': 1, 'icon_nature': 2, 'readiness': 3, 'diag': 4,
+                   'profile': 5, 'state_ref': 6, 'artifacts': 7, 'content': 8}
         pos = mapping.get(self.sort_field, 0)
-        visible.sort(key=lambda v: (v[2][pos] if pos == 6 else str(v[2][pos]).casefold(),
+        visible.sort(key=lambda v: (v[2][pos] if pos == 7 else str(v[2][pos]).casefold(),
                                     v[1]['path'].casefold()), reverse=self.sort_desc)
         for i, row, values, historic in visible:
             tags = ('alert',) if row.get('state_conflict') or row.get('needs_migration') else ('historic',) if historic else ()
-            self.tree.insert('', 'end', iid=str(i), values=values, tags=tags)
+            self.tree.insert('', 'end', iid=str(i), text=row['title'],
+                             image=self.icon_images.get(row['path'], ''), values=values[1:], tags=tags)
         match = next((iid for iid in self.tree.get_children() if self.rows[int(iid)]['path'] == selected), None)
         if match is None:
             match = self.tree.get_children()[0] if self.tree.get_children() else None
@@ -926,7 +1038,12 @@ class ManagerWindow(tk.Tk):
                 'readiness', 'state_commitment', 'state_blob_digest', 'state_conflict_reasons',
                 'portable_ai_enabled', 'ai_entrypoint_present', 'hosted_network_baseline',
                 'discovery', 'operational_assessment', 'content_summary', 'diag_report')
+        icon = self.icons.get(row['path'])
+        icon_json = {'source': icon.source, 'ico_path': str(icon.ico) if icon.ico else None,
+                     'nature': icon.nature, 'maturity': icon.maturity,
+                     'domains': list(icon.domains), 'note': icon.note} if icon else None
         self._set_text(self.details, json.dumps({**{k: row.get(k) for k in keys},
+                                                     'manager_icon': icon_json,
                                                      'manager_category': category_of(row),
                                                      'manager_historical_archive': is_historical(row)},
                                                     ensure_ascii=False, indent=2))
@@ -945,17 +1062,19 @@ class ManagerWindow(tk.Tk):
             f'État local : {row["readiness"]}  |  Profil : {row.get("profile") or "—"}',
             f'Identité : {row.get("state_ref") or "—"}',
             f'Artefacts enregistrés : {row.get("registered_artifacts", 0)}',
+            f'Icône : {icon.source if icon else "non analysée"}'
+            + (f' · {icon.nature}' if icon and icon.nature else ''),
             '',
             f'Contrôle local : {outcome}',
             f'Intégrité Discovery : {discovery.get("integrity") or "non mesurée"}',
             f'Verification Framework : {framework.get("status") or "non effectuée"}',
-            f'KristalDiag / C1 externe : {diag.get("process_status") or "non exécuté"}',
-            f'Attestation C1 vérifiée : non (protocole officiel non fourni)',
+            f'KristalDiag : {diag.get("verdict") or diag.get("process_status") or "non exécuté"}',
+            f'Attestation C1 signée vérifiée : non établie',
             f'Contenu : {content.get("content_status") or "non catalogué"}',
             f'Assertions observées : {metrics.get("assertions", "non mesurées")}',
             '',
             'À FAIRE : « Vérifier ce Kristal » pour contrôler les fichiers enregistrés,',
-            '« KristalDiag (C1) » pour faire appel à votre outil externe configuré,',
+            '« Diagnostic… » ouvre un panneau guidé avec le moteur KristalDiag intégré,',
             'et « Cataloguer ce Kristal » pour mesurer le contenu descriptif.',
             'Aucun de ces résultats ne vaut une attestation C1 vérifiée par le Manager.',
         ]
@@ -1042,10 +1161,12 @@ class ManagerWindow(tk.Tk):
            '2. Analyser le dossier : identifier les Kristals, sans écriture sur les sources.\n'
            '3. Choisir un Kristal dans le tableau et lire sa fiche.\n'
            '4. Vérifier ce Kristal : contrôler les sources enregistrées.\n'
-           '5. Configurer KristalDiag : choisir le programme externe de confiance et ses vrais arguments.\n'
-           '6. Diagnostiquer avec KristalDiag : résultat observé, sans présumer l’attestation C1.\n'
+           '5. Cliquer sur « Diagnostic… » : choisir le contrôle et lancer KristalDiag sans commandes.\n'
+           '6. Lire le verdict et les anomalies dans la fenêtre de diagnostic.\n'
            '7. Cataloguer ce Kristal : créer une base SQLite et un HTML descriptifs, hors des sources.\n'
-           '8. Ouvrir le HTML avec « Actions » ou « Toutes les fonctions ».\n\n'
+           '8. Ouvrir le HTML avec « Actions » ou « Toutes les fonctions ».\n'
+           '9. Icônes : le Manager lit desktop.ini et les profils / Registry sans écriture.\n'
+           '   Menu Icônes : actualiser, voir la provenance ou lancer le générateur Windows avec confirmation.\n\n'
            'FONCTIONS GLOBALES\n'
            '« Cataloguer tous les Kristals du dossier » agit sur la racine saisie, PAS uniquement sur la ligne sélectionnée.\n'
            '« Exporter inventaire » écrit un JSON local privé.\n'

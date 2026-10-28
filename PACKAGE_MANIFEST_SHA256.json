@@ -1,6 +1,6 @@
 {
   "format": "kristal-manager-package-inventory/1.0",
-  "version": "0.1.0-alpha.15+ui-organize-diagbridge-2026-10-27",
+  "version": "0.1.0-alpha.15+icons-diagnostic-integre-2026-10-27",
   "files": [
     {
       "path": ".github/workflows/ci.yml",
@@ -19,8 +19,18 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "92cb2a0b60fd052a519c8d70bb653a93e80bad74d21cd971ea3fc11ab0e9a74f",
-      "bytes": 6521
+      "sha256": "8b521f9be9967a9f7cd4ee96590d8e9db0b3a42e50a2dee379b9c7922fda4056",
+      "bytes": 7079
+    },
+    {
+      "path": "CONSOLIDATION_2026-10-27.md",
+      "sha256": "5225b4a85985c19d3d131ee2ef09842f97f59ad25edd2a56e32e20365e0200d7",
+      "bytes": 3918
+    },
+    {
+      "path": "DEMARRER_DIAGNOSTIC.md",
+      "sha256": "0bec481866075e5beade1e270ed3a840fcbfb33885b8f3c95182c3aa45a306b4",
+      "bytes": 2740
     },
     {
       "path": "GitSink.bat",
@@ -29,8 +39,8 @@
     },
     {
       "path": "KRISTALDIAG_INTEGRATION.md",
-      "sha256": "d72ccc1ec1fbcd648dad938feb93690af3aa4590043cf9a6187b65d678364a67",
-      "bytes": 4172
+      "sha256": "6b8b161177d8ed265dd94d3f65623472d33e36e36dc24321624dff3409e5c0d0",
+      "bytes": 4471
     },
     {
       "path": "Kristal-Manager.pyw",
@@ -63,24 +73,34 @@
       "bytes": 2045
     },
     {
+      "path": "MISE_A_JOUR_ICONES_1924.md",
+      "sha256": "4eaf0af5f571111aa3cfcdcfce661eb3e3392c05f31cc62950a4a9df68ac6678",
+      "bytes": 4319
+    },
+    {
       "path": "Nettoyer_anciens_fichiers.pyw",
       "sha256": "51404fc3f570305af52481ddbc059276182acc2230eeced9f67d1d791455350f",
       "bytes": 4203
     },
     {
       "path": "README.md",
-      "sha256": "58e630b27b300c3ce83308118edfbcd570693997c660978b15403d13ad1eb95a",
-      "bytes": 14408
+      "sha256": "a6cb3f04627db5070f2f0e97d193053501925ba5118b485d33f3376d65a967c3",
+      "bytes": 14772
     },
     {
       "path": "SNAPSHOT_INDEX.txt",
-      "sha256": "123a000499553ef1dac55602b8cffb5ef4db24591691ba1b396c89a359a6322f",
-      "bytes": 1477
+      "sha256": "b052a1c3dab0a759d1e06092defc95767bee6f31f2339f990527c573341befb4",
+      "bytes": 1732
     },
     {
       "path": "Scanner_Contenu.cmd",
       "sha256": "5061e09cba73d2e22d2d7572f41de19b2e4d309f01783098b505c16e572ea86d",
       "bytes": 507
+    },
+    {
+      "path": "TEST_CONSOLIDATION.md",
+      "sha256": "dfdba8d1dec1cf47e155f30d8a7938df25f05a29e84e00d3d248ad194719e67a",
+      "bytes": 1794
     },
     {
       "path": "TEST_REPORT.md",
@@ -89,8 +109,8 @@
     },
     {
       "path": "VERSION",
-      "sha256": "5dbdb3988b9da0f9803d5a06de8542cf5101f276a76e1661fa289ec8a65631e3",
-      "bytes": 49
+      "sha256": "c4cd3e82bdd21992cc0b7c2927c4160ad4b5176ee7d7610928fbcfc56dfdc26a",
+      "bytes": 51
     },
     {
       "path": "ZmartZnap.pyw",
@@ -194,18 +214,18 @@
     },
     {
       "path": "kristal_manager/assets/app_icon.ico",
-      "sha256": "fc118bc059763989e1af191a293d4ea11aeb347df77b52788ebcc5e5570d9835",
-      "bytes": 17710
+      "sha256": "c40330b631d22e01e0f88da77eb802aedb234318377776d49d01d793fd108226",
+      "bytes": 12369
     },
     {
       "path": "kristal_manager/assets/app_icon.png",
-      "sha256": "66b101ae22344f40a417f8c1579649ba19ec889f1a5f8bacbf771280e23802b6",
-      "bytes": 5383
+      "sha256": "220fe3a5c6c44d9911199d493ec35cdaf2052cab5c0f228137e73835c160ae7d",
+      "bytes": 4376
     },
     {
       "path": "kristal_manager/assets/logo_header.png",
-      "sha256": "6577ab16a33e49d737f400ab27f11bf4b0fffb19b8a74597e959b0788c065fe0",
-      "bytes": 2022
+      "sha256": "aff633ba6453967cebb42addff192f6f2013938cab2e5147ccaad12670343894",
+      "bytes": 3675
     },
     {
       "path": "kristal_manager/assets/logo_k.svg",
@@ -214,8 +234,18 @@
     },
     {
       "path": "kristal_manager/assets/logo_large.png",
-      "sha256": "54f3f69047ab5d4fa56eacbb74c788180f3dd7f7e52755a76af62eca8d6f14dd",
-      "bytes": 7876
+      "sha256": "2cd7788229f76eced43f34656870881b4ccbf05109e7f30d28b73f9ae07ddf24",
+      "bytes": 2171
+    },
+    {
+      "path": "kristal_manager/assets/window.ico",
+      "sha256": "c40330b631d22e01e0f88da77eb802aedb234318377776d49d01d793fd108226",
+      "bytes": 12369
+    },
+    {
+      "path": "kristal_manager/assets/window.png",
+      "sha256": "220fe3a5c6c44d9911199d493ec35cdaf2052cab5c0f228137e73835c160ae7d",
+      "bytes": 4376
     },
     {
       "path": "kristal_manager/cli.py",
@@ -234,8 +264,13 @@
     },
     {
       "path": "kristal_manager/diag_bridge.py",
-      "sha256": "6a1879f7b2259a8e330174448974d5a9997f44cfe4284dd7ef45920508e1e857",
-      "bytes": 7968
+      "sha256": "a641e70df1d0518c3d1f12f30e5857421a39b690b38bc7af8cb1308d626bea4d",
+      "bytes": 15593
+    },
+    {
+      "path": "kristal_manager/diag_panel.py",
+      "sha256": "99961e28a6f0559bcb2243788446d2e6d9e8bb84fe0f21bdcedfd7f8bf121a56",
+      "bytes": 14144
     },
     {
       "path": "kristal_manager/discovery.py",
@@ -244,8 +279,13 @@
     },
     {
       "path": "kristal_manager/gui.py",
-      "sha256": "9473dd532bcbf616060ba61487653ae35604970051a9463b56d47f8078bd5bcc",
-      "bytes": 62677
+      "sha256": "5709a8cf4b798c0fd96951346f9bcdfbfd1c949015a8761bf9851fbb03a056d4",
+      "bytes": 69814
+    },
+    {
+      "path": "kristal_manager/icon_bridge.py",
+      "sha256": "020c30ab1f3e8fcc7ea5e8a2d57c52ce0b39fc720ac86d51cba483e1c7c77e97",
+      "bytes": 8310
     },
     {
       "path": "kristal_manager/inventory.py",
@@ -269,8 +309,8 @@
     },
     {
       "path": "kristal_manager/workspace_tools.py",
-      "sha256": "b2089cb4bf4cd540ee60806f8bf3c06766bb21cecd600a9f97b377d1a109833c",
-      "bytes": 9070
+      "sha256": "ff206e681fd8c0af628b0bdaec25bb19c46a0dfcd01e2386d5908c1237cc7706",
+      "bytes": 9103
     },
     {
       "path": "pyproject.toml",
@@ -281,6 +321,11 @@
       "path": "tests/test_c2_public_gate.py",
       "sha256": "0dd1bfb92b3ea5a3f4bdd9119aeeec0a2782a422cc741f3eeb1e049a4c587b0a",
       "bytes": 8143
+    },
+    {
+      "path": "tests/test_consolidation.py",
+      "sha256": "3d292fd9eddbb755ed3f8d54e46973ba867365da460e06e98258fadaa2dbb2e9",
+      "bytes": 2863
     },
     {
       "path": "tests/test_content_catalog.py",
@@ -294,13 +339,23 @@
     },
     {
       "path": "tests/test_diag_bridge.py",
-      "sha256": "72c77e289c2b2efbd5929acfcd61915bd8707c8e98fb75940052bee2356597ef",
-      "bytes": 5646
+      "sha256": "dd957bf9d4e4527214f3ee57ae3a43c14ff5019af21f81e58b69f6a9e86da776",
+      "bytes": 6220
+    },
+    {
+      "path": "tests/test_diag_overlay.py",
+      "sha256": "6ca237252b84001d201ac3a2ff32e8cd15117640a8bb8ec0cfa6af98b39ee8f0",
+      "bytes": 1262
     },
     {
       "path": "tests/test_discovery_adapter.py",
       "sha256": "e93c65acb3494a7be41736c531a219262eb0021c676cec78bcef9db1ab3fb5b0",
       "bytes": 7151
+    },
+    {
+      "path": "tests/test_icon_integration_updated.py",
+      "sha256": "5577453ccf8ce5e88dab2d54336362d38bde2328255fc43cba3f2c259dde35c4",
+      "bytes": 5512
     },
     {
       "path": "tests/test_operational_v10.py",
@@ -326,6 +381,1881 @@
       "path": "tests/test_workspace_tools.py",
       "sha256": "8d6ad47ca9048907deb1cd7160900c797c2466affa5646a14c06b1441c0a70d1",
       "bytes": 6472
+    },
+    {
+      "path": "tools/KristalDiag/.github/QUALIFICATION.md",
+      "sha256": "2588f6dd39a61afea1ec0b59a55245aa2d261a0a2c1ae6e165ef3f89806c2c36",
+      "bytes": 2454
+    },
+    {
+      "path": "tools/KristalDiag/.github/workflows/ci.yml",
+      "sha256": "44dd0a98eccb0ac01929a5777fdfbf1a7567e17ee22c7620b1d4b00f5426bac8",
+      "bytes": 3833
+    },
+    {
+      "path": "tools/KristalDiag/.github/workflows/framework-release-audit.yml",
+      "sha256": "9d20b767dd50ba3c162d6c8b6d235cd018d37ac3aaedae7a4da22b2cd8e5fb07",
+      "bytes": 3637
+    },
+    {
+      "path": "tools/KristalDiag/.gitignore",
+      "sha256": "5bf1ab2dd82a92211a5eba71ca1a8b728c85d4c4b34d8a34cf7378c13adfa9b4",
+      "bytes": 488
+    },
+    {
+      "path": "tools/KristalDiag/CHANGELOG.md",
+      "sha256": "a9e01371367bd2bd72f3481e58838b75065dda5df374d8a7bccee182b5ee44c1",
+      "bytes": 520
+    },
+    {
+      "path": "tools/KristalDiag/README.md",
+      "sha256": "ad510e8001ffbf3d2b3c79c86916e672b263f0eaa55bf656552f0a53b0a925bd",
+      "bytes": 6299
+    },
+    {
+      "path": "tools/KristalDiag/REPO_MANIFEST.json",
+      "sha256": "aae90a70a917eb211e5b8714d4adf26a9265701b5dbcc06b81e99c68453c730c",
+      "bytes": 59094
+    },
+    {
+      "path": "tools/KristalDiag/SECURITY.md",
+      "sha256": "46486a8291660192e24f45f9d6850a454def14142df47f70005824cb40fc1e1c",
+      "bytes": 1107
+    },
+    {
+      "path": "tools/KristalDiag/SNAPSHOT_INDEX.txt",
+      "sha256": "487e46d0144f0ab578732befa8d57a8cf66cc040da36e04cb7c0983736052213",
+      "bytes": 17136
+    },
+    {
+      "path": "tools/KristalDiag/contracts/contract-manifest.json",
+      "sha256": "2e9198011b3b97d464cf5aa50595991f353619aba5b857f8a76e09b2cda21df3",
+      "bytes": 17720
+    },
+    {
+      "path": "tools/KristalDiag/contracts/github/kristal-github-binding.schema.json",
+      "sha256": "6b1f5d4cfc519f536699a19a24d1089b817a14f727152e78b802b861f751b095",
+      "bytes": 5729
+    },
+    {
+      "path": "tools/KristalDiag/contracts/github/kristal-github-collection-index.schema.json",
+      "sha256": "9f100e065934fc59a18f1a22a0d6d6776ff19878d44564fba0ec8602f301c75d",
+      "bytes": 2551
+    },
+    {
+      "path": "tools/KristalDiag/contracts/github/kristal-github-read-surface.schema.json",
+      "sha256": "01a4a5fcd15172c584e21ac15a85ff2db5812c4e2018d54178f409958b4bca56",
+      "bytes": 2965
+    },
+    {
+      "path": "tools/KristalDiag/contracts/github/kristal-github-sync-manifest.schema.json",
+      "sha256": "6683e2ef8250c37d6b54933302067bf88c106d03477dc678da6700d4df71b458",
+      "bytes": 3329
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v10/kristal-directory.schema.json",
+      "sha256": "807b5c296e6b862de3af6b4513ab369c788afd755e1da80e8c0b6727e39f7a4f",
+      "bytes": 4279
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v10/kristal-host-binding.schema.json",
+      "sha256": "ac3085c76ef0a8c404a2407403557675deaa25f096141ad8c5697df0ea2c47a7",
+      "bytes": 5786
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v10/kristal-node-manifest.schema.json",
+      "sha256": "56ffe8632ceeb690852154608bcfb85eef3992eac16adec8d1e8c99de832d85c",
+      "bytes": 1813
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v10/kristal-publication.schema.json",
+      "sha256": "820523e59c4079ab500feb92eb86460533a7374354fd8c4f48f001130824437d",
+      "bytes": 3619
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v10/kristal-v10-capabilities.schema.json",
+      "sha256": "59f1296e84d69191edda40439b34b57ddb3b35008ae58aadf58163856cf80e3f",
+      "bytes": 3609
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v6/kristal-state.schema.json",
+      "sha256": "8f3df9a93d6a7c0ca8d7143946ed6f2009ae6d6b5105b8e7d7e873b5288e807c",
+      "bytes": 8389
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v7/kristal-v7-extension.schema.json",
+      "sha256": "9d1a87aa946b21072d95afc7482b707edc4f150a30c04b2ad81eb964c0939aa7",
+      "bytes": 1805
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v7/kristall-assertion-family-registry.schema.json",
+      "sha256": "29db7a00eed49efcfc01e182be9ca0008378064929c40da5706a5cd067dbbb04",
+      "bytes": 2678
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v7/kristall-assertion-registry.schema.json",
+      "sha256": "17f840ae312ab4e1f17fb15c8148ed9f74b3f93294ac99d178c5b1573913c106",
+      "bytes": 2644
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v7/kristall-axis-registry.schema.json",
+      "sha256": "4f26ff6465ad064d343ec54a9ac6a9e328b1171e193e6b983cf85aee1c90f5d5",
+      "bytes": 2668
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v7/kristall-crystallization-record.schema.json",
+      "sha256": "da051154a5b4b6747bd7b51a12a8eea6c55d92fc67341c82101cdcbf47e0c8ea",
+      "bytes": 2587
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v7/kristall-entity-registry.schema.json",
+      "sha256": "a22f81239e4c9fadf4d70808c7918da1ccedd7223b8470ac4980eef891d9af80",
+      "bytes": 3915
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v7/kristall-manifest.schema.json",
+      "sha256": "b8d1322c3700b6624b35a9165c65f276d098777cc271a03962eb0574c87d4011",
+      "bytes": 4776
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v7/kristall-mesh.schema.json",
+      "sha256": "ac89ee5e563d5ae9b4eda74370ae3ad3d0e8f1bab5240a3bf64d505ce8fa18ed",
+      "bytes": 3101
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v7/kristall-projection-recipe.schema.json",
+      "sha256": "435dcfb4e33d883f6e50cacc0698316a56805dc502f65227421a7b5d59dc94c2",
+      "bytes": 2035
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v7/kristall-property-registry.schema.json",
+      "sha256": "f239d448117a73262bae0d0435266e36dcfca8eb16e8fbd11a4ed5d0d9ba63a1",
+      "bytes": 1998
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v7/kristall-source-registry.schema.json",
+      "sha256": "c7254567271f82be4c278525304b6605263f284b6575f2dbe0fabf631a29f4e5",
+      "bytes": 1746
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v7/semantic-resonance.schema.json",
+      "sha256": "f7840ff9522ce9b622b7c019d609036e39e9abef887c6a11f19267a1b468062b",
+      "bytes": 3948
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v8/kristall-ai-context-bundle.schema.json",
+      "sha256": "4fbe1bb28bfeaba538e4d4f36e4db122e3afb54fe89208a0d684053ac09287b9",
+      "bytes": 8394
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v8/kristall-lexicon-stack.schema.json",
+      "sha256": "fa1e8ab60ed1d24a96671df8ada71faa9c1c747a92b1db93dcffc3b63f78d771",
+      "bytes": 1920
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v8/kristall-lexicon.schema.json",
+      "sha256": "c34321540dd3d366538d50509eadd010f014aa403fbf24699c5caa5c885f6ba0",
+      "bytes": 6738
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v8/kristall-query-index.schema.json",
+      "sha256": "447218acd234036621524579c68e7974c93bec6b369618cd265f813abf383560",
+      "bytes": 2646
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v8/kristall-query-request.schema.json",
+      "sha256": "a8788b19444e3769e395b361039e6a9f4aa4fc54fe5ff8e41be618a8f548cd78",
+      "bytes": 7235
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v8/kristall-query-result.schema.json",
+      "sha256": "202414d6e63243663ec7bcce7f101c60c025c32d76e0d55a3226baff9e761692",
+      "bytes": 6513
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v8/kristall-v8-capabilities.schema.json",
+      "sha256": "e10664794c4f7c429691b63309cf6914dd7e5345c33dd6b48fdedc8de7b829ea",
+      "bytes": 2572
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v9/README.md",
+      "sha256": "4a5f9b65c9ab10bb8c9380ec83f4c0e5bd932dc8a0cf685e682b8b47e19b336b",
+      "bytes": 518
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v9/kristal-activation.schema.json",
+      "sha256": "2b1408ea41915b950f8f42ba42857f0714af6336cacfbd55ee7ee71f2ec0b3a2",
+      "bytes": 3321
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v9/kristal-derivation.schema.json",
+      "sha256": "31e61d872efa6aa4e90fa2233f25dc1784d0c755138cccfe5120ce6b7fc483b7",
+      "bytes": 5720
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v9/kristal-exchange.schema.json",
+      "sha256": "c680c43ca84a7f41f4b1c9da2ed1fd83f0696f370c7790cb1892f3d0897913e3",
+      "bytes": 4312
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v9/kristal-logical-artifact.schema.json",
+      "sha256": "3090790f1f9ac9d30db6a07284b21d4a157ca8e9c7357ac50a6130324a228079",
+      "bytes": 3005
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v9/kristal-materialization-manifest.schema.json",
+      "sha256": "88c1f2981058e9779c60ee7773cfd20b9698d91030b5e5136ea3d605b01ee4fa",
+      "bytes": 5044
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v9/kristal-state-snapshot.schema.json",
+      "sha256": "3572060b23e62708fd1bcd803f42a07268690ce3f2e181f32d2f6cfa8f6fd415",
+      "bytes": 6379
+    },
+    {
+      "path": "tools/KristalDiag/contracts/v9/kristal-v9-capabilities.schema.json",
+      "sha256": "cd769813abfaddd9694ab2db4e8b5f9a06061b30b25240c9e7e52d8d737b79d7",
+      "bytes": 3098
+    },
+    {
+      "path": "tools/KristalDiag/docs/ARCHITECTURE.md",
+      "sha256": "38b2b6126eb0e5cf9ab6eb4a641dbe0c45f1517916eab9aab881a64423302fa3",
+      "bytes": 2569
+    },
+    {
+      "path": "tools/KristalDiag/docs/C1_C2_C3_HANDOFF.md",
+      "sha256": "675081011c54905244bdc053101b247b8c1e3875143ab481b94fe601f20d6ccf",
+      "bytes": 2593
+    },
+    {
+      "path": "tools/KristalDiag/docs/CI_INTEGRATION.md",
+      "sha256": "74b6bb679e8c9349ee0ff08dc7d3211ecd92f05486dbbd2204113e6ea874494a",
+      "bytes": 1320
+    },
+    {
+      "path": "tools/KristalDiag/docs/CONFIG_REFERENCE.md",
+      "sha256": "2485e8d9160d9851f8a9af67c1d1e51df994b31e80402e40f9f74374ffe0e721",
+      "bytes": 1733
+    },
+    {
+      "path": "tools/KristalDiag/docs/CONFORMANCE.md",
+      "sha256": "efae4434c68c86863b3cf439e76879b909f34fd6b646f995e9aa5aa0cba1bf5d",
+      "bytes": 2190
+    },
+    {
+      "path": "tools/KristalDiag/docs/CONSOLIDATION.md",
+      "sha256": "fe5314182efeff42e6d3fbbe5d6a2017343f2b36fea79ff00d25b18069db0e5d",
+      "bytes": 2315
+    },
+    {
+      "path": "tools/KristalDiag/docs/DRIVER.md",
+      "sha256": "f6f7328a981ca60c205c5dc21c6f71fa34244045dc8e49db08865702dc87e92f",
+      "bytes": 909
+    },
+    {
+      "path": "tools/KristalDiag/docs/KNOWN_FINDINGS.md",
+      "sha256": "7bb6ea12f5a103c25216838b58cd0e7289e3ad1c31070eb6c9064e141adb88eb",
+      "bytes": 519
+    },
+    {
+      "path": "tools/KristalDiag/docs/LEVELS.md",
+      "sha256": "343e6166d6994559e485714f1f105f70f026afa23f51d7b1a28a2d96b2077a91",
+      "bytes": 2304
+    },
+    {
+      "path": "tools/KristalDiag/docs/OPERATING_MODEL.md",
+      "sha256": "d3921788da81625466cfbdc0eaba50d32c08421b318b6c2b0c236c509df15916",
+      "bytes": 1300
+    },
+    {
+      "path": "tools/KristalDiag/docs/REPORTING.md",
+      "sha256": "0fb18e9afc9675d31f9c8ae29ab56335e92aaf36e6f32dd17bd0b919a1c20823",
+      "bytes": 1628
+    },
+    {
+      "path": "tools/KristalDiag/docs/SECURITY.md",
+      "sha256": "aca6f08aa7d5539e3199496afc513ef7f7819dd4ae8f8137ba9bf96d0c7f37d7",
+      "bytes": 872
+    },
+    {
+      "path": "tools/KristalDiag/docs/V10_ALIGNMENT_REPORT.md",
+      "sha256": "33b58576a4d28aa1183e5fada3455912f72697926985efee732a7bdac24635ad",
+      "bytes": 4162
+    },
+    {
+      "path": "tools/KristalDiag/examples/kristaldiag-driver.example.json",
+      "sha256": "caabe1980b6b6851a9329cd95d7d1eb5376f9dd70b401af727f40fd0f65ca15a",
+      "bytes": 323
+    },
+    {
+      "path": "tools/KristalDiag/examples/kristaldiag.implementation.example.json",
+      "sha256": "e5f5d809a1072fb7229dacbad462cb6100bf695f4d6bdd0d6dae5a60444aeba5",
+      "bytes": 271
+    },
+    {
+      "path": "tools/KristalDiag/examples/reference-kristall/assertion-family-registry.example.json",
+      "sha256": "43236c929160d9c66354653de0596e72a45f2ed673fe5c9a9c0a64ee4553f26c",
+      "bytes": 1045
+    },
+    {
+      "path": "tools/KristalDiag/examples/reference-kristall/assertion-registry.example.json",
+      "sha256": "ee1028016f79b2601a6ff6f5180a89d746bc3ad4bf61e91bac5260d2a013fe66",
+      "bytes": 684
+    },
+    {
+      "path": "tools/KristalDiag/examples/reference-kristall/axis-registry.example.json",
+      "sha256": "3426c0bd25e5e054c069adc50092bca6f37333d68e8917f4441c96eb8602027a",
+      "bytes": 1793
+    },
+    {
+      "path": "tools/KristalDiag/examples/reference-kristall/crystallization-record.example.json",
+      "sha256": "3cf2709da8141ed9db24fd3ec1caf60dc7b035e3a5b09deb5029dad779e828d3",
+      "bytes": 1464
+    },
+    {
+      "path": "tools/KristalDiag/examples/reference-kristall/entity-registry.example.json",
+      "sha256": "1244e0a44a5814920a500ff166831c5ebbf570844e7a794ffae84eba7fd5bd23",
+      "bytes": 1351
+    },
+    {
+      "path": "tools/KristalDiag/examples/reference-kristall/kristall-manifest.example.json",
+      "sha256": "494bce60d139d1bfff0d729568dd0cc4478d40bb1e0fb0dc9eb478eecb196657",
+      "bytes": 1843
+    },
+    {
+      "path": "tools/KristalDiag/examples/reference-kristall/mesh.example.json",
+      "sha256": "5e956e8cd4969bf5e5ba2f2167ae130d92a734e6a3f9607c76664c1d8f56389b",
+      "bytes": 1570
+    },
+    {
+      "path": "tools/KristalDiag/examples/reference-kristall/projection-recipe.example.json",
+      "sha256": "092220d551d4fffbe4ed77cbca14d77e13fcc8ef3272835b348f40f30c7ed0d4",
+      "bytes": 665
+    },
+    {
+      "path": "tools/KristalDiag/examples/reference-kristall/property-registry.example.json",
+      "sha256": "9dd999f584224a1e066f680b362070ade2184eda06ca0c1dca351ca56ba854bf",
+      "bytes": 1095
+    },
+    {
+      "path": "tools/KristalDiag/examples/reference-kristall/resonance.example.json",
+      "sha256": "b7236a65d3a117834728c21cbe51a25218044f2a5cb7db03d289814ff62cf718",
+      "bytes": 1360
+    },
+    {
+      "path": "tools/KristalDiag/examples/reference-kristall/source-registry.example.json",
+      "sha256": "162b880e72e71d8655c14a6aeeda1f2f6a495c495b244db14d93048a395771bd",
+      "bytes": 711
+    },
+    {
+      "path": "tools/KristalDiag/examples/reference-kristall/v6-compatible-projection.example.json",
+      "sha256": "aee4f2b1a42f51579b64aca70d157b2b9bb4899a96dfafbe132ef4c887a574fe",
+      "bytes": 1498
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/__init__.py",
+      "sha256": "60217fd042a16c77fc84da48d20e9980552ce1d1d00a33020d31eb55ff184746",
+      "bytes": 457
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/__main__.py",
+      "sha256": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+      "bytes": 47
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/checks.py",
+      "sha256": "9ff981ca15f3a95f2c828727a80e6f60a8f7617c1d5fe2472bbd41a765267d73",
+      "bytes": 26728
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/cli.py",
+      "sha256": "c81a357f1a861ae2c6ebe11dbeab03cd843d8a7b7dce508e01af57d68c5f93be",
+      "bytes": 9394
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/commands.py",
+      "sha256": "64e96971e4de95e022aade654c182e74c2f5f87c499d4826b4ae20f91ac909b8",
+      "bytes": 2029
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/config.py",
+      "sha256": "40c5bff43d6a091f850fd64d7f021456ce4c47823d0c40ba46473a24a5240ad0",
+      "bytes": 1954
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/discovery.py",
+      "sha256": "9612cef94c646edcfc5fd12167b2d114d5eca1c17cf4408a7149d4f4c0cd4f2c",
+      "bytes": 3765
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/driver.py",
+      "sha256": "1eb0101640ea4be0d5db25cab48976a0dff4e5aee8fd7831b7b294c312e5954b",
+      "bytes": 1695
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/evidence.py",
+      "sha256": "64f7fad8f006bb30c7862619a9ee5456ffae0c9ecc95e538c50b81a86c275eb8",
+      "bytes": 8219
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/interop.py",
+      "sha256": "14bfcbc2e48595e08826c28018058e5618aabcf8be6c59cbf6d09a540c4c0f23",
+      "bytes": 4405
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/jcs.py",
+      "sha256": "50f0a7af4bfc985043178fd798ba0f3464a013c30aaf97668b556eefbcaaf5dc",
+      "bytes": 2584
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/manifest.py",
+      "sha256": "3197763c6395f510e61867d043949e0acfb8ae353e71772df21446e90f62a768",
+      "bytes": 7160
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/models.py",
+      "sha256": "208c174ebca8bc7b7d68bd7cdcd273bb789fd2e0c7850e4de451b139c16831e9",
+      "bytes": 1863
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/neutral.py",
+      "sha256": "d6f5caff126fba513540d887875fa15053ff4744147957d73d3186e561d70a6c",
+      "bytes": 13502
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/profiles.py",
+      "sha256": "d25458a84b65b36966bc483cb6bf4436361a861ca162ea072d81f4da63ae5c66",
+      "bytes": 1552
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/release_checks.py",
+      "sha256": "8e40c5856f2e964a41639f9072252cb9a43f52a9c6cc49bd36e8f2faf25b3692",
+      "bytes": 9261
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/report.py",
+      "sha256": "2a3f45a3083a3da4621dc6bce698fc2973bc883040ffb7dfd9e9b3a8a6bd2112",
+      "bytes": 2478
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/contracts/v9-compatibility-lock.json",
+      "sha256": "323b8cac928787baace8604a463914bbd46675d4107c303d8e8a89f7123dbebf",
+      "bytes": 28756
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v6/kristal-state.schema.json",
+      "sha256": "8f3df9a93d6a7c0ca8d7143946ed6f2009ae6d6b5105b8e7d7e873b5288e807c",
+      "bytes": 8389
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v7/kristal-v7-extension.schema.json",
+      "sha256": "fb8f008e9319d922edee4bc7fb93280f46880dd5619f6684810dc8da58cc4987",
+      "bytes": 998
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v7/kristall-assertion-family-registry.schema.json",
+      "sha256": "5394ba95828447890ad186290dbe05360f11a26a92b2ff86ae6a80b383cf59b9",
+      "bytes": 1594
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v7/kristall-assertion-registry.schema.json",
+      "sha256": "d8c560b5ea1f18149fdcc710693a52a0d65a2d49c419764f2d21892475bd50c6",
+      "bytes": 1355
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v7/kristall-axis-registry.schema.json",
+      "sha256": "77726362c125bef7799e0ff74ec6219e4cb2c08897b426bf0ce0a16dfb9760db",
+      "bytes": 1718
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v7/kristall-axis-type-registry.schema.json",
+      "sha256": "7ee29b36d816fdc1e771ac6ca065eea8ff6537b54d7bd4cf4cd2e3452e8eab52",
+      "bytes": 1784
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v7/kristall-crystallization-record.schema.json",
+      "sha256": "b8a554fd034f1d15fe0e9f61b73725791c606c4c688f9b3f3eb414010793fdb1",
+      "bytes": 794
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v7/kristall-entity-registry.schema.json",
+      "sha256": "b497203ffcd584d33c0fe3a63ed16a18c5c6811138278b91353e2e523429e2fe",
+      "bytes": 2126
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v7/kristall-kos-registry.schema.json",
+      "sha256": "7b722e86ee24c174a5183abbf5464f7cb82bf54479867355d5a83ff67223de60",
+      "bytes": 2494
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v7/kristall-manifest.schema.json",
+      "sha256": "53c5e87d82436c2f5b97522d9ede5f5cfc0898ed82f74b7af498fcc6864822fa",
+      "bytes": 2118
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v7/kristall-mesh.schema.json",
+      "sha256": "f834cc6952f1933b5a8de912411059771a8b97f9d6af5bc53ebf4b5ba708a300",
+      "bytes": 1744
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v7/kristall-projection-recipe.schema.json",
+      "sha256": "9ddaf302398c8d30e6c5487b624446c44ec7e97bfb800f660471cbbc7eb179a6",
+      "bytes": 1248
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v7/kristall-property-registry.schema.json",
+      "sha256": "0de972ad8645764aaa56fd6152c41631f30775fdab835cdcc3604dd56de178d0",
+      "bytes": 1201
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v7/kristall-source-registry.schema.json",
+      "sha256": "dc0d09a7797a533c01b75b451ad45d045b6f27da2f7a94896c2733227165d18a",
+      "bytes": 1096
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v7/kristall-toc-registry.schema.json",
+      "sha256": "b52412f7c3268569c5c5e34eccb149c645336db435a6ab36603b13c109577f76",
+      "bytes": 4495
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v7/semantic-resonance.schema.json",
+      "sha256": "e41154ba6561f276043d5e94cd4569d7339fb6b52c160d94c346e8362c18c617",
+      "bytes": 1702
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v8/kristall-ai-context-bundle.schema.json",
+      "sha256": "4fbe1bb28bfeaba538e4d4f36e4db122e3afb54fe89208a0d684053ac09287b9",
+      "bytes": 8394
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v8/kristall-lexicon-stack.schema.json",
+      "sha256": "fa1e8ab60ed1d24a96671df8ada71faa9c1c747a92b1db93dcffc3b63f78d771",
+      "bytes": 1920
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v8/kristall-lexicon.schema.json",
+      "sha256": "c34321540dd3d366538d50509eadd010f014aa403fbf24699c5caa5c885f6ba0",
+      "bytes": 6738
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v8/kristall-query-index.schema.json",
+      "sha256": "447218acd234036621524579c68e7974c93bec6b369618cd265f813abf383560",
+      "bytes": 2646
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v8/kristall-query-request.schema.json",
+      "sha256": "a8788b19444e3769e395b361039e6a9f4aa4fc54fe5ff8e41be618a8f548cd78",
+      "bytes": 7235
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v8/kristall-query-result.schema.json",
+      "sha256": "202414d6e63243663ec7bcce7f101c60c025c32d76e0d55a3226baff9e761692",
+      "bytes": 6513
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/schemas/v8/kristall-v8-capabilities.schema.json",
+      "sha256": "e10664794c4f7c429691b63309cf6914dd7e5345c33dd6b48fdedc8de7b829ea",
+      "bytes": 2572
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v6/kristal-state.example.json",
+      "sha256": "29d5f8193cd5751e03e40f5e3ff3bd6d66dd533307cb1543a94b7ab145f6c69f",
+      "bytes": 2234
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/100-kristals-seed-provenance.json",
+      "sha256": "d053375e2643ecfc0f0ab9c14cf52d640cb7251788cb57e885da2d1b186ee495",
+      "bytes": 320
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/assertion-family-registry.example.json",
+      "sha256": "d5856ddca0c2787f950b88ef53d9e431c2dc011b9e2089448e4717aeaaf1e2a1",
+      "bytes": 515
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/assertion-registry.example.json",
+      "sha256": "2dd53396ead123ba5f73570c86922209e42b83d95d54c9cf93f5e14b6ddc6e2c",
+      "bytes": 397
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/axis-registry.example.json",
+      "sha256": "e3f6aebe051b0001509dc3eb20b1fdabeddc982de785709b932a509af0bfea7d",
+      "bytes": 909
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/axis-type-registry.example.json",
+      "sha256": "24759ef41e7e0699ee9d33954e5fb5d0e9b8d35617c2258ea991d4b0a03d5e57",
+      "bytes": 6479
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/crystallization-record.example.json",
+      "sha256": "d7459c30cd9fc2f3e96ef34b8564fe611acbb5ca883eb2527dce3cfefa6c8319",
+      "bytes": 224
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/entity-registry.example.json",
+      "sha256": "a3e118efc4f3c0c9fd22db0b379d5fd262187dc08e9491c1e2b33804e66ade67",
+      "bytes": 885
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/kos-registry.example.json",
+      "sha256": "a86c3fe8d431aafffc9056411cb7eb86a5dfd874c5911d80006c0a935f796e22",
+      "bytes": 785
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/kristall-manifest.example.json",
+      "sha256": "66e07544b2025acd5019b1e4700f8a5fcb19341f6b390e5586182a14b6bd1802",
+      "bytes": 1293
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/mesh.example.json",
+      "sha256": "9dae6d1731136692f5e062385fd326b0f326500b0f285081ce16393b0b791ccf",
+      "bytes": 463
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/projection-recipe.example.json",
+      "sha256": "27b00da098b48285341fc4895610dd1a32fb0a8e4e46920759defc242a1d6c25",
+      "bytes": 330
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/property-registry.example.json",
+      "sha256": "2bb08f7cbbd8c694672419ce2e831313266b2d126b1e3b59d35bc05a80012ab9",
+      "bytes": 437
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/resonance.example.json",
+      "sha256": "a8d67d9454749539e4b1f50530153808a195675ba2a94ede8d057f17b53b6636",
+      "bytes": 788
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/source-registry.example.json",
+      "sha256": "f4d4a896b750e21fb22a62fec2aff8076f6967a045993407107d005db160162a",
+      "bytes": 265
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/toc-registry-100-seed.example.json",
+      "sha256": "93929770f59c268ff3b1cf748af13ee5e6c45c4b4face59bbe5081bc38ee9c4c",
+      "bytes": 98204
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/toc-seed-100-analysis.json",
+      "sha256": "d35648f91f37fc43786e4ff7dc144dedd741d95165669b6119f6cd179fb326cc",
+      "bytes": 4404
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v7/v6-compatible-projection.example.json",
+      "sha256": "3cce44a20adbbef722da63bc86eea14d6f93d4aef52f2e6e41e7c64b900966dd",
+      "bytes": 2666
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v8/ai-context-bundle.example.json",
+      "sha256": "2119f26f2ad563bcb45169be8e35d94a6d94e8ee5d699f2ef848e283c9b42b81",
+      "bytes": 2329
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v8/lexicon-fr-chemistry.example.json",
+      "sha256": "daa92ca4a0ef03362278dd66ad7b22a91a7bdc5fbaaae0bbe1c6bbafdc48092d",
+      "bytes": 608
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v8/lexicon-fr-core.example.json",
+      "sha256": "e57358517a5d2b91e5ba9ca0ac0f007c8f6337a43c67d2cd7adedb7f997472b3",
+      "bytes": 735
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v8/lexicon-stack.example.json",
+      "sha256": "ab99b57cc0fd227d0861dc21a5d431c0c7b406a9cfa6e2fe990e4d81a46ea4aa",
+      "bytes": 509
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v8/query-index.example.json",
+      "sha256": "88e9d8eda76d5b900737c11263ab330f065fd270ee996ab647aa0d2689f3006b",
+      "bytes": 656
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v8/query-request.example.json",
+      "sha256": "e59e17f2e966bd4d847269fa11ade59f4f6bff9b44554855ffa6491ce5df2c99",
+      "bytes": 1180
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v8/query-result.example.json",
+      "sha256": "eb7f386d1dbe8af9cb85c0aacdfbde6576e93c56ac922265825b65e48278edd5",
+      "bytes": 1424
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/baseline/9.0.0-draft.1/tck/v8/v8-capabilities.example.json",
+      "sha256": "ad9cc2f9cda9bfe20cb94d2d19c21f220305da92d5621ac799a4fbf60a59afce",
+      "bytes": 812
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contract-manifest.json",
+      "sha256": "2e9198011b3b97d464cf5aa50595991f353619aba5b857f8a76e09b2cda21df3",
+      "bytes": 17720
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/github/kristal-github-binding.schema.json",
+      "sha256": "6b1f5d4cfc519f536699a19a24d1089b817a14f727152e78b802b861f751b095",
+      "bytes": 5729
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/github/kristal-github-collection-index.schema.json",
+      "sha256": "9f100e065934fc59a18f1a22a0d6d6776ff19878d44564fba0ec8602f301c75d",
+      "bytes": 2551
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/github/kristal-github-read-surface.schema.json",
+      "sha256": "01a4a5fcd15172c584e21ac15a85ff2db5812c4e2018d54178f409958b4bca56",
+      "bytes": 2965
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/github/kristal-github-sync-manifest.schema.json",
+      "sha256": "6683e2ef8250c37d6b54933302067bf88c106d03477dc678da6700d4df71b458",
+      "bytes": 3329
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v10/kristal-directory.schema.json",
+      "sha256": "807b5c296e6b862de3af6b4513ab369c788afd755e1da80e8c0b6727e39f7a4f",
+      "bytes": 4279
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v10/kristal-host-binding.schema.json",
+      "sha256": "ac3085c76ef0a8c404a2407403557675deaa25f096141ad8c5697df0ea2c47a7",
+      "bytes": 5786
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v10/kristal-node-manifest.schema.json",
+      "sha256": "56ffe8632ceeb690852154608bcfb85eef3992eac16adec8d1e8c99de832d85c",
+      "bytes": 1813
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v10/kristal-publication.schema.json",
+      "sha256": "820523e59c4079ab500feb92eb86460533a7374354fd8c4f48f001130824437d",
+      "bytes": 3619
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v10/kristal-v10-capabilities.schema.json",
+      "sha256": "59f1296e84d69191edda40439b34b57ddb3b35008ae58aadf58163856cf80e3f",
+      "bytes": 3609
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v6/kristal-state.schema.json",
+      "sha256": "8f3df9a93d6a7c0ca8d7143946ed6f2009ae6d6b5105b8e7d7e873b5288e807c",
+      "bytes": 8389
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v7/kristal-v7-extension.schema.json",
+      "sha256": "9d1a87aa946b21072d95afc7482b707edc4f150a30c04b2ad81eb964c0939aa7",
+      "bytes": 1805
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v7/kristall-assertion-family-registry.schema.json",
+      "sha256": "29db7a00eed49efcfc01e182be9ca0008378064929c40da5706a5cd067dbbb04",
+      "bytes": 2678
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v7/kristall-assertion-registry.schema.json",
+      "sha256": "17f840ae312ab4e1f17fb15c8148ed9f74b3f93294ac99d178c5b1573913c106",
+      "bytes": 2644
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v7/kristall-axis-registry.schema.json",
+      "sha256": "4f26ff6465ad064d343ec54a9ac6a9e328b1171e193e6b983cf85aee1c90f5d5",
+      "bytes": 2668
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v7/kristall-crystallization-record.schema.json",
+      "sha256": "da051154a5b4b6747bd7b51a12a8eea6c55d92fc67341c82101cdcbf47e0c8ea",
+      "bytes": 2587
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v7/kristall-entity-registry.schema.json",
+      "sha256": "a22f81239e4c9fadf4d70808c7918da1ccedd7223b8470ac4980eef891d9af80",
+      "bytes": 3915
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v7/kristall-manifest.schema.json",
+      "sha256": "b8d1322c3700b6624b35a9165c65f276d098777cc271a03962eb0574c87d4011",
+      "bytes": 4776
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v7/kristall-mesh.schema.json",
+      "sha256": "ac89ee5e563d5ae9b4eda74370ae3ad3d0e8f1bab5240a3bf64d505ce8fa18ed",
+      "bytes": 3101
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v7/kristall-projection-recipe.schema.json",
+      "sha256": "435dcfb4e33d883f6e50cacc0698316a56805dc502f65227421a7b5d59dc94c2",
+      "bytes": 2035
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v7/kristall-property-registry.schema.json",
+      "sha256": "f239d448117a73262bae0d0435266e36dcfca8eb16e8fbd11a4ed5d0d9ba63a1",
+      "bytes": 1998
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v7/kristall-source-registry.schema.json",
+      "sha256": "c7254567271f82be4c278525304b6605263f284b6575f2dbe0fabf631a29f4e5",
+      "bytes": 1746
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v7/semantic-resonance.schema.json",
+      "sha256": "f7840ff9522ce9b622b7c019d609036e39e9abef887c6a11f19267a1b468062b",
+      "bytes": 3948
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v8/kristall-ai-context-bundle.schema.json",
+      "sha256": "4fbe1bb28bfeaba538e4d4f36e4db122e3afb54fe89208a0d684053ac09287b9",
+      "bytes": 8394
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v8/kristall-lexicon-stack.schema.json",
+      "sha256": "fa1e8ab60ed1d24a96671df8ada71faa9c1c747a92b1db93dcffc3b63f78d771",
+      "bytes": 1920
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v8/kristall-lexicon.schema.json",
+      "sha256": "c34321540dd3d366538d50509eadd010f014aa403fbf24699c5caa5c885f6ba0",
+      "bytes": 6738
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v8/kristall-query-index.schema.json",
+      "sha256": "447218acd234036621524579c68e7974c93bec6b369618cd265f813abf383560",
+      "bytes": 2646
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v8/kristall-query-request.schema.json",
+      "sha256": "a8788b19444e3769e395b361039e6a9f4aa4fc54fe5ff8e41be618a8f548cd78",
+      "bytes": 7235
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v8/kristall-query-result.schema.json",
+      "sha256": "202414d6e63243663ec7bcce7f101c60c025c32d76e0d55a3226baff9e761692",
+      "bytes": 6513
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v8/kristall-v8-capabilities.schema.json",
+      "sha256": "e10664794c4f7c429691b63309cf6914dd7e5345c33dd6b48fdedc8de7b829ea",
+      "bytes": 2572
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v9/README.md",
+      "sha256": "4a5f9b65c9ab10bb8c9380ec83f4c0e5bd932dc8a0cf685e682b8b47e19b336b",
+      "bytes": 518
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v9/kristal-activation.schema.json",
+      "sha256": "2b1408ea41915b950f8f42ba42857f0714af6336cacfbd55ee7ee71f2ec0b3a2",
+      "bytes": 3321
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v9/kristal-derivation.schema.json",
+      "sha256": "31e61d872efa6aa4e90fa2233f25dc1784d0c755138cccfe5120ce6b7fc483b7",
+      "bytes": 5720
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v9/kristal-exchange.schema.json",
+      "sha256": "c680c43ca84a7f41f4b1c9da2ed1fd83f0696f370c7790cb1892f3d0897913e3",
+      "bytes": 4312
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v9/kristal-logical-artifact.schema.json",
+      "sha256": "3090790f1f9ac9d30db6a07284b21d4a157ca8e9c7357ac50a6130324a228079",
+      "bytes": 3005
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v9/kristal-materialization-manifest.schema.json",
+      "sha256": "88c1f2981058e9779c60ee7773cfd20b9698d91030b5e5136ea3d605b01ee4fa",
+      "bytes": 5044
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v9/kristal-state-snapshot.schema.json",
+      "sha256": "3572060b23e62708fd1bcd803f42a07268690ce3f2e181f32d2f6cfa8f6fd415",
+      "bytes": 6379
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/contracts/v9/kristal-v9-capabilities.schema.json",
+      "sha256": "cd769813abfaddd9694ab2db4e8b5f9a06061b30b25240c9e7e52d8d737b79d7",
+      "bytes": 3098
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/locks/compatibility-errata.json",
+      "sha256": "419f31baac7d595f83d5e90e10198c78b1c0cd5b6eb718f77401b3408e49bff1",
+      "bytes": 1318
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/locks/contract-set.json",
+      "sha256": "fd8add31bb0a20159fd2e6c6c3175863a8195c9840e0b9f6a8cc388e57176c92",
+      "bytes": 3599
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/locks/framework-v10.json",
+      "sha256": "deaf65e25a07226d58ca74cafd9e767990f01ebce01557c605ad288ac796cf78",
+      "bytes": 3010
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/locks/release.json",
+      "sha256": "677bd7347811ccbd9f8922822b53590277553608173d392f12a6743b595be162",
+      "bytes": 1600
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/locks/v9-compatibility-lock.json",
+      "sha256": "323b8cac928787baace8604a463914bbd46675d4107c303d8e8a89f7123dbebf",
+      "bytes": 28756
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/jcs/expected-hashes.txt",
+      "sha256": "880bf0c233b7ff2a4635d385a4069e998b75928295393addea95a34ec64aa858",
+      "bytes": 920
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/jcs/vectors.json",
+      "sha256": "65a3ba92c64b69c8858692b941aa8ac2c92ec3509120378f8cf689e0eb4c5623",
+      "bytes": 10702
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v10/bundle/bundle-manifest.json",
+      "sha256": "18fa4a2a069ae4428784f49c58224d018fd064cbfea8391ccfbd031630c2f73e",
+      "bytes": 722
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v10/bundle/publication.json",
+      "sha256": "95a38aee66e53443b00944f1f861aef89945f6a510ba8217d1c6c6dc906f18e5",
+      "bytes": 1359
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v10/bundle/state-snapshot.json",
+      "sha256": "b2e3f0379ee761490d622e15a28dd2d2ecf6ad4eac13e86d148405d72e888677",
+      "bytes": 910
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v10/github/github-collection-index.example.json",
+      "sha256": "f6b59f872629121a54a083b64776b4c971657540d2ba8b835ef46533e56d2994",
+      "bytes": 898
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v10/github/github-read-surface.example.json",
+      "sha256": "fa314e6d48e3d49f665f519a1acfb7bbdccbc17745c83b654e0093126a6085cc",
+      "bytes": 6380
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v10/github/github-sync-manifest.example.json",
+      "sha256": "4b8ef0527d575e500de3830f99034a017c53251dcba671d2a62f81ad162ce539",
+      "bytes": 5522
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v10/vectors/directory.example.json",
+      "sha256": "57fb63f8510a346d38331354c96c17b31b5cb4368f369d220bc2673a78cc3f54",
+      "bytes": 1264
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v10/vectors/github-binding.example.json",
+      "sha256": "c55222d1bc1c5dab9d61fab5591f2d7f9492af2d8b304880c73e3b02a36a090e",
+      "bytes": 1562
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v10/vectors/node-manifest.example.json",
+      "sha256": "c77e851108f8452d479a914fd4bd6d8b84373d91ad8df915fa80e21277b8ed5c",
+      "bytes": 459
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v10/vectors/publication.example.json",
+      "sha256": "4820a6e5c69af41bbfc72b7cc396c59cd522ceb313d768e92be37a6a4f11dcd0",
+      "bytes": 1030
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v10/vectors/v10-capabilities.example.json",
+      "sha256": "a50d3aac8557444ff6d4ddfb3a2bb888fe2a613907807d9e399443f07896ff9d",
+      "bytes": 1053
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v6/kristal-state.example.json",
+      "sha256": "29d5f8193cd5751e03e40f5e3ff3bd6d66dd533307cb1543a94b7ab145f6c69f",
+      "bytes": 2234
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v7/assertion-family-registry.example.json",
+      "sha256": "43236c929160d9c66354653de0596e72a45f2ed673fe5c9a9c0a64ee4553f26c",
+      "bytes": 1045
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v7/assertion-registry.example.json",
+      "sha256": "ee1028016f79b2601a6ff6f5180a89d746bc3ad4bf61e91bac5260d2a013fe66",
+      "bytes": 684
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v7/axis-registry.example.json",
+      "sha256": "3426c0bd25e5e054c069adc50092bca6f37333d68e8917f4441c96eb8602027a",
+      "bytes": 1793
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v7/crystallization-record.example.json",
+      "sha256": "3cf2709da8141ed9db24fd3ec1caf60dc7b035e3a5b09deb5029dad779e828d3",
+      "bytes": 1464
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v7/entity-registry.example.json",
+      "sha256": "1244e0a44a5814920a500ff166831c5ebbf570844e7a794ffae84eba7fd5bd23",
+      "bytes": 1351
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v7/kristall-manifest.example.json",
+      "sha256": "494bce60d139d1bfff0d729568dd0cc4478d40bb1e0fb0dc9eb478eecb196657",
+      "bytes": 1843
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v7/mesh.example.json",
+      "sha256": "5e956e8cd4969bf5e5ba2f2167ae130d92a734e6a3f9607c76664c1d8f56389b",
+      "bytes": 1570
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v7/projection-recipe.example.json",
+      "sha256": "092220d551d4fffbe4ed77cbca14d77e13fcc8ef3272835b348f40f30c7ed0d4",
+      "bytes": 665
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v7/property-registry.example.json",
+      "sha256": "9dd999f584224a1e066f680b362070ade2184eda06ca0c1dca351ca56ba854bf",
+      "bytes": 1095
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v7/resonance.example.json",
+      "sha256": "b7236a65d3a117834728c21cbe51a25218044f2a5cb7db03d289814ff62cf718",
+      "bytes": 1360
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v7/source-registry.example.json",
+      "sha256": "162b880e72e71d8655c14a6aeeda1f2f6a495c495b244db14d93048a395771bd",
+      "bytes": 711
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v7/v6-compatible-projection.example.json",
+      "sha256": "3bb99255fa4188a1896702047a70f5324038e39731e19bfee068e5081e308c0f",
+      "bytes": 2666
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v8/ai-context-bundle.example.json",
+      "sha256": "2119f26f2ad563bcb45169be8e35d94a6d94e8ee5d699f2ef848e283c9b42b81",
+      "bytes": 2329
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v8/lexicon-fr-chemistry.example.json",
+      "sha256": "daa92ca4a0ef03362278dd66ad7b22a91a7bdc5fbaaae0bbe1c6bbafdc48092d",
+      "bytes": 608
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v8/lexicon-fr-core.example.json",
+      "sha256": "e57358517a5d2b91e5ba9ca0ac0f007c8f6337a43c67d2cd7adedb7f997472b3",
+      "bytes": 735
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v8/lexicon-stack.example.json",
+      "sha256": "ab99b57cc0fd227d0861dc21a5d431c0c7b406a9cfa6e2fe990e4d81a46ea4aa",
+      "bytes": 509
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v8/query-index.example.json",
+      "sha256": "88e9d8eda76d5b900737c11263ab330f065fd270ee996ab647aa0d2689f3006b",
+      "bytes": 656
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v8/query-request.example.json",
+      "sha256": "e59e17f2e966bd4d847269fa11ade59f4f6bff9b44554855ffa6491ce5df2c99",
+      "bytes": 1180
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v8/query-result.example.json",
+      "sha256": "eb7f386d1dbe8af9cb85c0aacdfbde6576e93c56ac922265825b65e48278edd5",
+      "bytes": 1424
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v8/v8-capabilities.example.json",
+      "sha256": "ad9cc2f9cda9bfe20cb94d2d19c21f220305da92d5621ac799a4fbf60a59afce",
+      "bytes": 812
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v9/vectors/activation.example.json",
+      "sha256": "48d196606e31e365a7b346e32145afa6c6639a7527d281afc7fd535c6e4ccd39",
+      "bytes": 440
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v9/vectors/derivation.example.json",
+      "sha256": "533a81a8939602775b34b290441fdf9c2da2c8f85142825f85bd5d70d569a750",
+      "bytes": 929
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v9/vectors/exchange.example.json",
+      "sha256": "b5fc75b03d5f45ad194b6310bade16888863a19e4886fc7b592324faec799851",
+      "bytes": 883
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v9/vectors/logical-artifact.example.json",
+      "sha256": "b36924ea05a3131cdad0ed5e25409a3740027febb1ca4251b903b7324c57ebf4",
+      "bytes": 705
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v9/vectors/logical-commitment-vectors.json",
+      "sha256": "f59b2a6b7b7ecf988ceb492c6b449639ab8545655a23d3c498963c941b2663d5",
+      "bytes": 589
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v9/vectors/materialization-manifest.example.json",
+      "sha256": "1df94bd61e1ce2cc62cafffa5aaf2c5272e3762165745ee89d5ad0621f9f1e2c",
+      "bytes": 1078
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v9/vectors/state-snapshot.example.json",
+      "sha256": "b2e3f0379ee761490d622e15a28dd2d2ecf6ad4eac13e86d148405d72e888677",
+      "bytes": 910
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v9/vectors/v9-capabilities.example.json",
+      "sha256": "549e0b846e79ad443f28f38f1ab3f1e47227443c0429618251f4541b1a17f92c",
+      "bytes": 977
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v9/workloads/epistemic-corpus.logical-artifact.json",
+      "sha256": "fc19ef3edb976707d5d5856fc40483377d2f46d74b1bf533330dc13796cfd891",
+      "bytes": 797
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v9/workloads/federation.state-snapshot.json",
+      "sha256": "df27cfab1e3137f8350b025527b4cda6af891e2b1f1166f58ee49f79c1bc7779",
+      "bytes": 1049
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v9/workloads/formula-ast.logical-artifact.json",
+      "sha256": "d4c2e33a7c1d5d9f8e19296f859c99907344cc0969e322bfbf60421896a0b73e",
+      "bytes": 694
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v9/workloads/multiplex-graph.logical-artifact.json",
+      "sha256": "3f9febd809a3c14dad38fcfa22989e535678f353152c82e5d6cfa1dccecd0eb7",
+      "bytes": 891
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v9/workloads/procedure-dag.logical-artifact.json",
+      "sha256": "8bc4b645eeb76fc3ec7108e079c97c1572247d88da0f3799c32acf85cef8aa56",
+      "bytes": 827
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/resources/tck/v9/workloads/relation.logical-artifact.json",
+      "sha256": "7566a915448c057ea8321aab2ccb49446472ea1ccb57dec1e89e5de7ece7bfa6",
+      "bytes": 799
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/runner.py",
+      "sha256": "e206a35100e495f6b2a4bc4a504a384acac612293e28bdddd708f97cb5e6c759",
+      "bytes": 13139
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/runner_types.py",
+      "sha256": "17885826a4c34e23b5cd57a6be41ed2ecb472a8caf4ea72cefbf8d4be66136da",
+      "bytes": 1509
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/schemas.py",
+      "sha256": "beebd5981fcc26e7c0df7c2c0c5620cbc50dd104948ca714a6eb67185092edbd",
+      "bytes": 5546
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/utils.py",
+      "sha256": "3d67229e3e55915d6b9ce1c298ad72e519f4b8175753d840508719039c53ba1d",
+      "bytes": 3331
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/v10.py",
+      "sha256": "273196754130faeaca61fba6b858c6962b3fb9b10da213055e57ea06924e80d1",
+      "bytes": 36862
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/v10_checks.py",
+      "sha256": "913630a18ffda37ac86563fffae5b7d31c9d95ed7cc4a56fe50bf96ecba126bc",
+      "bytes": 28153
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/v9.py",
+      "sha256": "387d7ce35cf8bd0f9a03e754a572e220482257e13feff4d53f42d6411acc4992",
+      "bytes": 5588
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/v9_checks.py",
+      "sha256": "642e89965c4172994039af90ef26bd5fa4d08a81f3268b3398a1d4afd5688d98",
+      "bytes": 30388
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/verdicts.py",
+      "sha256": "41851cf33293856f479b796db7525d484601f79de360b7f2dedd43e4f0c574d1",
+      "bytes": 554
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag/worker.py",
+      "sha256": "453e5b1b570190ddd73aa47b1cf691dcdc0fd103e20caf340a63315b8136c3ba",
+      "bytes": 3167
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag.config.json",
+      "sha256": "255943812c5e7ec3bd30bdf130c4144417a86c175bf9b46d174fa5fd1a4bb945",
+      "bytes": 1154
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag.py",
+      "sha256": "23b4232a7ee634baaf389c63b088d0ec504756b5ff16ed4429f2b374388ef3c6",
+      "bytes": 81
+    },
+    {
+      "path": "tools/KristalDiag/kristaldiag_manifest.json",
+      "sha256": "47739e41576540b5c7369f46800e51ea5b14367444772d62accda04f52da94d2",
+      "bytes": 15696
+    },
+    {
+      "path": "tools/KristalDiag/levels/__init__.py",
+      "sha256": "1504c5950e8e1126f49c2e572b1e8978eeefdfcd31719336bc062bff242a4543",
+      "bytes": 60
+    },
+    {
+      "path": "tools/KristalDiag/levels/k00.py",
+      "sha256": "4b5a39a626ab1bf9f1dc4d9a24c10f13cde5a227aa4d2cf34c3356fcd782a968",
+      "bytes": 60
+    },
+    {
+      "path": "tools/KristalDiag/levels/k01.py",
+      "sha256": "bdcf893a997bf6e64934fe417b7ef05ec2f55793b72dfd19cb4069cba814f2e3",
+      "bytes": 60
+    },
+    {
+      "path": "tools/KristalDiag/levels/k02.py",
+      "sha256": "0b1d108cd91ec58dd8eadb9d72f73ee0021221a3c12cf74fe7a175a7c9bbb67b",
+      "bytes": 60
+    },
+    {
+      "path": "tools/KristalDiag/levels/k03.py",
+      "sha256": "18535a80c95a1f625ec40f7a79143040df53066ae75f098385965e45ea2febd4",
+      "bytes": 60
+    },
+    {
+      "path": "tools/KristalDiag/levels/k04.py",
+      "sha256": "be7c0fe75b45d47e1f690a3163e372afebd7b45693b41747610de00d61fa1646",
+      "bytes": 60
+    },
+    {
+      "path": "tools/KristalDiag/levels/k05.py",
+      "sha256": "556134af425d4e72b1a33e52e660e5232f9c7dc7431ae315f146788397addbac",
+      "bytes": 60
+    },
+    {
+      "path": "tools/KristalDiag/levels/k06.py",
+      "sha256": "aac8725abe17747e6dd74548b92b8e21e16c8d9e85e5878f25d783e3401a10ea",
+      "bytes": 60
+    },
+    {
+      "path": "tools/KristalDiag/levels/k07.py",
+      "sha256": "498c00845d132edad820003fe2b77eb342ae211a3e0fb737e3fa242b391cdcc2",
+      "bytes": 60
+    },
+    {
+      "path": "tools/KristalDiag/levels/k08.py",
+      "sha256": "7fa6a1f097f8784681771c4a5c8a688caa6461bbd65f84dfc07e854693f61532",
+      "bytes": 60
+    },
+    {
+      "path": "tools/KristalDiag/levels/k09.py",
+      "sha256": "86ce92d3587fcefc2470dadec250941f03365c3b9ff2e19b41d42abc4c189e73",
+      "bytes": 60
+    },
+    {
+      "path": "tools/KristalDiag/levels/k10.py",
+      "sha256": "52b87edc311c5957aadd9a57f3f31b94fd2b479b712744ae72b04b7d2686cf55",
+      "bytes": 60
+    },
+    {
+      "path": "tools/KristalDiag/levels/k11.py",
+      "sha256": "5aacae7d89eefd911892b144da66b0f497b36e654cdba9270883a0f6d28e08b7",
+      "bytes": 60
+    },
+    {
+      "path": "tools/KristalDiag/levels/k12.py",
+      "sha256": "b0f835a5fceeb9a4621f8cef03ad3f7c3f82f19a815a35fbf6d80755f61d92d9",
+      "bytes": 60
+    },
+    {
+      "path": "tools/KristalDiag/levels/k13.py",
+      "sha256": "0d421bdb2f61520c5ad9de542c7d7bbc4df93d7730f836674119aa96e7833265",
+      "bytes": 60
+    },
+    {
+      "path": "tools/KristalDiag/levels/k25.py",
+      "sha256": "35e275fda1d797f0bc7f59ec4fa0b5b42565bfd4817f4fc68017250e49303cd7",
+      "bytes": 46
+    },
+    {
+      "path": "tools/KristalDiag/levels/k26.py",
+      "sha256": "2b1a40f62c56da584d5367ea5c4515fb19fc460a894db46c1bcc28efb380b6c2",
+      "bytes": 46
+    },
+    {
+      "path": "tools/KristalDiag/levels/k27.py",
+      "sha256": "e57fe9a6ccd6493e64a0299a37104e93f0cdadd994d2c520785d35f3ece759a0",
+      "bytes": 46
+    },
+    {
+      "path": "tools/KristalDiag/levels/k28.py",
+      "sha256": "e5d2e959f620702d66bca93e618d6bf21a8f83440c9207733d795a369742cc20",
+      "bytes": 46
+    },
+    {
+      "path": "tools/KristalDiag/levels/k29.py",
+      "sha256": "baaf1ca68f3fc3e8ff0312e99c88a3d1ef3f0c4121b23d20a55b11348996715b",
+      "bytes": 46
+    },
+    {
+      "path": "tools/KristalDiag/levels/k30.py",
+      "sha256": "050c4015fe4b347749e3d1653de31d467db3bec3ad4e562c110f39395c9ee443",
+      "bytes": 46
+    },
+    {
+      "path": "tools/KristalDiag/levels/k31.py",
+      "sha256": "94e117e41255943cd87e8a2581cc47c5c97ae51f46615bd115d2bb537977e545",
+      "bytes": 46
+    },
+    {
+      "path": "tools/KristalDiag/levels/k32.py",
+      "sha256": "c83ebd8b94224b9c1e031b9606e2b683dfab178c3c691b4c41ae79c361f937be",
+      "bytes": 46
+    },
+    {
+      "path": "tools/KristalDiag/levels/n00.py",
+      "sha256": "5fb8e465ec6e05af10e6dac6fd119f3e3860559a4f8925def8cb9b761cbdba08",
+      "bytes": 61
+    },
+    {
+      "path": "tools/KristalDiag/levels/n01.py",
+      "sha256": "5251246b7d3ab7ddec6dfaf820eba774a6668ed3e5fd4b854e39f4c96231aaef",
+      "bytes": 61
+    },
+    {
+      "path": "tools/KristalDiag/levels/n02.py",
+      "sha256": "fd875ee559f02aeb40a6c8372d4ac213f26214f2f9e6a68c9c7d1fa2a1c6dba1",
+      "bytes": 61
+    },
+    {
+      "path": "tools/KristalDiag/levels/n03.py",
+      "sha256": "dbde48dbba7696565c220937be0f50abe0053471f1e6b943b69c98e733bf3dd7",
+      "bytes": 61
+    },
+    {
+      "path": "tools/KristalDiag/levels/n04.py",
+      "sha256": "02efb9dc6a3a4cfef5d6e2c861ac3c3188a210b5d046f259833eaa38d5951016",
+      "bytes": 61
+    },
+    {
+      "path": "tools/KristalDiag/levels/n05.py",
+      "sha256": "d47d5d7c01f2ec5be83e06c9bf001bb7738f88f7ab1fdf04fdc948b7691f8b36",
+      "bytes": 61
+    },
+    {
+      "path": "tools/KristalDiag/levels/n06.py",
+      "sha256": "35d3687c4e010042e93ac6990b1399a16558c8ecc9cd136c7960266ff6df6744",
+      "bytes": 61
+    },
+    {
+      "path": "tools/KristalDiag/levels/r00.py",
+      "sha256": "202daa83361eb5b1f0e3411a4d34c030568f53e920ad5403b9421de967ef8886",
+      "bytes": 68
+    },
+    {
+      "path": "tools/KristalDiag/levels/r01.py",
+      "sha256": "ddc3ebcd50e980b7566ef38f59f5afae09cab3dd7b6d7b2c4ee2e55fc94717a2",
+      "bytes": 68
+    },
+    {
+      "path": "tools/KristalDiag/levels/r02.py",
+      "sha256": "22b925bc76db1f43d7215a400811ab3aac05fdb071aa681a958c157790c50d58",
+      "bytes": 68
+    },
+    {
+      "path": "tools/KristalDiag/levels/r03.py",
+      "sha256": "c635806a8de85ec496e199d2442960f1de93fbeb3ed4912e7941c15381edb2b1",
+      "bytes": 68
+    },
+    {
+      "path": "tools/KristalDiag/levels/r04.py",
+      "sha256": "2f3f1dc60da71eab2d40c64cd35cfd3d2f9caed8a6cb36877e9deb2ffbe070c7",
+      "bytes": 68
+    },
+    {
+      "path": "tools/KristalDiag/levelupdiag.py",
+      "sha256": "8b4b272a9789f29a13cc4ca59f9a17ac140a43e9cf45c95d39b10a8f3d34e134",
+      "bytes": 2061
+    },
+    {
+      "path": "tools/KristalDiag/pyproject.toml",
+      "sha256": "df626fa08eb90ec9dcf904a1e26b6bdab51c11d623c362108885e19e5a00ed5b",
+      "bytes": 814
+    },
+    {
+      "path": "tools/KristalDiag/schemas/conformance-verdict.schema.json",
+      "sha256": "27c841ec07948f408c9758444a6565c2bd378f48ffcb96855de0fde735a5b845",
+      "bytes": 1126
+    },
+    {
+      "path": "tools/KristalDiag/schemas/driver.schema.json",
+      "sha256": "b9ff7c0d51aa4bedb7de88e6c5df613ab7d433961c51bbd31956501bf907e4d1",
+      "bytes": 1238
+    },
+    {
+      "path": "tools/KristalDiag/schemas/implementation.schema.json",
+      "sha256": "1b3801f2da1f64670047c6c96c009a0528c81f7f18c561acf396efc40399ab4e",
+      "bytes": 951
+    },
+    {
+      "path": "tools/KristalDiag/schemas/interop-evidence.schema.json",
+      "sha256": "4cab21b7601b60db5892324844d75f524c146a05c10c4951b8bf417c4577c1bb",
+      "bytes": 519
+    },
+    {
+      "path": "tools/KristalDiag/schemas/level-result.schema.json",
+      "sha256": "e827a6ccb00ab6c1f068771d3f43a8ddfa62845befc30b3d4d71d676a52b09c4",
+      "bytes": 1640
+    },
+    {
+      "path": "tools/KristalDiag/schemas/summary.schema.json",
+      "sha256": "a05ce51388ac645a47c1601db38a1bf59049e41edded525dc7129e0888a41882",
+      "bytes": 930
+    },
+    {
+      "path": "tools/KristalDiag/scripts/build_release.py",
+      "sha256": "43b1427a3bb81bd0633c0234c536f16a1223d33d30ae3a249df34dd545ab541d",
+      "bytes": 2391
+    },
+    {
+      "path": "tools/KristalDiag/scripts/check_docs_links.py",
+      "sha256": "c79d853de71e1f0d954920cefede20a5187eab20261cd6728c73bb071c9805be",
+      "bytes": 844
+    },
+    {
+      "path": "tools/KristalDiag/scripts/generate_contract_manifest.py",
+      "sha256": "71c8b048d54fb553f04e0c4c1801a5721ca6ceb747248a4cd3a79e74b8d2c937",
+      "bytes": 1017
+    },
+    {
+      "path": "tools/KristalDiag/scripts/generate_repo_manifest.py",
+      "sha256": "278639307e3aaa42bec9d711994bbe0bc8af4a601a9c48a7d639d742b1750e97",
+      "bytes": 1020
+    },
+    {
+      "path": "tools/KristalDiag/scripts/generate_suite_manifest.py",
+      "sha256": "ed89c3a55fb11d7190d6d34aa1a33694b47e90b4164a2a19c19f696541556bcb",
+      "bytes": 1266
+    },
+    {
+      "path": "tools/KristalDiag/scripts/release_check.py",
+      "sha256": "8381af66f2ed224d10051311a17cdd831705394eb07707374952bb6f7d571915",
+      "bytes": 1014
+    },
+    {
+      "path": "tools/KristalDiag/scripts/verify_contract_mirrors.py",
+      "sha256": "ca9f65927d76d52444bd76869359ab9db0e236be55b389fe5c2ced2d99648eda",
+      "bytes": 1079
+    },
+    {
+      "path": "tools/KristalDiag/tck/jcs/expected-hashes.txt",
+      "sha256": "880bf0c233b7ff2a4635d385a4069e998b75928295393addea95a34ec64aa858",
+      "bytes": 920
+    },
+    {
+      "path": "tools/KristalDiag/tck/jcs/vectors.json",
+      "sha256": "65a3ba92c64b69c8858692b941aa8ac2c92ec3509120378f8cf689e0eb4c5623",
+      "bytes": 10702
+    },
+    {
+      "path": "tools/KristalDiag/tck/v10/bundle/bundle-manifest.json",
+      "sha256": "18fa4a2a069ae4428784f49c58224d018fd064cbfea8391ccfbd031630c2f73e",
+      "bytes": 722
+    },
+    {
+      "path": "tools/KristalDiag/tck/v10/bundle/publication.json",
+      "sha256": "95a38aee66e53443b00944f1f861aef89945f6a510ba8217d1c6c6dc906f18e5",
+      "bytes": 1359
+    },
+    {
+      "path": "tools/KristalDiag/tck/v10/bundle/state-snapshot.json",
+      "sha256": "b2e3f0379ee761490d622e15a28dd2d2ecf6ad4eac13e86d148405d72e888677",
+      "bytes": 910
+    },
+    {
+      "path": "tools/KristalDiag/tck/v10/github/github-collection-index.example.json",
+      "sha256": "f6b59f872629121a54a083b64776b4c971657540d2ba8b835ef46533e56d2994",
+      "bytes": 898
+    },
+    {
+      "path": "tools/KristalDiag/tck/v10/github/github-read-surface.example.json",
+      "sha256": "fa314e6d48e3d49f665f519a1acfb7bbdccbc17745c83b654e0093126a6085cc",
+      "bytes": 6380
+    },
+    {
+      "path": "tools/KristalDiag/tck/v10/github/github-sync-manifest.example.json",
+      "sha256": "4b8ef0527d575e500de3830f99034a017c53251dcba671d2a62f81ad162ce539",
+      "bytes": 5522
+    },
+    {
+      "path": "tools/KristalDiag/tck/v10/vectors/directory.example.json",
+      "sha256": "57fb63f8510a346d38331354c96c17b31b5cb4368f369d220bc2673a78cc3f54",
+      "bytes": 1264
+    },
+    {
+      "path": "tools/KristalDiag/tck/v10/vectors/github-binding.example.json",
+      "sha256": "c55222d1bc1c5dab9d61fab5591f2d7f9492af2d8b304880c73e3b02a36a090e",
+      "bytes": 1562
+    },
+    {
+      "path": "tools/KristalDiag/tck/v10/vectors/node-manifest.example.json",
+      "sha256": "c77e851108f8452d479a914fd4bd6d8b84373d91ad8df915fa80e21277b8ed5c",
+      "bytes": 459
+    },
+    {
+      "path": "tools/KristalDiag/tck/v10/vectors/publication.example.json",
+      "sha256": "4820a6e5c69af41bbfc72b7cc396c59cd522ceb313d768e92be37a6a4f11dcd0",
+      "bytes": 1030
+    },
+    {
+      "path": "tools/KristalDiag/tck/v10/vectors/v10-capabilities.example.json",
+      "sha256": "a50d3aac8557444ff6d4ddfb3a2bb888fe2a613907807d9e399443f07896ff9d",
+      "bytes": 1053
+    },
+    {
+      "path": "tools/KristalDiag/tck/v6/kristal-state.example.json",
+      "sha256": "29d5f8193cd5751e03e40f5e3ff3bd6d66dd533307cb1543a94b7ab145f6c69f",
+      "bytes": 2234
+    },
+    {
+      "path": "tools/KristalDiag/tck/v7/assertion-family-registry.example.json",
+      "sha256": "43236c929160d9c66354653de0596e72a45f2ed673fe5c9a9c0a64ee4553f26c",
+      "bytes": 1045
+    },
+    {
+      "path": "tools/KristalDiag/tck/v7/assertion-registry.example.json",
+      "sha256": "ee1028016f79b2601a6ff6f5180a89d746bc3ad4bf61e91bac5260d2a013fe66",
+      "bytes": 684
+    },
+    {
+      "path": "tools/KristalDiag/tck/v7/axis-registry.example.json",
+      "sha256": "3426c0bd25e5e054c069adc50092bca6f37333d68e8917f4441c96eb8602027a",
+      "bytes": 1793
+    },
+    {
+      "path": "tools/KristalDiag/tck/v7/crystallization-record.example.json",
+      "sha256": "3cf2709da8141ed9db24fd3ec1caf60dc7b035e3a5b09deb5029dad779e828d3",
+      "bytes": 1464
+    },
+    {
+      "path": "tools/KristalDiag/tck/v7/entity-registry.example.json",
+      "sha256": "1244e0a44a5814920a500ff166831c5ebbf570844e7a794ffae84eba7fd5bd23",
+      "bytes": 1351
+    },
+    {
+      "path": "tools/KristalDiag/tck/v7/kristall-manifest.example.json",
+      "sha256": "494bce60d139d1bfff0d729568dd0cc4478d40bb1e0fb0dc9eb478eecb196657",
+      "bytes": 1843
+    },
+    {
+      "path": "tools/KristalDiag/tck/v7/mesh.example.json",
+      "sha256": "5e956e8cd4969bf5e5ba2f2167ae130d92a734e6a3f9607c76664c1d8f56389b",
+      "bytes": 1570
+    },
+    {
+      "path": "tools/KristalDiag/tck/v7/projection-recipe.example.json",
+      "sha256": "092220d551d4fffbe4ed77cbca14d77e13fcc8ef3272835b348f40f30c7ed0d4",
+      "bytes": 665
+    },
+    {
+      "path": "tools/KristalDiag/tck/v7/property-registry.example.json",
+      "sha256": "9dd999f584224a1e066f680b362070ade2184eda06ca0c1dca351ca56ba854bf",
+      "bytes": 1095
+    },
+    {
+      "path": "tools/KristalDiag/tck/v7/resonance.example.json",
+      "sha256": "b7236a65d3a117834728c21cbe51a25218044f2a5cb7db03d289814ff62cf718",
+      "bytes": 1360
+    },
+    {
+      "path": "tools/KristalDiag/tck/v7/source-registry.example.json",
+      "sha256": "162b880e72e71d8655c14a6aeeda1f2f6a495c495b244db14d93048a395771bd",
+      "bytes": 711
+    },
+    {
+      "path": "tools/KristalDiag/tck/v7/v6-compatible-projection.example.json",
+      "sha256": "3bb99255fa4188a1896702047a70f5324038e39731e19bfee068e5081e308c0f",
+      "bytes": 2666
+    },
+    {
+      "path": "tools/KristalDiag/tck/v8/ai-context-bundle.example.json",
+      "sha256": "2119f26f2ad563bcb45169be8e35d94a6d94e8ee5d699f2ef848e283c9b42b81",
+      "bytes": 2329
+    },
+    {
+      "path": "tools/KristalDiag/tck/v8/lexicon-fr-chemistry.example.json",
+      "sha256": "daa92ca4a0ef03362278dd66ad7b22a91a7bdc5fbaaae0bbe1c6bbafdc48092d",
+      "bytes": 608
+    },
+    {
+      "path": "tools/KristalDiag/tck/v8/lexicon-fr-core.example.json",
+      "sha256": "e57358517a5d2b91e5ba9ca0ac0f007c8f6337a43c67d2cd7adedb7f997472b3",
+      "bytes": 735
+    },
+    {
+      "path": "tools/KristalDiag/tck/v8/lexicon-stack.example.json",
+      "sha256": "ab99b57cc0fd227d0861dc21a5d431c0c7b406a9cfa6e2fe990e4d81a46ea4aa",
+      "bytes": 509
+    },
+    {
+      "path": "tools/KristalDiag/tck/v8/query-index.example.json",
+      "sha256": "88e9d8eda76d5b900737c11263ab330f065fd270ee996ab647aa0d2689f3006b",
+      "bytes": 656
+    },
+    {
+      "path": "tools/KristalDiag/tck/v8/query-request.example.json",
+      "sha256": "e59e17f2e966bd4d847269fa11ade59f4f6bff9b44554855ffa6491ce5df2c99",
+      "bytes": 1180
+    },
+    {
+      "path": "tools/KristalDiag/tck/v8/query-result.example.json",
+      "sha256": "eb7f386d1dbe8af9cb85c0aacdfbde6576e93c56ac922265825b65e48278edd5",
+      "bytes": 1424
+    },
+    {
+      "path": "tools/KristalDiag/tck/v8/v8-capabilities.example.json",
+      "sha256": "ad9cc2f9cda9bfe20cb94d2d19c21f220305da92d5621ac799a4fbf60a59afce",
+      "bytes": 812
+    },
+    {
+      "path": "tools/KristalDiag/tck/v9/vectors/activation.example.json",
+      "sha256": "48d196606e31e365a7b346e32145afa6c6639a7527d281afc7fd535c6e4ccd39",
+      "bytes": 440
+    },
+    {
+      "path": "tools/KristalDiag/tck/v9/vectors/derivation.example.json",
+      "sha256": "533a81a8939602775b34b290441fdf9c2da2c8f85142825f85bd5d70d569a750",
+      "bytes": 929
+    },
+    {
+      "path": "tools/KristalDiag/tck/v9/vectors/exchange.example.json",
+      "sha256": "b5fc75b03d5f45ad194b6310bade16888863a19e4886fc7b592324faec799851",
+      "bytes": 883
+    },
+    {
+      "path": "tools/KristalDiag/tck/v9/vectors/logical-artifact.example.json",
+      "sha256": "b36924ea05a3131cdad0ed5e25409a3740027febb1ca4251b903b7324c57ebf4",
+      "bytes": 705
+    },
+    {
+      "path": "tools/KristalDiag/tck/v9/vectors/logical-commitment-vectors.json",
+      "sha256": "f59b2a6b7b7ecf988ceb492c6b449639ab8545655a23d3c498963c941b2663d5",
+      "bytes": 589
+    },
+    {
+      "path": "tools/KristalDiag/tck/v9/vectors/materialization-manifest.example.json",
+      "sha256": "1df94bd61e1ce2cc62cafffa5aaf2c5272e3762165745ee89d5ad0621f9f1e2c",
+      "bytes": 1078
+    },
+    {
+      "path": "tools/KristalDiag/tck/v9/vectors/state-snapshot.example.json",
+      "sha256": "b2e3f0379ee761490d622e15a28dd2d2ecf6ad4eac13e86d148405d72e888677",
+      "bytes": 910
+    },
+    {
+      "path": "tools/KristalDiag/tck/v9/vectors/v9-capabilities.example.json",
+      "sha256": "549e0b846e79ad443f28f38f1ab3f1e47227443c0429618251f4541b1a17f92c",
+      "bytes": 977
+    },
+    {
+      "path": "tools/KristalDiag/tck/v9/workloads/epistemic-corpus.logical-artifact.json",
+      "sha256": "fc19ef3edb976707d5d5856fc40483377d2f46d74b1bf533330dc13796cfd891",
+      "bytes": 797
+    },
+    {
+      "path": "tools/KristalDiag/tck/v9/workloads/federation.state-snapshot.json",
+      "sha256": "df27cfab1e3137f8350b025527b4cda6af891e2b1f1166f58ee49f79c1bc7779",
+      "bytes": 1049
+    },
+    {
+      "path": "tools/KristalDiag/tck/v9/workloads/formula-ast.logical-artifact.json",
+      "sha256": "d4c2e33a7c1d5d9f8e19296f859c99907344cc0969e322bfbf60421896a0b73e",
+      "bytes": 694
+    },
+    {
+      "path": "tools/KristalDiag/tck/v9/workloads/multiplex-graph.logical-artifact.json",
+      "sha256": "3f9febd809a3c14dad38fcfa22989e535678f353152c82e5d6cfa1dccecd0eb7",
+      "bytes": 891
+    },
+    {
+      "path": "tools/KristalDiag/tck/v9/workloads/procedure-dag.logical-artifact.json",
+      "sha256": "8bc4b645eeb76fc3ec7108e079c97c1572247d88da0f3799c32acf85cef8aa56",
+      "bytes": 827
+    },
+    {
+      "path": "tools/KristalDiag/tck/v9/workloads/relation.logical-artifact.json",
+      "sha256": "7566a915448c057ea8321aab2ccb49446472ea1ccb57dec1e89e5de7ece7bfa6",
+      "bytes": 799
+    },
+    {
+      "path": "tools/KristalDiag/tests/conftest.py",
+      "sha256": "00b7701b25e4a779e2d4f3ac5910adc1e7dbd351b4f0d8a6c9451ce98d10e413",
+      "bytes": 349
+    },
+    {
+      "path": "tools/KristalDiag/tests/test_campaigns.py",
+      "sha256": "1a52f4f155ae0ea8df43c7c4c05530f020a07c939dd0927c2f985d7ba2904d54",
+      "bytes": 3005
+    },
+    {
+      "path": "tools/KristalDiag/tests/test_discovery.py",
+      "sha256": "447cf22c3504dd1f60fd757561ffe6c384c3c25031afd9414b73976ab906494b",
+      "bytes": 538
+    },
+    {
+      "path": "tools/KristalDiag/tests/test_driver.py",
+      "sha256": "57987b67bfef6585a6181049a7035e3bd80951593d8448dd6dac395296195688",
+      "bytes": 923
+    },
+    {
+      "path": "tools/KristalDiag/tests/test_interop.py",
+      "sha256": "83d55e4f2a799e8a5b65a3a66aa212d16c021cf46e9ee2f99f0877797030c9bc",
+      "bytes": 1870
+    },
+    {
+      "path": "tools/KristalDiag/tests/test_jcs.py",
+      "sha256": "5e0937a8e2272f8bf14327f0696dec2f0dd38ab81fcf214918521a3cc0601aba",
+      "bytes": 478
+    },
+    {
+      "path": "tools/KristalDiag/tests/test_runner.py",
+      "sha256": "f310e2edf8d14b044ef34688f6a6112485ae00df9178690a770b0315f388549b",
+      "bytes": 5091
+    },
+    {
+      "path": "tools/KristalDiag/tests/test_schemas.py",
+      "sha256": "696d43903c19914433820cba0fb743508fb012aaa2a2bc6845ac36148b8cf669",
+      "bytes": 1374
+    },
+    {
+      "path": "tools/KristalDiag/tests/test_v10.py",
+      "sha256": "21b251ae304489514db533ee2df16d4fa94808a86685b3d0be88cffb121cd203",
+      "bytes": 11966
+    },
+    {
+      "path": "tools/KristalDiag/tests/test_v10_evidence_alignment.py",
+      "sha256": "850f22beb7414ecf7d9f773693bc9a4db414bd18eb333b977cb360792eb7f85d",
+      "bytes": 4644
+    },
+    {
+      "path": "tools/KristalDiag/tests/test_v9.py",
+      "sha256": "fef4e76862590bb24dd3acfa0de9582a376ca7a389faeb21755d5ea87cdb0828",
+      "bytes": 3988
+    },
+    {
+      "path": "tools/icon-generator/AUTO_SCAN_POLICY.md",
+      "sha256": "f536b3cb6e0e01f4d561712a1aac507179222f1c3e9a52a50811e6d34ee2b3bc",
+      "bytes": 1881
+    },
+    {
+      "path": "tools/icon-generator/CHANGELOG.md",
+      "sha256": "4f04170f43bd1388c1d91320fe4e9632b9828c37ab46eb3f971b42a3b6bece39",
+      "bytes": 2887
+    },
+    {
+      "path": "tools/icon-generator/ISCED_F2013_POLICY.md",
+      "sha256": "2958f5341fcef25325edf437814170c104abb5a5159e64d4031bdb7c848b63bc",
+      "bytes": 3019
+    },
+    {
+      "path": "tools/icon-generator/KRISTAL_V9.md",
+      "sha256": "f1f454ee4b7d8565f6f01b97b7b5716a927137288f995deba58aa6b4a53593c3",
+      "bytes": 285
+    },
+    {
+      "path": "tools/icon-generator/Ouvrir_Generateur.cmd",
+      "sha256": "a500e76c510a09b3f9c4d7e4ddefb91fb6bf6231e537eff850cfc235f0812341",
+      "bytes": 866
+    },
+    {
+      "path": "tools/icon-generator/Ouvrir_Mode_Manuel.cmd",
+      "sha256": "3fcf7a9f1411c36a1d4e48330cdada287f7e8106b9f12028dcf5a8634c2419d0",
+      "bytes": 244
+    },
+    {
+      "path": "tools/icon-generator/README.md",
+      "sha256": "58d11bdd60ac730cc120606fbca0f49cc77071a8a2fa5860f4da64a8cd5ab4db",
+      "bytes": 5819
+    },
+    {
+      "path": "tools/icon-generator/VERSION",
+      "sha256": "732f64d874f90788c0199b0c19bfd9b3b6436e140114e53e462832532d74c61c",
+      "bytes": 6
+    },
+    {
+      "path": "tools/icon-generator/config/kristal-metadata-overrides.json",
+      "sha256": "2f65c48619073f802d3f2a01d36828957479a1449ab2d084d8065caebe3c0eb4",
+      "bytes": 571
+    },
+    {
+      "path": "tools/icon-generator/examples/kristal-registry.catalog.example.json",
+      "sha256": "85c3ebfa5ba2c3e92cf3992e4a15c3c376b85bb2418a8c85250cb186dbed902f",
+      "bytes": 709855
+    },
+    {
+      "path": "tools/icon-generator/index.html",
+      "sha256": "66e47cae4f5a2961b887f50e14ef5c397df1e8006e9a595601ebcd38c5eb7ad3",
+      "bytes": 43125
+    },
+    {
+      "path": "tools/icon-generator/kristal-v9.integration.json",
+      "sha256": "325510ea1889704a31af752c8c85d8794e44abfe26e5ceff9e067258021d27c0",
+      "bytes": 986
+    },
+    {
+      "path": "tools/icon-generator/manifest.sha256.json",
+      "sha256": "8b1d3dd4f1236ae0927972f3627c1e6a967976b5849d0d09f84f8495a43a1b53",
+      "bytes": 3383
+    },
+    {
+      "path": "tools/icon-generator/runtime/Kristal-v8-full-normalization-overlay.zip",
+      "sha256": "07ee0639c77f044f97a8fff3f1f3270dbf881978fd0b04d8c2b6f94f6e171b22",
+      "bytes": 20953518
+    },
+    {
+      "path": "tools/icon-generator/runtime/bootstrap/kristal-registry.catalog.json",
+      "sha256": "85c3ebfa5ba2c3e92cf3992e4a15c3c376b85bb2418a8c85250cb186dbed902f",
+      "bytes": 709855
+    },
+    {
+      "path": "tools/icon-generator/runtime/kristal-domain-palette.json",
+      "sha256": "02b5355cbff761abf111f0c7d5b7a0a3db688905a9c6937b545881e19985870c",
+      "bytes": 6585
+    },
+    {
+      "path": "tools/icon-generator/runtime/kristal_v9_package.py",
+      "sha256": "1a967ac1a817ac38b0d5c8e0116cf628613094cdedea8f75e36ce7997f9972e6",
+      "bytes": 6503
+    },
+    {
+      "path": "tools/icon-generator/runtime/registry-builder.py",
+      "sha256": "7a1fbc07261cef7a3b5ab8c368fbb65b6df40311057c069ee65eaf0f83fffcdd",
+      "bytes": 47101
+    },
+    {
+      "path": "tools/icon-generator/runtime/scan-kristals.mjs",
+      "sha256": "49e134a3053ee634989e937ccb185470545408acbcae2f7033e41abffb5c0dd2",
+      "bytes": 14686
+    },
+    {
+      "path": "tools/icon-generator/server.mjs",
+      "sha256": "48e709eee59bc2b1228f256b4b182027880590806e3c001ad4ffada1e9cf2675",
+      "bytes": 21210
+    },
+    {
+      "path": "tools/icon-generator/tools/Validate-Registry-Icons.py",
+      "sha256": "3d7ba4eda1ebfbf45457757abff943952205bec07ab7c3bc6af0ba09103a9113",
+      "bytes": 2506
     },
     {
       "path": "tools/restore_original_backend.py",

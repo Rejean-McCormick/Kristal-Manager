@@ -1,5 +1,5 @@
 ZmartZnap snapshot file index
-Files included: 52
+Files included: 61
 
 .github/workflows/ci.yml
 .gitignore
@@ -29,13 +29,18 @@ kristal_manager/__main__.py
 kristal_manager/cli.py
 kristal_manager/content_catalog.py
 kristal_manager/core.py
+kristal_manager/diag_bridge.py
 kristal_manager/discovery.py
 kristal_manager/gui.py
 kristal_manager/inventory.py
 kristal_manager/operational.py
 kristal_manager/publication_gate.py
+kristal_manager/ui_prefs.py
+kristal_manager/workspace_tools.py
+KRISTALDIAG_INTEGRATION.md
 Launch-Kristal-Manager.cmd
 LIRE_CONTENU.md
+LIRE_EN_PREMIER_REFONTE.md
 MISE_A_JOUR_2026-10-13.md
 MISE_A_JOUR_2026-10-16.md
 Nettoyer_anciens_fichiers.pyw
@@ -47,9 +52,13 @@ TEST_REPORT.md
 tests/test_c2_public_gate.py
 tests/test_content_catalog.py
 tests/test_core.py
+tests/test_diag_bridge.py
 tests/test_discovery_adapter.py
 tests/test_operational_v10.py
 tests/test_recovery.py
+tests/test_ui_branding.py
+tests/test_ui_refonte.py
+tests/test_workspace_tools.py
 tools/restore_original_backend.py
 VERSION
 ZmartZnap.pyw

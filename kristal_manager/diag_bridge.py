@@ -164,3 +164,149 @@ def run_diagnostic(workspace: str | Path, *, program: str | Path, arguments: str
                 'Les empreintes ne couvrent que les surfaces d’état locales connues, pas la totalité des données du Kristal.'
             ]
         }
+
+# Direct integration for the user-supplied official KristalDiag source package.
+# Its CLI/profiles are documented and independently tested; unlike the generic
+# external bridge above, the command is not editable by the operator.
+OFFICIAL_PROFILES = ('V9-State-Reader', 'V10-Node-Reader', 'V10-Full')
+
+
+def bundled_kristaldiag() -> Path:
+    """Locate the exact KristalDiag snapshot shipped next to this Manager."""
+    return Path(__file__).resolve().parents[1] / 'tools' / 'KristalDiag' / 'kristaldiag.py'
+
+
+def evidence_directory() -> Path:
+    """Keep all derived reports under the user's Manager data, not source Kristals."""
+    from .ui_prefs import settings_path
+    return settings_path().parent / 'diagnostics'
+
+
+def _extract_official_findings(evidence_current: Path, summary: dict) -> list[dict]:
+    """Surface bounded findings without trusting arbitrary report-relative paths."""
+    out = []
+    for level in summary.get('levels', [])[:120]:
+        if not isinstance(level, dict):
+            continue
+        ident = str(level.get('id') or '')
+        if not ident.isalnum() or len(ident) > 8:
+            continue
+        result = evidence_current / 'levels' / ident / 'result.json'
+        if not result.is_file() or result.is_symlink() or result.stat().st_size > MAX_REPORT_BYTES:
+            continue
+        try:
+            payload = json.loads(result.read_text(encoding='utf-8'))
+        except (ValueError, OSError, UnicodeError):
+            continue
+        for finding in (payload.get('findings') or [])[:100]:
+            if not isinstance(finding, dict):
+                continue
+            verdict = str(finding.get('verdict') or '—')
+            if verdict in ('PASS', 'SKIP'):
+                continue
+            out.append({'level': ident, 'verdict': verdict,
+                        'id': str(finding.get('id') or '')[:100],
+                        'message': str(finding.get('message') or '')[:850]})
+            if len(out) >= 200:
+                return out
+    return out
+
+
+def run_official_diagnostic(workspace: str | Path, *, profile: str = 'V9-State-Reader',
+                            script: str | Path | None = None,
+                            output_root: str | Path | None = None, timeout: int = 600) -> dict:
+    """Run supplied KristalDiag with its *actual* CLI and collect durable evidence.
+
+    Never invokes shell, --allow-exec or network-capable options. Evidence is
+    always outside the selected Kristal. Does not certify release or V11.
+    """
+    import importlib.util
+    import re
+    import uuid
+
+    if profile not in OFFICIAL_PROFILES:
+        raise DiagConfigurationError('Profil KristalDiag non pris en charge par ce panneau.')
+    root = Path(workspace).expanduser().resolve(strict=True)
+    if not (root / 'kristal.workspace.json').is_file():
+        raise DiagConfigurationError('Sélectionnez un Kristal principal doté de kristal.workspace.json.')
+    entry = Path(script or bundled_kristaldiag()).expanduser().resolve()
+    if not entry.is_file() or entry.is_symlink():
+        raise DiagConfigurationError('KristalDiag intégré est manquant. Réinstallez l’archive complète du Manager.')
+    if entry.is_relative_to(root):
+        raise DiagConfigurationError('Le moteur de diagnostic ne peut être situé dans le Kristal analysé.')
+    if importlib.util.find_spec('jsonschema') is None:
+        raise DiagConfigurationError('Dépendance jsonschema manquante. Cliquez sur « Installer le prérequis » dans la fenêtre Diagnostic.')
+    if not (60 <= timeout <= 1800):
+        raise DiagConfigurationError('Délai de diagnostic invalide.')
+
+    output_base = Path(output_root or evidence_directory()).expanduser().resolve()
+    if output_base == root or output_base.is_relative_to(root):
+        raise DiagConfigurationError('Les preuves doivent être enregistrées hors des sources du Kristal.')
+    # Diagnostic evidence is personal/local, with a unique folder per run.
+    slug = re.sub(r'[^a-zA-Z0-9_-]+', '-', root.name).strip('-')[:64] or 'kristal'
+    run_id = datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S') + '-' + uuid.uuid4().hex[:8]
+    control = output_base / f'{slug}-{run_id}'
+    control.mkdir(parents=True, exist_ok=False)
+
+    before = _fingerprint(root)
+    argv = [sys.executable, str(entry), 'conform', str(root), '--profile', profile,
+            '--control-dir', str(control), '--json']
+    completed_code = None
+    timed_out = False
+    with tempfile.TemporaryDirectory(prefix='kristal-manager-diag-output-') as td:
+        stdout_path = Path(td) / 'stdout.txt'
+        stderr_path = Path(td) / 'stderr.txt'
+        with stdout_path.open('wb') as stdout, stderr_path.open('wb') as stderr:
+            try:
+                process = subprocess.run(argv, cwd=str(entry.parent), stdin=subprocess.DEVNULL,
+                                         stdout=stdout, stderr=stderr, shell=False,
+                                         timeout=timeout, check=False)
+                completed_code = process.returncode
+            except subprocess.TimeoutExpired:
+                timed_out = True
+        stdout_text, out_truncated = _read_bounded(stdout_path, MAX_OUTPUT_BYTES)
+        stderr_text, err_truncated = _read_bounded(stderr_path, MAX_OUTPUT_BYTES)
+
+    summary = None
+    current = control / 'current'
+    summary_path = current / 'summary.json'
+    if summary_path.is_file() and not summary_path.is_symlink() and summary_path.stat().st_size <= MAX_REPORT_BYTES:
+        try:
+            summary = json.loads(summary_path.read_text(encoding='utf-8'))
+        except (ValueError, UnicodeError, OSError):
+            pass
+    if summary is None and not out_truncated:
+        try:
+            summary = json.loads(stdout_text)
+        except (ValueError, UnicodeError):
+            pass
+    # Do not trust malformed or unrelated text as a real KristalDiag verdict.
+    if not (isinstance(summary, dict) and summary.get('schema') == 'kristaldiag.summary.v1'
+            and summary.get('tool') == 'KristalDiag'
+            and Path(str(summary.get('target_root', ''))).resolve() == root
+            and summary.get('profile') == profile):
+        summary = None
+
+    after = _fingerprint(root)
+    status = ('TIMEOUT' if timed_out else 'EXECUTED_EXIT_0' if completed_code == 0 else 'EXECUTED_NONZERO')
+    return {
+        'format': 'kristal.manager-kristaldiag/1.0',
+        'engine': 'KristalDiag (source fourni, intégré au Manager)',
+        'executed_at': _utc_now(),
+        'workspace': str(root), 'profile': profile,
+        'program': str(entry), 'process_status': status, 'returncode': completed_code,
+        'external_report': summary, 'verdict': summary.get('verdict') if summary else None,
+        'counts': summary.get('counts', {}) if summary else {},
+        'findings': _extract_official_findings(current, summary) if summary else [],
+        'evidence_directory': str(control),
+        'stdout_excerpt': stdout_text[:10000], 'stderr_excerpt': stderr_text[:10000],
+        'output_truncated': out_truncated or err_truncated,
+        'input_fingerprint': before, 'input_changed_during_run': before != after,
+        'qualification': 'NOT_ESTABLISHED', 'attestation': 'NOT_VERIFIED',
+        'limitations': [
+            'Le verdict est celui de KristalDiag pour le profil choisi, pas une qualification C1 signée.',
+            'KristalDiag fourni cible Framework 10.0.0-draft.3.1, et non Framework v11.',
+            'Aucun droit de publication, accès ou activation n’est accordé.',
+            'La comparaison de mutations ne couvre que des fichiers d’état connus.',
+        ],
+    }

@@ -1,3 +1,11 @@
+## Intégration des icônes sur Manager 19 h 24 — 2026-10-27
+
+- Portage ciblé du lecteur de `desktop.ini`, profils .kristal et icônes Registry en lecture seule.
+- Colonne des icônes avec miniatures, état de provenance, commande d’actualisation et d’information.
+- Générateur Windows 2.5.0 fourni à l’identique, ouvert seulement après confirmation.
+- Préservation de KristalDiag, des catégories, des archives, du renommage contrôlé et des exports 19 h 24.
+- Assets du logo SVG et PNG/ICO restaurés, palette de marque #1E6864 conservée.
+
 ## 2026-10-27 — Catégories, snapshots et exports locaux (refonte expérimentale)
 
 - Terminologie de l'interface : « Kristal » / « Kristals », jamais « cristal ».

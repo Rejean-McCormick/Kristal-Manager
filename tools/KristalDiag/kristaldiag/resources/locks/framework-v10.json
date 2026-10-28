@@ -1,0 +1,31 @@
+{
+  "format": "kristaldiag.framework-pin/v3",
+  "framework_repository": "Rejean-McCormick/Kristal-Framework",
+  "framework_commit": "fe54a88271e2ad7522abacdfbde90f9397954053",
+  "pin_status": "published_git_commit",
+  "framework_snapshot_sha256": "sha256:aeb41ebe405d9bda5202f36189402be7ab11d28736f93269194c3eb9585710a7",
+  "standard_version": "10.0.0-draft.3.1",
+  "captured_at": "2026-10-08T14:59:00-04:00",
+  "contract_set_path": "contracts/contract-set.json",
+  "vendored_contract_set_sha256": "sha256:fd8add31bb0a20159fd2e6c6c3175863a8195c9840e0b9f6a8cc388e57176c92",
+  "source_file_sha256": {
+    "contracts/release.json": "sha256:677bd7347811ccbd9f8922822b53590277553608173d392f12a6743b595be162",
+    "contracts/contract-set.json": "sha256:fd8add31bb0a20159fd2e6c6c3175863a8195c9840e0b9f6a8cc388e57176c92",
+    "contracts/v10-compatibility-lock.json": "sha256:f1a3845e4d149e5d805dd0337f70cf58d6e58ebf1721e36dd75c524335952d59",
+    "contracts/compatibility-errata.json": "sha256:419f31baac7d595f83d5e90e10198c78b1c0cd5b6eb718f77401b3408e49bff1",
+    "schemas/v10/kristal-node-manifest.schema.json": "sha256:56ffe8632ceeb690852154608bcfb85eef3992eac16adec8d1e8c99de832d85c",
+    "schemas/v10/kristal-host-binding.schema.json": "sha256:ac3085c76ef0a8c404a2407403557675deaa25f096141ad8c5697df0ea2c47a7",
+    "schemas/v10/kristal-publication.schema.json": "sha256:820523e59c4079ab500feb92eb86460533a7374354fd8c4f48f001130824437d",
+    "schemas/v10/kristal-directory.schema.json": "sha256:807b5c296e6b862de3af6b4513ab369c788afd755e1da80e8c0b6727e39f7a4f",
+    "schemas/v10/kristal-v10-capabilities.schema.json": "sha256:59f1296e84d69191edda40439b34b57ddb3b35008ae58aadf58163856cf80e3f",
+    "profiles/github/schemas/kristal-github-binding.schema.json": "sha256:6b1f5d4cfc519f536699a19a24d1089b817a14f727152e78b802b861f751b095",
+    "profiles/github/schemas/kristal-github-read-surface.schema.json": "sha256:01a4a5fcd15172c584e21ac15a85ff2db5812c4e2018d54178f409958b4bca56",
+    "profiles/github/schemas/kristal-github-sync-manifest.schema.json": "sha256:6683e2ef8250c37d6b54933302067bf88c106d03477dc678da6700d4df71b458",
+    "profiles/github/schemas/kristal-github-collection-index.schema.json": "sha256:9f100e065934fc59a18f1a22a0d6d6776ff19878d44564fba0ec8602f301c75d",
+    "profiles/github/examples/github-read-surface.example.json": "sha256:fa314e6d48e3d49f665f519a1acfb7bbdccbc17745c83b654e0093126a6085cc",
+    "profiles/github/examples/github-sync-manifest.example.json": "sha256:4b8ef0527d575e500de3830f99034a017c53251dcba671d2a62f81ad162ce539",
+    "profiles/github/examples/github-collection-index.example.json": "sha256:f6b59f872629121a54a083b64776b4c971657540d2ba8b835ef46533e56d2994",
+    "tck/v7/vectors/v6-compatible-projection.example.json": "sha256:3bb99255fa4188a1896702047a70f5324038e39731e19bfee068e5081e308c0f"
+  },
+  "note": "Draft.3.1 is pinned to the immutable published Git commit. The snapshot checksum is supplemental packaging evidence only; Git commit identity is authoritative."
+}

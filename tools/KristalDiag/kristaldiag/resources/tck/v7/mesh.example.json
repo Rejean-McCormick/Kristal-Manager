@@ -1,0 +1,70 @@
+{
+  "schema_version": "7.0",
+  "artifact_type": "kristall_mesh",
+  "mesh_id": "urn:kristall:mesh:example",
+  "edges": [
+    {
+      "edge_id": "edge:001",
+      "from": {
+        "kind": "source_kristal",
+        "id": "urn:kristal:power-formal"
+      },
+      "relation": "KP1100",
+      "to": {
+        "kind": "entity",
+        "id": "KQ1001"
+      },
+      "edge_semantics": "membership",
+      "status": "accepted",
+      "resonance_refs": []
+    },
+    {
+      "edge_id": "edge:002",
+      "from": {
+        "kind": "source_kristal",
+        "id": "urn:kristal:power-informal"
+      },
+      "relation": "KP1100",
+      "to": {
+        "kind": "entity",
+        "id": "KQ1001"
+      },
+      "edge_semantics": "membership",
+      "status": "accepted",
+      "resonance_refs": []
+    },
+    {
+      "edge_id": "edge:003",
+      "from": {
+        "kind": "entity",
+        "id": "KQ1001"
+      },
+      "relation": "KP1101",
+      "to": {
+        "kind": "axis",
+        "id": "KQ2001"
+      },
+      "edge_semantics": "orientation_affinity",
+      "status": "derived",
+      "derivation_record_id": "crystallization:001",
+      "resonance_refs": []
+    },
+    {
+      "edge_id": "edge:004",
+      "from": {
+        "kind": "entity",
+        "id": "KQ1001"
+      },
+      "relation": "KP1101",
+      "to": {
+        "kind": "axis",
+        "id": "KQ2002"
+      },
+      "edge_semantics": "orientation_affinity",
+      "status": "derived",
+      "derivation_record_id": "crystallization:001",
+      "resonance_refs": []
+    }
+  ],
+  "namespace_id": "kristall-main"
+}

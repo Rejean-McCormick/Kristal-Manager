@@ -1,3 +1,5 @@
+> **Édition consolidée :** KristalDiag est désormais inclus et le bouton **Diagnostic…** lance sa fenêtre guidée. Voir `DEMARRER_DIAGNOSTIC.md` et `CONSOLIDATION_2026-10-27.md`. Les instructions historiques de configuration d’un outil externe ci-dessous ne concernent que le mode avancé.
+
 # Intégration externe KristalDiag dans Kristal Manager
 
 ## État de l’intégration

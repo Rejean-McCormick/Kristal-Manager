@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kristal.example/schema/v7/kristall-assertion-family-registry.schema.json",
+  "title": "Kristall Assertion Family Registry",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "namespace_id",
+    "registry_id",
+    "families"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "7.0"
+    },
+    "artifact_type": {
+      "const": "kristall_assertion_family_registry"
+    },
+    "registry_id": {
+      "type": "string"
+    },
+    "families": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "family_id",
+          "family_type",
+          "status",
+          "members",
+          "provenance"
+        ],
+        "properties": {
+          "family_id": {
+            "type": "string"
+          },
+          "family_type": {
+            "enum": [
+              "exact_duplicate",
+              "semantic_equivalent",
+              "variant",
+              "specialization",
+              "conflict"
+            ]
+          },
+          "status": {
+            "enum": [
+              "candidate",
+              "accepted",
+              "superseded"
+            ]
+          },
+          "members": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "required": [
+                "source_id",
+                "assertion_id"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string"
+                },
+                "assertion_id": {
+                  "type": "string"
+                },
+                "global_assertion_id": {
+                  "type": "string",
+                  "pattern": "^KA[1-9][0-9]*$"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "representative": {
+            "type": "object",
+            "properties": {
+              "source_id": {
+                "type": "string"
+              },
+              "assertion_id": {
+                "type": "string"
+              },
+              "global_assertion_id": {
+                "type": "string",
+                "pattern": "^KA[1-9][0-9]*$"
+              }
+            },
+            "additionalProperties": true
+          },
+          "scope_notes": {
+            "type": "string"
+          },
+          "provenance": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "namespace_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

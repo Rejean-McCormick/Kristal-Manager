@@ -1,0 +1,33 @@
+{
+  "schema_version": "7.0",
+  "artifact_type": "kristall_projection_recipe",
+  "recipe_id": "recipe:power-legal",
+  "recipe_version": "1",
+  "subject": {
+    "subject_id": "subject:power-canada-quebec"
+  },
+  "orientation": {
+    "primary_axis": "KQ2001"
+  },
+  "context": {
+    "jurisdiction": [
+      "Canada",
+      "Quebec"
+    ]
+  },
+  "source_policy": {
+    "include_status": [
+      "active"
+    ]
+  },
+  "conflict_policy": "preserve_disagreement",
+  "transform": {
+    "engine": "kristall-projection",
+    "version": "7.0.0-draft.2"
+  },
+  "output": {
+    "artifact_type": "kristal_state",
+    "schema_version": "6.0",
+    "profile": "v6_compatible"
+  }
+}
