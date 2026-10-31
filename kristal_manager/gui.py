@@ -86,6 +86,7 @@ class ManagerWindow(tk.Tk):
         self.catalog_overview: Path | None = None
         self._current_job = None
         self._diag_dialog = None
+        self._global_dialog = None
         self._unfiltered_count = 0
         self.path_var = tk.StringVar(value=default_root(self.settings))
         self.filter_var = tk.StringVar()
@@ -179,6 +180,7 @@ class ManagerWindow(tk.Tk):
         actions.add_command(label='Export diagnostic observations (JSON)…', command=self.export_diag_report)
         actions.add_command(label='Catalog selected Kristal', command=self.start_catalog_selected)
         actions.add_command(label='Catalog all Kristals in folder', command=self.start_catalog_all)
+        actions.add_command(label='Centre d’analyse globale (Arketype / UNESCO / diK)…', command=self.open_global_center)
         actions.add_command(label='Open content HTML overview…', command=self.open_content_overview)
         actions.add_separator()
         actions.add_command(label='UNESCO classification audit…', command=self.open_classification_audit)
@@ -237,6 +239,8 @@ class ManagerWindow(tk.Tk):
         ttk.Button(pathline, text='Browse…', command=self.select_root).pack(side='left', padx=(7, 0))
         self.scan_button = ttk.Button(pathline, text='Scan folder', style='Primary.TButton', command=self.start_scan)
         self.scan_button.pack(side='left', padx=(7, 0))
+        self.global_analysis_button = ttk.Button(pathline, text='Analyse globale…', command=self.open_global_center)
+        self.global_analysis_button.pack(side='left', padx=(7, 0))
         self.path_var.trace_add('write', self._path_changed)
         ttk.Label(source, text='The path above controls global scans. Cataloging the selected Kristal is a separate action.',
                   style='Sub.TLabel').pack(anchor='w', pady=(6, 0))
@@ -269,6 +273,7 @@ class ManagerWindow(tk.Tk):
         self.actions_menu.add_command(label='Export diagnostic observations (JSON)…', command=self.export_diag_report)
         self.actions_menu.add_command(label='Catalog selected Kristal', command=self.start_catalog_selected)
         self.actions_menu.add_command(label='Catalog all Kristals in folder', command=self.start_catalog_all)
+        self.actions_menu.add_command(label='Centre d’analyse globale…', command=self.open_global_center)
         self.actions_menu.add_command(label='Open HTML overview', command=self.open_content_overview)
         self.actions_menu.add_command(label='UNESCO classification audit…', command=self.open_classification_audit)
         self.actions_menu.add_command(label='Normalize folders in batch…', command=self.open_batch_rename)
@@ -586,6 +591,7 @@ class ManagerWindow(tk.Tk):
         supports_catalog = selected and (Path(row['path']) / 'kristal.workspace.json').is_file()
         idle = not self.busy
         self.scan_button.configure(state='normal' if idle else 'disabled')
+        self.global_analysis_button.configure(state='normal' if idle else 'disabled')
         self.verify_button.configure(state='normal' if idle and selected else 'disabled')
         self.diag_button.configure(state='normal' if idle and selected and supports_catalog and not is_historical(row) else 'disabled')
         self.selected_catalog_button.configure(state='normal' if idle and supports_catalog else 'disabled')
@@ -614,6 +620,39 @@ class ManagerWindow(tk.Tk):
             except Exception as exc:
                 self.events.put(('error', str(exc), folder, traceback.format_exc()))
         Thread(target=worker, daemon=True).start()
+
+    def open_global_center(self):
+        """One integrated interface for batch content, Arketype, UNESCO and diK hints."""
+        if self._global_dialog is not None and self._global_dialog.winfo_exists():
+            self._global_dialog.lift()
+            self._global_dialog.focus_force()
+            return
+        from .global_panel import GlobalAnalysisPanel
+        self._global_dialog = GlobalAnalysisPanel(self)
+
+    def start_global_analysis(self, *, update_catalogue: bool=True,
+                              verify_locally: bool=False) -> bool:
+        if self.busy:
+            return False
+        folder = Path(self.path_var.get().strip()).expanduser()
+        if not folder.is_dir():
+            messagebox.showerror('Dossier introuvable',
+                                 f'Choisir le dossier locals existant :\n{folder}', parent=self)
+            return False
+        from .global_analysis import analyze_all, CATALOGUE_PATH, RAPPORTS_PATH
+        if not self._safe_output(CATALOGUE_PATH, source=folder) or not self._safe_output(RAPPORTS_PATH, source=folder):
+            return False
+        if not messagebox.askyesno('Analyse globale (lecture seule)',
+             f'Dossier source : {folder}\n\n'
+             f'Catalogue : {CATALOGUE_PATH}\nRapports : {RAPPORTS_PATH}\n\n'
+             'Le Manager ne modifiera aucun Kristal. Les classifications seront seulement proposées.\n'
+             'Lancer ?', parent=self):
+            return False
+        self._start('Analyse globale des Kristals (cache et propositions) en cours…',
+                    lambda: analyze_all(folder, update_catalogue=update_catalogue,
+                                        verify_locally=verify_locally),
+                    folder=folder.resolve(), job='global_analysis')
+        return True
 
     def start_scan(self):
         folder = Path(self.path_var.get().strip()).expanduser()
@@ -748,9 +787,10 @@ class ManagerWindow(tk.Tk):
         self.status_var.set(f'{len(results)} external diagnostic reports exported · qualification not established')
 
     def _catalog_destination(self, suggested):
-        folder = Path.home() / 'Desktop'
+        from .global_analysis import CATALOGUE_PATH
+        folder = CATALOGUE_PATH.parent
         if not folder.is_dir():
-            folder = Path.home()
+            folder = CATALOGUE_PATH.parent.parent
         name = filedialog.asksaveasfilename(parent=self,
                 title='Derived SQLite catalog (OUTSIDE Kristal folders)',
                 initialdir=str(folder), initialfile=suggested, defaultextension='.sqlite3',
@@ -830,6 +870,8 @@ class ManagerWindow(tk.Tk):
                     if self._diag_dialog and self._diag_dialog.winfo_exists():
                         self._diag_dialog.render_error(payload)
                     self._fail('Operation interrupted', RuntimeError(payload), diagnostic=diagnostic)
+                    if self._global_dialog is not None and self._global_dialog.winfo_exists():
+                        self._global_dialog.render_error(str(payload))
                 elif kind == 'diag_dependency':
                     dialog, result = payload
                     if dialog.winfo_exists():
@@ -881,6 +923,34 @@ class ManagerWindow(tk.Tk):
                     self.log('SUCCESS', f'Export {payload["format"]} : {payload["files"]} fichiers · {payload["path"]}')
                     if payload['format'] == 'kristal':
                         self.log('LIMITE', 'Experimental Manager .kristal format; not certified by Framework.')
+                elif kind == 'global_analysis':
+                    before = self._selected_path()
+                    self.rows = payload['inventory']
+                    # Keep observed content in the normal Manager list without declaring
+                    # any suggested Arketype/UNESCO classification canonical.
+                    from .content_catalog import summaries
+                    db = Path(payload['catalog_stats']['database'])
+                    indexed = {r['catalog_id']: r for r in summaries(db)['records']}
+                    for row in self.rows:
+                        key = hashlib.sha256(row['path'].encode()).hexdigest()
+                        if key in indexed:
+                            row['content_summary'] = indexed[key]
+                    self.roots = [folder]
+                    self.path_var.set(str(folder))
+                    self.catalog_overview = db.with_suffix('.html')
+                    self._load_icons()
+                    self._refresh_category_choices()
+                    self._remember_root(folder)
+                    self.scope_var.set(f'Global analysis: {folder}')
+                    self.refresh(prefer=before)
+                    counts = payload['global_report']['counts']
+                    self.status_var.set(f"Analyse globale : {counts['kristals']} Kristals · "
+                                        f"{counts['blocker']} bloqueurs · {counts['warning']} avertissements "
+                                        '(propositions non validées)')
+                    self.log('SUCCESS', f"Analyse globale terminée : {payload['index_path']}")
+                    self.log('REPORT', f"ZIP des problèmes : {payload['problem_archive']}")
+                    if self._global_dialog is not None and self._global_dialog.winfo_exists():
+                        self._global_dialog.render_result(payload)
                 elif kind == 'catalog':
                     observed = payload['rows']
                     for existing in self.rows:
@@ -1390,7 +1460,7 @@ class ManagerWindow(tk.Tk):
             'LIMITS\n'
             'READY is a local structural status, not Framework conformance.\n'
             'Local verification and KristalDiag do not establish publication, access grants, or V11 certification.\n'
-            'No GitHub publishing is performed by the Manager.'
+            'No git add, commit, push, or GitHub publishing is performed by the Manager.'
         )
         window = tk.Toplevel(self)
         window.title('Help — workflows and limitations')
@@ -1407,7 +1477,7 @@ class ManagerWindow(tk.Tk):
     def show_limits(self):
         messagebox.showinfo('Kristal Manager — limitations',
             'Local inventory and diagnostics application.\n\n'
-            'No GitHub publication or activation.\n'
+            'No Git commits, Git push, GitHub publication or activation.\n'
             'Local verification only covers registered sources.\n'
             'State commitments require a compatible Framework reference to be verified.\n'
             'Framework V11 conformance still requires independent qualification.', parent=self)

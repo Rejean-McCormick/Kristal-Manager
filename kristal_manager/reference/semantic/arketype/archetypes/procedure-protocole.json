@@ -1,0 +1,70 @@
+{
+  "id": "ARK-04",
+  "legacy_id": "TK-04",
+  "slug": "procedure-protocole",
+  "name": "Procedure / Protocol",
+  "family": "Processes",
+  "description": "Ordered and conditional steps, roles, prerequisites and exceptions. SOPs, institutional protocols and checklists.",
+  "kit_profile": "procedural",
+  "native_kind_candidate": "procedure_graph_conditionnelle",
+  "responsibility_mode": "procedure-owner",
+  "structural_traits": [
+    "sequentiel",
+    "conditions",
+    "ordre_partiel"
+  ],
+  "epistemic_modes": [
+    "normatif",
+    "atteste"
+  ],
+  "deployment_options": [
+    "local",
+    "projete"
+  ],
+  "primitive_candidates": [
+    "conditions_entree",
+    "etapes",
+    "transitions",
+    "branches",
+    "roles",
+    "ressources",
+    "issues",
+    "exceptions",
+    "references_normatives"
+  ],
+  "reference_use_case": "SOPs, institutional protocols and checklists.",
+  "integrity_rule": "Description, execution and authorization are different.",
+  "antipattern": "Do not confuse a documented protocol, its execution log, or permission to perform it.",
+  "design_question": "What prerequisites, roles, exceptions and authorizations apply?",
+  "template_path": "modeles/procedure-protocole",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "branching",
+  "secondary_patterns": [
+    "linear"
+  ],
+  "structure_label": "Conditional protocol",
+  "situational_schema": "Prerequisites lead to ordered actions, decisions, exception paths and authorized closure.",
+  "canonical_use_cases": [
+    "standard operating procedure",
+    "field protocol",
+    "operations checklist"
+  ],
+  "case_examples": [
+    "PoliceOps / HospitalOps"
+  ],
+  "primitive_labels_en": [
+    "conditions entree",
+    "steps",
+    "transitions",
+    "branches",
+    "roles",
+    "resources",
+    "issues",
+    "exceptions",
+    "references normatives"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "ARK-03",
+  "legacy_id": "TK-03",
+  "slug": "carte-jalons-preuves",
+  "name": "Milestone and Proof Map",
+  "family": "Knowledge",
+  "description": "Sparse milestones, branches and pointers to proofs held elsewhere. Progress maps, mathematical roadmaps and cross-theory docking points.",
+  "kit_profile": "research",
+  "native_kind_candidate": "graphe_creux_jalons_preuves",
+  "responsibility_mode": "proof-map-owner",
+  "structural_traits": [
+    "graphe_creux",
+    "jalons"
+  ],
+  "epistemic_modes": [
+    "prouve",
+    "hypothese",
+    "obligation"
+  ],
+  "deployment_options": [
+    "local",
+    "federe"
+  ],
+  "primitive_candidates": [
+    "carrefours",
+    "points_terminaux",
+    "frontieres_atteintes",
+    "arcs_resume",
+    "references_de_preuve",
+    "points_arrimage",
+    "obligations_ouvertes"
+  ],
+  "reference_use_case": "Progress maps, mathematical roadmaps and cross-theory docking points.",
+  "integrity_rule": "A shortcut edge does not constitute proof; pin exact proof references.",
+  "antipattern": "Do not mark a shortcut edge as a proof without a specific, scoped reference.",
+  "design_question": "Which external proof justifies each path and what is its verified scope?",
+  "template_path": "modeles/carte-jalons-preuves",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "hub",
+  "secondary_patterns": [
+    "linear"
+  ],
+  "structure_label": "Sparse proof roadmap",
+  "situational_schema": "Milestones and reached frontiers linked to proofs stored elsewhere; shortcuts do not replace proof.",
+  "canonical_use_cases": [
+    "proof roadmap",
+    "research milestones",
+    "cross-theory references"
+  ],
+  "case_examples": [
+    "Proof pathways and docking points"
+  ],
+  "primitive_labels_en": [
+    "junctions",
+    "endpoints",
+    "reached frontiers",
+    "summary edges",
+    "proof references",
+    "docking points",
+    "open obligations"
+  ]
+}

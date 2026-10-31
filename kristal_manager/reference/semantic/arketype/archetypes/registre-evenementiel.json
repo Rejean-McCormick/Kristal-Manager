@@ -1,0 +1,63 @@
+{
+  "id": "ARK-11",
+  "legacy_id": "TK-11",
+  "slug": "registre-evenementiel",
+  "name": "Event Ledger / Chronology",
+  "family": "Structures",
+  "description": "Dated observations, events and revisions. Incident logs, history, audit trails and case timelines.",
+  "kit_profile": "open",
+  "native_kind_candidate": "ledger_evenements_temporalises",
+  "responsibility_mode": "event-history-owner",
+  "structural_traits": [
+    "chronologique",
+    "append_only"
+  ],
+  "epistemic_modes": [
+    "atteste",
+    "hypothese"
+  ],
+  "deployment_options": [
+    "local",
+    "federe"
+  ],
+  "primitive_candidates": [
+    "evenements",
+    "acteurs",
+    "horodatages",
+    "validites",
+    "liens_causaux_hypotheses",
+    "versions"
+  ],
+  "reference_use_case": "Incident logs, history, audit trails and case timelines.",
+  "integrity_rule": "An event log is not necessarily current state or causal proof.",
+  "antipattern": "Do not equate a timestamped observation with established causality or current state.",
+  "design_question": "What happened, when, according to whom and with which revision?",
+  "template_path": "modeles/registre-evenementiel",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "timeline",
+  "secondary_patterns": [
+    "casefile"
+  ],
+  "structure_label": "Dated event sequence",
+  "situational_schema": "Events, revisions, timestamps and provenance are recorded without assuming causality.",
+  "canonical_use_cases": [
+    "incident timeline",
+    "audit trail",
+    "historical chronology"
+  ],
+  "case_examples": [
+    "Activity and revision history"
+  ],
+  "primitive_labels_en": [
+    "events",
+    "acteurs",
+    "timestamps",
+    "validity",
+    "links causaux hypotheses",
+    "versions"
+  ]
+}

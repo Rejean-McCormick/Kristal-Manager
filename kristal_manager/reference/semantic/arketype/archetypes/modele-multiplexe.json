@@ -1,0 +1,66 @@
+{
+  "id": "ARK-09",
+  "legacy_id": "TK-09",
+  "slug": "modele-multiplexe",
+  "name": "Multiplex / Organizational Model",
+  "family": "Structures",
+  "description": "Several relationship layers over shared entities. Organizational studies and social or institutional mappings.",
+  "kit_profile": "open",
+  "native_kind_candidate": "graphe_multiplexe_contextualise",
+  "responsibility_mode": "relational-model-owner",
+  "structural_traits": [
+    "multiplex",
+    "temporel"
+  ],
+  "epistemic_modes": [
+    "atteste",
+    "interprete",
+    "hypothese"
+  ],
+  "deployment_options": [
+    "local",
+    "federe"
+  ],
+  "primitive_candidates": [
+    "entites",
+    "couches_relationnelles",
+    "roles",
+    "ressources",
+    "regles",
+    "temps",
+    "points_de_vue"
+  ],
+  "reference_use_case": "Organizational studies and social or institutional mappings.",
+  "integrity_rule": "Avoid collapsing relationships from different layers.",
+  "antipattern": "Do not collapse distinct temporal, institutional or role relationships into one universal graph.",
+  "design_question": "Which layer owns each relationship and at what time?",
+  "template_path": "modeles/modele-multiplexe",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "multilayer",
+  "secondary_patterns": [
+    "network"
+  ],
+  "structure_label": "Organizational layers",
+  "situational_schema": "People, roles, institutions and resources are mapped in distinguishable relationship layers.",
+  "canonical_use_cases": [
+    "organizational mapping",
+    "institutional studies",
+    "social relationships"
+  ],
+  "case_examples": [
+    "Human organizations"
+  ],
+  "primitive_labels_en": [
+    "entities",
+    "relationship layers",
+    "roles",
+    "resources",
+    "rules",
+    "time",
+    "viewpoints"
+  ]
+}

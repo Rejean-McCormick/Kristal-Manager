@@ -4,9 +4,10 @@ from pathlib import Path
 from collections import Counter
 import hashlib,json,os,sqlite3,time,re
 from .core import ManagerError
+from .native_contract_reader import observe as observe_native_contract
 FORMAT='kristal.manager-content-catalog/0.1-candidate'
 SCHEMA=1
-ENGINE_VERSION='0.1.0a15'
+ENGINE_VERSION='0.1.0a20-native-16-contracts'
 PRUNE={'.git','node_modules','__pycache__','.venv','external-source-library','build','derived','canon','.kristal','knowledge-base','ai','state','release','projections','runtime','HISTORY','OPTIMIZATION_TOOLS','FINALIZATION_TOOLS'}
 def encoded(x):return json.dumps(x,ensure_ascii=False,separators=(',',':'),sort_keys=True)
 def candidates(roots, *, direct_only=False):
@@ -105,33 +106,98 @@ def inspect_content(root,max_bytes=64*1024*1024):
                 graph=d;graph_path=rel;namespace=ws.get('state_ref');mode='registered_legacy_v6';break
     if mode=='active_v11' and (graph.get('artifact_type')!='kristal_semantic_graph' or not all(isinstance(graph.get(k),list) for k in ('entities','properties','sources','assertions'))):
         r.issues.append('Selected v11 graph is missing or structurally unsupported');mode='unsupported'
+    # Only when no selected v11/v6 assertion graph was recognized, detect native
+    # registered contracts. Never elevate unselected .kristal/v11 build material.
+    native=observe_native_contract(registered,r) if mode=='unsupported' and not cfg else None
+    if native:
+        mode={'native_embedded':'registered_native_embedded','native_structured':'registered_native_structured'}.get(native['mode'],'registered_native_reference')
+        graph_path=next((a['path'] for a in native['selected_artifacts'] if a['role'] in ('domain_state','canonical_state','state')),native['selected_artifacts'][0]['path'])
     assertions=[]
     if mode=='active_v11' and graph.get('artifact_type')=='kristal_semantic_graph':
         for a in graph.get('assertions',[]):
             if not isinstance(a,dict) or not all(isinstance(a.get(k),str) for k in ('id','subject','predicate')):r.issues.append('Malformed assertion in selected graph');continue
-            assertions.append({'id':a['id'],'subject':a['subject'],'predicate':a['predicate'],'object':a.get('object'),'sources':a.get('sources',[]),'qualifiers':a.get('qualifiers',[]),'component':a['id'] in components})
+            assertions.append({'id':a['id'],'subject':a['subject'],'predicate':a['predicate'],'object':a.get('object'),'sources':a.get('sources',[]),'qualifiers':a.get('qualifiers',[]),'component':a['id'] in components,'_raw_signature':hashlib.sha256(encoded(a).encode()).hexdigest()})
         entity_ids=set(graph.get('entities',[]));property_ids=set(graph.get('properties',[]));source_ids=set(graph.get('sources',[]))
     elif mode=='registered_legacy_v6':
         entity_ids=set();property_ids=set();source_ids=set()
         for a in graph['assertions']:
-            statement=a.get('statement',{});subject=statement.get('subject',{});subject=subject.get('id') if isinstance(subject,dict) else subject;predicate=statement.get('predicate');obj=statement.get('object',{})
-            if not isinstance(subject,str) or not isinstance(predicate,str):r.issues.append('Unsupported legacy assertion shape');continue
+            # v6 predicates may be a native string or a structured native
+            # reference {external_id,label}.  The external_id is a *local*
+            # property key, NOT a diK KP identifier or an exactMatch claim.
+            if not isinstance(a,dict) or not isinstance(a.get('statement'),dict):
+                r.issues.append('Unsupported legacy assertion shape');continue
+            statement=a['statement']
+            subject_ref=statement.get('subject');predicate_ref=statement.get('predicate')
+            subject=subject_ref.get('id') if isinstance(subject_ref,dict) else subject_ref
+            predicate=(predicate_ref.get('external_id') or predicate_ref.get('id')) if isinstance(predicate_ref,dict) else predicate_ref
+            obj=statement.get('object',{})
+            if not isinstance(subject,str) or not subject or not isinstance(predicate,str) or not predicate:
+                r.issues.append('Unsupported legacy assertion shape');continue
+            # Display source labels as observations, not verified diK terms.
+            for identifier,ref in ((subject,subject_ref),(predicate,predicate_ref)):
+                term=ref.get('label') if isinstance(ref,dict) else None
+                if isinstance(term,str) and term.strip() and identifier not in labels:
+                    labels[identifier]=((-2,-2),term.strip())
+                    label_origins[identifier]={'kind':'reported_legacy_label','path':graph_path}
             entity_ids.add(subject);property_ids.add(predicate)
-            if isinstance(obj,dict) and obj.get('kind')=='item' and isinstance(obj.get('id'),str):entity_ids.add(obj['id'])
-            sources=a.get('evidence_refs',[]);source_ids.update(x for x in sources if isinstance(x,str));assertions.append({'id':a.get('assertion_id') or 'legacy:'+str(len(assertions)),'subject':subject,'predicate':predicate,'object':obj,'sources':sources,'qualifiers':a.get('coordinates',[]),'component':False})
+            if isinstance(obj,dict) and obj.get('kind')=='item' and isinstance(obj.get('id'),str):
+                item=obj['id'];entity_ids.add(item)
+                if isinstance(obj.get('label'),str) and item not in labels:
+                    labels[item]=((-2,-2),obj['label'])
+                    label_origins[item]={'kind':'reported_legacy_label','path':graph_path}
+            sources=a.get('evidence_refs',[])
+            if not isinstance(sources,list):sources=[]
+            source_ids.update(x for x in sources if isinstance(x,str))
+            aid=a.get('assertion_id')
+            assertions.append({'id':aid if isinstance(aid,str) and aid else 'legacy:'+str(len(assertions)),
+                               'subject':subject,'predicate':predicate,'object':obj,'sources':sources,
+                               'qualifiers':a.get('coordinates',[]),'component':False,
+                               '_raw_signature':hashlib.sha256(encoded(a).encode()).hexdigest()})
     else:
         entity_ids=set();property_ids=set();source_ids=set()
-        r.issues.append('No supported selected canonical content adapter; unknown is not zero')
-    unique={}
+        if native:
+            # No graph means no KQ/KP/assertion-row counts, even if embedded rows
+            # or historical assertion numbers are explicitly visible.
+            if native['unknown_registered_artifacts'] or native['unreadable_registered_artifacts']:
+                r.issues.append('Native registered coverage incomplete: one or more selected artifacts unrecognized or unreadable')
+        else:r.issues.append('No supported selected canonical content adapter; unknown is not zero')
+    # No source rewrite. Store each DISTINCT conflicting variant in the
+    # descriptive catalog (not the canonical workspace): SQLite has a unique
+    # row key, so use an explicitly noncanonical, deterministic catalog ID.
+    # Exact repeated records share the same projection; count but do not clone.
+    original_assertion_count=len(assertions)
+    first={};unique={};duplicate_kinds=Counter();duplicated_ids=set();variants=0
+    all_native_ids={a['id'] for a in assertions}
     for a in assertions:
-        if a['id'] in unique:r.issues.append('Duplicate assertion ID in selected content: '+str(a['id']))
-        else:unique[a['id']]=a
+        native_id=a['id'];signature=a.get('_raw_signature')
+        if native_id not in first:
+            first[native_id]=a
+            unique[native_id]=a
+            continue
+        duplicated_ids.add(native_id)
+        if signature==first[native_id].get('_raw_signature') or any(
+              x.get('_native_assertion_id')==native_id and x.get('_raw_signature')==signature
+              for x in unique.values()):
+            duplicate_kinds['identical']+=1
+            continue
+        duplicate_kinds['conflicting']+=1
+        candidate='__manager_catalog_variant__:'+hashlib.sha256((native_id+'\n'+str(signature)).encode()).hexdigest()
+        if candidate in all_native_ids or candidate in unique:
+            raise ValueError('Unexpected catalog-only variant ID collision')
+        unique[candidate]={**a,'id':candidate,'_native_assertion_id':native_id,'_catalog_variant':True}
+        variants+=1
+    if duplicated_ids:
+        r.issues.append('Duplicate assertion IDs in selected content: '
+                        +str(len(duplicated_ids))+' distinct IDs, '
+                        +str(duplicate_kinds['identical'])+' identical repeats, '
+                        +str(duplicate_kinds['conflicting'])+' conflicting repeats; '
+                        +str(variants)+' conflicting variant(s) preserved under catalog-only IDs; source not modified')
     assertions=list(unique.values())
     accepted={m.get('external_ref',{}).get('id'):m.get('local_ref',{}).get('id') for m in mappings if m.get('status')=='accepted' and m.get('relation')=='exactMatch'};external={v:k for k,v in accepted.items()};rank=Counter();regimes=Counter();subjects=Counter();relations=Counter();known_source_claims=0
     for a in assertions:
         record=next((ledger[s].get('record') for s in a['sources'] if s in ledger and isinstance(ledger[s],dict) and ledger[s].get('record')),None)
-        primary=record is not None and a['subject']==accepted.get(record.get('wikidata_subject')) and a['predicate']==accepted.get(record.get('wikidata_property'))
-        a['rank']=record.get('full_source_claim',{}).get('rank') if primary else None;a['regime']='wikidata_source_report' if primary else 'structured_component' if a['component'] else 'graph_assertion'
+        primary=not a.get('_catalog_variant') and record is not None and a['subject']==accepted.get(record.get('wikidata_subject')) and a['predicate']==accepted.get(record.get('wikidata_property'))
+        a['rank']=record.get('full_source_claim',{}).get('rank') if primary else None;a['regime']='catalog_variant_noncanonical' if a.get('_catalog_variant') else 'wikidata_source_report' if primary else 'structured_component' if a['component'] else 'graph_assertion'
         if primary:rank[a['rank'] or 'unknown']+=1;known_source_claims+=1
         regimes[a['regime']]+=1
         if not a['component'] and a['subject'] not in shapes:subjects[a['subject']]+=1;relations[a['predicate']]+=1
@@ -144,11 +210,35 @@ def inspect_content(root,max_bytes=64*1024*1024):
                     if kid not in labels or labels[kid][1] in {kid,external.get(kid)}:
                         labels[kid]=((-1,-1),legacy);label_origins[kid]={'kind':'reported_legacy_key','path':'.kristal/v11/identity-migration-map.json'}
     def label(k):return labels.get(k,((0,0),None))[1]
-    def described(k):return bool(label(k) and label(k) not in {k,external.get(k)} and label_origins.get(k,{}).get('kind')!='reported_legacy_key')
+    def described(k):return bool(label(k) and label(k) not in {k,external.get(k)} and label_origins.get(k,{}).get('kind') not in {'reported_legacy_key','reported_legacy_label'})
+    def legacy_described(k):return bool(mode=='registered_legacy_v6' and label(k) and label(k)!=k and label_origins.get(k,{}).get('kind')=='reported_legacy_label')
     def top(counter):return [{'id':k,'label':label(k),'external_id':external.get(k),'display_source':label_origins.get(k),'assertions':n} for k,n in counter.most_common(20)]
-    metrics={'entities':len(entity_ids),'properties':len(property_ids),'sources':len(source_ids),'assertions':len(assertions),'structured_values':len(shapes),'structured_components':len(components),'main_assertions':sum(not a['component'] for a in assertions),'wikidata_source_claims':known_source_claims if ledger else None,'wikidata_accepted_exact':sum(m.get('status')=='accepted' and m.get('relation')=='exactMatch' for m in mappings),'wikidata_candidates':sum(m.get('status')=='candidate' for m in mappings),'rank_counts':dict(rank),'regime_counts':dict(regimes),'entities_with_descriptive_labels':sum(described(k) for k in entity_ids),'properties_with_descriptive_labels':sum(described(k) for k in property_ids),'dictionary_languages':sorted({lang for _,lang,_ in terms})} if mode!='unsupported' else {k:None for k in ('entities','properties','sources','assertions','main_assertions','wikidata_source_claims','structured_values')}
+    metrics={'entities':len(entity_ids),'properties':len(property_ids),'sources':len(source_ids),'assertions':len(assertions),'assertions_input':original_assertion_count,'duplicate_assertion_ids':len(duplicated_ids),'duplicate_exact_repeats':duplicate_kinds['identical'],'duplicate_conflicting_repeats':duplicate_kinds['conflicting'],'catalog_only_conflicting_variants_preserved':variants,'structured_values':len(shapes),'structured_components':len(components),'main_assertions':sum(not a['component'] for a in assertions),'wikidata_source_claims':known_source_claims if ledger else None,'wikidata_accepted_exact':sum(m.get('status')=='accepted' and m.get('relation')=='exactMatch' for m in mappings),'wikidata_candidates':sum(m.get('status')=='candidate' for m in mappings),'rank_counts':dict(rank),'regime_counts':dict(regimes),'entities_with_descriptive_labels':sum(described(k) for k in entity_ids),'properties_with_descriptive_labels':sum(described(k) for k in property_ids),'legacy_descriptive_labels_observed':sum(legacy_described(k) for k in entity_ids|property_ids),'dictionary_languages':sorted({lang for _,lang,_ in terms})} if mode in ('active_v11','registered_legacy_v6') else {k:None for k in ('entities','properties','sources','assertions','main_assertions','wikidata_source_claims','structured_values')}
+    if native:
+        metrics['native_selected_artifacts_observed']=native['observed_selected_count']
+        metrics['native_fields_observed']=native['keys_observed']
+        metrics['native_embedded_assertion_rows']=native['embedded_assertion_rows']
+        metrics['native_reported_legacy_assertion_count']=native['reported_legacy_assertion_count']
     descriptor={k:ws.get(k) for k in ('subject','state_scope','native_model','semantic_ownership','invariants') if k in ws}
-    summary={'format':FORMAT,'title':ws.get('title') or root.name,'state_ref':ws.get('state_ref'),'state_commitment':meta.get('state_commitment'),'namespace_id':namespace,'native_kind':meta.get('native_kind'),'readiness':meta.get('readiness'),'mode':mode,'content_status':'unsupported' if mode=='unsupported' else 'partial' if r.issues else 'observed','graph_path':graph_path,'canonical_binding':'registered_selector_only_not_independent_state_verification','structure':{'registered_artifacts':len(registered),'declared_contracts':sorted({str(v.get('logical_contract',{}).get('id')) for v in registered.values()}),'declared_targets':ws.get('target',{}),'source_ledger':ledgerrel if ledger else None,'scan_inputs':len(r.deps)},'descriptors':descriptor,'metrics':metrics,'top_subjects':top(subjects),'top_relations':top(relations),'issues':r.issues,'coverage_note':'Counts describe only the selected recognized graph, not every file or factual completeness. Top subjects are ranked by assertion count, not semantic importance. Wikidata and lexical decisions are reported, not independently certified.'}
+    # A selected registered native artifact is observable even when it cannot
+    # be interpreted as an entity/property/semantic-assertion graph. Listing
+    # declared contracts is NOT converting the bytes to v11 or claiming diK.
+    # Do not read arbitrary unregistered files or infer assertion counts.
+    native_inventory=[]
+    if mode=='unsupported':
+        for rel,entry in sorted(registered.items()):
+            if not rel.endswith('.json'):continue
+            obj=r.obj(rel,True)
+            if not obj:continue
+            native_inventory.append({'path':rel,
+                'contract_id':(entry.get('logical_contract') or {}).get('id'),
+                'artifact_type':obj.get('artifact_type'),
+                'format':obj.get('format'),
+                'top_level_keys':sorted(str(k) for k in obj)[:16]})
+    status=('unsupported' if mode=='unsupported' else
+            'native_observed' if native and not r.issues else
+            'partial' if r.issues else 'observed')
+    summary={'format':FORMAT,'title':ws.get('title') or root.name,'state_ref':ws.get('state_ref'),'state_commitment':meta.get('state_commitment'),'namespace_id':namespace,'native_kind':meta.get('native_kind'),'readiness':meta.get('readiness'),'mode':mode,'content_status':status,'graph_path':graph_path,'canonical_binding':'registered_selector_only_not_independent_state_verification','structure':{'registered_artifacts':len(registered),'declared_contracts':sorted({str(v.get('logical_contract',{}).get('id')) for v in registered.values()}),'native_registered_json_inventory':native_inventory,'native_contract_observation':native,'declared_targets':ws.get('target',{}),'source_ledger':ledgerrel if ledger else None,'scan_inputs':len(r.deps)},'descriptors':descriptor,'metrics':metrics,'top_subjects':top(subjects),'top_relations':top(relations),'issues':r.issues,'coverage_note':'Native-observed means registered canonical native structures were read; it does NOT establish semantic graph coverage or validated facts. Counts in the semantic graph fields remain unknown for native references. Historical and embedded counts are separate, and are not KQ/KP assertions. No diK, Arketype, UNESCO or Framework qualification.' if native else 'Counts describe only the selected recognized graph, not every file or factual completeness. Top subjects are ranked by assertion count, not semantic importance. Conflicting duplicate IDs use synthetic catalog-only row IDs; these are NOT canonical identity changes. Wikidata and lexical decisions are reported, not independently certified.'}
     nodes=[(k,'entity' if k in entity_ids else 'property',label(k),external.get(k)) for k in sorted(entity_ids|property_ids)]
     return summary,nodes,assertions,terms,r.deps
 

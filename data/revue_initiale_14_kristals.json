@@ -1,0 +1,584 @@
+{
+  "format": "kristal.manager-review-seed/1.0",
+  "date": "2026-10-30",
+  "source": "B01, B11 and B21 snapshot reviews",
+  "authority": "proposal_only",
+  "certification": "NOT_EVALUATED",
+  "entries": [
+    {
+      "state_ref": "urn:kristal:accounting:state",
+      "name": "Kristal-Accounting",
+      "batch": "B01",
+      "snapshot_date": "2026-10-30",
+      "technical_snapshot": {
+        "result": "LOCAL_CHECKS_PASSED_ON_SNAPSHOT",
+        "scope": "Kit/local/native checks executed on extracted Code snapshots, not current user disk",
+        "full_folder_verified": false,
+        "canonical_change_authorized": false,
+        "follow_up": "Lecteur natif B01 : retest requis sur Windows."
+      },
+      "archetype_review": {
+        "recommended_primary_candidates": [
+          "ARK-01"
+        ],
+        "status": "proposed",
+        "local_human_approval": false,
+        "rationale": "Référentiel de comptabilité : écritures et comptes, pas journal de transactions réelles.",
+        "kind": "reference",
+        "structural_observer_candidates": [],
+        "observer_complete": true,
+        "tag_written": false
+      },
+      "provenance": {
+        "references": [
+          "B01-RESULTATS.json",
+          "RAPPORT_ARKETYPE_STRUCTURE.json"
+        ],
+        "basis": "selective_smartdump_code_snapshot",
+        "anchors_sha256": {
+          "kristal.workspace.json": "907fe6fe8b8488af0f6a7a68e3f9f1a9775ec32ba5184913bedf30e46013b963",
+          "canon/state.index.json": "a10fa125e0c780626d619e94a8ec108a26cffd3c11a089dfcb7ce76bcb67f6d6"
+        }
+      },
+      "notes": "Proposition de revue ChatGPT; non déclaration canonique, non certification Framework."
+    },
+    {
+      "state_ref": "urn:kristal:aging:state",
+      "name": "Kristal-Aging",
+      "batch": "B01",
+      "snapshot_date": "2026-10-30",
+      "technical_snapshot": {
+        "result": "LOCAL_CHECKS_PASSED_ON_SNAPSHOT",
+        "scope": "Kit/local/native checks executed on extracted Code snapshots, not current user disk",
+        "full_folder_verified": false,
+        "canonical_change_authorized": false,
+        "follow_up": "Lecteur natif B01 : retest requis sur Windows."
+      },
+      "archetype_review": {
+        "recommended_primary_candidates": [
+          "ARK-01"
+        ],
+        "status": "proposed",
+        "local_human_approval": false,
+        "rationale": "Mécanismes, réserve, résilience et trajectoires de vieillissement.",
+        "kind": "reference",
+        "structural_observer_candidates": [],
+        "observer_complete": true,
+        "tag_written": false
+      },
+      "provenance": {
+        "references": [
+          "B01-RESULTATS.json",
+          "RAPPORT_ARKETYPE_STRUCTURE.json"
+        ],
+        "basis": "selective_smartdump_code_snapshot",
+        "anchors_sha256": {
+          "kristal.workspace.json": "3481e43b217e4d64d946f4ca0c92ee9077981c2f261f43630a814a30cc02974c",
+          "canon/state.index.json": "1e96cfb47891e3751c33a2fe5567a2adc3435e0300abe43b2428b1cf37e1615e"
+        }
+      },
+      "notes": "Proposition de revue ChatGPT; non déclaration canonique, non certification Framework."
+    },
+    {
+      "state_ref": "urn:kristal:state:civilengineering",
+      "name": "Kristal-CivilEngineering",
+      "batch": "B21",
+      "snapshot_date": "2026-10-30",
+      "technical_snapshot": {
+        "result": "LOCAL_CHECKS_PASSED_ON_SNAPSHOT",
+        "scope": "Kit/local/native checks executed on extracted Code snapshots, not current user disk",
+        "full_folder_verified": false,
+        "canonical_change_authorized": false,
+        "follow_up": "Aucune modification requise par contrôles sur snapshot."
+      },
+      "archetype_review": {
+        "recommended_primary_candidates": [
+          "ARK-01"
+        ],
+        "status": "proposed",
+        "local_human_approval": false,
+        "rationale": "Charges, matériaux, géométrie, sol, états limites et cycle de vie.",
+        "kind": "reference",
+        "structural_observer_candidates": [
+          {
+            "id": "ARK-01",
+            "score": "2/3"
+          },
+          {
+            "id": "ARK-18",
+            "score": "2/3"
+          }
+        ],
+        "observer_complete": true,
+        "tag_written": false
+      },
+      "provenance": {
+        "references": [
+          "RAPPORT-B21-TECHNOLOGIE-ENERGIE-MATERIAUX-2026-10-30.json",
+          "RAPPORT_ARKETYPE_STRUCTURE.json"
+        ],
+        "basis": "selective_smartdump_code_snapshot",
+        "anchors_sha256": {
+          "kristal.workspace.json": "9cb95ac2c19a2cc380adb600a60d9f454829117bf041610940a2e05ca669c0b4",
+          "canon/state.index.json": "8f37f20ab5c20a2106b38c5aec841bc862fd33ac0cb45d1caae8c4f6b629e8e6"
+        }
+      },
+      "notes": "Proposition de revue ChatGPT; non déclaration canonique, non certification Framework."
+    },
+    {
+      "state_ref": "urn:kristal:state:forensics",
+      "name": "Kristal-Forensics",
+      "batch": "B01",
+      "snapshot_date": "2026-10-30",
+      "technical_snapshot": {
+        "result": "LOCAL_CHECKS_PASSED_ON_SNAPSHOT",
+        "scope": "Kit/local/native checks executed on extracted Code snapshots, not current user disk",
+        "full_folder_verified": false,
+        "canonical_change_authorized": false,
+        "follow_up": "Lecteur natif B01 : retest requis sur Windows."
+      },
+      "archetype_review": {
+        "recommended_primary_candidates": [
+          "ARK-01"
+        ],
+        "status": "proposed",
+        "local_human_approval": false,
+        "rationale": "Référentiel de traces, acquisition, analyse et preuves. ARK-04 secondaire possible pour protocoles.",
+        "kind": "reference",
+        "structural_observer_candidates": [],
+        "observer_complete": true,
+        "tag_written": false
+      },
+      "provenance": {
+        "references": [
+          "B01-RESULTATS.json",
+          "RAPPORT_ARKETYPE_STRUCTURE.json"
+        ],
+        "basis": "selective_smartdump_code_snapshot",
+        "anchors_sha256": {
+          "kristal.workspace.json": "be54d4164cda5584327a7f1629666e75a7519b6aabe0dec77dbc29fb50991c2c",
+          "canon/state.index.json": "495e02f552b6e07286389ee30bb6611cf1c8c293bd0d0b8bf510d13dcdbdecdc"
+        }
+      },
+      "notes": "Proposition de revue ChatGPT; non déclaration canonique, non certification Framework."
+    },
+    {
+      "state_ref": "urn:kristal:state:games",
+      "name": "Kristal-Games",
+      "batch": "B01",
+      "snapshot_date": "2026-10-30",
+      "technical_snapshot": {
+        "result": "LOCAL_CHECKS_PASSED_ON_SNAPSHOT",
+        "scope": "Kit/local/native checks executed on extracted Code snapshots, not current user disk",
+        "full_folder_verified": false,
+        "canonical_change_authorized": false,
+        "follow_up": "Lecteur natif B01 : retest requis sur Windows."
+      },
+      "archetype_review": {
+        "recommended_primary_candidates": [
+          "ARK-14"
+        ],
+        "status": "proposed",
+        "local_human_approval": false,
+        "rationale": "États, règles, actions et transitions; proposition de simulation.",
+        "kind": "simulation",
+        "structural_observer_candidates": [],
+        "observer_complete": true,
+        "tag_written": false
+      },
+      "provenance": {
+        "references": [
+          "B01-RESULTATS.json",
+          "RAPPORT_ARKETYPE_STRUCTURE.json"
+        ],
+        "basis": "selective_smartdump_code_snapshot",
+        "anchors_sha256": {
+          "kristal.workspace.json": "59925823998973c3baec2aa401a1ec0bbac8dea4b1af248e63f6bc1df5520da1",
+          "canon/state.index.json": "4dffd64e3ca9ea16252fe8f9784047820d87523e853bf6aa647e41e0d9255663"
+        }
+      },
+      "notes": "Proposition de revue ChatGPT; non déclaration canonique, non certification Framework."
+    },
+    {
+      "state_ref": "urn:kristal:state:hci",
+      "name": "Kristal-HCI",
+      "batch": "B01",
+      "snapshot_date": "2026-10-30",
+      "technical_snapshot": {
+        "result": "LOCAL_CHECKS_PASSED_ON_SNAPSHOT",
+        "scope": "Kit/local/native checks executed on extracted Code snapshots, not current user disk",
+        "full_folder_verified": false,
+        "canonical_change_authorized": false,
+        "follow_up": "Lecteur natif B01 : retest requis sur Windows."
+      },
+      "archetype_review": {
+        "recommended_primary_candidates": [
+          "ARK-01"
+        ],
+        "status": "proposed",
+        "local_human_approval": false,
+        "rationale": "Référentiel utilisateur-tâche-interface-interaction et évaluation.",
+        "kind": "reference",
+        "structural_observer_candidates": [],
+        "observer_complete": true,
+        "tag_written": false
+      },
+      "provenance": {
+        "references": [
+          "B01-RESULTATS.json",
+          "RAPPORT_ARKETYPE_STRUCTURE.json"
+        ],
+        "basis": "selective_smartdump_code_snapshot",
+        "anchors_sha256": {
+          "kristal.workspace.json": "20e7b5f747758c7b84b713a306dfa934f35c2653659d59e87954a0bebce33bb5",
+          "canon/state.index.json": "a77c7ea5a831ed9ec9de751b9ce939796bb8f48f1ee8a57c7c88bbd1f7db7f4f"
+        }
+      },
+      "notes": "Proposition de revue ChatGPT; non déclaration canonique, non certification Framework."
+    },
+    {
+      "state_ref": "urn:kristal:state:homecare",
+      "name": "Kristal-HomeCare",
+      "batch": "B01",
+      "snapshot_date": "2026-10-30",
+      "technical_snapshot": {
+        "result": "LOCAL_CHECKS_PASSED_ON_SNAPSHOT",
+        "scope": "Kit/local/native checks executed on extracted Code snapshots, not current user disk",
+        "full_folder_verified": false,
+        "canonical_change_authorized": false,
+        "follow_up": "Lecteur natif B01 : retest requis; choisir le rôle primaire."
+      },
+      "archetype_review": {
+        "recommended_primary_candidates": [
+          "ARK-15",
+          "ARK-19"
+        ],
+        "status": "needs_discussion",
+        "local_human_approval": false,
+        "rationale": "Modèle composite d’actifs, diagnostic, événements et suivi; primaire à départager.",
+        "kind": "ambiguous",
+        "structural_observer_candidates": [],
+        "observer_complete": true,
+        "tag_written": false
+      },
+      "provenance": {
+        "references": [
+          "B01-RESULTATS.json",
+          "RAPPORT_ARKETYPE_STRUCTURE.json"
+        ],
+        "basis": "selective_smartdump_code_snapshot",
+        "anchors_sha256": {
+          "kristal.workspace.json": "57e25675b581131603994f1aef38198371b4cd4907ead6a32e24c9299c60fc88",
+          "canon/state.index.json": "5f69b30aea299539b8bac45b40e1eedb280ed618881954aaa6c03479d730be51"
+        }
+      },
+      "notes": "Proposition de revue ChatGPT; non déclaration canonique, non certification Framework."
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-energy",
+      "name": "Kristal-Energy",
+      "batch": "B21",
+      "snapshot_date": "2026-10-30",
+      "technical_snapshot": {
+        "result": "LOCAL_CHECKS_PASSED_ON_SNAPSHOT",
+        "scope": "Kit/local/native checks executed on extracted Code snapshots, not current user disk",
+        "full_folder_verified": false,
+        "canonical_change_authorized": false,
+        "follow_up": "Aucune modification requise par contrôles sur snapshot."
+      },
+      "archetype_review": {
+        "recommended_primary_candidates": [
+          "ARK-01"
+        ],
+        "status": "proposed",
+        "local_human_approval": false,
+        "rationale": "Sources, flux, conversion, stockage, transport et pertes.",
+        "kind": "reference",
+        "structural_observer_candidates": [
+          {
+            "id": "ARK-01",
+            "score": "3/3"
+          }
+        ],
+        "observer_complete": true,
+        "tag_written": false
+      },
+      "provenance": {
+        "references": [
+          "RAPPORT-B21-TECHNOLOGIE-ENERGIE-MATERIAUX-2026-10-30.json",
+          "RAPPORT_ARKETYPE_STRUCTURE.json"
+        ],
+        "basis": "selective_smartdump_code_snapshot",
+        "anchors_sha256": {
+          "kristal.workspace.json": "dc3a47c2da3387ffd647524ec8fd3c8be287042b7e8ab273055c096a39e1a7c4",
+          "canon/state.index.json": "4120639b1a28cf40fcb8fd7e50cd6dfa81b7d0b7760f8d7a8133fd7df03ffd89"
+        }
+      },
+      "notes": "Proposition de revue ChatGPT; non déclaration canonique, non certification Framework."
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-veterinary",
+      "name": "Kristal-Veterinary",
+      "batch": "B11",
+      "snapshot_date": "2026-10-30",
+      "technical_snapshot": {
+        "result": "LOCAL_CHECKS_PASSED_ON_SNAPSHOT",
+        "scope": "Kit/local/native checks executed on extracted Code snapshots, not current user disk",
+        "full_folder_verified": false,
+        "canonical_change_authorized": false,
+        "follow_up": "Aucune modification proposée sur snapshot."
+      },
+      "archetype_review": {
+        "recommended_primary_candidates": [
+          "ARK-01"
+        ],
+        "status": "proposed",
+        "local_human_approval": false,
+        "rationale": "Espèce × système physiologique × pathologie × intervention.",
+        "kind": "reference",
+        "structural_observer_candidates": [
+          {
+            "id": "ARK-01",
+            "score": "3/3"
+          }
+        ],
+        "observer_complete": false,
+        "tag_written": false
+      },
+      "provenance": {
+        "references": [
+          "RAPPORT-B11-ZOOLOGY-VETERINARY-2026-10-30.json",
+          "RAPPORT_ARKETYPE_STRUCTURE.json"
+        ],
+        "basis": "selective_smartdump_code_snapshot",
+        "anchors_sha256": {
+          "kristal.workspace.json": "cb565b58897587847ae2d297e38f3a2f32fd328bb6f65ddd08bde1ae4b301b67",
+          "canon/state.index.json": "797c0bae896d7f3e0d98ac22d7c4f43ba4c7cc9602d46300dd2104b5ad09f9d5"
+        }
+      },
+      "notes": "Proposition de revue ChatGPT; non déclaration canonique, non certification Framework."
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-zoology",
+      "name": "Kristal-Zoology",
+      "batch": "B11",
+      "snapshot_date": "2026-10-30",
+      "technical_snapshot": {
+        "result": "LOCAL_CHECKS_PASSED_ON_SNAPSHOT",
+        "scope": "Kit/local/native checks executed on extracted Code snapshots, not current user disk",
+        "full_folder_verified": false,
+        "canonical_change_authorized": false,
+        "follow_up": "Vérifier la régénération locale des 3 métadonnées dérivées."
+      },
+      "archetype_review": {
+        "recommended_primary_candidates": [
+          "ARK-17"
+        ],
+        "status": "proposed",
+        "local_human_approval": false,
+        "rationale": "Lignées, plans corporels, adaptations, convergence et incertitudes.",
+        "kind": "taxonomy",
+        "structural_observer_candidates": [
+          {
+            "id": "ARK-01",
+            "score": "3/3"
+          }
+        ],
+        "observer_complete": false,
+        "tag_written": false
+      },
+      "provenance": {
+        "references": [
+          "RAPPORT-B11-ZOOLOGY-VETERINARY-2026-10-30.json",
+          "RAPPORT_ARKETYPE_STRUCTURE.json"
+        ],
+        "basis": "selective_smartdump_code_snapshot",
+        "anchors_sha256": {
+          "kristal.workspace.json": "4b6d8d6fca727a06e43b2d16df20c7666290195e7c5ca71415c072f664fd1a7b",
+          "canon/state.index.json": "08f3cacf6b6974f20a522d3fb2f7d50839a32e5c3639ea98577ba0f325dfc3cc"
+        }
+      },
+      "notes": "Proposition de revue ChatGPT; non déclaration canonique, non certification Framework."
+    },
+    {
+      "state_ref": "urn:kristal:state:materials",
+      "name": "Kristal-Materials",
+      "batch": "B21",
+      "snapshot_date": "2026-10-30",
+      "technical_snapshot": {
+        "result": "LOCAL_CHECKS_PASSED_ON_SNAPSHOT",
+        "scope": "Kit/local/native checks executed on extracted Code snapshots, not current user disk",
+        "full_folder_verified": false,
+        "canonical_change_authorized": false,
+        "follow_up": "Aucune modification requise par contrôles sur snapshot."
+      },
+      "archetype_review": {
+        "recommended_primary_candidates": [
+          "ARK-01"
+        ],
+        "status": "proposed",
+        "local_human_approval": false,
+        "rationale": "Composition, propriétés, méthode et conditions de mesure.",
+        "kind": "reference",
+        "structural_observer_candidates": [
+          {
+            "id": "ARK-01",
+            "score": "3/3"
+          }
+        ],
+        "observer_complete": true,
+        "tag_written": false
+      },
+      "provenance": {
+        "references": [
+          "RAPPORT-B21-TECHNOLOGIE-ENERGIE-MATERIAUX-2026-10-30.json",
+          "RAPPORT_ARKETYPE_STRUCTURE.json"
+        ],
+        "basis": "selective_smartdump_code_snapshot",
+        "anchors_sha256": {
+          "kristal.workspace.json": "86419868dc9c90df34e060053f8ae2bede4c70fece84aa19b8c5e64edd10a67c",
+          "canon/state.index.json": "ee6f8b2b8e73ef97fdf77d085c60e70e4dc78e64f6cad1722f48bb0b9a8f2b2a"
+        }
+      },
+      "notes": "Proposition de revue ChatGPT; non déclaration canonique, non certification Framework."
+    },
+    {
+      "state_ref": "urn:kristal:state:mechanical-engineering",
+      "name": "Kristal-MechanicalEngineering",
+      "batch": "B21",
+      "snapshot_date": "2026-10-30",
+      "technical_snapshot": {
+        "result": "LOCAL_CHECKS_PASSED_ON_SNAPSHOT",
+        "scope": "Kit/local/native checks executed on extracted Code snapshots, not current user disk",
+        "full_folder_verified": false,
+        "canonical_change_authorized": false,
+        "follow_up": "Aucune modification requise par contrôles sur snapshot."
+      },
+      "archetype_review": {
+        "recommended_primary_candidates": [
+          "ARK-01"
+        ],
+        "status": "proposed",
+        "local_human_approval": false,
+        "rationale": "Mécanismes, efforts, mouvements, tribologie et modes de défaillance.",
+        "kind": "reference",
+        "structural_observer_candidates": [
+          {
+            "id": "ARK-01",
+            "score": "2/3"
+          }
+        ],
+        "observer_complete": true,
+        "tag_written": false
+      },
+      "provenance": {
+        "references": [
+          "RAPPORT-B21-TECHNOLOGIE-ENERGIE-MATERIAUX-2026-10-30.json",
+          "RAPPORT_ARKETYPE_STRUCTURE.json"
+        ],
+        "basis": "selective_smartdump_code_snapshot",
+        "anchors_sha256": {
+          "kristal.workspace.json": "15ddb466c32eec96be560df25607c7c39a132c4eab844c46bacbfb96be622748",
+          "canon/state.index.json": "6e5e275ea0f6d65b9bc8a52eb3cda2460ce4317887e070d427a65cbffc70459a"
+        }
+      },
+      "notes": "Proposition de revue ChatGPT; non déclaration canonique, non certification Framework."
+    },
+    {
+      "state_ref": "urn:kristal:state:recipes",
+      "name": "Kristal-Recipes",
+      "batch": "B01",
+      "snapshot_date": "2026-10-30",
+      "technical_snapshot": {
+        "result": "LOCAL_CHECKS_PASSED_ON_SNAPSHOT",
+        "scope": "Kit/local/native checks executed on extracted Code snapshots, not current user disk",
+        "full_folder_verified": false,
+        "canonical_change_authorized": false,
+        "follow_up": "Lecteur natif B01 : retest requis sur Windows."
+      },
+      "archetype_review": {
+        "recommended_primary_candidates": [
+          "ARK-04"
+        ],
+        "status": "proposed",
+        "local_human_approval": false,
+        "rationale": "Variantes, opérations et transformations : priorité au protocole. ARK-05 complément possible.",
+        "kind": "procedural",
+        "structural_observer_candidates": [
+          {
+            "id": "ARK-01",
+            "score": "3/3"
+          },
+          {
+            "id": "ARK-02",
+            "score": "3/3"
+          },
+          {
+            "id": "ARK-04",
+            "score": "3/3"
+          },
+          {
+            "id": "ARK-08",
+            "score": "3/3"
+          }
+        ],
+        "observer_complete": true,
+        "tag_written": false
+      },
+      "provenance": {
+        "references": [
+          "B01-RESULTATS.json",
+          "RAPPORT_ARKETYPE_STRUCTURE.json"
+        ],
+        "basis": "selective_smartdump_code_snapshot",
+        "anchors_sha256": {
+          "kristal.workspace.json": "7bdbbed86d32fa66966206778be983d74f6a4dae27dd031bd7276efa2891b609",
+          "canon/state.index.json": "465a04b1406d7f4abbc0a59def07e44998db208f0cbc1fd0ea66f8d5a2e60bdd"
+        }
+      },
+      "notes": "Proposition de revue ChatGPT; non déclaration canonique, non certification Framework."
+    },
+    {
+      "state_ref": "urn:kristal:state:technology",
+      "name": "Kristal-Technology",
+      "batch": "B21",
+      "snapshot_date": "2026-10-30",
+      "technical_snapshot": {
+        "result": "LOCAL_CHECKS_PASSED_ON_SNAPSHOT",
+        "scope": "Kit/local/native checks executed on extracted Code snapshots, not current user disk",
+        "full_folder_verified": false,
+        "canonical_change_authorized": false,
+        "follow_up": "ARK structurel incomplet à 120 000 nœuds; aucune modification requise par contrôles locaux."
+      },
+      "archetype_review": {
+        "recommended_primary_candidates": [
+          "ARK-01"
+        ],
+        "status": "proposed",
+        "local_human_approval": false,
+        "rationale": "Besoin → fonction → principe → composant → système → usage.",
+        "kind": "reference",
+        "structural_observer_candidates": [
+          {
+            "id": "ARK-01",
+            "score": "3/3"
+          }
+        ],
+        "observer_complete": false,
+        "tag_written": false
+      },
+      "provenance": {
+        "references": [
+          "RAPPORT-B21-TECHNOLOGIE-ENERGIE-MATERIAUX-2026-10-30.json",
+          "RAPPORT_ARKETYPE_STRUCTURE.json"
+        ],
+        "basis": "selective_smartdump_code_snapshot",
+        "anchors_sha256": {
+          "kristal.workspace.json": "349b2de248fa37c2d7252be58cf91d1a1575105f296bbeec9e239fa811e2390b",
+          "canon/state.index.json": "e3f1c0f0c4ca48d5a36999fc53925134f2298c2de1fc8807e56c805b545f5a43"
+        }
+      },
+      "notes": "Proposition de revue ChatGPT; non déclaration canonique, non certification Framework."
+    }
+  ]
+}

@@ -1,3 +1,26 @@
+## 2026-10-28 — Copie des résultats dans ChatGPT (0.4)
+
+- Ajoute le bouton « Copier résultats pour ChatGPT » dans le centre d’analyse globale : synthèse de tous les Kristals, anomalies et propositions (même sans sélection).
+- Ajoute « Copier Kristal sélectionné » et « Copier ces détails » avec les indices détaillés disponibles, en JSON.
+- Ajoute Ctrl+C sur la table pour copier le Kristal sélectionné ; confirmation visible et aucune connexion réseau.
+- Préserve l’archive ZIP des preuves, la lecture seule, le cache local et l’interdiction de Git/GitHub.
+
+## 2026-10-28 — Distribution locale sans GitHub (0.3)
+
+- Neutralise `GitSink.bat` sans supprimer le fichier : les anciens raccourcis ne peuvent plus déclencher `git add/commit/push`.
+- Exclut les **nouveaux** catalogues et rapports générés via `.gitignore` (sans toucher à l'index ni à l'historique de Git).
+- Clarifie l'absence de toute opération Git/GitHub dans l'analyse globale et l'aide.
+- Conserve le scan global, le cache, les suggestions Arketype/UNESCO/diK, la vérification locale et les exports ZIP.
+
+## 2026-10-28 — Centre d’analyse globale intégré (0.2)
+
+- Ajoute un centre intégré via le bouton « Analyse globale… » : catalogue incrémental, résumé lexical, propositions Arketype/UNESCO et observations diK pour tous les Kristals.
+- Ajoute un pipeline worker Tk non bloquant, des rapports JSON/CSV/HTML, un plan de corrections à confirmer et un export ZIP des problèmes sans fichier source.
+- Ajoute une vérification locale optionnelle (sources Discovery), limitée à quatre travailleurs, sans exécution de scripts issus des Kristals.
+- Centralise les fichiers dérivés dans `catalogue/` et `rapports/` à la racine du Manager. Les inférences ne modifient aucune classification officielle.
+- Ajoute la commande CLI `analyse-globale` et des tests de non-modification des sources, de cache et d’interface.
+- Ce lot n’intègre pas de correcteur canonique diK/Kit ni de batch KristalDiag officiel ; C1/C2/C3 restent non évalués.
+
 ## 2026-10-27 — Framework v7 UNESCO Thesaurus and ISCED-F reading
 
 - Bundled the pinned Framework v7 UNESCO reference: 7 domains, 88 microthesauri, 100 Subject seed examples. UNESCO identifiers and URIs are preserved; no invented classifications.

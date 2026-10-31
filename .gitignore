@@ -10,3 +10,14 @@ venv/
 private-*.json
 local-inventory*.json
 .recovery-backup/
+
+# Generated private catalogues / reports: local artifacts only.
+/catalogue/**
+!/catalogue/LISEZ_MOI.txt
+/rapports/**
+!/rapports/LISEZ_MOI.txt
+
+# Direct local exports / temporary reports.
+/kristal-inventaire-local*.json
+/kristal-unesco-audit*.json
+/problemes-analyse-*.zip

@@ -1,0 +1,67 @@
+{
+  "id": "ARK-06",
+  "legacy_id": "TK-06",
+  "slug": "memoire-recherche",
+  "name": "Research Memory",
+  "family": "Knowledge",
+  "description": "Hypotheses, observations, trials and findings over time. Research notebooks, inquiry histories and lab studies.",
+  "kit_profile": "research",
+  "native_kind_candidate": "knowledge_research_strategy_separes",
+  "responsibility_mode": "research-owner",
+  "structural_traits": [
+    "graphe_recherche",
+    "historique_essais"
+  ],
+  "epistemic_modes": [
+    "hypothese",
+    "essai",
+    "obligation",
+    "prouve"
+  ],
+  "deployment_options": [
+    "local",
+    "federe"
+  ],
+  "primitive_candidates": [
+    "connaissances",
+    "hypotheses",
+    "tentatives",
+    "obligations",
+    "resultats",
+    "strategies",
+    "promotions"
+  ],
+  "reference_use_case": "Research notebooks, inquiry histories and lab studies.",
+  "integrity_rule": "Preserve the difference between hypotheses and established findings.",
+  "antipattern": "Do not silently promote a hypothesis or failed trial to an established result.",
+  "design_question": "How are uncertainty, provenance and revisions recorded?",
+  "template_path": "modeles/memoire-recherche",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "timeline",
+  "secondary_patterns": [
+    "hub"
+  ],
+  "structure_label": "Research history",
+  "situational_schema": "Questions, hypotheses, trials and findings evolve over time with uncertainty preserved.",
+  "canonical_use_cases": [
+    "research notebook",
+    "study record",
+    "experiment log"
+  ],
+  "case_examples": [
+    "Independent research"
+  ],
+  "primitive_labels_en": [
+    "knowledge",
+    "hypotheses",
+    "tentatives",
+    "obligations",
+    "results",
+    "strategies",
+    "promotions"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "ARK-17",
+  "slug": "taxonomie-classification",
+  "name": "Taxonomy / Natural Classification",
+  "family": "Knowledge",
+  "description": "Classification tree with groups, subclasses and synonyms. Nature maps, biological categories and material typologies.",
+  "kit_profile": "open",
+  "native_kind_candidate": "arbre_taxonomique_classification",
+  "responsibility_mode": "taxonomy-owner",
+  "structural_traits": [
+    "arbre",
+    "taxonomie",
+    "classification"
+  ],
+  "epistemic_modes": [
+    "decrit",
+    "classe",
+    "versionne"
+  ],
+  "deployment_options": [
+    "local",
+    "federe"
+  ],
+  "primitive_candidates": [
+    "racines",
+    "groupes",
+    "classes",
+    "sous_classes",
+    "specimens",
+    "relations_de_classement",
+    "synonymes"
+  ],
+  "reference_use_case": "Nature maps, biological categories and material typologies.",
+  "integrity_rule": "Classification criteria, authority and exceptions must be explicit.",
+  "antipattern": "Do not equate a classification relationship with observed identity or causal evidence.",
+  "design_question": "Which nomenclature, criteria and classification authorities apply?",
+  "template_path": "modeles/taxonomie-classification",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "tree",
+  "secondary_patterns": [
+    "cluster"
+  ],
+  "structure_label": "Classification tree",
+  "situational_schema": "Natural categories branch into families and species with criteria, synonyms and cited authorities.",
+  "canonical_use_cases": [
+    "wildlife taxonomy",
+    "natural classification",
+    "specimen catalogue"
+  ],
+  "case_examples": [
+    "Nature classification"
+  ],
+  "primitive_labels_en": [
+    "roots",
+    "groups",
+    "classes",
+    "subclasses",
+    "specimens",
+    "classification relations",
+    "synonyms"
+  ]
+}

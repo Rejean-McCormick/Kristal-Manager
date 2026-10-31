@@ -1,0 +1,82 @@
+{
+  "id": "ARK-16",
+  "slug": "deposition-temoignage",
+  "name": "Testimony / Deposition",
+  "family": "Sources",
+  "description": "Attributed accounts with recordings, transcriptions and revisions. Witness records and declarative evidence dossiers.",
+  "kit_profile": "open",
+  "native_kind_candidate": "registre_declarations_provenance_versions",
+  "responsibility_mode": "testimony-record-owner",
+  "structural_traits": [
+    "declarations_attribuees",
+    "sessions_horodatees",
+    "versions_non_destructives",
+    "pieces_et_transcriptions_referencees",
+    "confidentialite_par_defaut"
+  ],
+  "epistemic_modes": [
+    "rapporté",
+    "déclaré",
+    "non_vérifié",
+    "contesté",
+    "corroboration_externe_distincte"
+  ],
+  "deployment_options": [
+    "local_prive",
+    "hebergement_restreint_sur_autorisation"
+  ],
+  "primitive_candidates": [
+    "declarants_et_pseudonymes",
+    "seances_et_intervenants",
+    "questions_reponses",
+    "enonces_attribues",
+    "dates_des_faits_allegues",
+    "dates_de_recueil",
+    "supports_originaux",
+    "transcriptions_et_traductions",
+    "corrections_ajouts_retractations",
+    "consentements_et_bases_de_traitement",
+    "restrictions_d_acces",
+    "references_externes_de_corroboration",
+    "preuves_de_capture_et_chaine_de_conservation"
+  ],
+  "reference_use_case": "Witness records and declarative evidence dossiers.",
+  "integrity_rule": "Reported claims are not automatically verified facts.",
+  "antipattern": "Never treat an attributed statement as established truth; preserve versions and restricted identity.",
+  "design_question": "Who may collect, retain and review accounts, and on what authority?",
+  "template_path": "modeles/deposition-temoignage",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "casefile",
+  "secondary_patterns": [
+    "timeline"
+  ],
+  "structure_label": "Testimony dossier",
+  "situational_schema": "Attributed accounts, recordings, transcriptions, corrections and independent evaluations remain distinct.",
+  "canonical_use_cases": [
+    "witness statement",
+    "oral history",
+    "deposition record"
+  ],
+  "case_examples": [
+    "Witness accounts and interviews"
+  ],
+  "primitive_labels_en": [
+    "declarants and pseudonyms",
+    "collection sessions and participants",
+    "questions and answers",
+    "attributed statements",
+    "dates of alleged events",
+    "collection timestamps",
+    "original media",
+    "transcripts and translations",
+    "corrections, additions and retractions",
+    "consent and processing basis",
+    "access restrictions",
+    "external corroboration references",
+    "capture integrity and custody chain"
+  ]
+}

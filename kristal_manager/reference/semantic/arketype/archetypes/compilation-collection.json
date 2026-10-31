@@ -1,0 +1,66 @@
+{
+  "id": "ARK-05",
+  "legacy_id": "TK-05",
+  "slug": "compilation-collection",
+  "name": "Compilation / Collection",
+  "family": "Composition",
+  "description": "Curated, ordered and annotated independent works or knowledge items. Cookbooks, reference collections and anthologies.",
+  "kit_profile": "open",
+  "native_kind_candidate": "collection_referencee",
+  "responsibility_mode": "collection-curator",
+  "structural_traits": [
+    "collection",
+    "index",
+    "ordre"
+  ],
+  "epistemic_modes": [
+    "reference",
+    "annotation"
+  ],
+  "deployment_options": [
+    "local",
+    "federe"
+  ],
+  "primitive_candidates": [
+    "entrees",
+    "references",
+    "ordre",
+    "criteres_selection",
+    "variantes",
+    "annotations",
+    "provenance"
+  ],
+  "reference_use_case": "Cookbooks, reference collections and anthologies.",
+  "integrity_rule": "Curation does not imply ownership of every included item.",
+  "antipattern": "Do not assume curation grants ownership of the referenced material.",
+  "design_question": "Which entries are owned, quoted or linked, and under what terms?",
+  "template_path": "modeles/compilation-collection",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "cluster",
+  "secondary_patterns": [
+    "casefile"
+  ],
+  "structure_label": "Curated collection",
+  "situational_schema": "Independent entries collected, ordered and annotated without absorbing ownership of each entry.",
+  "canonical_use_cases": [
+    "cookbook",
+    "anthology",
+    "curated reference"
+  ],
+  "case_examples": [
+    "Recipe collection"
+  ],
+  "primitive_labels_en": [
+    "entrees",
+    "references",
+    "ordre",
+    "selection criteria",
+    "variantes",
+    "annotations",
+    "provenance"
+  ]
+}

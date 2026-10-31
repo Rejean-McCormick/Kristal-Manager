@@ -1,0 +1,65 @@
+{
+  "id": "ARK-01",
+  "legacy_id": "TK-01",
+  "slug": "referentiel-semantique",
+  "name": "Semantic Reference",
+  "family": "Knowledge",
+  "description": "Connected concepts, entities and sourced relationships. Reusable knowledge stores, dictionaries, educational and cultural references.",
+  "kit_profile": "open",
+  "native_kind_candidate": "referentiel_contextualise",
+  "responsibility_mode": "knowledge-owner",
+  "structural_traits": [
+    "descriptif",
+    "contextuel"
+  ],
+  "epistemic_modes": [
+    "atteste",
+    "hypothese",
+    "interprete"
+  ],
+  "deployment_options": [
+    "local",
+    "federe",
+    "offline"
+  ],
+  "primitive_candidates": [
+    "referents",
+    "types",
+    "relations_typees",
+    "assertions_contextualisees",
+    "sources",
+    "provenance"
+  ],
+  "reference_use_case": "Reusable knowledge stores, dictionaries, educational and cultural references.",
+  "integrity_rule": "Distinguish assertions from instructional projections and record sources.",
+  "antipattern": "Do not mistake a teaching projection for the complete source record.",
+  "design_question": "Which concepts, sources and contexts does this knowledge state own?",
+  "template_path": "modeles/referentiel-semantique",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "cluster",
+  "secondary_patterns": [
+    "tree"
+  ],
+  "structure_label": "Semantic cluster",
+  "situational_schema": "Source-linked concepts, entities and typed relationships arranged in related thematic clusters.",
+  "canonical_use_cases": [
+    "knowledge base",
+    "semantic dictionary",
+    "museum and education reference"
+  ],
+  "case_examples": [
+    "Ekole knowledge reference"
+  ],
+  "primitive_labels_en": [
+    "referents",
+    "types",
+    "typed relationships",
+    "contextual assertions",
+    "sources",
+    "provenance"
+  ]
+}

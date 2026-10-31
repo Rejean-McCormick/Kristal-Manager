@@ -117,3 +117,52 @@ def test_legacy_display_key_is_not_a_curated_label_or_identity_merge(tmp_path):
  r=summaries(db)['records'][0];assert r['metrics']['entities_with_descriptive_labels']==1
  match=search_catalog(db,'native.other');assert len(match)==1 and match[0]['id']=='KQ2'
  put(p,'.kristal/v11/identity-migration-map.json',{'namespace_id':'wrong','by_kind':{'Q':{'spoof':'KQ2'}}});build_catalog([p],db);assert search_catalog(db,'spoof')==[]
+
+
+def test_legacy_object_predicate_with_native_identifier_and_json_payload(tmp_path):
+    """VehiculeDiag: v6 object predicate is not an invalid assertion."""
+    p=tmp_path/'locals'/'VehiculeDiag';p.mkdir(parents=True)
+    put(p,'kristal.workspace.json',{'title':'VehiculeDiag','state_ref':'urn:vehicle'})
+    put(p,'canon/state.index.json',{'canonical_artifacts':[{'path':'canon/epistemic.json'}]})
+    put(p,'canon/epistemic.json',{'artifact_type':'kristal_state','assertions':[
+        {'assertion_id':'sha256:a1','statement':{
+         'subject':{'kind':'item','id':'urn:component:pedal','label':'Pédale'},
+         'predicate':{'external_id':'vehiclediag:defined_as','label':'Défini comme'},
+         'object':{'kind':'json','value':{'layers':['mechanical','signal']}}},
+         'evidence_refs':['urn:proof:1']}]})
+    db=tmp_path/'catalog.db';build_catalog([p],db)
+    record=summaries(db)['records'][0]
+    assert record['content_status']=='observed'
+    assert record['metrics']['assertions']==1
+    assert record['metrics']['properties']==1
+    assert record['metrics']['properties_with_descriptive_labels']==0  # not diK certified
+    assert record['top_subjects'][0]['label']=='Pédale'
+    with sqlite3.connect(db) as con:
+        assert con.execute('SELECT predicate FROM assertions').fetchone()[0]=='vehiclediag:defined_as'
+        assert json.loads(con.execute('SELECT object FROM assertions').fetchone()[0])['value']['layers']==['mechanical','signal']
+
+
+def test_duplicates_report_summary_without_rewriting_or_hiding_conflicts(tmp_path):
+    p=tmp_path/'locals'/'Soil';p.mkdir(parents=True)
+    put(p,'kristal.workspace.json',{'title':'Soil','state_ref':'urn:soil'})
+    put(p,'canon/state.index.json',{'canonical_artifacts':[{'path':'canon/soil.json'}]})
+    a={'assertion_id':'dup','statement':{'subject':'soil','predicate':'relation','object':{'kind':'string','value':'A'}}}
+    b=json.loads(json.dumps(a));b['statement']['object']['value']='B'
+    put(p,'canon/soil.json',{'artifact_type':'kristal_state','assertions':[a,a,b]})
+    db=tmp_path/'catalog.db';source=(p/'canon/soil.json').read_bytes();build_catalog([p],db)
+    r=summaries(db)['records'][0]
+    assert r['content_status']=='partial'
+    assert r['metrics']['assertions_input']==3
+    # Manager conserve les deux variantes différentes uniquement dans le catalogue,
+    # tout en éliminant la répétition strictement identique.
+    assert r['metrics']['assertions']==2
+    assert r['metrics']['catalog_only_conflicting_variants_preserved']==1
+    with sqlite3.connect(db) as con:
+        rows=con.execute('SELECT id,object FROM assertions ORDER BY id').fetchall()
+    assert {json.loads(obj)['value'] for _,obj in rows}=={'A','B'}
+    assert sorted(row_id.startswith('__manager_catalog_variant__:') for row_id,_ in rows)==[False,True]
+    assert r['metrics']['duplicate_assertion_ids']==1
+    assert r['metrics']['duplicate_exact_repeats']==1
+    assert r['metrics']['duplicate_conflicting_repeats']==1
+    assert len([i for i in r['issues'] if i.startswith('Duplicate assertion')])==1
+    assert source==(p/'canon/soil.json').read_bytes()

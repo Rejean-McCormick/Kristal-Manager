@@ -1,0 +1,63 @@
+{
+  "id": "ARK-14",
+  "legacy_id": "TK-14",
+  "slug": "simulation-transition",
+  "name": "Simulation / Transitions",
+  "family": "Processes",
+  "description": "State-transition definitions and hypothetical scenarios. Simulation, state machines and training situations.",
+  "kit_profile": "executable",
+  "native_kind_candidate": "modele_etats_transitions",
+  "responsibility_mode": "simulation-model-owner",
+  "structural_traits": [
+    "etats",
+    "transitions"
+  ],
+  "epistemic_modes": [
+    "simule",
+    "modelise"
+  ],
+  "deployment_options": [
+    "local",
+    "projete"
+  ],
+  "primitive_candidates": [
+    "etats",
+    "transitions",
+    "contraintes",
+    "variables",
+    "scenario",
+    "resultats_derived"
+  ],
+  "reference_use_case": "Simulation, state machines and training situations.",
+  "integrity_rule": "Simulation does not grant real-world execution authority.",
+  "antipattern": "Do not confuse simulated outputs with observed events or execution authority.",
+  "design_question": "What transition rules and assumptions govern the scenario?",
+  "template_path": "modeles/simulation-transition",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "linear",
+  "secondary_patterns": [
+    "matrix"
+  ],
+  "structure_label": "State transitions",
+  "situational_schema": "Initial states progress through actions and transitions toward hypothetical outcomes.",
+  "canonical_use_cases": [
+    "simulation",
+    "scenario analysis",
+    "state machine"
+  ],
+  "case_examples": [
+    "Modelled transitions"
+  ],
+  "primitive_labels_en": [
+    "states",
+    "transitions",
+    "constraints",
+    "variables",
+    "scenario",
+    "results derived"
+  ]
+}

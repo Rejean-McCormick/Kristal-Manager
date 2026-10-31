@@ -1,0 +1,66 @@
+{
+  "id": "ARK-07",
+  "legacy_id": "TK-07",
+  "slug": "invariant-theorie",
+  "name": "Invariant / Formal Theory",
+  "family": "Knowledge",
+  "description": "Formal definitions, rules and logical dependencies. Theorem systems, invariant specifications and formal studies.",
+  "kit_profile": "invariant",
+  "native_kind_candidate": "invariant_formalisations_preuves",
+  "responsibility_mode": "formal-theory-owner",
+  "structural_traits": [
+    "invariants",
+    "preuves"
+  ],
+  "epistemic_modes": [
+    "prouve",
+    "refute",
+    "hypothese"
+  ],
+  "deployment_options": [
+    "local",
+    "federe"
+  ],
+  "primitive_candidates": [
+    "invariants",
+    "morphes_equivalents",
+    "consequences",
+    "contre_exemples",
+    "preuves",
+    "certificats",
+    "tests"
+  ],
+  "reference_use_case": "Theorem systems, invariant specifications and formal studies.",
+  "integrity_rule": "Proof obligations need real justification and scope.",
+  "antipattern": "Do not label a result proven without a qualified proof and scope.",
+  "design_question": "Which definitions and proof obligations underlie each invariant?",
+  "template_path": "modeles/invariant-theorie",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "tree",
+  "secondary_patterns": [
+    "linear"
+  ],
+  "structure_label": "Formal dependency tree",
+  "situational_schema": "Axioms and definitions support lemmas, theorems and explicit proof obligations.",
+  "canonical_use_cases": [
+    "formal theory",
+    "invariant specification",
+    "proof dependency map"
+  ],
+  "case_examples": [
+    "Formal theorem system"
+  ],
+  "primitive_labels_en": [
+    "invariants",
+    "equivalent expressions",
+    "consequences",
+    "counterexamples",
+    "proofs",
+    "certificates",
+    "tests"
+  ]
+}

@@ -1,0 +1,18 @@
+OVERLAY K22 — K50 BUILD CONSOLIDE / 2026-10-29
+
+Fermer Kristal Manager. Extraire directement ce ZIP dans C:\mycode\Kristal\ et accepter le remplacement.
+Dans Manager : Analyse globale… ; la colonne Kristalizer v11 affichera 29 BUILT (copie), 21 MIGRATION_MANUELLE_V11 parmi les 50 dossiers suivis.
+
+Corrige le cas des imports de lots partiels : le bilan K22 ne remplace plus les 28 réussites antérieures du K50. Les rapports récents prévalent sur les plus anciens POUR CHAQUE PROJET; les empreintes et dates sources sont conservées.
+
+Ce lot ne contient aucune modification de locals/, canon/, state/, ni aucune publication ou activation v11. Aucun résultat C1/C2/C3 certifié. Ne pas lancer « Publier et activer » à partir de ces seuls résultats.
+
+Le rapport K22 confirme Catho = BUILT sur copie (Kit passed), 21 autres encore sans paquet v11 complet; 0 erreur de build. Ce lot corrige le SUIVI de Manager, pas les 21 migrations.
+
+Fichiers :
+ - Kristal-Manager/kristal_manager/kristalizer_bridge.py
+ - Kristal-Manager/rapports/kristalizer-imports/dernier-build.json
+ - Kristal-Manager/rapports/kristalizer-imports/build-source-K50.json
+ - Kristal-Manager/rapports/kristalizer-imports/build-source-K22.json
+ - Kristal-Manager/rapports/kristalizer-imports/K50-BUILD-CONSOLIDE.csv
+ - Kristal-Manager/LIRE-OVERLAY-K22-CONSOLIDATION.txt

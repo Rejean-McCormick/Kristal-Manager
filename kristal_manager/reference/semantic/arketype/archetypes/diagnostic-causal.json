@@ -1,0 +1,66 @@
+{
+  "id": "ARK-08",
+  "legacy_id": "TK-08",
+  "slug": "diagnostic-causal",
+  "name": "Causal Diagnosis",
+  "family": "Processes",
+  "description": "Symptoms, possible causes, test results and competing explanations. System troubleshooting, vehicle diagnosis and fault isolation.",
+  "kit_profile": "executable",
+  "native_kind_candidate": "reseau_causal_et_diagnostic",
+  "responsibility_mode": "causal-model-owner",
+  "structural_traits": [
+    "reseau_causal",
+    "observabilite"
+  ],
+  "epistemic_modes": [
+    "modelise",
+    "inference"
+  ],
+  "deployment_options": [
+    "local",
+    "projete"
+  ],
+  "primitive_candidates": [
+    "topologie",
+    "etats_operatoires",
+    "perturbations",
+    "observations",
+    "hypotheses",
+    "tests",
+    "inference_derivee"
+  ],
+  "reference_use_case": "System troubleshooting, vehicle diagnosis and fault isolation.",
+  "integrity_rule": "Inferences are not permissions to perform interventions.",
+  "antipattern": "Do not treat a possible cause as a confirmed diagnosis or an instruction to intervene.",
+  "design_question": "Which measurements distinguish competing causes?",
+  "template_path": "modeles/diagnostic-causal",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "hub",
+  "secondary_patterns": [
+    "timeline",
+    "network"
+  ],
+  "structure_label": "Diagnostic hub",
+  "situational_schema": "A reported fault links observations, competing hypotheses, discriminating tests and results.",
+  "canonical_use_cases": [
+    "system troubleshooting",
+    "vehicle diagnosis",
+    "root cause analysis"
+  ],
+  "case_examples": [
+    "VehicleDiag / system troubleshooting"
+  ],
+  "primitive_labels_en": [
+    "topologie",
+    "etats operatoires",
+    "perturbations",
+    "observations",
+    "hypotheses",
+    "tests",
+    "inference derivee"
+  ]
+}

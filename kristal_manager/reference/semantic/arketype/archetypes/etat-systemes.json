@@ -1,0 +1,66 @@
+{
+  "id": "ARK-18",
+  "slug": "etat-systemes",
+  "name": "System-State Matrix",
+  "family": "Structures",
+  "description": "Observed condition of multiple systems across dimensions. Infrastructure status, asset state and configuration review.",
+  "kit_profile": "open",
+  "native_kind_candidate": "matrice_etat_systemes",
+  "responsibility_mode": "system-state-owner",
+  "structural_traits": [
+    "matrice",
+    "etat",
+    "inventaire"
+  ],
+  "epistemic_modes": [
+    "observe",
+    "compare",
+    "suit"
+  ],
+  "deployment_options": [
+    "local",
+    "federe"
+  ],
+  "primitive_candidates": [
+    "systemes",
+    "composants",
+    "dimensions_d_etat",
+    "valeurs",
+    "dates_d_observation",
+    "statuts",
+    "ecarts"
+  ],
+  "reference_use_case": "Infrastructure status, asset state and configuration review.",
+  "integrity_rule": "Observed, desired and inferred states must remain separate.",
+  "antipattern": "Do not confuse observed conditions, desired configuration and inferred health.",
+  "design_question": "Which measurements and observation times form each state snapshot?",
+  "template_path": "modeles/etat-systemes",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "matrix",
+  "secondary_patterns": [
+    "timeline"
+  ],
+  "structure_label": "System-state matrix",
+  "situational_schema": "Systems are measured on comparable dimensions at stated times, distinct from target configuration.",
+  "canonical_use_cases": [
+    "infrastructure status",
+    "asset inventory",
+    "system monitoring"
+  ],
+  "case_examples": [
+    "Personal and operational systems"
+  ],
+  "primitive_labels_en": [
+    "systems",
+    "components",
+    "state dimensions",
+    "values",
+    "observation dates",
+    "statuses",
+    "deviations"
+  ]
+}

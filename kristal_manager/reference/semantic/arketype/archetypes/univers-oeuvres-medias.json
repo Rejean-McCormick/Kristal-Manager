@@ -1,0 +1,66 @@
+{
+  "id": "ARK-13",
+  "legacy_id": "TK-13",
+  "slug": "univers-oeuvres-medias",
+  "name": "Media and Creative Universes",
+  "family": "Structures",
+  "description": "Linked works, settings, characters and media manifestations. Worldbuilding, archives and media continuity.",
+  "kit_profile": "open",
+  "native_kind_candidate": "oeuvres_evenements_manifestations",
+  "responsibility_mode": "creative-knowledge-owner",
+  "structural_traits": [
+    "oeuvres",
+    "manifestations"
+  ],
+  "epistemic_modes": [
+    "fiction",
+    "atteste"
+  ],
+  "deployment_options": [
+    "local",
+    "federe",
+    "projete"
+  ],
+  "primitive_candidates": [
+    "univers",
+    "oeuvres",
+    "evenements",
+    "manifestations",
+    "alias",
+    "sources",
+    "restrictions_de_lecture"
+  ],
+  "reference_use_case": "Worldbuilding, archives and media continuity.",
+  "integrity_rule": "Preserve provenance and distinction between work and interpretation.",
+  "antipattern": "Do not confuse fictional canon, derivative interpretations, and external rights.",
+  "design_question": "Which works, versions and media manifestations are in scope?",
+  "template_path": "modeles/univers-oeuvres-medias",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "cluster",
+  "secondary_patterns": [
+    "network"
+  ],
+  "structure_label": "Creative universe cluster",
+  "situational_schema": "Works, characters, fictional events and media manifestations form a related universe.",
+  "canonical_use_cases": [
+    "worldbuilding",
+    "media archive",
+    "creative continuity"
+  ],
+  "case_examples": [
+    "Creative media universe"
+  ],
+  "primitive_labels_en": [
+    "universes",
+    "works",
+    "events",
+    "manifestations",
+    "aliases",
+    "sources",
+    "reading restrictions"
+  ]
+}

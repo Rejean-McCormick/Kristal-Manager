@@ -1,0 +1,38 @@
+MANAGER — REGISTRE DE REVUE LOCAL — 30 octobre 2026
+================================================
+
+CONTENU
+- 14 fiches de revue B01, B11, B21, reliées par state_ref.
+- Suggestions ARK NON validees : une revue ChatGPT n'est pas un tag declaré.
+- Deux repères de provenance SHA256 par workspace : kristal.workspace.json et
+  canon/state.index.json. Repères égaux != intégrité du canon entier.
+- Valeurs de contrôles HISTORIQUES sur copies seulement; le prochain scan
+  réévalue la santé technique selon le mode choisi, sans l'inventer.
+- Le registre persistent vit sous Kristal-Manager/catalogue/registre_revue_kristals.json.
+- Les décisions locales passent par le bouton "Consigner une décision locale…"
+  et restent traçables (date, justification). AUCUN tag n'est ecrit dans locals.
+
+INSTALLATION — ATTENTION : UN LANCEMENT DE SCRIPT NÉCESSAIRE
+1) FERMER Manager.
+2) Extraire cet overlay dans C:\mycode\Kristal\ (fusionner les dossiers).
+3) Double-cliquer sur C:\mycode\Kristal\Kristal-Manager\INSTALLER_REGISTRE_REVUE.cmd
+4) Ouvrir Manager > Analyse globale... > "Registre de revue…".
+5) Cocher "Vérifier aussi les fichiers enregistrés" et lancer l'analyse.
+6) "Copier résultats pour ChatGPT" contiendra maintenant les propositions de
+   revue avec leur statut et l'état des deux repères SHA256.
+
+POURQUOI UNE INSTALLATION EN DEUX TEMPS ?
+Le panneau global a déjà les boutons ARK et Tailles/bundles.
+Le script vérifie le contenu présent, ajoute SEULEMENT de petits points de
+raccordement, sauvegarde les deux fichiers originaux et refuse toute variante
+incompatible au lieu d'écraser tout le panneau avec une version plus ancienne.
+Un second lancement est sans effet (idempotent).
+
+SÉCURITÉ
+- Le script ne touche à aucun fichier sous locals/.
+- Aucun changement de contenu canonique, d'identité, d'assertion, de diK,
+  de classification officielle ou de publication.
+- Les registres existants NE SONT JAMAIS ECRASES par une nouvelle graine.
+- Si un registre est endommagé, le scan technique continue en indiquant
+  "registre indisponible" ; aucun fichier ne sera remplacé par défaut.
+- La validation Framework C1/C2/C3 reste NON EVALUÉE.

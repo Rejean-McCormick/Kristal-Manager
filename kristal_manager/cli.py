@@ -43,8 +43,22 @@ def main(argv=None):
     p.add_argument('text');p.add_argument('--db',type=Path,required=True);p.add_argument('--catalog-id');p.add_argument('--limit',type=int,default=50)
     p=sub.add_parser('catalog-overview',help='Render an existing content catalog as local HTML')
     p.add_argument('--db',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--overwrite',action='store_true')
+    p=sub.add_parser('analyse-globale', help='Analyse intégrée en lot : contenu, Arketype, UNESCO, diK (propositions)')
+    p.add_argument('root', type=Path, help='Dossier racine des Kristals (p. ex. locals)')
+    p.add_argument('--catalogue', type=Path, help='Chemin SQLite dérivé, hors des Kristals')
+    p.add_argument('--rapports', type=Path, help='Dossier de sortie des rapports, hors des Kristals')
+    p.add_argument('--sans-recataloguer', action='store_true', help='Utiliser la dernière copie SQLite (peut être périmée)')
+    p.add_argument('--verifier-localement', action='store_true', help='Hash des sources Discovery enregistrées (plus lent)')
     args=parser.parse_args(argv)
     try:
+        if args.command=='analyse-globale':
+            from .global_analysis import analyze_all
+            result=analyze_all(args.root, update_catalogue=not args.sans_recataloguer,
+                               verify_locally=args.verifier_localement,
+                               catalogue=args.catalogue, reports_base=args.rapports)
+            print(json.dumps({key:result[key] for key in ('report_directory','problem_archive','index_path','html_report')},
+                             ensure_ascii=False,indent=2))
+            return 0
         if args.command=='catalog':
             from .content_catalog import build_catalog,write_overview
             if not 1<=args.max_file_mib<=512:raise ManagerError('--max-file-mib must be between 1 and 512')

@@ -1,0 +1,66 @@
+{
+  "id": "ARK-19",
+  "slug": "dossier-suivi",
+  "name": "Casefile / Follow-Up",
+  "family": "Structures",
+  "description": "Central record of documents, notes, actions and follow-ups. Employee follow-up, case management and tracked interventions.",
+  "kit_profile": "open",
+  "native_kind_candidate": "dossier_suivi_casefile",
+  "responsibility_mode": "casefile-owner",
+  "structural_traits": [
+    "dossier",
+    "suivi",
+    "pieces"
+  ],
+  "epistemic_modes": [
+    "observe",
+    "documente",
+    "oriente"
+  ],
+  "deployment_options": [
+    "local",
+    "federe"
+  ],
+  "primitive_candidates": [
+    "dossiers",
+    "pieces",
+    "notes",
+    "actions",
+    "jalons",
+    "evaluations",
+    "restrictions_d_acces"
+  ],
+  "reference_use_case": "Employee follow-up, case management and tracked interventions.",
+  "integrity_rule": "Sensitive assessments and decisions require explicit governance.",
+  "antipattern": "Do not transform a follow-up record into an automatic employment judgment.",
+  "design_question": "What access, retention, provenance and decision boundaries govern this case?",
+  "template_path": "modeles/dossier-suivi",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "casefile",
+  "secondary_patterns": [
+    "timeline"
+  ],
+  "structure_label": "Case tracking dossier",
+  "situational_schema": "A case centralizes meetings, documents, actions and assessments while keeping provenance and access controls.",
+  "canonical_use_cases": [
+    "employee follow-up",
+    "HR casefile",
+    "case management"
+  ],
+  "case_examples": [
+    "Employee follow-up record"
+  ],
+  "primitive_labels_en": [
+    "casefiles",
+    "documents",
+    "notes",
+    "actions",
+    "milestones",
+    "evaluations",
+    "access restrictions"
+  ]
+}

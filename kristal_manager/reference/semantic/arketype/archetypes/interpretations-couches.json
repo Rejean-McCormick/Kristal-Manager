@@ -1,0 +1,63 @@
+{
+  "id": "ARK-12",
+  "legacy_id": "TK-12",
+  "slug": "interpretations-couches",
+  "name": "Layered Interpretations",
+  "family": "Knowledge",
+  "description": "Separate derived readings of shared underlying material. Comparative analysis and alternative interpretations.",
+  "kit_profile": "layered",
+  "native_kind_candidate": "regimes_interpretatifs_separes",
+  "responsibility_mode": "interpretation-owner",
+  "structural_traits": [
+    "multicouche",
+    "correspondances"
+  ],
+  "epistemic_modes": [
+    "interprete",
+    "hypothese",
+    "calcule"
+  ],
+  "deployment_options": [
+    "local"
+  ],
+  "primitive_candidates": [
+    "donnees",
+    "transformations",
+    "couches_interpretatives",
+    "liens_typés",
+    "hypotheses",
+    "limites"
+  ],
+  "reference_use_case": "Comparative analysis and alternative interpretations.",
+  "integrity_rule": "Keep interpretation and reproducible source distinct.",
+  "antipattern": "Do not turn a derived interpretation into the source or an established fact.",
+  "design_question": "How do readers identify each transformation and its limitations?",
+  "template_path": "modeles/interpretations-couches",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "multilayer",
+  "secondary_patterns": [
+    "hub"
+  ],
+  "structure_label": "Interpretation layers",
+  "situational_schema": "Multiple readings and comparisons refer to the same source material without replacing it.",
+  "canonical_use_cases": [
+    "comparative study",
+    "interpretation layers",
+    "analysis views"
+  ],
+  "case_examples": [
+    "Parallel analyses"
+  ],
+  "primitive_labels_en": [
+    "data",
+    "transformations",
+    "interpretation layers",
+    "typed links",
+    "hypotheses",
+    "limitations"
+  ]
+}

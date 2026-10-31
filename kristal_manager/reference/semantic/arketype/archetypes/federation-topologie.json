@@ -1,0 +1,59 @@
+{
+  "id": "ARK-02",
+  "legacy_id": "TK-02",
+  "slug": "federation-topologie",
+  "name": "Federation / Topology",
+  "family": "Composition",
+  "description": "Hierarchy or network of separately identifiable knowledge states. Distributed campuses, organizational units and linked subsystems.",
+  "kit_profile": "hierarchy-stub",
+  "native_kind_candidate": "identites_topologie_reservees",
+  "responsibility_mode": "topology-owner",
+  "structural_traits": [
+    "structurel",
+    "federe"
+  ],
+  "epistemic_modes": [
+    "reference"
+  ],
+  "deployment_options": [
+    "federe"
+  ],
+  "primitive_candidates": [
+    "noeuds",
+    "liens_parent_enfant",
+    "scopes",
+    "references_epinglees",
+    "statuts_de_cristallisation"
+  ],
+  "reference_use_case": "Distributed campuses, organizational units and linked subsystems.",
+  "integrity_rule": "A parent reference does not own or absorb a child state.",
+  "antipattern": "Do not copy subordinate commitments or assume a parent owns each referenced child.",
+  "design_question": "Where does ownership end, and which child commitments are pinned?",
+  "template_path": "modeles/federation-topologie",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "network",
+  "secondary_patterns": [
+    "tree"
+  ],
+  "structure_label": "Federated network",
+  "situational_schema": "Independent knowledge states linked by topology, scope, and separately owned parent-child references.",
+  "canonical_use_cases": [
+    "multi-campus structure",
+    "federated sites",
+    "independent subsystems"
+  ],
+  "case_examples": [
+    "UCKK university structure"
+  ],
+  "primitive_labels_en": [
+    "nodes",
+    "links parent enfant",
+    "scopes",
+    "references pinned",
+    "statuses of cristallisation"
+  ]
+}

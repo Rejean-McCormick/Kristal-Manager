@@ -1,0 +1,1 @@
+Catalogues SQLite/HTML dérivés par Kristal Manager. Ne pas placer ce dossier dans locals.

@@ -1,0 +1,63 @@
+{
+  "id": "ARK-15",
+  "legacy_id": "TK-15",
+  "slug": "composition-hybride",
+  "name": "Hybrid Composition",
+  "family": "Composition",
+  "description": "An assemblage of several kinds of independent knowledge structure. Cross-system models and multi-part applications.",
+  "kit_profile": "open",
+  "native_kind_candidate": "composition_de_sous_modeles",
+  "responsibility_mode": "composition-coordinator",
+  "structural_traits": [
+    "composition",
+    "frontieres"
+  ],
+  "epistemic_modes": [
+    "reference",
+    "mixte"
+  ],
+  "deployment_options": [
+    "local",
+    "federe"
+  ],
+  "primitive_candidates": [
+    "sous_modeles",
+    "frontieres",
+    "contrats_interface",
+    "references",
+    "politiques",
+    "projections"
+  ],
+  "reference_use_case": "Cross-system models and multi-part applications.",
+  "integrity_rule": "Do not merge semantic owners or treat application logic as canon.",
+  "antipattern": "Do not merge independent semantic owners or embed executable app logic in a knowledge claim.",
+  "design_question": "Which interfaces, ownership boundaries and contract links are required?",
+  "template_path": "modeles/composition-hybride",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "network",
+  "secondary_patterns": [
+    "multilayer"
+  ],
+  "structure_label": "Hybrid network",
+  "situational_schema": "Different knowledge-state forms interact through explicit references and interface boundaries.",
+  "canonical_use_cases": [
+    "composite application",
+    "multi-system architecture",
+    "integrated knowledge"
+  ],
+  "case_examples": [
+    "MediKristal knowledge component"
+  ],
+  "primitive_labels_en": [
+    "submodels",
+    "boundaries",
+    "contrats interface",
+    "references",
+    "politiques",
+    "projections"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "id": "ARK-10",
+  "legacy_id": "TK-10",
+  "slug": "parcours-pedagogique",
+  "name": "Learning Path",
+  "family": "Composition",
+  "description": "Sequenced objectives, prerequisites and activities. Curricula and personalized learning journeys.",
+  "kit_profile": "open",
+  "native_kind_candidate": "parcours_didactique_reference",
+  "responsibility_mode": "learning-path-owner",
+  "structural_traits": [
+    "dependances",
+    "parcours"
+  ],
+  "epistemic_modes": [
+    "didactique",
+    "reference"
+  ],
+  "deployment_options": [
+    "projete",
+    "local"
+  ],
+  "primitive_candidates": [
+    "objectifs",
+    "dependances",
+    "sequences",
+    "activites",
+    "criteres_evaluation",
+    "references_savoir"
+  ],
+  "reference_use_case": "Curricula and personalized learning journeys.",
+  "integrity_rule": "Learning projection is not the whole knowledge base.",
+  "antipattern": "Do not make an instructional route the sole owner of the underlying knowledge.",
+  "design_question": "What is the sequence, and where do the knowledge references point?",
+  "template_path": "modeles/parcours-pedagogique",
+  "kind": "open_archetype_not_standard",
+  "maturity": "candidate",
+  "canonical_claims_in_template": false,
+  "composition": "explicit_design_only",
+  "contract_status": "not_defined",
+  "visual_pattern": "linear",
+  "secondary_patterns": [
+    "branching"
+  ],
+  "structure_label": "Learning sequence",
+  "situational_schema": "Learning objectives, prerequisites, activities and assessments follow a navigable path.",
+  "canonical_use_cases": [
+    "curriculum",
+    "guided training",
+    "learning plan"
+  ],
+  "case_examples": [
+    "Educational learning path"
+  ],
+  "primitive_labels_en": [
+    "objectives",
+    "dependencies",
+    "sequences",
+    "activities",
+    "assessment criteria",
+    "knowledge references"
+  ]
+}
