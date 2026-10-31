@@ -12,7 +12,6 @@ import json
 import os
 import shutil
 import subprocess
-import sqlite3
 from pathlib import Path
 from queue import Empty, Queue
 import traceback
@@ -24,7 +23,6 @@ import webbrowser
 from .core import detect_kristal, scan_roots
 from .diag_bridge import DiagConfigurationError, validate_config, run_diagnostic, run_official_diagnostic
 from .diag_panel import DiagnosticPanel
-from . import central_store
 from .batch_panel import BatchRenamePanel
 from .classification_panel import ClassificationPanel
 from .classification_bridge import (observe, reference, display_domain, display_micro)
@@ -67,7 +65,7 @@ def display_category(row: dict) -> str:
 class ManagerWindow(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title('Kristal Manager — Centre de contrôle des Kristals')
+        self.title('Kristal Manager — Inventory & diagnostics')
         self.geometry('1260x830')
         self.minsize(900, 620)
         self.configure(bg=BG)
@@ -98,7 +96,6 @@ class ManagerWindow(tk.Tk):
         self.arketype_var = tk.StringVar(value='All Arketypes')
         self.usage_var = tk.StringVar(value='All usage profiles')
         self.show_history_var = tk.BooleanVar(value=False)
-        self.advanced_columns_var = tk.BooleanVar(value=False)
         self.sort_field = 'title'
         self.sort_desc = False
         self.status_var = tk.StringVar(value='Choose a folder, then click Scan folder.')
@@ -177,24 +174,21 @@ class ManagerWindow(tk.Tk):
         filemenu.add_command(label='Exit', command=self.destroy)
         bar.add_cascade(label='File', menu=filemenu)
         actions = tk.Menu(bar, tearoff=False)
-        actions.add_command(label='Centre unifié vNext — résultats et historique…', command=self.open_unified_center)
-        actions.add_command(label='Analyser / diagnostiquer (ancien panneau)…', command=self.open_global_center)
-        actions.add_command(label='Diagnostic du Kristal sélectionné…', command=self.start_diag_selected)
-        actions.add_command(label='Vérifier le Kristal sélectionné (local)', command=self.start_verify)
+        actions.add_command(label='Verify selected Kristal (local)', command=self.start_verify)
+        actions.add_command(label='Open diagnostic center…', command=self.start_diag_selected)
+        actions.add_command(label='Configure external KristalDiag (advanced)…', command=self.configure_diag)
+        actions.add_command(label='Export diagnostic observations (JSON)…', command=self.export_diag_report)
+        actions.add_command(label='Catalog selected Kristal', command=self.start_catalog_selected)
+        actions.add_command(label='Catalog all Kristals in folder', command=self.start_catalog_all)
+        actions.add_command(label='Centre d’analyse globale (Arketype / UNESCO / diK)…', command=self.open_global_center)
+        actions.add_command(label='Open content HTML overview…', command=self.open_content_overview)
+        actions.add_command(label='Publier sur GitHub… (C1/C2 requis)', command=self.open_publication)
         actions.add_separator()
-        advanced = tk.Menu(actions, tearoff=False)
-        advanced.add_command(label='Configuration diagnostic externe…', command=self.configure_diag)
-        advanced.add_command(label='Exporter observations diagnostic JSON…', command=self.export_diag_report)
-        advanced.add_command(label='Cataloguer le Kristal sélectionné', command=self.start_catalog_selected)
-        advanced.add_command(label='Cataloguer tout le dossier', command=self.start_catalog_all)
-        advanced.add_command(label='Ouvrir le catalogue HTML', command=self.open_content_overview)
-        advanced.add_command(label='Audit classification UNESCO…', command=self.open_classification_audit)
-        advanced.add_separator()
-        advanced.add_command(label='Normaliser les dossiers en lot…', command=self.open_batch_rename)
-        advanced.add_command(label='Renommer le dossier sélectionné…', command=self.rename_selected)
-        advanced.add_command(label='Exporter le Kristal en ZIP…', command=lambda: self.export_selected('zip'))
-        advanced.add_command(label='Exporter le Kristal en .kristal expérimental…', command=lambda: self.export_selected('kristal'))
-        actions.add_cascade(label='Outils avancés', menu=advanced)
+        actions.add_command(label='UNESCO classification audit…', command=self.open_classification_audit)
+        actions.add_command(label='Normalize folders in batch…', command=self.open_batch_rename)
+        actions.add_command(label='Preview / rename selected folder…', command=self.rename_selected)
+        actions.add_command(label='Export selected Kristal as ZIP…', command=lambda: self.export_selected('zip'))
+        actions.add_command(label='Export selected Kristal as .kristal (experimental)…', command=lambda: self.export_selected('kristal'))
         bar.add_cascade(label='Actions', menu=actions)
         icons_menu = tk.Menu(bar, tearoff=False)
         icons_menu.add_command(label='Refresh icons (read-only)', command=self.refresh_icons)
@@ -233,7 +227,7 @@ class ManagerWindow(tk.Tk):
         names.pack(side='left', fill='x', expand=True)
         ttk.Label(names, text='Kristal Manager', style='Title.TLabel').pack(anchor='w')
         ttk.Label(names,
-                  text='Inventorier  →  Analyser  →  Diagnostiquer  →  Décider   |   Aucun Git automatique',
+                  text='Browse · Verify · Catalog · KristalDiag · Publication GitHub contrôlée',
                   style='BrandHeader.TLabel').pack(anchor='w')
 
         source = ttk.LabelFrame(self, text='1 · Folder to scan', style='Section.TLabelframe')
@@ -244,12 +238,14 @@ class ManagerWindow(tk.Tk):
         self.root_entry.pack(side='left', fill='x', expand=True)
         self.root_entry.bind('<Return>', lambda _: self.start_scan())
         ttk.Button(pathline, text='Browse…', command=self.select_root).pack(side='left', padx=(7, 0))
-        self.scan_button = ttk.Button(pathline, text='1 · Inventorier', style='Primary.TButton', command=self.start_scan)
+        self.scan_button = ttk.Button(pathline, text='Scan folder', style='Primary.TButton', command=self.start_scan)
         self.scan_button.pack(side='left', padx=(7, 0))
-        self.global_analysis_button = ttk.Button(pathline, text='2 · Centre unifié…', command=self.open_unified_center)
+        self.global_analysis_button = ttk.Button(pathline, text='Analyse globale…', command=self.open_global_center)
         self.global_analysis_button.pack(side='left', padx=(7, 0))
+        self.publication_button = ttk.Button(pathline, text='Publier sur GitHub…', command=self.open_publication)
+        self.publication_button.pack(side='left', padx=(7, 0))
         self.path_var.trace_add('write', self._path_changed)
-        ttk.Label(source, text='Un seul dossier source; le catalogue, les diagnostics et les preuves sont centralisés hors des Kristals.',
+        ttk.Label(source, text='The path above controls global scans. Cataloging the selected Kristal is a separate action.',
                   style='Sub.TLabel').pack(anchor='w', pady=(6, 0))
 
         summary = ttk.Frame(self, padding=(20, 4))
@@ -268,8 +264,6 @@ class ManagerWindow(tk.Tk):
         filter_entry.pack(side='left', fill='x', expand=True, padx=(8, 5))
         self.filter_entry = filter_entry
         ttk.Button(controls, text='Clear filter', command=lambda: self.filter_var.set('')).pack(side='left')
-        ttk.Checkbutton(controls, text='Colonnes techniques', variable=self.advanced_columns_var,
-                        command=self._toggle_technical_columns).pack(side='left', padx=(6, 0))
         self.actions_menu = tk.Menu(self, tearoff=0)
         self.actions_menu.add_command(label='Scan folder', command=self.start_scan)
         self.actions_menu.add_command(label='Refresh icons', command=self.refresh_icons)
@@ -338,7 +332,6 @@ class ManagerWindow(tk.Tk):
         cols = ('title', 'category', 'micro', 'arketype', 'usage', 'readiness', 'diag', 'profile', 'state_ref', 'artifacts', 'content')
         # Keep icons with the selected Kristal's detail card, not in the table.
         self.tree = ttk.Treeview(upper, columns=cols, show='headings', selectmode='browse', height=10)
-        self.tree.configure(displaycolumns=('title','category','micro','arketype','usage','readiness','diag','content'))
         for key, heading, width in [
             ('title', 'Kristal', 210), ('category', 'UNESCO domain', 180),
             ('micro', 'Microthesaurus', 210),
@@ -602,6 +595,7 @@ class ManagerWindow(tk.Tk):
         idle = not self.busy
         self.scan_button.configure(state='normal' if idle else 'disabled')
         self.global_analysis_button.configure(state='normal' if idle else 'disabled')
+        self.publication_button.configure(state='normal' if idle else 'disabled')
         self.verify_button.configure(state='normal' if idle and selected else 'disabled')
         self.diag_button.configure(state='normal' if idle and selected and supports_catalog and not is_historical(row) else 'disabled')
         self.selected_catalog_button.configure(state='normal' if idle and supports_catalog else 'disabled')
@@ -630,15 +624,6 @@ class ManagerWindow(tk.Tk):
             except Exception as exc:
                 self.events.put(('error', str(exc), folder, traceback.format_exc()))
         Thread(target=worker, daemon=True).start()
-
-    def open_unified_center(self):
-        """Main vNext screen; the previous analysis panel remains available in advanced actions."""
-        path = Path(self.path_var.get().strip()).expanduser()
-        if not path.is_dir():
-            messagebox.showerror('Dossier manquant', 'Choisir un dossier locals existant', parent=self)
-            return
-        from .unified.dashboard_ui import UnifiedControlCenter
-        UnifiedControlCenter(self, path)
 
     def open_global_center(self):
         """One integrated interface for batch content, Arketype, UNESCO and diK hints."""
@@ -671,29 +656,6 @@ class ManagerWindow(tk.Tk):
                     lambda: analyze_all(folder, update_catalogue=update_catalogue,
                                         verify_locally=verify_locally),
                     folder=folder.resolve(), job='global_analysis')
-        return True
-
-    def start_batch_diagnostics(self) -> bool:
-        """One deliberate, read-only V9 batch via the bundled KristalDiag."""
-        if self.busy:
-            return False
-        folder = Path(self.path_var.get().strip()).expanduser()
-        if not folder.is_dir():
-            messagebox.showerror('Dossier introuvable', str(folder), parent=self)
-            return False
-        if not messagebox.askyesno('Diagnostiquer le dossier',
-                'KristalDiag vérifiera les états V9 des Kristals du dossier.\n\n'
-                'Les contrats non V9 seront indiqués comme NON APPLICABLES, pas bloqués.\n'
-                'Les rapports et leur historique seront enregistrés dans Manager; '
-                'aucune publication ou écriture canonique.\n\nLancer ?', parent=self):
-            return False
-        from .diagnostics_batch import run_folder
-        source = folder.resolve()
-        def work():
-            def progress(done, total, name, verdict):
-                self.events.put(('diag_batch_progress', (done, total, name, verdict), source, None))
-            return run_folder(source, on_progress=progress)
-        self._start('Diagnostic du dossier en cours…', work, folder=source, job='diag_batch')
         return True
 
     def start_scan(self):
@@ -905,7 +867,7 @@ class ManagerWindow(tk.Tk):
         try:
             while True:
                 kind, payload, folder, diagnostic = self.events.get_nowait()
-                if kind not in ('diag_dependency', 'diag_batch_progress'):
+                if kind != 'diag_dependency':
                     self.busy = False
                     self._current_job = None
                 if kind == 'error':
@@ -914,11 +876,6 @@ class ManagerWindow(tk.Tk):
                     self._fail('Operation interrupted', RuntimeError(payload), diagnostic=diagnostic)
                     if self._global_dialog is not None and self._global_dialog.winfo_exists():
                         self._global_dialog.render_error(str(payload))
-                elif kind == 'diag_batch_progress':
-                    done, total, name, verdict = payload
-                    self.status_var.set(f'Diagnostic : {done}/{total} · {name} · {verdict}')
-                    if self._global_dialog is not None and self._global_dialog.winfo_exists():
-                        self._global_dialog.on_batch_progress(done, total, name, verdict)
                 elif kind == 'diag_dependency':
                     dialog, result = payload
                     if dialog.winfo_exists():
@@ -927,11 +884,6 @@ class ManagerWindow(tk.Tk):
                     before = self._selected_path()
                     # A new structural scan invalidates previous checks/catalogue readings; never show stale results.
                     self.rows = [r for r in payload if not r.get('hidden_auxiliary')]
-                    try:
-                        central_store.remember_workspaces(self.rows)
-                        central_store.restore_rows(self.rows)
-                    except (OSError, ValueError, sqlite3.Error, RuntimeError) as exc:
-                        self.log('WARNING', 'Index central indisponible : ' + str(exc))
                     self._load_icons()
                     self.roots = [folder]
                     self.path_var.set(str(folder))
@@ -946,11 +898,6 @@ class ManagerWindow(tk.Tk):
                            f'{sum(is_historical(r) for r in self.rows)} internal archives sous {folder}')
                 elif kind == 'verify':
                     path, report = payload
-                    try:
-                        central_store.record(path, 'verification', report,
-                                             status=str(report.get('operational_result') or 'UNKNOWN'))
-                    except (OSError, ValueError, sqlite3.Error, RuntimeError) as exc:
-                        self.log('WARNING', 'Vérification non indexée : ' + str(exc))
                     row = next((r for r in self.rows if r['path'] == path), None)
                     if row:
                         row['operational_assessment'] = report
@@ -963,13 +910,8 @@ class ManagerWindow(tk.Tk):
                 elif kind == 'diag':
                     path, report = payload
                     row = next((r for r in self.rows if r['path'] == path), None)
-                    try:
-                        central_store.record_diagnostic(path, report)
-                    except (OSError, ValueError, sqlite3.Error, RuntimeError) as exc:
-                        self.log('WARNING', 'Diagnostic non indexé : ' + str(exc))
                     if row:
                         row['diag_report'] = report
-                        row['diag_freshness'] = 'CURRENT' if not report.get('input_changed_during_run') else 'STALE_OR_UNVERIFIED'
                     self.refresh(prefer=path)
                     self.tabs.select(0)
                     if (self._diag_dialog and self._diag_dialog.winfo_exists()
@@ -980,17 +922,6 @@ class ManagerWindow(tk.Tk):
                     self.log('DIAG', f'{Path(path).name} : {report["process_status"]} · '
                              f'fichier JSON : {"oui" if report.get("external_report") is not None else "non"} · '
                              f'sources modifiées : {"OUI" if report["input_changed_during_run"] else "not detected"}')
-                elif kind == 'diag_batch':
-                    try:
-                        central_store.restore_rows(self.rows)
-                    except (OSError, ValueError, sqlite3.Error, RuntimeError) as exc:
-                        self.log('WARNING', 'Index diagnostic indisponible : ' + str(exc))
-                    self.refresh(prefer=self._selected_path())
-                    self.status_var.set('Diagnostic terminé : ' + str(payload.get('total'))
-                                        + ' Kristals · ' + str(payload.get('counts')))
-                    self.log('DIAG', 'Bilan enregistré : ' + str(payload.get('report_directory')))
-                    if self._global_dialog is not None and self._global_dialog.winfo_exists():
-                        self._global_dialog.render_batch_result(payload)
                 elif kind == 'archive_export':
                     self.status_var.set(f'Local archive created: {payload["path"]}')
                     self.log('SUCCESS', f'Export {payload["format"]} : {payload["files"]} fichiers · {payload["path"]}')
@@ -999,12 +930,6 @@ class ManagerWindow(tk.Tk):
                 elif kind == 'global_analysis':
                     before = self._selected_path()
                     self.rows = payload['inventory']
-                    try:
-                        central_store.remember_workspaces(self.rows)
-                        central_store.record_analysis(payload['global_report'])
-                        central_store.restore_rows(self.rows)
-                    except (OSError, ValueError, sqlite3.Error, RuntimeError) as exc:
-                        self.log('WARNING', 'Index central indisponible : ' + str(exc))
                     # Keep observed content in the normal Manager list without declaring
                     # any suggested Arketype/UNESCO classification canonical.
                     from .content_catalog import summaries
@@ -1041,11 +966,6 @@ class ManagerWindow(tk.Tk):
                         # Mirror it rather than displaying unrelated workspaces.
                         prior = {r['path']: r for r in self.rows}
                         self.rows = [r for r in payload['inventory'] if not r.get('hidden_auxiliary')]
-                        try:
-                            central_store.remember_workspaces(self.rows)
-                            central_store.restore_rows(self.rows)
-                        except (OSError, ValueError, sqlite3.Error, RuntimeError) as exc:
-                            self.log('WARNING', 'Index central indisponible : ' + str(exc))
                         for row in self.rows:
                             old = prior.get(row['path'])
                             if old and old.get('operational_assessment'):
@@ -1228,11 +1148,6 @@ class ManagerWindow(tk.Tk):
             self.taxonomy_cache[key] = observe(row, self.icons.get(key))
         return self.taxonomy_cache[key]
 
-    def _toggle_technical_columns(self):
-        # UX-12: progressive complexity, all original data/columns are retained.
-        standard=('title','category','micro','arketype','usage','readiness','diag','content')
-        self.tree.configure(displaycolumns='#all' if self.advanced_columns_var.get() else standard)
-
     def _refresh_category_choices(self):
         pinned = reference()
         domains = [f'{key} {val["label_en"]}' for key,val in pinned['domains'].items()]
@@ -1305,8 +1220,7 @@ class ManagerWindow(tk.Tk):
             n = metrics.get('assertions')
             content = f'{n:,} assertions' if isinstance(n, int) else ('measured, not quantified' if row.get('content_summary') else 'not scanned')
             diag = row.get('diag_report') or {}
-            diag_label = ('Périmé' if row.get('diag_freshness') == 'STALE_OR_UNVERIFIED' else
-                          'Not run' if not diag else
+            diag_label = ('Not run' if not diag else
                           str(diag.get('verdict')) if diag.get('verdict') else
                           'Executed' if diag.get('process_status') == 'EXECUTED_EXIT_0' else
                           'Failed / timed out' if diag.get('process_status') in ('TIMEOUT', 'EXECUTED_NONZERO') else 'Review')
@@ -1525,6 +1439,11 @@ class ManagerWindow(tk.Tk):
         except Exception as exc:
             self._fail('Konstellation export', exc, diagnostic=traceback.format_exc())
 
+    def open_publication(self):
+        if self.busy:return
+        from .publication_panel import PublicationPanel
+        PublicationPanel(self)
+
     def open_help(self):
         helptext = (
             'GETTING STARTED\n\n'
@@ -1550,7 +1469,8 @@ class ManagerWindow(tk.Tk):
             'LIMITS\n'
             'READY is a local structural status, not Framework conformance.\n'
             'Local verification and KristalDiag do not establish publication, access grants, or V11 certification.\n'
-            'No git add, commit, push, or GitHub publishing is performed by the Manager.'
+            'Publication GitHub: préparation privée, commit local, puis push uniquement avec preuves C1/C2 signées.\n'
+            'Le Wiki GitHub natif doit être activé indépendamment.'
         )
         window = tk.Toplevel(self)
         window.title('Help — workflows and limitations')
@@ -1567,7 +1487,8 @@ class ManagerWindow(tk.Tk):
     def show_limits(self):
         messagebox.showinfo('Kristal Manager — limitations',
             'Local inventory and diagnostics application.\n\n'
-            'No Git commits, Git push, GitHub publication or activation.\n'
+            'La publication GitHub est une action explicite et soumise aux preuves C1/C2.\n'
+            'Aucun commit ni push automatique au démarrage.\n'
             'Local verification only covers registered sources.\n'
             'State commitments require a compatible Framework reference to be verified.\n'
             'Framework V11 conformance still requires independent qualification.', parent=self)
