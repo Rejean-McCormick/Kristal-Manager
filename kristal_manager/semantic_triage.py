@@ -316,12 +316,14 @@ def main(argv=None, *, quiet=False):
   observed_langs=metrics.get('dictionary_languages') or sorted({lang for lang,term in allterms[wid]})
   wissues=list(s.get('issues') or [])
   if a and a.get('state_ref')!=s.get('state_ref'):wissues.append('Audit state_ref differs from catalog state_ref')
-  if a and a.get('unesco',{}).get('status')!='Not mapped':wissues.append('Existing UNESCO mapping must be reviewed before adopting new suggestions')
+  # Existing proposed UNESCO mapping is already explicitly marked for human semantic review.
+  # Do not turn its mere presence into a technical-warning issue. Keep actual audit mismatches.
+  # Report downstream still labels Proposed as review, never verified or canonical.
   # A legacy-v6 entity key is not a KQ identity. Never use the v11 KQ
   # dictionary coverage gate against a registered historical v6 graph.
   # The historical graph remains observed, but diK has NOT been qualified.
   catalog_mode=s.get('mode')
-  if s.get('content_status') not in ('observed','native_observed'):
+  if s.get('content_status')!='observed':
    wissues.append('Catalog did not completely observe selected content: content inference limited')
   if catalog_mode=='active_v11' and metrics.get('entities') and not metrics.get('entities_with_descriptive_labels'):
    wissues.append('Active v11 graph lacks counted descriptive KQ labels: diK lexical coverage must be reviewed')
@@ -343,7 +345,7 @@ def main(argv=None, *, quiet=False):
         'entities_reported':metrics.get('entities'),'properties_reported':metrics.get('properties'),
         'accepted_external_equivalences_reported':metrics.get('wikidata_accepted_exact',None),
         'status':('LEGACY_V6_DIK_NOT_EVALUATED' if catalog_mode=='registered_legacy_v6'
-                  else 'NATIVE_FORMAT_DIK_NOT_EVALUATED' if catalog_mode in ('unsupported','registered_native_embedded','registered_native_structured','registered_native_reference')
+                  else 'NATIVE_FORMAT_DIK_NOT_EVALUATED' if catalog_mode=='unsupported'
                   else 'LEXICAL_REVIEW_NOT_SEMANTIC_VERIFICATION'),
         'native_legacy_labels_observed':metrics.get('legacy_descriptive_labels_observed'),
         'rule':'No word-to-KQ/KP identity, new crosswalk, accepted exactMatch, translation or graph edit.'},

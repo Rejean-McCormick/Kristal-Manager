@@ -1,0 +1,19 @@
+Kristal Manager vNext — résultat des tests en environnement Linux + Xvfb
+Date : 2026-10-31
+
+Tests ciblés sur le code livrable :
+  47 passed (index v2, migrations, historique, dashboard, commandes, GUI,
+  KristalDiag batch, annulation, tests de marque et d'intégration existants).
+
+Suite historique complète :
+  183 passed, 16 failed.
+  Les 16 échecs sont concentrés dans l'ancien backend de publication/migration
+  (désactivé par sécurité), un ancien test du cache « VALID », et deux tests
+  d'interface qui supposent les anciennes colonnes de classification.
+  Nous ne relançons pas les actions Git pour « faire passer » ces tests.
+
+Manque encore :
+  Essai sur Windows 11/PowerShell 7/Tk, vérification complète des 127 Kristals
+  réels après installation, profils natifs/v11 exhaustifs, qualification Framework.
+
+Aucun résultat ancien ou importé n'a été reclassifié en PASS.

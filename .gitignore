@@ -21,3 +21,9 @@ local-inventory*.json
 /kristal-inventaire-local*.json
 /kristal-unesco-audit*.json
 /problemes-analyse-*.zip
+
+# Unified operational DB backups, exports and temporary check outputs
+/catalogue/*.backup
+/catalogue/*.backup-*
+/exports-vnext/
+/test-results/

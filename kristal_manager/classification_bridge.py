@@ -43,11 +43,43 @@ def reference() -> dict:
 
 
 def _many(value) -> list[str]:
-    if isinstance(value, str):
-        return [value.strip()] if value.strip() else []
-    if isinstance(value, (list, tuple)):
-        return [x.strip() for x in value if isinstance(x, str) and x.strip()]
-    return []
+    """Accept both notation strings and rich local-mapping objects.
+
+    Manager's earlier UNESCO reader only accepted ``["6.70"]``. The
+    noncanonical per-Kristal semantic mapping uses ``[{"code":"6.70",
+    "uri":"...", "domain":"6"}]``. Reading that representation must
+    never imply an independently approved UNESCO classification.
+    """
+    if isinstance(value, (str, dict)):
+        value = [value]
+    if not isinstance(value, (list, tuple)):
+        return []
+    codes = []
+    for item in value:
+        if isinstance(item, dict):
+            item = (item.get('code') or item.get('notation') or
+                    item.get('uri') or item.get('external_uri'))
+        if isinstance(item, str) and item.strip():
+            codes.append(item.strip())
+    return codes
+
+
+def _rich_mapping_issues(values, refs: dict, *, micro: bool) -> list[str]:
+    """Cross-check a rich mapping's URI/domain against the pinned vocabulary."""
+    entries = values if isinstance(values, (list, tuple)) else [values]
+    problems = []
+    for item in entries:
+        if not isinstance(item, dict):
+            continue
+        code = item.get('code') or item.get('notation')
+        if not isinstance(code, str) or code not in refs:
+            continue  # handled by _notations when a notation is present
+        entry = refs[code]
+        if item.get('uri') and item['uri'] != entry['uri']:
+            problems.append(f'UNESCO {code}: URI differs from pinned reference')
+        if micro and item.get('domain') and item['domain'] != entry['domain']:
+            problems.append(f'UNESCO {code}: domain differs from pinned reference')
+    return problems
 
 
 def _notations(values, refs: dict) -> tuple[list[str], list[str]]:
@@ -96,6 +128,10 @@ def observe(row: dict, icon=None) -> dict:
     domains, unknown_domains = _notations(raw_domains,ref['domains'])
     micros, unknown_micros = _notations(raw_micros,ref['microthesauri'])
     issues = []
+    issues.extend(_rich_mapping_issues(u.get('domains') or u.get('domain') or [],
+                                       ref['domains'], micro=False))
+    issues.extend(_rich_mapping_issues(u.get('microthesauri') or u.get('microthesaurus') or [],
+                                       ref['microthesauri'], micro=True))
     if u and u.get('kos_id') not in (None,'kos:unesco-thesaurus','unesco-thesaurus'):
         issues.append('UNESCO KOS identifier mismatch')
         domains=[];micros=[]
@@ -134,8 +170,15 @@ def observe(row: dict, icon=None) -> dict:
             issues.append('UNESCO icon profile exists without a workspace UNESCO declaration')
         elif any(code not in domains for code in icon_domain_codes):
             issues.append('UNESCO icon domains differ from declared UNESCO domains')
-    status = 'Review' if issues else 'Declared' if declared else 'Seed hint only' if seed_hint else 'Not mapped'
+    # Source-assisted project-level placements are *proposals*, even when
+    # physically present in a workspace. Never label these 'verified'.
+    proposed = (u.get('verification_status') == 'LOCAL_CATALOG_MAPPED_NOT_CANONICAL' or
+                u.get('mapping_kind') == 'project_subject_level_not_concept_exact_match')
+    status = ('Review' if issues else 'Proposed' if declared and proposed else
+              'Declared' if declared else 'Seed hint only' if seed_hint else 'Not mapped')
     return {'unesco':{'status':status,'source':source if declared else 'none',
+                      'verification_status':u.get('verification_status'),
+                      'mapping_kind':u.get('mapping_kind'),
                       'domain_codes':domains,'domain_labels':[ref['domains'][x]['label_en'] for x in domains],
                       'microthesaurus_codes':micros,
                       'microthesaurus_labels':[ref['microthesauri'][x]['label_en'] for x in micros],
@@ -174,8 +217,9 @@ def build_audit(rows: list[dict], icons: dict | None=None) -> dict:
             'counts':{'kristals':len(output),
                       'unesco_declared':sum(bool(x['unesco']['domain_codes'] or x['unesco']['microthesaurus_codes']) and x['unesco']['source']!='none' for x in output),
                       'unesco_unmapped':sum(not x['unesco']['domain_codes'] and not x['unesco']['microthesaurus_codes'] for x in output),
+                      'unesco_proposed':sum(x['unesco']['status']=='Proposed' for x in output),
                       'legacy_icons_pending':sum(bool(x['legacy_icon_migration_needed']) for x in output),
-                      'needs_review':sum(bool(x['issues']) for x in output)},
+                      'needs_review':sum(bool(x['issues']) or x['unesco']['status']=='Proposed' for x in output)},
             'entries':output,
             'limits':['No automatic UNESCO concept or category inference from free text or names.',
                       'Framework v7 subject seed placements are hints only, and require explicit KQ identity.',
@@ -196,7 +240,8 @@ def audit_html(report: dict) -> str:
             'h1{color:#1e6864} table{border-collapse:collapse;width:100%} td,th{border-bottom:1px solid #ccd8d6;padding:8px;text-align:left;vertical-align:top}'
             'thead{background:#eaf3f0}small{color:#506865}</style>'
             '<h1>Kristal Manager — UNESCO classification audit</h1>'
-            f'<p>{counts["kristals"]} Kristals · {counts["unesco_declared"]} declared UNESCO mappings · '
+            f'<p>{counts["kristals"]} Kristals · {counts["unesco_declared"]} UNESCO mappings present '
+            f'(including {counts.get("unesco_proposed",0)} noncanonical proposals) · '
             f'{counts["legacy_icons_pending"]} legacy icons · {counts["needs_review"]} review flags</p>'
             '<small>Framework v7 pinned UNESCO reference; icons use UT1–UT7. Read-only, not conformance certification.</small>'
             '<table><thead><tr><th>Kristal</th><th>UNESCO domain</th><th>Microthesaurus</th><th>Legacy icon?</th><th>Status</th><th>Review</th></tr></thead><tbody>'

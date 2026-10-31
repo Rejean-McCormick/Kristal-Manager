@@ -123,7 +123,7 @@ class GlobalAnalysisPanel(tk.Toplevel):
     def __init__(self, manager):
         super().__init__(manager)
         self.manager = manager
-        self.title('Centre d’analyse globale — Kristal Manager')
+        self.title('Centre de contrôle — Kristal Manager')
         self.geometry('1180x755')
         self.minsize(850, 560)
         self.transient(manager)
@@ -143,7 +143,7 @@ class GlobalAnalysisPanel(tk.Toplevel):
     def _layout(self):
         top = ttk.Frame(self, padding=15)
         top.pack(fill='both', expand=True)
-        ttk.Label(top, text='Analyse globale · Arketype + mots-clés + UNESCO + diK',
+        ttk.Label(top, text='Centre de contrôle · Inventaire, contenu, Arketype, UNESCO et diagnostics',
                   style='H2.TLabel').pack(anchor='w')
         ttk.Label(top, text='Source : dossier affiché dans la fenêtre principale. Analyse locale seulement : aucun Git, aucun GitHub, aucune publication. Propositions non qualifiantes.',
                   wraplength=1100, style='Sub.TLabel').pack(anchor='w', pady=(3, 9))
@@ -156,6 +156,8 @@ class GlobalAnalysisPanel(tk.Toplevel):
         self.start = ttk.Button(options, text='Scanner et analyser les Kristals',
                                 style='Primary.TButton', command=self._run)
         self.start.pack(side='right')
+        self.batch_diag = ttk.Button(options, text='Diagnostiquer le dossier (V9)', command=self._run_batch)
+        self.batch_diag.pack(side='right', padx=(0, 8))
         self.progress = ttk.Progressbar(top, mode='indeterminate')
         self.progress.pack(fill='x', pady=(7, 5))
         ttk.Label(top, textvariable=self.status, style='Sub.TLabel', wraplength=1100).pack(anchor='w', pady=(1, 8))
@@ -285,6 +287,7 @@ class GlobalAnalysisPanel(tk.Toplevel):
 
     def _set_running(self, running: bool):
         self.start.configure(state='disabled' if running else 'normal')
+        self.batch_diag.configure(state='disabled' if running else 'normal')
         if running:self.progress.start(15)
         else:self.progress.stop()
         available = bool(self.result)
@@ -301,6 +304,20 @@ class GlobalAnalysisPanel(tk.Toplevel):
                                               verify_locally=self.verify_locally.get()):
             self.status.set('Analyse en cours… les fichiers sources restent inchangés.')
             self._set_running(True)
+
+    def _run_batch(self):
+        if self.manager.start_batch_diagnostics():
+            self.status.set('KristalDiag intégré : diagnostic V9 en cours, preuves hors sources…')
+            self._set_running(True)
+
+    def on_batch_progress(self, done: int, total: int, name: str, verdict: str):
+        self.status.set(f'KristalDiag {done}/{total} · {name} : {verdict}')
+
+    def render_batch_result(self, summary: dict):
+        counts = ', '.join(f'{k}={v}' for k, v in sorted(summary.get('counts', {}).items()))
+        self.status.set(f'Diagnostic de {summary.get("total", 0)} Kristals terminé · {counts} · '
+                        f'rapport : {summary.get("report_directory", "?")}')
+        self._set_running(False)
 
     def render_error(self, error: str):
         self._set_running(False)

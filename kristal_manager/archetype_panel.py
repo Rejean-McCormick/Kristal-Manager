@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 import io
 import json
+import sqlite3
 import threading
 import tkinter as tk
 from pathlib import Path
@@ -73,6 +74,12 @@ class ArchetypePanel(tk.Toplevel):
         if error:
             self.status.set('Erreur : '+error);messagebox.showerror('Arketype',error,parent=self);return
         self.results=results
+        # ARK observations feed the same read model as inventory and KristalDiag.
+        try:
+            from .central_store import record_arketype_batch
+            record_arketype_batch({'results': results})
+        except (OSError, ValueError, sqlite3.Error, RuntimeError) as exc:
+            self.status.set('Index central ARK non disponible : ' + str(exc))
         self.table.delete(*self.table.get_children())
         for i,r in enumerate(results):
             d=r['declaration'];cand=r['suggestions'];obs=r['structure']

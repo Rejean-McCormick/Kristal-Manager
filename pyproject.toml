@@ -1,16 +1,18 @@
 [project]
 name = "kristal-manager"
-version = "0.1.0a15.post2"
+version = "0.2.0a1"
 description = "Local Kristal inventory and safeguarded v10 operator tooling"
 requires-python = ">=3.11"
 dependencies = []
 
 [project.optional-dependencies]
 public = ["cryptography>=42"]
-test = ["pytest>=8", "cryptography>=42"]
+diag = ["jsonschema>=4.21"]
+test = ["pytest>=8", "cryptography>=42", "jsonschema>=4.21"]
 
 [project.scripts]
 kristal-manager = "kristal_manager.cli:main"
+kristal-manager-next = "kristal_manager.unified.cli:main"
 
 [tool.pytest.ini_options]
 pythonpath = ["."]

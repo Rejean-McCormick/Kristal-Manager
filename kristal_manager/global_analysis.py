@@ -77,8 +77,11 @@ def _summary_row(report: dict, record: dict, audit: dict, assessment: dict | Non
     reviews = []
     if report['status']['content_status'] == 'native_observed':
         reviews.append('Contrat natif reconnu; contenu sémantique KQ/KP et conformité Framework non évalués')
-    if audit.get('unesco', {}).get('status') == 'Not mapped':
+    unesco_observation_status = audit.get('unesco', {}).get('status')
+    if unesco_observation_status == 'Not mapped':
         reviews.append('UNESCO non déclaré — examiner les propositions')
+    elif unesco_observation_status == 'Proposed':
+        reviews.append('UNESCO local proposé — codes reconnus, validation sémantique à confirmer')
     if ark['status'] != 'candidate_to_review':
         reviews.append('Arketype sans indices structurels suffisants')
     else:

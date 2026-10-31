@@ -71,8 +71,25 @@ def validate_config(program: str | Path, arguments: str, *, root: str | Path | N
 
 
 def _fingerprint(root: Path) -> dict:
-    """Bind recorded diagnostic to the exact known descriptor and candidate files."""
-    rels = ['kristal.workspace.json', 'state/state-snapshot.json', 'build/v9/state-snapshot.json', '.kristal/v9/state-snapshot.json']
+    """Bound the diagnostic freshness check to known V9 inputs and commitments.
+
+    A full v11/Framework attestation is out of scope. This checks the files
+    capable of invalidating the V9-State-Reader result without hashing the
+    entire potentially enormous canonical corpus on each inventory refresh.
+    """
+    rels = [
+        'kristal.workspace.json', 'canon/state.index.json',
+        'state/state-snapshot.json', 'build/v9/state-snapshot.json',
+        '.kristal/v9/state-snapshot.json', '.kristal/v9/capabilities.json',
+        '.kristal/v9/activation.json', '.kristal/v9/logical-contracts.json',
+        '.kristal/v9/manifest.sha256.json', '.kristal/v9/materialization-manifest.json',
+        '.kristal/v9/logical-artifact.json', '.kristal/v9/package-manifest.json',
+        '.kristal/v9/derivation.json', '.kristal/v9/exchange.json',
+    ]
+    artifact_dir = root / '.kristal' / 'v9' / 'artifacts'
+    if artifact_dir.is_dir() and not artifact_dir.is_symlink():
+        rels += [p.relative_to(root).as_posix() for p in sorted(artifact_dir.glob('*.json'))
+                 if p.is_file() and not p.is_symlink()]
     result = {}
     for rel in rels:
         p = root / rel

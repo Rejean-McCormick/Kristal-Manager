@@ -1,0 +1,27 @@
+KRISTAL MANAGER vNext — CODE COMPLET / OVERLAY DIRECT
+Date : 2026-10-31
+
+Version alpha 0.2.0a1. Pas une certification Framework.
+
+INSTALLATION SUR MANAGER EXISTANT :
+  1. Fermer Manager et tous les batches.
+  2. Faire une copie de C:\mycode\Kristal\Kristal-Manager (surtout catalogue, rapports).
+  3. Extraire le ZIP OVERLAY directement dans C:\mycode\Kristal.
+  4. Accepter le remplacement des fichiers du Manager uniquement.
+  5. Dans PowerShell :
+       cd C:\mycode\Kristal\Kristal-Manager
+       py -3 -m pip install -e ".[diag]"
+       .\Launch-Kristal-Manager.cmd
+  6. Cliquer « 2 · Centre unifié... » puis commencer par un scan.
+  7. Tester 3 diagnostics V9 avant de lancer 127.
+
+Important :
+  - Aucune modification des 127 locaux; aucun fichier canon remanié.
+  - Aucune synchronisation, publication ou activation automatique.
+  - Le registre SQLite v1 est sauvegardé automatiquement avant migration v2.
+  - Conserver le dossier catalogue et ses résultats privés.
+  - Le batch reste V9 : les contrats non V9 sont NOT_APPLICABLE, pas PASS.
+  - Les 16 anciens tests de backend/affichage échouent encore; détails docs.
+
+Fichier complet du dépôt : archive SOURCE-COMPLET, non recommandé comme overlay
+sur un dépôt plus récent sans comparaison des fichiers.
