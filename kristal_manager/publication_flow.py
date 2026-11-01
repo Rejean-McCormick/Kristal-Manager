@@ -250,10 +250,14 @@ def publish_approved_commit(*,checkout: Path,trust: Path,c1_dir: Path,c2_dir: Pa
             'catalog_url':'https://github.com/'+PUBLIC_REPO+'/tree/'+sha+'/kristals'}
 
 
-def export_wiki_candidate(*,checkout: Path, output: Path, write: bool=False) -> dict:
-    """After a confirmed push, render the existing C3 wiki exporter privately.
+def export_wiki_candidate(*, checkout: Path, output: Path,
+                          spek_root: Path, wiki_bundles: Path,
+                          language: str='fr', write: bool=False) -> dict:
+    """Compose a private GitHub Wiki draft through Spek's typed Arketype templates.
 
-    Never changes the native GitHub Wiki repository; no hidden Git mutation.
+    This step consumes existing SemantiK-produced Spek realizations. It does
+    not synthesize phrases, authenticate a RuntimeSet, grant C1/C2, or push.
+    The remote SHA must already equal the exact C3-validated local checkout.
     """
     checkout=Path(checkout).expanduser().resolve(strict=True)
     sha=_assert_checkout(checkout,require_clean=True)
@@ -264,15 +268,127 @@ def export_wiki_candidate(*,checkout: Path, output: Path, write: bool=False) -> 
     remote=_git(checkout,'ls-remote','origin','refs/heads/main',timeout=40)
     if not remote or remote.split()[0]!=sha:
         raise ManagerError('Ce commit n’est pas confirmé en ligne : brouillon Wiki bloqué')
-    script=checkout/'tools/wiki_export.py'
-    if not script.is_file():raise ManagerError('Générateur Wiki manquant dans le dépôt public')
+    script=checkout/'tools/wiki_spek_collection.py'
+    if not script.is_file():raise ManagerError('Export Spek non installé dans kristal-public')
+    spek_root=Path(spek_root).expanduser().resolve()
+    wiki_bundles=Path(wiki_bundles).expanduser().resolve()
+    if not (spek_root/'spek'/'wiki.py').is_file() or not wiki_bundles.is_dir():
+        raise ManagerError('Spek et les article/realizations SemantiK privés sont requis')
+    if wiki_bundles.is_relative_to(checkout) or checkout.is_relative_to(wiki_bundles):
+        raise ManagerError('Les bundles SemantiK/Spek doivent rester hors Git public')
     args=[sys.executable,str(script),'--collection',str(checkout),
-          '--output',str(output),'--repository',PUBLIC_REPO,'--revision',sha]
+          '--output',str(output),'--repository',PUBLIC_REPO,'--revision',sha,
+          '--packages',str(wiki_bundles),'--spek-root',str(spek_root),
+          '--language',language]
     if write:args+=['--write']
     try:
-        r=subprocess.run(args,capture_output=True,text=True,encoding='utf8',errors='replace',timeout=120)
+        r=subprocess.run(args,capture_output=True,text=True,encoding='utf8',errors='replace',timeout=300)
     except (OSError,subprocess.TimeoutExpired) as exc:
-        raise ManagerError('Export Wiki impossible') from exc
-    if r.returncode:raise ManagerError('Export Wiki bloqué : '+(r.stderr or r.stdout)[-500:])
+        raise ManagerError('Spek Wiki indisponible ou expiré') from exc
+    if r.returncode:raise ManagerError('Wiki Spek bloqué : '+(r.stderr or r.stdout)[-700:])
     try:return json.loads(r.stdout)
-    except ValueError as exc:raise ManagerError('Générateur Wiki : résultat invalide') from exc
+    except ValueError as exc:raise ManagerError('Export Wiki Spek : résultat JSON invalide') from exc
+
+
+def _wiki_worker(checkout:Path,script_name:str,args:list[str],*,write:bool)->dict:
+    script=checkout/'tools'/script_name
+    if not script.is_file():raise ManagerError('Outil Wiki manquant : '+script_name)
+    command=[sys.executable,str(script),*args]
+    if write:command.append('--write')
+    try:
+        result=subprocess.run(command,text=True,encoding='utf-8',errors='replace',
+                    capture_output=True,timeout=1800,check=False)
+    except (OSError,subprocess.TimeoutExpired) as exc:
+        raise ManagerError('Exécution Wiki interrompue ou expirée') from exc
+    if result.returncode:
+        raise ManagerError('Wiki bloqué : '+(result.stderr or result.stdout)[-1200:])
+    try:return json.loads(result.stdout)
+    except ValueError as exc:raise ManagerError('Réponse du Wiki non JSON') from exc
+
+
+def create_wiki_plans(*,checkout:Path,locals_root:Path,output:Path,language:str='fr',write:bool=False)->dict:
+    """Collect source assertion IDs into new private placeholders; no semantic selection."""
+    checkout=Path(checkout).expanduser().resolve(strict=True)
+    _assert_checkout(checkout,require_clean=True)
+    _validate_c3(checkout)
+    output=Path(output).expanduser().resolve()
+    if not output.parent.is_dir() or output.exists():raise ManagerError('Dossier des plans privés doit être neuf')
+    return _wiki_worker(checkout,'wiki_plan_scaffold.py',[
+        '--collection',str(checkout),'--locals-root',str(Path(locals_root).expanduser().resolve()),
+        '--output',str(output),'--language',language],write=write)
+
+
+def build_wiki_with_semantik_spek(*,checkout:Path,locals_root:Path,plans:Path,
+                                  semantik_root:Path,runtime_root:Path,spek_root:Path,
+                                  output:Path,language:str='fr',write:bool=False)->dict:
+    """Single Manager call: authored selections -> real SA -> Spek -> private Wiki.
+
+    Only accepts a C3-valid, clean main branch *already present online*. The
+    operation cannot stage or push any Git content; separate approval is needed.
+    """
+    checkout=Path(checkout).expanduser().resolve(strict=True)
+    sha=_assert_checkout(checkout,require_clean=True)
+    _validate_c3(checkout)
+    output=Path(output).expanduser().resolve()
+    if output.exists() or not output.parent.is_dir():
+        raise ManagerError('Wiki : dossier de sortie privé neuf obligatoire')
+    remote=_git(checkout,'ls-remote','origin','refs/heads/main',timeout=60)
+    if not remote or remote.split()[0]!=sha:
+        raise ManagerError('Le commit C3 local n’est pas présent sur GitHub. Terminer le push autorisé avant le Wiki.')
+    return _wiki_worker(checkout,'wiki_pipeline.py',[
+        '--collection',str(checkout),'--locals-root',str(Path(locals_root).expanduser().resolve()),
+        '--plans',str(Path(plans).expanduser().resolve()),
+        '--spek-root',str(Path(spek_root).expanduser().resolve()),
+        '--semantik-root',str(Path(semantik_root).expanduser().resolve()),
+        '--runtime-root',str(Path(runtime_root).expanduser().resolve()),
+        '--output',str(output),'--repository',PUBLIC_REPO,'--revision',sha,'--language',language],
+        write=write)
+
+
+def prepare_wiki_review(*,checkout:Path,private:Path,output:Path,write:bool=False)->dict:
+    checkout=Path(checkout).expanduser().resolve(strict=True)
+    sha=_assert_checkout(checkout,require_clean=True)
+    _validate_c3(checkout)
+    if _git(checkout,'ls-remote','origin','refs/heads/main').split()[0]!=sha:
+        raise ManagerError('Wiki review: la révision publique ne correspond pas au checkout')
+    script=checkout/'tools/wiki_deploy.py'
+    if not script.is_file():raise ManagerError('Outil Wiki deploy absent')
+    args=[sys.executable,str(script),'prepare','--private',str(Path(private).expanduser().resolve()),
+        '--output',str(Path(output).expanduser().resolve())]
+    if write:args.append('--write')
+    try:proc=subprocess.run(args,capture_output=True,text=True,encoding='utf8',errors='replace',timeout=60)
+    except (OSError,subprocess.TimeoutExpired) as exc:raise ManagerError('Revue Wiki indisponible') from exc
+    if proc.returncode:raise ManagerError('Revue Wiki : '+(proc.stderr or proc.stdout)[-900:])
+    return json.loads(proc.stdout)
+
+
+def publish_wiki_reviewed(*,checkout:Path,release:Path,review:Path,trust:Path,
+        c1_dir:Path,c2_dir:Path,policy_dir:Path,external_approval_confirmed:bool,
+        push:bool=False)->dict:
+    """Wiki Git push only after the existing signed C1/C2 main commit gate and page review.
+
+    A Wiki review receipt is an independent human attestation, NOT a signed C2.
+    """
+    checkout=Path(checkout).expanduser().resolve(strict=True)
+    authorized=publish_approved_commit(checkout=checkout,trust=trust,c1_dir=c1_dir,
+      c2_dir=c2_dir,policy_dir=policy_dir,
+      external_approval_confirmed=external_approval_confirmed,push=False)
+    sha=authorized['revision']
+    remote=_git(checkout,'ls-remote','origin','refs/heads/main',timeout=60)
+    if not remote or remote.split()[0]!=sha:
+        raise ManagerError('Wiki : la révision autorisée n’est pas celle publiée sur GitHub')
+    script=checkout/'tools/wiki_deploy.py'
+    if not script.is_file():raise ManagerError('Outil de publication native Wiki absent')
+    args=[sys.executable,str(script),'publish','--release',str(Path(release).expanduser().resolve()),
+      '--review',str(Path(review).expanduser().resolve()),'--revision',sha,
+      '--external-gates-confirmed','--checkout',str(checkout),
+      '--manager-root',str(Path(__file__).resolve().parents[1]),
+      '--trust',str(Path(trust).expanduser().resolve()),
+      '--c1-dir',str(Path(c1_dir).expanduser().resolve()),
+      '--c2-dir',str(Path(c2_dir).expanduser().resolve()),
+      '--policy-dir',str(Path(policy_dir).expanduser().resolve())]
+    if push:args.append('--push')
+    try:proc=subprocess.run(args,capture_output=True,text=True,encoding='utf8',errors='replace',timeout=300)
+    except (OSError,subprocess.TimeoutExpired) as exc:raise ManagerError('Publication native Wiki indisponible') from exc
+    if proc.returncode:raise ManagerError('Wiki refusé : '+(proc.stderr or proc.stdout)[-900:])
+    return json.loads(proc.stdout)

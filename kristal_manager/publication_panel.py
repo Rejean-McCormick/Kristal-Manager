@@ -12,7 +12,9 @@ from tkinter import filedialog, messagebox, ttk
 
 from .core import ManagerError
 from .publication_stage import prepare_private_collection
-from .publication_flow import prepare_local_commit, publish_approved_commit, export_wiki_candidate
+from .publication_flow import (prepare_local_commit, publish_approved_commit,
+    build_wiki_with_semantik_spek,create_wiki_plans,
+    prepare_wiki_review,publish_wiki_reviewed)
 
 
 def selected_slugs(root: Path) -> list[str]:
@@ -35,7 +37,7 @@ class PublicationPanel(tk.Toplevel):
         super().__init__(owner)
         self.owner=owner
         self.title('Kristal Manager — Publier sur GitHub')
-        self.geometry('890x810');self.minsize(730,590)
+        self.geometry('1010x1000');self.minsize(770,680)
         self.transient(owner)
         self._jobs=Queue();self._busy=False
         locals_root=Path(owner.path_var.get()).expanduser()
@@ -47,6 +49,14 @@ class PublicationPanel(tk.Toplevel):
         self.locals=tk.StringVar(value=str(locals_root))
         self.kit=tk.StringVar(value=str(collection_root/'Kristal-Authoring-Kit'/'tools'/'kristal.py'))
         self.checkout=tk.StringVar(value=str(collection_root/'kristal-public'))
+        self.semantik_root=tk.StringVar(value=str(collection_root/'SemantiK-Architect'))
+        self.runtime_root=tk.StringVar(value=str(collection_root/'SemantiK-Architect'/'runtime'))
+        self.projections=tk.StringVar(value=str(private_dir/'wiki-editorial-plans'))
+        self.spek_root=tk.StringVar(value=str(collection_root/'Spek'))
+        self.wiki_bundles=tk.StringVar(value=str(private_dir/'wiki-spek-inputs'))
+        self.wiki_candidate=tk.StringVar()
+        self.review_release=tk.StringVar()
+        self.wiki_review=tk.StringVar()
         self.candidate=tk.StringVar(value=str(suggested))
         self.trust=tk.StringVar()
         self.c1=tk.StringVar()
@@ -70,7 +80,15 @@ class PublicationPanel(tk.Toplevel):
         ttk.Button(row,text='…',width=3,command=browse).pack(side='left',padx=(3,0))
 
     def _render(self):
-        page=ttk.Frame(self,padding=12);page.pack(fill='both',expand=True)
+        container=ttk.Frame(self);container.pack(fill='both',expand=True)
+        canvas=tk.Canvas(container,highlightthickness=0)
+        bar=ttk.Scrollbar(container,orient='vertical',command=canvas.yview)
+        canvas.configure(yscrollcommand=bar.set)
+        bar.pack(side='right',fill='y');canvas.pack(side='left',fill='both',expand=True)
+        page=ttk.Frame(canvas,padding=12)
+        wid=canvas.create_window((0,0),window=page,anchor='nw')
+        page.bind('<Configure>',lambda _ev:canvas.configure(scrollregion=canvas.bbox('all')))
+        canvas.bind('<Configure>',lambda ev:canvas.itemconfigure(wid,width=ev.width))
         ttk.Label(page,text='Publication GitHub depuis les sources locales',font=('Segoe UI',14,'bold')).pack(anchor='w')
         ttk.Label(page,text='1. Préparer privé  →  2. Créer le commit local  →  3. Signatures C1/C2  →  4. Push',
                   wraplength=840).pack(anchor='w',pady=(1,8))
@@ -78,6 +96,10 @@ class PublicationPanel(tk.Toplevel):
         self._line(page,'Kit existant',self.kit,kind='file')
         self._line(page,'Candidat privé',self.candidate)
         self._line(page,'Dépôt public local',self.checkout)
+        self._line(page,'SemantiK Architect',self.semantik_root)
+        self._line(page,'RuntimeSet SemantiK',self.runtime_root)
+        self._line(page,'Plans éditoriaux privés',self.projections)
+        self._line(page,'Spek (gabarits Wiki)',self.spek_root)
         selector=ttk.LabelFrame(page,text='Kristals à publier (sélection multiple explicite)')
         selector.pack(fill='x',pady=6)
         self.listbox=tk.Listbox(selector,selectmode='extended',height=5,exportselection=False)
@@ -102,8 +124,17 @@ class PublicationPanel(tk.Toplevel):
                         variable=self.external).pack(anchor='w',pady=(4,2))
         self.push=ttk.Button(page,text='3 · Vérifier les preuves et pousser le commit EXACT',command=self.publish)
         self.push.pack(anchor='w',pady=3)
-        self.wiki=ttk.Button(page,text='4 · Générer le brouillon Wiki après push',command=self.export_wiki)
+        self.planwiki=ttk.Button(page,text='4 · Créer les plans privés des Kristals',command=self.create_plans)
+        self.planwiki.pack(anchor='w',pady=3)
+        self.wiki=ttk.Button(page,text='5 · Générer le Wiki complet (SemantiK + Spek)',command=self.export_wiki)
         self.wiki.pack(anchor='w',pady=3)
+        self._line(page,'Brouillon Wiki privé',self.wiki_candidate)
+        self._line(page,'Dossier Wiki revu',self.review_release)
+        self._line(page,'Revue Wiki (.json)',self.wiki_review,kind='file')
+        self.review_btn=ttk.Button(page,text='6 · Préparer les pages pour revue publique',command=self.prepare_review)
+        self.review_btn.pack(anchor='w',pady=3)
+        self.wiki_push=ttk.Button(page,text='7 · Publier le Wiki natif après revue et preuves',command=self.publish_wiki)
+        self.wiki_push.pack(anchor='w',pady=3)
         ttk.Label(page,text='Le contrôle hors réseau ne constitue pas une autorisation. Sans preuves signées, le push est bloqué.',
                   wraplength=830).pack(anchor='w')
         self.journal=tk.Text(page,wrap='word',height=11,font=('Consolas',9))
@@ -123,7 +154,7 @@ class PublicationPanel(tk.Toplevel):
     def _job(self,label,fn):
         if self._busy:return
         self._busy=True
-        for b in (self.stage,self.commit,self.push,self.wiki):b.configure(state='disabled')
+        for b in (self.stage,self.commit,self.push,self.planwiki,self.wiki,self.review_btn,self.wiki_push):b.configure(state='disabled')
         self._log('DÉBUT — '+label)
         def run():
             try:self._jobs.put((label,fn(),None))
@@ -135,12 +166,15 @@ class PublicationPanel(tk.Toplevel):
             while True:
                 label,result,error=self._jobs.get_nowait()
                 self._busy=False
-                for b in (self.stage,self.commit,self.push,self.wiki):b.configure(state='normal')
+                for b in (self.stage,self.commit,self.push,self.planwiki,self.wiki,self.review_btn,self.wiki_push):b.configure(state='normal')
                 if error:
                     self._log('BLOQUÉ — '+error)
                     self.owner.log('WARN','Publication : '+error)
                 else:
                     self._log(json.dumps(result,ensure_ascii=False,indent=2))
+                    if result.get('status')=='PRIVATE_WIKI_READY':self.wiki_candidate.set(result['output'])
+                    if result.get('status')=='REQUIRES_INDEPENDENT_WIKI_REVIEW' and result.get('output'):
+                        self.review_release.set(result['output'])
                     self.owner.log('INFO','Publication : '+label+' : '+result.get('status',''))
                     if result.get('push_performed'):
                         messagebox.showinfo('GitHub confirmé','Commit en ligne : '+result['revision']+'\n'+result['catalog_url'],parent=self)
@@ -179,10 +213,52 @@ class PublicationPanel(tk.Toplevel):
                   trust=values[1],c1_dir=values[2],c2_dir=values[3],
                   policy_dir=values[4],external_approval_confirmed=True,push=write))
 
+    def create_plans(self):
+        checkout=Path(self.checkout.get())
+        base=Path(self.projections.get()).expanduser()
+        write=not self.dry.get()
+        def job():
+            if write:base.parent.mkdir(parents=True,exist_ok=True)
+            return create_wiki_plans(checkout=checkout,locals_root=Path(self.locals.get()),
+                      output=base,language='fr',write=write)
+        self._job('Plans éditoriaux Wiki privés',job)
+
     def export_wiki(self):
         checkout=Path(self.checkout.get())
         parent=Path(self.candidate.get()).expanduser().parent
-        dest=parent / ('wiki-'+datetime.now().strftime('%Y%m%d-%H%M%S'))
+        dest=parent / ('wiki-complet-'+datetime.now().strftime('%Y%m%d-%H%M%S'))
         write=not self.dry.get()
-        self._job('Brouillon Wiki',lambda:export_wiki_candidate(
-                  checkout=checkout,output=dest,write=write))
+        def job():
+            if write:dest.parent.mkdir(parents=True,exist_ok=True)
+            return build_wiki_with_semantik_spek(checkout=checkout,
+                locals_root=Path(self.locals.get()),plans=Path(self.projections.get()),
+                semantik_root=Path(self.semantik_root.get()),runtime_root=Path(self.runtime_root.get()),
+                spek_root=Path(self.spek_root.get()),output=dest,language='fr',write=write)
+        self._job('Génération Wiki SemantiK + Spek',job)
+
+    def prepare_review(self):
+        private=Path(self.wiki_candidate.get())
+        parent=Path(self.candidate.get()).expanduser().parent
+        dest=parent/('wiki-review-'+datetime.now().strftime('%Y%m%d-%H%M%S'))
+        write=not self.dry.get()
+        def job():
+            if write:dest.parent.mkdir(parents=True,exist_ok=True)
+            return prepare_wiki_review(checkout=Path(self.checkout.get()),private=private,
+                      output=dest,write=write)
+        self._job('Revue éditoriale avant publication Wiki',job)
+
+    def publish_wiki(self):
+        if not self.external.get():
+            messagebox.showwarning('Revue obligatoire',
+                'Valider les signatures C1/C2 et la revue indépendante des pages Wiki.',parent=self);return
+        if not all(x.get().strip() for x in (self.trust,self.c1,self.c2,self.policy,self.review_release,self.wiki_review)):
+            messagebox.showwarning('Preuves requises',
+                'Signatures C1/C2, dossier Wiki préparé et revue Wiki approuvée requis.',parent=self);return
+        write=not self.dry.get()
+        if write and not messagebox.askyesno('Publication du Wiki natif',
+                'Tu vas publier les pages revues sur Internet dans kristal-public.wiki.git. Confirmer ?',parent=self):return
+        self._job('Publication du Wiki GitHub natif',lambda:publish_wiki_reviewed(
+             checkout=Path(self.checkout.get()),release=Path(self.review_release.get()),
+             review=Path(self.wiki_review.get()),trust=Path(self.trust.get()),
+             c1_dir=Path(self.c1.get()),c2_dir=Path(self.c2.get()),
+             policy_dir=Path(self.policy.get()),external_approval_confirmed=True,push=write))
