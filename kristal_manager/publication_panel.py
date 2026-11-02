@@ -12,6 +12,7 @@ from tkinter import filedialog, messagebox, ttk
 
 from .core import ManagerError
 from .publication_stage import prepare_private_collection
+from .manual_sync import plan_copies, apply_copies
 from .publication_flow import (prepare_local_commit, publish_approved_commit,
     build_wiki_with_semantik_spek,create_wiki_plans,
     prepare_wiki_review,publish_wiki_reviewed)
@@ -58,6 +59,9 @@ class PublicationPanel(tk.Toplevel):
         self.review_release=tk.StringVar()
         self.wiki_review=tk.StringVar()
         self.candidate=tk.StringVar(value=str(suggested))
+        self.manual_target=tk.StringVar(value=str(collection_root/"github-clones"))
+        self.manual_mode=tk.StringVar(value="clones")
+        self._copy_preview_key=None
         self.trust=tk.StringVar()
         self.c1=tk.StringVar()
         self.c2=tk.StringVar()
@@ -106,6 +110,20 @@ class PublicationPanel(tk.Toplevel):
         self.listbox.pack(side='left',fill='x',expand=True,padx=5,pady=5)
         ttk.Button(selector,text='Rafraîchir',command=self.refresh).pack(side='right',padx=5)
         self.refresh()
+        copies=ttk.LabelFrame(page,text='Copies locales des Kristals sélectionnés — synchronisation manuelle')
+        copies.pack(fill='x',pady=(7,8))
+        ttk.Label(copies,text='Ce parcours ne fait aucun git add / commit / push. Il ne vaut pas autorisation de diffusion.',
+                  wraplength=850).pack(anchor='w',padx=6,pady=3)
+        self._line(copies,'Destination des copies',self.manual_target)
+        modrow=ttk.Frame(copies);modrow.pack(anchor='w',padx=6,pady=2)
+        ttk.Label(modrow,text='Type de destination : ').pack(side='left')
+        ttk.Radiobutton(modrow,text='Clones GitHub propres existants',variable=self.manual_mode,value='clones').pack(side='left',padx=5)
+        ttk.Radiobutton(modrow,text='Nouveaux dossiers privés',variable=self.manual_mode,value='new').pack(side='left',padx=5)
+        copybtns=ttk.Frame(copies);copybtns.pack(anchor='w',padx=6,pady=4)
+        self.preview_copies=ttk.Button(copybtns,text='Prévisualiser la sélection et les copies',command=self.preview_manual_copies)
+        self.preview_copies.pack(side='left',padx=(0,6))
+        self.apply_copies_btn=ttk.Button(copybtns,text='Copier les sélectionnés — aucun Git',command=self.apply_manual_copies)
+        self.apply_copies_btn.pack(side='left')
         ttk.Checkbutton(page,text='Dry Run — aucune écriture ni push (activé par défaut)',variable=self.dry).pack(anchor='w')
         ttk.Checkbutton(page,text='Retirer le stub historique Zoology incomplet du checkout (si strictement reconnu)',
                         variable=self.retire).pack(anchor='w')
@@ -154,7 +172,7 @@ class PublicationPanel(tk.Toplevel):
     def _job(self,label,fn):
         if self._busy:return
         self._busy=True
-        for b in (self.stage,self.commit,self.push,self.planwiki,self.wiki,self.review_btn,self.wiki_push):b.configure(state='disabled')
+        for b in (self.stage,self.commit,self.push,self.planwiki,self.wiki,self.review_btn,self.wiki_push,self.preview_copies,self.apply_copies_btn):b.configure(state='disabled')
         self._log('DÉBUT — '+label)
         def run():
             try:self._jobs.put((label,fn(),None))
@@ -166,11 +184,14 @@ class PublicationPanel(tk.Toplevel):
             while True:
                 label,result,error=self._jobs.get_nowait()
                 self._busy=False
-                for b in (self.stage,self.commit,self.push,self.planwiki,self.wiki,self.review_btn,self.wiki_push):b.configure(state='normal')
+                for b in (self.stage,self.commit,self.push,self.planwiki,self.wiki,self.review_btn,self.wiki_push,self.preview_copies,self.apply_copies_btn):b.configure(state='normal')
                 if error:
                     self._log('BLOQUÉ — '+error)
                     self.owner.log('WARN','Publication : '+error)
                 else:
+                    if label=='Simulation des copies locales':
+                        self._copy_preview_key=(tuple(result['slugs']),result['destination_root'],result['mode'])
+                    if label=='Copies locales':self._copy_preview_key=None
                     self._log(json.dumps(result,ensure_ascii=False,indent=2))
                     if result.get('status')=='PRIVATE_WIKI_READY':self.wiki_candidate.set(result['output'])
                     if result.get('status')=='REQUIRES_INDEPENDENT_WIKI_REVIEW' and result.get('output'):
@@ -180,6 +201,39 @@ class PublicationPanel(tk.Toplevel):
                         messagebox.showinfo('GitHub confirmé','Commit en ligne : '+result['revision']+'\n'+result['catalog_url'],parent=self)
         except Empty:pass
         if self.winfo_exists():self.after(130,self._poll)
+
+    def _manual_args(self):
+        slugs=self._selected()
+        if not slugs:
+            raise ManagerError('Sélectionne au moins un Kristal dans la liste.')
+        return dict(locals_root=Path(self.locals.get()),destination_root=Path(self.manual_target.get()),
+                    slugs=slugs,mode=self.manual_mode.get())
+
+    def preview_manual_copies(self):
+        try:args=self._manual_args()
+        except ManagerError as exc:
+            messagebox.showwarning('Sélection',str(exc),parent=self);return
+        self._copy_preview_key=None
+        def job():
+            plan=plan_copies(**args)
+            return {k:v for k,v in plan.items() if k!='projects'} | {
+                'projects':[{k:pr[k] for k in ('slug','source','target','files','to_copy','bytes')}
+                            for pr in plan['projects']]}
+        self._job('Simulation des copies locales',job)
+
+    def apply_manual_copies(self):
+        try:args=self._manual_args()
+        except ManagerError as exc:
+            messagebox.showwarning('Sélection',str(exc),parent=self);return
+        resolved=str(args['destination_root'].expanduser().resolve())
+        if self._copy_preview_key != (tuple(args['slugs']),resolved,args['mode']):
+            messagebox.showwarning('Simulation requise','Prévisualise d’abord exactement cette sélection et ce dossier.',parent=self)
+            return
+        if not messagebox.askyesno('Copies locales UNIQUEMENT',
+                f'Copier {len(args["slugs"])} Kristals vers :\n{resolved}\n\n'
+                'AUCUN git add, commit ou push. Les données doivent être revues avant diffusion publique. Confirmer ?',parent=self):
+            return
+        self._job('Copies locales',lambda:apply_copies(**args))
 
     def prepare(self):
         slugs=self._selected()

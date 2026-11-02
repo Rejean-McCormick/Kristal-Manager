@@ -49,6 +49,12 @@ def main(argv=None):
     p.add_argument('--rapports', type=Path, help='Dossier de sortie des rapports, hors des Kristals')
     p.add_argument('--sans-recataloguer', action='store_true', help='Utiliser la dernière copie SQLite (peut être périmée)')
     p.add_argument('--verifier-localement', action='store_true', help='Hash des sources Discovery enregistrées (plus lent)')
+    p=sub.add_parser('manual-copy-selected',help='Copy explicitly selected tracked Kristals into local folders/clones only; no Git mutation')
+    p.add_argument('--locals',type=Path,required=True)
+    p.add_argument('--dest',type=Path,required=True,help='Existing parent directory of local copies or GitHub clones')
+    p.add_argument('--slug',action='append',required=True,help='Explicit selected slug, repeatable')
+    p.add_argument('--mode',choices=['new','clones'],default='clones')
+    p.add_argument('--apply',action='store_true',help='Create/copy local files; without this only previews')
     p=sub.add_parser('stage-public-candidate',help='Build a PRIVATE, explicit Kit read-surface candidate (never Git push)')
     p.add_argument('--locals',type=Path,required=True,help='Canonical local Kristals directory')
     p.add_argument('--kit',type=Path,required=True,help='Trusted Authoring Kit tools/kristal.py')
@@ -82,6 +88,13 @@ def main(argv=None):
                     c1_dir=args.c1_dir,c2_dir=args.c2_dir,policy_dir=args.policy_dir,
                     external_approval_confirmed=args.confirm_independent_approval,push=args.push)
             print(json.dumps(result,ensure_ascii=False,indent=2));return 0
+        if args.command=='manual-copy-selected':
+            from .manual_sync import plan_copies, apply_copies
+            fn=apply_copies if args.apply else plan_copies
+            result=fn(locals_root=args.locals,destination_root=args.dest,
+                      slugs=args.slug,mode=args.mode)
+            print(json.dumps(result,ensure_ascii=False,indent=2))
+            return 0
         if args.command=='stage-public-candidate':
             from .publication_stage import prepare_private_collection
             result=prepare_private_collection(locals_root=args.locals,kit_script=args.kit,
