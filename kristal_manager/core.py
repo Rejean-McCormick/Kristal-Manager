@@ -40,18 +40,61 @@ def _sha(data: bytes) -> str:
 def _path(p: str|Path) -> Path:
     return Path(p).expanduser().resolve()
 
+def native_v9_declared_historical(folder: str|Path) -> bool:
+    """Whether the canonical authoring index explicitly calls .kristal/v9 historical.
+
+    This is a lineage *declaration*, not cryptographic verification of any
+    snapshot. Missing/ambiguous indices keep the conservative current check.
+    """
+    root=_path(folder)
+    file=root/'canon/state.index.json'
+    if file.is_symlink() or not file.is_file() or not file.resolve().is_relative_to(root):
+        return False
+    try:
+        if file.stat().st_size > 3*1024*1024:
+            return False
+    except OSError:
+        return False
+    data=_read_json(file)
+    if not str(data.get('format','')).startswith('kristal.authoring-state-index/'):
+        return False
+    artifacts=data.get('derived_artifacts')
+    if not isinstance(artifacts,list):
+        return False
+    for entry in artifacts:
+        if not isinstance(entry,dict):
+            continue
+        relative=str(entry.get('path','')).replace('\\','/').rstrip('/')
+        role=str(entry.get('role','')).lower()
+        if relative=='.kristal/v9' and ('historical' in role or 'historique' in role):
+            return True
+    return False
+
 def state_candidates(folder: str|Path) -> list[dict]:
     """List current/release/legacy state representations without rewriting them."""
     root=_path(folder)
     candidates=[]
+    native_role = 'legacy' if native_v9_declared_historical(root) else 'current'
     fixed=(('state-export','current','state/state-snapshot.json'),
            ('build-v9','current','build/v9/state-snapshot.json'),
+           ('native-v9-current',native_role,'.kristal/v9/states/current.state-snapshot.json'),
            ('node-v9','legacy','.kristal/v9/state-snapshot.json'))
     for source,role,relative in fixed:
         file=root/relative
         if not file.is_file() or file.is_symlink() or not file.resolve().is_relative_to(root) or file.stat().st_size > 32*1024*1024:continue
         blob=file.read_bytes()
         state=_read_json(file)
+        if source=='native-v9-current':
+            # Native-current eligibility is structural only, not hash verification.
+            commitment=state.get('logical_commitment')
+            if not (state.get('schema_version')=='9.0' and
+                    state.get('artifact_type')=='kristal_state_snapshot' and
+                    isinstance(state.get('state_ref'),str) and state['state_ref'] and
+                    isinstance(state.get('members'),list) and state['members'] and
+                    isinstance(commitment,dict) and
+                    isinstance(commitment.get('digest'),str) and
+                    re.fullmatch(r'sha256:[0-9a-f]{64}',commitment['digest'])):
+                continue
         candidates.append(dict(source=source,role=role,path=str(file),
            state_ref=state.get('state_ref'),
            logical_commitment=(state.get('logical_commitment') or {}).get('digest'),
@@ -72,14 +115,14 @@ def state_candidates(folder: str|Path) -> list[dict]:
                   state_ref=state.get('state_ref'),
                   logical_commitment=(state.get('logical_commitment') or {}).get('digest'),
                   state_blob_digest=_sha(file.read_bytes())))
-    order={'state-export':0,'build-v9':1,'release-v9':2,'node-v9':3}
+    order={'state-export':0,'build-v9':1,'native-v9-current':2,'release-v9':3,'node-v9':4}
     return sorted(candidates,key=lambda x:(order[x['source']],x['path']))
 
 def detect_kristal(path: str|Path) -> dict|None:
     folder=_path(path)
     ws=folder/'kristal.workspace.json'
     auxiliary=not ws.exists() and (folder/'canon').exists() and (folder/'README.md').exists()
-    state_only=not ws.exists() and not auxiliary and any((folder/relative).is_file() for relative in ('state/state-snapshot.json','build/v9/state-snapshot.json'))
+    state_only=not ws.exists() and not auxiliary and any((folder/relative).is_file() for relative in ('state/state-snapshot.json','build/v9/state-snapshot.json','.kristal/v9/states/current.state-snapshot.json'))
     if not ws.is_file() and not auxiliary and not state_only:return None
     data=_read_json(ws) if ws.is_file() else {}
     states=state_candidates(folder)

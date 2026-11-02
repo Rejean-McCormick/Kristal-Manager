@@ -29,7 +29,8 @@ def applicable_v9(workspace: str | Path) -> bool:
     return any((root / name).is_file() for name in (
         '.kristal/v9/capabilities.json', '.kristal/v9/state-snapshot.json',
         '.kristal/v9/activation.json', '.kristal/v9/logical-artifact.json',
-        'build/v9/state-snapshot.json', 'state/state-snapshot.json'))
+        'build/v9/state-snapshot.json', 'state/state-snapshot.json',
+        '.kristal/v9/states/current.state-snapshot.json'))
 
 
 def _stamp():

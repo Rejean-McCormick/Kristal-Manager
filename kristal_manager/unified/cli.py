@@ -13,6 +13,7 @@ def main(argv=None) -> int:
         q=commands.add_parser(name);q.add_argument('--root',type=Path,required=True)
         if name=='diagnostiquer':q.add_argument('--max',type=int)
         if name=='exporter':q.add_argument('--out',type=Path,required=True)
+    q=commands.add_parser('scan-global');q.add_argument('--root',type=Path,required=True);q.add_argument('--out',type=Path,required=True);q.add_argument('--avec-diag',action='store_true');q.add_argument('--sans-catalogue',action='store_true')
     q=commands.add_parser('importer-arketype');q.add_argument('rapport',type=Path)
     q=commands.add_parser('importer-diag');q.add_argument('rapport',type=Path);q.add_argument('--root',type=Path,required=True)
     q=commands.add_parser('historique');q.add_argument('workspace',type=Path);q.add_argument('--type',dest='kind');q.add_argument('--profile');q.add_argument('--max',type=int,default=100)
@@ -28,6 +29,7 @@ def main(argv=None) -> int:
         elif opts.action=='diagnostiquer':result=service.diagnose(opts.root,limit=opts.max,**kws)
         elif opts.action=='etat':result=service.overview(opts.root,**kws)
         elif opts.action=='exporter':result={'file':service.export(opts.root,opts.out,**kws)}
+        elif opts.action=='scan-global':result=service.scan_global(opts.root,out=opts.out,with_diagnostic=opts.avec_diag,update_catalogue=not opts.sans_catalogue,**kws)
         elif opts.action=='importer-arketype':result=service.import_arketype(opts.rapport,**kws)
         elif opts.action=='importer-diag':result=service.import_diagnostic_report(opts.rapport,opts.root,**kws)
         elif opts.action=='historique':result=repository.history(opts.workspace,kind=opts.kind,profile=opts.profile,limit=opts.max,**kws)

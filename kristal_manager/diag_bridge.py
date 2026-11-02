@@ -80,7 +80,8 @@ def _fingerprint(root: Path) -> dict:
     rels = [
         'kristal.workspace.json', 'canon/state.index.json',
         'state/state-snapshot.json', 'build/v9/state-snapshot.json',
-        '.kristal/v9/state-snapshot.json', '.kristal/v9/capabilities.json',
+        '.kristal/v9/state-snapshot.json', '.kristal/v9/states/current.state-snapshot.json',
+        '.kristal/v9/capabilities.json',
         '.kristal/v9/activation.json', '.kristal/v9/logical-contracts.json',
         '.kristal/v9/manifest.sha256.json', '.kristal/v9/materialization-manifest.json',
         '.kristal/v9/logical-artifact.json', '.kristal/v9/package-manifest.json',
@@ -221,9 +222,27 @@ def _extract_official_findings(evidence_current: Path, summary: dict) -> list[di
             verdict = str(finding.get('verdict') or '—')
             if verdict in ('PASS', 'SKIP'):
                 continue
-            out.append({'level': ident, 'verdict': verdict,
-                        'id': str(finding.get('id') or '')[:100],
-                        'message': str(finding.get('message') or '')[:850]})
+            item={'level': ident, 'verdict': verdict,
+                  'id': str(finding.get('id') or '')[:100],
+                  'message': str(finding.get('message') or '')[:850]}
+            # Purposefully bounded allowlist: never copy arbitrary security evidence
+            # or raw matched strings into Manager's operational SQLite or exports.
+            raw=finding.get('evidence')
+            if item['id'] in ('N03-LARGE-003','N06-SECRETS-002') and isinstance(raw,list):
+                allowed=(('path','bytes','role','basis','recommendation','exception')
+                         if item['id']=='N03-LARGE-003' else
+                         ('path','line','pattern','file_kind','third_party_archive_candidate',
+                          'assessment','requires_review','values_included'))
+                context=[]
+                for entry in raw[:100]:
+                    if not isinstance(entry,dict):continue
+                    clean={k:entry[k] for k in allowed if k in entry}
+                    if isinstance(clean.get('exception'),dict):
+                        ex=clean['exception'];clean['exception']={k:ex[k] for k in
+                          ('status','reason','reviewed_by','sha256') if k in ex}
+                    context.append(clean)
+                item['context']=context
+            out.append(item)
             if len(out) >= 200:
                 return out
     return out

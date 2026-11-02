@@ -44,7 +44,7 @@ class UnifiedControlCenter(tk.Toplevel):
         self.actions=[]
         for text,callback in (
             ('1 · Inventorier',self.inventory),('2 · Analyser',self.analyze),
-            ('3 · Diagnostiquer (V9)',self.diagnose),('Importer ARK',self.import_ark),
+            ('3 · Diagnostiquer (V9)',self.diagnose),('Scan global + champs',self.full_scan),('Importer ARK',self.import_ark),
             ('Importer Diag',self.import_diag),('Exporter l’état',self.export),('Actualiser',self.refresh)):
             button=ttk.Button(bar,text=text,command=callback);button.pack(side='left',padx=(0,6));self.actions.append(button)
         self.stop_button=ttk.Button(bar,text='Arrêter après le Kristal courant',command=self.stop_batch,state='disabled')
@@ -102,6 +102,10 @@ class UnifiedControlCenter(tk.Toplevel):
                     if isinstance(payload,dict) and 'workspaces' in payload and isinstance(payload['workspaces'],list):
                         self._use_state(payload)
                     else:
+                        if isinstance(payload,dict) and payload.get('zip'):
+                            saved=payload['zip']
+                            self.after(10,lambda location=saved:messagebox.showinfo(
+                                'Scan global terminé','Rapport global créé :\n'+location,parent=self))
                         self.text_status.set('Terminé. '+str(payload)[:450])
                         self.refresh()
         except Empty:pass
@@ -145,6 +149,15 @@ class UnifiedControlCenter(tk.Toplevel):
             self.cancel_request.set()
             self.text_status.set('Arrêt demandé : fin du Kristal courant, preuves déjà enregistrées conservées.')
             self.stop_button.configure(state='disabled')
+
+    def full_scan(self):
+        dest=filedialog.askdirectory(parent=self,title='Choisir un dossier de rapports HORS des Kristals')
+        if not dest:return
+        if not messagebox.askyesno('Scan global des Kristals',
+            'Lancer inventaire + catalogue + contrôle détaillé de tous les champs ?\n'
+            'Cette opération ne modifie aucun canon et ne relance pas KristalDiag automatiquement.',parent=self):
+            return
+        self._begin('Scan global en cours',lambda:service.scan_global(self.root,out=dest,db=self.db))
 
     def import_ark(self):
         file=filedialog.askopenfilename(parent=self,title='Importer le rapport structurel Arketype',

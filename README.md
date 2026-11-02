@@ -234,3 +234,11 @@ préparation privée, le commit local C3 puis le push uniquement avec les preuve
 C1/C2 signées et la confirmation explicite de l'opérateur.
 Voir [docs/MANAGER_PUBLICATION_GITHUB_UI.md](docs/MANAGER_PUBLICATION_GITHUB_UI.md).
 Le Wiki GitHub natif demeure désactivé tant qu'il n'est pas activé côté GitHub.
+
+### Scan global détaillé des champs — 2026-11-01
+
+```powershell
+py -3 -m kristal_manager.unified.cli scan-global --root C:\mycode\Kristal\locals --out C:\mycode\Kristal\RAPPORTS-SCAN-GLOBAL --avec-diag
+```
+
+Ce parcours produit un ZIP horodaté avec les valeurs présentes et les champs manquants. Il ne remplace pas une validation sémantique et ne touche pas les canons. Voir `docs/13-implementation-vnext/scan-global-champs.md`.

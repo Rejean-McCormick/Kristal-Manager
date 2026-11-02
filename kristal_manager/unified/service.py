@@ -147,3 +147,61 @@ def import_diagnostic_report(file: str | Path, root: str | Path, *, db=None) -> 
     except Exception as exc:
         store.finish_run(run,'FAILED',processed=count,error=str(exc),db=db)
         raise
+
+
+def scan_global(root: str | Path, *, out: str | Path, db=None,
+                with_diagnostic: bool=False, update_catalogue: bool=True) -> dict:
+    """One explicit full inventory/content/field scan with a shareable ZIP report.
+
+    A failed subsystem is recorded as failed, not substituted by a PASS or 127 fake values.
+    """
+    from datetime import datetime,timezone
+    from .field_audit import write_coverage
+    from ..core import scan_roots
+    from ..workspace_tools import is_historical
+    import zipfile
+    source=Path(root).expanduser().resolve(strict=True)
+    base=Path(out).expanduser().resolve()
+    if not source.is_dir() or base==source or base.is_relative_to(source):
+        raise ValueError('Rapports hors du dossier locals obligatoires')
+    import secrets
+    destination=base/('scan-'+datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S')+'-'+secrets.token_hex(3))
+    destination.mkdir(parents=True,exist_ok=False)
+    phases={};failures={}
+    for name,operation in (
+        ('inventaire',lambda:inventory(source,db=db)),
+        ('analyse_globale',lambda:analyze(source,db=db,update_catalogue=update_catalogue))):
+        try:phases[name]={'status':'COMPLETED','details':operation()}
+        except Exception as e:
+            failures[name]=type(e).__name__+': '+str(e)[:500]
+            phases[name]={'status':'FAILED','error':failures[name]}
+    if with_diagnostic:
+        try:
+            r=diagnose(source,db=db,output_dir=destination/'diagnostics')
+            phases['kristaldiag_v9']={'status':'COMPLETED',
+               'counts':r.get('counts'), 'report_directory':r.get('report_directory'),
+               'total':r.get('total')}
+        except Exception as e:
+            failures['kristaldiag_v9']=type(e).__name__+': '+str(e)[:500]
+            phases['kristaldiag_v9']={'status':'FAILED','error':failures['kristaldiag_v9']}
+    rows=[r for r in scan_roots([source]) if not r.get('hidden_auxiliary') and not is_historical(r)]
+    coverage=write_coverage(source,rows,destination,db=db)
+    overview_data=overview(source,db=db)
+    (destination/'TABLEAU-MANAGER-VNEXT.json').write_text(json.dumps(overview_data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    summary={'format':'kristal.manager-full-scan/1.0',
+             'generated_at':datetime.now(timezone.utc).isoformat(),
+             'source':str(source),'phases':phases,'failed_phases':failures,
+             'coverage':coverage, 'readiness_not_equal_semantic_certification':True,
+             'qualification':'NOT_ESTABLISHED'}
+    (destination/'BILAN-SCAN-GLOBAL.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2,default=str)+'\n',encoding='utf-8')
+    archive=destination.parent/(destination.name+'.zip')
+    if archive.exists():raise FileExistsError(str(archive))
+    with zipfile.ZipFile(archive,'x',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
+        for name in ['BILAN-SCAN-GLOBAL.json','TABLEAU-MANAGER-VNEXT.json',*coverage['files']]:
+            z.write(destination/name,arcname=name)
+        for file in sorted((destination/'diagnostics').rglob('BILAN-DIAGNOSTICS.*')) if (destination/'diagnostics').is_dir() else []:
+            z.write(file,arcname=file.relative_to(destination).as_posix())
+        z.writestr('LIRE_AVANT_PARTAGE.txt',
+            'Les rapports contiennent chemins locaux et des métadonnées métier. Vérifier avant partage. '
+            'La vue présente les champs déclarés et manquants sans prouver leur validité sémantique.\n')
+    return {**summary,'zip':str(archive)}

@@ -30,7 +30,7 @@ Format de `archetype.json` :
 {"format":"spek.wiki-archetype-binding/1.0","archetype":"referentiel-semantique"}
 ```
 
-Le `slug` du dossier doit correspondre exactement à `kristals/index.json` (C3). L'archétype doit appartenir aux 19 profils de `Spek/wiki-templates/archetype-profiles.json`.
+Le `slug` du dossier doit correspondre exactement à `kristals/index.json` (C3). L'archétype doit appartenir aux 19 profils de `Spek/template_library/wiki/archetype-profiles.json`.
 
 Le `article.json` est une projection **Spek** `kristal.layout-article-source/0.1`, et `realizations.json` est une table `kristal.layout-realizations/0.1`. Les clés de titre, sous-titre, résumé, headings et unités doivent toutes être renseignées. Pour l'export réel, les réalisations doivent annoncer un canal `semantik_architect`, le request ID et le RuntimeSet, sans prétendre que Spek valide leur signature.
 

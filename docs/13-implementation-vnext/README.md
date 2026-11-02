@@ -33,3 +33,7 @@ version fourni et tous les panneaux avancés. Aucun canon local touché.
 
 Une exécution `NOT_APPLICABLE` ou une observation `PARTIAL_SCOPE` ne sont **jamais**
 converties en `PASS` par l'interface.
+
+## Patch du 1er novembre 2026
+
+La commande `scan-global` et le bouton `Scan global + champs` génèrent une matrice par Kristal des champs déclarés, absents, à revoir et des références de fichiers. Voir [scan-global-champs](scan-global-champs.md). Le moteur KristalDiag embarqué est synchronisé pour N03/N06 avec le dépôt indépendant.

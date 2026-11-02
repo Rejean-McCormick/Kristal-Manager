@@ -5,6 +5,7 @@ from .models import Finding,LevelResult
 from .utils import utc_now,relpath,sha256_file
 from .commands import run_command
 from .manifest import LEVELS
+from .file_context import classify_large_file, approved_exception, html_context
 
 MERGE_MARKERS=('<<<<<<<','=======','>>>>>>>')
 SURFACES={
@@ -91,9 +92,17 @@ def n02(ctx):
 def n03(ctx):
     s=utc_now();fs=[];scan=ctx.config.data.get('scan',{});max_bytes=int(scan.get('max_file_bytes',1048576));large=int(scan.get('large_file_bytes',10485760));broken=[];merge=[];huge=[]
     root=ctx.scan_root
+    policy=ctx.config.data.get('large_files',{})
+    exceptions=policy.get('exceptions',[]) if isinstance(policy,dict) else []
+    if not isinstance(exceptions,list):exceptions=[]
     for p,rel in _iter_files(ctx):
         try:
-            if p.stat().st_size>large:huge.append({'path':rel,'bytes':p.stat().st_size})
+            size=p.stat().st_size
+            if size>large:
+                info=classify_large_file(rel)
+                review=approved_exception(p,rel,size,exceptions)
+                huge.append({'path':rel,'bytes':size,**info,
+                             'exception':review or {'status':'unreviewed'}})
         except OSError:continue
         txt=_bounded_text(p,max_bytes)
         if txt is not None and all(m in txt for m in MERGE_MARKERS):merge.append(rel)
@@ -102,10 +111,18 @@ def n03(ctx):
             for name in dirs+files:
                 p=Path(base,name)
                 if p.is_symlink() and not p.exists():broken.append(relpath(p,root))
+    pending=[h for h in huge if h['exception']['status']!='approved']
     fs.append(_f('N03-SYMLINK-001','WARN' if broken else 'PASS','hygiene','Broken symbolic links detected.' if broken else 'No broken symbolic links detected.',evidence=broken[:100] if broken else None))
     fs.append(_f('N03-MERGE-002','WARN' if merge else 'PASS','hygiene','Possible unresolved merge markers detected.' if merge else 'No unresolved merge-marker pattern detected.',evidence=merge[:100] if merge else None))
-    fs.append(_f('N03-LARGE-003','WARN' if huge else 'PASS','hygiene','Large repository files should be reviewed.' if huge else 'No files exceeded the large-file threshold.',evidence=huge[:100] if huge else None))
-    return _result('N03',fs,started=s)
+    fs.append(_f('N03-LARGE-003','WARN' if pending else 'PASS','hygiene',
+        f'{len(huge)} large files classified; {len(pending)} require review.' if huge else 'No files exceeded the large-file threshold.',
+        evidence=huge[:100] if huge else None,
+        remediation='Review source roles; document a SHA-256-pinned local exception only after justification.' if pending else None))
+    return _result('N03',fs,metadata={'large_files':len(huge),'large_files_pending_review':len(pending),
+        'canonical_or_committed':sum(x['role']=='canonical_or_committed' for x in huge),
+        'derived_or_cache':sum(x['role']=='derived_or_cache' for x in huge),
+        'external_source_archive':sum(x['role']=='external_source_archive' for x in huge),
+        'unclassified':sum(x['role']=='unclassified' for x in huge)},started=s)
 
 def n04(ctx):
     s=utc_now();fs=[];found=[];locks=[];candidates=set()
@@ -151,17 +168,22 @@ def n06(ctx):
     for i,pat in enumerate(sec.get('additional_patterns',[])):
         try:patterns.append((f'custom-{i+1}',re.compile(pat)))
         except re.error as e:return _result('N06',[_f(f'N06-PATTERN-{i+1}','CONFIG_ERROR','security_hygiene','Invalid configured security regex.',evidence=str(e))],started=s)
-    hits=[];names=[];max_files=int(scan.get('max_security_files',4000));max_bytes=min(int(scan.get('max_file_bytes',1048576)),1048576);scanned=0
+    hits=[];names=[];max_files=int(scan.get('max_security_files',4000));max_bytes=min(int(scan.get('max_file_bytes',1048576)),1048576);scanned=0;skipped_size=0
     for p,rel in _iter_files(ctx,max_files):
         scanned+=1
         if p.name in SENSITIVE_NAMES:names.append(rel)
+        try:
+            if p.stat().st_size>max_bytes:
+                skipped_size+=1;continue
+        except OSError:continue
         txt=_bounded_text(p,max_bytes)
         if txt is None:continue
         for pid,rx in patterns:
             m=rx.search(txt)
-            if m:hits.append({'pattern':pid,'path':rel,'line':txt.count('\n',0,m.start())+1});break
+            if m:hits.append({'pattern':pid,'path':rel,'line':txt.count('\n',0,m.start())+1,**html_context(rel,txt)});break
     fs.append(_f('N06-FILENAMES-001','WARN' if names else 'PASS','security_hygiene','Potentially sensitive filenames require review.' if names else 'No high-risk sensitive filenames were found.',evidence=names[:100] if names else None))
-    fs.append(_f('N06-SECRETS-002','WARN' if hits else 'PASS','security_hygiene','Potential secret material matched conservative patterns; values were not copied into evidence.' if hits else 'No configured secret pattern matched.',evidence=hits[:100] if hits else None,remediation='Rotate exposed credentials and remove them from history if any match is genuine.' if hits else None))
-    return _result('N06',fs,metadata={'files_scanned':scanned,'potential_secret_hits':len(hits)},started=s)
+    fs.append(_f('N06-SECRETS-002','WARN' if hits else 'PASS','security_hygiene','Potential secret patterns detected; archived HTML is contextualized but NEVER auto-exempted; values are redacted.' if hits else 'No configured secret pattern matched among scanned text files; coverage may be limited.',evidence=hits[:100] if hits else None,remediation='Rotate exposed credentials and remove them from history if any match is genuine.' if hits else None))
+    return _result('N06',fs,metadata={'files_scanned':scanned,'potential_secret_hits':len(hits),
+                        'text_skipped_oversized':skipped_size,'coverage_limited':skipped_size>0 or scanned>=max_files},started=s)
 
 NEUTRAL_CHECKS={'N00':n00,'N01':n01,'N02':n02,'N03':n03,'N04':n04,'N05':n05,'N06':n06}

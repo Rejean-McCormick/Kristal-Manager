@@ -62,8 +62,22 @@ class Reader:
 
 def inspect_content(root,max_bytes=64*1024*1024):
     root=Path(root).resolve();r=Reader(root,max_bytes);ws=r.obj('kristal.workspace.json');idx=r.obj('canon/state.index.json',True);registered={x.get('path'):x for x in idx.get('canonical_artifacts',[]) if isinstance(x,dict) and isinstance(x.get('path'),str)}
-    states=[r.obj(rel,True) for rel in ('state/state-snapshot.json','build/v9/state-snapshot.json')]
-    states=[s for s in states if s.get('state_ref')]
+    state_paths=('state/state-snapshot.json','build/v9/state-snapshot.json','.kristal/v9/states/current.state-snapshot.json')
+    states=[]
+    for rel in state_paths:
+        item=r.obj(rel,True)
+        if not item.get('state_ref'):continue
+        if rel=='.kristal/v9/states/current.state-snapshot.json':
+            commitment=item.get('logical_commitment')
+            if not (item.get('schema_version')=='9.0' and
+                    item.get('artifact_type')=='kristal_state_snapshot' and
+                    isinstance(item.get('members'),list) and item['members'] and
+                    isinstance(commitment,dict) and
+                    isinstance(commitment.get('digest'),str) and
+                    re.fullmatch(r'sha256:[0-9a-f]{64}',commitment['digest'])):
+                r.issues.append('Native V9 current state is structurally invalid; not considered READY')
+                continue
+        states.append(item)
     distinct={(s.get('state_ref'),(s.get('logical_commitment') or {}).get('digest')) for s in states}
     conflict=len(distinct)>1 or any(ws.get('state_ref') and ws['state_ref']!=s.get('state_ref') for s in states)
     meta={'state_commitment':(states[0].get('logical_commitment') or {}).get('digest') if states else None,'native_kind':(ws.get('native_model') or {}).get('kind'),'readiness':'STATE CONFLICT' if conflict else 'READY' if states else 'NO STATE'}
