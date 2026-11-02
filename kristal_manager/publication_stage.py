@@ -186,12 +186,37 @@ def prepare_private_collection(*, locals_root: Path, kit_script: Path, output: P
         raise ManagerError('Output must be NEW and outside every Git checkout')
     if (write_private and not output.parent.is_dir()) or output.is_relative_to(locals_root) or locals_root.is_relative_to(output):
         raise ManagerError('Output must be outside the source root and have an existing parent')
-    sources=[]
+    # Build the same eligible-workspace catalogue as the UI, ONCE.  A local
+    # directory is not automatically a Kristal: previews, backups and other
+    # folders may exist without kristal.workspace.json.  Do not try to parse
+    # metadata until its regular file is known to exist.
+    selected = set(slugs)
+    matches_by_slug = {slug: [] for slug in slugs}
+    for folder in locals_root.iterdir():
+        if not folder.is_dir() or folder.is_symlink():
+            continue
+        metadata = folder/'kristal.workspace.json'
+        if not metadata.is_file() or metadata.is_symlink():
+            continue
+        try:
+            info = _json(metadata)
+        except ManagerError:
+            # As in the selection UI, an invalid *unselected* workspace must
+            # not block an explicitly selected, valid Kristal.  If a selected
+            # workspace became invalid, its slug will not be found below.
+            continue
+        slug = info.get('slug')
+        if slug in selected:
+            matches_by_slug[slug].append(folder)
+
+    sources = []
     for slug in slugs:
-        matches=[p for p in locals_root.iterdir() if p.is_dir() and not p.is_symlink() and
-                 _json(p/'kristal.workspace.json').get('slug')==slug and (p/'kristal.workspace.json').is_file()]
-        if len(matches)!=1:raise ManagerError('Exactly one workspace is required for slug: '+slug)
-        _safe_tree(matches[0]);sources.append(matches[0])
+        matches = matches_by_slug[slug]
+        if len(matches) != 1:
+            raise ManagerError('Exactly one valid workspace is required for selected slug: '
+                               + slug + ' (found ' + str(len(matches)) + ')')
+        _safe_tree(matches[0])
+        sources.append(matches[0])
     report={'status':'DRY_RUN' if not write_private else 'PRIVATE_CANDIDATE_ONLY',
             'authorization':'NOT_ESTABLISHED','public_write':False,
             'output':str(output),'slugs':slugs,'build_on_temporary_copies':build_on_copy}

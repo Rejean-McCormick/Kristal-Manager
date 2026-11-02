@@ -3,11 +3,11 @@ from __future__ import annotations
 from pathlib import Path
 from collections import Counter
 import hashlib,json,os,sqlite3,time,re
-from .core import ManagerError
+from .core import ManagerError,native_v9_declared_historical
 from .native_contract_reader import observe as observe_native_contract
 FORMAT='kristal.manager-content-catalog/0.1-candidate'
 SCHEMA=1
-ENGINE_VERSION='0.1.0a20-native-16-contracts'
+ENGINE_VERSION='0.1.0a21-v9-historique-catalogue'
 PRUNE={'.git','node_modules','__pycache__','.venv','external-source-library','build','derived','canon','.kristal','knowledge-base','ai','state','release','projections','runtime','HISTORY','OPTIMIZATION_TOOLS','FINALIZATION_TOOLS'}
 def encoded(x):return json.dumps(x,ensure_ascii=False,separators=(',',':'),sort_keys=True)
 def candidates(roots, *, direct_only=False):
@@ -63,8 +63,15 @@ class Reader:
 def inspect_content(root,max_bytes=64*1024*1024):
     root=Path(root).resolve();r=Reader(root,max_bytes);ws=r.obj('kristal.workspace.json');idx=r.obj('canon/state.index.json',True);registered={x.get('path'):x for x in idx.get('canonical_artifacts',[]) if isinstance(x,dict) and isinstance(x.get('path'),str)}
     state_paths=('state/state-snapshot.json','build/v9/state-snapshot.json','.kristal/v9/states/current.state-snapshot.json')
+    # The canonical index can explicitly preserve native V9 as historical.
+    # Apply the same conservative declaration rule as the inventory reader.
+    # An historical state is not another current state, even with a
+    # different (legitimate) logical commitment.
+    historical_native_v9=native_v9_declared_historical(root)
     states=[]
     for rel in state_paths:
+        if historical_native_v9 and rel=='.kristal/v9/states/current.state-snapshot.json':
+            continue
         item=r.obj(rel,True)
         if not item.get('state_ref'):continue
         if rel=='.kristal/v9/states/current.state-snapshot.json':

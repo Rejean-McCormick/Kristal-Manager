@@ -55,6 +55,20 @@ def display_state_id(state_ref: str | None) -> str:
     return state_ref
 
 
+def display_kristal_folder(row: dict) -> str:
+    """Show the actual local folder instead of a variable editorial title.
+
+    Routing remains based on the original row/path/slug, never on this label.
+    Non-local entries keep their authored title.
+    """
+    raw_path=row.get('path')
+    if raw_path:
+        folder=Path(str(raw_path)).name
+        if folder.lower().startswith('kristal-'):
+            return folder
+    return str(row.get('title') or (Path(str(raw_path)).name if raw_path else 'Kristal'))
+
+
 def display_category(row: dict) -> str:
     value = category_of(row)
     return {'Historical archive':'Historical archive',
@@ -182,7 +196,7 @@ class ManagerWindow(tk.Tk):
         actions.add_command(label='Catalog all Kristals in folder', command=self.start_catalog_all)
         actions.add_command(label='Centre d’analyse globale (Arketype / UNESCO / diK)…', command=self.open_global_center)
         actions.add_command(label='Open content HTML overview…', command=self.open_content_overview)
-        actions.add_command(label='Publier sur GitHub… (C1/C2 requis)', command=self.open_publication)
+        actions.add_command(label='Transférer des Kristals (local) / Publication publique…', command=self.open_publication)
         actions.add_separator()
         actions.add_command(label='UNESCO classification audit…', command=self.open_classification_audit)
         actions.add_command(label='Normalize folders in batch…', command=self.open_batch_rename)
@@ -242,7 +256,7 @@ class ManagerWindow(tk.Tk):
         self.scan_button.pack(side='left', padx=(7, 0))
         self.global_analysis_button = ttk.Button(pathline, text='Analyse globale…', command=self.open_global_center)
         self.global_analysis_button.pack(side='left', padx=(7, 0))
-        self.publication_button = ttk.Button(pathline, text='Publier sur GitHub…', command=self.open_publication)
+        self.publication_button = ttk.Button(pathline, text='Transférer les Kristals…', command=self.open_publication)
         self.publication_button.pack(side='left', padx=(7, 0))
         self.path_var.trace_add('write', self._path_changed)
         ttk.Label(source, text='The path above controls global scans. Cataloging the selected Kristal is a separate action.',
@@ -333,7 +347,7 @@ class ManagerWindow(tk.Tk):
         # Keep icons with the selected Kristal's detail card, not in the table.
         self.tree = ttk.Treeview(upper, columns=cols, show='headings', selectmode='browse', height=10)
         for key, heading, width in [
-            ('title', 'Kristal', 210), ('category', 'UNESCO domain', 180),
+            ('title', 'Kristal', 245), ('category', 'UNESCO domain', 180),
             ('micro', 'Microthesaurus', 210),
             ('arketype', 'Arketype', 95), ('usage', 'Usage (PRF)', 100),
             ('readiness', 'Local status', 108), ('diag', 'KristalDiag', 116),
@@ -1212,7 +1226,7 @@ class ManagerWindow(tk.Tk):
                 continue
             if selected_usage != 'All usage profiles' and usage != selected_usage:
                 continue
-            corpus = ' '.join(str(row.get(k, '')) for k in
+            corpus = display_kristal_folder(row) + ' ' + ' '.join(str(row.get(k, '')) for k in
                               ('title', 'slug', 'state_ref', 'profile', 'readiness', 'native_kind', 'content_summary')) + ' ' + cat + ' ' + micro + ' ' + display_category(row) + ' ' + ark + ' ' + usage + ' ' + (self.icons.get(row['path']).nature if self.icons.get(row['path']) else '')
             if q and q not in corpus.casefold():
                 continue
@@ -1225,7 +1239,7 @@ class ManagerWindow(tk.Tk):
                           'Executed' if diag.get('process_status') == 'EXECUTED_EXIT_0' else
                           'Failed / timed out' if diag.get('process_status') in ('TIMEOUT', 'EXECUTED_NONZERO') else 'Review')
             ico = self.icons.get(row['path'])
-            values = (row['title'], cat, micro, ark if ark != 'Unclassified' else '—',
+            values = (display_kristal_folder(row), cat, micro, ark if ark != 'Unclassified' else '—',
                       usage if usage != 'Unclassified' else '—',
                       row['readiness'], diag_label, row.get('profile') or '—',
                       display_state_id(row.get('state_ref')), row.get('registered_artifacts', 0), content)
@@ -1265,7 +1279,7 @@ class ManagerWindow(tk.Tk):
         if not row:
             self._refresh_actions()
             return
-        self.selection_var.set(row.get('title', 'Kristal'))
+        self.selection_var.set(display_kristal_folder(row))
         keys = ('title', 'slug', 'path', 'state_ref', 'workspace_format', 'native_kind',
                 'readiness', 'profile', 'state_commitment', 'state_blob_digest', 'state_conflict_reasons',
                 'portable_ai_enabled', 'ai_entrypoint_present', 'hosted_network_baseline',

@@ -6,38 +6,63 @@ import json
 import os
 from pathlib import Path
 from queue import Empty, Queue
+import shutil
 import threading
+import uuid
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 
 from .core import ManagerError
 from .publication_stage import prepare_private_collection
 from .manual_sync import plan_copies, apply_copies
+from .private_collection_sync import plan_private_sync, apply_private_sync
 from .publication_flow import (prepare_local_commit, publish_approved_commit,
     build_wiki_with_semantik_spek,create_wiki_plans,
     prepare_wiki_review,publish_wiki_reviewed)
 
 
-def selected_slugs(root: Path) -> list[str]:
-    slugs=[]
+def selectable_kristals(root: Path) -> list[tuple[str, str]]:
+    """Return (actual folder name, routing slug) without renaming either.
+
+    The folder is the human-facing name; the slug is the immutable selection
+    key used by the private collection engine. Duplicate slugs are refused
+    rather than silently routing two visible workspaces to the same target.
+    """
+    entries: list[tuple[str, str]] = []
+    seen: set[str] = set()
     if root.is_dir():
-        for p in sorted(root.iterdir(),key=lambda p:p.name.lower()):
-            if not p.is_dir() or p.is_symlink():continue
-            w=p/'kristal.workspace.json'
-            if not w.is_file():continue
+        from .publication_stage import SLUG
+        for folder in sorted(root.iterdir(), key=lambda p: p.name.casefold()):
+            if not folder.is_dir() or folder.is_symlink():
+                continue
+            metadata = folder / 'kristal.workspace.json'
+            if not metadata.is_file() or metadata.is_symlink():
+                continue
             try:
-                slug=json.loads(w.read_text(encoding='utf8')).get('slug')
-            except (ValueError,OSError):continue
-            from .publication_stage import SLUG
-            if isinstance(slug,str) and SLUG.fullmatch(slug):slugs.append(slug)
-    return sorted(set(slugs))
+                workspace = json.loads(metadata.read_text(encoding='utf8'))
+            except (ValueError, OSError):
+                continue
+            slug = workspace.get('slug') if isinstance(workspace, dict) else None
+            if not isinstance(slug, str) or not SLUG.fullmatch(slug):
+                continue
+            key = slug.casefold()
+            if key in seen:
+                raise ManagerError(f'Duplicate routing slug in locals: {slug}')
+            seen.add(key)
+            entries.append((folder.name, slug))
+    return sorted(entries, key=lambda item: (item[0].casefold(), item[1]))
+
+
+def selected_slugs(root: Path) -> list[str]:
+    """Compatibility API: callers still receive routing slugs, not labels."""
+    return sorted(slug for _name, slug in selectable_kristals(root))
 
 
 class PublicationPanel(tk.Toplevel):
     def __init__(self,owner):
         super().__init__(owner)
         self.owner=owner
-        self.title('Kristal Manager — Publier sur GitHub')
+        self.title('Kristal Manager — Transfert local des Kristals sélectionnés')
         self.geometry('1010x1000');self.minsize(770,680)
         self.transient(owner)
         self._jobs=Queue();self._busy=False
@@ -50,6 +75,11 @@ class PublicationPanel(tk.Toplevel):
         self.locals=tk.StringVar(value=str(locals_root))
         self.kit=tk.StringVar(value=str(collection_root/'Kristal-Authoring-Kit'/'tools'/'kristal.py'))
         self.checkout=tk.StringVar(value=str(collection_root/'kristal-public'))
+        self.private_checkout=tk.StringVar(value=str(collection_root/'kristal-private'))
+        self._private_preview_token=None
+        self._private_preview_key=None
+        self._private_preview_retire_count=0
+        self.allow_retire_private=tk.BooleanVar(value=False)
         self.semantik_root=tk.StringVar(value=str(collection_root/'SemantiK-Architect'))
         self.runtime_root=tk.StringVar(value=str(collection_root/'SemantiK-Architect'/'runtime'))
         self.projections=tk.StringVar(value=str(private_dir/'wiki-editorial-plans'))
@@ -59,6 +89,7 @@ class PublicationPanel(tk.Toplevel):
         self.review_release=tk.StringVar()
         self.wiki_review=tk.StringVar()
         self.candidate=tk.StringVar(value=str(suggested))
+        self.private_candidate=tk.StringVar(value='')
         self.manual_target=tk.StringVar(value=str(collection_root/"github-clones"))
         self.manual_mode=tk.StringVar(value="clones")
         self._copy_preview_key=None
@@ -93,44 +124,55 @@ class PublicationPanel(tk.Toplevel):
         wid=canvas.create_window((0,0),window=page,anchor='nw')
         page.bind('<Configure>',lambda _ev:canvas.configure(scrollregion=canvas.bbox('all')))
         canvas.bind('<Configure>',lambda ev:canvas.itemconfigure(wid,width=ev.width))
-        ttk.Label(page,text='Publication GitHub depuis les sources locales',font=('Segoe UI',14,'bold')).pack(anchor='w')
-        ttk.Label(page,text='1. Préparer privé  →  2. Créer le commit local  →  3. Signatures C1/C2  →  4. Push',
+        ttk.Label(page,text='Transfert local — Kristals sélectionnés',font=('Segoe UI',14,'bold')).pack(anchor='w')
+        ttk.Label(page,text='Sélectionner les dossiers Kristal → prévisualiser → transférer dans kristal-private. Aucun commit ni push.',
                   wraplength=840).pack(anchor='w',pady=(1,8))
         self._line(page,'Source locals',self.locals)
-        self._line(page,'Kit existant',self.kit,kind='file')
-        self._line(page,'Candidat privé',self.candidate)
-        self._line(page,'Dépôt public local',self.checkout)
+        self._line(page,'Kit (lecture)',self.kit,kind='file')
+        self._line(page,'Clone privé local',self.private_checkout)
         self._line(page,'SemantiK Architect',self.semantik_root)
         self._line(page,'RuntimeSet SemantiK',self.runtime_root)
         self._line(page,'Plans éditoriaux privés',self.projections)
         self._line(page,'Spek (gabarits Wiki)',self.spek_root)
-        selector=ttk.LabelFrame(page,text='Kristals à publier (sélection multiple explicite)')
+        selector=ttk.LabelFrame(page,text='Choisir les Kristals à transférer (Ctrl/Maj + clic; aucun choix automatique)')
         selector.pack(fill='x',pady=6)
-        self.listbox=tk.Listbox(selector,selectmode='extended',height=5,exportselection=False)
-        self.listbox.pack(side='left',fill='x',expand=True,padx=5,pady=5)
-        ttk.Button(selector,text='Rafraîchir',command=self.refresh).pack(side='right',padx=5)
+        self._selection_slugs: list[str] = []
+        self.selection_count=tk.StringVar(value='0 sélectionné')
+        listarea=ttk.Frame(selector);listarea.pack(fill='x',expand=True,padx=5,pady=5)
+        self.listbox=tk.Listbox(listarea,selectmode='extended',height=9,exportselection=False)
+        self.listbox.pack(side='left',fill='both',expand=True)
+        listscroll=ttk.Scrollbar(listarea,orient='vertical',command=self.listbox.yview)
+        listscroll.pack(side='left',fill='y',padx=(2,0))
+        self.listbox.configure(yscrollcommand=listscroll.set)
+        self.listbox.bind('<<ListboxSelect>>',self._selection_changed)
+        controls=ttk.Frame(selector);controls.pack(fill='x',padx=6,pady=(0,5))
+        ttk.Label(controls,textvariable=self.selection_count).pack(side='left')
+        ttk.Button(controls,text='Actualiser la liste',command=self.refresh).pack(side='right')
         self.refresh()
-        copies=ttk.LabelFrame(page,text='Copies locales des Kristals sélectionnés — synchronisation manuelle')
-        copies.pack(fill='x',pady=(7,8))
-        ttk.Label(copies,text='Ce parcours ne fait aucun git add / commit / push. Il ne vaut pas autorisation de diffusion.',
+        private=ttk.LabelFrame(page,text='A · Copie locale sélective vers kristal-private')
+        private.pack(fill='x',pady=(7,8))
+        ttk.Label(private,text='Les fichiers existants sont contrôlés en interne, sans reconstruction V9. Prévisualisation puis copie locale uniquement.',
                   wraplength=850).pack(anchor='w',padx=6,pady=3)
-        self._line(copies,'Destination des copies',self.manual_target)
-        modrow=ttk.Frame(copies);modrow.pack(anchor='w',padx=6,pady=2)
-        ttk.Label(modrow,text='Type de destination : ').pack(side='left')
-        ttk.Radiobutton(modrow,text='Clones GitHub propres existants',variable=self.manual_mode,value='clones').pack(side='left',padx=5)
-        ttk.Radiobutton(modrow,text='Nouveaux dossiers privés',variable=self.manual_mode,value='new').pack(side='left',padx=5)
-        copybtns=ttk.Frame(copies);copybtns.pack(anchor='w',padx=6,pady=4)
-        self.preview_copies=ttk.Button(copybtns,text='Prévisualiser la sélection et les copies',command=self.preview_manual_copies)
-        self.preview_copies.pack(side='left',padx=(0,6))
-        self.apply_copies_btn=ttk.Button(copybtns,text='Copier les sélectionnés — aucun Git',command=self.apply_manual_copies)
-        self.apply_copies_btn.pack(side='left')
-        ttk.Checkbutton(page,text='Dry Run — aucune écriture ni push (activé par défaut)',variable=self.dry).pack(anchor='w')
+        privbuttons=ttk.Frame(private);privbuttons.pack(anchor='w',padx=6,pady=4)
+        self.preview_private=ttk.Button(privbuttons,text='1 · Prévisualiser les Kristals sélectionnés',command=self.preview_private_collection)
+        self.preview_private.pack(side='left',padx=(0,5))
+        self.apply_private=ttk.Button(privbuttons,text='2 · Transférer dans kristal-private (local)',command=self.apply_private_collection)
+        self.apply_private.pack(side='left')
+        ttk.Checkbutton(private,text='J’autorise le retrait des anciens fichiers affichés pour les Kristals sélectionnés uniquement',
+                        variable=self.allow_retire_private).pack(anchor='w',padx=6,pady=2)
+        ttk.Label(private,text='Le clone privé doit être propre et provisionné par Bootstrap : node, binding GitHub PRIVATE et capabilities. Vérifier séparément les ACL GitHub.',
+                  wraplength=840).pack(anchor='w',padx=6,pady=(1,5))
+        public=ttk.LabelFrame(page,text='B · Publication GitHub PUBLIQUE (parcours distinct, C1/C2/C3 requis)')
+        public.pack(fill='x',pady=(5,8))
+        self._line(public,'Dépôt public local',self.checkout)
+        self._line(public,'Candidat public',self.candidate)
+        # Legacy manual-copy-selected CLI remains available for independent Git repos;
+        # do not expose it as the default workflow for collection repositories.
+        ttk.Checkbutton(page,text='Dry Run pour la publication PUBLIQUE (parcours B seulement)',variable=self.dry).pack(anchor='w')
         ttk.Checkbutton(page,text='Retirer le stub historique Zoology incomplet du checkout (si strictement reconnu)',
                         variable=self.retire).pack(anchor='w')
         buttons=ttk.Frame(page);buttons.pack(fill='x',pady=(7,9))
-        self.stage=ttk.Button(buttons,text='1 · Préparer la collection privée',command=self.prepare)
-        self.stage.pack(side='left',padx=(0,6))
-        self.commit=ttk.Button(buttons,text='2 · Préparer le commit local',command=self.make_commit)
+        self.commit=ttk.Button(buttons,text='PUBLIC · Préparer un commit local (distinct du transfert privé)',command=self.make_commit)
         self.commit.pack(side='left',padx=(0,6))
         evidence=ttk.LabelFrame(page,text='Preuves indépendantes exigées pour le push')
         evidence.pack(fill='x',pady=5)
@@ -140,7 +182,7 @@ class PublicationPanel(tk.Toplevel):
         self._line(evidence,'Policy C2 (dossier)',self.policy)
         ttk.Checkbutton(page,text='Je confirme avoir vérifié indépendamment les émetteurs et révocations C1/C2',
                         variable=self.external).pack(anchor='w',pady=(4,2))
-        self.push=ttk.Button(page,text='3 · Vérifier les preuves et pousser le commit EXACT',command=self.publish)
+        self.push=ttk.Button(page,text='PUBLIC · Vérifier C1/C2 et pousser le commit approuvé',command=self.publish)
         self.push.pack(anchor='w',pady=3)
         self.planwiki=ttk.Button(page,text='4 · Créer les plans privés des Kristals',command=self.create_plans)
         self.planwiki.pack(anchor='w',pady=3)
@@ -163,16 +205,46 @@ class PublicationPanel(tk.Toplevel):
         self.journal.insert('end',str(line)+'\n');self.journal.see('end')
 
     def refresh(self):
+        # Re-reading metadata never reselects a different workspace by index.
+        previous=set(self._selected())
+        try:
+            entries=selectable_kristals(Path(self.locals.get()).expanduser())
+        except (ManagerError, OSError) as exc:
+            messagebox.showwarning('Liste des Kristals',str(exc),parent=self)
+            return
         self.listbox.delete(0,'end')
-        for slug in selected_slugs(Path(self.locals.get()).expanduser()):self.listbox.insert('end',slug)
+        self._selection_slugs=[]
+        for name, slug in entries:
+            self._selection_slugs.append(slug)
+            self.listbox.insert('end',name)
+        for index, slug in enumerate(self._selection_slugs):
+            if slug in previous:
+                self.listbox.selection_set(index)
+        self._invalidate_private_preview()
+        self._update_selection_count()
 
     def _selected(self):
-        return [self.listbox.get(i) for i in self.listbox.curselection()]
+        return [self._selection_slugs[int(i)] for i in self.listbox.curselection()]
+
+    def _update_selection_count(self):
+        count=len(self.listbox.curselection())
+        self.selection_count.set(f'{count} sélectionné(s) sur {len(self._selection_slugs)}')
+
+    def _invalidate_private_preview(self):
+        self._private_preview_token=None
+        self._private_preview_key=None
+        self._private_preview_retire_count=0
+        self.private_candidate.set('')
+        self.allow_retire_private.set(False)
+
+    def _selection_changed(self, _event=None):
+        self._invalidate_private_preview()
+        self._update_selection_count()
 
     def _job(self,label,fn):
         if self._busy:return
         self._busy=True
-        for b in (self.stage,self.commit,self.push,self.planwiki,self.wiki,self.review_btn,self.wiki_push,self.preview_copies,self.apply_copies_btn):b.configure(state='disabled')
+        for b in (self.preview_private,self.apply_private,self.commit,self.push,self.planwiki,self.wiki,self.review_btn,self.wiki_push):b.configure(state='disabled')
         self._log('DÉBUT — '+label)
         def run():
             try:self._jobs.put((label,fn(),None))
@@ -184,14 +256,23 @@ class PublicationPanel(tk.Toplevel):
             while True:
                 label,result,error=self._jobs.get_nowait()
                 self._busy=False
-                for b in (self.stage,self.commit,self.push,self.planwiki,self.wiki,self.review_btn,self.wiki_push,self.preview_copies,self.apply_copies_btn):b.configure(state='normal')
+                for b in (self.preview_private,self.apply_private,self.commit,self.push,self.planwiki,self.wiki,self.review_btn,self.wiki_push):b.configure(state='normal')
                 if error:
+                    if label=='Simulation du clone privé':
+                        self.private_candidate.set('')
+                        self._private_preview_token=None
+                        self._private_preview_key=None
                     self._log('BLOQUÉ — '+error)
                     self.owner.log('WARN','Publication : '+error)
                 else:
-                    if label=='Simulation des copies locales':
-                        self._copy_preview_key=(tuple(result['slugs']),result['destination_root'],result['mode'])
-                    if label=='Copies locales':self._copy_preview_key=None
+                    if label=='Simulation du clone privé':
+                        self.private_candidate.set(result['candidate'])
+                        self._private_preview_token=result['plan_token']
+                        self._private_preview_retire_count=result['retire_count']
+                        self._private_preview_key=(tuple(result['slugs']),result['candidate'],result['checkout'])
+                    if label in ('Copie privée locale','Préparation privée'):
+                        self._private_preview_token=None
+                        self._private_preview_key=None
                     self._log(json.dumps(result,ensure_ascii=False,indent=2))
                     if result.get('status')=='PRIVATE_WIKI_READY':self.wiki_candidate.set(result['output'])
                     if result.get('status')=='REQUIRES_INDEPENDENT_WIKI_REVIEW' and result.get('output'):
@@ -235,17 +316,65 @@ class PublicationPanel(tk.Toplevel):
             return
         self._job('Copies locales',lambda:apply_copies(**args))
 
-    def prepare(self):
+    def preview_private_collection(self):
+        """Use ALREADY PREPARED read surfaces; never rebuild or modify source Kristals.
+
+        A temporary candidate is an internal manifest/fingerprint package, not a
+        user-facing publication step. Nothing is written to the Git checkout.
+        """
         slugs=self._selected()
         if not slugs:
-            messagebox.showwarning('Sélection','Sélectionne explicitement un ou plusieurs Kristals.',parent=self);return
-        out=Path(self.candidate.get()).expanduser()
-        write=not self.dry.get()
+            messagebox.showwarning('Sélection','Coche au moins un Kristal.',parent=self);return
+        locals_root=Path(self.locals.get()).expanduser()
+        kit=Path(self.kit.get()).expanduser()
+        checkout=Path(self.private_checkout.get()).expanduser()
+        self._private_preview_token=None
+        self._private_preview_key=None
+        self.private_candidate.set('')
         def job():
-            if write:out.parent.mkdir(parents=True,exist_ok=True)
-            return prepare_private_collection(locals_root=Path(self.locals.get()),kit_script=Path(self.kit.get()),
-                  output=out,slugs=slugs,write_private=write,build_on_copy=True)
-        self._job('Préparation privée',job)
+            temp_root=Path(os.environ.get('LOCALAPPDATA') or str(Path.home()))/'Kristal'/'private-candidates'
+            temp_root.mkdir(parents=True,exist_ok=True)
+            output=temp_root/('candidate-'+datetime.now().strftime('%Y%m%d-%H%M%S')+'-'+uuid.uuid4().hex[:10])
+            # Verification/packaging ONLY: build_on_copy=False, never build-v9.
+            prepared=prepare_private_collection(locals_root=locals_root,kit_script=kit,
+                       output=output,slugs=slugs,write_private=True,build_on_copy=False)
+            try:
+                plan=plan_private_sync(candidate=output,checkout=checkout,slugs=slugs)
+            except Exception:
+                # Candidate is a newly created internal scratch directory, not Git.
+                if output.is_dir() and not output.is_symlink() and output.parent==temp_root:
+                    shutil.rmtree(output)
+                raise
+            return {k:v for k,v in plan.items() if k!='_next_index'} | {
+                'fichiers_controles':prepared.get('files_count',0),
+                'reconstruction_V9':False,
+                'transfert_effectue':False,
+            }
+        self._job('Simulation du clone privé',job)
+
+    def apply_private_collection(self):
+        slugs=self._selected()
+        candidate=Path(self.private_candidate.get()).expanduser()
+        checkout=Path(self.private_checkout.get()).expanduser()
+        try:
+            key=(tuple(sorted(slugs)),str(candidate.resolve(strict=True)),str(checkout.resolve(strict=True)))
+        except OSError:
+            messagebox.showwarning('Chemin','Le candidat et le dépôt privé doivent exister.',parent=self);return
+        if not slugs or self._private_preview_token is None or key!=self._private_preview_key:
+            messagebox.showwarning('Prévisualisation requise',
+                 'Prévisualise exactement la sélection et le même clone privé avant de copier.',parent=self);return
+        if self._private_preview_retire_count and not self.allow_retire_private.get():
+            messagebox.showwarning('Retrait contrôlé',
+                f'{self._private_preview_retire_count} fichiers obsolètes sont listés dans la simulation. '
+                'Coche l’autorisation de retrait explicite pour cette sélection.',parent=self);return
+        if not messagebox.askyesno('Copie vers kristal-private',
+             f'Copier uniquement {len(slugs)} Kristals dans le clone PRIVÉ :\n{checkout}\n\n'
+             'Seuls les fichiers affichés des Kristals cochés seront mis à jour. '
+             'Les autres Kristals restent inchangés. Aucun commit ni push. Continuer ?',parent=self):return
+        token=self._private_preview_token
+        allow_retire=self.allow_retire_private.get()
+        self._job('Copie privée locale',lambda:apply_private_sync(candidate=candidate,checkout=checkout,
+                  slugs=slugs,expected_token=token,allow_retire=allow_retire))
 
     def make_commit(self):
         if not self.dry.get() and not messagebox.askyesno('Confirmation',

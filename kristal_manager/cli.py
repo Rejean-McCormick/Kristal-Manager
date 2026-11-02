@@ -49,6 +49,15 @@ def main(argv=None):
     p.add_argument('--rapports', type=Path, help='Dossier de sortie des rapports, hors des Kristals')
     p.add_argument('--sans-recataloguer', action='store_true', help='Utiliser la dernière copie SQLite (peut être périmée)')
     p.add_argument('--verifier-localement', action='store_true', help='Hash des sources Discovery enregistrées (plus lent)')
+    p=sub.add_parser('private-collection-sync',help='Validate/copy selected Kit read surfaces to provisioned kristal-private checkout, no Git writes')
+    p.add_argument('--candidate',type=Path,required=True)
+    p.add_argument('--checkout',type=Path,required=True)
+    p.add_argument('--slug',action='append',required=True)
+    p.add_argument('--apply',action='store_true')
+    p.add_argument('--plan-token',help='Exact token from dry-run (required with --apply)')
+    p.add_argument('--allow-retire-selected',action='store_true',help='Explicitly accept listed obsolete files in selected members only')
+    p=sub.add_parser('private-collection-rollback',help='Restore a private local copy using its exact receipt, no Git writes')
+    p.add_argument('--receipt',type=Path,required=True)
     p=sub.add_parser('manual-copy-selected',help='Copy explicitly selected tracked Kristals into local folders/clones only; no Git mutation')
     p.add_argument('--locals',type=Path,required=True)
     p.add_argument('--dest',type=Path,required=True,help='Existing parent directory of local copies or GitHub clones')
@@ -87,6 +96,19 @@ def main(argv=None):
             result=publish_approved_commit(checkout=args.checkout,trust=args.trust,
                     c1_dir=args.c1_dir,c2_dir=args.c2_dir,policy_dir=args.policy_dir,
                     external_approval_confirmed=args.confirm_independent_approval,push=args.push)
+            print(json.dumps(result,ensure_ascii=False,indent=2));return 0
+        if args.command=='private-collection-sync':
+            from .private_collection_sync import plan_private_sync,apply_private_sync
+            if args.apply:
+                result=apply_private_sync(candidate=args.candidate,checkout=args.checkout,
+                      slugs=args.slug,expected_token=args.plan_token,allow_retire=args.allow_retire_selected)
+            else:
+                result=plan_private_sync(candidate=args.candidate,checkout=args.checkout,slugs=args.slug)
+                result.pop('_next_index',None)
+            print(json.dumps(result,ensure_ascii=False,indent=2));return 0
+        if args.command=='private-collection-rollback':
+            from .private_collection_sync import rollback_private_sync
+            result=rollback_private_sync(receipt=args.receipt)
             print(json.dumps(result,ensure_ascii=False,indent=2));return 0
         if args.command=='manual-copy-selected':
             from .manual_sync import plan_copies, apply_copies
