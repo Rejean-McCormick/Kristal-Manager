@@ -78,14 +78,40 @@ def _run_kit(kit: Path, command: str, root: Path, extra: list[str] | None = None
     return result.stdout
 
 
+def _kit_readiness_errors(surface: dict) -> list[str]:
+    """Return the Kit's actual readiness diagnostics, never its large file manifest."""
+    raw=surface.get('errors')
+    if not isinstance(raw,list):
+        return ['Le Kit n’a pas fourni de liste d’erreurs exploitable.']
+    messages=[]
+    for value in raw:
+        if isinstance(value,str) and value.strip():
+            # Keep one log line per issue; never echo JSON containing file bytes.
+            message=' '.join(value.split())
+            messages.append(message[:300]+('…' if len(message)>300 else ''))
+    return messages or ['Le Kit a signalé ready=false sans préciser la raison.']
+
+
 def _surface(kit: Path, workspace: Path) -> dict:
-    text=_run_kit(kit,'read-surface',workspace,['--require-ready','--compact'])
-    try:surface=json.loads(text)
-    except ValueError as exc:raise ManagerError('Kit did not return read-surface JSON') from exc
-    if surface.get('format')!='kristal.github-read-surface/1.0' or surface.get('ready') is not True:
-        raise ManagerError('Kit read-surface not ready')
+    # Important: the Kit prints structured JSON even when ready=false.  With
+    # --require-ready it exits 1; _run_kit would otherwise show the *tail* of
+    # the JSON (file SHA-256 entries), hiding the actual errors list.
+    text=_run_kit(kit,'read-surface',workspace,['--compact'])
+    try:
+        surface=json.loads(text)
+    except ValueError as exc:
+        raise ManagerError('Kit did not return read-surface JSON for '+workspace.name) from exc
+    if not isinstance(surface,dict) or surface.get('format') not in ('kristal.github-read-surface/1.0','kristal.github-private-read-surface/1.0'):
+        raise ManagerError('Unsupported Kit read-surface format for '+workspace.name)
+    if surface.get('ready') is not True:
+        errors=_kit_readiness_errors(surface)
+        summary=' ; '.join(errors[:6])
+        if len(errors)>6:
+            summary+=f' ; … et {len(errors)-6} autre(s) erreur(s)'
+        raise ManagerError('Surface de lecture non prête (ready=false) pour '+workspace.name
+                           +f' ({len(errors)} problème(s)) : '+summary)
     if not isinstance(surface.get('files'),list) or not surface['files']:
-        raise ManagerError('Kit supplied empty read surface')
+        raise ManagerError('Kit supplied empty read surface for '+workspace.name)
     return surface
 
 
@@ -100,14 +126,19 @@ def _make_one(kit: Path, workspace: Path, output: Path, slug: str, *,build_copy:
     surface=_surface(kit,prepared)
     if surface.get('slug') != slug or surface.get('target_root') != 'kristals/'+slug:
         raise ManagerError('Kit slug/target mismatch; no implicit renaming')
-    # A derived rebuild may not silently replace an existing current v9 state.
-    for relative in ('state/state-snapshot.json', 'build/v9/state-snapshot.json'):
-        previous=workspace/relative
+    # Check the *selected* V9 descriptor; never impose an unrelated historical
+    # descriptor as the current one. Read-surface Kit already verifies the
+    # limited state commitment before returning ready=true.
+    selected_states=[item['path'] for item in surface['files'] if item.get('role')=='state_snapshot']
+    if surface['format']=='kristal.github-private-read-surface/1.0' and len(selected_states)!=1:
+        raise ManagerError('Limited private reader must carry exactly one verified V9 state')
+    for relative in selected_states or (['state/state-snapshot.json'] if surface['format']=='kristal.github-read-surface/1.0' else []):
+        previous=prepared/relative
         if previous.is_file():
             recorded=_json(previous)
             if recorded.get('state_ref') != surface.get('state_ref') or \
                recorded.get('logical_commitment') != surface.get('state_logical_commitment'):
-                raise ManagerError('A derived build changed the existing v9 semantic commitment; independent review required')
+                raise ManagerError('Read surface and V9 state commitment mismatch')
 
     target=output/slug
     target.mkdir(parents=True,exist_ok=False)
@@ -132,10 +163,14 @@ def _make_one(kit: Path, workspace: Path, output: Path, slug: str, *,build_copy:
         dst.parent.mkdir(parents=True,exist_ok=True)
         dst.write_bytes(data)
         entries.append({'path':rel,'role':item['role'],'size':len(data),'sha256':_hash(data)})
-    for required in ('AI_MANIFEST.json','AI_START_HERE.md','ai/INDEX.json','state/state-snapshot.json'):
-        if required not in seen:raise ManagerError('Mandatory read file missing: '+required)
+    limited = surface['format']=='kristal.github-private-read-surface/1.0'
+    required = ('README.md',) if limited else ('AI_MANIFEST.json','AI_START_HERE.md','ai/INDEX.json','state/state-snapshot.json')
+    for rel in required:
+        if rel not in seen:raise ManagerError('Mandatory read file missing: '+rel)
+    if surface.get('entrypoint') != ('README.md' if limited else 'AI_START_HERE.md'):
+        raise ManagerError('Unexpected read entrypoint')
     ordered=sorted(entries,key=lambda x:x['path'].encode('utf8'))
-    obj=_json(target/'ai/INDEX.json').get('materialization_blobs',[])
+    obj=[] if limited else _json(target/'ai/INDEX.json').get('materialization_blobs',[])
     if not isinstance(obj,list) or obj!=surface.get('materialization_objects') or len(obj)!=surface.get('materialization_object_count'):
         raise ManagerError('Materialization inventory does not match Kit')
     projection={'format':surface['format'],'slug':slug,'state_ref':surface['state_ref'],
@@ -150,7 +185,7 @@ def _make_one(kit: Path, workspace: Path, output: Path, slug: str, *,build_copy:
               'manager_version':'0.1.0a15.post2','read_surface_format':surface['format'],
               'local_kit_version':surface.get('kit_version'),
               'slug':slug,'title':workspace_info.get('title') or slug,
-              'target_root':'kristals/'+slug, 'entrypoint':'AI_START_HERE.md',
+              'target_root':'kristals/'+slug, 'entrypoint':surface['entrypoint'],
               'state_ref':surface['state_ref'],
               'state_logical_commitment':surface['state_logical_commitment'],
               'surface_digest':digest,'file_count':len(ordered),
@@ -160,7 +195,7 @@ def _make_one(kit: Path, workspace: Path, output: Path, slug: str, *,build_copy:
     path.parent.mkdir(exist_ok=True)
     path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     return {'slug':slug,'title':manifest['title'],'path':'kristals/'+slug,
-            'entrypoint':'kristals/'+slug+'/AI_START_HERE.md',
+            'entrypoint':'kristals/'+slug+'/'+surface['entrypoint'],
             'state_ref':manifest['state_ref'],
             'state_logical_commitment':manifest['state_logical_commitment'],
             'surface_digest':digest,'file_count':len(ordered),
@@ -225,8 +260,24 @@ def prepare_private_collection(*, locals_root: Path, kit_script: Path, output: P
         temp=Path(td)
         collection=temp/'payload'
         indexed=collection/'kristals';indexed.mkdir(parents=True)
-        rows=[_make_one(kit_script,folder,indexed,slug,build_copy=build_on_copy)
-              for folder,slug in zip(sources,slugs)]
+        # Examine every selected Kristal, not only the first rejected one.
+        # This temporary tree is discarded on *any* failure. No checkout or
+        # source workspace is ever modified by this stage.
+        rows=[]
+        rejected=[]
+        for folder,slug in zip(sources,slugs):
+            try:
+                rows.append(_make_one(kit_script,folder,indexed,slug,
+                                      build_copy=build_on_copy))
+            except ManagerError as exc:
+                rejected.append((folder.name,str(exc)))
+        if rejected:
+            shown=['  '+name+' : '+message for name,message in rejected[:15]]
+            if len(rejected)>15:
+                shown.append(f'  … {len(rejected)-15} autre(s) Kristal(s) refusé(s).')
+            raise ManagerError(
+                f'{len(rejected)}/{len(slugs)} Kristal(s) non prêt(s). '
+                'Aucune copie vers kristal-private.\n'+'\n'.join(shown))
         rows.sort(key=lambda x:(x['slug'].encode('utf8'),x['path'].encode('utf8')))
         projection={'format':'kristal.github-collection-index/1.0','kristals':rows}
         index={**projection,'count':len(rows),'index_digest':_hash(_canonical(projection)),

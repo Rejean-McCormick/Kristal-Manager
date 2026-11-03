@@ -104,20 +104,22 @@ def _validate_collection(root):
         slug=row.get('slug')
         if not isinstance(slug,str) or not SLUG.fullmatch(slug) or row.get('path')!='kristals/'+slug:
             _err('Identité de membre invalide')
-        if row.get('entrypoint')!='kristals/'+slug+'/AI_START_HERE.md':
+        limited = row.get('entrypoint') == 'kristals/'+slug+'/README.md'
+        if row.get('entrypoint') not in ('kristals/'+slug+'/README.md','kristals/'+slug+'/AI_START_HERE.md'):
             _err('Entrée de lecture invalide')
         slugs.append(slug)
         member=folder/slug
         listed=_files(member)
         manifest=_json(member/'.kristal/sync-manifest.json')
-        expected={'slug':slug,'target_root':'kristals/'+slug,'entrypoint':'AI_START_HERE.md',
+        expected={'slug':slug,'target_root':'kristals/'+slug,'entrypoint':('README.md' if limited else 'AI_START_HERE.md'),
                   'state_ref':row.get('state_ref'),'state_logical_commitment':row.get('state_logical_commitment'),
                   'surface_digest':row.get('surface_digest'),'file_count':row.get('file_count'),
                   'total_bytes':row.get('total_bytes'),
                   'materialization_object_count':row.get('materialization_object_count')}
         if any(manifest.get(k)!=v for k,v in expected.items()):
             _err('Index/manifest divergents : '+slug)
-        if manifest.get('format')!='kristal.github-sync-manifest/1.0' or manifest.get('read_surface_format')!='kristal.github-read-surface/1.0':
+        expected_format='kristal.github-private-read-surface/1.0' if limited else 'kristal.github-read-surface/1.0'
+        if manifest.get('format')!='kristal.github-sync-manifest/1.0' or manifest.get('read_surface_format')!=expected_format:
             _err('Format manifeste incorrect : '+slug)
         if not isinstance(manifest.get('policy'),dict) or any(manifest['policy'].get(k) is not True for k in POLICY):
             _err('Politique read-surface invalide : '+slug)
@@ -146,20 +148,31 @@ def _validate_collection(root):
             digest_files.append(e)
         if wanted!=listed:
             _err('Fichier orphelin ou manquant dans '+slug+' : '+', '.join(sorted(wanted ^ listed)[:4]))
-        if not {'AI_START_HERE.md','AI_MANIFEST.json','ai/INDEX.json','state/state-snapshot.json'}<=listed:
-            _err('Surface de lecture obligatoire absente : '+slug)
+        if limited:
+            if 'README.md' not in listed or len([e for e in entries if e.get('role')=='state_snapshot'])!=1:
+                _err('Surface privée limitée sans README ni état V9 unique : '+slug)
+            if any(p.startswith('ai/') or p.startswith('AI_') for p in listed):
+                _err('Une surface privée limitée ne peut se présenter comme capsule AI : '+slug)
+        elif not {'AI_START_HERE.md','AI_MANIFEST.json','ai/INDEX.json','state/state-snapshot.json'}<=listed:
+            _err('Surface de lecture AI obligatoire absente : '+slug)
         if total!=row.get('total_bytes'):
             _err('Total des octets invalide : '+slug)
         ordered=sorted(digest_files,key=lambda x:x['path'].encode('utf-8'))
         if ordered!=digest_files:_err('Manifest désordonné')
-        objects=_json(member/'ai/INDEX.json').get('materialization_blobs',[])
+        objects=[] if limited else _json(member/'ai/INDEX.json').get('materialization_blobs',[])
         if not isinstance(objects,list) or len(objects)!=row.get('materialization_object_count'):
             _err('Inventaire matérialisations invalide : '+slug)
-        proj={'format':'kristal.github-read-surface/1.0','slug':slug,'state_ref':row['state_ref'],
+        proj={'format':expected_format,'slug':slug,'state_ref':row['state_ref'],
               'state_logical_commitment':row['state_logical_commitment'],
-              'entrypoint':'AI_START_HERE.md','files':ordered,'materialization_objects':objects}
+              'entrypoint':('README.md' if limited else 'AI_START_HERE.md'),'files':ordered,'materialization_objects':objects}
         if _hash(_canonical(proj))!=row['surface_digest']:
             _err('Digest de surface incorrect : '+slug)
+        if limited:
+            state_rel=next(e['path'] for e in entries if e.get('role')=='state_snapshot')
+            state=_json(member/state_rel)
+            if state.get('artifact_type')!='kristal_state_snapshot' or state.get('schema_version')!='9.0' or \
+               state.get('state_ref')!=row['state_ref'] or state.get('logical_commitment')!=commitment:
+                _err('État V9 privé limité non lié au manifeste : '+slug)
     if len(set(slugs))!=len(slugs) or len({s.casefold() for s in slugs})!=len(slugs):
         _err('Membres dupliqués')
     actual={p.name for p in folder.iterdir() if p.is_dir()}
