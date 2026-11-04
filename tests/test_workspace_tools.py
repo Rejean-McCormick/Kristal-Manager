@@ -123,11 +123,15 @@ def test_gui_category_toggle_sort_and_export(tmp_path, monkeypatch):
         assert not app.busy
         assert len(app.rows) == 2
         assert len(app.tree.get_children()) == 1
-        assert 'architecture' in app.category_choice['values']
-        app.category_var.set('architecture')
+        # This combo now filters *explicit* UNESCO notation, not legacy domain
+        # labels. 'architecture' stays available in the separate read-only detail.
+        assert 'All UNESCO domains' in app.category_choice['values']
+        assert 'architecture' not in app.category_choice['values']
+        assert category_of(app.rows[0]) == 'architecture'
+        app.category_var.set('Unmapped')
         app.refresh()
         assert len(app.tree.get_children()) == 1
-        app.category_var.set('Toutes catégories')
+        app.category_var.set('All UNESCO domains')
         app.show_history_var.set(True)
         app.refresh()
         assert len(app.tree.get_children()) == 2

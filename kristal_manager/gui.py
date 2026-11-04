@@ -677,8 +677,48 @@ class ManagerWindow(tk.Tk):
         if not folder.is_dir():
             messagebox.showerror('Folder not found', f'Le dossier indiqué n’existe pas :\n{folder}', parent=self)
             return
-        self._start('Scanning local inventory…', lambda: scan_roots([folder]),
+        # Restore persisted observations only when their source fingerprints match.
+        # The derived SQLite register lives outside the Kristals. Never re-label
+        # an old or changed diagnostic PASS as current after a new scan.
+        def work():
+            import sqlite3
+            from .central_store import restore_rows
+            rows = scan_roots([folder])
+            try:
+                return restore_rows(rows), None
+            except (sqlite3.DatabaseError, OSError, ValueError, RuntimeError) as exc:
+                # An optional derived index must not prevent opening local sources.
+                # Never resurrect an old PASS after a failed evidence read.
+                return rows, f'Index de diagnostics indisponible : {type(exc).__name__}: {exc}'
+        self._start('Scanning local inventory…', work,
                     folder=folder.resolve(), job='scan')
+
+    def start_batch_diagnostics(self) -> bool:
+        """Run the bundled V9 reader on the selected folder with explicit consent.
+
+        Reports and the derived operational index remain outside the sources.
+        Native-only / non-V9 Kristals are recorded as NOT_APPLICABLE, never PASS.
+        """
+        if self.busy:
+            return False
+        folder = Path(self.path_var.get().strip()).expanduser()
+        if not folder.is_dir():
+            messagebox.showerror('Folder not found', f'Le dossier indiqué n’existe pas :\n{folder}', parent=self)
+            return False
+        folder = folder.resolve()
+        if not messagebox.askyesno('Diagnostic V9 du dossier',
+                'Exécuter les vérifications V9 sur les Kristals du dossier ?\n\n'
+                f'{folder}\n\n'
+                'Les rapports et l’index dérivé restent hors des Kristals.\n'
+                'Ce contrôle ne qualifie pas C1/C2/C3 et ne publie rien.', parent=self):
+            return False
+        from .diagnostics_batch import run_folder
+        def work():
+            return run_folder(folder, on_progress=lambda done, total, name, verdict:
+                self.events.put(('batch_progress', (done, total, name, verdict), folder, None)))
+        self._start('KristalDiag V9 : diagnostic du dossier…', work,
+                    folder=folder, job='batch_diag')
+        return True
 
     def start_verify(self):
         row = self._selected_row()
@@ -881,10 +921,15 @@ class ManagerWindow(tk.Tk):
         try:
             while True:
                 kind, payload, folder, diagnostic = self.events.get_nowait()
-                if kind != 'diag_dependency':
+                if kind not in ('diag_dependency', 'batch_progress'):
                     self.busy = False
                     self._current_job = None
-                if kind == 'error':
+                if kind == 'batch_progress':
+                    done, total, name, verdict = payload
+                    self.status_var.set(f'KristalDiag V9 : {done}/{total} · {name} : {verdict}')
+                    if self._global_dialog is not None and self._global_dialog.winfo_exists():
+                        self._global_dialog.on_batch_progress(done, total, name, verdict)
+                elif kind == 'error':
                     if self._diag_dialog and self._diag_dialog.winfo_exists():
                         self._diag_dialog.render_error(payload)
                     self._fail('Operation interrupted', RuntimeError(payload), diagnostic=diagnostic)
@@ -896,8 +941,11 @@ class ManagerWindow(tk.Tk):
                         dialog._dependency_done(result)
                 elif kind == 'scan':
                     before = self._selected_path()
+                    rows, storage_warning = payload
                     # A new structural scan invalidates previous checks/catalogue readings; never show stale results.
-                    self.rows = [r for r in payload if not r.get('hidden_auxiliary')]
+                    self.rows = [r for r in rows if not r.get('hidden_auxiliary')]
+                    if storage_warning:
+                        self.log('WARNING', storage_warning)
                     self._load_icons()
                     self.roots = [folder]
                     self.path_var.set(str(folder))
@@ -910,6 +958,28 @@ class ManagerWindow(tk.Tk):
                                         f'{sum(is_historical(r) for r in self.rows)} internal archives masquées · conformité non établie')
                     self.log('SUCCESS', f'Inventaire : {sum(not is_historical(r) for r in self.rows)} Kristals et '
                            f'{sum(is_historical(r) for r in self.rows)} internal archives sous {folder}')
+                elif kind == 'batch_diag':
+                    # Completion is scoped to the exact selected folder: a user
+                    # may edit the path field while an asynchronous run executes.
+                    current = Path(self.path_var.get().strip()).expanduser().resolve()
+                    if current == folder:
+                        import sqlite3
+                        from .central_store import restore_rows
+                        try:
+                            self.rows = restore_rows(self.rows)
+                        except (sqlite3.DatabaseError, OSError, ValueError, RuntimeError) as exc:
+                            self.log('WARNING', f'Index de diagnostic indisponible après le batch : {exc}')
+                            # Drop any unverified in-memory PASS; the summary remains on disk.
+                            for row in self.rows:
+                                row.pop('diag_report', None)
+                                row.pop('diag_freshness', None)
+                        self.refresh()
+                    counts = ', '.join(f'{k}={v}' for k,v in sorted(payload.get('counts', {}).items()))
+                    self.status_var.set(f'Diagnostic V9 terminé : {counts} · pas de qualification C1/C2/C3')
+                    self.log('DIAG', f'Batch V9 : {payload.get("total", 0)} entrées · {counts} · '
+                                     f'preuves : {payload.get("report_directory", "hors sources")}')
+                    if self._global_dialog is not None and self._global_dialog.winfo_exists():
+                        self._global_dialog.render_batch_result(payload)
                 elif kind == 'verify':
                     path, report = payload
                     row = next((r for r in self.rows if r['path'] == path), None)

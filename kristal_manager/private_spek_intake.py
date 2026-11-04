@@ -92,6 +92,10 @@ def inspect(lock: dict, *, graph_path: Path, identity_map: Path | None = None) -
     if not isinstance(relations,list):
         raise PrivateIntakeError('Déclarations de relations manquantes')
     for relation in relations:
+        anchors = relation.get('source_assertion_refs') if isinstance(relation,dict) else None
+        if (not isinstance(anchors,list) or not anchors or not all(isinstance(r,str) and r for r in anchors)
+            or len(anchors)!=len(set(anchors))):
+            raise PrivateIntakeError('Relation sans ancrages uniques explicites')
         if (not isinstance(relation,dict) or relation.get('status')!='declared_unverified'
             or relation.get('template_ref') not in template_refs or
             not isinstance(relation.get('source_assertion_refs'),list) or

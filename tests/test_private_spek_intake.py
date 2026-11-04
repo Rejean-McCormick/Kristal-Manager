@@ -23,3 +23,24 @@ def test_private_handoff_never_authorizes_publication(tmp_path):
     lock['qualification']['publication_authorized']=False
     graph.write_text('{}')
     with pytest.raises(PrivateIntakeError):inspect(lock,graph_path=graph,identity_map=migration)
+
+
+def test_empty_or_duplicated_relation_sources_are_refused(tmp_path):
+    graph=tmp_path/'graph.json'
+    graph.write_text(json.dumps({'schema_version':'11.0','artifact_type':'kristal_semantic_graph',
+        'assertions':[{'id':'KA1'}]}))
+    sha=lambda p:'sha256:'+hashlib.sha256(p.read_bytes()).hexdigest()
+    lock={'format':'spek.private-editorial-handoff/1.0','status':'PRIVATE_UNQUALIFIED_NOT_PUBLISHABLE',
+       'source':{'kind':'kristal_v11_semantic_graph','sha256':sha(graph)},
+       'fields':[{'realization_key':'k','request_sha256':'sha256:'+'f'*64,
+                  'source_assertion_refs':['KA1']}],
+       'template_locks':[{'template_ref':'rhetorical.definition@1.0.0','sha256':'sha256:'+'0'*64}],
+       'selected_assertion_count':1,
+       'qualification':dict.fromkeys(['semantic_entailment_checked','semantik_result_pairs_verified',
+          'rhetorical_relations_approved','c1_c2_c3_approved','publication_authorized'],False)}
+    for refs in ([],['KA1','KA1']):
+        lock['relations_declared_unverified']=[{'template_ref':'rhetorical.definition@1.0.0',
+            'relation_tag':'support','status':'declared_unverified',
+            'source_assertion_refs':refs}]
+        with pytest.raises(PrivateIntakeError,match='ancrages'):
+            inspect(lock,graph_path=graph)

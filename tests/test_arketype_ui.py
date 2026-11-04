@@ -79,12 +79,15 @@ def test_gui_displays_and_filters_arketype_usage(tmp_path, monkeypatch):
         app.refresh()
         assert len(app.tree.get_children()) == 1
         selected=app.tree.get_children()[0]
-        values=app.tree.item(selected)['values']
-        assert values[2] == 'ARK-08' and values[3] == 'PRF-15'
+        values=dict(zip(app.tree['columns'], app.tree.item(selected)['values']))
+        assert values['arketype'] == 'ARK-08' and values['usage'] == 'PRF-15'
+        # UNESCO domains and legacy free-text domains are separate axes.
+        assert values['category'] == 'Unmapped'
         app.arketype_var.set('Unclassified')
         app.refresh()
         assert len(app.tree.get_children()) == 1
-        assert app.tree.item(app.tree.get_children()[0])['values'][2] == '—'
+        values=dict(zip(app.tree['columns'], app.tree.item(app.tree.get_children()[0])['values']))
+        assert values['arketype'] == '—'
     finally:
         app.destroy()
 

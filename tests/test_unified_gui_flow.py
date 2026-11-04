@@ -56,8 +56,34 @@ def test_ui_batch_and_reopen_saved_diag(tmp_path,monkeypatch):
     try:
         reopened.path_var.set(str(source));reopened.start_scan();drain(reopened)
         assert reopened.rows[0]['diag_report']['verdict']=='PASS'
-        reopened.advanced_columns_var.set(True)
-        reopened._toggle_technical_columns()
-        assert reopened.tree['displaycolumns'] == ('#all',) or len(reopened.tree['displaycolumns'])>8
+        # Current UI always exposes the technical columns: no legacy toggle.
+        assert len(reopened.tree['columns']) >= 9
+        assert 'diag' in reopened.tree['columns']
+        assert reopened.rows[0]['diag_freshness'] == 'CURRENT'
     finally:
         reopened.destroy()
+
+
+@pytest.mark.skipif(os.name!='nt' and not os.environ.get('DISPLAY'), reason='GUI display unavailable')
+def test_scan_survives_unavailable_derived_store_without_false_pass(tmp_path, monkeypatch):
+    from kristal_manager import gui, central_store
+    local=tmp_path/'locals'/'Kristal-Test';local.mkdir(parents=True)
+    (local/'kristal.workspace.json').write_text(json.dumps({
+        'format':'kristal.local-workspace/3.2.0','slug':'test','title':'Test'}), encoding='utf8')
+    # A broken or unreadable operational index must not block the inventory.
+    def unavailable(_):
+        raise RuntimeError('database unavailable (simulated)')
+    monkeypatch.setattr(central_store, 'restore_rows', unavailable)
+    monkeypatch.setattr(gui, 'save_settings', lambda *_:None)
+    app=gui.ManagerWindow()
+    try:
+        app.path_var.set(str(local.parent));app.start_scan()
+        deadline=time.monotonic()+10
+        while app.busy and time.monotonic()<deadline:
+            app.update();time.sleep(.02)
+        app.update()
+        assert not app.busy and len(app.rows)==1
+        assert 'diag_report' not in app.rows[0]
+        assert 'Index de diagnostics indisponible' in app._text(app.journal)
+    finally:
+        app.destroy()

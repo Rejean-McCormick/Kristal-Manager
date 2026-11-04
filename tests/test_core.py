@@ -515,7 +515,7 @@ def test_quick_scan_detects_changed_state(tmp_path: Path):
     assert row["state_commitment"] == "sha256:" + "b" * 64
 
 
-def test_validation_cache_reuses_valid_result_when_inputs_unchanged(tmp_path: Path):
+def test_validation_cache_refuses_unverified_legacy_valid_result(tmp_path: Path):
     workspace = tmp_path / "workspace"; local = workspace / "locals" / "K"
     local.mkdir(parents=True)
     (local / "kristal.workspace.json").write_text(json.dumps({"format": CURRENT_LOCAL_FORMAT, "slug": "k"}), encoding="utf-8")
@@ -524,9 +524,12 @@ def test_validation_cache_reuses_valid_result_when_inputs_unchanged(tmp_path: Pa
     key = validation_cache_key(rec, workspace_root=workspace, network_config=None)
     previous = {**rec, "last_validation_result": "VALID", "last_validation_cache_key": key}
     result = validate_local_cached(local, previous=previous, workspace_root=workspace, network_config=None)
-    assert result["result"] == "VALID"
-    assert result["cached"] is True
-    assert result["validation_cache_key"] == key
+    # Old local structure labels are NOT independent C1 qualification and
+    # cannot be reused as a cached VALID result after the backend was disabled.
+    assert result["result"] == "LOCAL_STRUCTURE_ONLY"
+    assert result["cached"] is False
+    assert result["validation_cache_key"] is None
+    assert result["note"].startswith("Operational evidence only")
 
 
 def test_merge_invalidates_validation_cache_key_when_state_changes(tmp_path: Path):
