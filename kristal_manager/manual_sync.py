@@ -37,10 +37,10 @@ def _git(root: Path, *args: str) -> str:
 
 def _git_root(path: Path) -> None:
     if not path.is_dir() or path.is_symlink():
-        raise ManagerError('Dépôt absent ou dossier symbolique : ' + str(path))
+        raise ManagerError('Repository missing or symlinked folder: ' + str(path))
     root = Path(_git(path, 'rev-parse', '--show-toplevel').strip()).resolve()
     if root != path.resolve():
-        raise ManagerError('Le dossier doit être la racine exacte du dépôt Git : ' + str(path))
+        raise ManagerError('Folder must be the exact Git repository root: ' + str(path))
 
 
 def _safe_relative(path: str) -> Path:
@@ -71,7 +71,7 @@ def _tracked(source: Path) -> list[tuple[str, Path, str, int]]:
         p = _safe_relative(rel)
         f = source / p
         if not f.is_file() or f.is_symlink() or not f.resolve().is_relative_to(source):
-            raise ManagerError('Entrée Git absente, sous-module ou lien symbolique : ' + rel)
+            raise ManagerError('Git entry missing, submodule or symlink: ' + rel)
         # Reject symlinked parents, even if a platform resolves through them.
         if any((source / Path(*p.parts[:n])).is_symlink() for n in range(1, len(p.parts))):
             raise ManagerError('Lien symbolique parent : ' + rel)
@@ -85,9 +85,9 @@ def _tracked(source: Path) -> list[tuple[str, Path, str, int]]:
 
 def _selected_sources(locals_root: Path, slugs: list[str]) -> list[tuple[str, Path]]:
     if not locals_root.is_dir() or locals_root.is_symlink():
-        raise ManagerError('Racine locals absente')
+        raise ManagerError('Locals root missing')
     if not slugs or len(slugs) != len(set(slugs)) or any(not isinstance(s, str) or not SLUG.fullmatch(s) for s in slugs):
-        raise ManagerError('Sélection explicite de slugs uniques requise')
+        raise ManagerError('Explicit selection of unique slugs required')
     matches = {}
     for d in locals_root.iterdir():
         if not d.is_dir() or d.is_symlink():
@@ -103,7 +103,7 @@ def _selected_sources(locals_root: Path, slugs: list[str]) -> list[tuple[str, Pa
         if slug in slugs:
             matches.setdefault(slug, []).append(d)
     if any(len(matches.get(slug, [])) != 1 for slug in slugs):
-        raise ManagerError('Identité manquante ou dupliquée dans locals')
+        raise ManagerError('Identity missing or duplicated in locals')
     return [(slug, matches[slug][0]) for slug in slugs]
 
 
@@ -114,20 +114,20 @@ def _github_dest(target: Path, source: Path, slug: str) -> None:
     remote = _git(target, 'remote', 'get-url', 'origin').strip()
     push_remote = _git(target, 'remote', 'get-url', '--push', 'origin').strip()
     if remote != push_remote:
-        raise ManagerError('Destination GitHub push différente de origin : ' + target.name)
+        raise ManagerError('GitHub push destination differs from origin: ' + target.name)
     m = GITHUB.fullmatch(remote)
     if not m:
         raise ManagerError('La destination n’a pas de remote origin GitHub : ' + target.name)
     name = m.group(1).split('/')[-1].removesuffix('.git')
     if name.casefold() not in (source.name.casefold(), slug.casefold()):
-        raise ManagerError(f'Le remote GitHub {name} ne correspond pas à {source.name} / {slug}')
+        raise ManagerError(f'GitHub remote {name} does not match {source.name} / {slug}')
     workspace = target / 'kristal.workspace.json'
     if workspace.is_file():
         try: target_slug = json.loads(workspace.read_text(encoding='utf-8')).get('slug')
         except (ValueError, OSError, AttributeError) as exc:
-            raise ManagerError('Métadonnées destination invalides : ' + target.name) from exc
+            raise ManagerError('Invalid destination metadata: ' + target.name) from exc
         if target_slug != slug:
-            raise ManagerError('Identité du clone GitHub différente du Kristal source : ' + target.name)
+            raise ManagerError('GitHub checkout identity differs from source Kristal: ' + target.name)
 
 
 def plan_copies(*, locals_root: Path, destination_root: Path, slugs: list[str],
@@ -142,9 +142,9 @@ def plan_copies(*, locals_root: Path, destination_root: Path, slugs: list[str],
     if not destination_root.is_dir() or destination_root.is_symlink():
         raise ManagerError('Dossier de destination absent')
     if destination_root == locals_root or destination_root.is_relative_to(locals_root) or locals_root.is_relative_to(destination_root):
-        raise ManagerError('La destination doit être séparée de locals')
+        raise ManagerError('Destination must be separate from locals')
     if any((p / '.git').exists() for p in (destination_root, *destination_root.parents)):
-        raise ManagerError('La racine de destination ne peut pas être à l’intérieur d’un dépôt Git')
+        raise ManagerError('Destination root cannot be inside a Git repository')
     selections = _selected_sources(locals_root, slugs)
     projects = []
     for slug, source in selections:
@@ -154,7 +154,7 @@ def plan_copies(*, locals_root: Path, destination_root: Path, slugs: list[str],
             raise ManagerError('Destination symbolique ou hors racine : ' + source.name)
         if mode == 'new':
             if target.exists():
-                raise ManagerError('Copie déjà existante, aucun remplacement : ' + str(target))
+                raise ManagerError('Copy already exists; no replacement: ' + str(target))
         else:
             _github_dest(target, source, slug)
         entries = []
@@ -189,7 +189,7 @@ def plan_copies(*, locals_root: Path, destination_root: Path, slugs: list[str],
             'copy_bytes': sum(p['bytes'] for p in projects), 'projects': projects,
             'git_add': False, 'git_commit': False, 'git_push': False,
             'publication_authorized': False,
-            'note': 'Vérifier les secrets, licences, données privées et autorisations avant toute synchronisation publique.'}
+            'note': 'Review secrets, licenses, private data and permissions before any public synchronization.'}
 
 
 def apply_copies(*, locals_root: Path, destination_root: Path, slugs: list[str],
@@ -198,7 +198,7 @@ def apply_copies(*, locals_root: Path, destination_root: Path, slugs: list[str],
                        slugs=slugs, mode=mode)
     backup_root = Path(plan['destination_root']).parent / 'KristalManager-copy-backups'
     if any((p / '.git').exists() for p in (backup_root, *backup_root.parents)):
-        raise ManagerError('Dossier de sauvegarde situé dans un dépôt Git')
+        raise ManagerError('Backup folder is inside a Git repository')
     backup_root.mkdir(parents=True, exist_ok=True)
     run = backup_root / ('copy-' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S') + '-' + uuid.uuid4().hex[:8])
     run.mkdir()
@@ -218,7 +218,7 @@ def apply_copies(*, locals_root: Path, destination_root: Path, slugs: list[str],
                 src, dst = source / rel, target / rel
                 # Recheck after preview to catch changes before an individual write.
                 if not src.is_file() or src.is_symlink() or _sha(src) != entry['sha256']:
-                    raise ManagerError('Source modifiée pendant la copie : ' + str(src))
+                    raise ManagerError('Source changed while copying: ' + str(src))
                 if dst.is_symlink() or (dst.exists() and (not dst.is_file() or _sha(dst) != entry['destination_sha256'])) or \
                         (not dst.exists() and entry['destination_sha256'] is not None):
                     raise ManagerError('Destination modifiée pendant la copie : ' + str(dst))

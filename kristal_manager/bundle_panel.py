@@ -17,24 +17,24 @@ def mib(num: int) -> str:
 class BundleInventoryPanel(tk.Toplevel):
     def __init__(self, parent, source):
         super().__init__(parent)
-        self.title('Manager — poids réels des Kristals pour bundles complets')
+        self.title('Manager — disk size of complete Kristal bundles')
         self.geometry('1080x700')
         self.minsize(780,520)
         self.source=Path(source)
         self.report=None
         self.working=False
-        self.status=tk.StringVar(value='Pas encore mesuré. Lecture seule; aucun ZIP ni fichier source modifié.')
+        self.status=tk.StringVar(value='Not measured yet. Read-only; no ZIP or source files modified.')
         frame=ttk.Frame(self,padding=13);frame.pack(fill='both',expand=True)
-        ttk.Label(frame,text='Inventaire de tailles — dossiers Kristals complets',
+        ttk.Label(frame,text='Size inventory — complete Kristal folders',
                   font=('Segoe UI',14,'bold')).pack(anchor='w')
-        ttk.Label(frame,text='Mesure tous les fichiers (y compris .git, médias, versions et dérivés), et lit le tag ARK déclaré s’il existe. Ne compresse rien.',
+        ttk.Label(frame,text='Measures all files (including .git, media, versions and derivatives), and reads the declared ARK tag if present. Does not compress anything.',
                   wraplength=1020).pack(anchor='w',pady=(2,9))
         actions=ttk.Frame(frame);actions.pack(fill='x')
-        self.scan_btn=ttk.Button(actions,text='Mesurer tous les Kristals',command=self.scan)
+        self.scan_btn=ttk.Button(actions,text='Measure all Kristals',command=self.scan)
         self.scan_btn.pack(side='left')
-        self.export_btn=ttk.Button(actions,text='Exporter inventaire JSON…',command=self.export)
+        self.export_btn=ttk.Button(actions,text='Export JSON inventory…',command=self.export)
         self.export_btn.pack(side='left',padx=(8,0))
-        self.copy_btn=ttk.Button(actions,text='Copier la liste pour ChatGPT',command=self.copy)
+        self.copy_btn=ttk.Button(actions,text='Copy list for ChatGPT',command=self.copy)
         self.copy_btn.pack(side='left',padx=(8,0))
         ttk.Button(actions,text='Fermer',command=self.destroy).pack(side='right')
         self.export_btn.configure(state='disabled');self.copy_btn.configure(state='disabled')
@@ -45,7 +45,7 @@ class BundleInventoryPanel(tk.Toplevel):
         columns=('project','mb','canon','files','ark','status')
         self.table=ttk.Treeview(area,columns=columns,show='headings',height=16)
         for key,title,width in [('project','Kristal',350),('mb','Total Mo (brut)',125),
-           ('canon','Canon Mo',105),('files','Fichiers',105),('ark','Tag ARK déclaré',135),
+           ('canon','Canon Mo',105),('files','Fichiers',105),('ark','Declared ARK tag',135),
            ('status','Mesure',130)]:
             self.table.heading(key,text=title)
             self.table.column(key,width=width,stretch=key=='project',anchor='e' if key in ('mb','canon','files') else 'w')
@@ -63,7 +63,7 @@ class BundleInventoryPanel(tk.Toplevel):
         self.working=True;self.scan_btn.configure(state='disabled')
         self.export_btn.configure(state='disabled');self.copy_btn.configure(state='disabled')
         self.progress.start(12)
-        self.status.set('Mesure des tailles sur disque en cours (fichiers non ouverts)…')
+        self.status.set('Measuring disk sizes (without opening file contents)…')
         def work():
             try:
                 output=scan_inventory(self.source)
@@ -79,7 +79,7 @@ class BundleInventoryPanel(tk.Toplevel):
     def _finish(self,report,error):
         self.working=False;self.progress.stop();self.scan_btn.configure(state='normal')
         if error:
-            self.status.set('Scan interrompu : '+error)
+            self.status.set('Scan interrupted: '+error)
             messagebox.showerror('Inventaire tailles',error,parent=self)
             return
         self.report=report
@@ -88,11 +88,11 @@ class BundleInventoryPanel(tk.Toplevel):
             self.table.insert('','end',iid=str(i),values=(r['project'],mib(r['bytes_total']),
               mib(r['bytes_canon']),r['file_count'],
               (r.get('declaration') or {}).get('primary_archetype') or '—',
-              'Complet' if r['measurement_complete'] else 'À vérifier'))
+              'Complete' if r['measurement_complete'] else 'Needs review'))
         c=report['counts']
-        self.status.set(f"{c['projects']} Kristals · {mib(c['total_bytes'])} Mio bruts · "
-            f"{c['total_files']} fichiers · {c['incomplete_projects']} mesure(s) incomplète(s). "
-            'Les tailles ZIP dépendent de la compression.')
+        self.status.set(f"{c['projects']} Kristals · {mib(c['total_bytes'])} MiB uncompressed · "
+            f"{c['total_files']} files · {c['incomplete_projects']} incomplete measurement(s). "
+            'ZIP sizes depend on compression.')
         self.export_btn.configure(state='normal');self.copy_btn.configure(state='normal')
         if report['projects']:
             self.table.selection_set('0');self.show_detail()
@@ -116,25 +116,25 @@ class BundleInventoryPanel(tk.Toplevel):
         try:
             output=format_brief(self.report)
             self.clipboard_clear();self.clipboard_append(output);self.update_idletasks()
-            self.status.set(f'Inventaire copié ({len(self.report["projects"])} Kristals). Colle dans ChatGPT.')
+            self.status.set(f'Inventory copied ({len(self.report["projects"])} Kristals). Paste into ChatGPT.')
         except tk.TclError as exc:
-            messagebox.showerror('Copie impossible',str(exc),parent=self)
+            messagebox.showerror('Copy failed',str(exc),parent=self)
 
     def export(self):
         if not self.report:return
-        path=filedialog.asksaveasfilename(parent=self,title='Exporter tailles des Kristals',
+        path=filedialog.asksaveasfilename(parent=self,title='Export Kristal sizes',
             initialfile='RAPPORT_TAILLES_KRISTALS.json',defaultextension='.json',
-            filetypes=[('Fichier JSON','*.json')])
+            filetypes=[('JSON file','*.json')])
         if not path:return
         target=Path(path).expanduser().resolve()
         source=self.source.expanduser().resolve()
         # No reports inside the source tree or its Kristals; avoid contamination.
         if target == source or target.is_relative_to(source):
-            messagebox.showerror('Sortie refusée',
-                'Enregistre le rapport hors du dossier locals/Kristals.',parent=self)
+            messagebox.showerror('Output rejected',
+                'Save the report outside the locals/Kristals folder.',parent=self)
             return
         try:
             target.write_text(json.dumps(self.report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
         except OSError as exc:
             messagebox.showerror('Export impossible',str(exc),parent=self);return
-        self.status.set('Inventaire exporté : '+str(target))
+        self.status.set('Inventory exported: '+str(target))

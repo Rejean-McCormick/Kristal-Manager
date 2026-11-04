@@ -30,13 +30,13 @@ def _read_json(path: Path) -> dict:
 
 def _validate(obj: dict) -> dict:
     if obj.get('format') != FORMAT or not isinstance(obj.get('entries'), list):
-        raise ValueError('Version ou entrées du registre non reconnues')
+        raise ValueError('Unrecognized register version or entries')
     found=set()
     for row in obj['entries']:
         if not isinstance(row, dict) or not isinstance(row.get('state_ref'),str) or not row['state_ref'].strip():
             raise ValueError('Identifiant de revue invalide')
         if row['state_ref'] in found:
-            raise ValueError('Identité state_ref dupliquée dans le registre')
+            raise ValueError('Duplicate state_ref identity in register')
         found.add(row['state_ref'])
         decision=row.get('archetype_review',{})
         if not isinstance(decision,dict) or decision.get('status') not in STATES:
@@ -48,7 +48,7 @@ def _validate(obj: dict) -> dict:
         if chosen is not None and chosen not in proposed:
             raise ValueError('Choix primaire inconnu : '+row['state_ref'])
         if decision['status']=='approved_locally' and (not chosen or not decision.get('local_human_approval') or not row.get('decision_log')):
-            raise ValueError('Approbation sans choix et décision humaine tracés : '+row['state_ref'])
+            raise ValueError('Approval without recorded human choice and decision: '+row['state_ref'])
     return obj
 
 
@@ -116,7 +116,7 @@ def _anchor_status(workspace:Path, anchors:dict) ->dict:
     label='MATCH' if len(statuses)==2 and all(v=='MATCH' for v in statuses.values()) else (
          'CHANGED' if any(v=='DIFFERENT' for v in statuses.values()) else 'UNVERIFIED')
     return {'status':label,'metadata_anchors':statuses,
-            'meaning':'Compare seulement workspace + index. Ne prouve pas une intégrité canonique complète.'}
+            'meaning':'Compares workspace + index only. Does not prove full canonical integrity.'}
 
 
 def annotate_entries(entries:list[dict], *, source:Path|str, registry_path:Path|str|None=None) ->dict:
@@ -151,10 +151,10 @@ def annotate_entries(entries:list[dict], *, source:Path|str, registry_path:Path|
         # on catalog cache. Only workspaces strictly inside the current source root.
         try:
             folder=Path(entry['path']).resolve(strict=True)
-            if folder==source or not folder.is_relative_to(source):raise ValueError('hors de la racine scannée')
+            if folder==source or not folder.is_relative_to(source):raise ValueError('outside scanned root')
             anchors=_anchor_status(folder,row.get('provenance',{}).get('anchors_sha256',{}))
         except (OSError,ValueError,TypeError,KeyError):
-            anchors={'status':'UNVERIFIED','metadata_anchors':{},'meaning':'Le chemin du Kristal n’a pas pu être vérifié sous la racine courante.'}
+            anchors={'status':'UNVERIFIED','metadata_anchors':{},'meaning':'Kristal path could not be verified under the current root.'}
         status=anchors['status']
         if status=='CHANGED':counts['anchor_changed']+=1
         elif status=='UNVERIFIED':counts['anchor_unverified']+=1
@@ -176,7 +176,7 @@ def annotate_entries(entries:list[dict], *, source:Path|str, registry_path:Path|
             'snapshot_date':row['snapshot_date'],
             'provenance_status':anchors,
             'current_scan_technical_health':current_health,
-            'limitations':'Historique sur snapshot sélectif; ARK proposé ≠ tag déclaré; non certification Framework.'}
+            'limitations':'Historical selective snapshot; proposed ARK is not a declared tag or Framework certification.'}
         entry['review_registry_status']=status
     return counts
 
@@ -184,9 +184,9 @@ def annotate_entries(entries:list[dict], *, source:Path|str, registry_path:Path|
 def update_decision(state_ref:str, status:str, note:str, *, author:str='Utilisateur Manager',
                     path:Path|str|None=None, selected_primary:str|None=None)->dict:
     """Manual local decision only: no modifications to any Kristal or tag."""
-    if status not in STATES:raise ValueError('Statut de décision non autorisé')
+    if status not in STATES:raise ValueError('Disallowed decision status')
     note=note.strip()
-    if not note or len(note)>2000:raise ValueError('Une justification courte est obligatoire (2000 caractères maximum).')
+    if not note or len(note)>2000:raise ValueError('A short justification is required (up to 2000 characters).')
     reg=load_registry(path)
     row=next((x for x in reg['entries'] if x['state_ref']==state_ref),None)
     if row is None:raise KeyError(state_ref)
@@ -195,7 +195,7 @@ def update_decision(state_ref:str, status:str, note:str, *, author:str='Utilisat
         raise ValueError('Le choix primaire ne figure pas dans les propositions de revue.')
     if status=='approved_locally':
         if len(options)>1 and not selected_primary:
-            raise ValueError('Il faut départager les candidats avant acceptation.')
+            raise ValueError('Resolve candidate ambiguity before approval.')
         selected_primary=selected_primary or options[0]
     old=row['archetype_review']['status']
     decision={'utc':datetime.now(timezone.utc).isoformat(), 'author':author[:120],

@@ -70,22 +70,22 @@ def run_folder(root: str | Path, *, profile: str = 'V9-State-Reader',
         from .diag_bridge import bundled_kristaldiag
         import importlib.util
         if not bundled_kristaldiag().is_file():
-            raise RuntimeError('KristalDiag intégré absent : tools/KristalDiag/kristaldiag.py')
+            raise RuntimeError('Bundled KristalDiag missing: tools/KristalDiag/kristaldiag.py')
         if importlib.util.find_spec('jsonschema') is None:
-            raise RuntimeError('Dépendance jsonschema manquante. Installer ce prérequis avant le batch.')
+            raise RuntimeError('Missing jsonschema dependency. Install it before batch diagnostics.')
     results = []
     run_id = start_run('KristalDiag', profile=profile, root=source, total=len(rows), db=db)
     try:
         for index, row in enumerate(rows, 1):
             if cancel_event is not None and cancel_event.is_set():
-                raise BatchCancelled('Batch interrompu à la demande de l’opérateur')
+                raise BatchCancelled('Batch stopped at operator request')
             workspace = Path(row['path'])
             if not applicable_v9(workspace):
                 result = {
                     'format': 'kristal.manager-kristaldiag/1.0', 'workspace': str(workspace),
                     'profile': profile, 'executed_at': _stamp(),
                     'verdict': 'NOT_APPLICABLE', 'process_status': 'NOT_EXECUTED',
-                    'explanation': 'Aucun état V9 reconnu : diagnostic V9 non applicable, contrat natif à vérifier séparément.',
+                    'explanation': 'No recognized V9 state: V9 diagnostics not applicable; verify the native contract separately.',
                     'input_fingerprint': _fingerprint(workspace), 'input_changed_during_run': False,
                     'qualification': 'NOT_ESTABLISHED', 'attestation': 'NOT_VERIFIED',
                 }

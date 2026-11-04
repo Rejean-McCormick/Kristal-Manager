@@ -111,7 +111,7 @@ def test_gui_icons_preserve_categories_sort_and_diag(tmp_path, monkeypatch):
         assert json.loads(app._text(app.details))['manager_icon']['source']=='desktop.ini'
         app.change_sort('state_ref')
         assert app._selected_row()['title'] == 'Kristal-Icons'
-        app.category_var.set('Toutes catégories'); app.refresh()
+        app.category_var.set('All categories'); app.refresh()
         app.refresh_icons()
         assert row['path'] in app.icon_images
         assert str(app.diag_button['state']) == 'normal'

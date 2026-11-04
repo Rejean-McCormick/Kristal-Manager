@@ -89,7 +89,7 @@ def _kit_readiness_errors(surface: dict) -> list[str]:
             # Keep one log line per issue; never echo JSON containing file bytes.
             message=' '.join(value.split())
             messages.append(message[:300]+('…' if len(message)>300 else ''))
-    return messages or ['Le Kit a signalé ready=false sans préciser la raison.']
+    return messages or ['Kit reported ready=false without a reason.']
 
 
 def _surface(kit: Path, workspace: Path) -> dict:
@@ -108,8 +108,8 @@ def _surface(kit: Path, workspace: Path) -> dict:
         summary=' ; '.join(errors[:6])
         if len(errors)>6:
             summary+=f' ; … et {len(errors)-6} autre(s) erreur(s)'
-        raise ManagerError('Surface de lecture non prête (ready=false) pour '+workspace.name
-                           +f' ({len(errors)} problème(s)) : '+summary)
+        raise ManagerError('Read surface not ready (ready=false) for '+workspace.name
+                           +f' ({len(errors)} issue(s)): '+summary)
     if not isinstance(surface.get('files'),list) or not surface['files']:
         raise ManagerError('Kit supplied empty read surface for '+workspace.name)
     return surface
@@ -274,7 +274,7 @@ def prepare_private_collection(*, locals_root: Path, kit_script: Path, output: P
         if rejected:
             shown=['  '+name+' : '+message for name,message in rejected[:15]]
             if len(rejected)>15:
-                shown.append(f'  … {len(rejected)-15} autre(s) Kristal(s) refusé(s).')
+                shown.append(f'  … {len(rejected)-15} other Kristal(s) rejected.')
             raise ManagerError(
                 f'{len(rejected)}/{len(slugs)} Kristal(s) non prêt(s). '
                 'Aucune copie vers kristal-private.\n'+'\n'.join(shown))

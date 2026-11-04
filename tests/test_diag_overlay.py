@@ -18,7 +18,7 @@ def test_guided_diag_rejects_unsupported_profile_and_output_inside_sources(tmp_p
     (ws / 'kristal.workspace.json').write_text(json.dumps({'title': 'Kristal-A'}))
     with pytest.raises(DiagConfigurationError, match='Profil'):
         run_official_diagnostic(ws, profile='V11-Certified', output_root=tmp_path)
-    with pytest.raises(DiagConfigurationError, match='hors des sources'):
+    with pytest.raises(DiagConfigurationError, match='outside Kristal sources'):
         run_official_diagnostic(ws, output_root=ws)
 
 

@@ -40,7 +40,7 @@ def test_slug_selection_from_locals_only(tmp_path):
 
 def test_prepare_refuses_unstaged_candidate(repo,tmp_path):
     unknown=tmp_path/'candidate';unknown.mkdir()
-    with pytest.raises(ManagerError,match='candidat privé'):
+    with pytest.raises(ManagerError,match='private candidate'):
         plan_commit(candidate=unknown,checkout=repo)
 
 
@@ -74,6 +74,6 @@ def test_fail_closed_on_wrong_remote(repo):
 
 def test_dirty_checkout_blocks_before_staging(repo,tmp_path):
     (repo/'untracked.txt').write_text('left alone')
-    with pytest.raises(ManagerError,match='Git doit être propre'):
+    with pytest.raises(ManagerError,match='Git must be clean'):
         prepare_local_commit(candidate=tmp_path,checkout=repo,write=True)
     assert (repo/'untracked.txt').read_text()=='left alone'

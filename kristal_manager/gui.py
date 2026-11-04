@@ -194,9 +194,9 @@ class ManagerWindow(tk.Tk):
         actions.add_command(label='Export diagnostic observations (JSON)…', command=self.export_diag_report)
         actions.add_command(label='Catalog selected Kristal', command=self.start_catalog_selected)
         actions.add_command(label='Catalog all Kristals in folder', command=self.start_catalog_all)
-        actions.add_command(label='Centre d’analyse globale (Arketype / UNESCO / diK)…', command=self.open_global_center)
+        actions.add_command(label='Global analysis (Arketype / UNESCO / diK)…', command=self.open_global_center)
         actions.add_command(label='Open content HTML overview…', command=self.open_content_overview)
-        actions.add_command(label='Transférer des Kristals (local) / Publication publique…', command=self.open_publication)
+        actions.add_command(label='Transfer Kristals (local) / Public publication…', command=self.open_publication)
         actions.add_separator()
         actions.add_command(label='UNESCO classification audit…', command=self.open_classification_audit)
         actions.add_command(label='Normalize folders in batch…', command=self.open_batch_rename)
@@ -208,10 +208,10 @@ class ManagerWindow(tk.Tk):
         icons_menu.add_command(label='Refresh icons (read-only)', command=self.refresh_icons)
         icons_menu.add_command(label='Selected icon information', command=self.icon_info)
         icons_menu.add_separator()
-        icons_menu.add_checkbutton(label='Activer icônes personnalisées sur dossiers Windows (session)',
+        icons_menu.add_checkbutton(label='Enable custom Windows folder icons (this session)',
                                    variable=self.custom_folder_icons_enabled,
                                    command=self._toggle_local_icons)
-        icons_menu.add_command(label='Gérer les icônes de locals… (aperçu / application)',
+        icons_menu.add_command(label='Manage local folder icons… (preview / apply)',
                                command=self.launch_icon_generator)
         bar.add_cascade(label='Icons', menu=icons_menu)
         logs = tk.Menu(bar, tearoff=False)
@@ -241,7 +241,7 @@ class ManagerWindow(tk.Tk):
         names.pack(side='left', fill='x', expand=True)
         ttk.Label(names, text='Kristal Manager', style='Title.TLabel').pack(anchor='w')
         ttk.Label(names,
-                  text='Browse · Verify · Catalog · KristalDiag · Publication GitHub contrôlée',
+                  text='Browse · Verify · Catalog · KristalDiag · Controlled GitHub publication',
                   style='BrandHeader.TLabel').pack(anchor='w')
 
         source = ttk.LabelFrame(self, text='1 · Folder to scan', style='Section.TLabelframe')
@@ -254,9 +254,9 @@ class ManagerWindow(tk.Tk):
         ttk.Button(pathline, text='Browse…', command=self.select_root).pack(side='left', padx=(7, 0))
         self.scan_button = ttk.Button(pathline, text='Scan folder', style='Primary.TButton', command=self.start_scan)
         self.scan_button.pack(side='left', padx=(7, 0))
-        self.global_analysis_button = ttk.Button(pathline, text='Analyse globale…', command=self.open_global_center)
+        self.global_analysis_button = ttk.Button(pathline, text='Global analysis…', command=self.open_global_center)
         self.global_analysis_button.pack(side='left', padx=(7, 0))
-        self.publication_button = ttk.Button(pathline, text='Transférer les Kristals…', command=self.open_publication)
+        self.publication_button = ttk.Button(pathline, text='Transfer Kristals…', command=self.open_publication)
         self.publication_button.pack(side='left', padx=(7, 0))
         self.path_var.trace_add('write', self._path_changed)
         ttk.Label(source, text='The path above controls global scans. Cataloging the selected Kristal is a separate action.',
@@ -282,7 +282,7 @@ class ManagerWindow(tk.Tk):
         self.actions_menu.add_command(label='Scan folder', command=self.start_scan)
         self.actions_menu.add_command(label='Refresh icons', command=self.refresh_icons)
         self.actions_menu.add_command(label='Icon information', command=self.icon_info)
-        self.actions_menu.add_command(label='Gérer les icônes locales…', command=self.launch_icon_generator)
+        self.actions_menu.add_command(label='Manage local folder icons…', command=self.launch_icon_generator)
         self.actions_menu.add_separator()
         self.actions_menu.add_command(label='Verify selected Kristal', command=self.start_verify)
         self.actions_menu.add_command(label='Open diagnostic center…', command=self.start_diag_selected)
@@ -290,7 +290,7 @@ class ManagerWindow(tk.Tk):
         self.actions_menu.add_command(label='Export diagnostic observations (JSON)…', command=self.export_diag_report)
         self.actions_menu.add_command(label='Catalog selected Kristal', command=self.start_catalog_selected)
         self.actions_menu.add_command(label='Catalog all Kristals in folder', command=self.start_catalog_all)
-        self.actions_menu.add_command(label='Centre d’analyse globale…', command=self.open_global_center)
+        self.actions_menu.add_command(label='Global analysis…', command=self.open_global_center)
         self.actions_menu.add_command(label='Open HTML overview', command=self.open_content_overview)
         self.actions_menu.add_command(label='UNESCO classification audit…', command=self.open_classification_audit)
         self.actions_menu.add_command(label='Normalize folders in batch…', command=self.open_batch_rename)
@@ -528,7 +528,7 @@ class ManagerWindow(tk.Tk):
         except (OSError, ValueError, RuntimeError) as exc:
             messagebox.showinfo('Rename unavailable', str(exc), parent=self)
             return
-        self.log('PREVIEW', f'Renommage : {plan.source} → {plan.destination} (aucune écriture)')
+        self.log('PREVIEW', f'Renommage : {plan.source} → {plan.destination} (no writes)')
         warning = ('\nThis Kristal contains internal historical archives.' if plan.has_history else '')
         if not messagebox.askyesno('Confirm folder rename',
              f'Declared name: {plan.declared_title}\n\n'
@@ -541,7 +541,7 @@ class ManagerWindow(tk.Tk):
         try:
             new_path = apply_rename(plan, scan_root=self.roots[0])
             self.log('SUCCESS', f'Folder renamed: {new_path}')
-            self.status_var.set(f'Folder renamed: {new_path.name} · relance de l’inventaire')
+            self.status_var.set(f'Folder renamed: {new_path.name} · restart inventory scan')
             self.start_scan()
         except (OSError, ValueError, RuntimeError) as exc:
             self._fail('Rename rejected or unavailable', exc, diagnostic=traceback.format_exc())
@@ -573,7 +573,7 @@ class ManagerWindow(tk.Tk):
              'The .kristal file is a local ZIP archive with a Manager manifest.\n'
              'This is NOT an official Kristal Framework package.\n\nContinue?', parent=self):
             return
-        self._start(f'Export {format.upper()} de « {row["title"]} »…',
+        self._start(f'Export {format.upper()} for “{row["title"]}”…',
                     lambda: export_workspace(source, target, format=format), folder=source, job='archive_export')
 
     def focus_filter(self):
@@ -592,7 +592,7 @@ class ManagerWindow(tk.Tk):
                                        initialdir=str(initial), mustexist=True)
         if root:
             self.path_var.set(root)
-            self.log('INFO', f'Dossier saisi : {root} (cliquer sur Scan folder).')
+            self.log('INFO', f'Selected folder: {root} (click Scan folder).')
 
     def _selected_row(self):
         chosen = self.tree.selection()
@@ -654,19 +654,19 @@ class ManagerWindow(tk.Tk):
             return False
         folder = Path(self.path_var.get().strip()).expanduser()
         if not folder.is_dir():
-            messagebox.showerror('Dossier introuvable',
-                                 f'Choisir le dossier locals existant :\n{folder}', parent=self)
+            messagebox.showerror('Folder not found',
+                                 f'Select the existing locals folder:\n{folder}', parent=self)
             return False
         from .global_analysis import analyze_all, CATALOGUE_PATH, RAPPORTS_PATH
         if not self._safe_output(CATALOGUE_PATH, source=folder) or not self._safe_output(RAPPORTS_PATH, source=folder):
             return False
-        if not messagebox.askyesno('Analyse globale (lecture seule)',
-             f'Dossier source : {folder}\n\n'
-             f'Catalogue : {CATALOGUE_PATH}\nRapports : {RAPPORTS_PATH}\n\n'
-             'Le Manager ne modifiera aucun Kristal. Les classifications seront seulement proposées.\n'
-             'Lancer ?', parent=self):
+        if not messagebox.askyesno('Global analysis (read-only)',
+             f'Source folder: {folder}\n\n'
+             f'Catalog: {CATALOGUE_PATH}\nReports: {RAPPORTS_PATH}\n\n'
+             'Manager will not modify any Kristal. Classifications will only be proposed.\n'
+             'Continue?', parent=self):
             return False
-        self._start('Analyse globale des Kristals (cache et propositions) en cours…',
+        self._start('Global Kristal analysis (cached observations and proposals) running…',
                     lambda: analyze_all(folder, update_catalogue=update_catalogue,
                                         verify_locally=verify_locally),
                     folder=folder.resolve(), job='global_analysis')
@@ -675,7 +675,7 @@ class ManagerWindow(tk.Tk):
     def start_scan(self):
         folder = Path(self.path_var.get().strip()).expanduser()
         if not folder.is_dir():
-            messagebox.showerror('Folder not found', f'Le dossier indiqué n’existe pas :\n{folder}', parent=self)
+            messagebox.showerror('Folder not found', f'The specified folder does not exist:\n{folder}', parent=self)
             return
         # Restore persisted observations only when their source fingerprints match.
         # The derived SQLite register lives outside the Kristals. Never re-label
@@ -689,7 +689,7 @@ class ManagerWindow(tk.Tk):
             except (sqlite3.DatabaseError, OSError, ValueError, RuntimeError) as exc:
                 # An optional derived index must not prevent opening local sources.
                 # Never resurrect an old PASS after a failed evidence read.
-                return rows, f'Index de diagnostics indisponible : {type(exc).__name__}: {exc}'
+                return rows, f'Diagnostic index unavailable: {type(exc).__name__}: {exc}'
         self._start('Scanning local inventory…', work,
                     folder=folder.resolve(), job='scan')
 
@@ -703,20 +703,20 @@ class ManagerWindow(tk.Tk):
             return False
         folder = Path(self.path_var.get().strip()).expanduser()
         if not folder.is_dir():
-            messagebox.showerror('Folder not found', f'Le dossier indiqué n’existe pas :\n{folder}', parent=self)
+            messagebox.showerror('Folder not found', f'The specified folder does not exist:\n{folder}', parent=self)
             return False
         folder = folder.resolve()
-        if not messagebox.askyesno('Diagnostic V9 du dossier',
-                'Exécuter les vérifications V9 sur les Kristals du dossier ?\n\n'
+        if not messagebox.askyesno('V9 folder diagnostics',
+                'Run V9 checks on the Kristals in this folder?\n\n'
                 f'{folder}\n\n'
-                'Les rapports et l’index dérivé restent hors des Kristals.\n'
-                'Ce contrôle ne qualifie pas C1/C2/C3 et ne publie rien.', parent=self):
+                'Reports and the derived index stay outside Kristal sources.\n'
+                'This check is not C1/C2/C3 qualification and publishes nothing.', parent=self):
             return False
         from .diagnostics_batch import run_folder
         def work():
             return run_folder(folder, on_progress=lambda done, total, name, verdict:
                 self.events.put(('batch_progress', (done, total, name, verdict), folder, None)))
-        self._start('KristalDiag V9 : diagnostic du dossier…', work,
+        self._start('KristalDiag V9: folder diagnostics…', work,
                     folder=folder, job='batch_diag')
         return True
 
@@ -726,7 +726,7 @@ class ManagerWindow(tk.Tk):
             messagebox.showinfo('Selection required', 'Select a Kristal in the list first.', parent=self)
             return
         path = Path(row['path'])
-        self._start(f'Vérification locale de « {row["title"]} »…',
+        self._start(f'Local verification of “{row["title"]}”…',
                     lambda: (str(path), assess_local(path)), folder=path, job='verify')
 
     def configure_diag(self):
@@ -757,11 +757,11 @@ class ManagerWindow(tk.Tk):
         ttk.Entry(outer, textvariable=argv_var).pack(fill='x', pady=(6, 8))
         ttk.Label(outer, text='Variables: {workspace} = Kristal folder; {report} = temporary JSON report.').pack(anchor='w')
         explanation = (
-            'Exemple de syntaxe fictive, à ne PAS utiliser sans confirmation de KristalDiag :\n'
+            'ILLUSTRATIVE command syntax only; do NOT use without confirming with KristalDiag:\n'
             '  validate --workspace {workspace} --output {report}\n\n'
-            'Le Manager n’invente pas les arguments officiels. L’exécutable ou le script doit être fourni\n'
-            'par vous et installé hors de C:\\mycode\\Kristal\\locals.\n'
-            'Une exécution externe peut modifier des fichiers ou accéder au réseau selon l’outil.\n'
+            'Manager does not invent official command arguments. The executable or script must be provided\n'
+            'by you and installed outside C:\\mycode\\Kristal\\locals.\n'
+            'An external program may modify files or access the network, depending on the tool.\n'
             'Un code de sortie 0 ne vaut pas attestation C1.'
         )
         ttk.Label(outer, text=explanation, justify='left', style='Sub.TLabel').pack(anchor='w', pady=(12, 8))
@@ -781,8 +781,8 @@ class ManagerWindow(tk.Tk):
             except OSError as exc:
                 messagebox.showerror('Preferences not saved', str(exc), parent=dialog)
                 return
-            self.log('CONFIG', f'KristalDiag externe configuré : {self.settings["diag_program"]}')
-            self.status_var.set('KristalDiag configuré ; exécution uniquement après confirmation.')
+            self.log('CONFIG', f'External KristalDiag configured: {self.settings["diag_program"]}')
+            self.status_var.set('KristalDiag configured; execution requires confirmation.')
             dialog.destroy()
         ttk.Button(bar, text='Cancel', command=dialog.destroy).pack(side='right')
         ttk.Button(bar, text='Save', style='Primary.TButton', command=save).pack(side='right', padx=(0, 8))
@@ -859,7 +859,7 @@ class ManagerWindow(tk.Tk):
         if not self._safe_output(target):
             return None
         if target.exists() and not messagebox.askyesno('Replace catalog?',
-                f'Un catalogue existe déjà à cet emplacement. Le remplacer après validation ?\n\n{target}', parent=self):
+                f'A catalog already exists at this location. Overwrite it after review?\n\n{target}', parent=self):
             return None
         return target
 
@@ -889,7 +889,7 @@ class ManagerWindow(tk.Tk):
             return
         if not messagebox.askyesno('Catalog all Kristals',
              'This scans all Kristals under:\n'
-             f'{folder}\n\nElle crée uniquement des fichiers dérivés hors des Kristals. Continuer ?', parent=self):
+             f'{folder}\n\nThis creates derived files only, outside the Kristals. Continue?', parent=self):
             return
         database = self._catalog_destination('kristal-contenu-global.sqlite3')
         if database:
@@ -914,7 +914,7 @@ class ManagerWindow(tk.Tk):
             write_overview(database, overview, overwrite=True)
             return {'result': result, 'rows': observed, 'overview': overview, 'mode': mode,
                     'inventory': scan_roots([folder]) if mode == 'all' else None}
-        self._start(f'Catalogue {"du Kristal" if mode == "selected" else "du dossier"} en cours…',
+        self._start(f'Catalogue {"for the Kristal" if mode == "selected" else "for the folder"} in progress…',
                     work, folder=folder, job='catalog')
 
     def poll(self):
@@ -955,7 +955,7 @@ class ManagerWindow(tk.Tk):
                     self.refresh(prefer=before)
                     self.scope_var.set(f'Inventory: {folder}')
                     self.status_var.set(f'{sum(not is_historical(r) for r in self.rows)} Kristals · '
-                                        f'{sum(is_historical(r) for r in self.rows)} internal archives masquées · conformité non établie')
+                                        f'{sum(is_historical(r) for r in self.rows)} hidden internal archives · conformance not established')
                     self.log('SUCCESS', f'Inventaire : {sum(not is_historical(r) for r in self.rows)} Kristals et '
                            f'{sum(is_historical(r) for r in self.rows)} internal archives sous {folder}')
                 elif kind == 'batch_diag':
@@ -968,15 +968,15 @@ class ManagerWindow(tk.Tk):
                         try:
                             self.rows = restore_rows(self.rows)
                         except (sqlite3.DatabaseError, OSError, ValueError, RuntimeError) as exc:
-                            self.log('WARNING', f'Index de diagnostic indisponible après le batch : {exc}')
+                            self.log('WARNING', f'Diagnostic index unavailable after batch: {exc}')
                             # Drop any unverified in-memory PASS; the summary remains on disk.
                             for row in self.rows:
                                 row.pop('diag_report', None)
                                 row.pop('diag_freshness', None)
                         self.refresh()
                     counts = ', '.join(f'{k}={v}' for k,v in sorted(payload.get('counts', {}).items()))
-                    self.status_var.set(f'Diagnostic V9 terminé : {counts} · pas de qualification C1/C2/C3')
-                    self.log('DIAG', f'Batch V9 : {payload.get("total", 0)} entrées · {counts} · '
+                    self.status_var.set(f'V9 diagnostics complete: {counts} · pas de qualification C1/C2/C3')
+                    self.log('DIAG', f'Batch V9 : {payload.get("total", 0)} entries · {counts} · '
                                      f'preuves : {payload.get("report_directory", "hors sources")}')
                     if self._global_dialog is not None and self._global_dialog.winfo_exists():
                         self._global_dialog.render_batch_result(payload)
@@ -988,7 +988,7 @@ class ManagerWindow(tk.Tk):
                         if self._selected_path() == path:
                             self.show_details()
                     self.status_var.set('Local check: ' + str(report.get('operational_result')) +
-                                        ' · PAS une conformité Framework')
+                                        ' · NOT Framework conformance')
                     self.log('RESULT', f'{Path(path).name} : {report.get("operational_result")}; '
                            f'Framework : {report.get("framework_state_verification", {}).get("status")}')
                 elif kind == 'diag':
@@ -1004,11 +1004,11 @@ class ManagerWindow(tk.Tk):
                     self.status_var.set('KristalDiag : ' + str(report.get('verdict') or report['process_status']) +
                         ' · report observed; C1 qualification not established')
                     self.log('DIAG', f'{Path(path).name} : {report["process_status"]} · '
-                             f'fichier JSON : {"oui" if report.get("external_report") is not None else "non"} · '
-                             f'sources modifiées : {"OUI" if report["input_changed_during_run"] else "not detected"}')
+                             f'JSON file: {"yes" if report.get("external_report") is not None else "no"} · '
+                             f'source files changed: {"YES" if report["input_changed_during_run"] else "not detected"}')
                 elif kind == 'archive_export':
                     self.status_var.set(f'Local archive created: {payload["path"]}')
-                    self.log('SUCCESS', f'Export {payload["format"]} : {payload["files"]} fichiers · {payload["path"]}')
+                    self.log('SUCCESS', f'Export {payload["format"]}: {payload["files"]} files · {payload["path"]}')
                     if payload['format'] == 'kristal':
                         self.log('LIMITE', 'Experimental Manager .kristal format; not certified by Framework.')
                 elif kind == 'global_analysis':
@@ -1032,11 +1032,11 @@ class ManagerWindow(tk.Tk):
                     self.scope_var.set(f'Global analysis: {folder}')
                     self.refresh(prefer=before)
                     counts = payload['global_report']['counts']
-                    self.status_var.set(f"Analyse globale : {counts['kristals']} Kristals · "
-                                        f"{counts['blocker']} bloqueurs · {counts['warning']} avertissements "
-                                        '(propositions non validées)')
-                    self.log('SUCCESS', f"Analyse globale terminée : {payload['index_path']}")
-                    self.log('REPORT', f"ZIP des problèmes : {payload['problem_archive']}")
+                    self.status_var.set(f"Global analysis: {counts['kristals']} Kristals · "
+                                        f"{counts['blocker']} blockers · {counts['warning']} warnings "
+                                        '(unvalidated proposals)')
+                    self.log('SUCCESS', f"Global analysis complete: {payload['index_path']}")
+                    self.log('REPORT', f"Issues ZIP: {payload['problem_archive']}")
                     if self._global_dialog is not None and self._global_dialog.winfo_exists():
                         self._global_dialog.render_result(payload)
                 elif kind == 'catalog':
@@ -1073,7 +1073,7 @@ class ManagerWindow(tk.Tk):
                     self.refresh(prefer=current)
                     result = payload['result']
                     self.status_var.set(f'Catalog completed: {result["workspaces"]} Kristal(aux) · '
-                                        f'{result["updated"]} actualisé(s), {result["cached"]} inchangé(s)')
+                                        f'{result["updated"]} refreshed, {result["cached"]} unchanged')
                     self.log('SUCCESS', f'Catalogue : {result["workspaces"]} Kristals. '
                            f'SQLite : {result["database"]} · HTML : {self.catalog_overview}')
                     self.tabs.select(0)
@@ -1095,7 +1095,7 @@ class ManagerWindow(tk.Tk):
             self.log('TRACE', diagnostic.rstrip())
         self.tabs.select(2)
         self.status_var.set(f'{label} · see the log (no source files were modified).')
-        messagebox.showerror(label, str(exc) + '\n\nLe détail est dans l’onglet Operation log.', parent=self)
+        messagebox.showerror(label, str(exc) + '\n\nDetails are in the Operation log tab.', parent=self)
 
     def _load_icons(self):
         """Only read already applied icons and optional exact-name Registry cache.
@@ -1146,20 +1146,20 @@ class ManagerWindow(tk.Tk):
                 f'Maturity: {icon.maturity if icon.maturity is not None else "undefined"}\n'
                 f'Domains: {", ".join(icon.domains) or "—"}\n\n'
                 f'{icon.note or "Read-only"}\n\n'
-                'Le Registry fournit une icône de présentation, pas la preuve '
-                'd’une icône Windows appliquée dans locals.')
+                'The registry provides a display icon, not proof '
+                'that a Windows icon was applied in locals.')
         messagebox.showinfo('Icon provenance', info, parent=self)
 
     def _toggle_local_icons(self):
         """Make writes a deliberate session-only choice; closing Manager resets it."""
         if self.custom_folder_icons_enabled.get():
             approved = messagebox.askyesno(
-                'Activer les icônes de dossiers Windows ?',
-                'Autoriser temporairement la personnalisation des icônes des dossiers '
-                'du dossier locals sélectionné ?\n\n'
-                'Cette option est désactivée par défaut et se réinitialise au prochain démarrage.\n'
-                'L’application effective demandera encore une confirmation dans le générateur.\n'
-                'Le scan et les aperçus restent toujours en lecture seule.', parent=self)
+                'Enable Windows folder icons?',
+                'Temporarily allow custom Windows folder icons under '
+                'the selected locals folder?\n\n'
+                'This option is off by default and resets at every launch.\n'
+                'Applying an icon will still require confirmation in the generator.\n'
+                'Scanning and previews always remain read-only.', parent=self)
             if not approved:
                 self.custom_folder_icons_enabled.set(False)
         if not self.custom_folder_icons_enabled.get():
@@ -1171,45 +1171,45 @@ class ManagerWindow(tk.Tk):
                 elif process.poll() is None:
                     still_running.append((process, was_enabled))
             self._local_icon_processes = still_running
-        self.log('ICONS', 'Application d’icônes Windows : ' +
-                 ('activée pour cette session (confirmation requise)' if self.custom_folder_icons_enabled.get()
-                  else 'désactivée (aperçu seul)'))
+        self.log('ICONS', 'Windows icon application: ' +
+                 ('enabled for this session (confirmation required)' if self.custom_folder_icons_enabled.get()
+                  else 'disabled (preview only)'))
 
     def launch_icon_generator(self):
         """Run the embedded generator for the selected locals root, never the collection."""
         if self.busy:
             return
         if os.name != 'nt':
-            messagebox.showinfo('Icônes Windows',
-                'Les icônes de dossiers Windows nécessitent Windows et Node.js.', parent=self)
+            messagebox.showinfo('Windows icons',
+                'Windows folder icons require Windows and Node.js.', parent=self)
             return
         root = Path(self.path_var.get()).expanduser()
         if not root.is_dir():
-            messagebox.showerror('Dossier introuvable', f'Dossier locals inaccessible : {root}', parent=self)
+            messagebox.showerror('Folder not found', f'Local folder inaccessible: {root}', parent=self)
             return
         server = Path(__file__).resolve().parent.parent / 'tools' / 'icon-generator' / 'server.mjs'
         node = shutil.which('node')
         if not server.is_file() or not node:
-            messagebox.showerror('Générateur indisponible',
-                'Le serveur Icon Generator intégré et Node.js doivent être installés.', parent=self)
+            messagebox.showerror('Icon generator unavailable',
+                'The bundled Icon Generator server and Node.js must be installed.', parent=self)
             return
         enabled = self.custom_folder_icons_enabled.get()
         argv = [node, str(server), '--locals', str(root)]
         if enabled:
             argv.append('--enable-local-apply')
-        if not messagebox.askyesno('Gestion des icônes locales',
-                f'Dossier : {root}\n\n'
-                + ('Mode autorisé : aperçu et application sur confirmation explicite.' if enabled
-                   else 'Mode lecture seule : génération et application Windows interdites.')
-                + '\n\nLancer le générateur intégré ?', parent=self):
+        if not messagebox.askyesno('Local icon management',
+                f'Folder: {root}\n\n'
+                + ('Authorized mode: preview and apply only after explicit confirmation.' if enabled
+                   else 'Read-only mode: Windows icon creation and application disabled.')
+                + '\n\nOpen the bundled icon generator?', parent=self):
             return
         try:
             flags = getattr(subprocess, 'CREATE_NEW_CONSOLE', 0)
             child = subprocess.Popen(argv, cwd=str(server.parent), creationflags=flags)
             self._local_icon_processes.append((child, enabled))
-            self.log('ICONS', f'Générateur locals ouvert en mode {"application autorisée" if enabled else "lecture seule"} : {root}')
+            self.log('ICONS', f'Local icon generator opened in mode {"application allowed" if enabled else "read-only"} : {root}')
         except OSError as exc:
-            self._fail('Lancer Icon Generator', exc, diagnostic=traceback.format_exc())
+            self._fail('Launch Icon Generator', exc, diagnostic=traceback.format_exc())
 
     def destroy(self):
         """No local icon server retains Manager's write permission after exit."""
@@ -1280,7 +1280,7 @@ class ManagerWindow(tk.Tk):
             classified = self._classify(row)
             cat = display_domain(classified)
             micro = display_micro(classified)
-            if category not in ('All UNESCO domains', 'All categories', 'Toutes catégories') and category != 'Unmapped' and not any(
+            if category not in ('All UNESCO domains', 'All categories', 'All categories') and category != 'Unmapped' and not any(
                     category.startswith(code + ' ') for code in classified['unesco']['domain_codes']):
                 continue
             if category == 'Unmapped' and classified['unesco']['domain_codes']:
@@ -1481,7 +1481,7 @@ class ManagerWindow(tk.Tk):
         if not self._safe_output(target):
             return
         overwrite = target.exists()
-        if overwrite and not messagebox.askyesno('Replace?', f'Remplacer le fichier ?\n{target}', parent=self):
+        if overwrite and not messagebox.askyesno('Replace?', f'Overwrite this file?\n{target}', parent=self):
             return
         try:
             result = inventory(self.roots)
@@ -1513,7 +1513,7 @@ class ManagerWindow(tk.Tk):
         if not self._safe_output(dest):
             return
         overwrite = dest.exists()
-        if overwrite and not messagebox.askyesno('Replace?', f'Remplacer le fichier ?\n{dest}', parent=self):
+        if overwrite and not messagebox.askyesno('Replace?', f'Overwrite this file?\n{dest}', parent=self):
             return
         try:
             result = konstellation_preview(self.roots, allowed_principals=[principal])
@@ -1553,8 +1553,8 @@ class ManagerWindow(tk.Tk):
             'LIMITS\n'
             'READY is a local structural status, not Framework conformance.\n'
             'Local verification and KristalDiag do not establish publication, access grants, or V11 certification.\n'
-            'Publication GitHub: préparation privée, commit local, puis push uniquement avec preuves C1/C2 signées.\n'
-            'Le Wiki GitHub natif doit être activé indépendamment.'
+            'GitHub publication: private preparation, local commit, then push only with signed C1/C2 evidence.\n'
+            'The native GitHub Wiki must be enabled independently.'
         )
         window = tk.Toplevel(self)
         window.title('Help — workflows and limitations')
@@ -1571,8 +1571,8 @@ class ManagerWindow(tk.Tk):
     def show_limits(self):
         messagebox.showinfo('Kristal Manager — limitations',
             'Local inventory and diagnostics application.\n\n'
-            'La publication GitHub est une action explicite et soumise aux preuves C1/C2.\n'
-            'Aucun commit ni push automatique au démarrage.\n'
+            'GitHub publication requires an explicit action and C1/C2 evidence.\n'
+            'No automatic commit or push on startup.\n'
             'Local verification only covers registered sources.\n'
             'State commitments require a compatible Framework reference to be verified.\n'
             'Framework V11 conformance still requires independent qualification.', parent=self)

@@ -395,16 +395,16 @@ def main(argv=None, *, quiet=False):
   for k in ('title','catalog_status','arketype_status','arketype_top','unesco_domain_candidate','unesco_top','keywords','issues'):
    value=str(x[k]); cells.append('<td>'+html_escape(value)+'</td>')
   hrows.append('<tr>'+''.join(cells)+'</tr>')
- html='''<!doctype html><html lang="fr"><meta charset="utf-8"><title>Kristal — triage de propositions</title>
+ html='''<!doctype html><html lang="en"><meta charset="utf-8"><title>Kristal — Proposal triage</title>
  <style>body{font:14px system-ui;margin:25px auto;max-width:1600px;color:#223;background:#f9fafc}
  table{border-collapse:collapse;width:100%;background:white}th,td{border:1px solid #ddd;text-align:left;padding:7px;vertical-align:top}
  th{background:#e9edf4;position:sticky;top:0}tr:nth-child(even){background:#fafbfd}small{color:#555}
  input{font-size:16px;padding:10px;width:90%;margin:12px 0}</style>
- <h1>Propositions de classification — non validées</h1>
- <p>Arketype structurel et UNESCO thématique sont des axes indépendants. Les valeurs ne prouvent aucune conformité.
- Ouvrir le JSON individuel pour les preuves détaillées.</p>
- <label>Recherche dans les résultats : <input id="q" placeholder="Filtrer la table" oninput="f()"></label>
- <table id="t"><thead><tr><th>Kristal</th><th>Contenu</th><th>Arketype statut</th><th>Top ARK</th><th>Domaine UNESCO</th><th>Micro UNESCO</th><th>Mots-clés</th><th>Observations</th></tr></thead><tbody>'''+''.join(hrows)+'''</tbody></table>
+ <h1>Classification proposals — not validated</h1>
+ <p>Structural Arketype and thematic UNESCO are independent dimensions. These values do not prove conformance.
+ Open the individual JSON report for detailed evidence.</p>
+ <label>Search results: <input id="q" placeholder="Filter table" oninput="f()"></label>
+ <table id="t"><thead><tr><th>Kristal</th><th>Content</th><th>Arketype status</th><th>Top ARK</th><th>UNESCO domain</th><th>UNESCO microthesaurus</th><th>Keywords</th><th>Observations</th></tr></thead><tbody>'''+''.join(hrows)+'''</tbody></table>
  <script>function f(){const s=document.getElementById('q').value.toLocaleLowerCase();
  for(const r of document.querySelectorAll('#t tbody tr')) r.hidden=!r.textContent.toLocaleLowerCase().includes(s);}</script>
  </html>'''

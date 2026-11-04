@@ -30,10 +30,10 @@ def _err(message):
 
 def _rel(path):
     if not isinstance(path, str) or not path or '\\' in path or ':' in path or '\x00' in path:
-        _err('Chemin de surface non sûr')
+        _err('Unsafe surface path')
     parts = path.split('/')
     if any(x in ('', '.', '..') for x in parts) or path.startswith('/'):
-        _err('Traversée de répertoire interdite')
+        _err('Directory traversal forbidden')
     for x in parts:
         l = x.lower()
         if l in ('.git','.ssh','.venv','__pycache__','node_modules','secrets','grants','qualifications'):
@@ -92,12 +92,12 @@ def _validate_collection(root):
         _err('Format index de collection inattendu')
     rows=index.get('kristals')
     if not isinstance(rows,list) or type(index.get('count')) is not int or index['count']!=len(rows):
-        _err('Nombre de Kristals incohérent dans index')
+        _err('Inconsistent Kristal count in index')
     projected={'format':'kristal.github-collection-index/1.0','kristals':rows}
     if index.get('index_digest')!=_hash(_canonical(projected)):
         _err('Empreinte de l’index incorrecte')
     if rows!=sorted(rows,key=lambda x:(x['slug'].encode('utf-8'),x['path'].encode('utf-8'))):
-        _err('Ordre des membres de collection incohérent')
+        _err('Inconsistent collection member order')
     slugs=[]
     for row in rows:
         if not isinstance(row,dict):_err('Entrée d’index invalide')
@@ -174,13 +174,13 @@ def _validate_collection(root):
                state.get('state_ref')!=row['state_ref'] or state.get('logical_commitment')!=commitment:
                 _err('État V9 privé limité non lié au manifeste : '+slug)
     if len(set(slugs))!=len(slugs) or len({s.casefold() for s in slugs})!=len(slugs):
-        _err('Membres dupliqués')
+        _err('Duplicate members')
     actual={p.name for p in folder.iterdir() if p.is_dir()}
     if actual!=set(slugs):
         _err('Dossiers Kristal non indexés : '+', '.join(sorted(actual ^ set(slugs))))
     if any(p.is_symlink() for p in folder.iterdir()):_err('Lien symbolique dans collection')
     if {p.name for p in folder.iterdir() if p.is_file()}!={'index.json'}:
-        _err('Fichier non indexé à la racine de collection')
+        _err('Unindexed file in collection root')
     return index
 
 
@@ -199,26 +199,26 @@ def _private_checkout(root):
     if root.name.casefold()!='kristal-private' or not root.is_dir() or root.is_symlink():
         _err('Destination attendue : checkout local kristal-private')
     if Path(_git(root,'rev-parse','--show-toplevel')).resolve()!=root:
-        _err('La destination doit être racine exacte de son dépôt Git')
+        _err('Destination must be exact root of its Git repository')
     if _git(root,'status','--porcelain=v1','--untracked-files=all'):
-        _err('Dépôt privé non propre : inspecter les changements avant la copie')
+        _err('Private repository has uncommitted changes: review them before copying')
     origin=_git(root,'remote','get-url','origin')
     push=_git(root,'remote','get-url','--push','origin')
-    if origin!=push:_err('Remote push et origin différents')
+    if origin!=push:_err('Push remote and origin differ')
     m=GITHUB.fullmatch(origin)
     if not m or m.group(1).split('/')[-1].casefold()!='kristal-private':
-        _err('Remote GitHub privé non reconnu ; aucun accès réseau vérifié')
+        _err('Private GitHub remote not recognized; network access not verified')
     node=_json(root/'.kristal/node.json')
     binding=_json(root/'.kristal/bindings/github.json')
     caps=_json(root/'.kristal/capabilities.json')
     if node.get('schema_version')!='10.0' or node.get('artifact_type')!='kristal_node_manifest' or 'collection' not in node.get('roles',[]):
-        _err('Identité V10 collection absente')
+        _err('Missing V10 collection identity')
     if caps.get('schema_version')!='10.0' or caps.get('artifact_type')!='kristal_v10_capabilities':
         _err('Capabilities Bootstrap absentes')
     if binding.get('schema_version')!='10.0' or binding.get('artifact_type')!='kristal_host_binding' or binding.get('node_id')!=node.get('node_id'):
-        _err('Binding de nœud incohérent')
+        _err('Inconsistent node binding')
     if binding.get('resource',{}).get('visibility')!='private' or binding.get('resource',{}).get('kind')!='repository':
-        _err('Ce dépôt ne déclare pas une visibilité privée')
+        _err('Repository does not declare private visibility')
     if binding.get('profile',{}).get('id')!='kristal.host/github':
         _err('Profil GitHub inattendu')
     repo=m.group(1)
@@ -282,7 +282,7 @@ def plan_private_sync(*, candidate: Path, checkout: Path, slugs: list[str]):
             'plan_token':token,'_next_index':next_index,
             'git_add':False,'git_commit':False,'git_push':False,'public_write':False,
             'remote_visibility_verified':False,
-            'warning':'Visibilité privée déclarée localement seulement : confirmer ACL sur GitHub avant synchronisation manuelle.'}
+            'warning':'Private visibility declared locally only: confirm GitHub ACLs before manual synchronization.'}
 
 
 def apply_private_sync(*,candidate:Path,checkout:Path,slugs:list[str],expected_token:str,allow_retire:bool=False):

@@ -7,21 +7,23 @@ import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 import webbrowser
 from . import kristalizer_bridge
+from .qualification_history import display_declared, display_unesco_declaration, display_ark_structure
+from .classification_labels import display_category
 
 
 # Labels d'interface uniquement. Les codes bruts restent intacts dans les rapports JSON.
 _READ_LABELS = {
-    'observed': 'graphe lu',
-    'native_observed': 'contrat natif lu',
-    'partial': 'lecture partielle',
-    'unsupported': 'non interprété',
-    'error': 'erreur de lecture',
+    'observed': 'graph read',
+    'native_observed': 'native contract read',
+    'partial': 'partial reading',
+    'unsupported': 'unsupported',
+    'error': 'reader error',
 }
 _REVIEW_LABELS = {
-    'proposed': 'proposé',
-    'needs_discussion': 'à départager',
-    'approved_locally': 'accepté localement',
-    'rejected_locally': 'rejeté localement',
+    'proposed': 'proposed',
+    'needs_discussion': 'needs discussion',
+    'approved_locally': 'locally approved',
+    'rejected_locally': 'locally rejected',
 }
 
 
@@ -32,13 +34,14 @@ def display_content_status(code):
 def display_registered_ark(row):
     r = row.get('registered_review')
     if not r:
-        return '—'
+        return 'Not in review register'
     status = r.get('archetype_review_status')
     choices = r.get('archetype_recommendations') or []
     chosen = r.get('locally_selected_archetype')
-    label = _REVIEW_LABELS.get(status, status or 'non vérifié')
+    label = _REVIEW_LABELS.get(status, status or 'not verified')
     # Une décision locale n'est pas un tag écrit dans le Kristal.
-    return '{} ({})'.format(chosen or '/'.join(choices) or '—', label)
+    names = [display_category(code, 'ark') for code in ([chosen] if chosen else choices)]
+    return '{} ({})'.format(' / '.join(names) if names else 'Not assigned', label)
 
 
 def format_chatgpt_summary(report: dict, kristalizer: dict | None = None, kristalizer_build: dict | None = None) -> str:
@@ -50,72 +53,80 @@ def format_chatgpt_summary(report: dict, kristalizer: dict | None = None, krista
     counts = report.get('counts') or {}
     entries = report.get('entries') or []
     out = [
-        'KRISTAL MANAGER — RAPPORT À ANALYSER AVEC CHATGPT',
-        'Source : analyse globale locale, en lecture seule (propositions non validées).',
-        f"Date UTC : {report.get('generated_at') or 'non renseignée'}",
-        f"Dossier scanné : {report.get('source') or 'non renseigné'}",
-        f"Mode : {report.get('verification_mode') or 'non renseigné'}",
-        ('Totaux : {kristals} Kristals; {blocker} bloqueurs; {warning} avertissements; '
-         '{review} à examiner; {info} informations; {arketype_candidates} candidats Arketype; '
-         '{unesco_micro_candidates} microthésaurus UNESCO suggérés.').format(
+        'KRISTAL MANAGER — REPORT FOR CHATGPT REVIEW',
+        'Source: local read-only global analysis (unvalidated proposals).',
+        f"UTC date: {report.get('generated_at') or 'not provided'}",
+        f"Scanned folder: {report.get('source') or 'not provided'}",
+        f"Mode: {report.get('verification_mode') or 'not provided'}",
+        ('Totals: {kristals} Kristals; {blocker} blockers; {warning} warnings; '
+         '{review} to review; {info} informational; {arketype_candidates} Arketype candidates; '
+         '{unesco_micro_candidates} suggested UNESCO microthesauri.').format(
             **{key: counts.get(key, 0) for key in ('kristals', 'blocker', 'warning',
                     'review', 'info', 'arketype_candidates', 'unesco_micro_candidates')}),
-        ('Lecture canonique : {graph_content_observed} graphes/états reconnus; '
-         '{native_contract_observed} contrats natifs lus sans inférence de graphe KQ/KP; '
-         '{content_partial} lectures partielles; {content_unsupported} non interprétés; '
-         '{content_error} erreurs de lecteur.').format(
+        ('Canonical reading: {graph_content_observed} graphs/states recognized; '
+         '{native_contract_observed} native contracts read without inferring KQ/KP graphs; '
+         '{content_partial} partial readings; {content_unsupported} unsupported; '
+         '{content_error} reader errors.').format(
              **{key:counts.get(key,0) for key in ('graph_content_observed','native_contract_observed',
                     'content_partial','content_unsupported','content_error')}),
-        f"Registre local : {counts.get('registered_review_matched',0)} revues liées aux identités du scan; décisions distinctes des tags canoniques.",
-        'IMPORTANT : READY, Arketype et UNESCO sont des observations locales, pas une qualification C1/C2/C3.',
-        'Demande : trier les anomalies, proposer les corrections sûres et l’ordre de traitement.',
+        f"Local review register: {counts.get('registered_review_matched',0)} reviews linked to scanned identities; decisions are separate from canonical tags.",
+        (f"Recovered records: {counts.get('historical_qualifications_matched', 0)} historical profiles; "
+         f"{counts.get('live_classifications_read', 0)} current workspace metadata reads. "
+         'Historical PRF/ARK observations are not human approvals.'),
+        'IMPORTANT: READY, Arketype and UNESCO are local observations, not C1/C2/C3 qualification.',
+        'Request: prioritize issues, suggest safe fixes and an order of action.',
         '',
-        f'ENTRÉES ({len(entries)}) :',
+        f'ENTRIES ({len(entries)}):',
     ]
     for index, row in enumerate(entries, start=1):
         values = [
-            f"{index:03d} [{row.get('priority') or '?'}] {row.get('title') or 'Sans titre'}",
+            f"{index:03d} [{row.get('priority') or '?'}] {row.get('title') or 'Untitled'}",
             f"ID={row.get('state_ref') or '—'}",
-            f"chemin={row.get('path') or '—'}",
+            f"path={row.get('path') or '—'}",
             f"structure={row.get('readiness') or '—'}",
-            f"contenu={row.get('content_status') or '—'}",
-            f"vérification={row.get('operational_result') or '—'}",
-            f"ARK?={row.get('proposed_arketype') or '—'}",
-            f"UNESCO?={row.get('proposed_unesco_domain') or '—'}/{row.get('proposed_unesco') or '—'}",
-            'mots-clés=' + ', '.join(str(x) for x in (row.get('keywords') or [])[:8]),
+            f"content={row.get('content_status') or '—'}",
+            f"verification={row.get('operational_result') or '—'}",
+            f"declared_ARK={display_declared(row, 'primary_archetype')}",
+            f"declared_PRF={display_declared(row, 'primary_usage')}",
+            f"subject_domain={display_declared(row, 'subject_domain')}",
+            f"ARK_structural_observation={display_ark_structure(row)}",
+            f"declared_UNESCO={display_unesco_declaration(row)}",
+            f"ARK_new_proposal={display_category(row['proposed_arketype'], 'ark') if row.get('proposed_arketype') else 'none'}",
+            f"UNESCO_suggestion={display_category(row['proposed_unesco'], 'unesco') if row.get('proposed_unesco') else (display_category(row['proposed_unesco_domain'], 'unesco_domain') if row.get('proposed_unesco_domain') else 'none')}",
+            'keywords=' + ', '.join(str(x) for x in (row.get('keywords') or [])[:8]),
         ]
         issues = row.get('problems') or []
         if issues:
-            values.append('anomalies=' + '; '.join(
+            values.append('issues=' + '; '.join(
                 f"{x.get('code', 'ISSUE')}: {x.get('detail', '')}" if isinstance(x, dict) else str(x)
                 for x in issues))
         registered = row.get('registered_review')
         if registered:
-            values.append('registre=' + ','.join(registered['archetype_recommendations'])
+            values.append('review_register=' + ', '.join(display_category(code, 'ark') for code in registered['archetype_recommendations'])
                           + '/' + registered['archetype_review_status']
-                          + '/repères-' + registered['provenance_status']['status'])
+                          + '/anchors-' + registered['provenance_status']['status'])
         if row.get('human_review'):
-            values.append('à examiner=' + '; '.join(str(x) for x in row['human_review']))
+            values.append('to_review=' + '; '.join(str(x) for x in row['human_review']))
         out.append(' | '.join(values))
     if kristalizer:
         totals = kristalizer.get('totals', {})
-        out.extend(['', 'KRISTALIZER — RAPPORT IMPORTÉ (aucune identité validée)'])
-        out.append('Scan : ' + str(kristalizer.get('source_generated_at') or 'inconnu'))
-        out.append('Projets : {projects}; v11 préparés non actifs : {v11_non_active}; migrations requises : {migration_required}; rapprochements Wikidata EN ATTENTE : {wikidata_candidates}; identifiants locaux concernés : {distinct_local_identifiers}; notions documentaires : {documentary_topics}; liens natifs : {native_claim_links}.'.format(**totals))
+        out.extend(['', 'KRISTALIZER — IMPORTED REPORT (no validated identities)'])
+        out.append('Scan: ' + str(kristalizer.get('source_generated_at') or 'unknown'))
+        out.append('Projects: {projects}; v11 prepared but inactive: {v11_non_active}; migrations required: {migration_required}; PENDING Wikidata matches: {wikidata_candidates}; local identifiers affected: {distinct_local_identifiers}; documentary topics: {documentary_topics}; native claim links: {native_claim_links}.'.format(**totals))
         for name, row in sorted(kristalizer.get('projects', {}).items()):
-            out.append(f"{name} : {row['v11']}; candidats={row['candidates']}; identités={row['local_identities_with_candidates']}; notions={row['documentary_topics']}")
-        out.append('Les candidats Wikidata ne constituent pas des exactMatch certifiés, ni une qualification C1/C2/C3.')
+            out.append(f"{name} : {row['v11']}; candidates={row['candidates']}; identities={row['local_identities_with_candidates']}; topics={row['documentary_topics']}")
+        out.append('Wikidata candidates are not certified exactMatch relationships or C1/C2/C3 qualification.')
     if kristalizer_build:
         bt = kristalizer_build['totals']
-        out.extend(['', 'KRISTALIZER — BUILD SUR COPIES (aucune publication ou activation automatique)'])
-        out.append(f"Projets={bt['projects']}; BUILT(copie)={bt['built']}; MIGRATION_MANUELLE_V11={bt['migration_required']}; erreurs={bt['failed']}; publiés={bt['published']}; activés={bt['activated']}.")
-        out.append(f"Kit={bt.get('kit_version')}; Framework pin={bt.get('kit_framework_pin')}; source modifiée={bt.get('source_modified')}.")
+        out.extend(['', 'KRISTALIZER — BUILD ON COPIES (no automatic publication or activation)'])
+        out.append(f"Projects={bt['projects']}; BUILT(copy)={bt['built']}; MIGRATION_MANUELLE_V11={bt['migration_required']}; errors={bt['failed']}; published={bt['published']}; activated={bt['activated']}.")
+        out.append(f"Kit={bt.get('kit_version')}; Framework pin={bt.get('kit_framework_pin')}; source modified={bt.get('source_modified')}.")
         for name, item in sorted(kristalizer_build['projects'].items()):
-            out.append(name + ' : ' + item['status'] + (' (copie uniquement)' if item['staged_copy_only'] else ''))
-        out.append('BUILT ne valide pas la sémantique, les identités Wikidata ou les niveaux Framework C1/C2/C3.')
-    out += ['', 'LIMITES :']
+            out.append(name + ' : ' + item['status'] + (' (copy only)' if item['staged_copy_only'] else ''))
+        out.append('BUILT does not validate semantics, Wikidata identity matching, or Framework C1/C2/C3 levels.')
+    out += ['', 'LIMITATIONS:']
     out += ['- ' + str(x) for x in (report.get('limits') or [])]
-    out += ['- Les indices détaillés et les preuves sont dans le ZIP des problèmes.']
+    out += ['- Detailed findings and evidence are in the issues ZIP.']
     return '\n'.join(out) + '\n'
 
 
@@ -123,7 +134,7 @@ class GlobalAnalysisPanel(tk.Toplevel):
     def __init__(self, manager):
         super().__init__(manager)
         self.manager = manager
-        self.title('Centre de contrôle — Kristal Manager')
+        self.title('Analysis Center — Kristal Manager')
         self.geometry('1180x755')
         self.minsize(850, 560)
         self.transient(manager)
@@ -134,7 +145,7 @@ class GlobalAnalysisPanel(tk.Toplevel):
         self.update_catalogue = tk.BooleanVar(value=True)
         self.verify_locally = tk.BooleanVar(value=False)
         self.problems_only = tk.BooleanVar(value=False)
-        self.status = tk.StringVar(value='Prêt. Aucune modification des Kristals.')
+        self.status = tk.StringVar(value='Ready. No changes to Kristals.')
         self._layout()
         self._restore_kristalizer()
         self._restore_last_report()
@@ -143,40 +154,52 @@ class GlobalAnalysisPanel(tk.Toplevel):
     def _layout(self):
         top = ttk.Frame(self, padding=15)
         top.pack(fill='both', expand=True)
-        ttk.Label(top, text='Centre de contrôle · Inventaire, contenu, Arketype, UNESCO et diagnostics',
-                  style='H2.TLabel').pack(anchor='w')
-        ttk.Label(top, text='Source : dossier affiché dans la fenêtre principale. Analyse locale seulement : aucun Git, aucun GitHub, aucune publication. Propositions non qualifiantes.',
+        heading = ttk.Frame(top)
+        heading.pack(fill='x')
+        # Reuse the original logo asset loaded by Manager; do not convert SVG at runtime.
+        try:
+            logo_path = self.manager._asset_path('logo_header.png')
+            self._analysis_logo = tk.PhotoImage(file=str(logo_path))
+            ttk.Label(heading, image=self._analysis_logo).pack(side='left', padx=(0, 12))
+        except (tk.TclError, OSError):
+            self._analysis_logo = None
+        ttk.Label(heading, text='Analysis Center · Inventory, content, Arketype, UNESCO and diagnostics',
+                  style='H2.TLabel').pack(side='left', anchor='w')
+        ttk.Label(top, text='Source: folder shown in the main window. Local analysis only: no Git, GitHub or publication. Proposals do not grant qualification.',
                   wraplength=1100, style='Sub.TLabel').pack(anchor='w', pady=(3, 9))
         options = ttk.Frame(top)
         options.pack(fill='x', pady=(2, 5))
-        ttk.Checkbutton(options, text='Actualiser le catalogue (cache incrémental)',
+        ttk.Checkbutton(options, text='Refresh catalog (incremental cache)',
                         variable=self.update_catalogue).pack(side='left')
-        ttk.Checkbutton(options, text='Vérifier aussi les fichiers enregistrés (plus lent)',
+        ttk.Checkbutton(options, text='Also verify registered files (slower)',
                         variable=self.verify_locally).pack(side='left', padx=(16, 0))
-        self.start = ttk.Button(options, text='Scanner et analyser les Kristals',
+        self.start = ttk.Button(options, text='Scan and analyze Kristals',
                                 style='Primary.TButton', command=self._run)
         self.start.pack(side='right')
-        self.batch_diag = ttk.Button(options, text='Diagnostiquer le dossier (V9)', command=self._run_batch)
+        self.batch_diag = ttk.Button(options, text='Run folder diagnostics (V9)', command=self._run_batch)
         self.batch_diag.pack(side='right', padx=(0, 8))
         self.progress = ttk.Progressbar(top, mode='indeterminate')
         self.progress.pack(fill='x', pady=(7, 5))
         ttk.Label(top, textvariable=self.status, style='Sub.TLabel', wraplength=1100).pack(anchor='w', pady=(1, 8))
         filterline = ttk.Frame(top)
         filterline.pack(fill='x', pady=(1, 5))
-        ttk.Checkbutton(filterline, text='Afficher seulement les problèmes techniques',
+        ttk.Checkbutton(filterline, text='Show technical issues only',
                         variable=self.problems_only, command=self._fill).pack(side='left')
-        ttk.Label(filterline, text='Double-cliquer sur un Kristal pour voir les preuves et les propositions.',
+        ttk.Label(filterline, text='Double-click a Kristal to view evidence and proposals.',
                   style='Sub.TLabel').pack(side='right')
         main = ttk.Frame(top)
         main.pack(fill='both', expand=True)
-        columns = ('title','priority','readiness','content_status','v11_kristalizer','proposed_arketype','registered_ark','proposed_unesco_domain','proposed_unesco','keywords')
+        columns = ('title','priority','readiness','content_status','declared_ark','declared_prf','subject_domain','declared_unesco','ark_structure_history','registered_ark','v11_kristalizer','new_suggestions','keywords')
         self.table = ttk.Treeview(main, columns=columns, show='headings', height=16)
         for key, label, width in [
-            ('title','Kristal',210), ('priority','Priorité',85), ('readiness','Structure',135),
-            ('content_status','Lecture canonique',155), ('v11_kristalizer','Kristalizer v11',150), ('proposed_arketype','ARK auto',100),
-            ('registered_ark','ARK du registre',180),
-            ('proposed_unesco_domain','Domaine UNESCO',100),
-            ('proposed_unesco','Micro UNESCO',110), ('keywords','Mots-clés observés',360)]:
+            ('title','Kristal',210), ('priority','Priority',85), ('readiness','Structure',135),
+            ('content_status','Canonical reading',155),
+            ('declared_ark','Arketype (declared)',230), ('declared_prf','Usage profile (declared)',235),
+            ('subject_domain','Subject domain',170), ('declared_unesco','UNESCO subjects (declared)',250),
+            ('ark_structure_history','Structural evidence (historic)',195),
+            ('v11_kristalizer','Kristalizer v11',150),
+            ('registered_ark','Arketype review',230),
+            ('new_suggestions','New scan proposals',180), ('keywords','Observed keywords',360)]:
             self.table.heading(key, text=label)
             self.table.column(key, width=width, minwidth=75, stretch=key in ('title','keywords'))
         sy = ttk.Scrollbar(main, orient='vertical', command=self.table.yview)
@@ -196,31 +219,31 @@ class GlobalAnalysisPanel(tk.Toplevel):
         buttons.pack(fill='x', pady=(10, 0))
         share = ttk.Frame(buttons)
         share.pack(fill='x', pady=(0, 7))
-        self.copy_all_button = ttk.Button(share, text='Copier résultats pour ChatGPT',
+        self.copy_all_button = ttk.Button(share, text='Copy results for ChatGPT',
                                           style='Primary.TButton', command=self._copy_all)
         self.copy_all_button.pack(side='left')
-        self.copy_selected_button = ttk.Button(share, text='Copier Kristal sélectionné',
+        self.copy_selected_button = ttk.Button(share, text='Copy selected Kristal',
                                                command=self._copy_selected)
         self.copy_selected_button.pack(side='left', padx=(7, 0))
-        self.arketype_button = ttk.Button(share, text='Vérifier structure ARK…', command=self._arketype_inspect)
+        self.arketype_button = ttk.Button(share, text='Inspect Arketype structure…', command=self._arketype_inspect)
         self.arketype_button.pack(side='left', padx=(7, 0))
-        self.bundle_button = ttk.Button(share, text='Tailles / bundles…', command=self._bundle_inventory)
+        self.bundle_button = ttk.Button(share, text='Sizes / bundles…', command=self._bundle_inventory)
         self.bundle_button.pack(side='left', padx=(7, 0))
-        ttk.Label(share, text='Puis colle ici avec Ctrl+V.', style='Sub.TLabel').pack(side='left', padx=(12, 0))
+        ttk.Label(share, text='Then paste here with Ctrl+V.', style='Sub.TLabel').pack(side='left', padx=(12, 0))
         tools = ttk.Frame(buttons)
         tools.pack(fill='x')
-        self.open_html_button = ttk.Button(tools, text='Ouvrir rapport HTML', command=self._open_html)
+        self.open_html_button = ttk.Button(tools, text='Open HTML report', command=self._open_html)
         self.open_html_button.pack(side='left')
-        self.open_zip_button = ttk.Button(tools, text='Voir ZIP des problèmes', command=self._open_zip_folder)
+        self.open_zip_button = ttk.Button(tools, text='Find issues ZIP', command=self._open_zip_folder)
         self.open_zip_button.pack(side='left', padx=(7,0))
-        self.plan_button = ttk.Button(tools, text='Voir plan de corrections', command=self._open_plan)
+        self.plan_button = ttk.Button(tools, text='View correction plan', command=self._open_plan)
         self.plan_button.pack(side='left', padx=(7,0))
-        self.import_kristalizer_button = ttk.Button(tools, text='Importer rapport Kristalizer…', command=self._import_kristalizer)
+        self.import_kristalizer_button = ttk.Button(tools, text='Import Kristalizer report…', command=self._import_kristalizer)
         self.import_kristalizer_button.pack(side='left', padx=(7,0))
-        ttk.Button(tools, text='Registre de revue…', command=self._open_review_registry).pack(side='left',padx=(7,0))
-        ttk.Button(tools, text='Normaliser les noms en lot…',
+        ttk.Button(tools, text='Review register…', command=self._open_review_registry).pack(side='left',padx=(7,0))
+        ttk.Button(tools, text='Normalize folder names in batch…',
                    command=self.manager.open_batch_rename).pack(side='left',padx=(7,0))
-        ttk.Button(tools,text='Fermer',command=self._close).pack(side='right')
+        ttk.Button(tools,text='Close',command=self._close).pack(side='right')
         self._set_running(False)
 
     # REGISTRE-REVUE-2026-10-30 : fenêtre dédiée, aucune écriture dans locals.
@@ -240,8 +263,8 @@ class GlobalAnalysisPanel(tk.Toplevel):
             self.kristalizer_build = None
 
     def _import_kristalizer(self):
-        path = filedialog.askopenfilename(parent=self, title='Choisir le ZIP de rapport Kristalizer',
-                                        filetypes=[('Archives ZIP', '*.zip')])
+        path = filedialog.askopenfilename(parent=self, title='Select Kristalizer report ZIP',
+                                        filetypes=[('ZIP archives', '*.zip')])
         if not path:
             return
         from .global_analysis import RAPPORTS_PATH
@@ -254,18 +277,18 @@ class GlobalAnalysisPanel(tk.Toplevel):
             else:
                 self.kristalizer = kristalizer_bridge.import_report(path, RAPPORTS_PATH)
         except (OSError, ValueError, TypeError, zipfile.BadZipFile) as exc:
-            messagebox.showerror('Rapport Kristalizer refusé', str(exc), parent=self)
+            messagebox.showerror('Kristalizer report rejected', str(exc), parent=self)
             return
         self._fill()
         if has_build:
             total = self.kristalizer_build['totals']
-            self.status.set(f"BUILD importé (copies) : {total['built']} réussis; "
-                            f"{total['migration_required']} migrations v11 nécessaires; "
-                            f"{total['failed']} échecs; aucune qualification Framework.")
+            self.status.set(f"BUILD imported (copies): {total['built']} successful; "
+                            f"{total['migration_required']} v11 migrations needed; "
+                            f"{total['failed']} failures; no Framework qualification.")
         else:
             total = self.kristalizer['totals']
-            self.status.set(f"Scan Kristalizer importé : {total['projects']} Kristals; "
-                            f"{total['v11_non_active']} v11 préparés; {total['migration_required']} migrations requises.")
+            self.status.set(f"Kristalizer scan imported: {total['projects']} Kristals; "
+                            f"{total['v11_non_active']} v11 prepared; {total['migration_required']} migrations required.")
 
     def _restore_last_report(self):
         # Read an existing report only if its source corresponds to the displayed root.
@@ -298,16 +321,16 @@ class GlobalAnalysisPanel(tk.Toplevel):
 
     def _run(self):
         if self.manager.busy:
-            messagebox.showinfo('Opération en cours','Une autre opération est déjà en cours.',parent=self)
+            messagebox.showinfo('Operation in progress','Another operation is already running.',parent=self)
             return
         if self.manager.start_global_analysis(update_catalogue=self.update_catalogue.get(),
                                               verify_locally=self.verify_locally.get()):
-            self.status.set('Analyse en cours… les fichiers sources restent inchangés.')
+            self.status.set('Analysis running… source files remain unchanged.')
             self._set_running(True)
 
     def _run_batch(self):
         if self.manager.start_batch_diagnostics():
-            self.status.set('KristalDiag intégré : diagnostic V9 en cours, preuves hors sources…')
+            self.status.set('Bundled KristalDiag: V9 diagnostics running, evidence stored outside sources…')
             self._set_running(True)
 
     def on_batch_progress(self, done: int, total: int, name: str, verdict: str):
@@ -315,26 +338,32 @@ class GlobalAnalysisPanel(tk.Toplevel):
 
     def render_batch_result(self, summary: dict):
         counts = ', '.join(f'{k}={v}' for k, v in sorted(summary.get('counts', {}).items()))
-        self.status.set(f'Diagnostic de {summary.get("total", 0)} Kristals terminé · {counts} · '
-                        f'rapport : {summary.get("report_directory", "?")}')
+        self.status.set(f'Diagnostics for {summary.get("total", 0)} Kristals complete · {counts} · '
+                        f'report: {summary.get("report_directory", "?")}')
         self._set_running(False)
 
     def render_error(self, error: str):
         self._set_running(False)
-        self.status.set('Analyse interrompue : ' + error)
+        self.status.set('Analysis stopped: ' + error)
 
     def render_result(self, result: dict, *, restored: bool=False):
         self.result = result
         self.entries = result['global_report']['entries']
+        # Previously saved reports can predate recovered qualification evidence.
+        # Refresh display evidence only; never rewrite older reports or Kristals.
+        if restored and self.entries and not any('qualification_evidence' in r for r in self.entries):
+            from .qualification_history import annotate_qualifications
+            annotate_qualifications(self.entries, source=result['global_report'].get('source') or '.')
         self._fill()
         c = result['global_report']['counts']
-        self.status.set(f"{c['kristals']} Kristals · {c['blocker']} bloqueurs observés · "
-                        f"{c['warning']} avertissements · {c['review']} à classifier/revoir"
-                        f" · {c.get('native_contract_observed',0)} contrats natifs lus (non qualifiés)"
-                        f" · {c.get('registered_review_matched',0)} revues liées"
-                        + f" · {c.get('arketype_candidates',0)} ARK proposés · {c.get('unesco_micro_candidates',0)} UNESCO proposés"
-                        + (' · dernier rapport conservé' if restored else ' · export ZIP créé')
-                        + (' · diagnostic Kristalizer importé' if self.kristalizer else ''))
+        self.status.set(f"{c['kristals']} Kristals · {c['blocker']} observed blockers · "
+                        f"{c['warning']} warnings · {c['review']} pending classification/review"
+                        f" · {c.get('native_contract_observed',0)} native contracts read (not qualified)"
+                        f" · {c.get('registered_review_matched',0)} linked reviews"
+                        + f" · {c.get('historical_qualifications_matched',0)} recovered profiles"
+                        + f" · {c.get('arketype_candidates',0)} new ARK proposals · {c.get('unesco_micro_candidates',0)} new UNESCO proposals"
+                        + (' · previous report restored' if restored else ' · ZIP export created')
+                        + (' · Kristalizer diagnostics imported' if self.kristalizer else ''))
         self._set_running(False)
 
     def _fill(self):
@@ -344,11 +373,20 @@ class GlobalAnalysisPanel(tk.Toplevel):
                 continue
             kstate = kristalizer_bridge.lookup(self.kristalizer, r.get('path'))
             kbuild = kristalizer_bridge.lookup_build(self.kristalizer_build, r.get('path'))
-            displayed = (('BUILT (copie)' if kbuild['status'] == 'BUILT' else kbuild['status']) if kbuild else
-                         (kstate['v11'] if kstate else '—'))
+            displayed = (('BUILT (copy)' if kbuild['status'] == 'BUILT' else kbuild['status']) if kbuild else
+                         (kstate['v11'] if kstate else 'Not imported'))
+            suggestions = []
+            if r.get('proposed_arketype'):
+                suggestions.append('Arketype: ' + display_category(r['proposed_arketype'], 'ark'))
+            if r.get('proposed_unesco'):
+                suggestions.append('UNESCO: ' + display_category(r['proposed_unesco'], 'unesco'))
+            elif r.get('proposed_unesco_domain'):
+                suggestions.append('UNESCO domain: ' + display_category(r['proposed_unesco_domain'], 'unesco_domain'))
             values=(r['title'],r['priority'],r['readiness'],display_content_status(r['content_status']),
-                    displayed, r['proposed_arketype'] or '—', display_registered_ark(r), r['proposed_unesco_domain'] or '—',
-                    r['proposed_unesco'] or '—',
+                    display_declared(r,'primary_archetype'), display_declared(r,'primary_usage'),
+                    display_declared(r,'subject_domain'), display_unesco_declaration(r),
+                    display_ark_structure(r), display_registered_ark(r), displayed,
+                    '; '.join(suggestions) if suggestions else 'No new proposals',
                     ', '.join(r['keywords'][:6]))
             self.table.insert('','end',iid=str(i),values=values,tags=(r['priority'],))
         self._update_selection_buttons()
@@ -366,16 +404,16 @@ class GlobalAnalysisPanel(tk.Toplevel):
             # Conserver le contenu lors de la fermeture d'une fenêtre de détails.
             self.update_idletasks()
         except tk.TclError as exc:
-            messagebox.showerror('Copie impossible', f'Presse-papiers indisponible : {exc}',
+            messagebox.showerror('Copy failed', f'Clipboard unavailable: {exc}',
                                  parent=parent or self)
             return False
-        self.status.set(f'{label} copiés ({len(text):,} caractères). Colle dans ChatGPT avec Ctrl+V.')
+        self.status.set(f'{label} copied ({len(text):,} characters). Paste into ChatGPT with Ctrl+V.')
         return True
 
     def _copy_all(self):
         if self.result:
             self._copy_text(format_chatgpt_summary(self.result['global_report'], self.kristalizer, self.kristalizer_build),
-                            label='Résultats globaux')
+                            label='Global results')
 
     def _arketype_inspect(self):
         from .archetype_panel import ArchetypePanel
@@ -397,7 +435,17 @@ class GlobalAnalysisPanel(tk.Toplevel):
         if index >= len(self.entries):
             return None
         row = self.entries[index]
-        data = {'synthese_globale': row}
+        data = {'synthese_globale': row,
+                'classification_names': {
+                    'declared_arketype': display_declared(row, 'primary_archetype'),
+                    'declared_usage_profile': display_declared(row, 'primary_usage'),
+                    'declared_unesco_subjects': display_unesco_declaration(row),
+                    'registered_arketype': display_registered_ark(row),
+                    'proposed_arketype': (display_category(row['proposed_arketype'], 'ark')
+                                          if row.get('proposed_arketype') else 'None proposed'),
+                    'proposed_unesco_subject': (display_category(row['proposed_unesco'], 'unesco')
+                                                if row.get('proposed_unesco') else 'None proposed'),
+                }}
         kstate = kristalizer_bridge.lookup(self.kristalizer, row.get('path'))
         if kstate:
             data['kristalizer_observation'] = kstate
@@ -422,21 +470,21 @@ class GlobalAnalysisPanel(tk.Toplevel):
     def _copy_selected(self):
         data = self._selected_record()
         if data is None:
-            messagebox.showinfo('Aucune sélection',
-                                'Sélectionne un Kristal dans la liste, puis clique sur Copier.', parent=self)
+            messagebox.showinfo('Nothing selected',
+                                'Select a Kristal in the list, then click Copy.', parent=self)
             return
         self._copy_text(json.dumps(data, ensure_ascii=False, indent=2),
-                        label='Détails du Kristal')
+                        label='Kristal details')
 
     def _details(self):
         selected=self.table.selection()
         if not selected:return
         row=self.entries[int(selected[0])]
         popup=tk.Toplevel(self)
-        popup.title('Observations et propositions — ' + row['title'])
+        popup.title('Observations and proposals — ' + row['title'])
         popup.geometry('900x620')
         frame=ttk.Frame(popup,padding=12);frame.pack(fill='both',expand=True)
-        ttk.Label(frame,text=row['title']+' · données de triage non validées',style='H2.TLabel').pack(anchor='w')
+        ttk.Label(frame,text=row['title']+' · unvalidated triage data',style='H2.TLabel').pack(anchor='w')
         text=tk.Text(frame,wrap='word',font=('Consolas',10))
         text.pack(fill='both',expand=True,pady=(8,0))
         data = self._selected_record() or {'synthese_globale': row}
@@ -448,10 +496,10 @@ class GlobalAnalysisPanel(tk.Toplevel):
         feedback = tk.StringVar(value='')
         ttk.Label(actions, textvariable=feedback, style='Sub.TLabel').pack(side='left')
         def copy_details():
-            if self._copy_text(payload, label='Détails du Kristal', parent=popup):
-                feedback.set('Copié ! Colle dans ChatGPT avec Ctrl+V.')
-        ttk.Button(actions, text='Copier ces détails', command=copy_details).pack(side='right', padx=(7,0))
-        ttk.Button(actions,text='Fermer',command=popup.destroy).pack(side='right')
+            if self._copy_text(payload, label='Kristal details', parent=popup):
+                feedback.set('Copied! Paste into ChatGPT with Ctrl+V.')
+        ttk.Button(actions, text='Copy these details', command=copy_details).pack(side='right', padx=(7,0))
+        ttk.Button(actions,text='Close',command=popup.destroy).pack(side='right')
 
     def _open_html(self):
         if self.result:
@@ -463,15 +511,15 @@ class GlobalAnalysisPanel(tk.Toplevel):
             path=Path(self.result['problem_archive'])
             if path.is_file():
                 # Show exact ZIP location without uploading anything.
-                messagebox.showinfo('ZIP des problèmes prêt',str(path),parent=self)
+                messagebox.showinfo('Issues ZIP ready',str(path),parent=self)
             else:
-                messagebox.showwarning('Archive introuvable','Le ZIP doit être régénéré.',parent=self)
+                messagebox.showwarning('Archive not found','The ZIP must be regenerated.',parent=self)
 
     def _open_plan(self):
         if self.result:
             path=Path(self.result['report_directory']) / 'plan_corrections.json'
             if path.is_file():
-                popup=tk.Toplevel(self);popup.title('Plan des corrections (prévisualisation seulement)')
+                popup=tk.Toplevel(self);popup.title('Correction plan (preview only)')
                 popup.geometry('850x610')
                 txt=tk.Text(popup,wrap='word',font=('Consolas',10))
                 txt.pack(fill='both',expand=True)

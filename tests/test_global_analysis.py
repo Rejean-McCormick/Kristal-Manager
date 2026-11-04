@@ -64,6 +64,9 @@ def test_all_pipeline_and_cache_and_export(tmp_path):
     assert a['catalog_stats']['updated']==1
     assert a['global_report']['counts']['kristals']==1
     assert a['global_report']['entries'][0]['proposed_unesco']=='2.30'
+    csv_text=(Path(a['report_directory'])/'tableau_global.csv').read_text(encoding='utf-8-sig')
+    assert 'Astronomy' in csv_text
+    assert '2.30' not in csv_text  # User-facing CSV: English label, no opaque notation.
     assert a['global_report']['entries'][0]['priority'] in ('review','warning')
     assert Path(a['html_report']).is_file()
     with zipfile.ZipFile(a['problem_archive']) as z:
@@ -160,10 +163,10 @@ def test_chatgpt_clipboard_summary_contains_all_entries_and_issues():
     }
     summary = format_chatgpt_summary(data)
     assert '2 Kristals' in summary
-    assert 'Kristal-Astronomy' in summary and '2.30' in summary
+    assert 'Kristal-Astronomy' in summary and 'Astronomy' in summary
     assert 'Kristal-Biology' in summary and 'IDENTITY_COLLISION' in summary
     assert 'galaxie' in summary and 'étoile' in summary
-    assert 'non validées' in summary and 'C1/C2/C3' in summary
+    assert 'unvalidated proposals' in summary and 'C1/C2/C3' in summary
 
 
 def test_unesco_parent_domain_always_matches_proposed_microthesaurus():

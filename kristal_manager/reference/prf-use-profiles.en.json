@@ -1,0 +1,93 @@
+{
+  "format": "kristal.manager-prf-display-labels/1.0",
+  "language": "en",
+  "status": "descriptive_labels_only_not_approvals",
+  "origin": "Arketype/inventaires/profils-usage.json",
+  "origin_sha256": "f4b49fad2bed55330a55be8bfc572e93bd34cfa8e000cf54dcfac8d1769a90b0",
+  "profiles": [
+    {
+      "id": "PRF-01",
+      "name": "System Troubleshooting"
+    },
+    {
+      "id": "PRF-02",
+      "name": "Procedural Environment"
+    },
+    {
+      "id": "PRF-03",
+      "name": "Nature Taxonomy"
+    },
+    {
+      "id": "PRF-04",
+      "name": "System-State Tracking"
+    },
+    {
+      "id": "PRF-05",
+      "name": "Employee Follow-Up"
+    },
+    {
+      "id": "PRF-06",
+      "name": "Federated University / Campus"
+    },
+    {
+      "id": "PRF-07",
+      "name": "Moodle Learning Publication"
+    },
+    {
+      "id": "PRF-08",
+      "name": "Traditions and Mythology Collection"
+    },
+    {
+      "id": "PRF-09",
+      "name": "Contextual Social Organizations"
+    },
+    {
+      "id": "PRF-10",
+      "name": "Long-Proof Landmarks and Junctions"
+    },
+    {
+      "id": "PRF-11",
+      "name": "Mathematical Research Frontier"
+    },
+    {
+      "id": "PRF-12",
+      "name": "Individual School Follow-Up"
+    },
+    {
+      "id": "PRF-13",
+      "name": "Individual Medical Follow-Up"
+    },
+    {
+      "id": "PRF-14",
+      "name": "Civic / Administrative Individual Casefile"
+    },
+    {
+      "id": "PRF-15",
+      "name": "Vehicle Fault Diagnosis"
+    },
+    {
+      "id": "PRF-16",
+      "name": "Police Operations Protocols"
+    },
+    {
+      "id": "PRF-17",
+      "name": "Hospital Operations Protocols"
+    },
+    {
+      "id": "PRF-18",
+      "name": "Medical Knowledge Orchestration"
+    },
+    {
+      "id": "PRF-19",
+      "name": "School System and Rules Mapping"
+    },
+    {
+      "id": "PRF-20",
+      "name": "Multi-Purpose Semantic Reference"
+    },
+    {
+      "id": "PRF-21",
+      "name": "Attributed Testimony and Inquiry"
+    }
+  ]
+}

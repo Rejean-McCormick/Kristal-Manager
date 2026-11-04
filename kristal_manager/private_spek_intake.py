@@ -20,11 +20,11 @@ class PrivateIntakeError(ValueError):
 
 def _read(path: Path) -> dict:
     if path.is_symlink() or not path.is_file() or path.stat().st_size>20_000_000:
-        raise PrivateIntakeError('Fichier privé absent ou non sûr')
+        raise PrivateIntakeError('Private file missing or unsafe')
     try:
         obj=json.loads(path.read_text(encoding='utf-8'))
     except (OSError,ValueError) as exc:
-        raise PrivateIntakeError('Données JSON privées illisibles') from exc
+        raise PrivateIntakeError('Unreadable private JSON data') from exc
     if not isinstance(obj,dict):
         raise PrivateIntakeError('Objet JSON attendu')
     return obj
@@ -32,13 +32,13 @@ def _read(path: Path) -> dict:
 
 def _hash(path: Path) -> str:
     if path.is_symlink() or not path.is_file() or path.stat().st_size>20_000_000:
-        raise PrivateIntakeError('Source de provenance absente ou non sûre')
+        raise PrivateIntakeError('Provenance source missing or unsafe')
     return 'sha256:'+hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def inspect(lock: dict, *, graph_path: Path, identity_map: Path | None = None) -> dict:
     if not isinstance(lock,dict) or lock.get('format')!=FORMAT or lock.get('status')!='PRIVATE_UNQUALIFIED_NOT_PUBLISHABLE':
-        raise PrivateIntakeError('Paquet Spek privé invalide ou statut interdit')
+        raise PrivateIntakeError('Invalid private Spek package or disallowed status')
     qualification=lock.get('qualification')
     if not isinstance(qualification,dict) or any(value is not False for value in qualification.values()) or set(qualification)!={
         'semantic_entailment_checked','semantik_result_pairs_verified','rhetorical_relations_approved','c1_c2_c3_approved','publication_authorized'}:
@@ -48,17 +48,17 @@ def inspect(lock: dict, *, graph_path: Path, identity_map: Path | None = None) -
         raise PrivateIntakeError('Empreinte du graphe canonique non conforme')
     graph=_read(Path(graph_path))
     if graph.get('schema_version')!='11.0' or graph.get('artifact_type')!='kristal_semantic_graph':
-        raise PrivateIntakeError('Graphe sémantique v11 requis')
+        raise PrivateIntakeError('V11 semantic graph required')
     entries=graph.get('assertions')
     if not isinstance(entries,list) or not all(isinstance(a,dict) and isinstance(a.get('id'),str) for a in entries):
         raise PrivateIntakeError('Assertions de source invalides')
     active={a['id'] for a in entries}
     if len(active)!=len(entries):
-        raise PrivateIntakeError('Assertions dupliquées')
+        raise PrivateIntakeError('Duplicate assertions')
     mapping={}
     if identity_map is not None:
         if source.get('identity_migration_sha256')!=_hash(Path(identity_map)):
-            raise PrivateIntakeError('Empreinte de migration d’identité non conforme')
+            raise PrivateIntakeError('Identity migration digest does not match')
         metadata=_read(Path(identity_map));bykind=metadata.get('by_kind')
         mapping=bykind.get('A') if isinstance(bykind,dict) else None
         if not isinstance(mapping,dict):
@@ -72,25 +72,25 @@ def inspect(lock: dict, *, graph_path: Path, identity_map: Path | None = None) -
     template_refs=set()
     for t in templates:
         if not isinstance(t,dict) or not isinstance(t.get('template_ref'),str) or not DIGEST.fullmatch(t.get('sha256','')) or t['template_ref'] in template_refs:
-            raise PrivateIntakeError('Verrou de template invalide ou dupliqué')
+            raise PrivateIntakeError('Invalid or duplicate template lock')
         template_refs.add(t['template_ref'])
     refs=set(); keys=set()
     for field in fields:
         if not isinstance(field,dict) or not isinstance(field.get('realization_key'),str) or field['realization_key'] in keys or not DIGEST.fullmatch(field.get('request_sha256','')):
-            raise PrivateIntakeError('Champ de réalisation invalide ou dupliqué')
+            raise PrivateIntakeError('Invalid or duplicate realization field')
         keys.add(field['realization_key'])
         anchors=field.get('source_assertion_refs')
         if not isinstance(anchors,list) or not anchors or len(set(anchors))!=len(anchors) or not all(isinstance(r,str) for r in anchors):
-            raise PrivateIntakeError('Références source absentes ou dupliquées')
+            raise PrivateIntakeError('Source references missing or duplicate')
         refs.update(anchors)
     if lock.get('selected_assertion_count')!=len(refs):
-        raise PrivateIntakeError('Compte d’assertions incohérent')
+        raise PrivateIntakeError('Inconsistent assertion count')
     translated=[mapping.get(r,r) for r in refs]
     if len(set(translated))!=len(refs) or not set(translated).issubset(active):
-        raise PrivateIntakeError('Identités source absentes ou ambiguës dans le graphe canonique')
+        raise PrivateIntakeError('Source identities missing or ambiguous in canonical graph')
     relations=lock.get('relations_declared_unverified')
     if not isinstance(relations,list):
-        raise PrivateIntakeError('Déclarations de relations manquantes')
+        raise PrivateIntakeError('Missing relation declarations')
     for relation in relations:
         anchors = relation.get('source_assertion_refs') if isinstance(relation,dict) else None
         if (not isinstance(anchors,list) or not anchors or not all(isinstance(r,str) and r for r in anchors)
@@ -100,7 +100,7 @@ def inspect(lock: dict, *, graph_path: Path, identity_map: Path | None = None) -
             or relation.get('template_ref') not in template_refs or
             not isinstance(relation.get('source_assertion_refs'),list) or
             not set(relation['source_assertion_refs']).issubset(refs)):
-            raise PrivateIntakeError('Relation rhétorique non supportée par les références du plan')
+            raise PrivateIntakeError('Rhetorical relation unsupported by plan references')
     return {'format':'kristal-manager.spek-private-intake/1.0',
             'status':'PASS_IDENTITY_ONLY_NOT_QUALIFIED',
             'field_count':len(fields),'source_assertion_count':len(refs),
@@ -111,7 +111,7 @@ def inspect(lock: dict, *, graph_path: Path, identity_map: Path | None = None) -
 
 
 def main(argv=None):
-    parser=argparse.ArgumentParser(description='Verifier un handoff privé Spek (sans autorisation)')
+    parser=argparse.ArgumentParser(description='Verify private Spek handoff (without granting authorization)')
     parser.add_argument('--lock',required=True,type=Path)
     parser.add_argument('--graph',required=True,type=Path)
     parser.add_argument('--identity-map',type=Path)

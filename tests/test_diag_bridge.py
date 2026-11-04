@@ -89,11 +89,11 @@ def test_unsafe_program_and_arguments_blocked(tmp_path):
         validate_config(script, '--path={workspace}')
     nested=root/'diag.py'
     nested.write_text('print(1)')
-    with pytest.raises(DiagConfigurationError, match='hors des Kristals'):
+    with pytest.raises(DiagConfigurationError, match='outside source Kristals'):
         validate_config(nested,'{workspace}',root=root.parent)
     batch=tmp_path/'diag.cmd'
     batch.write_text('echo hello')
-    with pytest.raises(DiagConfigurationError, match='shell'):
+    with pytest.raises(DiagConfigurationError, match='[Ss]hell'):
         validate_config(batch,'{workspace}')
 
 

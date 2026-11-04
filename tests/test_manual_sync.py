@@ -71,7 +71,7 @@ def test_wrong_remote_or_dirty_target_blocked(roots):
     src,dst,a,*_=roots
     t=dst/'Kristal-Alpha'
     init(t,'a','kristal-alpha','https://github.com/other/Unrelated.git')
-    with pytest.raises(ManagerError,match='ne correspond'):
+    with pytest.raises(ManagerError,match='does not match'):
         plan_copies(locals_root=src,destination_root=dst,slugs=['kristal-alpha'],mode='clones')
     git(t,'remote','set-url','origin','https://github.com/me/Kristal-Alpha.git')
     (t/'junk.txt').write_text('dirty')
@@ -82,11 +82,11 @@ def test_wrong_remote_or_dirty_target_blocked(roots):
 def test_unexpected_existing_copy_and_bad_selection(roots):
     src,dst,*_=roots
     (dst/'Kristal-Alpha').mkdir()
-    with pytest.raises(ManagerError,match='déjà existante'):
+    with pytest.raises(ManagerError,match='already exists'):
         apply_copies(locals_root=src,destination_root=dst,slugs=['kristal-alpha'],mode='new')
-    with pytest.raises(ManagerError,match='sélection|Sélection'):
+    with pytest.raises(ManagerError,match='selection|Selection'):
         plan_copies(locals_root=src,destination_root=dst,slugs=[],mode='new')
-    with pytest.raises(ManagerError,match='uniques'):
+    with pytest.raises(ManagerError,match='unique slugs'):
         plan_copies(locals_root=src,destination_root=dst,slugs=['kristal-alpha']*2,mode='new')
 
 
@@ -101,11 +101,11 @@ def test_sensitive_git_tracked_file_blocks_without_copy(roots):
 
 def test_no_symlinks_and_cross_source_destination(roots):
     src,dst,a,*_=roots
-    with pytest.raises(ManagerError,match='séparée'):
+    with pytest.raises(ManagerError,match='separate'):
         plan_copies(locals_root=src,destination_root=src,slugs=['kristal-alpha'],mode='new')
     link=a/'canon'/'alias'
     try:link.symlink_to(a/'canon'/'value.json')
     except (NotImplementedError,OSError):pytest.skip('symlink not supported')
     git(a,'add','--','canon/alias')
-    with pytest.raises(ManagerError,match='symbolique'):
+    with pytest.raises(ManagerError,match='symlink'):
         plan_copies(locals_root=src,destination_root=dst,slugs=['kristal-alpha'],mode='new')

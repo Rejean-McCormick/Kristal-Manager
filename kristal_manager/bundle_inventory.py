@@ -156,29 +156,29 @@ def scan_inventory(source: Path | str) -> dict:
        'total_canon_bytes':sum(r['bytes_canon'] for r in projects),
        'incomplete_projects':sum(not r['measurement_complete'] for r in projects)},
        'projects':projects,
-       'limits':['Octets locaux bruts (non compressés); la taille ZIP réelle n’est pas connue.',
-                 'Tous les fichiers réguliers sont comptés: historique, .git, dérivés, médias et outils inclus.',
-                 'Les liens symboliques et jonctions ne sont jamais suivis et rendent la mesure incomplète.',
-                 'Un fichier inaccessible rend le total un minimum, pas une taille définitive.',
-                 'Les tags ARK proviennent du workspace, sans inférence ni validation.',
-                 'Aucun fichier de Kristal n’est lu en contenu sauf le petit workspace JSON de métadonnées.',
+       'limits':['Raw local bytes (uncompressed); actual ZIP size is unknown.',
+                 'All regular files are counted: historical data, .git, derived files, media and tools included.',
+                 'Symlinks and junctions are never followed and make measurements incomplete.',
+                 'An inaccessible file makes the total a lower bound, not a definitive size.',
+                 'ARK tags come from the workspace, without inference or validation.',
+                 'No Kristal file contents are read except the small workspace metadata JSON.',
                  'Ce rapport n’est ni une validation canonique, ni une certification Framework.']}
 
 
 def format_brief(report: dict) -> str:
     counts = report['counts']
-    lines = ['KRISTAL MANAGER — INVENTAIRE TAILLES & TAGS POUR BUNDLES COMPLETS',
+    lines = ['KRISTAL MANAGER — SIZE & TAG INVENTORY FOR COMPLETE BUNDLES',
        'Format : '+report['format'], 'Date UTC : '+report['generated_utc'],
        'Source : '+report['source'],
        f"Totaux : {counts['projects']} Kristals; {counts['total_files']} fichiers; "
        f"{counts['total_bytes']} octets; incomplets={counts['incomplete_projects']}.",
-       'Chaque ligne : dossier | octets bruts | fichiers | octets canon | tag ARK déclaré | état scan',
+       'Each line: folder | raw bytes | files | canonical bytes | declared ARK tag | scan status',
        '']
     for r in report['projects']:
         cl = r.get('declaration') or {}
         lines.append(f"{r['relative_dir']} | {r['bytes_total']} | {r['file_count']} | {r['bytes_canon']} | "
            f"{cl.get('primary_archetype') or '—'} | {'COMPLET' if r['measurement_complete'] else 'INCOMPLET'}")
     lines += ['','LIMITES :', *(('- '+x) for x in report['limits']),
-       'Demande : proposer des listes de packs de dossiers complets, en équilibrant taille et complexité.',
-       'Ne pas écrire de tags, ne pas retirer de fichiers et ne pas créer de ZIP à partir de ce seul rapport.']
+       'Request: propose bundles of complete folders, balancing size and complexity.',
+       'Do not write tags, remove files, or generate ZIP bundles solely from this report.']
     return '\n'.join(lines)+'\n'

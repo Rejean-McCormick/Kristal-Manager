@@ -100,7 +100,7 @@ def read_registry_icon_index(collection_root: str | Path | None = None) -> dict[
         if ico is None:continue
         index[name]=IconInfo('registry-présentation',ico,str(data.get('nature') or ''),
             data.get('maturity'),tuple(str(d.get('code')) for d in data.get('domains',()) if isinstance(d,dict)),
-            'Cache de présentation Registry ; pas une icône Windows appliquée dans locals')
+            'Registry presentation cache; not a Windows icon applied in locals')
     return index
 
 
@@ -122,7 +122,7 @@ def discover_icon(workspace: str | Path, *, registry_icons: dict[str, IconInfo] 
     maturity = int(kristal['maturity']) if kristal.get('maturity','').isdigit() else None
     if ico is not None:
         return IconInfo('desktop.ini', ico, nature, maturity, domains,
-                        'Icône personnalisée déjà appliquée à Windows')
+                        'Custom icon already applied in Windows')
     profile = root / '.kristal' / 'icon-profile.json'
     try:
         if profile.is_file() and profile.stat().st_size < 1024 * 1024:
@@ -137,15 +137,15 @@ def discover_icon(workspace: str | Path, *, registry_icons: dict[str, IconInfo] 
                     if fallback and fallback.ico:return fallback
                 return IconInfo('icon-profile.json', ico, str(data.get('nature',nature)),
                                 data.get('maturity'), domain_values,
-                                'Profil présent ; aucun changement d’icône Windows')
+                                'Profile present; no Windows icon change')
     except (OSError, ValueError, TypeError, KeyError):
         pass
     fallback = (registry_icons or {}).get(root.name)
     if fallback and fallback.ico:
         return fallback
-    return IconInfo('desktop.ini non résolu' if raw_resource else 'none', None,
+    return IconInfo('desktop.ini unresolved' if raw_resource else 'none', None,
                     nature, maturity, domains,
-                    'Icône absente ou non lisible ; ouvrir le générateur si nécessaire')
+                    'Icon absent or unreadable; open the generator if needed')
 
 
 def png_from_ico(path: Path, *, preferred: int = 32) -> bytes | None:

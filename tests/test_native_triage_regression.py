@@ -71,7 +71,7 @@ def test_native_observation_is_review_without_false_technical_warning(tmp_path):
     assert row["content_status"] == "native_observed"
     assert row["problems"] == []
     assert row["priority"] == "review"
-    assert any("conformité Framework non évalués" in x for x in row["human_review"])
+    assert any("Framework conformance not evaluated" in x for x in row["human_review"])
     assert semantic["status"]["qualification"] == "NOT_EVALUATED"
     assert semantic["dik_alignment_observations"]["status"] == "NATIVE_FORMAT_DIK_NOT_EVALUATED"
     assert semantic["issues_to_review"] == []

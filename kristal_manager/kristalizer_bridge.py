@@ -49,7 +49,7 @@ def _csv_rows(raw: bytes, name: str) -> list[dict]:
         contents = raw.decode('utf-8-sig')
         reader = csv.DictReader(io.StringIO(contents))
         if not reader.fieldnames or any(not c for c in reader.fieldnames):
-            raise ValueError('CSV sans en-têtes : ' + name)
+            raise ValueError('CSV missing headers: ' + name)
         rows = list(reader)
         if any(None in row for row in rows):
             raise ValueError('CSV avec des colonnes inattendues : ' + name)
@@ -84,7 +84,7 @@ def summarize_zip(zip_path: str | Path) -> dict:
     if any(not isinstance(name, str) or not name.strip() or '/' in name or '\\' in name for name in names):
         raise ValueError('Noms de projets invalides')
     if len(names) != len(set(n.casefold() for n in names)) or len(names) != raw_report.get('projects'):
-        raise ValueError('Doublons ou comptes de projets incohérents')
+        raise ValueError('Duplicates or inconsistent project counts')
     candidates = _csv_rows(files['ANALYSE/CANDIDATS.csv'], 'CANDIDATS.csv')
     decisions = _csv_rows(files['ANALYSE/DECISIONS.csv'], 'DECISIONS.csv')
     links = _csv_rows(files['ANALYSE/LIAISONS_NOTIONS_ASSERTIONS.csv'], 'LIAISONS_NOTIONS_ASSERTIONS.csv')
@@ -98,13 +98,13 @@ def summarize_zip(zip_path: str | Path) -> dict:
         if raw_report.get(key) != actual:
             raise ValueError(f'Comptage incohérent pour {key} : {actual} != {raw_report.get(key)}')
     if len(decisions) != len(candidates):
-        raise ValueError('Décisions/candidats Wikidata non alignés')
+        raise ValueError('Wikidata decisions/candidates not aligned')
     project_set = set(names)
     for group in (candidates, links, topics, suggestions, decisions):
         if any(row.get('project') not in project_set for row in group):
-            raise ValueError('Un rapport contient un projet non déclaré')
+            raise ValueError('A report contains an undeclared project')
     if sum(row.get('state') == 'MIGRATION_V11_REQUISE' for row in detail) != raw_report.get('migration_required'):
-        raise ValueError('Nombre de migrations incohérent')
+        raise ValueError('Inconsistent migration count')
 
     p_candidates = Counter(row['project'] for row in candidates)
     p_unique = defaultdict(set)
@@ -114,7 +114,7 @@ def summarize_zip(zip_path: str | Path) -> dict:
         p_risks[row['project']][row.get('risk') or 'INCONNU'] += 1
     p_topics = Counter(row['project'] for row in topics)
     p_links = Counter(row['project'] for row in links)
-    pending = Counter(row.get('decision') or 'non renseignée' for row in decisions)
+    pending = Counter(row.get('decision') or 'not provided' for row in decisions)
     per = {}
     for row in detail:
         name = row['project']
@@ -150,7 +150,7 @@ def summarize_zip(zip_path: str | Path) -> dict:
         },
         'qualification': 'NON_EVALUEE',
         'write_authorized': False, 'auto_publish': False,
-        'notice': 'Résultats Kristalizer provisoires. Aucun exactMatch, KS, KA, KQ ou KP n’est validé par l’import. Les données canoniques ne sont pas modifiées.',
+        'notice': 'Provisional Kristalizer results. Import does not validate exactMatch, KS, KA, KQ or KP. Canonical data ne sont pas modifiées.',
     }
 
 
@@ -165,7 +165,7 @@ def import_report(zip_path: str | Path, reports_root: str | Path) -> dict:
         raise ValueError('Dossier d’import via lien symbolique interdit')
     target = folder / LATEST_NAME
     if target.is_symlink():
-        raise ValueError('Rapport importé via lien symbolique interdit')
+        raise ValueError('Report imported through forbidden symlink')
     temp = folder / ('.import-' + report['source_zip_sha256'][:16] + '.tmp')
     temp.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     os.replace(temp, target)
@@ -215,13 +215,13 @@ def summarize_build_zip(zip_path: str | Path) -> dict:
     build = raw[expected[1]]
     scan = raw[expected[2]]
     if not all(isinstance(x, dict) for x in (stage, build, scan)):
-        raise ValueError('Les rapports Kristalizer doivent être des objets JSON')
+        raise ValueError('Kristalizer reports must be JSON objects')
     if (stage.get('format') != 'kristal.kristalizer.stage/1.1' or
         build.get('format') != 'kristal.kristalizer.build/1.1' or
         scan.get('format') != 'kristal.kristalizer.scan/1.2.2'):
         raise ValueError('Formats Kristalizer inconnus : scan 1.2.2 / stage 1.1 / build 1.1 requis')
     if build.get('staging') != stage.get('staging'):
-        raise ValueError('Dossiers STAGING incohérents entre les rapports')
+        raise ValueError('STAGING folders inconsistent between reports')
     for x, label in ((stage,'stage'), (build,'build'), (scan,'scan')):
         if not isinstance(x.get('projects') if label!='scan' else x.get('projects_detail'), list):
             raise ValueError('Liste de projets absente du '+label)
@@ -233,7 +233,7 @@ def summarize_build_zip(zip_path: str | Path) -> dict:
         or set(names) != set(scan_names) or set(names) != set(build_names)
         or len(names) != len(build_names) or len(names) != len(scan_names)
         or len(names) != scan.get('projects')):
-        raise ValueError('Incohérence entre les projets scan, staging et build')
+        raise ValueError('Inconsistency among scan, staging and build projects')
     if stage.get('source_modified') is not False:
         raise ValueError('Le rapport de staging ne confirme pas le respect des sources')
     allowed = {'BUILT', 'MIGRATION_MANUELLE_V11', 'FAILED', 'ACTIVE', 'PUBLIE'}
@@ -262,10 +262,10 @@ def summarize_build_zip(zip_path: str | Path) -> dict:
         }
     counts = Counter(x['status'] for x in per.values())
     if build.get('failures') != counts['FAILED']:
-        raise ValueError('Nombre d’échecs de build incohérent')
+        raise ValueError('Inconsistent build failure count')
     kit = build.get('authoring_kit') or {}
     if not isinstance(kit, dict):
-        raise ValueError('Métadonnées Authoring Kit invalides')
+        raise ValueError('Invalid Authoring Kit metadata')
     return {
         'format': BUILD_FORMAT, 'source_format': build['format'],
         'scan_generated_at': scan.get('generated_at'),
@@ -281,7 +281,7 @@ def summarize_build_zip(zip_path: str | Path) -> dict:
                    'domain_assertions_added_by_stage': stage.get('canon_domain_assertions_added'),
                    'kit_version': kit.get('version'), 'kit_framework_pin': kit.get('framework_pin')},
         'qualification': 'NON_EVALUEE', 'canonical_source_modified': False,
-        'notice': 'Résultats du Kit sur COPIES seulement. BUILT ne signifie ni activation, ni certification Framework C1/C2/C3, ni correction sémantique.',
+        'notice': 'Kit results on COPIES only. BUILT does not mean activation, Framework C1/C2/C3 certification or correction sémantique.',
     }
 
 

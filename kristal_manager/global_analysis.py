@@ -34,9 +34,9 @@ def _ensure_outside_sources(source: Path, targets: list[Path]) -> None:
     for target in targets:
         out = target.expanduser().resolve()
         if out == root or out.is_relative_to(root):
-            raise ManagerError(f'Sortie dans le périmètre scanné interdite : {out}')
+            raise ManagerError(f'Output inside scanned source folder is forbidden: {out}')
         if target.is_symlink():
-            raise ManagerError(f'Sortie par lien symbolique interdite : {target}')
+            raise ManagerError(f'Output through symlink forbidden: {target}')
 
 
 def _write_json(path: Path, obj: Any) -> None:
@@ -51,10 +51,10 @@ def _summary_row(report: dict, record: dict, audit: dict, assessment: dict | Non
     if readiness != 'READY':
         problems.append({'severity': 'warning', 'code': 'LOCAL_NOT_READY', 'detail': readiness})
     if record.get('state_conflict'):
-        problems.append({'severity': 'blocker', 'code': 'STATE_CONFLICT', 'detail': 'État courant contradictoire'})
+        problems.append({'severity': 'blocker', 'code': 'STATE_CONFLICT', 'detail': 'Contradictory current state'})
     if record.get('identity_collision'):
         problems.append({'severity': 'blocker', 'code': 'IDENTITY_COLLISION',
-                         'detail': 'Identité partagée : examiner les archives/copies, ne rien supprimer automatiquement'})
+                         'detail': 'Shared identity: review archives/copies; do not delete anything automatically'})
     # A native-observed contract can be valid without conforming to a KQ/KP graph.
     # It is a review item, not a reader failure or a Framework qualification.
     if report['status']['content_status'] not in ('observed', 'native_observed'):
@@ -76,18 +76,18 @@ def _summary_row(report: dict, record: dict, audit: dict, assessment: dict | Non
     # not proof of technical non-conformity.
     reviews = []
     if report['status']['content_status'] == 'native_observed':
-        reviews.append('Contrat natif reconnu; contenu sémantique KQ/KP et conformité Framework non évalués')
+        reviews.append('Native contract recognized; KQ/KP semantics and Framework conformance not evaluated')
     unesco_observation_status = audit.get('unesco', {}).get('status')
     if unesco_observation_status == 'Not mapped':
-        reviews.append('UNESCO non déclaré — examiner les propositions')
+        reviews.append('UNESCO not declared — review proposals')
     elif unesco_observation_status == 'Proposed':
-        reviews.append('UNESCO local proposé — codes reconnus, validation sémantique à confirmer')
+        reviews.append('Local UNESCO proposal — recognized codes; semantic validation required')
     if ark['status'] != 'candidate_to_review':
-        reviews.append('Arketype sans indices structurels suffisants')
+        reviews.append('Insufficient structural evidence for Arketype')
     else:
-        reviews.append('Arketype proposé — validation humaine nécessaire')
+        reviews.append('Proposed Arketype — human review required')
     if audit.get('legacy_icon_migration_needed'):
-        reviews.append('Icône/classification historique à migrer après validation')
+        reviews.append('Historical icon/classification needs migration after approval')
     priority = 'blocker' if any(i['severity'] == 'blocker' for i in problems) else (
         'warning' if problems else 'review' if reviews else 'info')
     arktop = ark.get('primary_candidate')
@@ -115,28 +115,28 @@ def _plans(entries: list[dict]) -> dict:
         codes = {issue['code'] for issue in r['problems']}
         if 'IDENTITY_COLLISION' in codes:
             suggestions.append({'action': 'REVIEW_IDENTITY', 'automatable': False,
-                 'instruction': 'Distinguer la copie historique du Kristal actif; préserver les state_ref jusqu’à décision.'})
+                 'instruction': 'Distinguish historical copy from active Kristal; preserve state_ref until a decision is made.'})
         if 'LOCAL_NOT_READY' in codes:
             suggestions.append({'action': 'REVIEW_STATE_MIGRATION', 'automatable': False,
-                 'instruction': 'Inspecter les états existants avec le Framework/Kit avant toute migration.'})
+                 'instruction': 'Inspect existing states with Framework/Kit before migration.'})
         if 'CONTENT_NOT_OBSERVED' in codes:
             suggestions.append({'action': 'REVIEW_READER', 'automatable': False,
-                 'instruction': 'Vérifier si le format est pris en charge par le catalogueur; ne pas inventer de contenu.'})
+                 'instruction': 'Check whether the catalog reader supports this format; do not invent content.'})
         if r['unesco_status'] == 'candidates_to_review':
             suggestions.append({'action': 'REVIEW_UNESCO_PROPOSAL', 'automatable': False,
-                 'instruction': 'Examiner les preuves et valider explicitement le microthésaurus avant écriture via Kit.'})
+                 'instruction': 'Review evidence and explicitly validate the microthesaurus before writing via Kit.'})
         if r['arketype_status'] == 'candidate_to_review':
             suggestions.append({'action': 'REVIEW_ARKETYPE_PROPOSAL', 'automatable': False,
-                 'instruction': 'Valider la structure indépendamment du domaine avant déclaration via Kit.'})
-        if 'Icône/classification historique à migrer après validation' in r['human_review']:
+                 'instruction': 'Validate structure independently of subject matter before declaration via Kit.'})
+        if 'Historical icon/classification needs migration after approval' in r['human_review']:
             suggestions.append({'action': 'REVIEW_LEGACY_ICON', 'automatable': False,
-                 'instruction': 'Ne pas mapper automatiquement ISCED à UNESCO; utiliser l’outil d’icônes après approbation.'})
+                 'instruction': 'Do not map ISCED to UNESCO automatically; use the icon tool after approval.'})
         if suggestions:
             plans.append({'path': r['path'], 'state_ref': r['state_ref'], 'priority': r['priority'],
                           'proposals': suggestions})
     return {'format': 'kristal.manager-correction-plan/0.1-candidate',
             'write_authorized': False, 'auto_apply': False,
-            'note': 'Aucune modification canonique automatisée. La normalisation des noms de dossiers reste offerte séparément avec sauvegardes et confirmation.',
+            'note': 'No automated canonical changes. Folder name normalization remains separate with backups and confirmation.',
             'plans': plans}
 
 
@@ -144,10 +144,10 @@ def export_problem_bundle(report_dir: str | Path) -> Path:
     """ZIP contenant seulement les résultats dérivés problématiques, jamais les sources."""
     folder = Path(report_dir).resolve(strict=True)
     if not (folder / 'rapport_global.json').is_file():
-        raise ManagerError('Dossier de rapport global invalide')
+        raise ManagerError('Invalid global report folder')
     global_report = json.loads((folder / 'rapport_global.json').read_text('utf-8'))
     if global_report.get('format') != FORMAT:
-        raise ManagerError('Format de rapport non reconnu')
+        raise ManagerError('Unrecognized report format')
     issue_paths = {r['path'] for r in global_report['entries'] if r['priority'] in ('warning', 'blocker')}
     index = {r['path']: r for r in json.loads((folder / 'correspondance_rapports.json').read_text('utf-8'))}
     selected = [folder / 'rapport_global.json', folder / 'plan_corrections.json',
@@ -157,16 +157,16 @@ def export_problem_bundle(report_dir: str | Path) -> Path:
     selected += [folder / 'verifications_locales.json'] if (folder / 'verifications_locales.json').exists() else []
     output = folder.parent / ('problemes-' + folder.name + '.zip')
     if output.exists():
-        raise FileExistsError(f'Un export existe déjà : {output}')
+        raise FileExistsError(f'An export already exists: {output}')
     with zipfile.ZipFile(output, 'x', zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
         for file in selected:
             path = file.resolve(strict=True)
             if not path.is_relative_to(folder):
-                raise ManagerError('Fichier de rapport hors dossier')
+                raise ManagerError('Report file outside the report folder')
             archive.write(path, arcname=path.relative_to(folder).as_posix())
         archive.writestr('LIRE_AVANT_PARTAGE.txt',
-            'Rapports dérivés seulement; pas de Kristals sources. Les chemins locaux, sujets et mots-clés peuvent être sensibles. Vérifier avant tout partage.\n'
-            'Un rapport de triage ne prouve pas une non-conformité Framework, diK ou UNESCO.\n')
+            'Derived reports only; no source Kristals. Local paths, subjects and keywords may be sensitive. Review before sharing.\n'
+            'A triage report does not prove Framework, diK or UNESCO non-conformance.\n')
     return output
 
 
@@ -176,14 +176,14 @@ def analyze_all(source: str | Path, *, update_catalogue: bool = True,
     """Pipeline unique, optimisé par le cache du catalogue pour les sources inchangées."""
     root = Path(source).expanduser().resolve(strict=True)
     if not root.is_dir():
-        raise ManagerError('La source doit être un dossier Kristals existant')
+        raise ManagerError('Source must be an existing Kristals folder')
     database = Path(catalogue or CATALOGUE_PATH).expanduser().absolute()
     reports_dir = Path(reports_base or RAPPORTS_PATH).expanduser().absolute()
     _ensure_outside_sources(root, [database, database.with_suffix('.html'), reports_dir])
     if database.is_symlink() or reports_dir.is_symlink():
-        raise ManagerError('Lien symbolique de sortie interdit')
+        raise ManagerError('Output symlink forbidden')
     if not update_catalogue and not database.is_file():
-        raise ManagerError('Aucun catalogue existant : lancer une analyse avec actualisation du catalogue')
+        raise ManagerError('No existing catalog: run an analysis with catalog refresh')
     reports_dir.mkdir(parents=True, exist_ok=True)
     # Unique name prevents collision and makes analyses comparable over time.
     stamp = datetime.now().strftime('%Y%m%d-%H%M%S')
@@ -237,7 +237,11 @@ def analyze_all(source: str | Path, *, update_catalogue: bool = True,
             # A reused catalog may have stale paths; don't pretend a source was observed.
             current = {'readiness': 'NOT_IN_CURRENT_INVENTORY', 'state_ref': rec.get('state_ref')}
         items.append(_summary_row(rec, current, audit_by_path.get(key, {}), checks.get(key)))
-    # REGISTRE-REVUE-2026-10-30 : avis historiques séparés des tests actuels.
+    # Recover declared metadata and historic AI/structural evidence without
+    # assigning approval or changing the operational triage.
+    from .qualification_history import annotate_qualifications
+    qualification_summary = annotate_qualifications(items, source=root)
+    # Historic local human decisions remain an independent register.
     from .review_registry import annotate_entries
     review_summary = annotate_entries(items, source=root)
     priorities = Counter(item['priority'] for item in items)
@@ -252,28 +256,50 @@ def analyze_all(source: str | Path, *, update_catalogue: bool = True,
                          'content_unsupported': reading.get('unsupported', 0),
                          'content_error': reading.get('error', 0),
                          'registered_review_matched': review_summary.get('matched', 0),
+                         'historical_qualifications_matched': qualification_summary.get('history_matched', 0),
+                         'live_classifications_read': qualification_summary.get('live_metadata_matched', 0),
                          'arketype_candidates': sum(r['arketype_inference']['status']=='candidate_to_review' for r in details),
                          'unesco_micro_candidates': sum(r['unesco_proposal']['status']=='candidates_to_review' for r in details),
                          'unesco_domain_candidates': sum(bool(r['unesco_proposal']['domain_candidates']) for r in details)},
-              'review_registry': review_summary,
+              'review_registry': review_summary, 'qualification_recovery': qualification_summary,
               'entries': items,
-              'limits': ['Contrat natif reconnu = structure/contrat observés, pas contenu sémantique intégral validé.',
-                         'Santé technique, lecture canonique et classification humaine sont trois évaluations distinctes.',
-                         'Scores UNESCO et Arketype = propositions non canoniques.',
-                         'diK = observations lexicales; aucun contrat de normalisation d’identités n’est exécuté.',
-                         'Sans KristalDiag et Framework externe, aucune certification C1/C2/C3.',
-                         'Les anomalies détectées ne prouvent pas à elles seules une non-conformité.']}
+              'limits': ['Native contract recognized means its structure/contract was observed, not that its complete semantics were validated.',
+                         'Technical health, canonical reading and human classification are three separate assessments.',
+                         'UNESCO and Arketype scores are non-canonical proposals.',
+                         'diK provides lexical observations; no identity normalization contract was executed.',
+                         'No C1/C2/C3 certification without independent KristalDiag and Framework verification.',
+                         'Detected issues alone do not prove non-conformance.']}
     _write_json(output / 'rapport_global.json', result)
     _write_json(output / 'inventaire_observe.json', [{'title': r.get('title'), 'path': r.get('path'), 'state_ref': r.get('state_ref'), 'readiness': r.get('readiness'), 'historical_archive': is_historical(r)} for r in all_rows])
     _write_json(output / 'plan_corrections.json', _plans(items))
     _write_json(output / 'correspondance_rapports.json', [dict(path=r['path'], **refs.get(r['path'].casefold(), {})) for r in items])
     # One convenient single-file CSV; preserve explicit tentative labels.
     with (output / 'tableau_global.csv').open('w', newline='', encoding='utf-8-sig') as out:
-        fields = ('title', 'readiness', 'content_status', 'priority', 'proposed_arketype',
-                  'proposed_unesco_domain', 'proposed_unesco', 'keywords', 'problem_count', 'path')
+        fields = ('title', 'readiness', 'content_status', 'priority', 'declared_ark', 'declared_prf',
+                  'declared_unesco', 'subject_domain', 'ark_structure_history', 'classification_review_status',
+                  'proposed_arketype', 'proposed_unesco_domain', 'proposed_unesco',
+                  'keywords', 'problem_count', 'path')
+        from .qualification_history import display_declared, display_unesco_declaration, display_ark_structure
+        from .classification_labels import display_category
         writer = csv.DictWriter(out, fieldnames=fields); writer.writeheader()
         for r in items:
-            writer.writerow({**{k:r.get(k) for k in fields}, 'keywords': '; '.join(r['keywords']),
+            evidence = r.get('qualification_evidence') or {}
+            metadata = evidence.get('metadata') or {}
+            writer.writerow({**{k:r.get(k) for k in fields},
+                             'declared_ark': display_declared(r, 'primary_archetype'),
+                             'declared_prf': display_declared(r, 'primary_usage'),
+                             'declared_unesco': display_unesco_declaration(r),
+                             'subject_domain': display_declared(r, 'subject_domain'),
+                             'ark_structure_history': display_ark_structure(r),
+                             'classification_review_status': metadata.get('verification_status') or 'NOT_EVALUATED',
+                             # Human-facing CSV uses English names. Raw JSON keeps exact codes.
+                             'proposed_arketype': (display_category(r['proposed_arketype'], 'ark')
+                                                   if r.get('proposed_arketype') else 'None proposed'),
+                             'proposed_unesco_domain': (display_category(r['proposed_unesco_domain'], 'unesco_domain')
+                                                        if r.get('proposed_unesco_domain') else 'None proposed'),
+                             'proposed_unesco': (display_category(r['proposed_unesco'], 'unesco')
+                                                 if r.get('proposed_unesco') else 'None proposed'),
+                             'keywords': '; '.join(r['keywords']),
                              'problem_count': len(r['problems'])})
     archive = export_problem_bundle(output)
     return {'report_directory': str(output), 'problem_archive': str(archive),

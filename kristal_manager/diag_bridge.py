@@ -35,15 +35,15 @@ def validate_config(program: str | Path, arguments: str, *, root: str | Path | N
     """Validate a local program and an explicit token template (no shell)."""
     candidate = Path(program).expanduser().absolute()
     if candidate.is_symlink():
-        raise DiagConfigurationError('Un lien symbolique vers le programme n’est pas accepté.')
+        raise DiagConfigurationError('A symlink to the program is not accepted.')
     exe = candidate.resolve()
     if not exe.is_file():
-        raise DiagConfigurationError('Programme KristalDiag introuvable ou lien symbolique non autorisé.')
+        raise DiagConfigurationError('KristalDiag program not found or disallowed symlink.')
     if root is not None and exe.is_relative_to(Path(root).expanduser().resolve()):
-        raise DiagConfigurationError('Le programme doit être installé hors des Kristals sources.')
+        raise DiagConfigurationError('The program must be installed outside source Kristals.')
     suffix = exe.suffix.lower()
     if suffix in ('.bat', '.cmd', '.ps1', '.sh'):
-        raise DiagConfigurationError('Les lanceurs shell .cmd/.bat/.ps1/.sh ne sont pas pris en charge. Fournir un exécutable ou le script .py/.js/.mjs.')
+        raise DiagConfigurationError('Shell launchers .cmd/.bat/.ps1/.sh are not supported. Provide an executable or .py/.js/.mjs script.')
     if suffix == '.py':
         launcher = [sys.executable, str(exe)]
     elif suffix in ('.mjs', '.js'):
@@ -66,7 +66,7 @@ def validate_config(program: str | Path, arguments: str, *, root: str | Path | N
     if '{workspace}' not in tokens:
         raise DiagConfigurationError('Les arguments doivent contenir {workspace} (chemin transmis au diagnostic).')
     if len(tokens) > 50:
-        raise DiagConfigurationError('Trop d’arguments configurés.')
+        raise DiagConfigurationError('Too many configured arguments.')
     return launcher, tokens
 
 
@@ -122,7 +122,7 @@ def run_diagnostic(workspace: str | Path, *, program: str | Path, arguments: str
         raise DiagConfigurationError('Le diagnostic requiert un Kristal principal avec kristal.workspace.json.')
     launcher, tokens = validate_config(program, arguments, root=source_root or root)
     if not (1 <= timeout <= 1800):
-        raise DiagConfigurationError('Délai invalide (1 à 1800 secondes).')
+        raise DiagConfigurationError('Invalid timeout (1 to 1800 seconds).')
     before = _fingerprint(root)
     with tempfile.TemporaryDirectory(prefix='kristal-manager-external-diag-') as staging:
         tmp = Path(staging)
@@ -264,20 +264,20 @@ def run_official_diagnostic(workspace: str | Path, *, profile: str = 'V9-State-R
         raise DiagConfigurationError('Profil KristalDiag non pris en charge par ce panneau.')
     root = Path(workspace).expanduser().resolve(strict=True)
     if not (root / 'kristal.workspace.json').is_file():
-        raise DiagConfigurationError('Sélectionnez un Kristal principal doté de kristal.workspace.json.')
+        raise DiagConfigurationError('Select a primary Kristal with kristal.workspace.json.')
     entry = Path(script or bundled_kristaldiag()).expanduser().resolve()
     if not entry.is_file() or entry.is_symlink():
-        raise DiagConfigurationError('KristalDiag intégré est manquant. Réinstallez l’archive complète du Manager.')
+        raise DiagConfigurationError('Bundled KristalDiag is missing. Reinstall the complete Manager archive.')
     if entry.is_relative_to(root):
-        raise DiagConfigurationError('Le moteur de diagnostic ne peut être situé dans le Kristal analysé.')
+        raise DiagConfigurationError('The diagnostic engine cannot reside inside the analyzed Kristal.')
     if importlib.util.find_spec('jsonschema') is None:
-        raise DiagConfigurationError('Dépendance jsonschema manquante. Cliquez sur « Installer le prérequis » dans la fenêtre Diagnostic.')
+        raise DiagConfigurationError('Missing jsonschema dependency. Click “Install dependency” in the Diagnostic window.')
     if not (60 <= timeout <= 1800):
-        raise DiagConfigurationError('Délai de diagnostic invalide.')
+        raise DiagConfigurationError('Invalid diagnostic timeout.')
 
     output_base = Path(output_root or evidence_directory()).expanduser().resolve()
     if output_base == root or output_base.is_relative_to(root):
-        raise DiagConfigurationError('Les preuves doivent être enregistrées hors des sources du Kristal.')
+        raise DiagConfigurationError('Evidence must be saved outside Kristal sources.')
     # Diagnostic evidence is personal/local, with a unique folder per run.
     slug = re.sub(r'[^a-zA-Z0-9_-]+', '-', root.name).strip('-')[:64] or 'kristal'
     run_id = datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S') + '-' + uuid.uuid4().hex[:8]
@@ -327,7 +327,7 @@ def run_official_diagnostic(workspace: str | Path, *, profile: str = 'V9-State-R
     status = ('TIMEOUT' if timed_out else 'EXECUTED_EXIT_0' if completed_code == 0 else 'EXECUTED_NONZERO')
     return {
         'format': 'kristal.manager-kristaldiag/1.0',
-        'engine': 'KristalDiag (source fourni, intégré au Manager)',
+        'engine': 'KristalDiag (bundled source integrated into Manager)',
         'executed_at': _utc_now(),
         'workspace': str(root), 'profile': profile,
         'program': str(entry), 'process_status': status, 'returncode': completed_code,
@@ -340,9 +340,9 @@ def run_official_diagnostic(workspace: str | Path, *, profile: str = 'V9-State-R
         'input_fingerprint': before, 'input_changed_during_run': before != after,
         'qualification': 'NOT_ESTABLISHED', 'attestation': 'NOT_VERIFIED',
         'limitations': [
-            'Le verdict est celui de KristalDiag pour le profil choisi, pas une qualification C1 signée.',
+            'The verdict belongs to KristalDiag for the selected profile, not signed C1 qualification.',
             'KristalDiag fourni cible Framework 10.0.0-draft.3.1, et non Framework v11.',
-            'Aucun droit de publication, accès ou activation n’est accordé.',
+            'No publication, access or activation authorization is granted.',
             'La comparaison de mutations ne couvre que des fichiers d’état connus.',
         ],
     }

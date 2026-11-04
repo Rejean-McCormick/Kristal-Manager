@@ -38,9 +38,9 @@ def _git(root: Path, *args: str, timeout: int=40) -> str:
 def _assert_checkout(root: Path, *, require_clean: bool) -> str:
     root=Path(root).expanduser().resolve(strict=True)
     if not (root/'.git').exists() or Path(_git(root,'rev-parse','--show-toplevel')).resolve()!=root:
-        raise ManagerError('Un vrai checkout Git à sa racine est obligatoire')
+        raise ManagerError('A real Git checkout at its exact root is required')
     if _git(root,'branch','--show-current')!='main':
-        raise ManagerError('La branche main doit être active (pas de HEAD détaché)')
+        raise ManagerError('The main branch must be active (not detached HEAD)')
     remote=_git(root,'remote','get-url','origin').strip()
     allowed={f'https://github.com/{PUBLIC_REPO}',f'https://github.com/{PUBLIC_REPO}.git',
              f'git@github.com:{PUBLIC_REPO}',f'git@github.com:{PUBLIC_REPO}.git',
@@ -48,7 +48,7 @@ def _assert_checkout(root: Path, *, require_clean: bool) -> str:
     if remote not in allowed:
         raise ManagerError('Remote origin inattendu. Requis : '+PUBLIC_REPO)
     if require_clean and _git(root,'status','--porcelain=v1','--untracked-files=all'):
-        raise ManagerError('Le checkout contient des modifications ou fichiers non suivis; Git doit être propre')
+        raise ManagerError('Checkout has changes or untracked files; Git must be clean')
     sha=_git(root,'rev-parse','HEAD')
     if not GIT_SHA.fullmatch(sha):raise ManagerError('SHA Git invalide')
     return sha
@@ -56,7 +56,7 @@ def _assert_checkout(root: Path, *, require_clean: bool) -> str:
 
 def _validate_c3(root: Path, *,tool_root: Path | None=None) -> dict:
     script=(tool_root or root)/'tools'/'c3_collection.py'
-    if not script.is_file():raise ManagerError('Contrôleur C3 manquant dans kristal-public (appliquer overlay C3)')
+    if not script.is_file():raise ManagerError('C3 controller missing from kristal-public (apply C3 overlay)')
     try:
         done=subprocess.run([sys.executable,str(script),'--repo',str(root),'validate-index'],
                             capture_output=True,text=True,encoding='utf-8',errors='replace',
@@ -72,13 +72,13 @@ def _validate_c3(root: Path, *,tool_root: Path | None=None) -> dict:
 def _candidate(candidate: Path, *,tool_root: Path) -> tuple[list[str], list[str]]:
     candidate=Path(candidate).expanduser().resolve(strict=True)
     if not candidate.is_dir() or not (candidate/'STAGING_ONLY.txt').is_file():
-        raise ManagerError('Préparer d’abord un candidat privé avec le Manager')
+        raise ManagerError('First prepare a private candidate with Manager')
     index=_validate_c3(candidate,tool_root=tool_root)
     rows=index.get('kristals',[])
     if not rows or any(not SLUG.fullmatch(x.get('slug','')) for x in rows):
         raise ManagerError('Index C3 vide ou invalide')
     slugs=[x['slug'] for x in rows]
-    if len(set(slugs))!=len(slugs):raise ManagerError('Slugs dupliqués')
+    if len(set(slugs))!=len(slugs):raise ManagerError('Duplicate slugs')
     tracked=['kristals/index.json']
     for row in rows:
         slug=row['slug']
@@ -92,7 +92,7 @@ def _candidate(candidate: Path, *,tool_root: Path) -> tuple[list[str], list[str]
             tracked.append('kristals/'+slug+'/'+rel)
         tracked.append('kristals/'+slug+'/.kristal/sync-manifest.json')
     if len(tracked)!=len(set(tracked)):
-        raise ManagerError('Manifestes à fichiers dupliqués')
+        raise ManagerError('Manifests have duplicate files')
     for rel in tracked:
         f=candidate.joinpath(*PurePosixPath(rel).parts)
         if not f.is_file() or f.is_symlink() or not f.resolve().is_relative_to(candidate):
@@ -108,7 +108,7 @@ def _legacy_zoology_stub(root: Path) -> bool:
     if any(p.is_symlink() for p in dest.rglob('*')):
         raise ManagerError('Lien symbolique dans zoology')
     if actual!={'state/state-snapshot.json'}:
-        raise ManagerError('Le dossier zoology contient autre chose que le stub attendu: retrait automatique refusé')
+        raise ManagerError('Zoology folder differs from expected stub: automatic removal refused')
     return True
 
 
@@ -117,7 +117,7 @@ def plan_commit(*,candidate: Path,checkout: Path,retire_zoology_stub: bool=False
     checkout=Path(checkout).expanduser().resolve(strict=True)
     _assert_checkout(checkout,require_clean=True)
     if candidate.is_relative_to(checkout) or checkout.is_relative_to(candidate):
-        raise ManagerError('Candidat privé et dépôt public doivent être disjoints')
+        raise ManagerError('Private candidate and public repository must be disjoint')
     slugs,tracked=_candidate(candidate,tool_root=checkout)
     existing={p.name for p in (checkout/'kristals').iterdir() if p.is_dir()} if (checkout/'kristals').exists() else set()
     other=existing-set(slugs)
@@ -132,7 +132,7 @@ def plan_commit(*,candidate: Path,checkout: Path,retire_zoology_stub: bool=False
         if (checkout/'kristals'/slug).exists():
             raise ManagerError('Kristal déjà hébergé : '+slug+'. Éviter écrasements silencieux.')
     if (checkout/'kristals/index.json').exists():
-        raise ManagerError('Index public déjà existant : mise à jour incrémentale non prise en charge par ce parcours')
+        raise ManagerError('Public index already exists: this workflow does not support incremental updates')
     return {'status':'READY_FOR_LOCAL_COMMIT','slugs':slugs,'candidate_files':len(tracked),
             'retire_paths':retirement,'checkout':str(checkout),'online':False,
             'authorization':'REQUIRED_BEFORE_PUSH'}
@@ -171,7 +171,7 @@ def prepare_local_commit(*,candidate: Path,checkout: Path,retire_zoology_stub: b
         if current==before or _git(checkout,'status','--porcelain=v1','--untracked-files=all'):
             raise ManagerError('Postcommit Git incohérent: inspecter manuellement')
         return {**info,'status':'LOCAL_COMMIT_PREPARED','commit':current,
-                'next':'Obtenir les preuves C1/C2 indépendantes liées à ce commit, puis vérifier avant push'}
+                'next':'Obtain independent C1/C2 evidence bound to this commit and verify it before push'}
     except Exception:
         # Only rollback if a new commit was NOT made; never alter a recorded Git commit.
         if _git(checkout,'rev-parse','HEAD')==before:
@@ -197,7 +197,7 @@ def publish_approved_commit(*,checkout: Path,trust: Path,c1_dir: Path,c2_dir: Pa
     rows=index['kristals']
     if not rows:raise ManagerError('Collection vide')
     gate=checkout/'tools/c123_offline.py'
-    if not gate.is_file():raise ManagerError('Vérificateur C1/C2 du dépôt public absent')
+    if not gate.is_file():raise ManagerError('Public repository C1/C2 verifier missing')
     # Verify both independent evidence families, exact current Git SHA and bytes.
     from .publication_gate import verify_public_write, PublicGateError
     from .publication_gate import sha256, candidate_digest
@@ -229,9 +229,9 @@ def publish_approved_commit(*,checkout: Path,trust: Path,c1_dir: Path,c2_dir: Pa
         if c2.get('result')!='AUTHORIZED_AND_QUALIFIED':
             raise ManagerError('C2 n’est pas une qualification valide')
     if not external_approval_confirmed:
-        raise ManagerError('Validation indépendante des émetteurs / révocations non confirmée; push bloqué')
+        raise ManagerError('Independent issuer/revocation verification not confirmed; push blocked')
     if _git(checkout,'rev-parse','HEAD')!=sha:
-        raise ManagerError('Commit changé pendant la qualification')
+        raise ManagerError('Commit changed during qualification')
     status={'status':'PRE_PUBLICATION_GATES_PASS','revision':sha,'slugs':[x['slug'] for x in rows],
             'repository':PUBLIC_REPO,'url':'https://github.com/'+PUBLIC_REPO,
             'push_performed':False,'wiki_native_activated':False}
@@ -241,7 +241,7 @@ def publish_approved_commit(*,checkout: Path,trust: Path,c1_dir: Path,c2_dir: Pa
     remote_sha=remote.split()[0] if remote else ''
     parent=_git(checkout,'rev-parse','HEAD^')
     if remote_sha!=parent:
-        raise ManagerError('Le serveur ne correspond pas au parent du commit préparé : fetch/revue obligatoires')
+        raise ManagerError('Remote does not match prepared commit parent: fetch and review required')
     _git(checkout,'push','origin','HEAD:refs/heads/main',timeout=120)
     published=_git(checkout,'ls-remote','origin','refs/heads/main',timeout=40).split()[0]
     if published!=sha:

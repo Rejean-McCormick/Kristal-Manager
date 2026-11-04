@@ -84,6 +84,6 @@ def test_scan_survives_unavailable_derived_store_without_false_pass(tmp_path, mo
         app.update()
         assert not app.busy and len(app.rows)==1
         assert 'diag_report' not in app.rows[0]
-        assert 'Index de diagnostics indisponible' in app._text(app.journal)
+        assert 'Diagnostic index unavailable' in app._text(app.journal)
     finally:
         app.destroy()

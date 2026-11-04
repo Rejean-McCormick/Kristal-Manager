@@ -60,7 +60,7 @@ def _connection(db: str | Path | None = None):
         conn.execute('PRAGMA foreign_keys=ON')
         existing_version = conn.execute('PRAGMA user_version').fetchone()[0]
         if existing_version > SCHEMA_VERSION:
-            raise RuntimeError('Index Manager créé par une version plus récente : migration nécessaire.')
+            raise RuntimeError('Manager index was created by a newer version: migration required.')
         # Before the first schema upgrade, snapshot any real v1 database.
         # The source Kristals and heavy content catalogue are not involved.
         if existing_version < SCHEMA_VERSION and conn.execute(
@@ -281,7 +281,7 @@ def import_legacy_diagnostic_csv(csv_path: str | Path, root: str | Path,
                 'verdict':str(entry.get('Verdict') or 'UNKNOWN'),
                 'executed_at':_now(), 'process_status':'IMPORTED_UNVERIFIED',
                 'evidence_directory':str(entry.get('Rapport') or ''),
-                'explanation':'Import historique : empreinte source inconnue, résultat non actuel',
+                'explanation':'Historical import: source fingerprint unknown; result not current',
                 'qualification':'NOT_ESTABLISHED', 'input_fingerprint':{},
             }
             record(workspace,'diagnostic',report,profile=report['profile'],

@@ -9,7 +9,7 @@ def _observer():
     root = Path(__file__).resolve().parents[2] / 'Arketype'
     source = root / 'arketype' / 'structural_observer.py'
     if not source.is_file():
-        raise FileNotFoundError(f'Arketype non trouvé : {source}')
+        raise FileNotFoundError(f'Arketype not found: {source}')
     spec = importlib.util.spec_from_file_location('_arketype_structure_manager', source)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)

@@ -141,7 +141,7 @@ def run_batch(scan_root: str | Path, selected: list[str | Path], report_dir: str
                for i in picked]
     report = dict(format=FORMAT, operation='rename', created_at=_now(), root=str(root),
                   backup_requested=backup, status='preparing', entries=records,
-                  warning='Les références absolues externes ne sont pas réécrites.')
+                  warning='External absolute references are not rewritten.')
     _save_journal(report_path, report)
     try:
         if backup:
@@ -220,7 +220,7 @@ def undo_batch(journal_file: str | Path, *, scan_root: str | Path) -> dict:
         if src.exists() or not dst.is_dir() or dst.is_symlink():
             raise ManagerError(f'Undo blocked: {src.name} ou {dst.name} existe / manque.')
         if _hash_metadata(dst) != record.get('metadata_sha256'):
-            raise ManagerError(f'Métadonnées modifiées depuis le renommage : {dst.name}')
+            raise ManagerError(f'Metadata changed since the rename: {dst.name}')
         applicable.append(record)
     if not applicable:
         raise ManagerError('No eligible renamed folders to restore.')

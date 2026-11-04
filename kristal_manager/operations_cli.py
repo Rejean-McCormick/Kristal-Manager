@@ -10,11 +10,11 @@ from .central_store import (database_path, remember_workspaces, record_analysis,
 
 
 def main(argv=None) -> int:
-    parser = argparse.ArgumentParser(description='Kristal Manager — index local consolidé (aucune publication)')
+    parser = argparse.ArgumentParser(description='Kristal Manager — consolidated local index (no publication)')
     actions = parser.add_subparsers(dest='action', required=True)
     for name in ('inventorier','diagnostiquer','analyser','etat'):
         p = actions.add_parser(name)
-        p.add_argument('--root', type=Path, required=True, help='Dossier locals')
+        p.add_argument('--root', type=Path, required=True, help='Locals folder')
         if name=='diagnostiquer':p.add_argument('--max', type=int, default=None, dest='limit')
     p=actions.add_parser('importer-arketype');p.add_argument('rapport',type=Path)
     p=actions.add_parser('importer-anciens-diag');p.add_argument('bilan',type=Path);p.add_argument('--root',type=Path,required=True)
@@ -56,7 +56,7 @@ def main(argv=None) -> int:
         print(json.dumps(result,ensure_ascii=False,indent=2,default=str))
         return 0
     except (OSError, ValueError, RuntimeError) as exc:
-        parser.exit(1, 'Erreur : ' + str(exc) + '\n')
+        parser.exit(1, 'Error: ' + str(exc) + '\n')
 
 if __name__=='__main__':
     raise SystemExit(main())
