@@ -323,7 +323,10 @@ def main(argv=None, *, quiet=False):
   # dictionary coverage gate against a registered historical v6 graph.
   # The historical graph remains observed, but diK has NOT been qualified.
   catalog_mode=s.get('mode')
-  if s.get('content_status')!='observed':
+  # A recognized registered native contract is observed even when it is not a
+  # KQ/KP graph. Its semantic qualification still requires independent review,
+  # but that limitation alone is not a reader defect or technical warning.
+  if s.get('content_status') not in ('observed', 'native_observed'):
    wissues.append('Catalog did not completely observe selected content: content inference limited')
   if catalog_mode=='active_v11' and metrics.get('entities') and not metrics.get('entities_with_descriptive_labels'):
    wissues.append('Active v11 graph lacks counted descriptive KQ labels: diK lexical coverage must be reviewed')
@@ -345,7 +348,9 @@ def main(argv=None, *, quiet=False):
         'entities_reported':metrics.get('entities'),'properties_reported':metrics.get('properties'),
         'accepted_external_equivalences_reported':metrics.get('wikidata_accepted_exact',None),
         'status':('LEGACY_V6_DIK_NOT_EVALUATED' if catalog_mode=='registered_legacy_v6'
-                  else 'NATIVE_FORMAT_DIK_NOT_EVALUATED' if catalog_mode=='unsupported'
+                  else 'NATIVE_FORMAT_DIK_NOT_EVALUATED' if catalog_mode in
+                       ('registered_native_reference', 'registered_native_structured',
+                        'registered_native_embedded', 'unsupported')
                   else 'LEXICAL_REVIEW_NOT_SEMANTIC_VERIFICATION'),
         'native_legacy_labels_observed':metrics.get('legacy_descriptive_labels_observed'),
         'rule':'No word-to-KQ/KP identity, new crosswalk, accepted exactMatch, translation or graph edit.'},
