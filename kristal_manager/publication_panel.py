@@ -8,12 +8,14 @@ from pathlib import Path
 from queue import Empty, Queue
 import shutil
 import threading
+import time
 import uuid
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 
 from .core import ManagerError
 from .publication_stage import prepare_private_collection
+from .public_local_sync import plan_local_public, apply_local_public, prepare_and_copy_public_local
 from .manual_sync import plan_copies, apply_copies
 from .private_collection_sync import plan_private_sync, apply_private_sync
 from .publication_flow import (prepare_local_commit, publish_approved_commit,
@@ -62,8 +64,8 @@ class PublicationPanel(tk.Toplevel):
     def __init__(self,owner):
         super().__init__(owner)
         self.owner=owner
-        self.title('Kristal Manager — Local transfer of selected Kristals')
-        self.geometry('1010x1000');self.minsize(770,680)
+        self.title('Kristal Manager — Préparation locale des Kristals')
+        self.geometry('920x780');self.minsize(730,550)
         self.transient(owner)
         self._jobs=Queue();self._busy=False
         locals_root=Path(owner.path_var.get()).expanduser()
@@ -79,6 +81,8 @@ class PublicationPanel(tk.Toplevel):
         self._private_preview_token=None
         self._private_preview_key=None
         self._private_preview_retire_count=0
+        self._public_preview_token=None
+        self._public_preview_key=None
         self.allow_retire_private=tk.BooleanVar(value=False)
         self.semantik_root=tk.StringVar(value=str(collection_root/'SemantiK-Architect'))
         self.runtime_root=tk.StringVar(value=str(collection_root/'SemantiK-Architect'/'runtime'))
@@ -98,7 +102,15 @@ class PublicationPanel(tk.Toplevel):
         self.c2=tk.StringVar()
         self.policy=tk.StringVar()
         self.dry=tk.BooleanVar(value=True)
+        # Legacy destructive retirement is not offered in the everyday UI.
+        # If a pre-C3 Zoology stub exists, the user selects Zoology to replace it.
         self.retire=tk.BooleanVar(value=False)
+        self.public_status=tk.StringVar(value='Sélectionne un ou plusieurs Kristals.')
+        self.public_details=tk.StringVar(value='Aucune modification du dossier public pour cette session.')
+        self.progress_phase=tk.StringVar(value='Aucune préparation en cours.')
+        self.progress_elapsed=tk.StringVar(value='')
+        self._progress_started_at=None
+        self._last_progress_second=-1
         self.external=tk.BooleanVar(value=False)
         self._render()
         self.after(130,self._poll)
@@ -115,91 +127,132 @@ class PublicationPanel(tk.Toplevel):
         ttk.Button(row,text='…',width=3,command=browse).pack(side='left',padx=(3,0))
 
     def _render(self):
-        container=ttk.Frame(self);container.pack(fill='both',expand=True)
+        """Daily task first; diagnostics and private transfer remain accessible."""
+        container=ttk.Frame(self)
+        container.pack(fill='both',expand=True)
         canvas=tk.Canvas(container,highlightthickness=0)
         bar=ttk.Scrollbar(container,orient='vertical',command=canvas.yview)
         canvas.configure(yscrollcommand=bar.set)
-        bar.pack(side='right',fill='y');canvas.pack(side='left',fill='both',expand=True)
-        page=ttk.Frame(canvas,padding=12)
+        bar.pack(side='right',fill='y')
+        canvas.pack(side='left',fill='both',expand=True)
+        page=ttk.Frame(canvas,padding=14)
         wid=canvas.create_window((0,0),window=page,anchor='nw')
         page.bind('<Configure>',lambda _ev:canvas.configure(scrollregion=canvas.bbox('all')))
         canvas.bind('<Configure>',lambda ev:canvas.itemconfigure(wid,width=ev.width))
-        ttk.Label(page,text='Local transfer — selected Kristals',font=('Segoe UI',14,'bold')).pack(anchor='w')
-        ttk.Label(page,text='Select Kristal folders → preview → transfer to kristal-private. No commit or push.',
-                  wraplength=840).pack(anchor='w',pady=(1,8))
-        self._line(page,'Source locals',self.locals)
-        self._line(page,'Kit (read-only)',self.kit,kind='file')
-        self._line(page,'Local private checkout',self.private_checkout)
-        self._line(page,'SemantiK Architect',self.semantik_root)
-        self._line(page,'RuntimeSet SemantiK',self.runtime_root)
-        self._line(page,'Private editorial plans',self.projections)
-        self._line(page,'Spek (Wiki templates)',self.spek_root)
-        selector=ttk.LabelFrame(page,text='Choose Kristals to transfer (Ctrl/Shift + click; nothing preselected)')
-        selector.pack(fill='x',pady=6)
+
+        ttk.Label(page,text='Mettre des Kristals dans le dossier public',
+                  font=('Segoe UI',15,'bold')).pack(anchor='w')
+        ttk.Label(page,text='Choisis les Kristals, puis prépare le dossier local. '
+                  'La synchronisation GitHub reste entièrement séparée.',
+                  wraplength=800).pack(anchor='w',pady=(3,12))
+
+        selector=ttk.LabelFrame(page,text='1. Kristals à préparer (Ctrl ou Maj pour plusieurs)')
+        selector.pack(fill='x',pady=(0,10))
         self._selection_slugs: list[str] = []
-        self.selection_count=tk.StringVar(value='0 selected')
-        listarea=ttk.Frame(selector);listarea.pack(fill='x',expand=True,padx=5,pady=5)
-        self.listbox=tk.Listbox(listarea,selectmode='extended',height=9,exportselection=False)
+        self.selection_count=tk.StringVar(value='0 sélectionné')
+        listarea=ttk.Frame(selector)
+        listarea.pack(fill='x',padx=8,pady=(8,4))
+        self.listbox=tk.Listbox(listarea,selectmode='extended',height=12,
+                                exportselection=False)
         self.listbox.pack(side='left',fill='both',expand=True)
         listscroll=ttk.Scrollbar(listarea,orient='vertical',command=self.listbox.yview)
-        listscroll.pack(side='left',fill='y',padx=(2,0))
+        listscroll.pack(side='left',fill='y',padx=(4,0))
         self.listbox.configure(yscrollcommand=listscroll.set)
         self.listbox.bind('<<ListboxSelect>>',self._selection_changed)
-        controls=ttk.Frame(selector);controls.pack(fill='x',padx=6,pady=(0,5))
+        controls=ttk.Frame(selector)
+        controls.pack(fill='x',padx=8,pady=(0,8))
         ttk.Label(controls,textvariable=self.selection_count).pack(side='left')
-        ttk.Button(controls,text='Refresh list',command=self.refresh).pack(side='right')
+        self.refresh_button=ttk.Button(controls,text='Actualiser la liste',command=self.refresh)
+        self.refresh_button.pack(side='right')
         self.refresh()
-        private=ttk.LabelFrame(page,text='A · Selective local copy to kristal-private')
-        private.pack(fill='x',pady=(7,8))
-        ttk.Label(private,text='Existing files are verified internally, without rebuilding V9. Preview and local copy only.',
-                  wraplength=850).pack(anchor='w',padx=6,pady=3)
-        privbuttons=ttk.Frame(private);privbuttons.pack(anchor='w',padx=6,pady=4)
-        self.preview_private=ttk.Button(privbuttons,text='1 · Preview selected Kristals',command=self.preview_private_collection)
-        self.preview_private.pack(side='left',padx=(0,5))
-        self.apply_private=ttk.Button(privbuttons,text='2 · Transfer to kristal-private (local)',command=self.apply_private_collection)
+
+        public=ttk.LabelFrame(page,text='2. Dossier public local')
+        public.pack(fill='x',pady=(0,8))
+        destination=ttk.Frame(public)
+        destination.pack(fill='x',padx=8,pady=(9,6))
+        ttk.Label(destination,text='Destination : ').pack(side='left')
+        ttk.Label(destination,textvariable=self.checkout,wraplength=650).pack(side='left',fill='x',expand=True)
+        self.stage=ttk.Button(public,text='Mettre dans le dossier public',
+                              command=self.prepare_public_direct)
+        self.stage.pack(anchor='w',padx=8,pady=(5,8))
+        ttk.Label(public,text='Préparation locale uniquement — aucun commit, push ou upload GitHub.',
+                  wraplength=800).pack(anchor='w',padx=8,pady=(0,9))
+
+        status=ttk.LabelFrame(page,text='Résultat')
+        status.pack(fill='x',pady=(0,10))
+        ttk.Label(status,textvariable=self.public_status,
+                  font=('Segoe UI',10,'bold'),wraplength=790).pack(anchor='w',padx=8,pady=(8,3))
+        ttk.Label(status,textvariable=self.public_details,
+                  wraplength=790).pack(anchor='w',padx=8,pady=(0,5))
+        ttk.Label(status,textvariable=self.progress_phase,
+                  wraplength=790).pack(anchor='w',padx=8,pady=(0,5))
+        self.progress_bar=ttk.Progressbar(status,orient='horizontal',mode='determinate',maximum=1)
+        self.progress_bar.pack(fill='x',padx=8,pady=(0,4))
+        ttk.Label(status,textvariable=self.progress_elapsed).pack(anchor='w',padx=8,pady=(0,10))
+
+        # More specialized actions and configuration are kept in this window,
+        # but no longer compete with the one-click local public task.
+        self.advanced_button=ttk.Button(page,text='▸ Transfert privé et paramètres avancés',
+                                        command=self._toggle_advanced)
+        self.advanced_button.pack(anchor='w',pady=(2,4))
+        self.advanced_frame=ttk.Frame(page)
+        settings=ttk.LabelFrame(self.advanced_frame,text='Emplacements et outils')
+        settings.pack(fill='x',pady=(2,8))
+        self._line(settings,'Source locals',self.locals)
+        self._line(settings,'Dossier public',self.checkout)
+        self._line(settings,'Authoring Kit',self.kit,kind='file')
+        self._line(settings,'Dossier privé',self.private_checkout)
+        self._line(settings,'SemantiK Architect',self.semantik_root)
+        self._line(settings,'RuntimeSet SemantiK',self.runtime_root)
+        self._line(settings,'Plans éditoriaux',self.projections)
+        self._line(settings,'Spek (Wiki)',self.spek_root)
+
+        private=ttk.LabelFrame(self.advanced_frame,text='Transférer dans kristal-private (local)')
+        private.pack(fill='x',pady=(0,8))
+        ttk.Label(private,text='Parcours distinct : prévisualiser les mêmes Kristals sélectionnés, '
+                  'puis copier dans le dépôt privé. Aucune synchronisation Git.',
+                  wraplength=800).pack(anchor='w',padx=8,pady=(5,4))
+        privbuttons=ttk.Frame(private)
+        privbuttons.pack(anchor='w',padx=8,pady=(0,5))
+        self.preview_private=ttk.Button(privbuttons,text='Prévisualiser la copie privée',
+                                        command=self.preview_private_collection)
+        self.preview_private.pack(side='left',padx=(0,7))
+        self.apply_private=ttk.Button(privbuttons,text='Copier vers kristal-private',
+                                      command=self.apply_private_collection)
         self.apply_private.pack(side='left')
-        ttk.Checkbutton(private,text='I authorize removal of listed obsolete files for selected Kristals only',
-                        variable=self.allow_retire_private).pack(anchor='w',padx=6,pady=2)
-        ttk.Label(private,text='The private checkout must be clean and provisioned by Bootstrap: node, PRIVATE GitHub binding and capabilities. Check GitHub ACLs separately.',
-                  wraplength=840).pack(anchor='w',padx=6,pady=(1,5))
-        public=ttk.LabelFrame(page,text='B · PUBLIC GitHub publication (separate workflow; C1/C2/C3 required)')
-        public.pack(fill='x',pady=(5,8))
-        self._line(public,'Local public checkout',self.checkout)
-        self._line(public,'Candidat public',self.candidate)
-        # Legacy manual-copy-selected CLI remains available for independent Git repos;
-        # do not expose it as the default workflow for collection repositories.
-        ttk.Checkbutton(page,text='Dry run for PUBLIC publication (workflow B only)',variable=self.dry).pack(anchor='w')
-        ttk.Checkbutton(page,text='Remove obsolete incomplete Zoology stub from checkout (only if strictly identified)',
-                        variable=self.retire).pack(anchor='w')
-        buttons=ttk.Frame(page);buttons.pack(fill='x',pady=(7,9))
-        self.commit=ttk.Button(buttons,text='PUBLIC · Prepare local commit (separate from private transfer)',command=self.make_commit)
-        self.commit.pack(side='left',padx=(0,6))
-        evidence=ttk.LabelFrame(page,text='Independent evidence required before push')
-        evidence.pack(fill='x',pady=5)
-        self._line(evidence,'Trust C123 (.json)',self.trust,kind='file')
-        self._line(evidence,'C1 receipts (folder)',self.c1)
-        self._line(evidence,'C2 receipts (folder)',self.c2)
-        self._line(evidence,'C2 policy (folder)',self.policy)
-        ttk.Checkbutton(page,text='I confirm independent verification of C1/C2 issuers and revocations',
-                        variable=self.external).pack(anchor='w',pady=(4,2))
-        self.push=ttk.Button(page,text='PUBLIC · Verify C1/C2 and push approved commit',command=self.publish)
-        self.push.pack(anchor='w',pady=3)
-        self.planwiki=ttk.Button(page,text='4 · Create private Kristal plans',command=self.create_plans)
-        self.planwiki.pack(anchor='w',pady=3)
-        self.wiki=ttk.Button(page,text='5 · Generate full Wiki (SemantiK + Spek)',command=self.export_wiki)
-        self.wiki.pack(anchor='w',pady=3)
-        self._line(page,'Private Wiki draft',self.wiki_candidate)
-        self._line(page,'Reviewed Wiki folder',self.review_release)
-        self._line(page,'Revue Wiki (.json)',self.wiki_review,kind='file')
-        self.review_btn=ttk.Button(page,text='6 · Prepare pages for public review',command=self.prepare_review)
-        self.review_btn.pack(anchor='w',pady=3)
-        self.wiki_push=ttk.Button(page,text='7 · Publish native Wiki after review and evidence',command=self.publish_wiki)
-        self.wiki_push.pack(anchor='w',pady=3)
-        ttk.Label(page,text='Offline checks are not authorization. Push is blocked without signed evidence.',
-                  wraplength=830).pack(anchor='w')
-        self.journal=tk.Text(page,wrap='word',height=11,font=('Consolas',9))
-        self.journal.pack(fill='both',expand=True,pady=(7,0))
-        self._log('Manager interface ready. No repository changed.')
+        ttk.Checkbutton(private,text='Autoriser le retrait des fichiers privés obsolètes signalés dans l’aperçu',
+                        variable=self.allow_retire_private).pack(anchor='w',padx=8,pady=(0,5))
+        ttk.Label(private,text='Le dépôt privé doit être préparé par Bootstrap et disposer des droits adéquats.',
+                  wraplength=800).pack(anchor='w',padx=8,pady=(0,7))
+
+        self.log_button=ttk.Button(page,text='▸ Journal technique',command=self._toggle_log)
+        self.log_button.pack(anchor='w',pady=(4,2))
+        self.log_frame=ttk.Frame(page)
+        self.journal=tk.Text(self.log_frame,wrap='word',height=10,font=('Consolas',9),
+                             state='normal')
+        self.journal.pack(fill='both',expand=True)
+        self._advanced_open=False
+        self._log_open=False
+        self._log('Manager prêt. Aucun dépôt modifié.')
+        self._update_selection_count()
+
+    def _toggle_advanced(self):
+        self._advanced_open=not self._advanced_open
+        if self._advanced_open:
+            self.advanced_frame.pack(fill='x',after=self.advanced_button,pady=(0,8))
+            self.advanced_button.configure(text='▾ Masquer les paramètres avancés')
+        else:
+            self.advanced_frame.pack_forget()
+            self.advanced_button.configure(text='▸ Transfert privé et paramètres avancés')
+
+    def _toggle_log(self):
+        self._log_open=not self._log_open
+        if self._log_open:
+            self.log_frame.pack(fill='both',expand=True,after=self.log_button,pady=(2,8))
+            self.log_button.configure(text='▾ Masquer le journal technique')
+        else:
+            self.log_frame.pack_forget()
+            self.log_button.configure(text='▸ Journal technique')
 
     def _log(self,line):
         self.journal.insert('end',str(line)+'\n');self.journal.see('end')
@@ -228,7 +281,9 @@ class PublicationPanel(tk.Toplevel):
 
     def _update_selection_count(self):
         count=len(self.listbox.curselection())
-        self.selection_count.set(f'{count} selected out of {len(self._selection_slugs)}')
+        self.selection_count.set(f'{count} sélectionné(s) sur {len(self._selection_slugs)}')
+        if hasattr(self,'stage') and not self._busy:
+            self.stage.configure(state='normal' if count else 'disabled')
 
     def _invalidate_private_preview(self):
         self._private_preview_token=None
@@ -239,15 +294,57 @@ class PublicationPanel(tk.Toplevel):
 
     def _selection_changed(self, _event=None):
         self._invalidate_private_preview()
+        self._public_preview_token=None
+        self._public_preview_key=None
         self._update_selection_count()
+        if not self._busy:
+            self.public_status.set('Sélectionne un ou plusieurs Kristals.' if not self._selected()
+                                   else f'{len(self._selected())} Kristal(s) sélectionné(s), prêts à être préparés.')
+            self.public_details.set('Aucune modification lancée pour cette sélection.')
 
-    def _job(self,label,fn):
+    def _on_progress(self,event):
+        names = {
+            'preflight':'Vérification de la collection',
+            'kit':'Vérification de l’Authoring Kit',
+            'scan':'Analyse des Kristals',
+            'precheck':'Vérification des sources',
+            'build':'Construction des Kristals publics',
+            'candidate_verify':'Vérification du candidat',
+            'stage_copy':'Préparation des fichiers locaux',
+            'verify':'Vérification C3',
+            'cache':'Enregistrement du cache',
+            'finished':'Terminé',
+        }
+        phase=names.get(event.get('phase'), 'Préparation')
+        total=max(1,int(event.get('total') or 1))
+        completed=max(0,min(total,int(event.get('completed') or 0)))
+        self.progress_bar.configure(maximum=total,value=completed)
+        slug=event.get('slug','')
+        message=event.get('message') or ''
+        self.progress_phase.set(f'{phase} — {completed}/{total}' +
+                                (f' · {slug}' if slug else '') +
+                                (f' · {message}' if message else ''))
+
+    def _job(self,label,fn,*,with_progress=False):
         if self._busy:return
         self._busy=True
-        for b in (self.preview_private,self.apply_private,self.commit,self.push,self.planwiki,self.wiki,self.review_btn,self.wiki_push):b.configure(state='disabled')
+        for b in (self.preview_private,self.apply_private,self.stage,self.refresh_button):
+            b.configure(state='disabled')
+        self.listbox.configure(state='disabled')
         self._log('START — '+label)
+        if label=='Préparation directe kristal-public (sans Git)':
+            self.public_status.set('Préparation locale en cours…')
+            self.public_details.set('Analyse et préparation des fichiers locaux. Aucun envoi GitHub.')
+            self.progress_bar.configure(maximum=1,value=0)
+            self.progress_phase.set('Démarrage des contrôles…')
+            self._progress_started_at=time.monotonic()
+            self._last_progress_second=-1
+            self.progress_elapsed.set('Durée : 0 s')
         def run():
-            try:self._jobs.put((label,fn(),None))
+            def report_progress(event):
+                # Background thread sends data only; tkinter updates in _poll.
+                self._jobs.put(('__PROGRESS__',event,None))
+            try:self._jobs.put((label,fn(report_progress) if with_progress else fn(),None))
             except Exception as exc:self._jobs.put((label,None,str(exc)))
         threading.Thread(target=run,daemon=True).start()
 
@@ -255,16 +352,39 @@ class PublicationPanel(tk.Toplevel):
         try:
             while True:
                 label,result,error=self._jobs.get_nowait()
+                if label == '__PROGRESS__':
+                    if self._busy:
+                        self._on_progress(result)
+                    continue
                 self._busy=False
-                for b in (self.preview_private,self.apply_private,self.commit,self.push,self.planwiki,self.wiki,self.review_btn,self.wiki_push):b.configure(state='normal')
+                if label=='Préparation directe kristal-public (sans Git)' and self._progress_started_at is not None:
+                    self.progress_elapsed.set(f'Durée totale : {int(time.monotonic()-self._progress_started_at)} s')
+                    self._progress_started_at=None
+                for b in (self.preview_private,self.apply_private,self.refresh_button):
+                    b.configure(state='normal')
+                self.listbox.configure(state='normal')
+                self.stage.configure(state='normal' if self._selected() else 'disabled')
                 if error:
+                    if label=='Local public preview':
+                        self._public_preview_token=None
+                        self._public_preview_key=None
                     if label=='Private checkout preview':
                         self.private_candidate.set('')
                         self._private_preview_token=None
                         self._private_preview_key=None
                     self._log('BLOCKED — '+error)
+                    if label=='Préparation directe kristal-public (sans Git)':
+                        self.public_status.set('Préparation non effectuée')
+                        self.public_details.set(error)
+                        self.progress_phase.set('Préparation interrompue (voir le message ci-dessus).')
                     self.owner.log('WARN','Publication: '+error)
                 else:
+                    if label=='Local public preview':
+                        self._public_preview_token=result['plan_token']
+                        self._public_preview_key=(result['candidate'],result['checkout'])
+                    if label=='Local public copy':
+                        self._public_preview_token=None
+                        self._public_preview_key=None
                     if label=='Private checkout preview':
                         self.private_candidate.set(result['candidate'])
                         self._private_preview_token=result['plan_token']
@@ -274,6 +394,30 @@ class PublicationPanel(tk.Toplevel):
                         self._private_preview_token=None
                         self._private_preview_key=None
                     self._log(json.dumps(result,ensure_ascii=False,indent=2))
+                    if label=='Préparation directe kristal-public (sans Git)' and result.get('status') in ('LOCAL_PUBLIC_C3_VALID','LOCAL_PUBLIC_C3_PARTIAL'):
+                        n=len(result.get('slugs',[]))
+                        rejected = result.get('rejected', [])
+                        if rejected:
+                            self.public_status.set(f'{n} Kristal(s) préparé(s) · {len(rejected)} refusé(s) (voir détails).')
+                        else:
+                            self.public_status.set(f'{n} Kristal(s) mis dans le dossier public local avec succès.')
+                        self.progress_bar.configure(maximum=1,value=1)
+                        self.progress_phase.set('Collection préparée et vérifiée (C3).' if not rejected
+                                                else 'Collection partielle vérifiée (C3). Kristals refusés non copiés.')
+                        reused=len(result.get('reused_slugs',[]))
+                        changed=len(result.get('new_slugs',[]))+len(result.get('updated_slugs',[]))
+                        if result.get('incremental'):
+                            details=f"{changed} nouveau(x)/modifié(s) · {reused} inchangé(s) réutilisé(s) · "
+                        else:
+                            details=f"{result.get('files_prepared',0)} fichiers préparés · "
+                        if rejected:
+                            details += 'Refusés : ' + ', '.join(x['slug'] for x in rejected[:12])
+                            if len(rejected) > 12:
+                                details += f' et {len(rejected)-12} autre(s)'
+                            details += ' · '
+                        self.public_details.set(details +
+                            f"{result.get('collection_count',0)} Kristals dans la collection · "
+                            'Aucun envoi GitHub. Vérifier le journal des refus et les droits avant toute synchronisation.')
                     if result.get('status')=='PRIVATE_WIKI_READY':self.wiki_candidate.set(result['output'])
                     if result.get('status')=='REQUIRES_INDEPENDENT_WIKI_REVIEW' and result.get('output'):
                         self.review_release.set(result['output'])
@@ -281,6 +425,11 @@ class PublicationPanel(tk.Toplevel):
                     if result.get('push_performed'):
                         messagebox.showinfo('GitHub confirmed','Commit en ligne : '+result['revision']+'\n'+result['catalog_url'],parent=self)
         except Empty:pass
+        if self._busy and self._progress_started_at is not None:
+            second=int(time.monotonic()-self._progress_started_at)
+            if second!=self._last_progress_second:
+                self._last_progress_second=second
+                self.progress_elapsed.set(f'Durée : {second} s · Manager travaille localement, sans GitHub')
         if self.winfo_exists():self.after(130,self._poll)
 
     def _manual_args(self):
@@ -375,6 +524,105 @@ class PublicationPanel(tk.Toplevel):
         allow_retire=self.allow_retire_private.get()
         self._job('Local private copy',lambda:apply_private_sync(candidate=candidate,checkout=checkout,
                   slugs=slugs,expected_token=token,allow_retire=allow_retire))
+
+    def prepare_public_direct(self):
+        """One-click LOCAL preparation. No persistent candidate or Git writes."""
+        slugs=self._selected()
+        if not slugs:
+            messagebox.showwarning('Sélection','Sélectionne au moins un Kristal.',parent=self)
+            return
+        locals_root=Path(self.locals.get()).expanduser()
+        kit=Path(self.kit.get()).expanduser()
+        checkout=Path(self.checkout.get()).expanduser()
+        if not messagebox.askyesno('Mettre dans le dossier public local',
+                f'Mettre {len(slugs)} Kristal(s) sélectionné(s) dans :\n{checkout}\n\n'
+                'Le contenu local sera vérifié et sauvegardé avant mise à jour.\n'
+                'Aucun envoi GitHub. Continuer ?',parent=self):
+            return
+        self._public_preview_token=None
+        self._public_preview_key=None
+        self._job('Préparation directe kristal-public (sans Git)',lambda progress:prepare_and_copy_public_local(
+            locals_root=locals_root,kit_script=kit,checkout=checkout,
+            slugs=slugs,retire_zoology_stub=False,progress=progress), with_progress=True)
+
+    def prepare_public_candidate(self):
+        """Create an isolated, C3-checkable candidate from selected workspaces.
+
+        All Kit builds run on temporary copies; neither locals nor a Git checkout
+        is changed. The candidate is never a C1/C2 approval or a public upload.
+        """
+        slugs=self._selected()
+        if not slugs:
+            messagebox.showwarning('Selection',
+                'Select explicit Kristals for the PUBLIC candidate.',parent=self)
+            return
+        output=Path(self.candidate.get()).expanduser()
+        if output.exists():
+            messagebox.showwarning('Candidate exists',
+                'Choose a new empty candidate path. Existing candidates are never overwritten.',
+                parent=self)
+            return
+        if not messagebox.askyesno('Private C3 candidate',
+                f'Build a PRIVATE publication candidate for {len(slugs)} selected Kristal(s)?\n'
+                f'{output}\n\n'
+                'Only temporary copies will be built. No Git commit, upload or public exposure.',
+                parent=self):
+            return
+        locals_root=Path(self.locals.get()).expanduser()
+        kit=Path(self.kit.get()).expanduser()
+        def job():
+            # This is a new private path, not a Git worktree. The staging engine
+            # enforces that constraint and checks the Kit read-surface hashes.
+            # Only create the default private candidate directory, and only
+            # after verifying it does not live inside a Git checkout. Never
+            # create arbitrary user-selected parents (which might be public).
+            private_root=(Path(os.environ.get('LOCALAPPDATA') or str(Path.home()))
+                          /'Kristal'/'private-candidates').resolve()
+            if output.resolve().parent == private_root and not private_root.is_dir():
+                from .publication_stage import _inside_git_tree
+                if _inside_git_tree(private_root):
+                    raise ManagerError('Private candidate directory is inside a Git checkout')
+                private_root.mkdir(parents=True,exist_ok=True)
+            return prepare_private_collection(locals_root=locals_root,kit_script=kit,
+                output=output,slugs=slugs,write_private=True,build_on_copy=True)
+        self._job('PUBLIC private C3 candidate',job)
+
+    def preview_local_public(self):
+        slugs=self._selected()
+        if not slugs:
+            messagebox.showwarning('Sélection','Sélectionne au moins un Kristal.',parent=self)
+            return
+        candidate=Path(self.candidate.get()).expanduser()
+        checkout=Path(self.checkout.get()).expanduser()
+        self._public_preview_token=None
+        self._public_preview_key=None
+        self._job('Local public preview',lambda:plan_local_public(
+            candidate=candidate,checkout=checkout,retire_zoology_stub=self.retire.get()))
+
+    def apply_local_public(self):
+        candidate=Path(self.candidate.get()).expanduser()
+        checkout=Path(self.checkout.get()).expanduser()
+        token=self._public_preview_token
+        try:
+            candidate_path=str(candidate.resolve(strict=True))
+            checkout_path=str(checkout.resolve(strict=True))
+        except OSError:
+            messagebox.showwarning('Chemins','Le candidat et le dossier public doivent exister.',parent=self)
+            return
+        if not token or self._public_preview_key != (candidate_path,checkout_path):
+            messagebox.showwarning('Prévisualisation requise',
+                'Clique d’abord sur B2 pour cette sélection exacte et ces dossiers.',parent=self)
+            return
+        if not messagebox.askyesno('Copie LOCALE uniquement',
+            'Copier la sélection dans le dossier local kristal-public ?\n\n'
+            'C3 sera vérifié et une sauvegarde sera conservée hors du dépôt.\n'
+            'AUCUN git add, commit, push ou upload.\n\n'
+            'Attention : ton script GitHub rendrait ces fichiers publics. '
+            'Vérifie C1/C2 et les droits AVANT de lancer ce script.',parent=self):
+            return
+        self._job('Local public copy',lambda:apply_local_public(candidate=candidate,
+            checkout=checkout,expected_token=token,
+            retire_zoology_stub=self.retire.get()))
 
     def make_commit(self):
         if not self.dry.get() and not messagebox.askyesno('Confirmation',

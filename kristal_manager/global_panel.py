@@ -4,11 +4,18 @@ from __future__ import annotations
 from pathlib import Path
 import json
 import tkinter as tk
-from tkinter import ttk, messagebox, filedialog
+from tkinter import ttk, messagebox, filedialog, simpledialog
 import webbrowser
 from . import kristalizer_bridge
 from .qualification_history import display_declared, display_unesco_declaration, display_ark_structure
 from .classification_labels import display_category
+from .semantic_enrichment import display_semantic_role, display_prf_refinement, annotate_ai_dossiers
+from .editorial_review import annotate_editorial_review, annotate_historical_unesco_attention, display_unesco_review, display_current_unesco_review
+from .column_views import ColumnViewControl
+from .native_evidence import annotate_native_sources, display_native_source_review
+from .authoring_observations import annotate_authoring, display_authoring_status, display_source_catalog
+from .review_progress import REVIEW_FOCI, assess_review, matches_focus, export_review_queue
+from .editorial_decisions import current_editorial_state
 
 
 # Labels d'interface uniquement. Les codes bruts restent intacts dans les rapports JSON.
@@ -73,6 +80,16 @@ def format_chatgpt_summary(report: dict, kristalizer: dict | None = None, krista
         (f"Recovered records: {counts.get('historical_qualifications_matched', 0)} historical profiles; "
          f"{counts.get('live_classifications_read', 0)} current workspace metadata reads. "
          'Historical PRF/ARK observations are not human approvals.'),
+        (f"AI semantic dossiers: {sum((r.get('semantic_enrichment') or {}).get('status') == 'MATCHED_CURRENT_DESCRIPTORS' for r in entries)} current metadata matches; "
+         f"{sum(bool((r.get('semantic_enrichment') or {}).get('prf_candidate')) for r in entries)} exploratory PRF alternatives; "
+         f"{sum(bool((r.get('semantic_enrichment') or {}).get('unesco_proposal_disagrees_with_declared')) for r in entries)} UNESCO proposal disagreements. "
+         'AI editorial drafts are NOT approved PRF/ARK/UNESCO classifications.'),
+        (f"Authoring: {counts.get('authoring_building',0)} declared building; "
+         f"{counts.get('source_catalog_entries',0)} catalogued source records; "
+         f"{counts.get('source_catalog_empty',0)} empty source catalogues; "
+         f"{counts.get('source_catalog_issues',0)} catalogue shape/locator issues; "
+         f"{counts.get('native_metadata_only_changed',0)} metadata-only evidence changes. "
+         'Local metadata and source records do not independently establish approval.'),
         'IMPORTANT: READY, Arketype and UNESCO are local observations, not C1/C2/C3 qualification.',
         'Request: prioritize issues, suggest safe fixes and an order of action.',
         '',
@@ -88,6 +105,15 @@ def format_chatgpt_summary(report: dict, kristalizer: dict | None = None, krista
             f"verification={row.get('operational_result') or '—'}",
             f"declared_ARK={display_declared(row, 'primary_archetype')}",
             f"declared_PRF={display_declared(row, 'primary_usage')}",
+            f"AI_semantic_role={display_semantic_role(row)}",
+            f"AI_PRF_review={display_prf_refinement(row)}",
+            f"AI_review_status={(row.get('semantic_enrichment') or {}).get('status', 'NOT_REVIEWED')}",
+            f"native_source_review={display_native_source_review(row)}",
+            f"authoring_status={display_authoring_status(row)}",
+            f"source_catalog={display_source_catalog(row)}",
+            f"review_stage={assess_review(row)['stage']}",
+            f"next_action={assess_review(row)['next_action']}",
+            f"AI_UNESCO_review={display_unesco_review(row)}",
             f"subject_domain={display_declared(row, 'subject_domain')}",
             f"ARK_structural_observation={display_ark_structure(row)}",
             f"declared_UNESCO={display_unesco_declaration(row)}",
@@ -145,6 +171,7 @@ class GlobalAnalysisPanel(tk.Toplevel):
         self.update_catalogue = tk.BooleanVar(value=True)
         self.verify_locally = tk.BooleanVar(value=False)
         self.problems_only = tk.BooleanVar(value=False)
+        self.review_focus_var = tk.StringVar(value='All Kristals')
         self.status = tk.StringVar(value='Ready. No changes to Kristals.')
         self._layout()
         self._restore_kristalizer()
@@ -185,17 +212,29 @@ class GlobalAnalysisPanel(tk.Toplevel):
         filterline.pack(fill='x', pady=(1, 5))
         ttk.Checkbutton(filterline, text='Show technical issues only',
                         variable=self.problems_only, command=self._fill).pack(side='left')
+        ttk.Label(filterline, text='Review focus').pack(side='left', padx=(12, 4))
+        focus = ttk.Combobox(filterline, state='readonly', width=23,
+                             values=REVIEW_FOCI, textvariable=self.review_focus_var)
+        focus.pack(side='left')
+        focus.bind('<<ComboboxSelected>>', lambda _evt: self._fill())
         ttk.Label(filterline, text='Double-click a Kristal to view evidence and proposals.',
                   style='Sub.TLabel').pack(side='right')
         main = ttk.Frame(top)
         main.pack(fill='both', expand=True)
-        columns = ('title','priority','readiness','content_status','declared_ark','declared_prf','subject_domain','declared_unesco','ark_structure_history','registered_ark','v11_kristalizer','new_suggestions','keywords')
+        columns = ('title','editorial_state','review_stage','next_action','authoring_status','source_catalog','native_evidence','priority','readiness','content_status','declared_ark','declared_prf','semantic_role_ai','prf_review_ai','subject_domain','declared_unesco','unesco_review','ark_structure_history','registered_ark','v11_kristalizer','new_suggestions','keywords')
         self.table = ttk.Treeview(main, columns=columns, show='headings', height=16)
         for key, label, width in [
-            ('title','Kristal',210), ('priority','Priority',85), ('readiness','Structure',135),
+            ('title','Kristal',210), ('editorial_state','Editorial state (local)',150),
+            ('review_stage','Review stage (not approval)',205),
+            ('next_action','Next review action',345),
+            ('authoring_status','Authoring status (not qualification)',230),
+            ('source_catalog','Source catalogue (unverified)',230), ('native_evidence','Native-source evidence',235),
+            ('priority','Priority',85), ('readiness','Structure',135),
             ('content_status','Canonical reading',155),
             ('declared_ark','Arketype (declared)',230), ('declared_prf','Usage profile (declared)',235),
+            ('semantic_role_ai','Semantic role (AI draft)',255), ('prf_review_ai','PRF refinement (AI draft)',260),
             ('subject_domain','Subject domain',170), ('declared_unesco','UNESCO subjects (declared)',250),
+            ('unesco_review','UNESCO review (AI draft)',225),
             ('ark_structure_history','Structural evidence (historic)',195),
             ('v11_kristalizer','Kristalizer v11',150),
             ('registered_ark','Arketype review',230),
@@ -209,6 +248,12 @@ class GlobalAnalysisPanel(tk.Toplevel):
         sx.grid(row=1,column=0,sticky='ew')
         main.rowconfigure(0,weight=1);main.columnconfigure(0,weight=1)
         self.table.configure(yscrollcommand=sy.set, xscrollcommand=sx.set)
+        self.column_views = ColumnViewControl(
+            filterline, self.table, 'analysis',
+            initial=(getattr(self.manager, 'settings', {}) or {}).get('analysis_column_view', 'Essential'),
+            custom_columns=(getattr(self.manager, 'settings', {}) or {}).get('analysis_custom_columns'),
+            on_change=lambda view, columns: getattr(self.manager, '_save_column_profile', lambda *_: None)('analysis_column_view', view, columns))
+        self.column_views.frame.pack(side='left', padx=(15, 0))
         self.table.tag_configure('blocker', foreground='#9c3428')
         self.table.tag_configure('warning', foreground='#9e631c')
         self.table.bind('<Double-1>', lambda _evt: self._details())
@@ -222,6 +267,17 @@ class GlobalAnalysisPanel(tk.Toplevel):
         self.copy_all_button = ttk.Button(share, text='Copy results for ChatGPT',
                                           style='Primary.TButton', command=self._copy_all)
         self.copy_all_button.pack(side='left')
+        self.editorial_menu = tk.Menu(self, tearoff=False)
+        for state in ('Ready', 'Needs work', 'Not assessed'):
+            self.editorial_menu.add_command(label=state + (' (editorial only)' if state == 'Ready' else ''),
+                                             command=lambda selected=state: self._edit_editorial_state(selected))
+        self.editorial_menu.add_separator()
+        self.editorial_menu.add_command(label='Clear current decision',
+                                         command=lambda: self._edit_editorial_state('Clear'))
+        ttk.Menubutton(share, text='Editorial state ▾', menu=self.editorial_menu).pack(side='left', padx=(7, 0))
+        self.export_queue_button = ttk.Button(share, text='Export review queue CSV…',
+                                              command=self._export_queue)
+        self.export_queue_button.pack(side='left', padx=(7, 0))
         self.copy_selected_button = ttk.Button(share, text='Copy selected Kristal',
                                                command=self._copy_selected)
         self.copy_selected_button.pack(side='left', padx=(7, 0))
@@ -230,6 +286,12 @@ class GlobalAnalysisPanel(tk.Toplevel):
         self.bundle_button = ttk.Button(share, text='Sizes / bundles…', command=self._bundle_inventory)
         self.bundle_button.pack(side='left', padx=(7, 0))
         ttk.Label(share, text='Then paste here with Ctrl+V.', style='Sub.TLabel').pack(side='left', padx=(12, 0))
+        ai = ttk.Frame(buttons)
+        ai.pack(fill='x', pady=(0, 7))
+        self.ai_review_button = ttk.Button(ai, text='Open AI semantic dossiers', command=self._open_ai_review)
+        self.ai_review_button.pack(side='left')
+        ttk.Label(ai, text='127 individualized descriptions · AI drafts only · no automatic PRF changes',
+                  style='Sub.TLabel').pack(side='left', padx=(12, 0))
         tools = ttk.Frame(buttons)
         tools.pack(fill='x')
         self.open_html_button = ttk.Button(tools, text='Open HTML report', command=self._open_html)
@@ -315,7 +377,7 @@ class GlobalAnalysisPanel(tk.Toplevel):
         else:self.progress.stop()
         available = bool(self.result)
         for button in (self.open_html_button,self.open_zip_button,self.plan_button,
-                       self.copy_all_button):
+                       self.copy_all_button,self.export_queue_button):
             button.configure(state='normal' if available else 'disabled')
         self._update_selection_buttons()
 
@@ -349,26 +411,70 @@ class GlobalAnalysisPanel(tk.Toplevel):
     def render_result(self, result: dict, *, restored: bool=False):
         self.result = result
         self.entries = result['global_report']['entries']
-        # Previously saved reports can predate recovered qualification evidence.
-        # Refresh display evidence only; never rewrite older reports or Kristals.
-        if restored and self.entries and not any('qualification_evidence' in r for r in self.entries):
+        # A restored report must NOT assert that old descriptors are still current.
+        # Refresh all provenance annotations against live workspace metadata.
+        if restored and self.entries:
             from .qualification_history import annotate_qualifications
             annotate_qualifications(self.entries, source=result['global_report'].get('source') or '.')
+            annotate_ai_dossiers(self.entries)
+            annotate_editorial_review(self.entries)
+        annotate_historical_unesco_attention(self.entries)
+        annotate_native_sources(self.entries)
+        annotate_authoring(self.entries)
         self._fill()
         c = result['global_report']['counts']
-        self.status.set(f"{c['kristals']} Kristals · {c['blocker']} observed blockers · "
-                        f"{c['warning']} warnings · {c['review']} pending classification/review"
-                        f" · {c.get('native_contract_observed',0)} native contracts read (not qualified)"
-                        f" · {c.get('registered_review_matched',0)} linked reviews"
-                        + f" · {c.get('historical_qualifications_matched',0)} recovered profiles"
-                        + f" · {c.get('arketype_candidates',0)} new ARK proposals · {c.get('unesco_micro_candidates',0)} new UNESCO proposals"
-                        + (' · previous report restored' if restored else ' · ZIP export created')
-                        + (' · Kristalizer diagnostics imported' if self.kristalizer else ''))
+        from collections import Counter
+        current = Counter(current_editorial_state(r, getattr(self.manager, '_editorial_decisions', {}))['status']
+                          for r in self.entries)
+        self.status.set(
+            f"{c['kristals']} Kristals · {c['blocker']} blockers · {c['warning']} technical warnings · "
+            f"{current['Ready']} Ready · {current['Needs work']} Needs work · "
+            f"{current['Building']} Building · {current['Not assessed']} Not assessed"
+            + '  |  Local editorial states, not Framework qualification.'
+            + (' Previous report restored.' if restored else ' New analysis complete.')
+        )
         self._set_running(False)
+
+    def _edit_editorial_state(self, status: str):
+        selected = self.table.selection()
+        if not selected:
+            messagebox.showinfo('Select a Kristal', 'Select a Kristal first.', parent=self)
+            return
+        row = self.entries[int(selected[0])]
+        from .editorial_decisions import set_decision, clear_decision, load_decisions
+        option = status.casefold()
+        note = ''
+        if option == 'needs work':
+            note = simpledialog.askstring('Reason', 'What specifically needs work?', parent=self)
+            if note is None:
+                return
+            note = note.strip()
+            if not note:
+                messagebox.showerror('Reason required', 'Describe the issue briefly.', parent=self)
+                return
+        if option == 'ready' and not messagebox.askyesno('Editorial only',
+                    'Mark this Kristal editorially Ready?\nThis is NOT C1/C2/C3 qualification.', parent=self):
+            return
+        try:
+            if option == 'clear':
+                clear_decision(row)
+            else:
+                set_decision(row, status, note)
+            self.manager._editorial_decisions = load_decisions()
+        except (OSError, ValueError, TypeError, json.JSONDecodeError) as exc:
+            messagebox.showerror('Cannot save', str(exc), parent=self)
+            return
+        self._fill()
+        self.manager.refresh(prefer=row['path'])
 
     def _fill(self):
         self.table.delete(*self.table.get_children())
         for i,r in enumerate(self.entries):
+            review = assess_review(r)
+            editorial = current_editorial_state(r, getattr(self.manager, '_editorial_decisions', {}))
+            review['editorial_state'] = editorial['status']
+            if not matches_focus(review, self.review_focus_var.get()):
+                continue
             if self.problems_only.get() and r['priority'] not in ('blocker','warning'):
                 continue
             kstate = kristalizer_bridge.lookup(self.kristalizer, r.get('path'))
@@ -382,14 +488,35 @@ class GlobalAnalysisPanel(tk.Toplevel):
                 suggestions.append('UNESCO: ' + display_category(r['proposed_unesco'], 'unesco'))
             elif r.get('proposed_unesco_domain'):
                 suggestions.append('UNESCO domain: ' + display_category(r['proposed_unesco_domain'], 'unesco_domain'))
-            values=(r['title'],r['priority'],r['readiness'],display_content_status(r['content_status']),
+            values=(r['title'],editorial['status'],review['stage'],review['next_action'],
+                    display_authoring_status(r), display_source_catalog(r), display_native_source_review(r),
+                    r['priority'],r['readiness'],display_content_status(r['content_status']),
                     display_declared(r,'primary_archetype'), display_declared(r,'primary_usage'),
+                    display_semantic_role(r), display_prf_refinement(r),
                     display_declared(r,'subject_domain'), display_unesco_declaration(r),
-                    display_ark_structure(r), display_registered_ark(r), displayed,
+                    display_current_unesco_review(r), display_ark_structure(r), display_registered_ark(r), displayed,
                     '; '.join(suggestions) if suggestions else 'No new proposals',
                     ', '.join(r['keywords'][:6]))
             self.table.insert('','end',iid=str(i),values=values,tags=(r['priority'],))
         self._update_selection_buttons()
+
+    def _export_queue(self):
+        if not self.entries:
+            messagebox.showinfo('Nothing to export', 'Scan the Kristals first.', parent=self)
+            return
+        target = filedialog.asksaveasfilename(parent=self, title='Export local review queue',
+                    initialfile='KRISTAL_REVIEW_QUEUE.csv', defaultextension='.csv',
+                    filetypes=[('CSV spreadsheet', '*.csv')])
+        if not target:
+            return
+        try:
+            path = export_review_queue(target, self.entries,
+                                       source_root=self.manager.path_var.get())
+        except (OSError, ValueError, TypeError) as exc:
+            messagebox.showerror('Export rejected', str(exc), parent=self)
+            return
+        messagebox.showinfo('Review queue exported',
+              f'{path}\n\nUnapproved observations; no canonical changes.', parent=self)
 
     def _update_selection_buttons(self):
         selected = self.table.selection()
@@ -436,10 +563,13 @@ class GlobalAnalysisPanel(tk.Toplevel):
             return None
         row = self.entries[index]
         data = {'synthese_globale': row,
+                'review_progress': assess_review(row),
+                'authoring_observation': row.get('authoring_observation'),
                 'classification_names': {
                     'declared_arketype': display_declared(row, 'primary_archetype'),
                     'declared_usage_profile': display_declared(row, 'primary_usage'),
                     'declared_unesco_subjects': display_unesco_declaration(row),
+                    'unesco_editorial_review': display_unesco_review(row),
                     'registered_arketype': display_registered_ark(row),
                     'proposed_arketype': (display_category(row['proposed_arketype'], 'ark')
                                           if row.get('proposed_arketype') else 'None proposed'),
@@ -488,7 +618,24 @@ class GlobalAnalysisPanel(tk.Toplevel):
         text=tk.Text(frame,wrap='word',font=('Consolas',10))
         text.pack(fill='both',expand=True,pady=(8,0))
         data = self._selected_record() or {'synthese_globale': row}
-        payload = json.dumps(data, ensure_ascii=False, indent=2)
+        draft = row.get('semantic_enrichment') or {}
+        if draft.get('status') == 'MATCHED_CURRENT_DESCRIPTORS':
+            intro = ('AI SEMANTIC REVIEW — DRAFT, NOT APPROVED\n\n'
+                     + 'Role: ' + str(draft.get('semantic_role_en')) + '\n'
+                     + 'Purpose: ' + str(draft.get('semantic_scope_en')) + '\n'
+                     + 'Key boundary: ' + str(draft.get('critical_distinction_en')) + '\n'
+                     + 'PRF: ' + display_prf_refinement(row) + '\n'
+                     + 'UNESCO review: ' + display_unesco_review(row) + '\n'
+                     + 'Evidence: project metadata and historic summaries only; current descriptor matched.\n'
+                     + 'No semantic / C1-C2-C3 qualification or publication authority.\n\n'
+                     + '--- Full traceable evidence ---\n')
+        else:
+            intro = 'AI semantic review not current: ' + str(draft.get('status', 'NOT_REVIEWED')) + '\n\n'
+        progress = assess_review(row)
+        intro = ('REVIEW STAGE (not approval): ' + progress['stage'] + '\n'
+                 + 'NEXT ACTION: ' + progress['next_action'] + '\n'
+                 + 'NATIVE EVIDENCE: ' + display_native_source_review(row) + '\n\n' + intro)
+        payload = intro + json.dumps(data, ensure_ascii=False, indent=2)
         text.insert('1.0', payload)
         text.configure(state='disabled')
         actions = ttk.Frame(frame)
@@ -500,6 +647,16 @@ class GlobalAnalysisPanel(tk.Toplevel):
                 feedback.set('Copied! Paste into ChatGPT with Ctrl+V.')
         ttk.Button(actions, text='Copy these details', command=copy_details).pack(side='right', padx=(7,0))
         ttk.Button(actions,text='Close',command=popup.destroy).pack(side='right')
+
+    def _open_ai_review(self):
+        if not self.result:
+            return
+        target = Path(self.result['report_directory']) / 'ai_semantic_review_127.html'
+        if target.is_file() and not target.is_symlink():
+            webbrowser.open(target.resolve().as_uri())
+        else:
+            messagebox.showinfo('AI dossiers not generated',
+                                'Run Scan and analyze Kristals to generate the 127 AI review dossiers.', parent=self)
 
     def _open_html(self):
         if self.result:

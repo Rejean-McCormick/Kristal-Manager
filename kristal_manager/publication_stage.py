@@ -7,6 +7,7 @@ moving anything from private staging into a PUBLIC repository.
 """
 from __future__ import annotations
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path, PurePosixPath
@@ -205,7 +206,8 @@ def _make_one(kit: Path, workspace: Path, output: Path, slug: str, *,build_copy:
 
 def prepare_private_collection(*, locals_root: Path, kit_script: Path, output: Path,
                                slugs: list[str], write_private: bool=False,
-                               build_on_copy: bool=False) -> dict:
+                               build_on_copy: bool=False, progress=None,
+                               allow_partial: bool=False, c3_script: Path | None=None) -> dict:
     """Dry by default. With write_private, creates new independent output only.
 
     This is NOT a publish, C1 approval, C2 grant, or upload/commit to GitHub.
@@ -244,14 +246,45 @@ def prepare_private_collection(*, locals_root: Path, kit_script: Path, output: P
         if slug in selected:
             matches_by_slug[slug].append(folder)
 
+    if allow_partial and (not write_private or c3_script is None):
+        raise ManagerError('Partial candidate requires a private build and exact C3 validator')
+    c3 = None
+    if allow_partial:
+        script = Path(c3_script).resolve(strict=True)
+        if script.is_symlink() or script.name != 'c3_collection.py':
+            raise ManagerError('C3 validator missing or untrusted')
+        spec = importlib.util.spec_from_file_location('_kristal_public_c3_validation', script)
+        if spec is None or spec.loader is None:
+            raise ManagerError('C3 validator cannot be loaded')
+        c3 = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(c3)
+        if not hasattr(c3, 'row_from_manifest') or not hasattr(c3, 'C3Error'):
+            raise ManagerError('C3 validator API unavailable')
     sources = []
-    for slug in slugs:
+    rejected = []
+    if progress:
+        progress({'phase':'precheck','completed':0,'total':len(slugs),
+                  'message':'Vérification des dossiers sources'})
+    for position, slug in enumerate(slugs, start=1):
+        if progress:
+            progress({'phase':'precheck','completed':position-1,'total':len(slugs),
+                      'slug':slug,'message':'Vérification : '+slug})
         matches = matches_by_slug[slug]
-        if len(matches) != 1:
-            raise ManagerError('Exactly one valid workspace is required for selected slug: '
-                               + slug + ' (found ' + str(len(matches)) + ')')
-        _safe_tree(matches[0])
-        sources.append(matches[0])
+        try:
+            if len(matches) != 1:
+                raise ManagerError('Exactly one valid workspace is required for selected slug: '
+                                   + slug + ' (found ' + str(len(matches)) + ')')
+            _safe_tree(matches[0])
+            sources.append((matches[0], slug))
+            message = 'Dossier vérifié : '+slug
+        except ManagerError as exc:
+            if not allow_partial:
+                raise
+            rejected.append({'slug':slug,'reason':str(exc)[:700]})
+            message = 'Refusé : '+slug
+        if progress:
+            progress({'phase':'precheck','completed':position,'total':len(slugs),
+                      'slug':slug,'message':message})
     report={'status':'DRY_RUN' if not write_private else 'PRIVATE_CANDIDATE_ONLY',
             'authorization':'NOT_ESTABLISHED','public_write':False,
             'output':str(output),'slugs':slugs,'build_on_temporary_copies':build_on_copy}
@@ -264,20 +297,43 @@ def prepare_private_collection(*, locals_root: Path, kit_script: Path, output: P
         # This temporary tree is discarded on *any* failure. No checkout or
         # source workspace is ever modified by this stage.
         rows=[]
-        rejected=[]
-        for folder,slug in zip(sources,slugs):
+        for pos,(folder,slug) in enumerate(sources,start=1):
+            if progress:
+                progress({'phase':'build','completed':pos-1,'total':len(sources),
+                          'slug':slug,'message':'Construction de '+folder.name})
+            failed = None
             try:
-                rows.append(_make_one(kit_script,folder,indexed,slug,
-                                      build_copy=build_on_copy))
+                row = _make_one(kit_script,folder,indexed,slug,
+                                build_copy=build_on_copy)
+                if c3 is not None:
+                    # The PUBLIC repository's exact validator, not an ad-hoc
+                    # approximation of C3. A rejected member is quarantined.
+                    actual = c3.row_from_manifest(collection,slug)
+                    if actual != row:
+                        raise ManagerError('C3 row differs from prepared member: '+slug)
+                rows.append(row)
             except ManagerError as exc:
-                rejected.append((folder.name,str(exc)))
-        if rejected:
-            shown=['  '+name+' : '+message for name,message in rejected[:15]]
+                failed = str(exc)
+            except Exception as exc:
+                if c3 is None or not isinstance(exc, c3.C3Error):
+                    raise
+                failed = 'C3: '+str(exc)
+            if failed is not None:
+                if not allow_partial:
+                    rejected.append({'slug':slug,'reason':failed[:700]})
+                else:
+                    rejected.append({'slug':slug,'reason':failed[:700]})
+                    shutil.rmtree(indexed/slug,ignore_errors=True)
+            if progress:
+                progress({'phase':'build','completed':pos,'total':len(sources),
+                          'slug':slug,'message':('Refusé : ' if failed else 'Validé : ')+folder.name})
+        if rejected and (not allow_partial or not rows):
+            shown=['  '+entry['slug']+' : '+entry['reason'] for entry in rejected[:15]]
             if len(rejected)>15:
-                shown.append(f'  … {len(rejected)-15} other Kristal(s) rejected.')
+                shown.append(f'  … {len(rejected)-15} autre(s) Kristal(s) refusé(s).')
             raise ManagerError(
                 f'{len(rejected)}/{len(slugs)} Kristal(s) non prêt(s). '
-                'Aucune copie vers kristal-private.\n'+'\n'.join(shown))
+                'Aucune copie vers le dossier public.\n'+'\n'.join(shown))
         rows.sort(key=lambda x:(x['slug'].encode('utf8'),x['path'].encode('utf8')))
         projection={'format':'kristal.github-collection-index/1.0','kristals':rows}
         index={**projection,'count':len(rows),'index_digest':_hash(_canonical(projection)),
@@ -288,6 +344,8 @@ def prepare_private_collection(*, locals_root: Path, kit_script: Path, output: P
         # C3 does not scan STAGING_ONLY at repository root; review it and strip it
         # only after a genuine independent C1/C2 approval before public intake.
         collection.rename(output)
+    report['rejected']=rejected
+    report['successful_slugs']=[row['slug'] for row in rows]
     report['index_digest']=index['index_digest']
     report['files_count']=sum(x['file_count'] for x in rows)
     return report

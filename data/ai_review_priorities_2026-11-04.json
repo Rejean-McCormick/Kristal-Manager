@@ -1,0 +1,317 @@
+{
+  "schema": "kristal-ai-triage/1.0",
+  "source": "Pasted text(20261104-204803).txt",
+  "as_of": "2026-11-04",
+  "totals": {
+    "kristals": 127,
+    "ai_roles_matched": 127,
+    "prf_candidates": 7,
+    "unesco_disagreements": 17,
+    "unique_priority_kristals": 21
+  },
+  "prf_candidates": [
+    {
+      "title": "Forestry",
+      "state_ref": "urn:kristal:state:forestry",
+      "declared_prf": "Multi-Purpose Semantic Reference",
+      "candidate": {
+        "id": "PRF-04",
+        "rationale_en": "The declared model tracks observable stand conditions and time-indexed follow-up; assess whether the System-State Tracking template genuinely fits forest stands.",
+        "confidence": "LOW",
+        "status": "AI_EXPLORATORY_ALTERNATIVE_NOT_APPROVED"
+      },
+      "semantic_role": "Forest stands and interventions timeline",
+      "scope": "Represent stand states, growth, disturbance, interventions and follow-up over time.",
+      "critical_distinction": "A modeled forest trajectory is not an observed management outcome."
+    },
+    {
+      "title": "Infrastructure",
+      "state_ref": "urn:kristal:state:infrastructure",
+      "declared_prf": "Multi-Purpose Semantic Reference",
+      "candidate": {
+        "id": "PRF-04",
+        "rationale_en": "The native model compares service capacity, failure states and dependencies; examine whether observed multi-system state matrices are actually present.",
+        "confidence": "LOW",
+        "status": "AI_EXPLORATORY_ALTERNATIVE_NOT_APPROVED"
+      },
+      "semantic_role": "Infrastructure dependencies and service state",
+      "scope": "Map infrastructure topology, capacity, service, dependencies, failure modes and resilience.",
+      "critical_distinction": "Designed redundancy is not proof of current availability."
+    },
+    {
+      "title": "Manufacturing",
+      "state_ref": "urn:kristal:state:manufacturing",
+      "declared_prf": "Multi-Purpose Semantic Reference",
+      "candidate": {
+        "id": "PRF-02",
+        "rationale_en": "A material-to-process-to-quality flow is described, but a real stepwise protocol with roles, exceptions and authorization must be demonstrated before adopting this PRF.",
+        "confidence": "LOW",
+        "status": "AI_EXPLORATORY_ALTERNATIVE_NOT_APPROVED"
+      },
+      "semantic_role": "Manufacturing process and quality model",
+      "scope": "Connect raw materials, processes, geometry, tolerances, manufactured parts and quality controls.",
+      "critical_distinction": "A procedure specification is not evidence of a conforming part."
+    },
+    {
+      "title": "Paleontology",
+      "state_ref": "urn:kristal:state:paleontology",
+      "declared_prf": "Multi-Purpose Semantic Reference",
+      "candidate": {
+        "id": "PRF-03",
+        "rationale_en": "The fossil and lineage material may include a natural-object classification, but its primary model appears inferential rather than taxonomic.",
+        "confidence": "LOW",
+        "status": "AI_EXPLORATORY_ALTERNATIVE_NOT_APPROVED"
+      },
+      "semantic_role": "Fossils and deep-time inference model",
+      "scope": "Connect fossil observations to strata, age estimates, ancient organisms and reconstructed lineages.",
+      "critical_distinction": "A fossil observation and reconstruction of life history are different evidence levels."
+    },
+    {
+      "title": "PublicHealth",
+      "state_ref": "urn:kristal:state:public-health",
+      "declared_prf": "Multi-Purpose Semantic Reference",
+      "candidate": {
+        "id": "PRF-04",
+        "rationale_en": "Population metrics and intervention outcomes may allow comparisons of observable states, but this is not established from metadata alone.",
+        "confidence": "LOW",
+        "status": "AI_EXPLORATORY_ALTERNATIVE_NOT_APPROVED"
+      },
+      "semantic_role": "Population health and interventions",
+      "scope": "Relate population groups, exposure, health measures, interventions, outcomes and distributions.",
+      "critical_distinction": "Population-level evidence does not automatically predict individual outcomes."
+    },
+    {
+      "title": "Soil",
+      "state_ref": "urn:kristal:state:soil",
+      "declared_prf": "Multi-Purpose Semantic Reference",
+      "candidate": {
+        "id": "PRF-03",
+        "rationale_en": "The horizon and soil-class observations could support a source-bounded natural taxonomy, but classification criteria and primary usage must be checked.",
+        "confidence": "LOW",
+        "status": "AI_EXPLORATORY_ALTERNATIVE_NOT_APPROVED"
+      },
+      "semantic_role": "Soil horizons and properties model",
+      "scope": "Connect horizons, texture, chemistry, biology, water, fertility and contextual measurements.",
+      "critical_distinction": "A soil observation without depth and method is incomplete."
+    },
+    {
+      "title": "Weather",
+      "state_ref": "urn:kristal:state:kristal-weather",
+      "declared_prf": "Multi-Purpose Semantic Reference",
+      "candidate": {
+        "id": "PRF-04",
+        "rationale_en": "The model explicitly distinguishes current observations from forecasts; assess whether weather station state comparisons match the profile.",
+        "confidence": "LOW",
+        "status": "AI_EXPLORATORY_ALTERNATIVE_NOT_APPROVED"
+      },
+      "semantic_role": "Weather observation and forecast model",
+      "scope": "Connect atmospheric observations, current states, analyses, forecasts, hazards and uncertainty.",
+      "critical_distinction": "Observed weather and forecast weather must remain distinct."
+    }
+  ],
+  "unesco_disagreements": [
+    {
+      "title": "Anthropology",
+      "state_ref": "urn:kristal:anthropology:state",
+      "declared_labels": "Social sciences, Culture",
+      "declared_codes": [
+        "4.05",
+        "3.05"
+      ],
+      "suggested_label": "Population",
+      "suggested_code": "4.35",
+      "review_priority": "Contextual/overbroad suggestion"
+    },
+    {
+      "title": "Biology",
+      "state_ref": "urn:kristal:state:biology",
+      "declared_labels": "Biology",
+      "declared_codes": [
+        "2.70"
+      ],
+      "suggested_label": "Population",
+      "suggested_code": "4.35",
+      "review_priority": "Contextual/overbroad suggestion"
+    },
+    {
+      "title": "CivilEngineering",
+      "state_ref": "urn:kristal:state:civilengineering",
+      "declared_labels": "Civil, military, and mining engineering",
+      "declared_codes": [
+        "6.45"
+      ],
+      "suggested_label": "History",
+      "suggested_code": "3.25",
+      "review_priority": "Potentially off-topic"
+    },
+    {
+      "title": "ControlSystems",
+      "state_ref": "urn:kristal:state:controlsystems",
+      "declared_labels": "Manufacturing and transport engineering, Information technology (hardware)",
+      "declared_codes": [
+        "6.50",
+        "5.45"
+      ],
+      "suggested_label": "History",
+      "suggested_code": "3.25",
+      "review_priority": "Potentially off-topic"
+    },
+    {
+      "title": "Earth",
+      "state_ref": "urn:kristal:state:earth",
+      "declared_labels": "Earth sciences",
+      "declared_codes": [
+        "2.35"
+      ],
+      "suggested_label": "Meteorology",
+      "suggested_code": "2.45",
+      "review_priority": "Contextual/overbroad suggestion"
+    },
+    {
+      "title": "Evolution",
+      "state_ref": "urn:kristal:state:kristal-evolution",
+      "declared_labels": "Biology",
+      "declared_codes": [
+        "2.70"
+      ],
+      "suggested_label": "Population",
+      "suggested_code": "4.35",
+      "review_priority": "Contextual/overbroad suggestion"
+    },
+    {
+      "title": "kOA Ecosystem",
+      "state_ref": "urn:kristal:koa-ecosystem:state",
+      "declared_labels": "Information management, Organization and management",
+      "declared_codes": [
+        "5.15",
+        "6.75"
+      ],
+      "suggested_label": "Environmental sciences and engineering",
+      "suggested_code": "2.55",
+      "review_priority": "Potentially off-topic"
+    },
+    {
+      "title": "Mind",
+      "state_ref": "urn:kristal:mind:state",
+      "declared_labels": "Psychology",
+      "declared_codes": [
+        "4.10"
+      ],
+      "suggested_label": "History",
+      "suggested_code": "3.25",
+      "review_priority": "Potentially off-topic"
+    },
+    {
+      "title": "Paleontology",
+      "state_ref": "urn:kristal:state:paleontology",
+      "declared_labels": "Earth sciences, Biology",
+      "declared_codes": [
+        "2.35",
+        "2.70"
+      ],
+      "suggested_label": "Teaching and training",
+      "suggested_code": "1.60",
+      "review_priority": "Potentially off-topic"
+    },
+    {
+      "title": "Pi Theory — Prime Bridge / Spiral, Mirror & Equivariance Invariant-Regime Key",
+      "state_ref": "urn:kristal:state:pitheory-prime-bridge",
+      "declared_labels": "Mathematics and statistics, Scientific approach",
+      "declared_codes": [
+        "2.15",
+        "2.05"
+      ],
+      "suggested_label": "Literature",
+      "suggested_code": "3.40",
+      "review_priority": "Potentially off-topic"
+    },
+    {
+      "title": "PiTheory",
+      "state_ref": "urn:kristal:state:pi-theory",
+      "declared_labels": "Mathematics and statistics, Scientific approach",
+      "declared_codes": [
+        "2.15",
+        "2.05"
+      ],
+      "suggested_label": "History",
+      "suggested_code": "3.25",
+      "review_priority": "Potentially off-topic"
+    },
+    {
+      "title": "PublicHealth",
+      "state_ref": "urn:kristal:state:public-health",
+      "declared_labels": "Medical sciences, Social policy and welfare",
+      "declared_codes": [
+        "2.80",
+        "4.25"
+      ],
+      "suggested_label": "Population",
+      "suggested_code": "4.35",
+      "review_priority": "Contextual/overbroad suggestion"
+    },
+    {
+      "title": "ScolQc — Éducation Québec",
+      "state_ref": "urn:kristal:state:education-quebec",
+      "declared_labels": "Educational systems and levels, Curriculum",
+      "declared_codes": [
+        "1.30",
+        "1.40"
+      ],
+      "suggested_label": "Politics and government",
+      "suggested_code": "6.15",
+      "review_priority": "Contextual/overbroad suggestion"
+    },
+    {
+      "title": "Soil",
+      "state_ref": "urn:kristal:state:soil",
+      "declared_labels": "Earth sciences, Agriculture",
+      "declared_codes": [
+        "2.35",
+        "6.35"
+      ],
+      "suggested_label": "Biology",
+      "suggested_code": "2.70",
+      "review_priority": "Contextual/overbroad suggestion"
+    },
+    {
+      "title": "SolarSystem",
+      "state_ref": "urn:kristal:state:solar-system",
+      "declared_labels": "Space sciences",
+      "declared_codes": [
+        "2.30"
+      ],
+      "suggested_label": "Europe",
+      "suggested_code": "7.20",
+      "review_priority": "Potentially off-topic"
+    },
+    {
+      "title": "VisualArts",
+      "state_ref": "urn:kristal:state:kristal-visualarts",
+      "declared_labels": "Visual arts",
+      "declared_codes": [
+        "3.50"
+      ],
+      "suggested_label": "Art",
+      "suggested_code": "3.45",
+      "review_priority": "Contextual/overbroad suggestion"
+    },
+    {
+      "title": "Work",
+      "state_ref": "urn:kristal:state:kristal-work",
+      "declared_labels": "Labour, Personnel management",
+      "declared_codes": [
+        "6.85",
+        "6.80"
+      ],
+      "suggested_label": "Information technology (software)",
+      "suggested_code": "5.40",
+      "review_priority": "Potentially off-topic"
+    }
+  ],
+  "constraints": [
+    "All AI semantic roles are metadata-derived editorial drafts, not native-content qualifications.",
+    "PRF alternative confidence is LOW.",
+    "UNESCO suggestions are local heuristic proposals.",
+    "Nothing authorizes writes to canonical metadata or publication."
+  ]
+}

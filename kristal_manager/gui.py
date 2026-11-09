@@ -17,7 +17,7 @@ from queue import Empty, Queue
 import traceback
 from threading import Thread
 import tkinter as tk
-from tkinter import filedialog, messagebox, ttk
+from tkinter import filedialog, messagebox, ttk, simpledialog
 import webbrowser
 
 from .core import detect_kristal, scan_roots
@@ -30,6 +30,16 @@ from .inventory import inventory, konstellation_preview, save_private_inventory
 from .icon_bridge import discover_icon, read_registry_icon_index, tk_photo_from_icon, IconInfo
 from .operational import assess_local
 from .ui_prefs import default_root, load_settings, save_settings
+from .column_views import ColumnViewControl
+from .classification_labels import display_category as category_label
+from .qualification_history import annotate_qualifications, display_declared, display_unesco_declaration
+from .semantic_enrichment import annotate_ai_dossiers, display_semantic_role, display_prf_refinement
+from .editorial_review import annotate_editorial_review, annotate_historical_unesco_attention, display_unesco_review, display_current_unesco_review
+from .native_evidence import annotate_native_sources, display_native_source_review
+from .authoring_observations import annotate_authoring, display_authoring_status, display_source_catalog
+from .review_progress import REVIEW_FOCI, assess_review, matches_focus, export_review_queue
+from .editorial_decisions import (load_decisions, current_editorial_state,
+                                  set_decision, clear_decision)
 from .workspace_tools import (category_of, classification_of, arketype_of, usage_profile_of,
                               is_historical, plan_rename, apply_rename, export_workspace)
 
@@ -56,17 +66,13 @@ def display_state_id(state_ref: str | None) -> str:
 
 
 def display_kristal_folder(row: dict) -> str:
-    """Show the actual local folder instead of a variable editorial title.
-
-    Routing remains based on the original row/path/slug, never on this label.
-    Non-local entries keep their authored title.
-    """
-    raw_path=row.get('path')
-    if raw_path:
-        folder=Path(str(raw_path)).name
-        if folder.lower().startswith('kristal-'):
-            return folder
-    return str(row.get('title') or (Path(str(raw_path)).name if raw_path else 'Kristal'))
+    """Show the workspace's editorial title; never use it for path or identity routing."""
+    title = str(row.get('title') or '').strip()
+    if title:
+        return title
+    raw_path = row.get('path')
+    folder = Path(str(raw_path)).name if raw_path else 'Untitled'
+    return folder[8:] if folder.casefold().startswith('kristal-') else folder
 
 
 def display_category(row: dict) -> str:
@@ -74,6 +80,23 @@ def display_category(row: dict) -> str:
     return {'Historical archive':'Historical archive',
             'Non catégorisé':'Uncategorized',
             'Kristal imbriqué':'Nested Kristal'}.get(value, value)
+
+
+def display_main_classification(row: dict, field: str) -> str:
+    """Readable current inventory declaration; never infer human approval.
+
+    A workspace can have real ARK/PRF fields without a parseable state identity.
+    In that case still present those *declared* values from the current inventory,
+    while making the missing provenance visible in the details pane.
+    """
+    evidence = row.get('qualification_evidence') or {}
+    if evidence.get('metadata_source') == 'IDENTITY_MISMATCH_NO_FALLBACK':
+        return 'Identity mismatch — review required'
+    value = display_declared(row, 'primary_archetype' if field == 'ark' else 'primary_usage')
+    if value != 'Not declared':
+        return value
+    raw = arketype_of(row) if field == 'ark' else usage_profile_of(row)
+    return category_label(raw, field) if raw else 'Not declared'
 
 
 class ManagerWindow(tk.Tk):
@@ -88,6 +111,12 @@ class ManagerWindow(tk.Tk):
         self._apply_window_icon()
 
         self.settings = load_settings()
+        try:
+            self._editorial_decisions = load_decisions()
+        except (ValueError, OSError, TypeError, json.JSONDecodeError):
+            # A broken user registry must not prevent opening the product.
+            # Future writes will fail closed rather than destroying the file.
+            self._editorial_decisions = {}
         # Session-only opt-in: never persist this permission; reset OFF at each launch.
         self.custom_folder_icons_enabled = tk.BooleanVar(value=False)
         self._local_icon_processes: list[tuple[subprocess.Popen, bool]] = []
@@ -107,10 +136,14 @@ class ManagerWindow(tk.Tk):
         self.category_var = tk.StringVar(value='All UNESCO domains')
         self.micro_var = tk.StringVar(value='All microthesauri')
         self.taxonomy_cache: dict[str, dict] = {}
+        self._domain_filter_codes = {}
+        self._micro_filter_codes = {}
         self.arketype_var = tk.StringVar(value='All Arketypes')
         self.usage_var = tk.StringVar(value='All usage profiles')
         self.show_history_var = tk.BooleanVar(value=False)
+        self.review_focus_var = tk.StringVar(value='All Kristals')
         self.sort_field = 'title'
+        self._global_entries_by_path = {}
         self.sort_desc = False
         self.status_var = tk.StringVar(value='Choose a folder, then click Scan folder.')
         self.scope_var = tk.StringVar(value='Folder not scanned')
@@ -291,6 +324,8 @@ class ManagerWindow(tk.Tk):
         self.actions_menu.add_command(label='Catalog selected Kristal', command=self.start_catalog_selected)
         self.actions_menu.add_command(label='Catalog all Kristals in folder', command=self.start_catalog_all)
         self.actions_menu.add_command(label='Global analysis…', command=self.open_global_center)
+        self.actions_menu.add_command(label='Export review queue CSV…', command=self.export_review_queue)
+        self.actions_menu.add_command(label='Selected semantic dossier (AI draft)…', command=self.open_semantic_dossier)
         self.actions_menu.add_command(label='Open HTML overview', command=self.open_content_overview)
         self.actions_menu.add_command(label='UNESCO classification audit…', command=self.open_classification_audit)
         self.actions_menu.add_command(label='Normalize folders in batch…', command=self.open_batch_rename)
@@ -336,6 +371,16 @@ class ManagerWindow(tk.Tk):
                         variable=self.show_history_var, command=self.refresh).pack(side='left')
         ttk.Label(selectors, text='Click column headers to sort', style='Sub.TLabel').pack(side='right')
 
+        reviewbar = ttk.Frame(wrapper)
+        reviewbar.pack(fill='x', pady=(0, 6))
+        ttk.Label(reviewbar, text='Review focus').pack(side='left')
+        focus = ttk.Combobox(reviewbar, state='readonly', width=25,
+                             values=REVIEW_FOCI, textvariable=self.review_focus_var)
+        focus.pack(side='left', padx=(8, 10))
+        focus.bind('<<ComboboxSelected>>', lambda _: self.refresh())
+        ttk.Label(reviewbar, text='Evidence and next actions are editorial observations — not C1/C2/C3 approvals',
+                  style='Sub.TLabel').pack(side='left')
+
         paned = ttk.Panedwindow(wrapper, orient='vertical')
         paned.pack(fill='both', expand=True)
         upper = ttk.Frame(paned)
@@ -343,19 +388,34 @@ class ManagerWindow(tk.Tk):
         lower = ttk.Frame(paned)
         paned.add(lower, weight=2)
 
-        cols = ('title', 'category', 'micro', 'arketype', 'usage', 'readiness', 'diag', 'profile', 'state_ref', 'artifacts', 'content')
-        # Keep icons with the selected Kristal's detail card, not in the table.
+        cols = ('title', 'editorial_state', 'review_stage', 'next_action', 'authoring_status', 'source_catalog', 'native_evidence', 'semantic_role', 'arketype', 'usage', 'micro', 'category',
+                'prf_review', 'unesco_review', 'readiness', 'diag', 'profile',
+                'state_ref', 'artifacts', 'content')
         self.tree = ttk.Treeview(upper, columns=cols, show='headings', selectmode='browse', height=10)
         for key, heading, width in [
-            ('title', 'Kristal', 245), ('category', 'UNESCO domain', 180),
-            ('micro', 'Microthesaurus', 210),
-            ('arketype', 'Arketype', 95), ('usage', 'Usage (PRF)', 100),
+            ('title', 'Kristal', 230), ('editorial_state', 'Editorial state (local)', 150),
+            ('review_stage', 'Review stage (not approval)', 210),
+            ('next_action', 'Next review action', 340),
+            ('authoring_status', 'Authoring status (not qualification)', 235),
+            ('source_catalog', 'Source catalogue (unverified)', 240),
+            ('native_evidence', 'Native-source evidence', 230),
+            ('semantic_role', 'Semantic role (AI draft)', 265),
+            ('arketype', 'Arketype (declared)', 230), ('usage', 'Usage profile (declared)', 235),
+            ('micro', 'UNESCO subjects (declared)', 260), ('category', 'UNESCO domain', 175),
+            ('prf_review', 'PRF refinement (AI draft)', 275),
+            ('unesco_review', 'UNESCO review (AI draft)', 220),
             ('readiness', 'Local status', 108), ('diag', 'KristalDiag', 116),
-            ('profile', 'Technical profile', 125), ('state_ref', 'State ID', 130),
+            ('profile', 'Technical profile', 125), ('state_ref', 'State ID', 155),
             ('artifacts', 'Artifacts', 88), ('content', 'Content', 155),
         ]:
             self.tree.heading(key, text=heading, command=lambda field=key: self.change_sort(field))
-            self.tree.column(key, width=width, minwidth=75, stretch=key in ('title', 'category'))
+            self.tree.column(key, width=width, minwidth=75, stretch=key in ('title', 'semantic_role'))
+        self.column_views = ColumnViewControl(
+            controls, self.tree, 'manager',
+            initial=self.settings.get('manager_column_view', 'Essential'),
+            custom_columns=self.settings.get('manager_custom_columns'),
+            on_change=lambda view, columns: self._save_column_profile('manager_column_view', view, columns))
+        self.column_views.frame.pack(side='right', padx=(0, 10))
         yscroll = ttk.Scrollbar(upper, orient='vertical', command=self.tree.yview)
         xscroll = ttk.Scrollbar(upper, orient='horizontal', command=self.tree.xview)
         self.tree.configure(yscrollcommand=yscroll.set, xscrollcommand=xscroll.set)
@@ -367,11 +427,18 @@ class ManagerWindow(tk.Tk):
         self.tree.tag_configure('alert', foreground='#a04d25')
         self.tree.tag_configure('historic', foreground='#717d7b')
         self.tree.bind('<<TreeviewSelect>>', self.show_details)
-        self.tree.bind('<Double-1>', lambda _: self.start_diag_selected())
+        self.tree.bind('<Double-1>', lambda _: self.open_semantic_dossier())
 
         quick = ttk.Frame(lower)
         quick.pack(fill='x', pady=(6, 2))
         ttk.Label(quick, textvariable=self.selection_var, style='H2.TLabel').pack(side='left', fill='x', expand=True)
+        self.editorial_menu = tk.Menu(self, tearoff=False)
+        self.editorial_menu.add_command(label='Mark Ready (editorial only)', command=lambda: self._set_editorial_decision('Ready'))
+        self.editorial_menu.add_command(label='Needs work…', command=lambda: self._set_editorial_decision('Needs work'))
+        self.editorial_menu.add_command(label='Not assessed', command=lambda: self._set_editorial_decision('Not assessed'))
+        self.editorial_menu.add_separator()
+        self.editorial_menu.add_command(label='Clear current decision', command=self._clear_editorial_decision)
+        ttk.Menubutton(quick, text='Editorial state ▾', menu=self.editorial_menu).pack(side='right', padx=(5, 0))
         self.diag_button = ttk.Button(quick, text='Diagnostic…', command=self.start_diag_selected)
         self.diag_button.pack(side='right', padx=(5, 0))
         self.verify_button = ttk.Button(quick, text='Verify this Kristal', command=self.start_verify)
@@ -672,6 +739,24 @@ class ManagerWindow(tk.Tk):
                     folder=folder.resolve(), job='global_analysis')
         return True
 
+    def export_review_queue(self):
+        if not self.rows:
+            messagebox.showinfo('No inventory', 'Scan the Kristal folder first.', parent=self)
+            return
+        dest = filedialog.asksaveasfilename(parent=self, title='Export local review queue',
+                    defaultextension='.csv', initialfile='KRISTAL_REVIEW_QUEUE.csv',
+                    filetypes=[('CSV spreadsheet', '*.csv')])
+        if not dest:
+            return
+        try:
+            path = export_review_queue(dest, [row for row in self.rows if not is_historical(row)],
+                                       source_root=self.path_var.get())
+        except (OSError, ValueError, TypeError) as exc:
+            messagebox.showerror('Review export failed', str(exc), parent=self)
+            return
+        messagebox.showinfo('Review queue exported',
+            f'{path}\n\nLocal review observations only. No qualification granted.', parent=self)
+
     def start_scan(self):
         folder = Path(self.path_var.get().strip()).expanduser()
         if not folder.is_dir():
@@ -684,6 +769,12 @@ class ManagerWindow(tk.Tk):
             import sqlite3
             from .central_store import restore_rows
             rows = scan_roots([folder])
+            annotate_qualifications(rows, source=folder)
+            annotate_ai_dossiers(rows)
+            annotate_editorial_review(rows)
+            annotate_historical_unesco_attention(rows)
+            annotate_native_sources(rows)
+            annotate_authoring(rows)
             try:
                 return restore_rows(rows), None
             except (sqlite3.DatabaseError, OSError, ValueError, RuntimeError) as exc:
@@ -1014,6 +1105,14 @@ class ManagerWindow(tk.Tk):
                 elif kind == 'global_analysis':
                     before = self._selected_path()
                     self.rows = payload['inventory']
+                    report_by_path = {r.get('path', '').casefold(): r for r in payload['global_report']['entries']}
+                    for row in self.rows:
+                        enriched = report_by_path.get(row.get('path','').casefold())
+                        if enriched:
+                            for key in ('qualification_evidence','semantic_enrichment','editorial_unesco_review',
+                                        'proposed_unesco','proposed_arketype','priority','content_status'):
+                                if key in enriched:
+                                    row[key] = enriched[key]
                     # Keep observed content in the normal Manager list without declaring
                     # any suggested Arketype/UNESCO classification canonical.
                     from .content_catalog import summaries
@@ -1221,6 +1320,64 @@ class ManagerWindow(tk.Tk):
                     pass
         super().destroy()
 
+    def _save_column_profile(self, key: str, value: str, columns=None):
+        # UI preference only; never write anything beneath a scanned Kristal.
+        if value not in ('Essential', 'Review queue', 'Classification', 'Semantic review', 'Diagnostics', 'All columns', 'Custom'):
+            return
+        custom_key = 'manager_custom_columns' if key == 'manager_column_view' else 'analysis_custom_columns'
+        custom = list(columns or []) if value == 'Custom' else None
+        if self.settings.get(key) == value and (custom is None or self.settings.get(custom_key) == custom):
+            return
+        self.settings[key] = value
+        if custom is not None:
+            self.settings[custom_key] = custom
+        try:
+            save_settings(self.settings)
+        except OSError as exc:
+            self.log('WARNING', f'UI column preference could not be saved: {exc}')
+
+    def open_semantic_dossier(self):
+        """Read-only detail for selected Kristal, never a sign-off control."""
+        row = self._selected_row()
+        if not row:
+            return
+        ev = row.get('qualification_evidence') or {}
+        meta = ev.get('metadata') or {}
+        ai = row.get('semantic_enrichment') or {}
+        record = {
+            'Kristal': display_kristal_folder(row),
+            'Semantic role (AI draft)': display_semantic_role(row),
+            'Purpose (AI draft)': ai.get('semantic_scope_en') or 'Not assessed',
+            'Essential distinction (AI draft)': ai.get('critical_distinction_en') or 'Not assessed',
+            'Arketype (declared)': display_main_classification(row, 'ark'),
+            'Usage profile (declared)': display_main_classification(row, 'prf'),
+            'PRF refinement (AI draft)': display_prf_refinement(row),
+            'UNESCO subjects (declared)': display_unesco_declaration(row),
+            'UNESCO review (AI draft)': display_unesco_review(row),
+            'Subject domain': meta.get('subject_domain') or 'Not declared',
+            'Source status': ev.get('metadata_source') or 'Not available',
+            'AI review match status': ai.get('status') or 'Not reviewed',
+            'Historical source references': ev.get('sources') or {},
+            'Human approval': 'NOT ESTABLISHED',
+            'Framework C1/C2/C3': 'NOT EVALUATED',
+            'Original state identity': row.get('state_ref'),
+        }
+        window = tk.Toplevel(self)
+        window.title('Semantic dossier — ' + display_kristal_folder(row))
+        window.geometry('840x620')
+        frame = ttk.Frame(window, padding=12)
+        frame.pack(fill='both', expand=True)
+        ttk.Label(frame, text='AI editorial draft · not an approved classification',
+                  style='H2.TLabel').pack(anchor='w', pady=(0, 8))
+        text = tk.Text(frame, wrap='word', font=('Segoe UI', 10))
+        scroll = ttk.Scrollbar(frame, orient='vertical', command=text.yview)
+        text.configure(yscrollcommand=scroll.set)
+        text.pack(side='left', fill='both', expand=True)
+        scroll.pack(side='right', fill='y')
+        text.insert('1.0', '\n\n'.join(f'{label}\n{value if isinstance(value,str) else json.dumps(value,ensure_ascii=False,indent=2)}'
+                                     for label,value in record.items()))
+        text.configure(state='disabled')
+
     def _change_category(self, _event=None):
         if self.category_var.get() == 'Historical archive':
             self.show_history_var.set(True)
@@ -1234,16 +1391,18 @@ class ManagerWindow(tk.Tk):
 
     def _refresh_category_choices(self):
         pinned = reference()
-        domains = [f'{key} {val["label_en"]}' for key,val in pinned['domains'].items()]
-        micro = [f'{key} {val["label_en"]}' for key,val in pinned['microthesauri'].items()]
+        self._domain_filter_codes = {val['label_en']: key for key, val in pinned['domains'].items()}
+        self._micro_filter_codes = {val['label_en']: key for key, val in pinned['microthesauri'].items()}
+        domains = list(self._domain_filter_codes)
+        micro = list(self._micro_filter_codes)
         for variable,combo,values,default in (
             (self.category_var,self.category_choice,['All UNESCO domains',*domains,'Unmapped'],'All UNESCO domains'),
             (self.micro_var,self.micro_choice,['All microthesauri',*micro,'Unmapped'],'All microthesauri')):
             combo.configure(values=values)
             if variable.get() not in values:variable.set(default)
-        primary = sorted({x for r in self.rows if not is_historical(r)
+        primary = sorted({category_label(x, 'ark') for r in self.rows if not is_historical(r)
                           if (x := arketype_of(r))}, key=str.casefold)
-        usages = sorted({x for r in self.rows if not is_historical(r)
+        usages = sorted({category_label(x, 'prf') for r in self.rows if not is_historical(r)
                          if (x := usage_profile_of(r))}, key=str.casefold)
         arketype_values = ['All Arketypes', *primary, 'Unclassified']
         usage_values = ['All usage profiles', *usages, 'Unclassified']
@@ -1261,6 +1420,52 @@ class ManagerWindow(tk.Tk):
             self.sort_field, self.sort_desc = field, False
         self.refresh()
 
+    def _set_editorial_decision(self, status: str):
+        row = self._selected_row()
+        if not row:
+            messagebox.showinfo('Select a Kristal', 'Select a Kristal first.', parent=self)
+            return
+        note = ''
+        if status == 'Needs work':
+            note = simpledialog.askstring('Current editorial decision',
+                        'What specifically needs work? (short note)', parent=self)
+            if note is None:
+                return
+            note = note.strip()
+            if not note:
+                messagebox.showerror('A short reason is required',
+                                     'Please describe the actual issue.', parent=self)
+                return
+        elif status == 'Ready':
+            if not messagebox.askyesno('Editorial state — Ready',
+                    'Mark this Kristal ready for editorial review?\n\n'
+                    'This is NOT Framework qualification, scientific approval or permission to publish.',
+                    parent=self):
+                return
+        try:
+            set_decision(row, status, note)
+            self._editorial_decisions = load_decisions()
+        except (OSError, ValueError, TypeError, json.JSONDecodeError) as exc:
+            messagebox.showerror('Cannot save editorial state', str(exc), parent=self)
+            return
+        self.refresh(prefer=row['path'])
+        if self._global_dialog is not None and self._global_dialog.winfo_exists():
+            self._global_dialog._fill()
+
+    def _clear_editorial_decision(self):
+        row = self._selected_row()
+        if not row:
+            return
+        try:
+            clear_decision(row)
+            self._editorial_decisions = load_decisions()
+        except (OSError, ValueError, TypeError, json.JSONDecodeError) as exc:
+            messagebox.showerror('Cannot clear editorial state', str(exc), parent=self)
+            return
+        self.refresh(prefer=row['path'])
+        if self._global_dialog is not None and self._global_dialog.winfo_exists():
+            self._global_dialog._fill()
+
     def refresh(self, *, prefer: str | None = None):
         if not hasattr(self, 'tree'):
             return
@@ -1272,32 +1477,39 @@ class ManagerWindow(tk.Tk):
         micro_filter = self.micro_var.get()
         selected_arketype = self.arketype_var.get()
         selected_usage = self.usage_var.get()
+        focus = self.review_focus_var.get()
         visible = []
         for i, row in enumerate(self.rows):
             historic = is_historical(row)
             if historic and not self.show_history_var.get():
                 continue
+            review = assess_review(row)
+            editorial = current_editorial_state(row, self._editorial_decisions)
+            review['editorial_state'] = editorial['status']
+            if not matches_focus(review, focus):
+                continue
             classified = self._classify(row)
             cat = display_domain(classified)
             micro = display_micro(classified)
-            if category not in ('All UNESCO domains', 'All categories', 'All categories') and category != 'Unmapped' and not any(
-                    category.startswith(code + ' ') for code in classified['unesco']['domain_codes']):
+            cat_label = cat.split(' ', 1)[1] if cat[:1].isdigit() and ' ' in cat else cat
+            if category not in ('All UNESCO domains', 'All categories') and category != 'Unmapped' and (
+                    self._domain_filter_codes.get(category, category.split(' ', 1)[0]) not in classified['unesco']['domain_codes']):
                 continue
             if category == 'Unmapped' and classified['unesco']['domain_codes']:
                 continue
-            if micro_filter != 'All microthesauri' and micro_filter != 'Unmapped' and not any(
-                    micro_filter.startswith(code + ' ') for code in classified['unesco']['microthesaurus_codes']):
+            if micro_filter != 'All microthesauri' and micro_filter != 'Unmapped' and (
+                    self._micro_filter_codes.get(micro_filter, micro_filter.split(' ', 1)[0]) not in classified['unesco']['microthesaurus_codes']):
                 continue
             if micro_filter == 'Unmapped' and classified['unesco']['microthesaurus_codes']:
                 continue
             ark = arketype_of(row) or 'Unclassified'
             usage = usage_profile_of(row) or 'Unclassified'
-            if selected_arketype != 'All Arketypes' and ark != selected_arketype:
+            if selected_arketype != 'All Arketypes' and selected_arketype not in (ark, category_label(ark, 'ark')):
                 continue
-            if selected_usage != 'All usage profiles' and usage != selected_usage:
+            if selected_usage != 'All usage profiles' and selected_usage not in (usage, category_label(usage, 'prf')):
                 continue
             corpus = display_kristal_folder(row) + ' ' + ' '.join(str(row.get(k, '')) for k in
-                              ('title', 'slug', 'state_ref', 'profile', 'readiness', 'native_kind', 'content_summary')) + ' ' + cat + ' ' + micro + ' ' + display_category(row) + ' ' + ark + ' ' + usage + ' ' + (self.icons.get(row['path']).nature if self.icons.get(row['path']) else '')
+                              ('title', 'slug', 'state_ref', 'profile', 'readiness', 'native_kind', 'content_summary')) + ' ' + cat + ' ' + micro + ' ' + display_category(row) + ' ' + ark + ' ' + usage + ' ' + display_semantic_role(row) + ' ' + display_unesco_declaration(row) + ' ' + (self.icons.get(row['path']).nature if self.icons.get(row['path']) else '')
             if q and q not in corpus.casefold():
                 continue
             metrics = (row.get('content_summary') or {}).get('metrics') or {}
@@ -1309,16 +1521,20 @@ class ManagerWindow(tk.Tk):
                           'Executed' if diag.get('process_status') == 'EXECUTED_EXIT_0' else
                           'Failed / timed out' if diag.get('process_status') in ('TIMEOUT', 'EXECUTED_NONZERO') else 'Review')
             ico = self.icons.get(row['path'])
-            values = (display_kristal_folder(row), cat, micro, ark if ark != 'Unclassified' else '—',
-                      usage if usage != 'Unclassified' else '—',
+            values = (display_kristal_folder(row), editorial['status'], review['stage'], review['next_action'],
+                      display_authoring_status(row), display_source_catalog(row),
+                      display_native_source_review(row), display_semantic_role(row),
+                      display_main_classification(row, 'ark'),
+                      display_main_classification(row, 'prf'),
+                      display_unesco_declaration(row), cat_label,
+                      display_prf_refinement(row), display_current_unesco_review(row),
                       row['readiness'], diag_label, row.get('profile') or '—',
-                      display_state_id(row.get('state_ref')), row.get('registered_artifacts', 0), content)
+                      display_state_id(row.get('state_ref')),
+                      row.get('registered_artifacts', 0), content)
             visible.append((i, row, values, historic))
-        mapping = {'title': 0, 'category': 1, 'micro': 2, 'arketype': 3, 'usage': 4,
-                   'readiness': 5, 'diag': 6, 'profile': 7, 'state_ref': 8,
-                   'artifacts': 9, 'content': 10}
+        mapping = {name: idx for idx, name in enumerate(self.tree['columns'])}
         pos = mapping.get(self.sort_field, 0)
-        visible.sort(key=lambda v: (v[2][pos] if pos == 9 else str(v[2][pos]).casefold(),
+        visible.sort(key=lambda v: (v[2][pos] if self.sort_field == 'artifacts' else str(v[2][pos]).casefold(),
                                     v[1]['path'].casefold()), reverse=self.sort_desc)
         for i, row, values, historic in visible:
             tags = ('alert',) if row.get('state_conflict') or row.get('needs_migration') else ('historic',) if historic else ()
@@ -1338,7 +1554,7 @@ class ManagerWindow(tk.Tk):
         hidden = len(self.rows) - len(normal)
         self.count_var.set(f'{len(normal)} Kristal' + ('s' if len(normal) != 1 else ''))
         ready = sum(row.get('readiness') == 'READY' for row in normal)
-        self.ready_var.set(f'{ready} ready')
+        self.ready_var.set(f'{ready} structurally ready')
         self.issue_var.set(f'{len(normal) - ready} to review · {hidden} internal archives')
         self._refresh_actions()
         if match:
@@ -1350,6 +1566,8 @@ class ManagerWindow(tk.Tk):
             self._refresh_actions()
             return
         self.selection_var.set(display_kristal_folder(row))
+        review = assess_review(row)
+        editorial = current_editorial_state(row, self._editorial_decisions)
         keys = ('title', 'slug', 'path', 'state_ref', 'workspace_format', 'native_kind',
                 'readiness', 'profile', 'state_commitment', 'state_blob_digest', 'state_conflict_reasons',
                 'portable_ai_enabled', 'ai_entrypoint_present', 'hosted_network_baseline',
@@ -1364,7 +1582,14 @@ class ManagerWindow(tk.Tk):
                                                      'manager_category': category_of(row),
                                                      'manager_unesco_taxonomy': taxonomy,
                                                      'manager_arketype_classification': classification_of(row),
-                                                     'manager_historical_archive': is_historical(row)},
+                                                     'manager_historical_archive': is_historical(row),
+                                                     'qualification_evidence': row.get('qualification_evidence'),
+                                                     'semantic_enrichment': row.get('semantic_enrichment'),
+                                                     'editorial_unesco_review': row.get('editorial_unesco_review'),
+                                                     'historical_unesco_attention': row.get('historical_unesco_attention'),
+                                                     'native_source_review': row.get('native_source_review'),
+                                                     'review_progress': review,
+                                                     'editorial_state': editorial},
                                                     ensure_ascii=False, indent=2))
         operational = row.get('operational_assessment') or {}
         discovery = operational.get('discovery') or row.get('discovery') or {}
@@ -1374,16 +1599,27 @@ class ManagerWindow(tk.Tk):
         diag = row.get('diag_report') or {}
         metrics = content.get('metrics') or {}
         info = [
-            f'KRISTAL : {row["title"]}',
+            f'Kristal: {display_kristal_folder(row)}',
+            f'Editorial state: {editorial["status"]} — {editorial["reason"]}',
+            'Editorial state is local only — not Framework C1/C2/C3 qualification.',
+            f'Review stage: {review["stage"]} (NOT an approval)',
+            f'Next review action: {review["next_action"]}',
+            f'Native-source evidence: {display_native_source_review(row)}',
+            f'AI semantic role: {display_semantic_role(row)} (editorial draft)',
+            f'PRF refinement: {display_prf_refinement(row)}',
+            f'UNESCO review: {display_unesco_review(row)}',
+            f'Declared UNESCO subjects: {display_unesco_declaration(row)}',
+            f'Declared Arketype: {display_main_classification(row, "ark")}',
+            f'Declared usage profile: {display_main_classification(row, "prf")}',
             f'Folder: {row["path"]}',
-            f'UNESCO domain: {display_domain(taxonomy)}',
+            f'UNESCO domain: {display_domain(taxonomy).split(" ",1)[-1]}',
             f'UNESCO microthesaurus: {display_micro(taxonomy)}',
             f'UNESCO mapping: {taxonomy["unesco"]["status"]} (not independently verified)',
             f'Legacy icon requiring UNESCO alignment: {taxonomy["legacy_icon_migration_needed"]}',
             f'Legacy domain (free text): {display_category(row)}',
             f'Classification review: {"; ".join(taxonomy["issues"]) or "none flagged"}',
-            f'Arketype: {arketype_of(row) or "Unclassified"}',
-            f'Usage profile (PRF): {usage_profile_of(row) or "Unclassified"}',
+            f'Arketype: {display_main_classification(row, "ark")}',
+            f'Usage profile (PRF): {display_main_classification(row, "prf")}',
             f'Supporting Arketypes: {", ".join(classification_of(row).get("supporting_archetypes") or []) or "—"}',
             f'Classification: declared metadata; not independently verified',
             f'Nested historical archive: {"yes" if is_historical(row) else "no"}',

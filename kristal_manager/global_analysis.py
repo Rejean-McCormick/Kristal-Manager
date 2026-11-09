@@ -241,6 +241,42 @@ def analyze_all(source: str | Path, *, update_catalogue: bool = True,
     # assigning approval or changing the operational triage.
     from .qualification_history import annotate_qualifications
     qualification_summary = annotate_qualifications(items, source=root)
+    # Separate, source-matched AI editorial dossiers; no changes to canonical metadata.
+    from .semantic_enrichment import annotate_ai_dossiers
+    ai_review_summary = annotate_ai_dossiers(items)
+    from .editorial_review import annotate_editorial_review
+    editorial_review_count = annotate_editorial_review(items)
+    from .editorial_review import annotate_historical_unesco_attention
+    historic_disagreements = annotate_historical_unesco_attention(items)
+    from .native_evidence import annotate_native_sources
+    from .authoring_observations import annotate_authoring
+    native_review_summary = annotate_native_sources(items)
+    authoring_summary = annotate_authoring(items)
+    # A Manager window can outlive an overlay installation and still hold an
+    # earlier native_evidence module in sys.modules. Do not let a missing new
+    # counter abort the analysis or silently imply that evidence was approved.
+    native_counters_complete = all(
+        name in native_review_summary
+        for name in ('matched', 'changed', 'metadata_changed', 'not_verified')
+    )
+    authoring_counters_complete = all(
+        name in authoring_summary
+        for name in ('building', 'source_catalog_empty', 'source_catalog_issues', 'source_entries')
+    )
+    compatibility_notes = []
+    if not native_counters_complete:
+        compatibility_notes.append(
+            'Native-source counter API is incomplete (possibly a mixed Manager version). '
+            'Restart both Manager windows and rescan; missing counter values are not proof of zero problems.'
+        )
+    if not authoring_counters_complete:
+        compatibility_notes.append(
+            'Authoring counter API is incomplete. Restart Manager and rescan; '
+            'missing counter values are not evidence of validated authoring.'
+        )
+    from .review_progress import assess_review
+    for row in items:
+        row['review_progress'] = assess_review(row)
     # Historic local human decisions remain an independent register.
     from .review_registry import annotate_entries
     review_summary = annotate_entries(items, source=root)
@@ -258,40 +294,89 @@ def analyze_all(source: str | Path, *, update_catalogue: bool = True,
                          'registered_review_matched': review_summary.get('matched', 0),
                          'historical_qualifications_matched': qualification_summary.get('history_matched', 0),
                          'live_classifications_read': qualification_summary.get('live_metadata_matched', 0),
+                         'ai_semantic_dossiers_matched': ai_review_summary['matched_live'],
+                         'ai_prf_alternatives': ai_review_summary['prf_alternatives'],
+                         'ai_editorial_unesco_matches': editorial_review_count,
+                         'historical_unesco_disagreements': historic_disagreements,
+                         'native_sources_matched': native_review_summary.get('matched', 0),
+                         'native_sources_changed': native_review_summary.get('changed', 0),
+                         'native_metadata_only_changed': native_review_summary.get('metadata_changed', 0),
+                         'native_review_counters_complete': native_counters_complete,
+                         'authoring_building': authoring_summary.get('building', 0),
+                         'source_catalog_empty': authoring_summary.get('source_catalog_empty', 0),
+                         'source_catalog_issues': authoring_summary.get('source_catalog_issues', 0),
+                         'source_catalog_entries': authoring_summary.get('source_entries', 0),
+                         'authoring_counters_complete': authoring_counters_complete,
+                         'ai_unesco_disagreements': ai_review_summary['unesco_proposal_disagreements'],
                          'arketype_candidates': sum(r['arketype_inference']['status']=='candidate_to_review' for r in details),
                          'unesco_micro_candidates': sum(r['unesco_proposal']['status']=='candidates_to_review' for r in details),
                          'unesco_domain_candidates': sum(bool(r['unesco_proposal']['domain_candidates']) for r in details)},
               'review_registry': review_summary, 'qualification_recovery': qualification_summary,
+              'ai_semantic_review': ai_review_summary,
+              'native_source_review': native_review_summary,
+              'authoring_observations': authoring_summary,
               'entries': items,
               'limits': ['Native contract recognized means its structure/contract was observed, not that its complete semantics were validated.',
                          'Technical health, canonical reading and human classification are three separate assessments.',
                          'UNESCO and Arketype scores are non-canonical proposals.',
                          'diK provides lexical observations; no identity normalization contract was executed.',
                          'No C1/C2/C3 certification without independent KristalDiag and Framework verification.',
-                         'Detected issues alone do not prove non-conformance.']}
+                         'The AI semantic dossier is project-metadata-derived, not independent reading of all canonical contents.',
+                         'A semantic role is a descriptive draft, not an approved PRF or permission to publish.',
+                         'Native source fingerprints prove only that archived files match current bytes, not that statements are correct.',
+                         'Review stage is a work queue label; it never grants C1/C2/C3 or a human approval.',
+                         'Detected issues alone do not prove non-conformance.'] + compatibility_notes}
     _write_json(output / 'rapport_global.json', result)
+    _write_json(output / 'ai_semantic_review_127.json', {
+        'format': 'kristal.manager-current-ai-review-export/1.0',
+        'authority': 'draft_only_no_canonical_changes',
+        'source': str(root), 'generated_at': result['generated_at'],
+        'totals': ai_review_summary,
+        'entries': [{'state_ref': r['state_ref'], 'title': r['title'],
+                     'declared_prf': (r.get('qualification_evidence') or {}).get('metadata', {}).get('primary_usage'),
+                     'review': r['semantic_enrichment']} for r in items],
+    })
     _write_json(output / 'inventaire_observe.json', [{'title': r.get('title'), 'path': r.get('path'), 'state_ref': r.get('state_ref'), 'readiness': r.get('readiness'), 'historical_archive': is_historical(r)} for r in all_rows])
     _write_json(output / 'plan_corrections.json', _plans(items))
     _write_json(output / 'correspondance_rapports.json', [dict(path=r['path'], **refs.get(r['path'].casefold(), {})) for r in items])
     # One convenient single-file CSV; preserve explicit tentative labels.
     with (output / 'tableau_global.csv').open('w', newline='', encoding='utf-8-sig') as out:
-        fields = ('title', 'readiness', 'content_status', 'priority', 'declared_ark', 'declared_prf',
-                  'declared_unesco', 'subject_domain', 'ark_structure_history', 'classification_review_status',
+        fields = ('title', 'editorial_state', 'review_stage', 'next_action', 'authoring_status', 'source_catalog', 'source_count', 'native_source_review', 'readiness', 'content_status', 'priority', 'declared_ark', 'declared_prf',
+                  'semantic_role_ai_draft', 'semantic_scope_ai_draft', 'critical_distinction_ai_draft',
+                  'prf_refinement_ai_draft', 'ai_review_status', 'declared_unesco', 'unesco_ai_review_status', 'subject_domain', 'ark_structure_history', 'classification_review_status',
                   'proposed_arketype', 'proposed_unesco_domain', 'proposed_unesco',
                   'keywords', 'problem_count', 'path')
         from .qualification_history import display_declared, display_unesco_declaration, display_ark_structure
         from .classification_labels import display_category
+        from .semantic_enrichment import display_semantic_role, display_prf_refinement
+        from .editorial_review import display_unesco_review
         writer = csv.DictWriter(out, fieldnames=fields); writer.writeheader()
         for r in items:
             evidence = r.get('qualification_evidence') or {}
             metadata = evidence.get('metadata') or {}
+            progress = assess_review(r)
+            from .native_evidence import display_native_source_review
+            from .authoring_observations import display_authoring_status, display_source_catalog
             writer.writerow({**{k:r.get(k) for k in fields},
+                             'editorial_state': progress['editorial_state'],
+                             'review_stage': progress['stage'],
+                             'next_action': progress['next_action'],
+                             'native_source_review': display_native_source_review(r),
+                             'authoring_status': display_authoring_status(r),
+                             'source_catalog': display_source_catalog(r),
+                             'source_count': (r.get('authoring_observation') or {}).get('source_count'),
                              'declared_ark': display_declared(r, 'primary_archetype'),
                              'declared_prf': display_declared(r, 'primary_usage'),
+                             'semantic_role_ai_draft': display_semantic_role(r),
+                             'semantic_scope_ai_draft': (r.get('semantic_enrichment') or {}).get('semantic_scope_en') or '',
+                             'critical_distinction_ai_draft': (r.get('semantic_enrichment') or {}).get('critical_distinction_en') or '',
+                             'prf_refinement_ai_draft': display_prf_refinement(r),
+                             'ai_review_status': (r.get('semantic_enrichment') or {}).get('status') or 'NOT_REVIEWED',
                              'declared_unesco': display_unesco_declaration(r),
                              'subject_domain': display_declared(r, 'subject_domain'),
                              'ark_structure_history': display_ark_structure(r),
                              'classification_review_status': metadata.get('verification_status') or 'NOT_EVALUATED',
+                             'unesco_ai_review_status': display_unesco_review(r),
                              # Human-facing CSV uses English names. Raw JSON keeps exact codes.
                              'proposed_arketype': (display_category(r['proposed_arketype'], 'ark')
                                                    if r.get('proposed_arketype') else 'None proposed'),
@@ -301,6 +386,36 @@ def analyze_all(source: str | Path, *, update_catalogue: bool = True,
                                                  if r.get('proposed_unesco') else 'None proposed'),
                              'keywords': '; '.join(r['keywords']),
                              'problem_count': len(r['problems'])})
+    # Dedicated AI review sheet: suitable for review, never an approval or write plan.
+    from .semantic_enrichment import display_semantic_role, display_prf_refinement
+    with (output / 'ai_semantic_review_127.csv').open('w', newline='', encoding='utf-8-sig') as stream:
+        headers = ('title', 'state_ref', 'ai_review_status', 'semantic_role_ai_draft',
+                   'semantic_scope_ai_draft', 'critical_distinction_ai_draft',
+                   'declared_prf', 'prf_alternative_ai_draft', 'evidence_excerpt',
+                   'unesco_proposal_disagrees', 'unesco_ai_editorial_review',
+                   'unesco_ai_review_reason', 'human_approved', 'canonical_changed')
+        writer = csv.DictWriter(stream, fieldnames=headers)
+        writer.writeheader()
+        for row in items:
+            info = row.get('semantic_enrichment') or {}
+            writer.writerow({
+                'title':row.get('title'), 'state_ref':row.get('state_ref'),
+                'ai_review_status':info.get('status'),
+                'semantic_role_ai_draft':display_semantic_role(row),
+                'semantic_scope_ai_draft':info.get('semantic_scope_en') or '',
+                'critical_distinction_ai_draft':info.get('critical_distinction_en') or '',
+                'declared_prf':(row.get('qualification_evidence') or {}).get('metadata', {}).get('primary_usage') or '',
+                'prf_alternative_ai_draft':display_prf_refinement(row),
+                'evidence_excerpt':info.get('evidence_excerpt') or '',
+                'unesco_proposal_disagrees':str(info.get('unesco_proposal_disagrees_with_declared', False)),
+                'unesco_ai_editorial_review':display_unesco_review(row),
+                'unesco_ai_review_reason':(row.get('editorial_unesco_review') or {}).get('reason') or '',
+                'human_approved':'NO', 'canonical_changed':'NO',
+            })
+    from .semantic_enrichment import render_review_html
+    from .review_progress import export_review_queue
+    export_review_queue(output / 'review_queue.csv', items, source_root=root)
+    render_review_html(items, output / 'ai_semantic_review_127.html')
     archive = export_problem_bundle(output)
     return {'report_directory': str(output), 'problem_archive': str(archive),
             'global_report': result, 'inventory': all_rows, 'catalog_stats': catalog_stats,

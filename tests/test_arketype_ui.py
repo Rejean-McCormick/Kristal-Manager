@@ -73,21 +73,21 @@ def test_gui_displays_and_filters_arketype_usage(tmp_path, monkeypatch):
         assert not app.busy
         assert 'arketype' in app.tree['columns']
         assert 'usage' in app.tree['columns']
-        assert 'ARK-08' in app.arketype_choice['values']
-        assert 'PRF-15' in app.usage_choice['values']
-        app.arketype_var.set('ARK-08')
+        assert 'Causal Diagnosis' in app.arketype_choice['values']
+        assert 'Vehicle Fault Diagnosis' in app.usage_choice['values']
+        app.arketype_var.set('Causal Diagnosis')
         app.refresh()
         assert len(app.tree.get_children()) == 1
         selected=app.tree.get_children()[0]
         values=dict(zip(app.tree['columns'], app.tree.item(selected)['values']))
-        assert values['arketype'] == 'ARK-08' and values['usage'] == 'PRF-15'
+        assert values['arketype'] == 'Causal Diagnosis' and values['usage'] == 'Vehicle Fault Diagnosis'
         # UNESCO domains and legacy free-text domains are separate axes.
         assert values['category'] == 'Unmapped'
         app.arketype_var.set('Unclassified')
         app.refresh()
         assert len(app.tree.get_children()) == 1
         values=dict(zip(app.tree['columns'], app.tree.item(app.tree.get_children()[0])['values']))
-        assert values['arketype'] == '—'
+        assert values['arketype'] == 'Not declared'
     finally:
         app.destroy()
 

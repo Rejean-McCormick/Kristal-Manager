@@ -1,0 +1,3313 @@
+{
+  "format": "kristal.manager-native-source-review/1.0",
+  "date": "2026-11-05",
+  "status": "AI_DOCUMENTARY_REVIEW_NOT_HUMAN_APPROVED",
+  "read_only": true,
+  "no_canonical_updates": true,
+  "no_publication": true,
+  "no_c1_c2_c3_qualification": true,
+  "entries": [
+    {
+      "state_ref": "urn:kristal:ai:state",
+      "title": "AI",
+      "semantic_role_en": "Artificial intelligence lifecycle model",
+      "native_kind": "ai_lifecycle_multi_axis_graph",
+      "critical_distinction_en": "A model's evaluation score is not proof of truth or deployment permission.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "3d581d11aba64f35b5272028dce7a4cc49482bb24fb868feb70c22e058558efe"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "dc1f6c4af9b9057cff2fdb9c2044220affd18c969afa666151effef450ab42c9"
+        }
+      },
+      "workspace_sha256": "a132ad6db7247be190ffd21349ae32e39eee2ff634439313602df75f1541998e",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:accounting:state",
+      "title": "Accounting",
+      "semantic_role_en": "Economic accounting ledger",
+      "native_kind": "accounting_event_ledger_graph",
+      "critical_distinction_en": "An accounting entry is not itself the underlying economic event.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "f1cbcaa3515eeafe1524f87867c36d8bbd8725df19a2744adce23fe6fc1dbee7"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "85492b998b46349e1997685fcbb2db020594cbf47bf0fc114a9434bc56e9c58d"
+        }
+      },
+      "workspace_sha256": "dab3dda604b71386792f14b84b925c1df08f949b93b36018948fd917fc6f29e1",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:aerospace:state",
+      "title": "Aerospace",
+      "semantic_role_en": "Mission and aerospace systems model",
+      "native_kind": "mission_system_relational_graph",
+      "critical_distinction_en": "A mission plan is not observed vehicle state or flight authorization.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "16be1a9b2811f140b875fdb65cdf13694e7ddeaa3a92c28425eba50c340f130f"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "7193f11188fd2db7886147ed84fc1f0816f2a8a65707ca5fdc69d076c0597ade"
+        }
+      },
+      "workspace_sha256": "3de49b49c11ca658a05d09d2f21afbdb088fc32343310c99a5f96fe10ed805f4",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:aging:state",
+      "title": "Aging",
+      "semantic_role_en": "Aging mechanisms and trajectories",
+      "native_kind": "temporal_trajectory_graph",
+      "critical_distinction_en": "A modeled trajectory is not a clinical prognosis for an individual.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "c25e8f3bea09f0e857104b9acbdef6abc1fe57df5159144a12e34d162e0b9549"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "b4b0ad2d23e40a680deb2196ffdd111caaca354bfcbf8c605a57250ad304acdc"
+        }
+      },
+      "workspace_sha256": "605700609a82fda822a7bc4a8bfc90e5ef1780cdf2df0878bb11efdf8ea8bded",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:agriculture:state",
+      "title": "Agriculture",
+      "semantic_role_en": "Agricultural production system",
+      "native_kind": "agroecosystem_interface_graph",
+      "critical_distinction_en": "Practice-to-yield association alone does not establish causation.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "e883c686a1eb526880b19d617a43b6d0ff51437ddb508eeeded0762c1f474b15"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "a95ba8343ac1255221ef14ae5d8bfb8015935eec5b2cb143beb8bfec3e2f8f1f"
+        }
+      },
+      "workspace_sha256": "9ea915fed5c01a4a30cc6afc06b5f5b3e0ee52dd2e8b7ee297c32688308ba146",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:anthropology:state",
+      "title": "Anthropology",
+      "semantic_role_en": "Contextual cultural-systems atlas",
+      "native_kind": "situated_comparative_cultural_graph",
+      "critical_distinction_en": "Comparative description must not speak on behalf of a community.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "KEEP_DECLARED_REJECT_AUTO_PROMOTION",
+      "unesco_reason_en": "Populations appear in cultural examples; social sciences and culture better characterize the declared comparative cultural systems scope.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": "Population",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "96b1a2e1dfed3e7aee968f5ec7262a514d561ee7317a0b050ea3a0ed92799e48"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "6307a63f2e0e6bd51025bae5dea3e05e45060f075be7bb78f31850b9566f3155"
+        }
+      },
+      "workspace_sha256": "f8f7b628d5df2840a60cb53a3981aef37905406c9638034ed5d17230cd956b7f",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:architecture:state",
+      "title": "Architecture",
+      "semantic_role_en": "Built-environment design model",
+      "native_kind": "iterative_built_environment_graph",
+      "critical_distinction_en": "Design intent and measured building performance are distinct.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "beb80f2290aff55ad6847f6da6d34e2e24388dfd4b9e170f2d767f559c57265d"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "24a2673a3e9bc3e8895672640596e33445a531c8f6f226786339ac06e2361f86"
+        }
+      },
+      "workspace_sha256": "8883961343a04d4edc18e9ecc4d5d1003cdaecc6efda64cecbce7f1af9633835",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:astronomy:state",
+      "title": "Astronomy",
+      "semantic_role_en": "Astronomical object reference",
+      "native_kind": "measurement_contextualized_object_graph",
+      "critical_distinction_en": "An inferred property is not a direct observation.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "3cf7b5aa0bcaddcaf56bb556ff8307de0ca458870ff71cd1e48256000a782794"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "d7590030692f3ea54a434f228f3f2112059126b787fdda9b034af76b06b78a2a"
+        }
+      },
+      "workspace_sha256": "54804f5833c963c80714fdbce04c12abd89bbae1ea7f1eb29fb1e51d978cb01c",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:atmosphere:state",
+      "title": "Atmosphere",
+      "semantic_role_en": "Atmospheric-state and dynamics model",
+      "native_kind": "overlapping_layer_process_graph",
+      "critical_distinction_en": "An atmospheric state observation is not a forecast.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "ea4083f7a520af9c54583e090da37d5214019e8d9d4bf016cc9412338265f77d"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "57f34b6d95f5447e252689b7de552c4832f0e571987dd0d351642007d7566520"
+        }
+      },
+      "workspace_sha256": "f38dd5ef08c5748ce84a32fdad29738f251f23fc6753032a4636627a24466847",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:bible:state",
+      "title": "Bible",
+      "semantic_role_en": "Sourced biblical interpretation corpus",
+      "native_kind": "polyphonic_multiplex_epistemic_graph",
+      "critical_distinction_en": "Interpretation does not establish a single authoritative reading.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "ff6cca8a6125cf08b00093e8ae7759fba49b9f0993a3fa95e372c2b9b112c5a3"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "d4d03658efefde2e3fc1c28df1d9bdb37aee7be9544e4b0fa7e1cbc9c17aea7c"
+        }
+      },
+      "workspace_sha256": "1a5451a98d4a065b18475370c8cb07f7306a75ef296cbe1bdcbc3013e7968fc3",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:biodiversity",
+      "title": "Biodiversity",
+      "semantic_role_en": "Biodiversity observation and taxonomy",
+      "native_kind": "taxon_space_time_evidence_observation_graph",
+      "critical_distinction_en": "An occurrence report is not a complete biodiversity inventory.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "740ca0e4eacbf185a020f211478d65c2b8988f815d298f2b3a172c97fab3c303"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "1ef59dbb0e9c34df02fae271ca5176708067581555177a4a9cc96809742679e3"
+        }
+      },
+      "workspace_sha256": "62577e995f7f6a90f20041fad2db02eb3b6b702eafcb3024b32309ade37eeca6",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:biology",
+      "title": "Biology",
+      "semantic_role_en": "Multi-scale biological knowledge model",
+      "native_kind": "multiscale_biological_organization_graph",
+      "critical_distinction_en": "Shared biological terminology does not prove identical mechanisms across scales.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "KEEP_DECLARED_REJECT_AUTO_PROMOTION",
+      "unesco_reason_en": "Biological populations are not equivalent to a social-science Population microthesaurus; retain Biology.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": "Population",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "5ec037bafede2c0d347116098deab7cb310f50f60b135e421f9037ef84cc194e"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "2ad569625c0e8acfaa8fd31185e2fac3f2fd20550c9f69667dc3896136a63647"
+        }
+      },
+      "workspace_sha256": "7c57e5b9e57fd2025f967dfe809424181e11dce70d9d336fbd9345bc09a1b70b",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:botany",
+      "title": "Botany",
+      "semantic_role_en": "Plant structures and taxonomy",
+      "native_kind": "land_plant_architecture_function_graph",
+      "critical_distinction_en": "A plant classification must keep its evidence and taxonomic scope.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "fbe7852b9081c2f2fe4d09ed655bf4437b9af159ea4fdea6e209df1d44fbadbd"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "c488e0952e57cb657137fa7dbba5b58b2b6ddf838c63dbf5c0b0f0d3a92a85a2"
+        }
+      },
+      "workspace_sha256": "b70d517129c44253db442e21e8f2a8c501c5ee914239de990ada4c04c51be453",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:cartography",
+      "title": "Cartography",
+      "semantic_role_en": "Geospatial representation model",
+      "native_kind": "territory_reference_projection_layer_map_graph",
+      "critical_distinction_en": "A map is a representation, not the territory itself.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "b37288a5775f9e9c97769a20360baa57393ce6b76fffbe6dbf2827a81c3595f1"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "f3b19724bc2b6140c139abcf07c2b520f87593959be3e37507843fe9490437f2"
+        }
+      },
+      "workspace_sha256": "fced43d2056e17e22344f4f0609f36ed22ed184d67e728f9925fbd11ce50f856",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:catho",
+      "title": "Catho",
+      "semantic_role_en": "Sourced Catholic documentary corpus",
+      "native_kind": "doctrinal_semantic_corpus_with_provenance",
+      "critical_distinction_en": "A recorded doctrinal or historical claim is not independent factual validation.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "1279b6b91acb03452a7db91f461c5fab767a788caacac80fd1109c305567ac9d"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "6dd1170b3986d3192a6bbae4df30a56b45f1d5d98ecdd19b99e86c02313f7b94"
+        }
+      },
+      "workspace_sha256": "c151be157ce4c3adb7b7d1e4cc4884f8d0b33b8d20b9a902a30719ac0773f961",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:chemistry",
+      "title": "Chemistry",
+      "semantic_role_en": "Chemical entities and reactions model",
+      "native_kind": "multiscale_epistemic_entity_state_process_graph",
+      "critical_distinction_en": "A possible reaction is not evidence that it occurred.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "eb76a3207343eb5de98380c4279aa02bf8d0969792dea1026f42173e5813f7f8"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "6e139ee2201ebe87aceaed1e958e976b98eafe2dff3369b612263fe70180723c"
+        }
+      },
+      "workspace_sha256": "7f3fabb7800bcff956ec29bbbf579d4a58afb2dd5c8e1942b6a42f7c7a1e56a9",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:civilengineering",
+      "title": "CivilEngineering",
+      "semantic_role_en": "Civil infrastructure design constraints",
+      "native_kind": "coupled_civil_design_and_limit_states_graph",
+      "critical_distinction_en": "Design assumptions must not be confused with verified safety.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "REJECT_UNSUPPORTED_SUGGESTION",
+      "unesco_reason_en": "The model is about engineering loads, structures, materials, ground conditions and limit states; History does not describe its scope.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": "History",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "cdaec85bcf29735f02ac87be74dcf31d3d7428d19e7e51bbc308435550a5dc68"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "242ea2935e4fdccf55e3b7ec3274d30da8fecba347a88d2c85d300bbd19aaf29"
+        }
+      },
+      "workspace_sha256": "16b182d4b22eea32f89cd7385fda80e5b0fea0f90a08099e3d3b9cbff07b63a7",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:climate",
+      "title": "Climate",
+      "semantic_role_en": "Climate forcing and variability model",
+      "native_kind": "coupled_climate_distribution_feedback_graph",
+      "critical_distinction_en": "An observed trend alone is not a complete causal attribution.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "84d72681205b25983bd73afae7084cf75f3cb1c14612cfd221571d1ef82290bf"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "7d19e3b009e8e4d718c5f6fd8166cfd5fd1cd0026ca465ca6ca4449bcc8a1df5"
+        }
+      },
+      "workspace_sha256": "97bf3f39256a461421ce952ed4aaea0b431c9d58490e3c950903e13d0b6fc422",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:computing",
+      "title": "Computing",
+      "semantic_role_en": "Computing concepts reference",
+      "native_kind": "representation_computation_storage_communication_abstraction_graph",
+      "critical_distinction_en": "An abstract computing model does not imply a particular implementation.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "b7c872edcb11761e9866b81cd87e39a5aab3fe9d64b8e7b642bd4c1f8ccbfa68"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "24e6e88b3ae9a5b516a9d5a69e0fb7b5ee23f87335fa77c08699f2c79dc5eda8"
+        }
+      },
+      "workspace_sha256": "f8d874261d71ca3ce6a320550fc1acc2dfcb591f678cef66aca998d2e4bb6f94",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:controlsystems",
+      "title": "ControlSystems",
+      "semantic_role_en": "Feedback control systems model",
+      "native_kind": "feedback_control_loop_signal_architecture_graph",
+      "critical_distinction_en": "Command targets and measured system states must remain distinct.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "REJECT_UNSUPPORTED_SUGGESTION",
+      "unesco_reason_en": "The native feedback-control and signal model is engineering; historical text is incidental, not the subject.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": "History",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "722be1349ad0545914d5fb65ada2236e669599958371552f6de40926948f66f6"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "51086a42fdd1d3b74c58098a5f7cabc8c90a57f3f1c1af0c85b01614210bd8b0"
+        }
+      },
+      "workspace_sha256": "e75fbede09c23e0c79f42550fadc89f7270dfc493af99accda002603de3c3002",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:cosmology",
+      "title": "Cosmology",
+      "semantic_role_en": "Cosmological structure and evolution",
+      "native_kind": "typed_cosmology_relation_graph",
+      "critical_distinction_en": "A theoretical cosmological model is not direct empirical proof.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "ff877eca0fe50fb19c2323c380cb0eb75b8431fbd635d8185f90e078213b2cd4"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "9ce3432c5b36affcd19d454fa519a76e2bdb0d7399d1c69f42896b0db0aaa3cd"
+        }
+      },
+      "workspace_sha256": "af38c1a0f5ee78eb04ca445c635c67903cd194d3300db7176f5499956c75bfe5",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:craft",
+      "title": "Craft",
+      "semantic_role_en": "Craft techniques and material operations",
+      "native_kind": "typed_craft_process_graph",
+      "critical_distinction_en": "Documented techniques do not confer training or execution authority.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "9c33de0a7d677103e0b1e0c3d54307510f038d04612fc00e529914439c08b4f8"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "febf9bf8afabf753655732b8f6bf820f987bb42fdd5dda0ca258ccfa9a11ddaf"
+        }
+      },
+      "workspace_sha256": "3eaa6d42f2ec24cf9bf197de2d8950096f5ec718dd3614c07ba8d20c390fb595",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:cybersecurity",
+      "title": "Cybersecurity",
+      "semantic_role_en": "Cybersecurity risk and controls model",
+      "native_kind": "typed_risk_scenario_graph",
+      "critical_distinction_en": "A risk scenario is not a confirmed compromise.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "b6df61fcbb7bdcb5a2e7eaa057477dcc1760e174640d5f8b06ffe9ab7614fedb"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "0ba76df8702d57fe619ed8f8c20abff49aa46a984db5b5912e7bc527f239865a"
+        }
+      },
+      "workspace_sha256": "e279d58d4ac9ed596894728d18d118cad57ff447ebafc4192a85fbc9076be66c",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:data",
+      "title": "Data",
+      "semantic_role_en": "Data provenance and quality reference",
+      "native_kind": "typed_data_lineage_graph",
+      "critical_distinction_en": "Schema compatibility is not proof of semantic equivalence.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "f0eafe8672b458f77f4ac9a3888124322c480725ad99d418124c9bf409c27cc3"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "d9de4a6d92541fd2891f02ed56cf92d97a174827590047029066fc19993c92a3"
+        }
+      },
+      "workspace_sha256": "962404cd1696ab50a3a6da6fb7bddc302cf6ca1e47e5269fd1fa560258e82448",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:demography",
+      "title": "Demography",
+      "semantic_role_en": "Population stocks and cohorts model",
+      "native_kind": "stock_flow_cohort_graph",
+      "critical_distinction_en": "Rates and counts must retain denominator and observation period.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "6cbc1c0750671564c9e4982d1fb57913e1aee7d17f4ffa717462969ea2214940"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "b9acac171e382feddf4ccbbc4494c6f7de5be91525980609b174342c65216b9b"
+        }
+      },
+      "workspace_sha256": "c6474b36ba84b6992f88e090d00205902d2bbf0e6bf865066632e9bd90c26bd0",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:design",
+      "title": "Design",
+      "semantic_role_en": "Design process and evaluation map",
+      "native_kind": "iterative_design_relation_graph",
+      "critical_distinction_en": "A prototype is not an approved or validated solution.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "cc4ee8420048d3fca3d9d66c149eee854e300ea7707dd1bae230063260335394"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "52d4cca0aaf0060f3509d9556cd8007074b7509d8a42d12962e82c2f7f7fa992"
+        }
+      },
+      "workspace_sha256": "dea8afee5d01595ab482bf52a7834434ff92962ca9140a001ac82ddc33998e12",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:development",
+      "title": "Development",
+      "semantic_role_en": "Developmental trajectories model",
+      "native_kind": "trajectory_stage_relation_graph",
+      "critical_distinction_en": "A stage description does not imply universal individual progression.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "107c53426bf4b94cf6bb2e65d445f19c659a02492e9038db38bc3c4ddd340a2e"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "25fca674d2465cda2e5e4a42515ee5da6d75583ed07dc99b39be0daf2ebd6f7a"
+        }
+      },
+      "workspace_sha256": "7f787d865b2785baa1464bf3c7fcb0261fcd26174b6853d7a3ac7db3eeadaf4c",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:disasters",
+      "title": "Disasters",
+      "semantic_role_en": "Disaster impact and recovery model",
+      "native_kind": "typed_disaster_risk_response_graph",
+      "critical_distinction_en": "Modeled impacts and actual emergency decisions are distinct.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "7f4a634da7d914bf17d1d9a8b5c1bc9b4868ecfc179e843ddf7c2e0aae4b62ee"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "41478118ad0f94fbeca3d1186629c0a682323087da7961980daa03192484fe33"
+        }
+      },
+      "workspace_sha256": "7347dbebb75974d680d70841430fbbe3556ca91797018e85f0fd9c51a0bbfc9c",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:droit-international-global",
+      "title": "Droit-International-Global",
+      "semantic_role_en": "International legal sources and authority",
+      "native_kind": "normative_jurisdiction_relation_graph",
+      "critical_distinction_en": "A source's existence is not proof of universal binding force.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "4b5926cf5d7a0d8aff823c3c3706a57181ee6dac6e025a5b652c62dbd254b54f"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "4f6a4963ba8257d5a6bff3b42d34b9837937e2249e6ffefc5357e86241efd00b"
+        }
+      },
+      "workspace_sha256": "453d7b0af7789538a1f3ff808d76f241d32652bd6cbf607b0cf8697923155c22",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:earth",
+      "title": "Earth",
+      "semantic_role_en": "Earth-system stocks and cycles model",
+      "native_kind": "coupled_reservoir_flow_graph",
+      "critical_distinction_en": "A material flux is not automatically a causal claim.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "KEEP_DECLARED_WITH_SECONDARY_SCOPE_REVIEW",
+      "unesco_reason_en": "Meteorology is one Earth-system dimension; it must not replace the broader Earth sciences scope.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": "Meteorology",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "c70fb52beb38681c26bd887e473d9578a646f93c0468782e96f5b3899401200e"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "75df182b9e13e2d7cef7f1aa1b10b8403bdd8fb9a2d13f976969d618d4c9def6"
+        }
+      },
+      "workspace_sha256": "b7d47f92e88e9d3ed3674d171ec46f5e3bb2e3399cbf573ca8bd19ee34248da7",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-ecology",
+      "title": "Ecology",
+      "semantic_role_en": "Ecological interactions across scales",
+      "native_kind": "scaled_ecological_interaction_process_network",
+      "critical_distinction_en": "Observed co-occurrence alone does not prove ecological dependence.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "241be2e948b9f589e0035660d5ba8d2f21cd2dd5075eb83a7cf0181c74875c28"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "3b7c696f3e89d9a8fd9705e21359e13d3f9404fd1572a36f554c7dc766f06e54"
+        }
+      },
+      "workspace_sha256": "a41ae5aa78b6b39f0ad3d5d02b5bf93fc55fede51d5ef6a04c7c70bb8220dec6",
+      "assessment_status": "SOURCE_REVIEW_WITH_VARIANT_MODEL_TERMS",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-economics",
+      "title": "Economics",
+      "semantic_role_en": "Economic allocation and incentives model",
+      "native_kind": "allocation_under_constraints_graph",
+      "critical_distinction_en": "A modeled incentive is not direct evidence of behavior.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "7ed4e0e81232e7e582b42753c7d5ba3a7964b91f42724244fa034041f3139593"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "2d880ddc69a807e5cbdf4c248002328c56b0e4271a9d478e7d781ec8a24160ab"
+        }
+      },
+      "workspace_sha256": "2acd7d77a7660232616b8a5a73b92f1273a2dda260f9aeb3aefeb5de656335ba",
+      "assessment_status": "SOURCE_REVIEW_WITH_VARIANT_MODEL_TERMS",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-education",
+      "title": "Education",
+      "semantic_role_en": "Learning progression and evidence model",
+      "native_kind": "learner_objective_activity_evidence_progression_cycle",
+      "critical_distinction_en": "An educational pathway is not automatically an LMS export or individual school casefile.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "a6ea9ca31f03e8455a9d9508ade7212a2643f62413263bb0aeb131665da79bc6"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "625b1a37bc58905fc22cf350aee06cc96953a82e2ea1b3ce36b4791c969c4721"
+        }
+      },
+      "workspace_sha256": "466a3a791bccfc0401f3a848c12afd27df869ec657831a938a9c511e54f35422",
+      "assessment_status": "SOURCE_REVIEW_WITH_VARIANT_MODEL_TERMS",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-electricalengineering",
+      "title": "ElectricalEngineering",
+      "semantic_role_en": "Electrical-system principles model",
+      "native_kind": "electrical_physical_relation_model",
+      "critical_distinction_en": "Theoretical circuit representation is not a certified installation.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "c8b6d04da0f61ff4d1e86e9b48a5da6ac70bcd135dcf6e577fd0b0ef3653bd4a"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "0d66e36715c137883e54f2d1ab7aad5ec472e73b8e4aee1850a9046fef0b9e42"
+        }
+      },
+      "workspace_sha256": "98a8e310275da24eea4ff51a81b037df98d6937fd7709ffd96c23e65f8115035",
+      "assessment_status": "SOURCE_REVIEW_WITH_VARIANT_MODEL_TERMS",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-electronics",
+      "title": "Electronics",
+      "semantic_role_en": "Electronic components and signals model",
+      "native_kind": "electronics_component_relation_model",
+      "critical_distinction_en": "Circuit function does not imply tested hardware performance.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "3dd708f3d57760a35539e10fee17179f6c1f440db7bec0c7e352c2914fe64588"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "01908ccb8a2709805ba55a25ca42d42c00be91db343969819c84127b2687da1f"
+        }
+      },
+      "workspace_sha256": "7c490042fe23168c6702c8276605bd6edd38f1ab3a5048e5a6f1cf4c72e44d68",
+      "assessment_status": "SOURCE_REVIEW_WITH_VARIANT_MODEL_TERMS",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-energy",
+      "title": "Energy",
+      "semantic_role_en": "Energy conversion and flows reference",
+      "native_kind": "energy_conversion_flow_model",
+      "critical_distinction_en": "Energy bookkeeping and feasibility estimates require distinct evidence.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "18a1f231cfa53b4ecb320c518527365e60177a8fab03c60ba3b164eaedae34d1"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "c1597f8b3da8d11afa636ef94ec64851902a4d36665c97f2b2455b3fb1c6d968"
+        }
+      },
+      "workspace_sha256": "147fd35bffce543955dc2afadea805a61a6600128951a6a5a30ce8447728ea6c",
+      "assessment_status": "SOURCE_REVIEW_WITH_VARIANT_MODEL_TERMS",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-engineeringconstraints",
+      "title": "EngineeringConstraints",
+      "semantic_role_en": "Requirements and verification traceability",
+      "native_kind": "engineering_constraints_traceability_model",
+      "critical_distinction_en": "A traced requirement is not necessarily satisfied or approved.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "5ecde2f594c8ab9e17be7e9f275979774da341b6dad5d4bfc4982a03f2d54e49"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "aa76d51b6e4af1f822f8987cbe19a47a5a29c50a725f38965dc350a3ee61e13f"
+        }
+      },
+      "workspace_sha256": "b6664ab3baf6543734f567072657df958474144fe798adab85ff56b4e71f51b4",
+      "assessment_status": "SOURCE_REVIEW_WITH_VARIANT_MODEL_TERMS",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-epistemology",
+      "title": "Epistemology",
+      "semantic_role_en": "Epistemic support and objections model",
+      "native_kind": "layered_epistemic_support_defeat_graph",
+      "critical_distinction_en": "Evidence support is not identical to certainty or truth.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "7359320b9dfe69f4bc61f3b04627315a5ab809265a27ddf261b79dab27bff2d0"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "a5ce9a511b097ae14744c795e6cd5d3d409f731818049b74c93a1f7f77efc81a"
+        }
+      },
+      "workspace_sha256": "b758b25949b57be4358b481dd33c71a08ba35d33ac2ef919f33ca4f33d72a91d",
+      "assessment_status": "SOURCE_REVIEW_WITH_VARIANT_MODEL_TERMS",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-ethics",
+      "title": "Ethics",
+      "semantic_role_en": "Ethical deliberation and arguments map",
+      "native_kind": "normative_pluralism_argumentation_graph",
+      "critical_distinction_en": "An ethical framework does not grant decision authority.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "a2a2dbbd6a15d7bca9fb5e0ff21182f236c541327e918f6dc3330cf58eaa545a"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "b00d21a475ce2993eba2b0e6d8bfd4993827199e21e48d9379a4f9df18740722"
+        }
+      },
+      "workspace_sha256": "9ae7a038d52acdb7c23412f7a4c2e4b25bebf8c96080d11571cfe42d9b4cf20e",
+      "assessment_status": "SOURCE_REVIEW_WITH_VARIANT_MODEL_TERMS",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-evolution",
+      "title": "Evolution",
+      "semantic_role_en": "Evolutionary processes and lineages",
+      "native_kind": "evolutionary_process_lineage_graph",
+      "critical_distinction_en": "Evolutionary explanation must distinguish observation and inference.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "KEEP_DECLARED_REJECT_AUTO_PROMOTION",
+      "unesco_reason_en": "Evolutionary populations are biological, not a basis for the social-demographic Population classification.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": "Population",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "95d1aa9c82e07d5e26e91ac4360846990a7422ca535043da96de14a4fc1469f8"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "68295d7b0f3761bb732abc082dcd873b9edeeb536a681a6f9a20675259160410"
+        }
+      },
+      "workspace_sha256": "ffd4b9a206f9182179a3ac87887601b1ed46e10e8e3b9079b3d56217fed1e2d7",
+      "assessment_status": "SOURCE_REVIEW_WITH_VARIANT_MODEL_TERMS",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:finance",
+      "title": "Finance",
+      "semantic_role_en": "Financial rights and valuation model",
+      "native_kind": "financial_claim_temporal_relation_graph",
+      "critical_distinction_en": "Valuation assumptions must not be presented as actual prices or advice.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "9a7766928c649407ddaaea64b7f2048a69da334983859c6cb059a405f7be8420"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "2fcd2f14c72a10ba131391bb2aba729463bf3bec186014319ce5b59acff54a1e"
+        }
+      },
+      "workspace_sha256": "5914863d18e945a3cf8bf1dea199e61de8c0737c37703dae63803bc145e4b140",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:foodbrands",
+      "title": "FoodBrands",
+      "semantic_role_en": "Food-brand and source registry",
+      "native_kind": "controlled_source_catalog",
+      "critical_distinction_en": "Registry presence does not establish regulatory approval or ownership rights.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "ed3a6e9ca414d997d2e7afe404fb97883f4b5b673b93ef52ff8ea0c70f5aa136"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "5f5d602e533286e6304afcf6dcbe3cdc1f0f20e614b41bcf211807246bf970eb"
+        }
+      },
+      "workspace_sha256": "4eb8ed6a1c45cc431e78cadcf76b4f19d1b57414728b221e9bed86ba305ab3bf",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:foodscience",
+      "title": "FoodScience",
+      "semantic_role_en": "Food composition and transformations model",
+      "native_kind": "food_system_multicontext_graph",
+      "critical_distinction_en": "A modeled transformation is not verified food safety.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "7bad7059740b20822a4e1d70a342afe18b4b95f0ad0c73286cdaf3cb45e25086"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "4146c7a50c2d88ed31e2730e6a27fd668d872e77954ff5ee446eb3a7262e8162"
+        }
+      },
+      "workspace_sha256": "0830b00cc9f94278cb50c9c94cd74f0a6dbf5ce3e87c34d24888ce55fad53b7d",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:forensics",
+      "title": "Forensics",
+      "semantic_role_en": "Forensic trace-to-interpretation chain",
+      "native_kind": "evidence_workflow_typed_graph",
+      "critical_distinction_en": "A forensic inference is not proof of responsibility.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "e52bb754e47df3e3977046673a15f784c42a4c5e44a4589f16c89723edc243d2"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "cb6b76e306e9b7cadfaf57d627a15b3640e9b3ce0b1930edc5b9e5c66a98c338"
+        }
+      },
+      "workspace_sha256": "f68bbf900492856b9cdc1da834fb900428c737af31572c3209c940c5f474f485",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:forestry",
+      "title": "Forestry",
+      "semantic_role_en": "Forest stands and interventions timeline",
+      "native_kind": "forest_stand_temporal_transition_model",
+      "critical_distinction_en": "A modeled forest trajectory is not an observed management outcome.",
+      "prf_decision": "RETAIN_DECLARED",
+      "prf_reason_en": "The corpus models forest stands and temporal transitions, but the source does not demonstrate an operational monitoring dashboard or observed state tracking required to promote System-State Tracking.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": "PRF-04",
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "94c6cbf0701ba897da2977d34c8a51cf98b077baa9164716631b61f474b20519"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "b8fc5f12cfe54ffadc8516bba9e5a3651cb61d4dad63ff87cdbe7f0ba3fcb886"
+        }
+      },
+      "workspace_sha256": "acf0a736e9e3648be01a82a4daf1be17e125e7c67183deee4e1a3a51986d2f20",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:fungi",
+      "title": "Fungi",
+      "semantic_role_en": "Fungal taxonomy and life cycles",
+      "native_kind": "fungal_network_and_lifecycle_graph",
+      "critical_distinction_en": "Species classification and ecological function are distinct questions.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "299f9abb0d633a5c3d5cb27f0d1e972c9ffc38ed3d0f57e7e53563ffbf5ed459"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "35712baf3089f8f9d3bea1cd331af38e80cfdbf38d10a0cffe82c9931704450e"
+        }
+      },
+      "workspace_sha256": "f3adaf6edf9023fa2dcb0771f8c67d3360eab1cba15ecb6d5abe454a170f7e5c",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:games",
+      "title": "Games",
+      "semantic_role_en": "Game rules and state transitions",
+      "native_kind": "state_rule_action_transition_graph",
+      "critical_distinction_en": "Simulated play states are not actual game events.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "68180b290615142c60de63531fe22ee6c63fdd05cc601ce6c7066767204fc1e3"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "6202e2a0b9171d2353a48113f32ae974b04b2a9d5152ca8ac0f2ad5777527403"
+        }
+      },
+      "workspace_sha256": "80f2eae6774e539739172ff9a35e057b7fc07a97c19a181052a6eaaf8c206983",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:genetics",
+      "title": "Genetics",
+      "semantic_role_en": "Genes and inheritance knowledge model",
+      "native_kind": "typed_genotype_phenotype_relation_graph",
+      "critical_distinction_en": "Genetic association alone does not determine phenotype.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "3531a5e0b033ebe076f4b64e4e6fd8928748877f56d0c0786e3b5b23b8765b75"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "1ce2a0c39f0c58c34daed752a5043a404b2923a31c9873aed683574c0b155879"
+        }
+      },
+      "workspace_sha256": "e507c8563666183e4a6f28c145e9612f5b996491b6c7da201d850a8b60013e4d",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:geographyspace",
+      "title": "GeographySpace",
+      "semantic_role_en": "Spatial entities and relations graph",
+      "native_kind": "spatial_relation_and_scale_graph",
+      "critical_distinction_en": "Geospatial proximity does not itself show causation.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "aada925a44c7b2379b4517f1e191a5f2cce896f4af0274d6a42f043d02ff693a"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "4b397b3d5941398d9e35230df8226bcb7a3926c249d6cff111083e24226eadac"
+        }
+      },
+      "workspace_sha256": "155c28dd372b331c65edda5e4258a97b565bb75439459c0eb2b7b089519195e2",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:geology",
+      "title": "Geology",
+      "semantic_role_en": "Geological events and stratigraphy",
+      "native_kind": "stratigraphic_process_event_temporal_graph",
+      "critical_distinction_en": "Geological sequence and reconstructed causal history must remain distinct.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "44f4f31fbfd7246e730261193c2c0d195fbf131670e0d1ac2a96a8c970402771"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "7165a72bcb1468e264b4b7ba8471840c3b825a6e59e29f2ce52309e54fda1c41"
+        }
+      },
+      "workspace_sha256": "bb96b2c36d8c227b39e4c508fd6dc6af8ae3f5efcc9bad0fa71d3347f778af3e",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:governance",
+      "title": "Governance",
+      "semantic_role_en": "Governance roles and decisions model",
+      "native_kind": "mandate-institution-competence-decision-implementation-accountability-graph",
+      "critical_distinction_en": "Describing an institution does not grant its authority.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "5d959a60452ddd0ceda1159e4773e43b78e213b9326b5e7c3e99ecca73423539"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "2c42395d1b1c97399ba2f4e8fdbdb020b7dabf2509b89f313c4e462abe276d1c"
+        }
+      },
+      "workspace_sha256": "ab46000ae2da898c2777d5a8ba657a6c77e3d0b3735de27e3bedf28c1c93505f",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:hci",
+      "title": "HCI",
+      "semantic_role_en": "Human-computer interaction reference",
+      "native_kind": "reciprocal-context-user-task-interface-interaction-feedback-outcome-evaluation-model",
+      "critical_distinction_en": "Interface usability claims require user evidence.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "ede8b0525236871e8e1509f5f99134cc3eb087a5230d2bd222d0c767935dcbe0"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "a2d6253be0bf4081a39a210db640be0f57987454b979f6cb8d38f195211becb0"
+        }
+      },
+      "workspace_sha256": "b237266fdfb63438ff31cafceacaea2c4a9af2ecfb1150556a9406da8da774ff",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:history",
+      "title": "History",
+      "semantic_role_en": "Sourced historical event chronology",
+      "native_kind": "temporal-causal-epistemic-graph",
+      "critical_distinction_en": "Chronological succession is not sufficient to establish causation.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "bc7452fe4017cecb61d0ed4639141bac4f7f198879a40ea9485a57af3c581a6a"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "6b51d61aa2983e4ef2d20a7593d2ef886250cd339cdad9c5877eb31d832a2d61"
+        }
+      },
+      "workspace_sha256": "b20971ba7fbd8820c5d55ecaea9c2ddc06d5958f4338843f8f350fcea2216bec",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:historytech",
+      "title": "HistoryTech",
+      "semantic_role_en": "History of technology and adoption",
+      "native_kind": "technology-manifestation-occurrence-sociotechnical-lineage-graph",
+      "critical_distinction_en": "Invention, first demonstration and widespread adoption are different events.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "3755a96e98425bd322bf0381d3df6aac5813ece6a01b196a5ff04de8c3eeb92e"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "b97f6aacb5ef810316bd655fbefcae9aff51571494b65cc497b839259c8e7f87"
+        }
+      },
+      "workspace_sha256": "21b5a3cf5d40d3036e0172939dcbf957090598cbb98c26bdea2885851c029b90",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:homecare",
+      "title": "HomeCare",
+      "semantic_role_en": "Home-care services and contexts model",
+      "native_kind": "property-functional-diagnostic-temporal-graph",
+      "critical_distinction_en": "Home-care reference is not an individual patient's medical record or authorization.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "9020d1699d163dd9848051e5da8b81abb64039e89cf596ce66cbcf8af51a487d"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "a6163b3add9728a214787b3cb76aa9ba93cf26bde0e75aebb30c0f9c915b2a0b"
+        }
+      },
+      "workspace_sha256": "9f338ba4a3900abf52e691645eb1da0fee0a291dd1cf529ddecbb32f2176134a",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:humanbody",
+      "title": "HumanBody",
+      "semantic_role_en": "Human anatomy and physiology model",
+      "native_kind": "multiplex-multiscale-epistemic-graph",
+      "critical_distinction_en": "A biological reference model is not an individual diagnosis.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "3ff5f08a8522a8203d54b47cda1731e32edc1c9d7f4bf0d56ffb8cebc42a518d"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "bbb8684c6afbe4c041d10a5aa190172f271122985e56d4fbd3b57be8fd5701fd"
+        }
+      },
+      "workspace_sha256": "a777ce9d1c21335d18cfe96c4c8e3695ed07a25562df8b98b0199cff14e8aef7",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:hydrology",
+      "title": "Hydrology",
+      "semantic_role_en": "Hydrological stocks and flows model",
+      "native_kind": "coupled-stock-flow-graph",
+      "critical_distinction_en": "Water-flow calculations must preserve units and measurement context.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "222c357d9fa59eb184d677d048fd28da3621a401d0f383f9fe082a6924e814b7"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "3d31129572914d5c023f5eb49abef1da9f75ab1b95eaa945a60f5ecb4b431b4f"
+        }
+      },
+      "workspace_sha256": "a0f44721bd618d1003e3ecfcf43974c1de25f8c6a95efd7fc6c2fcd4ea1c47d5",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:infrastructure",
+      "title": "Infrastructure",
+      "semantic_role_en": "Infrastructure dependencies and service state",
+      "native_kind": "physical-service-network-resilience-graph",
+      "critical_distinction_en": "Designed redundancy is not proof of current availability.",
+      "prf_decision": "RETAIN_DECLARED",
+      "prf_reason_en": "The native resilience graph models service dependencies; physical integrity and service availability are explicitly distinct. No evidence of deployed, live multi-system monitoring was verified.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": "PRF-04",
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "d2f40118cb2b3251367297ddb97ac539a264a317c25f99d5fab55eaa2fefaeda"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "e3d7dec5c098b1ccf89d6492e2a4c37f5651dce4a33742befc1a1d1f3184b39f"
+        }
+      },
+      "workspace_sha256": "edfb89b4b8233d7e9677cd81bed8a0080c8abaf65ac855e84f0d78b61d45a382",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:internet",
+      "title": "Internet",
+      "semantic_role_en": "Internet routing and protocol model",
+      "native_kind": "protocol-addressing-routing-service-dependency-model",
+      "critical_distinction_en": "A network architecture is not a live operational status report.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "c42cdc01ffa691aa96d9c07a4ecfe65ec4501ec9e902e53073d050d2ec1d6dbb"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "ad3817669f852f604b9b6dc56efc5cc11f7c4e855b469f7697bd9ab86b98cf37"
+        }
+      },
+      "workspace_sha256": "93c75b161e46a5d8bf4c8d05692162a1ca8850dda23e16eec3f13461e4fee21a",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:k-monetary-system",
+      "title": "K Monetary System — Socio-Monetary Transition Model",
+      "semantic_role_en": "Socio-monetary transition architecture",
+      "native_kind": "hybrid_executable_multiplex_statechart_causal_ledger",
+      "critical_distinction_en": "Simulation, executable models and enacted financial policy are separate.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "6ba16158fed9356dd9127f9992784fd629fb30b2b690c0a6ac49fae8cb275126"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "8b7f29c1637c69822278e4b51070b5287cd268136c096cb2125ea879a841b52e"
+        }
+      },
+      "workspace_sha256": "da7b81b5024b20394446c6e60235defcae44da63b742af42f89d13596fad9be4",
+      "assessment_status": "SOURCE_REVIEW_WITH_VARIANT_MODEL_TERMS",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:king-klown-media",
+      "title": "King Klown 4.2.0 MEDIA",
+      "semantic_role_en": "Creative media universe registry",
+      "native_kind": "layered-registry-ledger-semantic-graph",
+      "critical_distinction_en": "A creative narrative claim is not an external factual assertion.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "e05d8085e38d12e0fae882544a81d9b743ed84a8a848752674afeb68facea2ac"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "c26921c7df0f3f7a57a88af7dfc6246d0cb3841c24d49bb5d800a6b9e9e4d9b4"
+        }
+      },
+      "workspace_sha256": "35c6966a5bc75e11484ad934f838efce9e1300767e95af777d320c968f5d9d3b",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:law",
+      "title": "Law",
+      "semantic_role_en": "Legal concepts and decisions reference",
+      "native_kind": "jurisdictional-temporal-norm-decision-application-graph",
+      "critical_distinction_en": "Descriptive legal knowledge is not case-specific legal advice or authority.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "b56cdfd5ad603bb52e84b7855f787452194ff6d3437c7d657bd223e20d45ec72"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "6f6d214f878b17f985b8c61b535f3036a19e28a5961ea6887cd03b94c6b9e8b6"
+        }
+      },
+      "workspace_sha256": "4ac2966b468d713d7f4eceb857fc0740ac327e34b8a248e15c24003ec0df62a8",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:linguistics",
+      "title": "Linguistics",
+      "semantic_role_en": "Language structure and usage model",
+      "native_kind": "layered_linguistic_relational_graph",
+      "critical_distinction_en": "A linguistic example does not establish a universal grammar rule.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "7c79b697d0c254aa8656af6cd4f8606aa1d92476811030040bc11de08ed608cf"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "29e57f0ae95e8f25597b685441e434d878ab5430b0cb079547aeac7e9f33da2c"
+        }
+      },
+      "workspace_sha256": "35edb16d122d993531f77ffac1f708c675775a1f1d33d298b9531e9fedb3290f",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:literature",
+      "title": "Literature",
+      "semantic_role_en": "Literary works and interpretations",
+      "native_kind": "typed_bibliographic_interpretive_graph",
+      "critical_distinction_en": "An interpretation is not a unique reading of a work.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "c0b2fe09cc26357e3658c0695a12645eea59af4ae94257bc6c4cb714667f12c5"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "2df4aa8def60a42f63151f4be4ba8755b4cea96537909eeb5df72b9d89ccf42f"
+        }
+      },
+      "workspace_sha256": "d7eae634a57be2c15b6e474e480eca8911ea8f33355e629c9f7a32260b01b43e",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:logic",
+      "title": "Logic",
+      "semantic_role_en": "Formal inference and validity model",
+      "native_kind": "typed_formal_syntax_semantics_proof_graph",
+      "critical_distinction_en": "Logical validity is different from the truth of premises.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "6edc72688a8b10d630a0858f442d735bb78a99603221d7040c1c58d44180c597"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "b51ccceb8d62ec27b4193688e1e095f04dc59fccc655f6d0ca56da776bd0bba0"
+        }
+      },
+      "workspace_sha256": "f3fd98c33a5dccb727c7561f60ee65446fd7152e0b580f0e121b6bc07a2987bf",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:logistics",
+      "title": "Logistics",
+      "semantic_role_en": "Logistics flow and capacity model",
+      "native_kind": "logistics_flow_network_with_reverse_flows",
+      "critical_distinction_en": "A planned route is not a confirmed shipment state.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "3ec95ebaec264a116a40954d6af1f5beb058b8e439dca3e262316607335c8499"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "ee9063d9df5ec88a87720e078090ed10f7468b817ebdc3407d33256d5cee05e5"
+        }
+      },
+      "workspace_sha256": "80f8d6f57d6983a0333c585f89d3c6fe69a517161ae1e29ad397c41e27a39cd7",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:manufacturing",
+      "title": "Manufacturing",
+      "semantic_role_en": "Manufacturing process and quality model",
+      "native_kind": "traceable_process_measurement_dag",
+      "critical_distinction_en": "A procedure specification is not evidence of a conforming part.",
+      "prf_decision": "EXPLORE_SECONDARY_NOT_PRIMARY",
+      "prf_reason_en": "The source has a manufacturing process DAG and quality constraints. A procedural usage profile would require an actual authorized stepwise protocol, roles, conditions and exception outcomes, not merely a flow model.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": "PRF-02",
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "477e4f5be804bb19c7d5264cbae01fa7c87ccffefdaf8b53a6a12c2f37f48f76"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "b43be75ad247313e0404ee919eacdaa8ec9a1daed26d542aa28479312d40716d"
+        }
+      },
+      "workspace_sha256": "032b6c1c0cf60090e1090190358a8ed12ea16de6b8e2eac1279c56bacb4f3a0e",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:maritime",
+      "title": "Maritime",
+      "semantic_role_en": "Maritime navigation and operations model",
+      "native_kind": "sparse_multiplex_relational_graph",
+      "critical_distinction_en": "A documented navigation model does not authorize a voyage.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "e98dfb1f9aac2d5392c4da3bf7c0c2038e69566027dbbbe3a38810be718b71da"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "804a54de7de6b0c774f39e5fc25106b903d20da2dd9214d8aefe13d550a5584c"
+        }
+      },
+      "workspace_sha256": "4048514c5346212d26942921f7bab58e118dc38f70a44fffa4b6f8507571b47d",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:materials",
+      "title": "Materials",
+      "semantic_role_en": "Materials structure and properties reference",
+      "native_kind": "condition_scoped_material_property_graph",
+      "critical_distinction_en": "A test value must retain conditions and method provenance.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "c1d537f46db08a214835ac8fcac76b8d21bd445a76f06346bcd4288a8dce7d7e"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "dab3a0bbd067b74fb464ebf073945a582588367adb332162cc8654f25f812110"
+        }
+      },
+      "workspace_sha256": "250b37f06320268cb131172ef202b5d7cdcb44c61f6c03e0d65d3638b3370d49",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:mechanical-engineering",
+      "title": "MechanicalEngineering",
+      "semantic_role_en": "Mechanical loads and mechanisms reference",
+      "native_kind": "typed_mechanism_effort_motion_graph",
+      "critical_distinction_en": "A modeled mechanism is not a tested safe device.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "31e0807b8faf6149897f5d604609692628833a045d1be7c6a0399c68dd066947"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "34c59e4fd2afe3998b605c8fa5ab456d2589ef77ae7bfea3a7bd6f0eb3b7652c"
+        }
+      },
+      "workspace_sha256": "b46f6926f254894e7d68c19f4b085213e994ffda157fdcb54b453bc58cd07fb9",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:media",
+      "title": "Media",
+      "semantic_role_en": "Media claims and circulation model",
+      "native_kind": "provenance_first_circulation_network",
+      "critical_distinction_en": "Media repetition is not independent verification of a claim.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "45b71439ec24b5e2f4059cc0395e1fc1c1d0cb80d3fa295489c98c13154ae362"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "9b6096d6ffcc5acc0b4336c2eee2cb12a42b08fc5a3f4aa83805128bd21b8254"
+        }
+      },
+      "workspace_sha256": "cd7b1aaf80da9b3b9ac1669c7d16838f16cc58398d3b975234131e51618deb66",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:medicine",
+      "title": "Medicine",
+      "semantic_role_en": "Medical knowledge and interventions reference",
+      "native_kind": "clinical_state_evidence_reference_graph",
+      "critical_distinction_en": "Reference knowledge is not a patient-specific medical decision.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "9c2f157b9db626c7d8d8f768bd62dcc7b48ca4236943810f4c545b5921c144d2"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "ee58506cddce960eea3de1e5e02695e4307f80196eaf99a149632022a917cf1d"
+        }
+      },
+      "workspace_sha256": "8c25e350bc12b28183ce4e5d777b0661d6db9f9bbecfa239c10ddaa984d20b5a",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:metrology:state",
+      "title": "Metrology",
+      "semantic_role_en": "Measurement and traceability reference",
+      "native_kind": "metrological_traceability_relation_graph",
+      "critical_distinction_en": "A reported measurement without uncertainty and traceability has limited authority.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "5192e3339bb67cc356233a57011f531b607ae63d46d6602a8ed33be086ecc5cd"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "43e0fc0f0e212af502b2c5d923642e7de9783f99e6fad2999dcd0974c9a70cdc"
+        }
+      },
+      "workspace_sha256": "42c58bfc680ca672654c83daca953dc1f2d8745ba0e8d50e6c57343163890f54",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:microbiology:state",
+      "title": "Microbiology",
+      "semantic_role_en": "Microbial ecology and metabolism model",
+      "native_kind": "microorganism_environment_relation_graph",
+      "critical_distinction_en": "Laboratory observations do not automatically generalize to all environments.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "f6b7428e42636ce2a5555eecdec3d8f568e1358383b9ee06534094c5eee9ac24"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "d97bdfa283d395fa624527515a6d760a4f7ed69689ba89aa37045d2cca98b4f6"
+        }
+      },
+      "workspace_sha256": "548810a69043021d1ab1bbe8b391656d01d4f684ca7ef45aee65e6394f6a1e56",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:mind:state",
+      "title": "Mind",
+      "semantic_role_en": "Cognition and feedback processes model",
+      "native_kind": "recurrent_cognitive_process_graph",
+      "critical_distinction_en": "A cognitive model is not evidence of subjective experience.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "REJECT_UNSUPPORTED_SUGGESTION",
+      "unesco_reason_en": "The native object is perception, representation, memory and decision in cognitive processes; History is not the field.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": "History",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "fa0420ec65f0482d3ec07b46d0355a6b966bb9ec548e55c527b5b38ba333de34"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "eb7c755105ad5af3b4feb0338402af13b30ee074eb9d227b421efb6c12db0dab"
+        }
+      },
+      "workspace_sha256": "35ac420aae5f41d648c586af8b04f5852ec58d8fa68e9214c22ea436cbe1eca9",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:mineralogy:state",
+      "title": "Mineralogy",
+      "semantic_role_en": "Mineral classification and structure",
+      "native_kind": "composition_structure_property_occurrence_graph",
+      "critical_distinction_en": "A measured property alone does not define a mineral species.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "da0837f89920803d32d8cc715a9cef43b6258e0ab531613202f26c2f54ef39cd"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "4df597efa63e4d59c053c07d5075a93525e32cc6b12f3137e8fab1b2360d6c2b"
+        }
+      },
+      "workspace_sha256": "2e26361f23d7e10e071f9b20acd65cdc5967ac124f2dd7f3f60099bda20265b7",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:music:state",
+      "title": "Music",
+      "semantic_role_en": "Music theory and performance reference",
+      "native_kind": "music_semantic_relation_graph",
+      "critical_distinction_en": "A formal description does not replace expressive or cultural interpretation.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "45a6da4610b90e3956ee78eef67444f77a30a61416ba8a2dcf5ca18212f38880"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "172f01ddb1cc589d95ae2ef8834434cb0974644ada97a0872685c3442cebfb29"
+        }
+      },
+      "workspace_sha256": "8d468bcdab8f59c925402adc93221b4bde587b890e814bf3c010a166bf73904f",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:mythology:state",
+      "title": "Mythology",
+      "semantic_role_en": "Attributed myths and traditions corpus",
+      "native_kind": "attested_narrative_variant_graph",
+      "critical_distinction_en": "Different traditions must not be collapsed into a single canonical truth.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "36cf9a45024313a8f9e915b032d7067f1fccd1b7a3deb01c2e38813318a93274"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "8668524ea78d959e61c6501728f9ea175a8b30c95443c507d90b332bd27b6160"
+        }
+      },
+      "workspace_sha256": "487aef1ec7318a0054c22a4554acb128ef434027f03181846b3bca73c6c4a17e",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:naturalhazards:state",
+      "title": "NaturalHazards",
+      "semantic_role_en": "Natural hazard risk and exposure model",
+      "native_kind": "sparse_hazard_exposure_vulnerability_risk_graph",
+      "critical_distinction_en": "Risk estimates are not forecasts of an individual disaster.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "0d576ebf3eec5b1275ed0d2c92b099cc02beb67d280832fcbaad61ff3d1ea57f"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "544a526fb1227e6990ff56a4612a282f653aeff52fd4df7363197aac07f01d9f"
+        }
+      },
+      "workspace_sha256": "f1a6cb266eef4e2322a7f5bd92cccc04d70bd41a5f542f6a74cf801d856eeaf1",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:neuroscience:state",
+      "title": "Neuroscience",
+      "semantic_role_en": "Neural circuits and behavior model",
+      "native_kind": "multiscale_neural_function_relation_graph",
+      "critical_distinction_en": "Neural correlations do not by themselves establish mental causation.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "93aeefa408963cd0794416634701dc0da2bef19ba41e7ac2f4cebdd300ecdd04"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "ab1fa292537dbdbe2e1639a3927de78befaf2a756115ba572e851a96e622b194"
+        }
+      },
+      "workspace_sha256": "6c7661d33a1f9778edf2ff9906dbb0616d6bc1292b5ac4dab192ef9c82a64a2d",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:nutrition:state",
+      "title": "Nutrition",
+      "semantic_role_en": "Nutrients and metabolic effects model",
+      "native_kind": "human_nutrition_process_relation_graph",
+      "critical_distinction_en": "A reference nutrition model is not personalized dietary treatment.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "0066340e575fa344d84b6933144a34116df146bc5b5eec8d1d3c1f4ac2878d14"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "d71dca020f4dfcab631d9683ccf94e7f03769401e5ebcac17e2a6e7ad5829aec"
+        }
+      },
+      "workspace_sha256": "e3293bdb7ef9fb987c774b392e5d8f9df8709730efd62ed19c6e7c2d99a001fc",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:ocean:state",
+      "title": "Ocean",
+      "semantic_role_en": "Ocean dynamics and habitats model",
+      "native_kind": "coupled_ocean_state_flux_relation_graph",
+      "critical_distinction_en": "An ocean-state observation is not a long-term climate projection.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "10e1f154dee3b53c166bab9e167afe9560a9bff0d764c200b2291458f9e972fe"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "cf2f745988334177af139da8e201a0fc67cb8a035dee8bdf5b278616b13c24f5"
+        }
+      },
+      "workspace_sha256": "2664dac08311434374a2de05c59aaf775ee8b6c02812b95dee51f48a978e8ffc",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:organizations",
+      "title": "Organizations",
+      "semantic_role_en": "Organizational coordination and roles",
+      "native_kind": "feedback_organizational_process_graph",
+      "critical_distinction_en": "Describing a role is not granting organizational authority.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "e194e76da674269c15460803da36a18971c33865122c3e4014a9a0509c1ed043"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "fc864ba852ce68fa5aae78de4df27cfc9f76b5b4f98d0d9a5e7f9eba0f1c8051"
+        }
+      },
+      "workspace_sha256": "1d2845d39c46a961715c2bfcd58b38a888df235c90389307be586e0aaec3f16d",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:paleontology",
+      "title": "Paleontology",
+      "semantic_role_en": "Fossils and deep-time inference model",
+      "native_kind": "provenance_bearing_evidence_inference_graph",
+      "critical_distinction_en": "A fossil observation and reconstruction of life history are different evidence levels.",
+      "prf_decision": "REJECT_ALTERNATIVE",
+      "prf_reason_en": "The native model is a provenance-bearing fossil evidence-to-inference graph; it should not be recast as primarily a natural taxonomic catalog.",
+      "unesco_decision": "REJECT_UNSUPPORTED_SUGGESTION",
+      "unesco_reason_en": "Paleontology centers on fossils, strata, ages and inferred ancient life; education is not the primary subject.",
+      "prf_candidate_id": "PRF-03",
+      "unesco_suggestion_old": "Teaching and training",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "f3127f340be9344df448949eb09e9a13e8c6fa60c51f4c28234ee294459f954a"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "e411989260ab790ffba5bf02c6e07eabd968fe8b547a79f350223392fecd4dde"
+        }
+      },
+      "workspace_sha256": "014dc4013074d61d83b0a1f27f27516c7b118800759a858ed531c9d7cf65e949",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:pharmacology",
+      "title": "Pharmacology",
+      "semantic_role_en": "Drug exposure and response mechanisms",
+      "native_kind": "pharmacology_exposure_mechanism_risk_graph",
+      "critical_distinction_en": "Mechanistic reference does not justify individual prescriptions.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "7204ebdfa36a7090b50ab6548de95805a9b9a03f946adb8cf25d34ef6cc8de6c"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "885f1e021d0bd2198f41af3661846d65132eb4d25e1ffe17b13ccf951a73387c"
+        }
+      },
+      "workspace_sha256": "c5f90f658141b5e62a1aebadac166f4cef8f36b61eba2c01acebf03c4bc9994a",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:philosophy",
+      "title": "Philosophy",
+      "semantic_role_en": "Philosophical problems and positions map",
+      "native_kind": "dialectical_argumentation_graph",
+      "critical_distinction_en": "Comparative philosophy must preserve disagreement.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "2ccda5ce41b886cf6ee77b4bb3202391abcf43f1e0a11f21ff258f27fc61719e"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "e5c07e617ee6eb8da9ce8ccb0bf86cbf7014ef93601c85287a90e322be8b0eff"
+        }
+      },
+      "workspace_sha256": "01eb5028032deb58c1ed96918330c39c02ca57cb919f6280610664eb47f9f1f1",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:physics",
+      "title": "Physics",
+      "semantic_role_en": "Physical systems and validity regimes",
+      "native_kind": "multiscale_multiplex_physical_state_graph",
+      "critical_distinction_en": "A physical model applies only within its stated assumptions.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "57a7ab58c08dc86d09104b4b00375462814ab4bd3093f130cee9d7e839960dcf"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "c16fa39a851fbc672410ea8bada5a20bb22951a60f1e74cc61c4561360c475c8"
+        }
+      },
+      "workspace_sha256": "a9f0b306fbd86aed39469f9c046b201ce966287bdfbe71a4ae6c65e8cbfc7224",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:pitheory-prime-bridge",
+      "title": "Pi Theory — Prime Bridge / Spiral, Mirror & Equivariance Invariant-Regime Key",
+      "semantic_role_en": "Exploratory mathematical bridge research",
+      "native_kind": "polymorphic_spiral_mirror_equivariance_invariant_regime_bridge_research_model",
+      "critical_distinction_en": "A testable fragment is not a universal theorem.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "REJECT_UNSUPPORTED_SUGGESTION",
+      "unesco_reason_en": "Spiral and bridge are mathematical conceptual terms in an invariant-research model; they are not literary genre cues.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": "Literature",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "81e5379aff4c26ad04888f42487ac83b9c9ab4fb023265baadb73ade46219db5"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "b264385b0bc6a70f8460d5e8b5d04deb811b735a932418c8356adf4496180001"
+        }
+      },
+      "workspace_sha256": "c1b6832738703be3f87463189b1d2b7d79aadeb9a01dabef89c4ea98f7261408",
+      "assessment_status": "SOURCE_REVIEW_WITH_VARIANT_MODEL_TERMS",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:pi-theory",
+      "title": "PiTheory",
+      "semantic_role_en": "Layered mathematical research notebook",
+      "native_kind": "layered-mechanical-structural-ontological-epistemic-corpus",
+      "critical_distinction_en": "Interpretative resonance is not a mathematical proof.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "REJECT_UNSUPPORTED_SUGGESTION",
+      "unesco_reason_en": "The layered theory concerns mathematical research and epistemic interpretation; historical context alone does not justify History.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": "History",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "f202f74488c5a56447d4cb921b9b64d408adbbf0a928acf481f8d7be50db964f"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "fbd3fc92e59fa88173341df28e538612c7b86d3d7e866475ec75bc3be2a24f96"
+        }
+      },
+      "workspace_sha256": "c170663c58645ac2428f803a77273fef9d26f7e07b686f7db7d44c18a8136107",
+      "assessment_status": "SOURCE_REVIEW_WITH_VARIANT_MODEL_TERMS",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:policeops",
+      "title": "PoliceOps",
+      "semantic_role_en": "Versioned police operations protocols",
+      "native_kind": "structured_epistemic_state",
+      "critical_distinction_en": "A documented procedure does not authorize real-world enforcement.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "421c45114cc416fa1a5c8858867b0db3ef3570a2bc11c62fb34be7b6fccf6a40"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "db9552aa899f2eb02f51049fcf53dd0b8bb753b424f46cb043219d17e7b69115"
+        }
+      },
+      "workspace_sha256": "43840c1bf469a5301a6cd6b07d662002a60fd0b2ae9b7626709e743b2f2d3d8f",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:pouvoirs-australie",
+      "title": "Pouvoirs-Australie",
+      "semantic_role_en": "Australian constitutional powers map",
+      "native_kind": "jurisdictional_legal_power_relational_graph",
+      "critical_distinction_en": "A descriptive legal power does not confirm its present lawful exercise.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "05b2170292ca1d66e11bae7fe275aae9d8c8ffb53e82d2e6baa68ed518885288"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "944f6be376754c54c4a1a6e74c272a9a2772d4be933f46fb0fce11d77287bc1e"
+        }
+      },
+      "workspace_sha256": "277d3443c3c61fddc26ef698051676045171dd1bc68987f8bdce9e7958456c1d",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:pouvoirs-canada-quebec",
+      "title": "Pouvoirs-Canada-Quebec",
+      "semantic_role_en": "Canadian and Quebec powers map",
+      "native_kind": "jurisdictional_legal_power_relational_graph",
+      "critical_distinction_en": "Jurisdiction and effective date are essential to applicability.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "b11521e78e065fd46ac098bf54c0019e2d3b5354834de8d8f0b4041ce016805c"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "449697383b3ee99702adb1678c84acf6ad611bc8340d9ab00018a4db7976cd48"
+        }
+      },
+      "workspace_sha256": "79d0865c78d695abcd149fca0cf3baa87ce789ae927a1fc011b0275e6c629ab3",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:pouvoirs-coree-du-sud",
+      "title": "Pouvoirs-Coree-du-Sud",
+      "semantic_role_en": "South Korean state powers map",
+      "native_kind": "jurisdictional_legal_power_relational_graph",
+      "critical_distinction_en": "Formal institutional powers and actual practice are distinct.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "b49a8705ac525820432be436a4a8326dbff6e7d92b41b56b69f57b4ad0bc7c33"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "ee4036dafcf248163c368fcf14dd0bdd4a74c782d8d8029ceb733b34a2ff5afc"
+        }
+      },
+      "workspace_sha256": "d69ddebef6f70b56740c7913dff77f571d0e4597ab10f34cdc2873bd91d8fe41",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:pouvoirs-finlande",
+      "title": "Pouvoirs-Finlande",
+      "semantic_role_en": "Finnish state powers map",
+      "native_kind": "jurisdictional_legal_power_relational_graph",
+      "critical_distinction_en": "Powers must be interpreted in their temporal legal context.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "d6e0960bdf7430fe0c87f4b26bfd10f121f2ed8cc62e00b6e2d462e017850362"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "defe5f4b06eae31dff9a6776f00ac4452bc07bc39141fc28d4fc434363f2418f"
+        }
+      },
+      "workspace_sha256": "c7563262542087b074859df0c069b469204b130cc8d7e5adb34e08bb0783df77",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:pouvoirs-france",
+      "title": "Pouvoirs-France",
+      "semantic_role_en": "French state powers map",
+      "native_kind": "jurisdictional_legal_power_relational_graph",
+      "critical_distinction_en": "A legal source alone is not proof of current implementation.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "81704ad1ffab85c1c8e8577c9179efe486fd159c3b5e6d20ad6cbdcd817cdaa0"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "6a61da8c0acf8d8e6168439fb6997453ebe8c930e718f34fb12ca321923b0ee4"
+        }
+      },
+      "workspace_sha256": "b1051f64089f89118e49cd3c7c9f49c464dc261c6c6ccccec6b63e638d660120",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:pouvoirs-japon",
+      "title": "Pouvoirs-Japon",
+      "semantic_role_en": "Japanese state powers map",
+      "native_kind": "jurisdictional_legal_power_relational_graph",
+      "critical_distinction_en": "Comparisons across countries must not erase legal differences.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "5b96ff106630f2f7e864e5ef27b674912da8c4eb95eeb44d1df5f4c4b80cebc5"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "160d3be822f324cb61281eb21aee2381d350efa4aed9a557cd2a45317d6166b6"
+        }
+      },
+      "workspace_sha256": "52aa1639ab1ce5c1e9ab7d5047f135be1e47593a5fc8009d97c409a6f5d3f0d5",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:pouvoirs-pays-bas",
+      "title": "Pouvoirs-Pays-Bas",
+      "semantic_role_en": "Dutch state powers map",
+      "native_kind": "jurisdictional_legal_power_relational_graph",
+      "critical_distinction_en": "Formal role descriptions do not prove current political actions.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "ba4fcb5074f4f61f7d123e4c2901871cd9336cc37df964a402b55d616dbe9c83"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "f7b9c5a99e37d9ef477f5f9ec5a8dd447af72be7f9bfc87782a8d2d9468aeb2b"
+        }
+      },
+      "workspace_sha256": "dcb0cfe3b55749295a25e4d2548ec2f0104f69d774a9a7417f06bb438a7c7903",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:power",
+      "title": "Power — Topologie du pouvoir / Power Dynamics",
+      "semantic_role_en": "Power relations and topology model",
+      "native_kind": "layered_structured_epistemic_state_with_native_power_dynamics_contracts",
+      "critical_distinction_en": "Analytical representations should not be treated as legitimate power claims.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "e9c76adf581f0b465b3c4843fc8a3611b14432afe3c6e79fe7f7f2562aeed19f"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "e6f07aefd37be7089813b4f6d2d46bac2e8b1c4054a966189ece04a323f08773"
+        }
+      },
+      "workspace_sha256": "0ce55b3e41a7c5fed9f894b4dfec1c1a51b15413e3fb07dc470d26b5a070e314",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:public-health",
+      "title": "PublicHealth",
+      "semantic_role_en": "Population health and interventions",
+      "native_kind": "population_exposure_intervention_outcome_graph",
+      "critical_distinction_en": "Population-level evidence does not automatically predict individual outcomes.",
+      "prf_decision": "RETAIN_DECLARED",
+      "prf_reason_en": "A population-level evidence model of exposure, intervention and outcomes is not an operational system-state tracker; measurements remain observational and context-dependent.",
+      "unesco_decision": "KEEP_DECLARED_WITH_SECONDARY_SCOPE_REVIEW",
+      "unesco_reason_en": "Population is a unit of analysis, but medical sciences and social policy specify the subject better than general Population.",
+      "prf_candidate_id": "PRF-04",
+      "unesco_suggestion_old": "Population",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "bc2c520c54050927a8430cd2306bb61730e07f983d75dd68cf00fe824b2ce6b8"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "07ad7b82d469b279314881d7f2a694d1795823e62b759f413fb3e115c97e6be3"
+        }
+      },
+      "workspace_sha256": "a67c57a657bda914948427fbde923b8940bf721cf2871c196d8abf82084856ae",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:recipes",
+      "title": "Recipes",
+      "semantic_role_en": "Structured culinary procedures",
+      "native_kind": "procedural_transformation_graph_and_family_variants",
+      "critical_distinction_en": "A recipe record is not a guarantee of food safety.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "69659390e2a7bf06fa9a5af722c496ea662da430400c029fa09929afbd2307d3"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "1a7d814bc314d46f9037d9a5a7d81b978080b85f59aaba17038042f3fcb7b1f9"
+        }
+      },
+      "workspace_sha256": "6b888c1541d4ea0ee155464d54e25f74ed642a06da359f95fb376e9f8462025e",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:religion",
+      "title": "Religion",
+      "semantic_role_en": "Comparative religion and practices",
+      "native_kind": "comparative_multilayer_tradition_practice_graph",
+      "critical_distinction_en": "Beliefs must be attributed without declaring one tradition authoritative.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "68b9ccad5359dad656418465d0c128157b0a995b517696fd9e65165bdca29de3"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "746991c34c3e326a0d518b43feea24c0ab776da8c2b258ea2dde204701ba56c5"
+        }
+      },
+      "workspace_sha256": "ed49d617f7ece54e95161ffc7d4a62ba6e95e5e59dac1fa692645de595f9916d",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:robotics",
+      "title": "Robotics",
+      "semantic_role_en": "Robotic perception-to-action model",
+      "native_kind": "perception_estimation_control_feedback_graph",
+      "critical_distinction_en": "Simulation and control models are not authority to deploy a robot.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "2d0ea97af9cd447d9c8b7157c8cfe95ae616f774ffbd6eb62018dba35108c19e"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "18c7444bf1f195256644774852d6f911e215c68feda86a80596c3a64453b088b"
+        }
+      },
+      "workspace_sha256": "24ca7965aa0909c689d1ecbf691159c6ad84d684d332740bac69beeee3320085",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:education-quebec",
+      "title": "ScolQc — Éducation Québec",
+      "semantic_role_en": "Quebec education rules and pathways",
+      "native_kind": "temporal-jurisdictional-education-rule-transition-curriculum-admission-source-governance-graph",
+      "critical_distinction_en": "A documented rule must be checked for current applicability.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "KEEP_DECLARED_WITH_SECONDARY_SCOPE_REVIEW",
+      "unesco_reason_en": "Institutional jurisdiction shapes school rules but educational systems and curriculum remain the scope.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": "Politics and government",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "c3f761c48961de8b9c685a47cf90327474197e1924657b494731f4523422c9aa"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "7be14afe1975027ca79b35ef734658ada8918fd18e8c655f4db4edfb972d5add"
+        }
+      },
+      "workspace_sha256": "8386b7d94b3f805383b327d0bbafb8e8adaed773d73c33ff408b478ad0c69e8f",
+      "assessment_status": "SOURCE_REVIEW_WITH_VARIANT_MODEL_TERMS",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:sociology",
+      "title": "Sociology",
+      "semantic_role_en": "Sociological roles and institutions",
+      "native_kind": "multiscale_social_network_graph",
+      "critical_distinction_en": "A social model must preserve context and avoid universalizing groups.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "d2f384059659e1dd05c875734dc4f3805efa58be2868c3bcd38da8744c65b3c5"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "8dbfcbeb8edc1451e6ceeea6efc77d3cd462792e10e6f136989ceb8d50047e97"
+        }
+      },
+      "workspace_sha256": "6528f38594eb7d9261979fb660f8fc882e15b28e3c21e960de3ec77533926951",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:software",
+      "title": "Software",
+      "semantic_role_en": "Software specification and defects model",
+      "native_kind": "typed_software_lifecycle_graph",
+      "critical_distinction_en": "A specification is neither running software nor verified behavior.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "1100e9c4deda678ca6ca4d8089e528ad413b9adaf32e18b033aa0a09c81b65cc"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "d44e334694644af397cc792785481332024f2e2daf9ca13213e28c87c6bc73f5"
+        }
+      },
+      "workspace_sha256": "65f284e83875889de6c2c22a70889a7463eb1af085d0fd4e496eedcb534d2ff9",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:soil",
+      "title": "Soil",
+      "semantic_role_en": "Soil horizons and properties model",
+      "native_kind": "vertical_soil_profile_process_graph",
+      "critical_distinction_en": "A soil observation without depth and method is incomplete.",
+      "prf_decision": "REJECT_ALTERNATIVE",
+      "prf_reason_en": "The primary object is a context-bound vertical soil profile and processes, with measurements by depth and method. Soil classifications are one dimension, not proof that taxonomic catalog usage is primary.",
+      "unesco_decision": "KEEP_DECLARED_WITH_SECONDARY_SCOPE_REVIEW",
+      "unesco_reason_en": "Soil biology is part of the model, but pedology and agriculture remain central; any Biology tag needs source-specific justification.",
+      "prf_candidate_id": "PRF-03",
+      "unesco_suggestion_old": "Biology",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "1571561f39c9cd9ca71c778f0d0cdbf44467690cb2bff8281ae1ea00fb892c87"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "bf560ea0f6908c39c21662ee063711db333045b8d009ef96438f3dcdd8e34c19"
+        }
+      },
+      "workspace_sha256": "597d79a5d810a682a7526f0a0cced596a2db60162d31cd92d28866ecd3c66e2f",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:solar-system",
+      "title": "SolarSystem",
+      "semantic_role_en": "Solar-system bodies and orbits",
+      "native_kind": "solar_system_reference_relational_graph",
+      "critical_distinction_en": "Orbital predictions and observed positions carry different evidence.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "REJECT_UNSUPPORTED_SUGGESTION",
+      "unesco_reason_en": "The canon is about Solar System bodies, orbits and composition. Europe as a geographic microthesaurus is not supported.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": "Europe",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "434310bf0bc495acdaa224523ddcfb8892acddaceb2cf5ba52303fa327459a55"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "dcaf52716cfa880156ecd6ef3749c0d9cde580b81405b03dfe1dc2509e546d4b"
+        }
+      },
+      "workspace_sha256": "2404275e6e17f8dffef7e78f69db7d11421f6f6fbaba16d8d9eeb19006073016",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:sports",
+      "title": "Sports",
+      "semantic_role_en": "Sport competition and event model",
+      "native_kind": "typed_sport_rules_competition_graph",
+      "critical_distinction_en": "An event record and a competition rule have different authority.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "4d67dea7d9df91e84ec3ea7c651cb4df366517f23b1d707fda5dec485e111fba"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "c88469155e456a1d01009aa6c31b9496bc12b11211795cbcc659504f91a33cac"
+        }
+      },
+      "workspace_sha256": "b38c68c3ff1da89bd402346ed30b2958e2cf78ebb1436fe07150a7c970ae39d4",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:standards",
+      "title": "Standards",
+      "semantic_role_en": "Standards and conformance evidence",
+      "native_kind": "normative_requirement_assessment_graph",
+      "critical_distinction_en": "A test report is not the same as an accredited certification.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "85d5fd417542d34b362458f9adbac7302c8ccff39c9f226814d9c06f30b42d5d"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "ec11a7e3285eecd538adb44be0d0a7637a1f1d3bbbba8bdf1994fc4338d1bc1e"
+        }
+      },
+      "workspace_sha256": "a66689e68813fc70e5a0e060f5341faa20472f1f83822405964fa353e8a44c5c",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:technology",
+      "title": "Technology",
+      "semantic_role_en": "Technical functions and failure modes",
+      "native_kind": "typed_technical_function_chain_graph",
+      "critical_distinction_en": "A technology description is not proof of performance.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "6233d2eb36f565b5a4410dbbd4b4cf8ae18c43c6a8560ca69f6511353dca3780"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "37d659cd9f374e055ef03c2bf97aceb1dcf1df853fc159ab3a8a1f97f692e847"
+        }
+      },
+      "workspace_sha256": "d8a6a79c265f7ce422b4842a3907fa4dc5c33dc0af612caf8eea11b7763b5954",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:telecommunications",
+      "title": "Telecommunications",
+      "semantic_role_en": "Telecommunication channels and signals",
+      "native_kind": "communication_system_graph",
+      "critical_distinction_en": "Theoretical channel properties do not imply live service quality.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "34b0363aeab969eab5c5f03a58228f87ddfe3f075fe8445dd3e0654a3ca6f083"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "d6696fde73fd811492bf722ff314b3c60a8bb2e914e701c10f29c39672c968f6"
+        }
+      },
+      "workspace_sha256": "05c1883a7a86985ea878756470241b7b1e92ac67afa489a3645522c77d7979a2",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:textiles",
+      "title": "Textiles",
+      "semantic_role_en": "Textile materials and transformations",
+      "native_kind": "textile_transformation_property_graph",
+      "critical_distinction_en": "Material specifications are not independent compliance results.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "ca69864bb55858336eb3cb6ee4dcec8522aecbc67366702f93bf12eae443f79c"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "331367cd1f3b96a6a304f36cf2be8f494903a7ef043ebdf5c68bf3faa730a0fa"
+        }
+      },
+      "workspace_sha256": "0616a1b5e927c160bec61a9eb820c504b667c654d9508494e834e999a186f00b",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:theatre",
+      "title": "Theatre",
+      "semantic_role_en": "Theatre works and performances",
+      "native_kind": "theatrical_work_performance_graph",
+      "critical_distinction_en": "A script and a specific performance are separate artifacts.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "34787d56a4c8710043f7ce7673b997517a968b13a9359241b4a17fdac6f401ea"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "8b448dd0e89ccde65429a3398596623a85723bb9d9199f906af010b3dadeeaa2"
+        }
+      },
+      "workspace_sha256": "8027739d519b391f8150d0fe7e666fc80e6fc6dc027896d1e91840a8dbb6098d",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-time",
+      "title": "Time",
+      "semantic_role_en": "Time measurement and calendar systems",
+      "native_kind": "temporal_entity_recurrence_graph",
+      "critical_distinction_en": "A timestamp requires a temporal reference and context.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "1740ada125d794255fc60171d4ef6bb85f5db2fc1e8b753e634ecc509d2dedc3"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "2553aee5d15341d0b6b61d586fd29440d63da8d4a93f00dbb98166c7834c04ce"
+        }
+      },
+      "workspace_sha256": "d03d0f68f7ed7e0fb7ca1ff41869811a82718e5eda1900a6c9586193e104c067",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-transportation",
+      "title": "Transportation",
+      "semantic_role_en": "Transport networks and service flows",
+      "native_kind": "multimodal_transport_flow_graph",
+      "critical_distinction_en": "Planned transport service is not observed delivery.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "31b798a20fd86513cab92350ed8d516f0d417355f8521fea0da77e48a96aa732"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "bbcc82c18be223462cac8c15abcc6063b7ed5e9c450c0a3383c12faf2e29a562"
+        }
+      },
+      "workspace_sha256": "731fc6bc32aaea24eaf99cda035721637ddd1082211b4e2a36bf6fdd8c7cc072",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-urbanism",
+      "title": "Urbanism",
+      "semantic_role_en": "Urban planning and land-use model",
+      "native_kind": "multiscale_spatial_urban_graph",
+      "critical_distinction_en": "Planning intentions are not existing urban conditions.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "22ae874b3600f87c45e6f6eb6fa7d057c27cb4e751fee1f4669d238f5d9c1b7e"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "29c55e1329ff53fb0045af262670857e91bdacd7cf358f600bbe6267846ebc9e"
+        }
+      },
+      "workspace_sha256": "5b86fd22e2e2030438c162d01dff78e12c2477e42cd25ec0f7f4e6cd2fa42020",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:vaticanops",
+      "title": "VaticanOps",
+      "semantic_role_en": "Vatican institutional procedures",
+      "native_kind": "procedure_graph_conditionnelle",
+      "critical_distinction_en": "A recorded procedure does not confer institutional permission.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "8d8dc346aa0f6ff49c5c4ed03831e7ce724bcbf2fbe0358be3e63bfd9ca40ab4"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "4bd5fc9a4c9508a2d86903b8511dbcce0eb5fafbe9b58e7f027fe8761e50767d"
+        }
+      },
+      "workspace_sha256": "b29a365fe5e7c67e4f3da009aa2aedbc12955d533dc6546628adf1b13a11b301",
+      "assessment_status": "SOURCE_REVIEW_WITH_VARIANT_MODEL_TERMS",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:vehiclediag:state:reference",
+      "title": "VehiculeDiag",
+      "semantic_role_en": "Vehicle fault diagnostic model",
+      "native_kind": "multiplex_causal_diagnostic_model",
+      "critical_distinction_en": "A diagnostic hypothesis is not authorization to repair.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "46d87311be81062868b7bf12a7aab45db2f0344f32371882db6ffc0ec23b5ca5"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "da9f6d03cf4cb949cc6934aa950e4e7b9119ee715eadac37cf80dbd0900be282"
+        }
+      },
+      "workspace_sha256": "8465563964063d5e446d441d610cb670bf450bbc11e8ae7e90796b12a2fad7fc",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-veterinary",
+      "title": "Veterinary",
+      "semantic_role_en": "Veterinary species and pathology reference",
+      "native_kind": "species_system_pathology_intervention_graph",
+      "critical_distinction_en": "A veterinary knowledge graph is not an individual animal diagnosis.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "22ec1907b7ddef08ee5e374b20521391d472663415793fdfaf2da20ff5b2c4d0"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "be28984b1ba2d3e4f586a752ce5c252039312c6c159e7feffb2d17a2a79561be"
+        }
+      },
+      "workspace_sha256": "4188ccb7d9c1daf1126dbdd6d0ab35fab1ea499b6cc3f73e6e763757ea4bed65",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-virology",
+      "title": "Virology",
+      "semantic_role_en": "Viral life cycles and transmission",
+      "native_kind": "multiplane_viral_process_graph",
+      "critical_distinction_en": "A lifecycle model is not a clinical diagnosis or biosafety authorization.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "b028f9108cb9a2c49ff1c8ac82638ec7d35d10840427b1ead2becf059728e1a8"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "45e455094b109af654576146c112a7dbf30766a265b29f44be31710547d40a4d"
+        }
+      },
+      "workspace_sha256": "90a321f315f0374afbb0a623e3a11e15a9d1b7326917b9de9d0d7d8321a8ab00",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-visualarts",
+      "title": "VisualArts",
+      "semantic_role_en": "Visual works and material techniques",
+      "native_kind": "nonlinear_artwork_medium_context_graph",
+      "critical_distinction_en": "An aesthetic classification is not a single authoritative interpretation.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "KEEP_DECLARED_REJECT_AUTO_PROMOTION",
+      "unesco_reason_en": "Visual arts is more specific than broad Art and matches the native focus; do not replace it with a parent category.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": "Art",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "0a9c89ca92907e60f9f59150081e5fc271e3acfa381d0c5b2779c2b5fd143daa"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "3f79162c1f1479a78773667a2cd99bf01984f3453607a0c4b3226eec40871af4"
+        }
+      },
+      "workspace_sha256": "1235fe43a9943d97d1fc1649e62bdaa0b2cecd422032df72e5830d2c297baf87",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-weather",
+      "title": "Weather",
+      "semantic_role_en": "Weather observation and forecast model",
+      "native_kind": "dynamic_atmospheric_state_graph",
+      "critical_distinction_en": "Observed weather and forecast weather must remain distinct.",
+      "prf_decision": "EXPLORE_SECONDARY_NOT_PRIMARY",
+      "prf_reason_en": "Weather includes time-indexed observations, analyses and forecasts, but no evidence was established of operational station-state tracking meeting the PRF-04 template; observation and forecast are separate.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": "PRF-04",
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "fd092ac2646f7dd0a39d8c7636f0c98a93f1381b2cf3e8f775e1d2e80c11ab98"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "a0dd34c6c4e246450456d89cd2a577a5ea6251aa00f3a5e59efcebcd3c8aedf9"
+        }
+      },
+      "workspace_sha256": "c1dd165368a7564a797fe4238719f999bb4fbe46d3be8c3305c737e34f8d6a15",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-work",
+      "title": "Work",
+      "semantic_role_en": "Work activities and competences model",
+      "native_kind": "many_to_many_work_activity_skill_graph",
+      "critical_distinction_en": "A role label is not proof of individual competence.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "REJECT_UNSUPPORTED_SUGGESTION",
+      "unesco_reason_en": "Work activities, skills, roles and employment conditions are not primarily software engineering.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": "Information technology (software)",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "d7f533aa47b8992be23d69bced7d535f53de1fc83ffce105f9a207aa83a9b6c3"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "fa4a0b5f4175e465779c2099cddc9464d4e5c0a1e4beab1d9934516f010d313d"
+        }
+      },
+      "workspace_sha256": "01ace1826718c383e9e5efb8142f7b294afe1f4b5558834a3b4a90ba76533d99",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:kristal-zoology",
+      "title": "Zoology",
+      "semantic_role_en": "Animal taxonomy and adaptations",
+      "native_kind": "lineage_dag_body_plan_adaptation_graph",
+      "critical_distinction_en": "Similar function does not prove common ancestry.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "4cc144f049698df203b16403ec05fa71dd1821860c702e61903fcd1d0efec5a1"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "9be99f577117c49ddb4c9e45d43680f5572dd500ec99b356693c68f434d2e818"
+        }
+      },
+      "workspace_sha256": "e9803e097b52129d2b6dbce8d6ad6adc4415c8d28f2e9ca298ef8a7197203847",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:koa-ecosystem:state",
+      "title": "kOA Ecosystem",
+      "semantic_role_en": "Digital ecosystem federation model",
+      "native_kind": "semantic_graph",
+      "critical_distinction_en": "A semantic connection is not automatic service authorization.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "REJECT_UNSUPPORTED_SUGGESTION",
+      "unesco_reason_en": "The word ecosystem denotes a digital systems and governance map, not environmental sciences.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": "Environmental sciences and engineering",
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "8f1e54d3dfa3a54b89770459919880fc3a77db0b299c1a59fb0e94e86e9fdbb6"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "7ff715b5162013acdb41774baac4835ef0f89021cd6d34c1cf833b2ce574245f"
+        }
+      },
+      "workspace_sha256": "c0c58c7a1df521398357ad5281ac424d3c253fe6bd1f0d05fd8369187b2946bc",
+      "assessment_status": "SOURCE_REVIEW_WITH_VARIANT_MODEL_TERMS",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:koa-sales-pitch",
+      "title": "kOA / Koali Sales Pitch",
+      "semantic_role_en": "Evidence-governed sales narrative",
+      "native_kind": "structured_qa_evidence_state",
+      "critical_distinction_en": "A sales assertion must not be presented as independently proven without evidence.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "76ec917ced6a3fe9d664b85b31487f07ec9463eac0cc4523ed7060be1f400fda"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "08871d999c3113ecc1e22a082dcc32f3dfdc25d512969beac8b2beb1a27fc004"
+        }
+      },
+      "workspace_sha256": "e784d44d018d1c4249e23724efe5bc3a99121245424ffbf331aca55a08f5e78a",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    },
+    {
+      "state_ref": "urn:kristal:state:prime-numbers",
+      "title": "prime-numbers",
+      "semantic_role_en": "Prime-number formal research core",
+      "native_kind": "formal_invariant_bundle_with_operational_procedures",
+      "critical_distinction_en": "A procedure's output is not a proof unless its conditions are established.",
+      "prf_decision": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "prf_reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "unesco_decision": "RETAIN_DECLARED_SUBJECT_MAPPING_PENDING_EXPERT_REVIEW",
+      "unesco_reason_en": "Declared broad subject mapping retained provisionally; no automatic or exact concept-level UNESCO mapping inferred.",
+      "prf_candidate_id": null,
+      "unesco_suggestion_old": null,
+      "source_documents": {
+        "boundary": {
+          "path": "docs/01_SEMANTIC_BOUNDARY.md",
+          "sha256": "ba713d9d7693dbdf8a4728f9a86da95a6a71dcdb73029405c801bdf3e3fd9f41"
+        },
+        "native": {
+          "path": "docs/02_NATIVE_MODEL.md",
+          "sha256": "050f66ebe22c61fbeca8df990f4b75c3eea77821cfd24a48615d1a23a7ddbc06"
+        }
+      },
+      "workspace_sha256": "86b4f6075dd71afd91a2b075652c8f5c38f6c21815005e0ffb8c9a0f08299829",
+      "assessment_status": "SOURCE_REVIEW_DOCUMENTED",
+      "human_approved": false
+    }
+  ]
+}
