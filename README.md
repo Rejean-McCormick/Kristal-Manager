@@ -242,3 +242,5 @@ py -3 -m kristal_manager.unified.cli scan-global --root C:\mycode\Kristal\locals
 ```
 
 Ce parcours produit un ZIP horodaté avec les valeurs présentes et les champs manquants. Il ne remplace pas une validation sémantique et ne touche pas les canons. Voir `docs/13-implementation-vnext/scan-global-champs.md`.
+
+> **Final-system Branch 03 alignment (2026-11-09):** See [the release/distribution/exploration integration note](docs/FINAL_SYSTEM_BRANCH03.md). The seven-owner pipeline is a target with independently gated qualification, permission, packaging and readers. This source snapshot does not authorize public publication or deployment.
