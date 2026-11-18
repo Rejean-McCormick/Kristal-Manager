@@ -79,6 +79,19 @@ def _verify_signature(envelope: dict, pub: str) -> dict:
     return envelope["payload"]
 
 
+def _trusted_key_bytes(encoded: Any) -> bytes:
+    """Reject non-canonical base64 aliases of the same Ed25519 public key."""
+    if not isinstance(encoded, str):
+        raise PublicGateError("C2 trusted public key must be canonical Ed25519 base64")
+    try:
+        raw = base64.b64decode(encoded, validate=True)
+    except (ValueError, base64.binascii.Error) as exc:
+        raise PublicGateError("C2 trusted public key is invalid base64") from exc
+    if len(raw) != 32 or base64.b64encode(raw).decode('ascii') != encoded:
+        raise PublicGateError("C2 trusted public key must be canonical Ed25519 base64")
+    return raw
+
+
 def _strict_fields(obj: Mapping[str,Any], needed: set[str]) -> None:
     if set(obj) != needed:
         raise PublicGateError(f"C2 evidence fields mismatch: missing={sorted(needed-set(obj))}, unexpected={sorted(set(obj)-needed)}")
@@ -92,9 +105,13 @@ def candidate_rows(source: Path, files: list[str]) -> list[dict]:
         raise PublicGateError("C2 candidate must include unique non-empty file paths")
     for name in sorted(files):
         rel=_safe_file(name)
-        p=(resolved/rel).resolve()
-        if not p.is_relative_to(resolved) or not p.is_file() or p.is_symlink():
-            raise PublicGateError(f"Missing, symlinked or escaping candidate file: {rel}")
+        unresolved=resolved/rel
+        # Reject symlinks at every path segment, not just the final leaf.
+        if any(part.is_symlink() for part in [unresolved, *unresolved.parents] if part != resolved and part.is_relative_to(resolved)):
+            raise PublicGateError(f"Symlinked candidate path is not authorized: {rel}")
+        p=unresolved.resolve()
+        if not p.is_relative_to(resolved) or not p.is_file():
+            raise PublicGateError(f"Missing or escaping candidate file: {rel}")
         data=p.read_bytes()
         out.append({"path":rel,"size":len(data),"sha256":sha256(data)})
     return out
@@ -132,6 +149,8 @@ def verify_public_write(*, operation: str, slug: str, state_ref: str, repository
     _strict_fields(trust,{"format","approver_public_key","qualifier_public_key"})
     if trust["format"] != TRUST_FORMAT:
         raise PublicGateError("Unsupported C2 trust format")
+    if _trusted_key_bytes(trust["approver_public_key"]) == _trusted_key_bytes(trust["qualifier_public_key"]):
+        raise PublicGateError("Independent C1 qualification and C2 approval require different trusted keys")
     expected_pin=os.environ.get("KRISTAL_C2_TRUST_PIN", "").strip()
     if not expected_pin or expected_pin != sha256(canonical(trust)):
         raise PublicGateError("C2 trust anchor absent or changed: KRISTAL_C2_TRUST_PIN mismatch")
