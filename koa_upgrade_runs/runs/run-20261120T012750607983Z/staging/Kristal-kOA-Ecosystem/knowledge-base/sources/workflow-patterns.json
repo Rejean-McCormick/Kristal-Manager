@@ -1,0 +1,341 @@
+{
+  "format": "koa.workflow-patterns.v1",
+  "patterns": [
+    {
+      "id": "koa:workflow-pattern:investigate-a-signal",
+      "label": "Investigate a signal",
+      "description": "Move from a symptom, signal, or anomaly to structured understanding.",
+      "utility_refs": [
+        "koa:utility:find-and-understand"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:reconstruct-context-and-provenance",
+      "label": "Reconstruct context and provenance",
+      "description": "Connect sources, history, versions, and relationships so people can see where a belief or claim comes from.",
+      "utility_refs": [
+        "koa:utility:find-and-understand"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:find-the-right-expertise",
+      "label": "Find the right expertise",
+      "description": "Connect a question, need, or project with the relevant people and knowledge.",
+      "utility_refs": [
+        "koa:utility:find-and-understand"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:turn-practice-into-transferable-knowledge",
+      "label": "Turn practice into transferable knowledge",
+      "description": "Capture a situated method and make it shareable, criticizable, and reusable.",
+      "utility_refs": [
+        "koa:utility:learn-and-share"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:connect-learning-practice-and-evidence",
+      "label": "Connect learning, practice, and evidence",
+      "description": "Carry learning through activity, evidence, and demonstrated situated capability.",
+      "utility_refs": [
+        "koa:utility:learn-and-share"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:teach-across-language-or-connectivity-constraints",
+      "label": "Teach across language or connectivity constraints",
+      "description": "Preserve meaning and learning continuity when language, network access, or location changes.",
+      "utility_refs": [
+        "koa:utility:learn-and-share"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:move-an-idea-to-a-prototype",
+      "label": "Move an idea to a prototype",
+      "description": "Connect exploration, design, testing, decisions, and the next operational step.",
+      "utility_refs": [
+        "koa:utility:collaborate-and-create"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:assemble-a-team-around-a-problem",
+      "label": "Assemble a team around a problem",
+      "description": "Identify the required capabilities and form the right collective for a goal.",
+      "utility_refs": [
+        "koa:utility:collaborate-and-create"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:co-create-without-losing-the-why",
+      "label": "Co-create without losing the why",
+      "description": "Keep needs, references, trade-offs, and versions connected throughout collective creation.",
+      "utility_refs": [
+        "koa:utility:collaborate-and-create"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:connect-decision-mandate-and-consequences",
+      "label": "Connect decision, mandate, and consequences",
+      "description": "Preserve why a choice was made through the work and outcomes it triggers.",
+      "utility_refs": [
+        "koa:utility:choose-and-govern"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:compare-and-prioritize-explicitly",
+      "label": "Compare and prioritize explicitly",
+      "description": "Place options, criteria, evidence, and constraints side by side before choosing.",
+      "utility_refs": [
+        "koa:utility:choose-and-govern"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:deliberate-across-perspectives",
+      "label": "Deliberate across perspectives",
+      "description": "Keep contributions, disagreements, expertise, and legitimacy visible before a collective decision.",
+      "utility_refs": [
+        "koa:utility:choose-and-govern"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:deliver-work-with-its-context",
+      "label": "Deliver work with its context",
+      "description": "Give the responsible person the task, the why, the history, the constraints, and the expected evidence of completion.",
+      "utility_refs": [
+        "koa:utility:organize-and-act"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:coordinate-roles-and-dependencies",
+      "label": "Coordinate roles and dependencies",
+      "description": "Maintain a shared work state across people, teams, resources, and constraints.",
+      "utility_refs": [
+        "koa:utility:organize-and-act"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:carry-a-plan-through-execution",
+      "label": "Carry a plan through execution",
+      "description": "Turn an objective or project into tracked work and then into a verified result.",
+      "utility_refs": [
+        "koa:utility:organize-and-act"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:turn-an-incident-into-coordinated-response",
+      "label": "Turn an incident into coordinated response",
+      "description": "Move quickly from signal to qualification, responsibilities, and action.",
+      "utility_refs": [
+        "koa:utility:respond-and-coordinate"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:keep-working-in-field-offline-mode",
+      "label": "Keep working in field/offline mode",
+      "description": "Keep knowledge, roles, and work local, then synchronize without inventing success.",
+      "utility_refs": [
+        "koa:utility:respond-and-coordinate"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:maintain-a-changing-shared-situation",
+      "label": "Maintain a changing shared situation",
+      "description": "Prevent teams from acting on different or outdated versions of reality.",
+      "utility_refs": [
+        "koa:utility:respond-and-coordinate"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:turn-action-into-a-lesson",
+      "label": "Turn action into a lesson",
+      "description": "Connect results, decisions, and causes into usable lessons learned.",
+      "utility_refs": [
+        "koa:utility:remember-and-improve"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:see-patterns-over-time",
+      "label": "See patterns over time",
+      "description": "Compare cases, seasons, incidents, or measures to detect recurrence and change.",
+      "utility_refs": [
+        "koa:utility:remember-and-improve"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:preserve-capability-beyond-individuals",
+      "label": "Preserve capability beyond individuals",
+      "description": "Make knowledge, method, and evidence reproducible when people change roles or leave.",
+      "utility_refs": [
+        "koa:utility:remember-and-improve"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:explain-publicly-without-severing-sources",
+      "label": "Explain publicly without severing sources",
+      "description": "Make knowledge or decisions understandable while retaining access to context and provenance.",
+      "utility_refs": [
+        "koa:utility:disseminate-and-connect-to-the-public"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:turn-knowledge-into-media-or-learning",
+      "label": "Turn knowledge into media or learning",
+      "description": "Render a knowledge base as courses, video, audio, guides, libraries, or channels.",
+      "utility_refs": [
+        "koa:utility:disseminate-and-connect-to-the-public"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    },
+    {
+      "id": "koa:workflow-pattern:keep-media-aligned-with-knowledge",
+      "label": "Keep media aligned with knowledge",
+      "description": "Connect published content, versions, and sources so it can be corrected, superseded, or revised.",
+      "utility_refs": [
+        "koa:utility:disseminate-and-connect-to-the-public"
+      ],
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced",
+      "runtime_evidence": "editorial_pattern_not_deployment_proof"
+    }
+  ]
+}

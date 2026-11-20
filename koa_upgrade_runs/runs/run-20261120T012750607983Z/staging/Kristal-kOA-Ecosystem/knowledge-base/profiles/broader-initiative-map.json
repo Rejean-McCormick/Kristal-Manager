@@ -1,0 +1,18 @@
+{
+  "format": "koa.reader-profile.v2",
+  "profile_id": "koa:reader:broader-initiative-map",
+  "name": "kOA élargi",
+  "description": "Sépare core, produits, consommateurs, applications périphériques, domaines et horizon élargi.",
+  "source_state": "knowledge-base/koa-ecosystem.kristal-state.json",
+  "projection": {
+    "x_axis": "scope",
+    "y_axis": "component",
+    "predicate": "koa:part_of"
+  },
+  "policy": {
+    "preserve_assertion_status": true,
+    "preserve_relationship_role": true,
+    "show_claimed_as_claimed": true,
+    "do_not_infer_authority": true
+  }
+}

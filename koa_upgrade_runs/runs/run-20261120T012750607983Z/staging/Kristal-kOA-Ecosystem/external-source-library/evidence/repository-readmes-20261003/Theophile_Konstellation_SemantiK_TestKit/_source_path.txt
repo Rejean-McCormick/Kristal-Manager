@@ -1,0 +1,2 @@
+repo=Theophile_Konstellation_SemantiK_TestKit
+path=C:\mycode\Konstellation\Theophile_Konstellation_SemantiK_TestKit

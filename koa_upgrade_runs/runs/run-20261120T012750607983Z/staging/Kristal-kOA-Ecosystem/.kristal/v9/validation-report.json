@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "standard_target": "9.0.0-draft.1",
+  "kristal_ref": "Kristal-kOA-Ecosystem",
+  "content_version": "0.6.3",
+  "assertions_preserved": 7929,
+  "relations_preserved": 2523,
+  "referents": 718,
+  "components": 117,
+  "v6_state_id": "sha256:49a1ae35b5badab32a7aac6e5e22ae598cf3faacd53db5b955697028f0a1fd39",
+  "v9_state_commitment": "sha256:c5cea1280163558bc93a3126138628df918f919482ab9278c4fb7f32c09d8322",
+  "logical_artifacts": 2,
+  "source_input_components": 18,
+  "native_validator": "PASS",
+  "fixed_timestamp_rebuild": "PASS",
+  "v8_portable_state_unchanged": "PASS",
+  "manifests": "PASS"
+}

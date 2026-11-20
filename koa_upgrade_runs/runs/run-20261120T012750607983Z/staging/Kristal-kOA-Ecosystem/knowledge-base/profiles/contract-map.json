@@ -1,0 +1,18 @@
+{
+  "format": "koa.reader-profile.v2",
+  "profile_id": "koa:reader:contract-map",
+  "name": "Contrats → frontières",
+  "description": "Contrats versionnés et composants/artifacts liés.",
+  "source_state": "knowledge-base/koa-ecosystem.kristal-state.json",
+  "projection": {
+    "x_axis": "contract",
+    "y_axis": "component/artifact",
+    "predicate": "koa:conforms_to"
+  },
+  "policy": {
+    "preserve_assertion_status": true,
+    "preserve_relationship_role": true,
+    "show_claimed_as_claimed": true,
+    "do_not_infer_authority": true
+  }
+}

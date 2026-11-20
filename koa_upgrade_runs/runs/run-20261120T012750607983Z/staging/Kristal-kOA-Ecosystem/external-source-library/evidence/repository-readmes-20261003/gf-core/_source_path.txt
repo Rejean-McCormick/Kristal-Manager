@@ -1,0 +1,2 @@
+repo=gf-core
+path=C:\mycode\Grammatical_Framework\gf-core

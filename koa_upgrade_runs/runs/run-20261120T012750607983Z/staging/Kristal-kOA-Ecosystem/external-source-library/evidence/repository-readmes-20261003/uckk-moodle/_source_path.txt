@@ -1,0 +1,2 @@
+repo=uckk-moodle
+path=C:\mycode\UCKK\uckk-moodle

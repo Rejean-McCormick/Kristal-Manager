@@ -1,0 +1,219 @@
+{
+  "schema_version": "9.0",
+  "artifact_type": "kristal_logical_artifact",
+  "artifact_id": "urn:kristal:koa-ecosystem:artifact:editorial-sources",
+  "logical_contract": {
+    "id": "koa-ecosystem.editorial-source-bundle",
+    "version": "1.0"
+  },
+  "payload": {
+    "model": "native_json_source_bundle",
+    "components": [
+      {
+        "component_id": "knowledge-base/sources/artifacts.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:8431f9f7f80ad4e208cd39e8f1d474dd435ac35ad908b79c9a9973df6c446224"
+        },
+        "source_contract": {
+          "artifact_type": "koa.artifacts.v3",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/capabilities.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:607d413a7aa0646d4dfb4f304e993ab3267320a972c8dc09238f59fe0c3aecad"
+        },
+        "source_contract": {
+          "artifact_type": "koa.capabilities.v4",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/components.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:cf98589da86a95183940a528fa814d4fa8c7e3a67828c4ab51b0149ff4506637"
+        },
+        "source_contract": {
+          "artifact_type": "koa.component-map.v5",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/contracts.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:4464d3eb3cacbd67f54073eef23e40c1bf9529bf47bf0b697ebfad0c6f35cd2f"
+        },
+        "source_contract": {
+          "artifact_type": "koa.contracts.v3",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/domains.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:dd7728e01e8b586792590ec3500b0467851fbac78d5941256cc73adb4433e26e"
+        },
+        "source_contract": {
+          "artifact_type": "koa.domains.v1",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/external-references.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:f5fc7962f130b77023ce0ba68bd4f4ba455a026e4629a0307dd9b93e36643e5a"
+        },
+        "source_contract": {
+          "artifact_type": "koa.external-references.v4",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/invariants.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:5d60e4d4cc62613abb20d8ecfd6b36bb3981bc11d8b12f5c41c16e8ff4ac63f8"
+        },
+        "source_contract": {
+          "artifact_type": "koa.invariants.v1",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/lifecycles.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:5988895aadeaf8732fc64ea7f28620c9b211ee49bb5ef79bada67c91c44a6c3f"
+        },
+        "source_contract": {
+          "artifact_type": "koa.lifecycles.v3",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/needs.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:4782c9304cb837cdf7151d038d813ffae2815e2933355e741a2d7defc7295e5a"
+        },
+        "source_contract": {
+          "artifact_type": "koa.needs.v3",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/operating-functions.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:c9a0017d758b90e0a4afab0f5f9188b43b7505a1db3899eb81f0cd01c9fcb2f2"
+        },
+        "source_contract": {
+          "artifact_type": "koa.operating-functions.v1",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/problem-families.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:4ad77770026cd41d1330f812e5cd22e7b8a7be8b95476b2dc4dd1bec4ee1307f"
+        },
+        "source_contract": {
+          "artifact_type": "koa.problem-families.v1",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/relations.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:14b6272ccfcb965927d10f4f049f14768dbb1e1040a93b5bb79bc26560d0bed6"
+        },
+        "source_contract": {
+          "artifact_type": "koa.relation-map.v5",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/repositories.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:c28ea912bfab8692827d564b31c4261daf257ba8bb95ab1539a83726ba6fdb17"
+        },
+        "source_contract": {
+          "artifact_type": "koa.repository-map.v4",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/scenario-archetypes.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:0aeca289292e23bd0ddebdd4969616b67fdac072d863db92172bb2c9bf6e0976"
+        },
+        "source_contract": {
+          "artifact_type": "koa.scenario-archetypes.v1",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/scenario-mosaic.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:c685e8bc0ca3ae7e9b7671a45ad4792268a8fe9971fe9570b6ca539167652aac"
+        },
+        "source_contract": {
+          "artifact_type": "koa.scenario-mosaic.v1",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/source-registry/source-registry.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:7c4fc9c122d9e518a4d39e57c97dbea9b91ba30ecc072d7268ebf8bb503d651e"
+        },
+        "source_contract": {
+          "artifact_type": "koa.source-registry.v4",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/utilities.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:b8edb39f3f1e995f915d6c8a05f14ba7867e7a044e8d10ac31b7dbee9968e71b"
+        },
+        "source_contract": {
+          "artifact_type": "koa.utilities.v1",
+          "schema_version": "unspecified"
+        }
+      },
+      {
+        "component_id": "knowledge-base/sources/workflow-patterns.json",
+        "logical_content": {
+          "profile": "kristal.component/jcs-sha256-v1",
+          "digest": "sha256:c673dde980e9ffda51a6432fcf968d161eefa2878fa7a853a6a683675ed6d78b"
+        },
+        "source_contract": {
+          "artifact_type": "koa.workflow-patterns.v1",
+          "schema_version": "unspecified"
+        }
+      }
+    ]
+  },
+  "logical_commitment": {
+    "profile": "kristal.logical/jcs-sha256-v1",
+    "digest": "sha256:125617b4788b6df252ed347b10e5d5f21e3cc46b20ea2ad822098b7e9576acaf"
+  },
+  "scope": {
+    "domain": "koa-digital-ecosystem"
+  }
+}

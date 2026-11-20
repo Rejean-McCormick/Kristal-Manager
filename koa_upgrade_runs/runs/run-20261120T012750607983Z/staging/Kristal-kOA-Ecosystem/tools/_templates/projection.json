@@ -1,0 +1,23 @@
+{
+  "format": "kristal.projection-recipe/2.0.0",
+  "slug": "__SLUG__",
+  "subject_ref": "__SUBJECT_REF__",
+  "orientation": {
+    "primary_axis": "__PRIMARY_AXIS__",
+    "secondary_axis": null
+  },
+  "context": {},
+  "selection_policy": {
+    "mode": "explicit_or_query_defined"
+  },
+  "lineage": {
+    "canonical_inputs": []
+  },
+  "projection_contract": {
+    "portable_contract": "kristal_state/6.0",
+    "relationship_to_v9_canon": "derived_projection"
+  },
+  "materialization": {
+    "target_path": "projections/materialized/__SLUG__.kristal-state.json"
+  }
+}

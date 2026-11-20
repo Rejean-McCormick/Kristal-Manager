@@ -1,0 +1,59 @@
+# Colin Row — Repo documentaire de production v3
+
+## Statut
+
+Cette version est la **documentation consolidée et optimisée** du livre *Colin Row*. Elle réunit les versions longues récentes, les fiches spécialisées et les versions antérieures utiles, mais ne traite pas toutes les anciennes formulations comme du canon.
+
+Le repo distingue quatre statuts :
+
+- **CANON** : décision de travail à respecter dans les nouveaux chapitres ;
+- **SOURCE FORTE** : matière existante à reprendre ou adapter ;
+- **RÉSERVE** : idée intéressante, mais trop transformatrice ou insuffisamment alignée pour être intégrée sans décision d’auteur ;
+- **OBSOLÈTE** : branche à ne plus réintroduire dans le manuscrit actuel.
+
+## Principe directeur
+
+Le roman doit fonctionner d’abord comme **une œuvre littéraire carcérale sur la parole, la responsabilité, la mémoire et la transmission**. KOA/Konnaxion apparaît ensuite comme la forme collective que prennent des besoins déjà vécus.
+
+La mécanique fondamentale est :
+
+**vie vécue → dysfonctionnement → réponse fautive ou limite → besoin formulable → fonction nécessaire → objection → nom éventuel.**
+
+Le lecteur doit pouvoir pressentir la fonction avant que le groupe lui donne un nom.
+
+## Canon de travail v3
+
+1. Colin arrive avec une **intuition de coopération internationale** et un travail/projet confidentiel, mais pas avec l’écosystème Konnaxion déjà baptisé.
+2. Son arrestation suit la branche **“motif confidentiel”** : surveillance soupçonnée, demande de recours, humiliation, coup au policier, responsabilité assumée. La surveillance n’est jamais confirmée comme conspiration certaine.
+3. Matteo est un ancien **soudeur**, sobre en prison, protecteur; il donne à Colin le premier carnet. Son expérience pratique peut inclure le bricolage de machinerie agricole.
+4. Nadia dirige l’APR avec la méthode **Faits / Pièces / Effets** et l’autographie. Colin est ensuite **banni de l’APR**, mais continue d’aider ailleurs par questions et structure, jamais en écrivant pour les autres.
+5. KOA est d’abord un **geste / code / méthode de groupe**, pas une plateforme.
+6. Konnaxion est le **nom tardif de la famille d’idées** et du lien entre les modules; le baptême doit rester collectif.
+7. Kreative repose non seulement sur la visibilité des artistes, mais sur l’idée que **l’art est une forme de connaissance et de mémoire sensible**.
+8. Ethikos doit naître d’un **désaccord moral réel** avant d’être nommé comme outil.
+9. SmartVote reste une **hypothèse disputée**, jamais une vérité politique acquise.
+10. Kristal Farms est une **synthèse collective**, pas la solution personnelle d’un détenu.
+11. Le carnet sort à la fin; le succès extérieur n’est pas garanti.
+
+## Architecture
+
+- `core/` — canon, bible, personnages, voix, motifs, continuité, décisions, moteur de chapitre.
+- `parts/` — fonction et transformation des trois mouvements.
+- `chapter_briefs/` — briefs des 19 chapitres.
+- `reference/` — alignement des versions, lexique, récupération des sources et anciennes versions.
+- `material/` — réservoir non canon : fragments, scènes, motifs, variantes, legacy.
+- `manuscript/` — futur texte canonique.
+- `working/` — essais, coupes, restructurations.
+
+## Ordre de consultation
+
+Pour écrire un chapitre :
+
+1. `core/00_CANONICAL_STATE.md`
+2. `core/03_VOICE_AND_STYLE.md`
+3. le brief du chapitre
+4. `core/06_CONTINUITY_MAP.md`
+5. `core/09_CHAINES_DE_NECESSITE.md`
+6. seulement ensuite les matériaux de référence utiles
+
+La documentation doit connaître plus de choses que le roman. Le manuscrit ne doit jamais essayer de tout expliquer.

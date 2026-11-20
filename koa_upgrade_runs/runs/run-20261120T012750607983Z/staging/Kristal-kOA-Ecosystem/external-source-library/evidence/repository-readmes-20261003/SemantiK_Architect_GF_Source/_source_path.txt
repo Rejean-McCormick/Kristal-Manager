@@ -1,0 +1,2 @@
+repo=SemantiK_Architect_GF_Source
+path=C:\mycode\Grammatical_Framework\SemantiK_Architect_GF_Source

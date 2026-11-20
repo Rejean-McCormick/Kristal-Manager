@@ -1,0 +1,101 @@
+{
+  "format": "koa.doc-server.selection-categories.v1",
+  "categories": [
+    {
+      "id": "koa:docscope:encyclopedie",
+      "label": "Encyclopédie",
+      "kind": "doc_selection_category",
+      "scope": "doc_server",
+      "description": "Catégorie de sélection documentaire, pas un jalon de production.",
+      "default_selected": false,
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:owner-docserver-intent-20261119"
+      ]
+    },
+    {
+      "id": "koa:docscope:kristal",
+      "label": "Kristal",
+      "kind": "doc_selection_category",
+      "scope": "doc_server",
+      "description": "Catégorie de sélection documentaire, pas un jalon de production.",
+      "default_selected": false,
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:owner-docserver-intent-20261119"
+      ]
+    },
+    {
+      "id": "koa:docscope:analyses",
+      "label": "Analyse et diagnostics",
+      "kind": "doc_selection_category",
+      "scope": "doc_server",
+      "description": "Catégorie de sélection documentaire, pas un jalon de production.",
+      "default_selected": false,
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:owner-docserver-intent-20261119"
+      ]
+    },
+    {
+      "id": "koa:docscope:ecole",
+      "label": "École",
+      "kind": "doc_selection_category",
+      "scope": "doc_server",
+      "description": "Catégorie de sélection documentaire, pas un jalon de production.",
+      "default_selected": false,
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:owner-docserver-intent-20261119"
+      ]
+    },
+    {
+      "id": "koa:docscope:ecole-pastorale",
+      "label": "École — Pastorale",
+      "kind": "doc_selection_category",
+      "scope": "doc_server",
+      "description": "Catégorie de sélection documentaire, pas un jalon de production.",
+      "default_selected": false,
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:owner-docserver-intent-20261119"
+      ]
+    },
+    {
+      "id": "koa:docscope:uckk",
+      "label": "Univers-Cité King Klown",
+      "kind": "doc_selection_category",
+      "scope": "doc_server",
+      "description": "Catégorie de sélection documentaire, pas un jalon de production.",
+      "default_selected": false,
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:owner-docserver-intent-20261119"
+      ]
+    },
+    {
+      "id": "koa:docscope:coordination",
+      "label": "Coordination et documentation kOA",
+      "kind": "doc_selection_category",
+      "scope": "doc_server",
+      "description": "Catégorie de sélection documentaire, pas un jalon de production.",
+      "default_selected": false,
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:owner-docserver-intent-20261119"
+      ]
+    },
+    {
+      "id": "koa:docscope:portefeuille-c0",
+      "label": "Portefeuille officiel kOA",
+      "kind": "doc_selection_category",
+      "scope": "doc_server",
+      "description": "Catégorie de sélection documentaire, pas un jalon de production.",
+      "default_selected": false,
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:smartdump-c0-20261119"
+      ]
+    }
+  ]
+}

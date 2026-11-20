@@ -1,0 +1,95 @@
+{
+  "format": "koa.upgrade.validation.v1",
+  "campaign": "run-20261120T012701302536Z",
+  "timestamp": "20261120T012708902752Z",
+  "native_ok": true,
+  "manager_code": 3,
+  "manager_assessment": {
+    "format": "kristal.manager-operational-assessment/0.2-candidate",
+    "generated_at": "2026-11-20T01:27:08.883763Z",
+    "workspace": "C:\\mycode\\Kristal\\Kristal-Manager\\koa_upgrade_runs\\runs\\run-20261120T012701302536Z\\staging\\Kristal-kOA-Ecosystem",
+    "title": "kOA Ecosystem",
+    "state_ref": "urn:kristal:koa-ecosystem:state",
+    "framework_target": "10.0.0-draft.3.2",
+    "hosting_baseline": "kristal.hosting/10.0",
+    "local_readiness": "READY",
+    "structural_status": "PRESENT",
+    "discovery": {
+      "status": "stale",
+      "integrity": "mismatch",
+      "format": "kristal.discovery/1.0",
+      "classification": {
+        "arketype_version": "1.6.0",
+        "primary_archetype": "ARK-02",
+        "primary_usage": "PRF-20",
+        "organization": "unknown"
+      },
+      "reader_profile": "kristal.reader/generic-v1",
+      "size_class": "tiny",
+      "tracked_local_bytes": 10521,
+      "measure_status": "partial",
+      "issues": [
+        "source fingerprint differs from current registered sources"
+      ]
+    },
+    "framework_state_verification": {
+      "status": "NOT_EVALUATED",
+      "reason": "Framework reference not supplied; reported commitments are unverified"
+    },
+    "operational_result": "ATTENTION_REQUIRED",
+    "qualification": "NOT_ESTABLISHED",
+    "publication": "NOT_ESTABLISHED",
+    "activation": "NOT_ESTABLISHED",
+    "reader_authorization": "NOT_ESTABLISHED",
+    "hosting_verification": "NOT_ESTABLISHED",
+    "issues": [
+      {
+        "scope": "discovery",
+        "severity": "warning",
+        "code": "DISCOVERY_STALE",
+        "message": "source fingerprint differs from current registered sources"
+      }
+    ],
+    "limitations": [
+      "Local operational assessment, not Framework release conformance or C1/C2/C3 evidence.",
+      "Registered-source verification does not cover files absent from the Kit inventory.",
+      "A verified v9 state commitment is distinct from v10 hosting/publication.",
+      "Reader hints do not grant access or justify execution."
+    ]
+  },
+  "staging_files_sha256": "2f82a165130de550fc33f89129e20cba9ebf9595de1673eca1a6878bf5646c53",
+  "steps": [
+    {
+      "command": [
+        "C:\\Users\\rejea\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "knowledge-base/tools/build.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"version\": \"0.7.1\",\n  \"assertions\": 9459,\n  \"relations\": 2671,\n  \"state_hash\": \"d0a6a9212e9180a9f16dd2f0045dfa8366cbf1209a493f4e0d2282273af164cb\",\n  \"counts\": {\n    \"assertions\": 9459,\n    \"component\": 133,\n    \"capability\": 88,\n    \"need\": 33,\n    \"operating_function\": 11,\n    \"invariant\": 17,\n    \"domain\": 10,\n    \"contract\": 20,\n    \"artifact\": 64,\n    \"lifecycle\": 12,\n    \"repository\": 193,\n    \"external_reference\": 38,\n    \"utility\": 8,\n    \"workflow_pattern\": 24,\n    \"problem_family\": 8,\n    \"scenario_archetype\": 36,\n    \"scenario_mosaic\": 120,\n    \"doc_selection_category\": 8,\n    \"diagnostic_observation\": 1,\n    \"relations\": 2671\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\rejea\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "knowledge-base/tools/validate.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"assertions\": 9459,\n  \"relations\": 2671,\n  \"referents\": 824,\n  \"components\": 133,\n  \"utilities\": 8,\n  \"workflow_patterns\": 24,\n  \"scenario_archetypes\": 36,\n  \"scenario_mosaic\": 120,\n  \"errors\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\rejea\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-m",
+        "kristal_manager",
+        "verify",
+        "C:\\mycode\\Kristal\\Kristal-Manager\\koa_upgrade_runs\\runs\\run-20261120T012701302536Z\\staging\\Kristal-kOA-Ecosystem"
+      ],
+      "returncode": 3,
+      "stdout": "{\n  \"format\": \"kristal.manager-operational-assessment/0.2-candidate\",\n  \"generated_at\": \"2026-11-20T01:27:08.883763Z\",\n  \"workspace\": \"C:\\\\mycode\\\\Kristal\\\\Kristal-Manager\\\\koa_upgrade_runs\\\\runs\\\\run-20261120T012701302536Z\\\\staging\\\\Kristal-kOA-Ecosystem\",\n  \"title\": \"kOA Ecosystem\",\n  \"state_ref\": \"urn:kristal:koa-ecosystem:state\",\n  \"framework_target\": \"10.0.0-draft.3.2\",\n  \"hosting_baseline\": \"kristal.hosting/10.0\",\n  \"local_readiness\": \"READY\",\n  \"structural_status\": \"PRESENT\",\n  \"discovery\": {\n    \"status\": \"stale\",\n    \"integrity\": \"mismatch\",\n    \"format\": \"kristal.discovery/1.0\",\n    \"classification\": {\n      \"arketype_version\": \"1.6.0\",\n      \"primary_archetype\": \"ARK-02\",\n      \"primary_usage\": \"PRF-20\",\n      \"organization\": \"unknown\"\n    },\n    \"reader_profile\": \"kristal.reader/generic-v1\",\n    \"size_class\": \"tiny\",\n    \"tracked_local_bytes\": 10521,\n    \"measure_status\": \"partial\",\n    \"issues\": [\n      \"source fingerprint differs from current registered sources\"\n    ]\n  },\n  \"framework_state_verification\": {\n    \"status\": \"NOT_EVALUATED\",\n    \"reason\": \"Framework reference not supplied; reported commitments are unverified\"\n  },\n  \"operational_result\": \"ATTENTION_REQUIRED\",\n  \"qualification\": \"NOT_ESTABLISHED\",\n  \"publication\": \"NOT_ESTABLISHED\",\n  \"activation\": \"NOT_ESTABLISHED\",\n  \"reader_authorization\": \"NOT_ESTABLISHED\",\n  \"hosting_verification\": \"NOT_ESTABLISHED\",\n  \"issues\": [\n    {\n      \"scope\": \"discovery\",\n      \"severity\": \"warning\",\n      \"code\": \"DISCOVERY_STALE\",\n      \"message\": \"source fingerprint differs from current registered sources\"\n    }\n  ],\n  \"limitations\": [\n    \"Local operational assessment, not Framework release conformance or C1/C2/C3 evidence.\",\n    \"Registered-source verification does not cover files absent from the Kit inventory.\",\n    \"A verified v9 state commitment is distinct from v10 hosting/publication.\",\n    \"Reader hints do not grant access or justify execution.\"\n  ]\n}\n",
+      "stderr": ""
+    }
+  ],
+  "qualification": "NOT_ESTABLISHED",
+  "warning": "Manager checks do not certify maturity, v11 migration or production."
+}

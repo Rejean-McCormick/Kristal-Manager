@@ -1,0 +1,2 @@
+repo=KonnaxionDiag
+path=C:\mycode\Konnaxion\KonnaxionDiag

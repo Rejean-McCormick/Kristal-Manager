@@ -1,0 +1,2 @@
+repo=SenTient
+path=C:\mycode\SenTient\SenTient

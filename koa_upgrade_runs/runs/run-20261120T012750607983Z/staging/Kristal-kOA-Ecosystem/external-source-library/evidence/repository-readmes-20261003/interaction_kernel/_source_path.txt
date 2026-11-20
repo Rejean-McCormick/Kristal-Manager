@@ -1,0 +1,2 @@
+repo=interaction_kernel
+path=C:\mycode\Interaction-Kernel\interaction_kernel

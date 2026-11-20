@@ -1,0 +1,55 @@
+{
+  "schema_version": "9.0",
+  "artifact_type": "kristal_derivation",
+  "derivation_id": "urn:kristal:koa-ecosystem:derivation:v9-adoption",
+  "transform": {
+    "id": "koa-ecosystem.v9-adoption",
+    "version": "1.0",
+    "digest": "sha256:3dcaaad49dbda53009a0facd3a155ed9ad528e0da33458296d77e65e4038f877"
+  },
+  "inputs": [
+    {
+      "artifact_id": "urn:kristal:koa-ecosystem:artifact:editorial-sources",
+      "logical_contract": {
+        "id": "koa-ecosystem.editorial-source-bundle",
+        "version": "1.0"
+      },
+      "logical_commitment": {
+        "profile": "kristal.logical/jcs-sha256-v1",
+        "digest": "sha256:125617b4788b6df252ed347b10e5d5f21e3cc46b20ea2ad822098b7e9576acaf"
+      }
+    }
+  ],
+  "parameters": {
+    "standard_target": "9.0.0-draft.1",
+    "canonical_source": "knowledge-base/corpus/koa-ecosystem.kristal-state.json",
+    "registry_source": null,
+    "semantic_rewrite": false,
+    "mode": "rebuild_from_declared_sources",
+    "build_timestamp": "2026-10-03T18:26:02Z",
+    "build_timestamp_binding": "KRISTAL_BUILD_TIMESTAMP",
+    "canonicalization_profile": "kristal.v6:jcs-rfc8785"
+  },
+  "toolchain": {
+    "name": "kristal-v9-series-migrator",
+    "version": "1.0"
+  },
+  "outputs": [
+    {
+      "artifact_id": "urn:kristal:koa-ecosystem:artifact:canonical-state",
+      "logical_contract": {
+        "id": "koa-ecosystem.canonical-knowledge-state",
+        "version": "1.0"
+      },
+      "logical_commitment": {
+        "profile": "kristal.logical/jcs-sha256-v1",
+        "digest": "sha256:8d5195171697739485ada83e69b8fae83fe95cda155d5181a8d61dff4cc40a74"
+      }
+    }
+  ],
+  "determinism": {
+    "claimed": true,
+    "profile": "kristal.deterministic-build/1"
+  },
+  "created_at": "2026-10-06T17:21:00-04:00"
+}

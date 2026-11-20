@@ -1,0 +1,58 @@
+{
+  "format": "kristal.discovery/1.0",
+  "state_ref": "urn:kristal:koa-ecosystem:state",
+  "classification": {
+    "primary_archetype": "ARK-02",
+    "arketype_version": "1.6.0",
+    "organization": "unknown",
+    "supporting_archetypes": [
+      "ARK-01"
+    ],
+    "classification_source": "source_assisted_mapping_2026-10-30__non_authority",
+    "verification_status": "AUTOMATED_CLASSIFICATION_REVIEW_REQUIRED",
+    "structural_profile_version": "arketype.structural-profiles/0.1",
+    "unesco_thesaurus": {
+      "vocabulary": "UNESCO Thesaurus",
+      "source": "Manager pinned UNESCO profile and local native-model summary",
+      "microthesauri": [
+        {
+          "code": "5.15",
+          "uri": "http://vocabularies.unesco.org/thesaurus/mt5.15",
+          "label_en": "Information management",
+          "domain": "5"
+        },
+        {
+          "code": "6.75",
+          "uri": "http://vocabularies.unesco.org/thesaurus/mt6.75",
+          "label_en": "Organization and management",
+          "domain": "6"
+        }
+      ],
+      "mapping_kind": "project_subject_level_not_concept_exact_match",
+      "verification_status": "LOCAL_CATALOG_MAPPED_NOT_CANONICAL"
+    },
+    "semantic_mapping_ref": "semantic-mapping/semantic-map.json",
+    "primary_usage": "PRF-20"
+  },
+  "data_layout": {
+    "state_architecture": "kristal.state/9.0",
+    "native_kind": "semantic_graph",
+    "organization": "unknown",
+    "materialization_profiles": [
+      "kristal.materialization/native-blob/1",
+      "kristal.materialization/native-json-bundle/1"
+    ],
+    "inventory_ref": "derived/reader-inventory.json"
+  },
+  "reader": {
+    "profile": "kristal.reader/generic-v1",
+    "hints_ref": "derived/reader-profile.json"
+  },
+  "size": {
+    "class": "tiny",
+    "tracked_local_bytes": 10521,
+    "completeness": "partial"
+  },
+  "source_fingerprint": "sha256:de03e7b842f46a4b4fed0dff3c11b44612cbdb8ccd52d9f14b02c80557beec93",
+  "authority": "noncanonical_derived_metadata_not_access_or_publication_authority"
+}

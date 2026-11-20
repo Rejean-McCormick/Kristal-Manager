@@ -1,0 +1,63 @@
+{
+  "profile": "kristal-icon-auto-scan.record/1.1",
+  "generated_at": "2026-10-04T20:33:28.522Z",
+  "kristal_id": "Kristal-kOA-Ecosystem",
+  "status": "generated",
+  "was_in_registry": true,
+  "registry_profile_complete_before": true,
+  "state_file": ".kristal/v8/portable-state.kristal-state.json",
+  "state_schema": "6.0",
+  "assertions": 7929,
+  "sources": 142,
+  "file_count": 272,
+  "inference": {
+    "nature": {
+      "value": "TWN",
+      "confidence": 1,
+      "evidence": [
+        "explicit-metadata"
+      ]
+    },
+    "maturity": {
+      "value": 3,
+      "confidence": 1,
+      "evidence": [
+        "desktop-explicit"
+      ]
+    },
+    "domains": [
+      {
+        "code": "06",
+        "confidence": 1,
+        "evidence": [
+          "partial-profile-explicit-isced-normalized"
+        ]
+      },
+      {
+        "code": "04",
+        "confidence": 1,
+        "evidence": [
+          "partial-profile-explicit-isced-normalized"
+        ]
+      }
+    ]
+  },
+  "result": {
+    "nature": "TWN",
+    "maturity": 3,
+    "domains": [
+      {
+        "code": "06",
+        "name": "Technologies de l’information et de la communication",
+        "color": "#4F46E5"
+      },
+      {
+        "code": "04",
+        "name": "Commerce, administration et droit",
+        "color": "#B85C5C"
+      }
+    ],
+    "filename": "KR-TWN-06-04-M3.ico",
+    "confidence": 1
+  }
+}

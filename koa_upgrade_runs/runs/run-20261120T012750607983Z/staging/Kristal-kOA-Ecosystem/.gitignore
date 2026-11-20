@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.zip
+.DS_Store
+desktop.ini
+build/*
+!build/.gitkeep
+runtime/*
+!runtime/.gitkeep

@@ -1,0 +1,3 @@
+Parsed shortcut target from MathChallenges snapshot
+Target: C:\mycode\Kristal\Kristal-Kollection\Kristal-Math
+Original .lnk SHA-256: e89487d9ca439bd4496732c8785ef44477eaf39e5407dcda075aeeeb13c624f1

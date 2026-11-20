@@ -1,0 +1,53 @@
+{
+  "format": "kristal.authoring-state-index/2.0.0",
+  "canonical_artifacts": [
+    {
+      "artifact_id": "urn:kristal:koa-ecosystem:artifact:canonical-state",
+      "path": "knowledge-base/corpus/koa-ecosystem.kristal-state.json",
+      "logical_contract": {
+        "id": "koa-ecosystem.canonical-knowledge-state",
+        "version": "1.0"
+      },
+      "commitment": {
+        "mode": "precomputed",
+        "profile": "kristal.logical/jcs-sha256-v1",
+        "digest": "sha256:8d5195171697739485ada83e69b8fae83fe95cda155d5181a8d61dff4cc40a74"
+      },
+      "scope": {
+        "domain": "koa-digital-ecosystem"
+      },
+      "extensions": {
+        "legacy_contract": {
+          "artifact_type": "kristal_state",
+          "schema_version": "6.0"
+        },
+        "legacy_state_id": "sha256:49a1ae35b5badab32a7aac6e5e22ae598cf3faacd53db5b955697028f0a1fd39",
+        "migration_note": "Registered as precomputed to preserve the existing v9 Logical Commitment without wrapping or rewriting the v6 native state."
+      }
+    }
+  ],
+  "external_references": [],
+  "derived_artifacts": [
+    {
+      "path": "knowledge-base/corpus/index.json",
+      "role": "query_index"
+    },
+    {
+      "path": ".kristal/v8",
+      "role": "legacy_read_model"
+    },
+    {
+      "path": "views",
+      "role": "generated_views"
+    },
+    {
+      "path": ".kristal/v9",
+      "role": "legacy_v9_compatibility_envelope"
+    },
+    {
+      "path": "build/v9",
+      "role": "local_3_2_2_build_candidate"
+    }
+  ],
+  "notes": "The authoritative domain state remains at its legacy path to preserve the native builder and v6/v9 commitments. This State Index is the 3.2.2 authoring registry; legacy v8/v9 surfaces remain noncanonical compatibility/read layers."
+}

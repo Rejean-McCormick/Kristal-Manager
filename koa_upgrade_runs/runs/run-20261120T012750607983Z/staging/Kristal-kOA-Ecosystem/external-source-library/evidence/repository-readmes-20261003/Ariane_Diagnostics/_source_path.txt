@@ -1,0 +1,2 @@
+repo=Ariane_Diagnostics
+path=C:\mycode\Ariane\Ariane_Diagnostics

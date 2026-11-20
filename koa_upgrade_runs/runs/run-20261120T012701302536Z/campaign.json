@@ -1,0 +1,153 @@
+{
+  "format": "koa.upgrade.campaign.v1",
+  "id": "run-20261120T012701302536Z",
+  "created_at": "20261120T012702702977Z",
+  "target": "C:\\mycode\\Kristal\\locals\\Kristal-kOA-Ecosystem",
+  "candidate_sha256": "954eee56487798052884b5cf296eae05363f47d979849b1d347ec9f7e19c36a3",
+  "candidate_filename": "Kristal-kOA-Ecosystem_v0.7.1_DocServer_READY.zip",
+  "source_snapshot_sha256": "a2560d52d4991af3c4d702899566978530d4b006f4b20edf0c802a14e6c5d0c1",
+  "changed_files": [
+    {
+      "file": "CHANGELOG.md",
+      "action": "MODIFIED",
+      "before": "7dd83c7f51e3d4ce3e49372318c47f64da5916e17a23c9a6df0bf46db8bf7497",
+      "after": "2e47e604b8e931c1e017c98bbf387b1c6ab860aa2f5df0ab9d4b74f8639755ab"
+    },
+    {
+      "file": "README.md",
+      "action": "MODIFIED",
+      "before": "a721032971a2f3716586d5c60aab93fcf1a815fc395ad970356dac7ad81997fc",
+      "after": "911be9379c418c0b26e4567cf38318f84ef08d7d55221644b704b7fc18a0181c"
+    },
+    {
+      "file": "SMARTDUMP_INDEX.txt",
+      "action": "MODIFIED",
+      "before": "dc4ecab111f5bab0651a8f7b57943e009d106c742ab33fca686f08e015345b27",
+      "after": "9704f83dffa2990b44a337c7bfeec56339cd98e1ed4fd3211504efe435b5a9a3"
+    },
+    {
+      "file": "VERSION",
+      "action": "MODIFIED",
+      "before": "967d9afb101346667166f2e76e81910bc190488d7d41d50ca0072e9d92f00e32",
+      "after": "902311c7bb38fa1658ff403def6158ee7378fe9d6e2e284fa1c38735c31bd30b"
+    },
+    {
+      "file": "docs/DOC_SERVER_EVOLUTION_20261119.md",
+      "action": "ADDED",
+      "before": null,
+      "after": "d558e6e4079b1f4deaaf868235a3747748e12b3993d8e8eaf2a4c247d0676fb3"
+    },
+    {
+      "file": "knowledge-base/corpus/index.json",
+      "action": "MODIFIED",
+      "before": "96ea0f5fafb4099e51a10d3e5df13b9a233d7ce0c1e00c8d855e329edfd84e41",
+      "after": "c9f26d79ff3b3b7ca532b7a33e779c450cb8ccf877105939a9fe5cfd2bff028e"
+    },
+    {
+      "file": "knowledge-base/corpus/koa-ecosystem.kristal-state.json",
+      "action": "MODIFIED",
+      "before": "68d4531fc9d92f4d97c2afeb063699e49271976a517fbae73192818daa2716b6",
+      "after": "581e5f38df490d36835e30522fe318dc89c2df52cfb88ef23066f2f68b78c586"
+    },
+    {
+      "file": "knowledge-base/sources/components.json",
+      "action": "MODIFIED",
+      "before": "c2d6f14dd673734e76f6a71301d601cebb5c59831a9cad6a67400f60e6e37eea",
+      "after": "a00e125526e9f3e4ca89c7ed5dbf254f6732b3d361143f264d1646bc05a3b7a4"
+    },
+    {
+      "file": "knowledge-base/sources/diagnostic-observations.json",
+      "action": "ADDED",
+      "before": null,
+      "after": "7726bd961724a42b5be2e8682c04aeb1ea09d13172303d94fb158c118965cc9f"
+    },
+    {
+      "file": "knowledge-base/sources/relations.json",
+      "action": "MODIFIED",
+      "before": "6034c76dc9161436b8c540ec9f658cb66cae6cf96d1918438c43a689b70af608",
+      "after": "532b83a7bccb9b06ca3e875f2b911b343066f38e9544fed4474fde96b174b2e3"
+    },
+    {
+      "file": "knowledge-base/sources/repositories.json",
+      "action": "MODIFIED",
+      "before": "ed32c5cce651e04cde722c073ac4a1c3eba8c7d5389ab0a3f3d255a1e57ea47d",
+      "after": "60a7fc8d9b2ac79c793a7561fdc55f58d9271e8e807710abc59e8e3a6c40f6db"
+    },
+    {
+      "file": "knowledge-base/sources/selection-categories.json",
+      "action": "ADDED",
+      "before": null,
+      "after": "8dd08ba61d9c849ba3877ce108876b58c1abd4c25fb653fde249d324c97d4f76"
+    },
+    {
+      "file": "knowledge-base/sources/source-registry/source-registry.json",
+      "action": "MODIFIED",
+      "before": "3a7daa423280104a4b67716354be0e18f141ecaf8406dca61ee7e9a70e64a887",
+      "after": "c1dd824872e812b8f9ff5d2e275fec01159f816246073d6fd1604bdf34393fa7"
+    },
+    {
+      "file": "knowledge-base/tests/test_reconciliation_20261027.py",
+      "action": "MODIFIED",
+      "before": "7905f360612b4214e7d26f61662fb291cfdfb6656c7c438a082f2e421f39a88a",
+      "after": "27f8f8be69cefcf73ca08d73d1b45da86b5b9ac48daf2579dc105bb908ede6a6"
+    },
+    {
+      "file": "knowledge-base/tools/build.py",
+      "action": "MODIFIED",
+      "before": "e01788712020d719515a3f1e81bc84ead91678617696ca6a48877d04ba23d820",
+      "after": "72d3f90fcd9d4142b3160868ae03fc79d650a89a8b9f319a76e255156849bc5d"
+    },
+    {
+      "file": "knowledge-base/tools/validate.py",
+      "action": "MODIFIED",
+      "before": "d879fb79f187cb94eb7c6f2efa85e3012c418c223f3d9df3914e2009ef936949",
+      "after": "b8e3f6bc65d3349759eaa9d8dfdee9e76d1a36210d9d2ab70c0f751fcdbfaa0f"
+    },
+    {
+      "file": "kristal.workspace.json",
+      "action": "MODIFIED",
+      "before": "c0c58c7a1df521398357ad5281ac424d3c253fe6bd1f0d05fd8369187b2946bc",
+      "after": "29aff446eb12cc48f67d96db686c67d3de59cf0a3ad9d0796425107500a0457e"
+    },
+    {
+      "file": "manifest.sha256.json",
+      "action": "MODIFIED",
+      "before": "2d3075d5b65162f56b448eaf639f2c4a3d68052166e476f9f967c23902abd0b0",
+      "after": "4ae98bce98d77e5d392c2a751db775c205bccf90a376f34e54e9f71557392f97"
+    },
+    {
+      "file": "views/current-application-map.md",
+      "action": "MODIFIED",
+      "before": "b558948997fc6d58c7bca9078402b0af1427597cc07b8086be0fe70dd0e32a98",
+      "after": "726fb25babfcfa22f46cb5a5887ee2835c806de050d86b6c566df6da4e743ae9"
+    },
+    {
+      "file": "views/doc-server/catalog.v1.json",
+      "action": "ADDED",
+      "before": null,
+      "after": "81d47ad2087398e2f362d6972e73c4b6c9c117f436592896ea4ed3d403f4e549"
+    },
+    {
+      "file": "views/public-repository-directory.md",
+      "action": "MODIFIED",
+      "before": "c129225ec88fb98af6a3d19a7d2c9ae1e702a5ebef738fbc6079fb601daabe59",
+      "after": "85e7935d77dde51db0cffa9c482458be3f156c72fc73f2e3853c5120c3d16d95"
+    },
+    {
+      "file": "views/repository-map.md",
+      "action": "MODIFIED",
+      "before": "98f902bcbf359198e14dedde4fc49858221e939a9c150db58e994dbd808ec0ee",
+      "after": "ebf1c9f225711eccbac7d3ecfcae67c4c282386cab409cab4789a0d8061e0ec7"
+    },
+    {
+      "file": "views/supporting-apps-map.md",
+      "action": "MODIFIED",
+      "before": "c6c99cc6ff7cb844d2b9132ed555a793a7588050876707413b21c01695817d2b",
+      "after": "78f7d961a90485a0a02a1906d3b848d5b8e339f3a5785da3bec143655056e861"
+    }
+  ],
+  "note": "No source or validated evidence modified; staging is a working copy.",
+  "validation": "NATIVE_PASSED",
+  "diagnostics": "NOT_RUN",
+  "installed_at": "20261120T142129966127Z"
+}

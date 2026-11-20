@@ -1,0 +1,247 @@
+component_id,component,function_id,function,role,assertion_status
+koa:initiative,kOA,koa:function:intent,Intention & mandat,primary,sourced
+koa:initiative,kOA,koa:function:strategy,Stratégie & trajectoire,primary,sourced
+koa:initiative,kOA,koa:function:articulation,Articulation & interface,support,sourced
+koa:initiative,kOA,koa:function:impact-feedback,Impact & apprentissage,support,sourced
+koa:digital-ecosystem,kOA Digital Ecosystem,koa:function:structure,Structure & règles,primary,sourced
+koa:digital-ecosystem,kOA Digital Ecosystem,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:digital-ecosystem,kOA Digital Ecosystem,koa:function:execution,Exécution & orchestration,primary,sourced
+koa:digital-ecosystem,kOA Digital Ecosystem,koa:function:impact-feedback,Impact & apprentissage,feedback_loop,sourced
+koa:uckk,UCKK / Univers-Cité King Klown,koa:function:articulation,Articulation & interface,primary,sourced
+koa:uckk,UCKK / Univers-Cité King Klown,koa:function:coordination,Coordination & relations,primary,sourced
+koa:uckk,UCKK / Univers-Cité King Klown,koa:function:canonical-memory,Mémoire canonique,learning_archive,sourced
+koa:uckk,UCKK / Univers-Cité King Klown,koa:function:impact-feedback,Impact & apprentissage,learning,sourced
+koa:kristal-farms,Kristal Farms,koa:function:execution,Exécution & orchestration,primary,sourced
+koa:kristal-farms,Kristal Farms,koa:function:impact-feedback,Impact & apprentissage,physical_outcome,sourced
+koa:kristal-farms,Kristal Farms,koa:function:strategy,Stratégie & trajectoire,infrastructure_design,sourced
+koa:king-klown,King Klown,koa:function:articulation,Articulation & interface,primary,sourced
+koa:king-klown,King Klown,koa:function:impact-feedback,Impact & apprentissage,mobilisation,sourced
+koa:ourai,OurAI,koa:function:strategy,Stratégie & trajectoire,candidate,claimed
+koa:ourai,OurAI,koa:function:execution,Exécution & orchestration,candidate,claimed
+koa:scenario-mosaic,Koali Scenario Mosaic,koa:function:strategy,Stratégie & trajectoire,primary,sourced
+koa:scenario-mosaic,Koali Scenario Mosaic,koa:function:articulation,Articulation & interface,primary,sourced
+koa:koali,Koali / kOA-Linux,koa:function:structure,Structure & règles,primary,sourced
+koa:koali,Koali / kOA-Linux,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:koali,Koali / kOA-Linux,koa:function:execution,Exécution & orchestration,runtime_boundary,sourced
+koa:koali-spaces,Koali Spaces,koa:function:articulation,Articulation & interface,primary,sourced
+koa:konnaxion,Konnaxion,koa:function:coordination,Coordination & relations,primary,sourced
+koa:konnaxion,Konnaxion,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:konnaxion,Konnaxion,koa:function:impact-feedback,Impact & apprentissage,accountability,sourced
+koa:orgo,Orgo,koa:function:execution,Exécution & orchestration,primary,sourced
+koa:orgo,Orgo,koa:function:governance,Gouvernance & limites,workflow_gating,sourced
+koa:orgo,Orgo,koa:function:impact-feedback,Impact & apprentissage,operational_feedback,sourced
+koa:encyklopedia,EncyKlopedia,koa:function:observation,Observation & sources,primary,sourced
+koa:encyklopedia,EncyKlopedia,koa:function:structure,Structure & règles,handoff_structure,sourced
+koa:sentient,SenTient,koa:function:synthesis,Synthèse & réconciliation,primary,sourced
+koa:daat,Da’at,koa:function:structure,Structure & règles,boundary,sourced
+koa:daat,Da’at,koa:function:governance,Gouvernance & limites,acl_boundary,sourced
+koa:daat,Da’at,koa:function:canonical-memory,Mémoire canonique,bridge,sourced
+koa:kristal,Kristal,koa:function:canonical-memory,Mémoire canonique,primary,sourced
+koa:kristal,Kristal,koa:function:structure,Structure & règles,primary,sourced
+koa:kristal,Kristal,koa:function:governance,Gouvernance & limites,validation,sourced
+koa:interaction-kernel,Interaction Kernel,koa:function:structure,Structure & règles,contract_protocol,sourced
+koa:interaction-kernel,Interaction Kernel,koa:function:execution,Exécution & orchestration,transport_semantics,sourced
+koa:semantik-architect,SemantiK Architect,koa:function:articulation,Articulation & interface,primary,sourced
+koa:semantik-architect,SemantiK Architect,koa:function:synthesis,Synthèse & réconciliation,faithful_realization,sourced
+koa:semantik-runtime-orchestrator,SemantiK Runtime Orchestrator,koa:function:execution,Exécution & orchestration,release_orchestration,sourced
+koa:semantik-runtime-orchestrator,SemantiK Runtime Orchestrator,koa:function:governance,Gouvernance & limites,gating,sourced
+koa:kristal-runtime,kristal_runtime,koa:function:execution,Exécution & orchestration,runtime_activation,sourced
+koa:kristal-runtime,kristal_runtime,koa:function:governance,Gouvernance & limites,verification,sourced
+koa:node-agent,kOA Node Agent,koa:function:execution,Exécution & orchestration,privileged_executor,sourced
+koa:node-agent,kOA Node Agent,koa:function:governance,Gouvernance & limites,bounded_privilege,sourced
+koa:swarmcraft,SwarmCraft,koa:function:execution,Exécution & orchestration,pattern,sourced
+koa:ethikos,ethiKos,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:ethikos,ethiKos,koa:function:synthesis,Synthèse & réconciliation,deliberation,sourced
+koa:ethikos,ethiKos,koa:function:coordination,Coordination & relations,participation,sourced
+koa:keenkonnect,keenKonnect,koa:function:coordination,Coordination & relations,primary,sourced
+koa:keenkonnect,keenKonnect,koa:function:execution,Exécution & orchestration,project_work,sourced
+koa:konnected,KonnectED,koa:function:articulation,Articulation & interface,learning,sourced
+koa:konnected,KonnectED,koa:function:coordination,Coordination & relations,learning_network,sourced
+koa:konnected,KonnectED,koa:function:impact-feedback,Impact & apprentissage,recognition,sourced
+koa:kreative,Kreative,koa:function:articulation,Articulation & interface,creation,sourced
+koa:kreative,Kreative,koa:function:coordination,Coordination & relations,network,sourced
+koa:kreative,Kreative,koa:function:impact-feedback,Impact & apprentissage,cultural_output,sourced
+koa:ekoh,EkoH,koa:function:impact-feedback,Impact & apprentissage,primary,sourced
+koa:ekoh,EkoH,koa:function:synthesis,Synthèse & réconciliation,expertise_signal,sourced
+koa:smart-vote,Smart Vote,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:smart-vote,Smart Vote,koa:function:synthesis,Synthèse & réconciliation,readings,sourced
+koa:team-builder,Team Builder,koa:function:coordination,Coordination & relations,primary,sourced
+koa:konsensus,Konsensus,koa:function:synthesis,Synthèse & réconciliation,primary,sourced
+koa:konsensus,Konsensus,koa:function:governance,Gouvernance & limites,decision_support,sourced
+koa:kontrol,Kontrol,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:korum,Korum,koa:function:synthesis,Synthèse & réconciliation,primary,sourced
+koa:korum,Korum,koa:function:coordination,Coordination & relations,debate,sourced
+koa:konsultations,Konsultations,koa:function:observation,Observation & sources,intake,sourced
+koa:konsultations,Konsultations,koa:function:coordination,Coordination & relations,participation,sourced
+koa:konstruct,Konstruct,koa:function:execution,Exécution & orchestration,project_build,sourced
+koa:konstruct,Konstruct,koa:function:coordination,Coordination & relations,workspace,sourced
+koa:stockage,Stockage,koa:function:canonical-memory,Mémoire canonique,artifact_storage,sourced
+koa:stockage,Stockage,koa:function:structure,Structure & règles,versioning,sourced
+koa:knowledge-library,Knowledge,koa:function:canonical-memory,Mémoire canonique,knowledge_library,sourced
+koa:knowledge-library,Knowledge,koa:function:articulation,Articulation & interface,learning,sourced
+koa:certifikation,CertifiKation,koa:function:impact-feedback,Impact & apprentissage,recognition,sourced
+koa:certifikation,CertifiKation,koa:function:governance,Gouvernance & limites,validation,sourced
+koa:kontact,Kontact,koa:function:coordination,Coordination & relations,primary,sourced
+koa:konservation,Konservation,koa:function:canonical-memory,Mémoire canonique,cultural_memory,sourced
+koa:konservation,Konservation,koa:function:articulation,Articulation & interface,culture,sourced
+koa:medikristal,MediKristal,koa:function:canonical-memory,Mémoire canonique,domain_knowledge,sourced
+koa:medikristal,MediKristal,koa:function:synthesis,Synthèse & réconciliation,clinical_semantics,sourced
+koa:medikristal,MediKristal,koa:function:governance,Gouvernance & limites,protocols,sourced
+koa:konductor,Konductor,koa:function:execution,Exécution & orchestration,primary,sourced
+koa:konductor,Konductor,koa:function:strategy,Stratégie & trajectoire,runtime_planning,sourced
+koa:konductor,Konductor,koa:function:governance,Gouvernance & limites,bounded_autonomy,sourced
+koa:konstellation,Konstellation,koa:function:structure,Structure & règles,research,claimed
+koa:voting-machine,VotingMachine,koa:function:governance,Gouvernance & limites,research,claimed
+koa:voting-machine,VotingMachine,koa:function:execution,Exécution & orchestration,voting_tool,claimed
+koa:omni-wiki,Omni-Wiki,koa:function:canonical-memory,Mémoire canonique,knowledge,claimed
+koa:omni-wiki,Omni-Wiki,koa:function:articulation,Articulation & interface,wiki,claimed
+koa:pi,Pi,koa:function:synthesis,Synthèse & réconciliation,symbolic_research,claimed
+koa:pi,Pi,koa:function:strategy,Stratégie & trajectoire,conceptual,claimed
+koa:reignbow,Reignbow,koa:function:strategy,Stratégie & trajectoire,institutional_reform,claimed
+koa:reignbow,Reignbow,koa:function:impact-feedback,Impact & apprentissage,target_outcome,claimed
+koa:reforme-desjardins,Réforme Desjardins,koa:function:strategy,Stratégie & trajectoire,institutional_reform,claimed
+koa:reforme-desjardins,Réforme Desjardins,koa:function:governance,Gouvernance & limites,reform,claimed
+koa:surreal,Surreal,koa:function:articulation,Articulation & interface,narrative,claimed
+koa:kin-city,Kin City,koa:function:articulation,Articulation & interface,narrative,claimed
+koa:kin-city,Kin City,koa:function:coordination,Coordination & relations,community,claimed
+koa:cosmic-etherism,Cosmic Etherism,koa:function:synthesis,Synthèse & réconciliation,symbolic,claimed
+koa:cosmic-etherism,Cosmic Etherism,koa:function:articulation,Articulation & interface,conceptual,claimed
+koa:cannabis-symbolic,Cannabis,koa:function:articulation,Articulation & interface,symbolic_theme,claimed
+koa:branded-gold,Branded gold,koa:function:strategy,Stratégie & trajectoire,economic_symbolic,claimed
+koa:branded-gold,Branded gold,koa:function:impact-feedback,Impact & apprentissage,value,claimed
+koa:identity-trust,Identity & Trust,koa:function:coordination,Coordination & relations,identity,sourced
+koa:identity-trust,Identity & Trust,koa:function:governance,Gouvernance & limites,trust_boundary,sourced
+koa:governance-policy-runtime,Governance Policy Runtime,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:resource-governor,Resource Governor,koa:function:governance,Gouvernance & limites,resource_limits,sourced
+koa:resource-governor,Resource Governor,koa:function:execution,Exécution & orchestration,scheduling,sourced
+koa:audit-broker,Audit Broker,koa:function:impact-feedback,Impact & apprentissage,primary,sourced
+koa:audit-broker,Audit Broker,koa:function:canonical-memory,Mémoire canonique,audit_custody,sourced
+koa:audit-broker,Audit Broker,koa:function:governance,Gouvernance & limites,disclosure,sourced
+koa:publication-gateway,Publication Gateway,koa:function:governance,Gouvernance & limites,publication_gate,sourced
+koa:publication-gateway,Publication Gateway,koa:function:articulation,Articulation & interface,representation,sourced
+koa:publication-gateway,Publication Gateway,koa:function:execution,Exécution & orchestration,delivery,sourced
+koa:koa-mediatheque,Médiathèque kOA,koa:function:canonical-memory,Mémoire canonique,primary,sourced
+koa:koa-mediatheque,Médiathèque kOA,koa:function:observation,Observation & sources,media_ingest,sourced
+koa:koa-mediatheque,Médiathèque kOA,koa:function:articulation,Articulation & interface,renditions,sourced
+koa:koa-assembly,kOA Assembly,koa:function:structure,Structure & règles,primary,sourced
+koa:koa-assembly,kOA Assembly,koa:function:governance,Gouvernance & limites,resolution_gates,sourced
+koa:koa-assembly,kOA Assembly,koa:function:execution,Exécution & orchestration,deployment_plan,sourced
+koa:ariane,Ariane,koa:function:structure,Structure & règles,atlas,sourced
+koa:ariane,Ariane,koa:function:articulation,Articulation & interface,guidance,sourced
+koa:ariane,Ariane,koa:function:execution,Exécution & orchestration,navigation,sourced
+koa:ariane,Ariane,koa:function:governance,Gouvernance & limites,safety,sourced
+koa:ariane-atlas,Ariane Atlas,koa:function:structure,Structure & règles,primary,sourced
+koa:ariane-atlas,Ariane Atlas,koa:function:canonical-memory,Mémoire canonique,versioned_map,sourced
+koa:ariane-runtime,Ariane Runtime / Theseus,koa:function:execution,Exécution & orchestration,primary,sourced
+koa:ariane-runtime,Ariane Runtime / Theseus,koa:function:synthesis,Synthèse & réconciliation,state_match,sourced
+koa:ariane-safety,Ariane Safety / approvals,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:ariane-assist,Ariane Assist Client,koa:function:articulation,Articulation & interface,primary,sourced
+koa:kamel,Kamel,koa:function:structure,Structure & règles,assembly_contracts,sourced
+koa:kamel,Kamel,koa:function:strategy,Stratégie & trajectoire,usage_specific_selection,sourced
+koa:kamel,Kamel,koa:function:articulation,Articulation & interface,primary,sourced
+koa:konfid,Konfid,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:konfid,Konfid,koa:function:coordination,Coordination & relations,identity_bindings,sourced
+koa:konfid,Konfid,koa:function:impact-feedback,Impact & apprentissage,security_evidence,sourced
+koa:ame-artificielle,EL / Âme Artificielle,koa:function:synthesis,Synthèse & réconciliation,primary,sourced
+koa:ame-artificielle,EL / Âme Artificielle,koa:function:canonical-memory,Mémoire canonique,snapshots,sourced
+koa:keyflow,KeyFlow,koa:function:observation,Observation & sources,candidate,claimed
+koa:keyflow,KeyFlow,koa:function:articulation,Articulation & interface,forms,claimed
+koa:uckk-core,UCKK Institutional Core,koa:function:structure,Structure & règles,institutional_registry,sourced
+koa:uckk-core,UCKK Institutional Core,koa:function:governance,Gouvernance & limites,shared_rules,sourced
+koa:uckk-core,UCKK Institutional Core,koa:function:coordination,Coordination & relations,roles,sourced
+koa:uckk-archive,UCKK Archive / Mediatheque,koa:function:canonical-memory,Mémoire canonique,primary,sourced
+koa:uckk-archive,UCKK Archive / Mediatheque,koa:function:articulation,Articulation & interface,archive_surface,sourced
+koa:uckk-assembly,UCKK Assembly,koa:function:coordination,Coordination & relations,assembly,sourced
+koa:uckk-assembly,UCKK Assembly,koa:function:governance,Gouvernance & limites,decision,sourced
+koa:uckk-challenge,UCKK Challenge,koa:function:execution,Exécution & orchestration,learning_activity,sourced
+koa:uckk-challenge,UCKK Challenge,koa:function:impact-feedback,Impact & apprentissage,result,sourced
+koa:uckk-integrity,UCKK Integrity,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:uckk-integrity,UCKK Integrity,koa:function:impact-feedback,Impact & apprentissage,correction,sourced
+koa:uckk-seed,UCKK Seed,koa:function:structure,Structure & règles,initialization,sourced
+koa:uckk-seed,UCKK Seed,koa:function:execution,Exécution & orchestration,seed,sourced
+koa:uckk-report,UCKK Reports,koa:function:impact-feedback,Impact & apprentissage,primary,sourced
+koa:uckk-report,UCKK Reports,koa:function:articulation,Articulation & interface,reporting,sourced
+koa:uckk-dashboard,UCKK Dashboard,koa:function:articulation,Articulation & interface,primary,sourced
+koa:uckk-ai-provider,UCKK AI Provider,koa:function:strategy,Stratégie & trajectoire,optional_assistance,sourced
+koa:uckk-ai-provider,UCKK AI Provider,koa:function:articulation,Articulation & interface,optional_assistance,sourced
+koa:koali-control-panel,Koali Control Panel,koa:function:structure,Structure & règles,secondary,sourced
+koa:koali-control-panel,Koali Control Panel,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:koali-control-panel,Koali Control Panel,koa:function:execution,Exécution & orchestration,secondary,sourced
+koa:konnaxion-capsule-manager,Konnaxion Capsule Manager,koa:function:structure,Structure & règles,secondary,sourced
+koa:konnaxion-capsule-manager,Konnaxion Capsule Manager,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:konnaxion-capsule-manager,Konnaxion Capsule Manager,koa:function:execution,Exécution & orchestration,primary,sourced
+koa:konnaxion-worlds,Konnaxion Worlds,koa:function:coordination,Coordination & relations,primary,sourced
+koa:konnaxion-worlds,Konnaxion Worlds,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:konnaxion-worlds,Konnaxion Worlds,koa:function:canonical-memory,Mémoire canonique,secondary,sourced
+koa:orgo-worlds,Orgo Worlds,koa:function:coordination,Coordination & relations,secondary,sourced
+koa:orgo-worlds,Orgo Worlds,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:orgo-worlds,Orgo Worlds,koa:function:execution,Exécution & orchestration,primary,sourced
+koa:kintsugi-kompendio,Kintsugi / Kompendio,koa:function:structure,Structure & règles,primary,sourced
+koa:kintsugi-kompendio,Kintsugi / Kompendio,koa:function:articulation,Articulation & interface,primary,sourced
+koa:kintsugi-kompendio,Kintsugi / Kompendio,koa:function:governance,Gouvernance & limites,secondary,sourced
+koa:qualification-tooling,Diagnostics & Conformance Tooling,koa:function:observation,Observation & sources,primary,sourced
+koa:qualification-tooling,Diagnostics & Conformance Tooling,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:konnaxion-securitydiag,Konnaxion SecurityDiag,koa:function:observation,Observation & sources,primary,sourced
+koa:konnaxion-securitydiag,Konnaxion SecurityDiag,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:levelupdiag-koa-linux,LevelUpDiag Koali,koa:function:observation,Observation & sources,primary,sourced
+koa:levelupdiag-koa-linux,LevelUpDiag Koali,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:levelupdiag-konnaxion,Konnaxion LevelUpDiag,koa:function:observation,Observation & sources,primary,sourced
+koa:levelupdiag-konnaxion,Konnaxion LevelUpDiag,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:levelupdiag-kristal,LevelUpDiag Kristal,koa:function:observation,Observation & sources,primary,sourced
+koa:levelupdiag-kristal,LevelUpDiag Kristal,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:levelupdiag-orgo,LevelUpDiag Orgo,koa:function:observation,Observation & sources,primary,sourced
+koa:levelupdiag-orgo,LevelUpDiag Orgo,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:levelupdiag-semantik,LevelUpDiag SemantiK Architect,koa:function:observation,Observation & sources,primary,sourced
+koa:levelupdiag-semantik,LevelUpDiag SemantiK Architect,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:levelupdiag-medikristal,LevelUpDiag MediKristal,koa:function:observation,Observation & sources,primary,sourced
+koa:levelupdiag-medikristal,LevelUpDiag MediKristal,koa:function:governance,Gouvernance & limites,primary,sourced
+koa:support:ma-gustave-gf-ecosystem,MA-Gustave GF Language Engineering Ecosystem,koa:function:structure,Structure & règles,supporting_ecosystem,sourced
+koa:support:ma-gustave-gf-ecosystem,MA-Gustave GF Language Engineering Ecosystem,koa:function:observation,Observation & sources,supporting_ecosystem,sourced
+koa:support:gf-rgl-ai-compendium,GF RGL AI Compendium,koa:function:structure,Structure & règles,primary,sourced
+koa:support:gf-rgl-ai-compendium,GF RGL AI Compendium,koa:function:governance,Gouvernance & limites,evidence_and_gate_policy,sourced
+koa:support:gf-wordbench,GF Wordbench,koa:function:observation,Observation & sources,primary,sourced
+koa:support:gf-wordbench,GF Wordbench,koa:function:governance,Gouvernance & limites,validation_gates,sourced
+koa:support:gf-wordbench,GF Wordbench,koa:function:impact-feedback,Impact & apprentissage,diagnostics_regression,sourced
+koa:support:ars-magna-lulli,Ars Magna Lulli,koa:function:execution,Exécution & orchestration,gitops_orchestration,sourced
+koa:support:ars-magna-lulli,Ars Magna Lulli,koa:function:coordination,Coordination & relations,portfolio_coordination,sourced
+koa:support:gf-observatory,GF Observatory,koa:function:observation,Observation & sources,primary_read_only,sourced
+koa:support:gf-observatory,GF Observatory,koa:function:articulation,Articulation & interface,evidence_reading_model,sourced
+koa:support:gf-observatory,GF Observatory,koa:function:impact-feedback,Impact & apprentissage,maturity_trends,sourced
+koa:kor,Kor,koa:function:articulation,Articulation & interface,primary,sourced
+koa:kor,Kor,koa:function:coordination,Coordination & relations,secondary,sourced
+koa:kor,Kor,koa:function:execution,Exécution & orchestration,secondary,sourced
+koa:kompiler,Kompiler,koa:function:synthesis,Synthèse & réconciliation,primary,sourced
+koa:kompiler,Kompiler,koa:function:structure,Structure & règles,secondary,sourced
+koa:kompiler,Kompiler,koa:function:articulation,Articulation & interface,secondary,sourced
+koa:editorial-figure-engine,Editorial Figure Engine,koa:function:articulation,Articulation & interface,primary,sourced
+koa:editorial-figure-engine,Editorial Figure Engine,koa:function:synthesis,Synthèse & réconciliation,secondary,sourced
+koa:ariane-diagnostics,Ariane Diagnostics,koa:function:observation,Observation & sources,primary,sourced
+koa:ariane-diagnostics,Ariane Diagnostics,koa:function:governance,Gouvernance & limites,secondary,sourced
+koa:levelupdiag-ariane,LevelUpDiag Ariane,koa:function:observation,Observation & sources,primary,sourced
+koa:levelupdiag-ariane,LevelUpDiag Ariane,koa:function:governance,Gouvernance & limites,secondary,sourced
+koa:konnaxion-universe-worlds-manager,Konnaxion Universe & Worlds Manager,koa:function:structure,Structure & règles,primary,sourced
+koa:konnaxion-universe-worlds-manager,Konnaxion Universe & Worlds Manager,koa:function:governance,Gouvernance & limites,secondary,sourced
+koa:konnaxion-universe-worlds-manager,Konnaxion Universe & Worlds Manager,koa:function:execution,Exécution & orchestration,secondary,sourced
+koa:konnaxiondiag,KonnaxionDiag,koa:function:observation,Observation & sources,primary,sourced
+koa:konnaxiondiag,KonnaxionDiag,koa:function:governance,Gouvernance & limites,secondary,sourced
+koa:konnaxiondiag,KonnaxionDiag,koa:function:execution,Exécution & orchestration,secondary,sourced
+koa:konstellation-publisher,Konstellation Publisher,koa:function:execution,Exécution & orchestration,primary,sourced
+koa:konstellation-publisher,Konstellation Publisher,koa:function:governance,Gouvernance & limites,secondary,sourced
+koa:semantik-phrase-ops-console,SemantiK Phrase Ops Console,koa:function:articulation,Articulation & interface,primary,sourced
+koa:semantik-phrase-ops-console,SemantiK Phrase Ops Console,koa:function:observation,Observation & sources,secondary,sourced
+koa:semantik-phrase-ops-console,SemantiK Phrase Ops Console,koa:function:governance,Gouvernance & limites,secondary,sourced
+koa:kristaldiag,KristalDiag,koa:function:observation,Observation & sources,primary,sourced
+koa:kristaldiag,KristalDiag,koa:function:governance,Gouvernance & limites,secondary,sourced
+koa:repodiag,RepoDiag,koa:function:observation,Observation & sources,primary,sourced
+koa:repodiag,RepoDiag,koa:function:governance,Gouvernance & limites,secondary,sourced
+koa:uckk-moodle,UCKK Moodle,koa:function:articulation,Articulation & interface,primary,sourced
+koa:uckk-moodle,UCKK Moodle,koa:function:coordination,Coordination & relations,secondary,sourced
+koa:uckk-moodle,UCKK Moodle,koa:function:impact-feedback,Impact & apprentissage,secondary,sourced
+koa:uckk-ops-console,UCKK Ops Console,koa:function:execution,Exécution & orchestration,primary,sourced
+koa:uckk-ops-console,UCKK Ops Console,koa:function:governance,Gouvernance & limites,secondary,sourced
+koa:uckk-publisher,UCKK Publisher,koa:function:execution,Exécution & orchestration,primary,sourced
+koa:uckk-publisher,UCKK Publisher,koa:function:governance,Gouvernance & limites,secondary,sourced
+koa:uckk-securitydiag,UCKK SecurityDiag,koa:function:observation,Observation & sources,primary,sourced
+koa:uckk-securitydiag,UCKK SecurityDiag,koa:function:governance,Gouvernance & limites,secondary,sourced
+koa:konstellation,Konstellation,koa:function:articulation,Articulation & interface,primary,sourced
+koa:konstellation,Konstellation,koa:function:structure,Structure & règles,navigation_plan,sourced

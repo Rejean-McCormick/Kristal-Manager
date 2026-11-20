@@ -1,0 +1,2 @@
+repo=Konnaxion
+path=C:\mycode\Konnaxion\Konnaxion

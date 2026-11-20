@@ -1,0 +1,2 @@
+repo=UCKK_ops_console
+path=C:\mycode\UCKK\UCKK_ops_console

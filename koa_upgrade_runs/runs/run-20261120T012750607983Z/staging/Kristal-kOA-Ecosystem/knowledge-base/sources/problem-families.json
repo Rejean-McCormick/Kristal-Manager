@@ -1,0 +1,85 @@
+{
+  "format": "koa.problem-families.v1",
+  "problem_families": [
+    {
+      "id": "koa:problem-family:coordination-breakdown",
+      "label": "Coordination breakdown",
+      "description": "Les acteurs, ressources et responsabilités existent mais se fragmentent entre équipes, systèmes ou handoffs.",
+      "source_refs": [
+        "src:scenario-archetypes-36",
+        "src:business-plan-context"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:problem-family:signal-context-loss",
+      "label": "Signal & context loss",
+      "description": "Un signal, une alerte ou une observation perd sa provenance, son contexte ou son sens pendant sa circulation.",
+      "source_refs": [
+        "src:scenario-archetypes-36",
+        "src:business-plan-context"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:problem-family:knowledge-attrition",
+      "label": "Knowledge attrition",
+      "description": "Une connaissance utile disparaît avec un compte, une personne, un silo, une institution ou une mauvaise transmission.",
+      "source_refs": [
+        "src:scenario-archetypes-36",
+        "src:business-plan-context"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:problem-family:distributed-intelligence",
+      "label": "Distributed intelligence fails to converge",
+      "description": "Le savoir et l’expertise existent dans plusieurs endroits mais ne convergent pas au moment où ils deviennent utiles.",
+      "source_refs": [
+        "src:scenario-archetypes-36",
+        "src:business-plan-context"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:problem-family:evidence-vs-noise",
+      "label": "Evidence loses to noise",
+      "description": "Les preuves, incertitudes et causalités sont dépassées par le bruit, la vitesse, les récits ou des pondérations opaques.",
+      "source_refs": [
+        "src:scenario-archetypes-36",
+        "src:business-plan-context"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:problem-family:decision-traceability",
+      "label": "Decisions lose their why",
+      "description": "Une décision peut être prise sans que ses raisons, critères, arbitrages, avis et mandat restent reconstructibles.",
+      "source_refs": [
+        "src:scenario-archetypes-36",
+        "src:business-plan-context"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:problem-family:action-learning-loops",
+      "label": "Action & learning loops break",
+      "description": "La participation, l’action ou l’audit ne revient pas dans une boucle de mémoire et d’amélioration exploitable.",
+      "source_refs": [
+        "src:scenario-archetypes-36",
+        "src:business-plan-context"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:problem-family:capacity-sovereignty",
+      "label": "Institutional capacity & sovereignty",
+      "description": "La continuité dépend excessivement d’une personne, d’un fournisseur, d’une plateforme, d’un réseau ou d’un système opaque.",
+      "source_refs": [
+        "src:scenario-archetypes-36",
+        "src:business-plan-context"
+      ],
+      "assertion_status": "sourced"
+    }
+  ]
+}

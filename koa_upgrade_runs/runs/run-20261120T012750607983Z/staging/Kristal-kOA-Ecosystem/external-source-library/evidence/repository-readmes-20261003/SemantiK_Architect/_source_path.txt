@@ -1,0 +1,2 @@
+repo=SemantiK_Architect
+path=C:\mycode\SemantiK_Architect\SemantiK_Architect

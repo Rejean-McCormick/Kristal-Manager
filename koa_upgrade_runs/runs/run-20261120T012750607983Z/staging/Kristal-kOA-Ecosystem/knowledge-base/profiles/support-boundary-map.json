@@ -1,0 +1,18 @@
+{
+  "id": "koa:reader:support-boundary-map",
+  "title": "Support boundary map",
+  "purpose": "Distinguish kOA membership from external/supporting ecosystems, tools and pattern sources.",
+  "source": "knowledge-base/koa-ecosystem.kristal-state.json",
+  "filters": {
+    "predicates": [
+      "koa:part_of",
+      "koa:part_of_supporting_ecosystem",
+      "koa:supports",
+      "koa:supports_capability",
+      "koa:pattern_source_for",
+      "koa:external_execution_authority_for",
+      "koa:optional_adapter_input_for"
+    ]
+  },
+  "output": "views/support-boundary-map.md"
+}

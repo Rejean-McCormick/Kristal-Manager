@@ -1,0 +1,19 @@
+{
+  "format": "koa.reader-profile.v3",
+  "profile_id": "koa:reader:workflow-pattern-map",
+  "name": "Workflows potentiels → capacités",
+  "description": "Les patterns de workflow sont reliés aux capacités nécessaires, sans convertir les scénarios éditoriaux en preuve de déploiement.",
+  "source_state": "knowledge-base/koa-ecosystem.kristal-state.json",
+  "projection": {
+    "x_axis": "workflow_pattern",
+    "y_axis": "capability",
+    "predicate": "koa:enabled_by_capability"
+  },
+  "policy": {
+    "preserve_assertion_status": true,
+    "preserve_relationship_role": true,
+    "show_claimed_as_claimed": true,
+    "do_not_infer_authority": true,
+    "scenario_composition_is_not_runtime_evidence": true
+  }
+}

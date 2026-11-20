@@ -1,0 +1,29 @@
+{
+  "format": "koa.reader-profile.v2",
+  "profile_id": "koa:reader:repository-map",
+  "name": "Dépôts → pièces + localisateurs",
+  "description": "Projection canonique des dépôts vers les pièces qu’ils réalisent/supportent, avec remote public enregistré et observation locale sans inférence de lien manquant.",
+  "source_state": "knowledge-base/koa-ecosystem.kristal-state.json",
+  "projection": {
+    "x_axis": "repository",
+    "y_axis": "component",
+    "predicate": "koa:realizes_or_supports",
+    "metadata_axes": [
+      "public_remote_url",
+      "public_remote_status",
+      "local_path",
+      "local_observation_status",
+      "repository_locator_status",
+      "architectural_membership",
+      "repository_role"
+    ]
+  },
+  "policy": {
+    "preserve_assertion_status": true,
+    "preserve_relationship_role": true,
+    "show_claimed_as_claimed": true,
+    "do_not_infer_authority": true,
+    "never_guess_remote_url": true,
+    "local_path_is_observation_not_authority": true
+  }
+}

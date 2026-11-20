@@ -1,0 +1,48 @@
+{
+  "profile": "kristal-collection-normalization/1.1",
+  "generated_at": "2026-10-04T22:30:00-04:00",
+  "kristal_ref": "Kristal-kOA-Ecosystem",
+  "semantic_rewrite": false,
+  "canonical_artifact": {
+    "path": "knowledge-base/corpus/koa-ecosystem.kristal-state.json",
+    "artifact_type": "kristal_state",
+    "schema_version": "6.0",
+    "artifact_status": "working"
+  },
+  "presentation": {
+    "icon_profile": ".kristal/icon-profile.json",
+    "desktop_binding": "desktop.ini"
+  },
+  "maturity_basis": "artifact_status=working",
+  "v8_normalization": {
+    "profile": "kristal-v8-normalized-package/1.0",
+    "directory": ".kristal/v8",
+    "portable_state": ".kristal/v8/portable-state.kristal-state.json",
+    "projection_manifest": ".kristal/v8/projection-manifest.json",
+    "lexicon": ".kristal/v8/lexicon-fr.json",
+    "lexicon_stack": ".kristal/v8/lexicon-stack-fr.json",
+    "query_index": ".kristal/v8/query-index.json",
+    "authority": "derived/rebuildable; original source artifact remains authoritative"
+  },
+  "layout_profile": "kristal-package-layout/1.0",
+  "folder_layout": {
+    "external_source_library": "external-source-library",
+    "corpus": "knowledge-base/corpus",
+    "documentation": "knowledge-base/documentation",
+    "profiles": "knowledge-base/profiles",
+    "schemas": "knowledge-base/schemas",
+    "sources": "knowledge-base/sources",
+    "tools": "knowledge-base/tools",
+    "views": "views",
+    "validation": "validation"
+  },
+  "v9_semantic_state": {
+    "standard_target": "9.0.0-draft.1",
+    "directory": ".kristal/v9",
+    "state_snapshot": ".kristal/v9/state-snapshot.json",
+    "package": ".kristal/v9/package.json",
+    "activation": ".kristal/v9/activation.json",
+    "capabilities": ".kristal/v9/capabilities.json",
+    "authority": "additive semantic-state envelope; existing canonical source authority preserved; v8 read models remain derived/rebuildable"
+  }
+}

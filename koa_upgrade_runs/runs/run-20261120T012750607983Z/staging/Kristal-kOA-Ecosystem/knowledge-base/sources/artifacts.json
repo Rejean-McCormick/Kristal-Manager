@@ -1,0 +1,685 @@
+{
+  "format": "koa.artifacts.v3",
+  "artifacts": [
+    {
+      "id": "koa:artifact:activation-graph",
+      "label": "Activation Graph",
+      "kind": "transient_causal_state",
+      "description": "État transitoire calculé à partir d’un Soul Snapshot et d’un stimulus pour représenter activation, inhibition, affect/intention et réaction sans réécrire le snapshot.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:ame-artificielle"
+      ]
+    },
+    {
+      "id": "koa:artifact:activation-receipt",
+      "label": "Activation / rollback receipt",
+      "kind": "runtime_receipt",
+      "description": "Preuve du changement d’état actif ou rollback.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:artifact:active-research-frontier",
+      "label": "Active research frontier",
+      "kind": "rebuildable_research_cache",
+      "description": "Cache borné et reconstruisible du voisinage MathKristal pertinent pour l’obligation de recherche active.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:formulator",
+        "src:workspace-evidence:grand-challenges"
+      ]
+    },
+    {
+      "id": "koa:artifact:approval-record",
+      "label": "Approval record",
+      "kind": "approval_evidence",
+      "description": "Décision d’approbation/refus liée à une action sensible et à son contexte/version.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-ariane",
+        "src:snapshot-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:artifact:ariane-runtime-pack",
+      "label": "Ariane Runtime Pack",
+      "kind": "navigation_runtime_artifact",
+      "description": "Bundle optimisé/versionné servi au runtime de navigation.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-ariane",
+        "src:snapshot-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:artifact:astro-signals-ai-export-v2",
+      "label": "Astro Signals AI Export v2",
+      "kind": "uncertainty_bearing_export",
+      "description": "Export structuré exposant explicitement l’incertitude temporelle et les sensibilités au lieu de masquer une heure de naissance inconnue.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:astro-signals"
+      ]
+    },
+    {
+      "id": "koa:artifact:atlas-exchange",
+      "label": "Ariane Atlas Exchange",
+      "kind": "navigation_artifact",
+      "description": "Package immuable/intégrité-checkée de graphe UI, sémantique, fingerprints et metadata.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-ariane",
+        "src:snapshot-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:artifact:audiobook-segment-version",
+      "label": "Audiobook segment version",
+      "kind": "versioned_audio_segment",
+      "description": "Version audio d’un segment de manuscrit conservée indépendamment afin de permettre revue, lock et régénération sélective.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:voxtral-audiobook-studio"
+      ]
+    },
+    {
+      "id": "koa:artifact:audit-record",
+      "label": "Audit / disclosure record",
+      "kind": "audit_evidence",
+      "description": "Record d’audit/evidence, redaction, retention ou disclosure sous custody Audit Broker.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:artifact:case",
+      "label": "Case",
+      "kind": "operational_state",
+      "description": "Cas opérationnel Orgo.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:artifact:challenge-kristal-state",
+      "label": "Challenge Kristal v6 state",
+      "kind": "local_research_knowledge_state",
+      "description": "Per-Challenge Kristal v6 memory separating imported, established_external, research, validated_local and promotion_candidates layers.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:grand-challenges"
+      ]
+    },
+    {
+      "id": "koa:artifact:challenge-research-graph",
+      "label": "Challenge ResearchGraph",
+      "kind": "research_memory",
+      "description": "Mémoire persistante par Challenge des objectifs, hypothèses, obligations, dépendances, tentatives et résultats.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:formulator",
+        "src:workspace-evidence:grand-challenges"
+      ]
+    },
+    {
+      "id": "koa:artifact:corpus-harvest-handoff",
+      "label": "Corpus Harvest Handoff",
+      "kind": "knowledge_handoff",
+      "description": "Evidence immuable et candidats référents produits par EncyKlopedia.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:artifact:decision-record",
+      "label": "DecisionRecord",
+      "kind": "civic_decision",
+      "description": "Décision civique finalisée et publiable, possédée par Konnaxion.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:artifact:ethikos-generic-pack-instructions",
+      "label": "ETHIKOS Generic Pack Generator instruction pack",
+      "kind": "instruction_pack",
+      "description": "Generic Markdown instruction pack for generating topic-independent Ethikos deliberation corpora.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:repo-readme:ethikos-generic-pack-generator-md"
+      ]
+    },
+    {
+      "id": "koa:artifact:gf-language-pack",
+      "label": "GF/RGL Language Pack",
+      "kind": "language_engineering_record",
+      "description": "Pack de langue avec source lock, profil linguistique/architectural, evidence, décisions, tests et état d’implémentation.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:gf-compendium-docs"
+      ]
+    },
+    {
+      "id": "koa:artifact:gf-maturity-snapshot",
+      "label": "GF Maturity Snapshot",
+      "kind": "observation_projection",
+      "description": "Projection versionnée de maturité/readiness et de bloqueurs, dérivée des preuves sans remplacer les preuves sources.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:gf-observatory-snapshot",
+        "src:ars-magna-lulli-docs"
+      ]
+    },
+    {
+      "id": "koa:artifact:gf-review-record",
+      "label": "GF Review Record",
+      "kind": "human_review_record",
+      "description": "Décision/revue humaine portant sur acceptation linguistique ou publication, distincte des résultats automatiques.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:ars-magna-lulli-docs",
+        "src:gf-compendium-docs"
+      ]
+    },
+    {
+      "id": "koa:artifact:gf-run-bundle",
+      "label": "GF Wordbench Run Bundle",
+      "kind": "validation_evidence",
+      "description": "Dossier structuré d’un run Wordbench: configuration, preuves brutes, résultats, scénarios, diagnostics, manifeste et verdict de gate.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:gf-wordbench-snapshot",
+        "src:ars-magna-lulli-docs"
+      ]
+    },
+    {
+      "id": "koa:artifact:guidance-script",
+      "label": "GuidanceScript",
+      "kind": "interaction_plan",
+      "description": "Plan structuré d’étapes, vérifications, fallbacks, risques et exigences d’approbation.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-ariane",
+        "src:snapshot-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:artifact:identity-trust-evidence",
+      "label": "Identity / trust evidence",
+      "kind": "security_evidence",
+      "description": "Identité, credential/binding/trust evidence bornée utilisée pour authentification/vérification.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:artifact:impact-publication",
+      "label": "Impact / accountability publication",
+      "kind": "accountability_artifact",
+      "description": "Retour d’impact et de responsabilité vers Konnaxion.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:artifact:integration-operation",
+      "label": "IntegrationOperation",
+      "kind": "operational_state",
+      "description": "État d’intégration/réconciliation Orgo.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:artifact:kamel-assembly-request",
+      "label": "Kamel AssemblyRequest",
+      "kind": "assembly_request",
+      "description": "Demande éditoriale typée: rôle, contexte, inventaires, transversaux, audience, outputs et politiques de résolution.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-kamel"
+      ]
+    },
+    {
+      "id": "koa:artifact:kamel-build-manifest",
+      "label": "Kamel BuildManifest",
+      "kind": "build_manifest",
+      "description": "Manifest d’artefacts rendus/exportés et de leur build.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-kamel"
+      ]
+    },
+    {
+      "id": "koa:artifact:kamel-compiled-deck",
+      "label": "Kamel CompiledDeck",
+      "kind": "presentation_artifact",
+      "description": "Deck compilé selon contrat logique et données source-grounded.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-kamel"
+      ]
+    },
+    {
+      "id": "koa:artifact:kamel-db-revision-guide",
+      "label": "Kamel AI DB Revision Guide",
+      "kind": "revision_guide",
+      "description": "Guide and machine-readable policy material for AI-assisted review of Kamel JSON/CSV databases.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:repo-readme:kamel-ai-db-revision-guide-v1-0-0"
+      ]
+    },
+    {
+      "id": "koa:artifact:kamel-resolved-composition",
+      "label": "Kamel ResolvedComposition",
+      "kind": "assembly_state",
+      "description": "Composition résolue/versionnée produite avant compilation/rendu.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-kamel"
+      ]
+    },
+    {
+      "id": "koa:artifact:konnaxion-i18n-ui-bundle",
+      "label": "Konnaxion i18n UI bundle",
+      "kind": "translation_bundle",
+      "description": "Translation extraction/UI bundle supporting Konnaxion localization workflows.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:repo-readme:konnaxion-i18n-ui-bundle"
+      ]
+    },
+    {
+      "id": "koa:artifact:korpus-corpus",
+      "label": "Korpus document corpus",
+      "kind": "document_corpus",
+      "description": "Indexed corpus of document sources under the local Korpus repository; no root README was observed.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:repo-index:korpus"
+      ]
+    },
+    {
+      "id": "koa:artifact:kristal-farms-public-release",
+      "label": "Kristal Farms immutable public release",
+      "kind": "derived_geospatial_release",
+      "description": "Artefact public immuable dérivé de la source opérationnelle gouvernée; consommable par l’application et les outils sans devenir la source de vérité opérationnelle.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:kristal-farms"
+      ]
+    },
+    {
+      "id": "koa:artifact:kristal-state",
+      "label": "Kristal State",
+      "kind": "knowledge_state",
+      "description": "État de connaissance atomique et portable conforme au standard Kristal v6.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:artifact:learning-competence-portfolio",
+      "label": "Portfolio de preuves de compétence",
+      "kind": "learning_evidence_portfolio",
+      "description": "Ensemble transférable de productions concrètes et vérifiables issues d’un parcours d’apprentissage par production.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:orphee-walk-straight"
+      ]
+    },
+    {
+      "id": "koa:artifact:media-record",
+      "label": "kOA Media Record",
+      "kind": "media_state",
+      "description": "Record/version média local avec provenance, droits, lifecycle et renditions.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux",
+        "src:snapshot-mediatheque"
+      ]
+    },
+    {
+      "id": "koa:artifact:mediatheque-content-root",
+      "label": "Médiathèque content root",
+      "kind": "local_content_root",
+      "description": "Local Médiathèque runtime/content root containing SQLite state, storage, imports/exports, backups, logs and Kristals; not a second application.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:repo-readme:mediatheque-content"
+      ]
+    },
+    {
+      "id": "koa:artifact:pgf-grammar",
+      "label": "Immutable PGF / grammar artifact",
+      "kind": "runtime_language_artifact",
+      "description": "Artefact de grammaire produit par la chaîne GF, immuable et accompagné d’évidence/capability manifest avant consommation runtime.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:gf-wordbench-snapshot",
+        "src:ars-magna-lulli-docs",
+        "src:github-koa-digital"
+      ]
+    },
+    {
+      "id": "koa:artifact:policy-decision-receipt",
+      "label": "Policy decision receipt",
+      "kind": "policy_receipt",
+      "description": "Décision de policy + obligations/diagnostics, sans constituer l’effet gouverné.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:artifact:pressure-test-record",
+      "label": "Pressure-test evidence record",
+      "kind": "adversarial_validation_record",
+      "description": "Trace d’un claim mis à l’épreuve contre une contrainte/workflow, avec source, challenge, evidence et révision associée.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:ppg-pressure-test",
+        "src:workspace-evidence:ashoka"
+      ]
+    },
+    {
+      "id": "koa:artifact:proof-bundle",
+      "label": "ProofBundle",
+      "kind": "formal_proof_evidence_bundle",
+      "description": "Formulator output bundle intended to carry proof/verification material. A generated or AI-assisted bundle is not automatically accepted as mathematical proof.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:formulator"
+      ]
+    },
+    {
+      "id": "koa:artifact:publication-receipt",
+      "label": "Publication receipt",
+      "kind": "publication_receipt",
+      "description": "Preuve terminale d’une publication autorisée et reconnue par la destination.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:artifact:rainbow-write-utility",
+      "label": "Rainbow Write utility",
+      "kind": "local_document_formatting_utility",
+      "description": "Windows Word/COM Python utility for applying a readable randomized rainbow palette character-by-character with optional deterministic seed and progress logging.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:rainbow-write"
+      ]
+    },
+    {
+      "id": "koa:artifact:reference-artifact",
+      "label": "Reference Artifact",
+      "kind": "knowledge_artifact",
+      "description": "Artefact de référence reconnu selon politique explicite.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:artifact:release-set",
+      "label": "Release Set",
+      "kind": "platform_release",
+      "description": "Composition de release gouvernée par kOA-Linux.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:artifact:repository-readme-snapshot-20261003",
+      "label": "Repository README snapshot — 2026-10-03",
+      "kind": "evidence_snapshot",
+      "description": "Root README evidence for the current local repository inventory.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:repo-readme-collection-20261003"
+      ]
+    },
+    {
+      "id": "koa:artifact:resource-admission-receipt",
+      "label": "Resource admission receipt",
+      "kind": "resource_receipt",
+      "description": "Preuve de décision d’admission/allocation/degradation contrôlée.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:artifact:runtime-pack",
+      "label": "Runtime Pack",
+      "kind": "runtime_artifact",
+      "description": "Artefact runtime Kristal vérifiable/activable.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:artifact:runtime-set",
+      "label": "RuntimeSet",
+      "kind": "language_runtime",
+      "description": "Ensemble runtime SemantiK/GF promu et activé transactionnellement.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:artifact:semantik-gf-source",
+      "label": "SemantiK Architect GF source",
+      "kind": "language_source",
+      "description": "GF source files used to produce the PGF artifact consumed by SemantiK Architect.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:repo-readme:semantik-architect-gf-source"
+      ]
+    },
+    {
+      "id": "koa:artifact:semantik-only-phrase-prototype",
+      "label": "SemantiK-only phrase prototype",
+      "kind": "test_prototype",
+      "description": "Prototype/test material for typed GF expression realization without leaking complete prose positions.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:repo-readme:semantik-only-phrase-prototype"
+      ]
+    },
+    {
+      "id": "koa:artifact:signal",
+      "label": "Signal",
+      "kind": "operational_state",
+      "description": "Entrée opérationnelle Orgo.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:artifact:soul-snapshot",
+      "label": "Soul Snapshot",
+      "kind": "immutable_personality_state",
+      "description": "Snapshot immuable d’un sujet sur une période; les transformations biographiques créent un nouvel état au lieu de muter silencieusement l’ancien.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:ame-artificielle"
+      ]
+    },
+    {
+      "id": "koa:artifact:space-manifest",
+      "label": "Space Manifest",
+      "kind": "presentation_manifest",
+      "description": "Manifest/registration d’une surface admise dans Koali Spaces.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:artifact:strategy-observation",
+      "label": "Strategy observation",
+      "kind": "procedural_research_memory",
+      "description": "Observation append-only sur l’efficacité d’une méthode de recherche; transférable entre Challenges mais non assimilable à un fait mathématique.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:formulator",
+        "src:workspace-evidence:grand-challenges"
+      ]
+    },
+    {
+      "id": "koa:artifact:task",
+      "label": "Task",
+      "kind": "operational_state",
+      "description": "Unité de travail assignable Orgo.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:artifact:theophile-konstellation-testkit",
+      "label": "Théophile → Konstellation → SemantiK test kit",
+      "kind": "integration_testkit",
+      "description": "Normalized Konstellation pack and Lens/test material for the Théophile corpus and SemantiK integration.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:repo-readme:theophile-konstellation-semantik-testkit"
+      ]
+    },
+    {
+      "id": "koa:artifact:theophile-svg-stack-tool",
+      "label": "THÉOPHILE SVG stack tool",
+      "kind": "brand_asset_adjustment_tool",
+      "description": "Local GUI/package for adjusting SVG layers and animations, exporting placements JSON and baking corrected SVG transforms.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:theophile-svg-stack"
+      ]
+    },
+    {
+      "id": "koa:artifact:uckk-archive-item",
+      "label": "UCKK Archive Item",
+      "kind": "learning_archive",
+      "description": "Objet d’archive/média/didactique avec provenance, visibilité, validation et révisions.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-uckk",
+        "src:github-uckk"
+      ]
+    },
+    {
+      "id": "koa:artifact:uckk-assembly-record",
+      "label": "UCKK Assembly Record",
+      "kind": "learning_decision",
+      "description": "Motion/décision ou résultat d’assemblée UCKK, distinct de l’archive et de l’intégrité.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-uckk",
+        "src:github-uckk"
+      ]
+    },
+    {
+      "id": "koa:artifact:uckk-challenge-result",
+      "label": "UCKK Challenge Result",
+      "kind": "learning_evidence",
+      "description": "Production/résultat de défi pédagogique avec preuve et possible archivage.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-uckk",
+        "src:github-uckk"
+      ]
+    },
+    {
+      "id": "koa:artifact:uckk-integrity-case",
+      "label": "UCKK Integrity Case",
+      "kind": "integrity_case",
+      "description": "Cas/review/appeal/correction d’intégrité institutionnelle.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-uckk",
+        "src:github-uckk"
+      ]
+    },
+    {
+      "id": "koa:artifact:voting-result",
+      "label": "Voting canonical Result",
+      "kind": "canonical_governance_result",
+      "description": "Résultat canonique sérialisé de façon déterministe et identifié depuis ses bytes canoniques.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:votingmachine"
+      ]
+    },
+    {
+      "id": "koa:artifact:voting-run-record",
+      "label": "Voting RunRecord",
+      "kind": "deterministic_execution_record",
+      "description": "Trace canonique d’un run de tabulation incluant la graine seulement lorsqu’un tie-break aléatoire a réellement eu lieu.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:votingmachine"
+      ]
+    },
+    {
+      "id": "koa:artifact:workflow",
+      "label": "Workflow",
+      "kind": "operational_state",
+      "description": "Workflow gouverné Orgo.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:artifact:working-artifact",
+      "label": "Working Artifact",
+      "kind": "knowledge_artifact",
+      "description": "Artefact de travail projetable selon Reader Policy.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    }
+  ]
+}

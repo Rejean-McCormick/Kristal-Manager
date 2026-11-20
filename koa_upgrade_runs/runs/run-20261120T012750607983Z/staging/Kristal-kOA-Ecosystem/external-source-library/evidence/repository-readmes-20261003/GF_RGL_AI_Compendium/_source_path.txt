@@ -1,0 +1,2 @@
+repo=GF_RGL_AI_Compendium
+path=C:\mycode\Grammatical_Framework\GF_RGL_AI_Compendium

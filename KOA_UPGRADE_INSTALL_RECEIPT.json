@@ -1,0 +1,16 @@
+{
+  "overlay_id": "koa.kristal-upgrade.20261119.alpha1",
+  "installed": {
+    "KOA_UPGRADE_CLI.cmd": "96ccebae53e90f307a9bd6a97e067674ae0b39d87d8fc36e227b337060ac1406",
+    "KOA_Upgrade.pyw": "7d560702cccf45c2d0bc90cd82a8b5dacf8e85ede3f2772e1b4e3c516fba2ef6",
+    "LANCER_KOA_UPGRADE.cmd": "2d9775776c5a69e15b460607c0f0b34531a8ada9ed42b0c44f4ca7584f2bf47c",
+    "RESTAURER_KOA.cmd": "4590a144b10b97676cb1764a77b4c60d364fe17b4572352683b6a1b31092f9e4",
+    "VERIFIER_KOA.cmd": "ecb5e51506f1a26dbb7a8a311a32c73c824b223d0398155c1f227e062f1c9cb7",
+    "koa_upgrade/__init__.py": "751377c2c346a60fd69a01593520497e06c5abef40d2ee4db103e9c0f6145680",
+    "koa_upgrade/cli.py": "84604020f528fa4380404c656770659ee5fedfa3192afca640f5b16e2b52ae80",
+    "koa_upgrade/engine.py": "ddfb1d104fb53301060b247f7795e168e6707cb32bb66f881f100defa7a4dcf3",
+    "koa_upgrade/gui.py": "11261e2e783f77cde83d00e16b913df88888f4676c54f7e4a8499005a3bd4109",
+    "koa_upgrade/snapshot.lock.json": "317a52e3322dedc7f9e6dc256481cf0f476030bc71e609ecbebfc14efa672d2f"
+  },
+  "manager": "C:\\mycode\\Kristal\\Kristal-Manager"
+}

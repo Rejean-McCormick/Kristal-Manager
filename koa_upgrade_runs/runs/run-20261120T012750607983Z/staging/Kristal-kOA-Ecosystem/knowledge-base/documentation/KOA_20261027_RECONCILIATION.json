@@ -1,0 +1,875 @@
+{
+  "baseline_version": "0.6.3",
+  "version": "0.7.0",
+  "source_registry_koa_entries": 155,
+  "source_koa_sha256": "dfd85bd6261a16c8571658ab64bf129efef70e22e02c84d2d3bb1e010309dc8c",
+  "repository_catalog_before": 112,
+  "repository_catalog_after": 189,
+  "repository_catalog_new": 77,
+  "repository_catalog_existing_updated": 78,
+  "new_component_count": 14,
+  "new_components": [
+    "koa:ekole",
+    "koa:ekole-pastorale",
+    "koa:ekole-quebec",
+    "koa:akor",
+    "koa:kompose",
+    "koa:kontexte",
+    "koa:inkuisite",
+    "koa:bokristal",
+    "koa:spek",
+    "koa:dik",
+    "koa:kristal-authoring-kit",
+    "koa:kristalizer",
+    "koa:arketype",
+    "koa:skope"
+  ],
+  "ambiguous_inventory_github_identities": [
+    {
+      "github_repo": "grammaticalframework/gf-rgl",
+      "count": 2,
+      "paths": [
+        "C:\\mycode\\Grammatical_Framework\\gf-rgl",
+        "C:\\mycode\\SemantiK_Architect\\gf-rgl"
+      ]
+    },
+    {
+      "github_repo": "rejean-mccormick/koa-digital-ecosystem.wiki",
+      "count": 2,
+      "paths": [
+        "C:\\mycode\\HomePage\\docs-initkoa-org\\.wiki-cache\\kOA Digital Ecosystem",
+        "C:\\mycode\\kOA_Digital_Ecosystem\\kOA_Digital_Ecosystem.wiki"
+      ]
+    },
+    {
+      "github_repo": "rejean-mccormick/konnaxion.wiki",
+      "count": 2,
+      "paths": [
+        "C:\\mycode\\HomePage\\docs-initkoa-org\\.wiki-cache\\Konnaxion",
+        "C:\\mycode\\Konnaxion\\Konnaxion.wiki"
+      ]
+    },
+    {
+      "github_repo": "rejean-mccormick/kristal-framework.wiki",
+      "count": 2,
+      "paths": [
+        "C:\\mycode\\HomePage\\docs-initkoa-org\\.wiki-cache\\Kristal Framework",
+        "C:\\mycode\\Kristal\\kristal-framework.wiki"
+      ]
+    },
+    {
+      "github_repo": "rejean-mccormick/orgo.wiki",
+      "count": 2,
+      "paths": [
+        "C:\\mycode\\HomePage\\docs-initkoa-org\\.wiki-cache\\Orgo",
+        "C:\\mycode\\Orgo\\Orgo.wiki"
+      ]
+    },
+    {
+      "github_repo": "rejean-mccormick/semantik-architect.wiki",
+      "count": 2,
+      "paths": [
+        "C:\\mycode\\HomePage\\docs-initkoa-org\\.wiki-cache\\SemantiK Architect",
+        "C:\\mycode\\SemantiK_Architect\\SemantiK_Architect.wiki"
+      ]
+    },
+    {
+      "github_repo": "rejean-mccormick/sentient.wiki",
+      "count": 2,
+      "paths": [
+        "C:\\mycode\\HomePage\\docs-initkoa-org\\.wiki-cache\\SenTient",
+        "C:\\mycode\\SenTient\\SenTient.wiki"
+      ]
+    }
+  ],
+  "unverified_local_project_count": 7,
+  "unverified_remote_discovery_count": 18,
+  "mapping": [
+    {
+      "koa_identity": "Rejean-McCormick/Akor",
+      "kristal_repository_id": "koa:repo:akor",
+      "inventory_path": "C:\\mycode\\Ekole\\Akor\\Akor"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Ame-Artificielle",
+      "kristal_repository_id": "koa:repo:ame-artificielle",
+      "inventory_path": "C:\\mycode\\02-Experimental\\AmeArtificielle\\Ame-Artificielle"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Arketype",
+      "kristal_repository_id": "koa:repo:arketype",
+      "inventory_path": "C:\\mycode\\Kristal\\Arketype\\arketype"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Book-Civilizational-Coherence",
+      "kristal_repository_id": "koa:repo:book-civilizational-coherence",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\Civilisational_Coherence"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Book-Colin-Row",
+      "kristal_repository_id": "koa:repo:book-colin-row",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\Colin_Row"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Daat",
+      "kristal_repository_id": "koa:repo:daat",
+      "inventory_path": "C:\\mycode\\Interaction-Kernel\\Daat"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Ekole",
+      "kristal_repository_id": "koa:repo:ekole",
+      "inventory_path": "C:\\mycode\\Ekole\\ekole"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Ekole-Pastorale",
+      "kristal_repository_id": "koa:repo:ekole-pastorale",
+      "inventory_path": "C:\\mycode\\Ekole\\ecole-pastorale"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/EncyKlopedia",
+      "kristal_repository_id": "koa:repo:encyklopedia",
+      "inventory_path": "C:\\mycode\\EncyKlopedia\\EncyKlopedia"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Freeze-Vote-Rebuild-Operational-Peace-Framework",
+      "kristal_repository_id": "koa:repo:freeze-vote-rebuild-operational-peace-framework",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\FreezeVoteRebuild\\Freeze-Vote-Rebuild_Operational-Peace-Framework"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Grammatical-Framework-Albanian",
+      "kristal_repository_id": "koa:repo:grammatical-framework-albanian",
+      "inventory_path": "C:\\mycode\\Grammatical_Framework\\Grammatical_Framework-Albanian"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/HELLO-WORLD-Autopsie-d-un-Clown-Royal",
+      "kristal_repository_id": "koa:repo:hello-world-autopsie-d-un-clown-royal",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\HelloWorld(Suno)"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/HomePage-initkoa.org",
+      "kristal_repository_id": "koa:repo:homepage-initkoa-org",
+      "inventory_path": "C:\\mycode\\HomePage\\HomePage"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/initkoa-docs",
+      "kristal_repository_id": "koa:repo:initkoa-docs",
+      "inventory_path": "C:\\mycode\\HomePage\\docs-initkoa-org"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Interaction-Kernel",
+      "kristal_repository_id": "koa:repo:interaction-kernel",
+      "inventory_path": "C:\\mycode\\Interaction-Kernel\\interaction_kernel"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/King-Klown-Canon",
+      "kristal_repository_id": "koa:repo:king-klown-canon",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\King_Klown\\king-clown-canon"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/kOA-Digital-Ecosystem",
+      "kristal_repository_id": "koa:repo:koa-digital-ecosystem",
+      "inventory_path": "C:\\mycode\\kOA_Digital_Ecosystem\\kOA_Digital_Ecosystem"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/kOA-Linux-Koali",
+      "kristal_repository_id": "koa:repo:koa-linux-koali",
+      "inventory_path": "C:\\mycode\\kOA-Linux\\koa-linux"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/kOA-Obama-Foundation-Briefing",
+      "kristal_repository_id": "koa:repo:koa-obama-foundation-briefing",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\kOA-Obama"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Koali-Control-Panel",
+      "kristal_repository_id": "koa:repo:koali-control-panel",
+      "inventory_path": "C:\\mycode\\kOA-Linux\\Koali-Control-Panel"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Koali-Scenario-Mosaic",
+      "kristal_repository_id": "koa:repo:koali-scenario-mosaic",
+      "inventory_path": "C:\\mycode\\kOA-Linux\\Koali_Scenario_Mosaic"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Koali-Spaces",
+      "kristal_repository_id": "koa:repo:koali-spaces",
+      "inventory_path": "C:\\mycode\\kOA-Linux\\koali-spaces"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kompiler",
+      "kristal_repository_id": "koa:repo:kompiler",
+      "inventory_path": "C:\\mycode\\Kristal\\Kompiler"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kompose",
+      "kristal_repository_id": "koa:repo:kompose",
+      "inventory_path": "C:\\mycode\\Ekole\\Kompose\\kompose"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Konductor",
+      "kristal_repository_id": "koa:repo:konductor",
+      "inventory_path": "C:\\mycode\\Konductor\\Konductor"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Konfid",
+      "kristal_repository_id": "koa:repo:konfid",
+      "inventory_path": "C:\\mycode\\Konfid\\konfid"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Konnaxion",
+      "kristal_repository_id": "koa:repo:konnaxion",
+      "inventory_path": "C:\\mycode\\Konnaxion\\Konnaxion"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Konnaxion-Ashoka-Systems-Change-Dossier",
+      "kristal_repository_id": "koa:repo:konnaxion-ashoka-systems-change-dossier",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\Ashoka"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Konnaxion-Capsule-Manager",
+      "kristal_repository_id": "koa:repo:konnaxion-capsule-manager",
+      "inventory_path": "C:\\mycode\\Konnaxion\\Konnaxion_Capsule_Manager"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Konnaxion-Worlds",
+      "kristal_repository_id": "koa:repo:konnaxion-worlds",
+      "inventory_path": "C:\\mycode\\Konnaxion\\Konnaxion_Worlds"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/KonnaxionDiag",
+      "kristal_repository_id": "koa:repo:konnaxiondiag",
+      "inventory_path": "C:\\mycode\\Konnaxion\\KonnaxionDiag"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Konstellation",
+      "kristal_repository_id": "koa:repo:konstellation",
+      "inventory_path": "C:\\mycode\\Konstellation\\Konstellation"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Konstellation-Light",
+      "kristal_repository_id": "koa:repo:konstellation-light",
+      "inventory_path": "C:\\mycode\\Konstellation\\Konstellation-Light"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Konstellation-Publisher",
+      "kristal_repository_id": "koa:repo:konstellation-publisher-9316422",
+      "inventory_path": "C:\\mycode\\Konstellation\\Konstellation-Publisher"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kontainer",
+      "kristal_repository_id": "koa:repo:kontainer",
+      "inventory_path": "C:\\mycode\\Kristal\\Kontainer"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kontexte",
+      "kristal_repository_id": "koa:repo:kontexte",
+      "inventory_path": "C:\\mycode\\Ekole\\Kontexte\\Kontexte"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kristal-Authoring-Kit",
+      "kristal_repository_id": "koa:repo:kristal-authoring-kit",
+      "inventory_path": "C:\\mycode\\Kristal\\Kristal-Authoring-Kit"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kristal-Farms",
+      "kristal_repository_id": "koa:repo:kristal-farms",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\Kristal_Farms\\kristal-farms"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kristal-Framework",
+      "kristal_repository_id": "koa:repo:kristal-framework",
+      "inventory_path": "C:\\mycode\\Kristal\\Kristal-Framework"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kristal-Integration-Pack",
+      "kristal_repository_id": "koa:repo:kristal-integration-pack",
+      "inventory_path": "C:\\mycode\\Kristal\\Kristal-Integration-Pack"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kristal-Kollection",
+      "kristal_repository_id": "koa:repo:kristal-kollection",
+      "inventory_path": "C:\\mycode\\Kristal\\Kristal-Kollection"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kristal-Manager",
+      "kristal_repository_id": "koa:repo:kristal-manager",
+      "inventory_path": "C:\\mycode\\Kristal\\Kristal-Manager"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/kristal-public",
+      "kristal_repository_id": "koa:repo:kristal-public",
+      "inventory_path": "C:\\mycode\\Kristal\\kristal-public"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kristal-Reference",
+      "kristal_repository_id": "koa:repo:kristal-reference",
+      "inventory_path": ""
+    },
+    {
+      "koa_identity": "Rejean-McCormick/KristalDiag",
+      "kristal_repository_id": "koa:repo:kristaldiag",
+      "inventory_path": "C:\\mycode\\Kristal\\KristalDiag"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/KristalV10",
+      "kristal_repository_id": "koa:repo:kristalv10",
+      "inventory_path": ""
+    },
+    {
+      "koa_identity": "Rejean-McCormick/LevelUpDiag-kOA-Linux",
+      "kristal_repository_id": "koa:repo:levelupdiag-koa-linux",
+      "inventory_path": "C:\\mycode\\kOA-Linux\\LevelUpDiag-Koali"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/LevelUpDiag-Kristal",
+      "kristal_repository_id": "koa:repo:levelupdiag-kristal",
+      "inventory_path": ""
+    },
+    {
+      "koa_identity": "Rejean-McCormick/LevelUpDiag-Orgo",
+      "kristal_repository_id": "koa:repo:levelupdiag-orgo",
+      "inventory_path": "C:\\mycode\\Orgo\\LevelUpDiag-Orgo"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/LevelUpDiag_SemantiK-Architect",
+      "kristal_repository_id": "koa:repo:levelupdiag-semantik-architect",
+      "inventory_path": "C:\\mycode\\SemantiK_Architect\\LevelUpDiag_SemantiK_Architect"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Mediatheque",
+      "kristal_repository_id": "koa:repo:mediatheque-52103a8",
+      "inventory_path": "C:\\mycode\\kOA_Mediatheque\\mediatheque"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Mediatheque-blank",
+      "kristal_repository_id": "koa:repo:mediatheque-blank",
+      "inventory_path": "C:\\mycode\\kOA_Mediatheque\\mediatheque-blank"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/MediKristal",
+      "kristal_repository_id": "koa:repo:medikristal",
+      "inventory_path": "C:\\mycode\\Kristal\\MediKristal\\MediKristal"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/MediKristal-LevelUpDiag-",
+      "kristal_repository_id": "koa:repo:medikristal-levelupdiag",
+      "inventory_path": "C:\\mycode\\Kristal\\MediKristal\\LevelUpDiag-MediKristal"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Omni-Wiki",
+      "kristal_repository_id": "koa:repo:omni-wiki",
+      "inventory_path": ""
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Omni-Wiki-Rejean-King-Klown",
+      "kristal_repository_id": "koa:repo:omni-wiki-rejean-king-klown",
+      "inventory_path": "C:\\mycode\\OmniWiki\\Omni-Wiki-Rejean-King-Klown"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Orgo",
+      "kristal_repository_id": "koa:repo:orgo",
+      "inventory_path": "C:\\mycode\\Orgo\\Orgo"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Orgo-Worlds",
+      "kristal_repository_id": "koa:repo:orgo-worlds",
+      "inventory_path": "C:\\mycode\\Orgo\\Orgo_Worlds"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Partners-for-Public-Good-Pressure-Test-Koali",
+      "kristal_repository_id": "koa:repo:partners-for-public-good-pressure-test-koali",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\PPG"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Pi-Theory",
+      "kristal_repository_id": "koa:repo:pi-theory",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\Pi-theory\\Pi_Theory"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Power-Dynamics",
+      "kristal_repository_id": "koa:repo:power-dynamics",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\Power_Dynamics\\power_dynamics"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Projet-ORPHEE-Walk-Straight",
+      "kristal_repository_id": "koa:repo:projet-orphee-walk-straight",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\Orphee(Prison)\\orphee-walk-straight"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Rejean-McCormick",
+      "kristal_repository_id": "koa:repo:rejean-mccormick",
+      "inventory_path": "C:\\mycode\\Rejean_McCormick-OrganisationGit\\Rejean-McCormick"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Science-Silk-Road-Koali",
+      "kristal_repository_id": "koa:repo:science-silk-road-koali",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\Science_Silk_Road\\science_silk_road"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/SemantiK-Architect",
+      "kristal_repository_id": "koa:repo:semantik-architect",
+      "inventory_path": "C:\\mycode\\SemantiK_Architect\\SemantiK_Architect"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/SemantiK_Runtime_Orchestrator",
+      "kristal_repository_id": "koa:repo:semantik-runtime-orchestrator",
+      "inventory_path": "C:\\mycode\\SemantiK_Architect\\SemantiK_Runtime_Orchestrator"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/SenTient",
+      "kristal_repository_id": "koa:repo:sentient",
+      "inventory_path": "C:\\mycode\\SenTient\\SenTient"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Skope",
+      "kristal_repository_id": "koa:repo:skope",
+      "inventory_path": "C:\\mycode\\Skope\\Skope"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Spek",
+      "kristal_repository_id": "koa:repo:spek",
+      "inventory_path": "C:\\mycode\\Spek_Semantic-publishing\\Spek"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/UCKK",
+      "kristal_repository_id": "koa:repo:uckk",
+      "inventory_path": ""
+    },
+    {
+      "koa_identity": "Rejean-McCormick/UCKK-Assets",
+      "kristal_repository_id": "koa:repo:uckk-assets",
+      "inventory_path": "C:\\mycode\\UCKK\\UCKK_Assets"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/UCKK-Ops-Console",
+      "kristal_repository_id": "koa:repo:uckk-ops-console",
+      "inventory_path": "C:\\mycode\\UCKK\\UCKK_ops_console"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/VotingMachine",
+      "kristal_repository_id": "koa:repo:votingmachine",
+      "inventory_path": "C:\\mycode\\02-Experimental\\VotingMachine\\VotingMachine"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/BoKristal",
+      "kristal_repository_id": "koa:repo:bokristal",
+      "inventory_path": "C:\\mycode\\BoKristal\\BoKristal"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Business-Plan",
+      "kristal_repository_id": "koa:repo:business-plan",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\Business-plan"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/kOA-International-Strategy",
+      "kristal_repository_id": "koa:repo:international-strategy",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\International-Strategy"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/King-Klown-Canon.wiki",
+      "kristal_repository_id": "koa:repo:king-klown-canon-wiki",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\King_Klown\\king-klown-canon.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kristal-Farms.wiki",
+      "kristal_repository_id": "koa:repo:kristal-farms-wiki",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\Kristal_Farms\\Kristal_Farms.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Pi-Theory.wiki",
+      "kristal_repository_id": "koa:repo:pi-theory-wiki",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\Pi-theory\\Pi-Theory.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Power-Dynamics.wiki",
+      "kristal_repository_id": "koa:repo:power-dynamics-wiki",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\Power_Dynamics\\Power-Dynamics.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Science-Silk-Road-Koali.wiki",
+      "kristal_repository_id": "koa:repo:science-silk-road-koali-wiki",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\Science_Silk_Road\\science-silk-road-koali.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Ame-Artificielle.wiki",
+      "kristal_repository_id": "koa:repo:ame-artificielle-wiki",
+      "inventory_path": "C:\\mycode\\02-Experimental\\AmeArtificielle\\Ame-Artificielle.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Astro-App",
+      "kristal_repository_id": "koa:repo:astro-signals",
+      "inventory_path": "C:\\mycode\\02-Experimental\\Astro-App\\astro_app"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Math-Challenges",
+      "kristal_repository_id": "koa:repo:mathchallenges-workspace",
+      "inventory_path": "C:\\mycode\\02-Experimental\\MathChallenges"
+    },
+    {
+      "koa_identity": "openai/math",
+      "kristal_repository_id": "koa:repo:math",
+      "inventory_path": "C:\\mycode\\02-Experimental\\MathChallenges\\math"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Voxtral-Audiobook-Studio",
+      "kristal_repository_id": "koa:repo:voxtral-audiobook-studio",
+      "inventory_path": "C:\\mycode\\02-Experimental\\Voxtral_Audiobook_Studio\\Voxtral_Audiobook_Studio"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/theophile-mini-site",
+      "kristal_repository_id": "koa:repo:theophile-mini-site",
+      "inventory_path": "C:\\mycode\\03-Brands\\Theophile\\theophile-mini-site"
+    },
+    {
+      "koa_identity": "Alfresco/alfresco-community-repo",
+      "kristal_repository_id": "koa:repo:alfresco-community-repo",
+      "inventory_path": "C:\\mycode\\Alfresco\\alfresco-community-repo"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Ariane",
+      "kristal_repository_id": "koa:repo:ariane",
+      "inventory_path": "C:\\mycode\\Ariane\\Ariane"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Akor.wiki",
+      "kristal_repository_id": "koa:repo:akor-wiki",
+      "inventory_path": "C:\\mycode\\Ekole\\Akor\\Akor.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Ekole-Pastorale.wiki",
+      "kristal_repository_id": "koa:repo:ekole-pastorale-wiki",
+      "inventory_path": "C:\\mycode\\Ekole\\Ekole-Pastorale.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Ekole.wiki",
+      "kristal_repository_id": "koa:repo:ekole-wiki",
+      "inventory_path": "C:\\mycode\\Ekole\\Ekole.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kompose.wiki",
+      "kristal_repository_id": "koa:repo:kompose-wiki",
+      "inventory_path": "C:\\mycode\\Ekole\\Kompose.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kontexte.wiki",
+      "kristal_repository_id": "koa:repo:kontexte-wiki",
+      "inventory_path": "C:\\mycode\\Ekole\\Kontexte.wiki"
+    },
+    {
+      "koa_identity": "GrammaticalFramework/gf-core",
+      "kristal_repository_id": "koa:repo:gf-core",
+      "inventory_path": "C:\\mycode\\Grammatical_Framework\\gf-core"
+    },
+    {
+      "koa_identity": "GrammaticalFramework/gf-rgl",
+      "kristal_repository_id": "koa:repo:gf-rgl",
+      "inventory_path": "C:\\mycode\\Grammatical_Framework\\gf-rgl"
+    },
+    {
+      "koa_identity": "krangelov/gf-wikidata",
+      "kristal_repository_id": "koa:repo:gf-wikidata",
+      "inventory_path": "C:\\mycode\\Grammatical_Framework\\gf-wikidata_repos_source\\gf-wikidata"
+    },
+    {
+      "koa_identity": "GrammaticalFramework/gf-wikidata-tools",
+      "kristal_repository_id": "koa:repo:gf-wikidata-tools",
+      "inventory_path": "C:\\mycode\\Grammatical_Framework\\gf-wikidata_repos_source\\gf-wikidata-tools"
+    },
+    {
+      "koa_identity": "foerstner-lab/GFF_to_Wikidata_importer",
+      "kristal_repository_id": "koa:repo:gff-to-wikidata-importer",
+      "inventory_path": "C:\\mycode\\Grammatical_Framework\\gf-wikidata_repos_source\\GFF_to_Wikidata_importer"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/kOA-Digital-Ecosystem.wiki",
+      "kristal_repository_id": "koa:repo:koa-digital-ecosystem-wiki",
+      "inventory_path": "C:\\mycode\\HomePage\\docs-initkoa-org\\.wiki-cache\\kOA Digital Ecosystem"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Konnaxion.wiki",
+      "kristal_repository_id": "koa:repo:konnaxion-wiki",
+      "inventory_path": "C:\\mycode\\HomePage\\docs-initkoa-org\\.wiki-cache\\Konnaxion"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kristal-Framework.wiki",
+      "kristal_repository_id": "koa:repo:kristal-framework-wiki",
+      "inventory_path": "C:\\mycode\\HomePage\\docs-initkoa-org\\.wiki-cache\\Kristal Framework"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Orgo.wiki",
+      "kristal_repository_id": "koa:repo:orgo-wiki",
+      "inventory_path": "C:\\mycode\\HomePage\\docs-initkoa-org\\.wiki-cache\\Orgo"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/SemantiK-Architect.wiki",
+      "kristal_repository_id": "koa:repo:semantik-architect-wiki",
+      "inventory_path": "C:\\mycode\\HomePage\\docs-initkoa-org\\.wiki-cache\\SemantiK Architect"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/SenTient.wiki",
+      "kristal_repository_id": "koa:repo:sentient-wiki",
+      "inventory_path": "C:\\mycode\\HomePage\\docs-initkoa-org\\.wiki-cache\\SenTient"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Daat.wiki",
+      "kristal_repository_id": "koa:repo:daat-wiki",
+      "inventory_path": "C:\\mycode\\Interaction-Kernel\\Daat.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kamel",
+      "kristal_repository_id": "koa:repo:kamel",
+      "inventory_path": "C:\\mycode\\Kamel\\Kamel"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/kOA-Linux-Koali.wiki",
+      "kristal_repository_id": "koa:repo:koa-linux-koali-wiki",
+      "inventory_path": "C:\\mycode\\kOA-Linux\\koa-linux-wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/kOA-Digital-Ecosystem.wiki",
+      "kristal_repository_id": "koa:repo:koa-digital-ecosystem-wiki-26f8920",
+      "inventory_path": "C:\\mycode\\kOA_Digital_Ecosystem\\kOA_Digital_Ecosystem.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Konfid.wiki",
+      "kristal_repository_id": "koa:repo:konfid-wiki",
+      "inventory_path": "C:\\mycode\\Konfid\\Konfid.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Konnaxion.wiki",
+      "kristal_repository_id": "koa:repo:konnaxion-wiki-1891086",
+      "inventory_path": "C:\\mycode\\Konnaxion\\Konnaxion.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Konstellation.wiki",
+      "kristal_repository_id": "koa:repo:konstellation-wiki",
+      "inventory_path": "C:\\mycode\\Konstellation\\Konstellation.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Arketype.wiki",
+      "kristal_repository_id": "koa:repo:arketype-wiki",
+      "inventory_path": "C:\\mycode\\Kristal\\Arketype\\Arketype.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kontainer.wiki",
+      "kristal_repository_id": "koa:repo:kontainer-wiki",
+      "inventory_path": "C:\\mycode\\Kristal\\Kontainer.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kristal-Framework.wiki",
+      "kristal_repository_id": "koa:repo:kristal-framework-wiki-41355f1",
+      "inventory_path": "C:\\mycode\\Kristal\\kristal-framework.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kristal-Integration-Pack.wiki",
+      "kristal_repository_id": "koa:repo:kristal-integration-pack-wiki",
+      "inventory_path": "C:\\mycode\\Kristal\\Kristal-Integration-Pack.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/MediKristal.wiki",
+      "kristal_repository_id": "koa:repo:medikristal-wiki",
+      "inventory_path": "C:\\mycode\\Kristal\\MediKristal\\MediKristal.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/LevelUpDiag",
+      "kristal_repository_id": "koa:repo:levelupdiag",
+      "inventory_path": "C:\\mycode\\LevelUpDiag\\LevelUpDiag"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Orgo.wiki",
+      "kristal_repository_id": "koa:repo:orgo-wiki-42657aa",
+      "inventory_path": "C:\\mycode\\Orgo\\Orgo.wiki"
+    },
+    {
+      "koa_identity": "GrammaticalFramework/gf-rgl",
+      "kristal_repository_id": "koa:repo:semantik-architect-gf-rgl",
+      "inventory_path": "C:\\mycode\\SemantiK_Architect\\gf-rgl"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/SemantiK-Architect.wiki",
+      "kristal_repository_id": "koa:repo:semantik-architect-wiki-6c18d7a",
+      "inventory_path": "C:\\mycode\\SemantiK_Architect\\SemantiK_Architect.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/SenTient.wiki",
+      "kristal_repository_id": "koa:repo:sentient-wiki-a25c78f",
+      "inventory_path": "C:\\mycode\\SenTient\\SenTient.wiki"
+    },
+    {
+      "koa_identity": "simdjson/simdjson",
+      "kristal_repository_id": "koa:repo:simdjson-upstream",
+      "inventory_path": "C:\\mycode\\Simdjson\\simdjson-upstream"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Skope.wiki",
+      "kristal_repository_id": "koa:repo:skope-wiki",
+      "inventory_path": "C:\\mycode\\Skope\\Skope.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Spek.wiki",
+      "kristal_repository_id": "koa:repo:spek-wiki",
+      "inventory_path": "C:\\mycode\\Spek_Semantic-publishing\\Spek.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/SwarmCraft",
+      "kristal_repository_id": "koa:repo:swarmcraft",
+      "inventory_path": "C:\\mycode\\SwarmCraft\\SwarmCraft"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/tools",
+      "kristal_repository_id": "koa:repo:tools",
+      "inventory_path": "C:\\mycode\\Tools\\toolz"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/KeyFlow",
+      "kristal_repository_id": "koa:repo:keyflow-formulaires",
+      "inventory_path": "C:\\mycode\\UCKK\\KeyFlow(formulaires)"
+    },
+    {
+      "koa_identity": "moodle/moodle",
+      "kristal_repository_id": "koa:repo:moodle",
+      "inventory_path": "C:\\mycode\\UCKK\\moodle\\moodle"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/UCKK-Moodle",
+      "kristal_repository_id": "koa:repo:uckk-moodle",
+      "inventory_path": "C:\\mycode\\UCKK\\uckk-moodle"
+    },
+    {
+      "koa_identity": "MA-Gustave/AI-Orchestrated-Experimental-Development",
+      "kristal_repository_id": "koa:repo:ai-orchestrated-experimental-development",
+      "inventory_path": "C:\\mycode\\Grammatical_Framework\\AI-Orchestrated-Experimental-Development"
+    },
+    {
+      "koa_identity": "MA-Gustave/AI-Orchestrated-Experimental-Development.wiki",
+      "kristal_repository_id": "koa:repo:ai-orchestrated-experimental-development-wiki",
+      "inventory_path": "C:\\mycode\\Grammatical_Framework\\AI-Orchestrated-Experimental-Development.wiki"
+    },
+    {
+      "koa_identity": "MA-Gustave/ars-magna-lulli",
+      "kristal_repository_id": "koa:repo:ma-gustave-ars-magna-lulli",
+      "inventory_path": "C:\\mycode\\Grammatical_Framework\\ars-magna-lulli\\ars-magna-lulli"
+    },
+    {
+      "koa_identity": "MA-Gustave/GF_Observatory",
+      "kristal_repository_id": "koa:repo:ma-gustave-gf-observatory",
+      "inventory_path": "C:\\mycode\\Grammatical_Framework\\GF_Observatory"
+    },
+    {
+      "koa_identity": "MA-Gustave/GF_RGL_AI_Compendium",
+      "kristal_repository_id": "koa:repo:ma-gustave-gf-rgl-ai-compendium",
+      "inventory_path": "C:\\mycode\\Grammatical_Framework\\GF_RGL_AI_Compendium"
+    },
+    {
+      "koa_identity": "MA-Gustave/GF_Wordbench",
+      "kristal_repository_id": "koa:repo:ma-gustave-gf-wordbench",
+      "inventory_path": "C:\\mycode\\Grammatical_Framework\\GF_Wordbench\\GF_Wordbench"
+    },
+    {
+      "koa_identity": "MA-Gustave/MA-Gustave",
+      "kristal_repository_id": "koa:repo:ma-gustave-github-profile",
+      "inventory_path": "C:\\mycode\\03-Brands\\Gustave\\GitHub_Profile"
+    },
+    {
+      "koa_identity": "MA-Gustave/RVV-VLA-Lab",
+      "kristal_repository_id": "koa:repo:rvv-vla-lab",
+      "inventory_path": ""
+    },
+    {
+      "koa_identity": "MA-Gustave/RVV-VLA-Lab.wiki",
+      "kristal_repository_id": "koa:repo:rvv-vla-lab-wiki",
+      "inventory_path": "C:\\mycode\\Simdjson\\archives\\RVV-VLA-Lab.wiki"
+    },
+    {
+      "koa_identity": "MA-Gustave/simdjson-rvv-vla",
+      "kristal_repository_id": "koa:repo:simdjson-rvv-vla-426c79e",
+      "inventory_path": "C:\\mycode\\Simdjson\\archives\\simdjson-rvv-vla"
+    },
+    {
+      "koa_identity": "MA-Gustave/Simdjson-rvv-vla.wiki",
+      "kristal_repository_id": "koa:repo:simdjson-rvv-vla-wiki",
+      "inventory_path": "C:\\mycode\\Simdjson\\archives\\Simdjson-rvv-vla.wiki"
+    },
+    {
+      "koa_identity": "MA-Gustave/VectorPath-RVV",
+      "kristal_repository_id": "koa:repo:vectorpath-rvv",
+      "inventory_path": "C:\\mycode\\Simdjson\\VectorPath-RVV"
+    },
+    {
+      "koa_identity": "MA-Gustave/VectorPath-RVV.wiki",
+      "kristal_repository_id": "koa:repo:vectorpath-rvv-wiki",
+      "inventory_path": "C:\\mycode\\Simdjson\\VectorPath-RVV.wiki"
+    },
+    {
+      "koa_identity": "MA-Gustave/VLA-MethodLab",
+      "kristal_repository_id": "koa:repo:vla-methodlab",
+      "inventory_path": "C:\\mycode\\Simdjson\\VLA-MethodLab"
+    },
+    {
+      "koa_identity": "MA-Gustave/VLA-MethodLab.wiki",
+      "kristal_repository_id": "koa:repo:vla-methodlab-wiki",
+      "inventory_path": "C:\\mycode\\Simdjson\\VLA-MethodLab.wiki"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Conclave_des_Sept",
+      "kristal_repository_id": "koa:repo:conclave-des-sept",
+      "inventory_path": "C:\\mycode\\01-Text_Based_Git\\Conclave_des_Sept"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Ekole-Kalendar",
+      "kristal_repository_id": "koa:repo:ekole-kalendar",
+      "inventory_path": "C:\\mycode\\Ekole\\ekole-calendrier\\Kalendar"
+    },
+    {
+      "koa_identity": "Rejean-McCormick/Kin-City",
+      "kristal_repository_id": "koa:repo:kin-city",
+      "inventory_path": "C:\\mycode\\Kin_City\\Kin-City"
+    },
+    {
+      "koa_identity": "LOCAL/Kristal-GitHub-Bootstrap",
+      "kristal_repository_id": "koa:repo:kristal-github-bootstrap",
+      "inventory_path": "C:\\mycode\\Kristal\\Kristal-GitHub-Bootstrap"
+    },
+    {
+      "koa_identity": "LOCAL/kristal-icon-generator",
+      "kristal_repository_id": "koa:repo:kristal-icon-generator",
+      "inventory_path": "C:\\mycode\\Kristal\\kristal-icon-generator"
+    },
+    {
+      "koa_identity": "LOCAL/Kristalizer",
+      "kristal_repository_id": "koa:repo:kristalizer",
+      "inventory_path": "C:\\mycode\\Kristal\\Kristalizer"
+    },
+    {
+      "koa_identity": "LOCAL/diK",
+      "kristal_repository_id": "koa:repo:dik",
+      "inventory_path": ""
+    },
+    {
+      "koa_identity": "LOCAL/ekole-quebec",
+      "kristal_repository_id": "koa:repo:ekole-quebec",
+      "inventory_path": "C:\\mycode\\Ekole\\ekole-quebec"
+    },
+    {
+      "koa_identity": "LOCAL/Inkuisite",
+      "kristal_repository_id": "koa:repo:inkuisite",
+      "inventory_path": "C:\\mycode\\Inkuisite"
+    },
+    {
+      "koa_identity": "LOCAL/Kor",
+      "kristal_repository_id": "koa:repo:kor",
+      "inventory_path": ""
+    }
+  ],
+  "deployment_checked": false,
+  "github_remote_reachability_checked": false,
+  "git_push_authorization_changed": false,
+  "v11_migration_executed": false,
+  "not_resolved": [
+    "No proven Git root for missing Kompose/Kontexte checkouts",
+    "No confirmed local paths for KristalV10/Kristal-Reference/LevelUpDiag-Kristal",
+    "No v11 semantic authoring migration of the older v6/v9 canonical state",
+    "No remote/network confirmation for discovery-only rows",
+    "No independent cross-repository integration/production deployment validation"
+  ]
+}

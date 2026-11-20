@@ -1,0 +1,46 @@
+{
+  "schema_version": "8.0",
+  "artifact_type": "kristall_query_index",
+  "index_id": "kristal-koa-ecosystem:query-index:v8-normalized",
+  "authoritative": false,
+  "rebuildable": true,
+  "built_from": [
+    {
+      "ref": "portable-state.kristal-state.json",
+      "byte_sha256": "sha256:cf41cb6edd32e569e5f0d781d7e53326899c5773b48ec9c42efef595fe909b7a",
+      "schema_version": "6.0"
+    }
+  ],
+  "indexes": [
+    {
+      "kind": "identity_lookup",
+      "location": "index/identity_lookup.json",
+      "content_hash": "sha256:aa40e04ada6a0fa3bb778ff0038c20d5684922da9b7ad4610b9b01843cd1cc2c",
+      "profile": "kristal-query-index/identity-lookup-v1"
+    },
+    {
+      "kind": "outgoing_edges",
+      "location": "index/outgoing-edges.json",
+      "content_hash": "sha256:554db63be3bcb6bff180a409452745d9a4f6c16ee565c56f0015e92ee8d6b81f",
+      "profile": "kristal-query-index/outgoing-edges-v1"
+    },
+    {
+      "kind": "incoming_edges",
+      "location": "index/incoming-edges.json",
+      "content_hash": "sha256:4e2dedd047673f7a3c09b40c564366c4e1d29773c6c5b4708417d44fec2cd23f",
+      "profile": "kristal-query-index/incoming-edges-v1"
+    },
+    {
+      "kind": "assertions_by_entity",
+      "location": "index/assertions-by-entity.json",
+      "content_hash": "sha256:60cff66b2575f80814a35efdd5f4594b29049579ef54c7b7aff16bcb649478ef",
+      "profile": "kristal-query-index/assertions-by-entity-v1"
+    },
+    {
+      "kind": "predicate_usage",
+      "location": "index/predicate-usage.json",
+      "content_hash": "sha256:149063d112109e72405c4bacc0cf3137be4b36373d08dc4be853d83c50c066fd",
+      "profile": "kristal-query-index/predicate-usage-v1"
+    }
+  ]
+}

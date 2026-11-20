@@ -1,0 +1,12 @@
+{
+  "standard_target": "9.0.0-draft.1",
+  "kristal_ref": "Kristal-kOA-Ecosystem",
+  "content_version": "0.6.3",
+  "status": "MIGRATED",
+  "state_id_before": "sha256:4d2c3691f5f9226254da4b82adc1e32ae6d87b80aefdda18fd221c2913916ee6",
+  "state_id_after": "sha256:49a1ae35b5badab32a7aac6e5e22ae598cf3faacd53db5b955697028f0a1fd39",
+  "assertions": 7929,
+  "relations": 2523,
+  "v9_state_commitment": "sha256:c5cea1280163558bc93a3126138628df918f919482ab9278c4fb7f32c09d8322",
+  "migration_report": ".kristal/v9/migration-report.json"
+}

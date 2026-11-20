@@ -1,0 +1,110 @@
+{
+  "format": "koa.upgrade.snapshot-lock.v1",
+  "as_of": "2026-11-19",
+  "smartdump_filename": "SmartDump_20261119_190731.zip",
+  "smartdump_sha256": "53cdda101437a954b7a6e86f112794009512294790c392a4d913e583e599258e",
+  "sources": {
+    "kristal": {
+      "archive_name": "Kristal-kOA-Ecosystem_Code_snapshot.zip",
+      "archive_sha256": "b8412e38b0eb2e2622d539dc658b626237ca12c81e1bd1ea59814559599c08e9",
+      "file_count": 330,
+      "sentinels": {
+        "VERSION": "967d9afb101346667166f2e76e81910bc190488d7d41d50ca0072e9d92f00e32",
+        "kristal.workspace.json": "c0c58c7a1df521398357ad5281ac424d3c253fe6bd1f0d05fd8369187b2946bc",
+        "knowledge-base/tools/build.py": "e01788712020d719515a3f1e81bc84ead91678617696ca6a48877d04ba23d820",
+        "knowledge-base/tools/validate.py": "d879fb79f187cb94eb7c6f2efa85e3012c418c223f3d9df3914e2009ef936949",
+        "knowledge-base/sources/repositories.json": "ed32c5cce651e04cde722c073ac4a1c3eba8c7d5389ab0a3f3d255a1e57ea47d"
+      }
+    },
+    "manager": {
+      "archive_name": "Kristal-Manager_Code_snapshot.zip",
+      "archive_sha256": "f5c0c7a1ca0aac16e1b25ce91c3cd8a9f9aef38665fd106c2815838428b81ec6",
+      "file_count": 523,
+      "sentinels": {
+        "VERSION": "be5fdb1a282e0aefa0d1647fd07482f98e682a17b9f915db5c0b168838cf6682",
+        "kristal_manager/unified/cli.py": "3781d6f9482bbd7b185cf1d383b907f980dcf7906f973cbbf780e30d8d1d6bb0"
+      }
+    },
+    "kristalizer": {
+      "archive_name": "Kristalizer_Code_snapshot.zip",
+      "archive_sha256": "d88571d382a982484e67da7f312822fa21ccf2f223d1ea1fd09fdcda4bb0a52a",
+      "file_count": 58,
+      "sentinels": {
+        "VERSION": "c62a5cc61ac4525935753f5ec284c0a052a4b1da4b3a3580dce2b7d77a2154ae",
+        "kristalizer/core.py": "d488916df305885521a64fc5c70d06cd63165876dcdd5b375872861b37af4e8f"
+      }
+    },
+    "kit": {
+      "archive_name": "Kristal-Authoring-Kit_Code_snapshot.zip",
+      "archive_sha256": "eab07397ae93f21689adcb68072a638f0229273fbff92d6518265804a910bb8a",
+      "file_count": 294,
+      "sentinels": {
+        "VERSION": "ed0b27c5a374981a83f11faf03dcae3ce167123ccf48868cd5f03722e106a137",
+        "tools/kristal.py": "e4ad7505cda3461711e2a9c933b367cd0814941ee99d9bbeb69b25404ca4b605"
+      }
+    },
+    "framework": {
+      "archive_name": "Kristal-Framework_Code_snapshot.zip",
+      "archive_sha256": "fd17523a7ea8e7899dfce3a015878ae8fe84c1f7a3401278e55a8c272073915b",
+      "file_count": 632,
+      "sentinels": {
+        "VERSION": "29dd7fcfe48675b24cfdf5cc8100d55efe725c376f1b04298cc7a8b196faceb1",
+        "contracts/v11-compatibility-lock.json": "32acab1d998b75c591e3f047494ed053b408c7f29d2de3dc2e2a3ee12e02a1fe"
+      }
+    },
+    "kristaldiag": {
+      "archive_name": "KristalDiag_Code_snapshot.zip",
+      "archive_sha256": "4fb78070f8341408546f437db83ab307373b06d75e55c0b728d323b080ca7555",
+      "file_count": 360,
+      "sentinels": {
+        "kristaldiag/__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+        "pyproject.toml": "df626fa08eb90ec9dcf904a1e26b6bdab51c11d623c362108885e19e5a00ed5b"
+      }
+    },
+    "c0": {
+      "archive_name": "kOA_Digital_Ecosystem_Code_snapshot.zip",
+      "archive_sha256": "b8c2d49d4ef3f3c7c896256942759dd9b2693e104972cd183d480d5fcd80575b",
+      "file_count": 261,
+      "sentinels": {
+        "README.md": "39233c9b051ac7d40af734c85a3bc141e0626e1080f7391347e95c23bbb50f58",
+        "docs/inventory/repositories.json": "4c0a946d3d124b610e32c8d7dff41793b245f49c88bc3ac0cc2a0c0d00c36cc3"
+      }
+    },
+    "koadiag": {
+      "archive_name": "kOADiag_Code_snapshot.zip",
+      "archive_sha256": "89704df4f7a82143c3935b2ee50caae8b1becaf35c4b1e27e45ebfff20e80089",
+      "file_count": 583,
+      "sentinels": {
+        "koa-ecosystem-diag.manifest.json": "1c79558042d5e96030cd9f11274d3b2cbc7b9e1d95105017662bf585263af6c8",
+        "koa_ecosystem_diag/cli.py": "f2c1373f6b28f8e5ac31689b81d3e4a3e79278916b21a458d10f51cfdf4e2cc9"
+      }
+    },
+    "audit": {
+      "archive_name": "kOA-Digital-Ecosystem-GitHub-Audit_Code_snapshot.zip",
+      "archive_sha256": "50e0fb8214fd89410896096a578efe82f2df8ba51fefe86c79ef738207e45993",
+      "file_count": 29592,
+      "sentinels": {
+        "README.md": "c0bd451c15c0181f3c503962160121d2114746e5024058351737d5d872f589d7",
+        "koa_audit/__init__.py": "54fdb9d9e4998938e65ce164fbeb997a4bccf68d9213d0b9e5e03ad14298bddb"
+      }
+    },
+    "arketype": {
+      "archive_name": "Arketype_Code_snapshot.zip",
+      "archive_sha256": "8a69145adb6f0f89d3908a2a1b17ec7fec7efc17b1d0ea84c6a43819d4f9ce4f",
+      "file_count": 851,
+      "sentinels": {
+        "arketype.py": "8157ad2a0cdf655514b7a4e44ce5db96cd71eb4f2adcb259afa8cde7987cf0b0",
+        "archetypes/etat-systemes.json": "663af078610a5d4ca1380fb960fa4c2f4894211267d527e76a9a435d8e5fdbe5"
+      }
+    },
+    "integration_pack": {
+      "archive_name": "Kristal-Integration-Pack_Code_snapshot.zip",
+      "archive_sha256": "cc390c1cac5c88af92c286c5acdc7aa1c08efab3a421c40e382fd1c9bddbc8da",
+      "file_count": 69,
+      "sentinels": {
+        "VERSION": "76f23efa552aa54e34df43b78e1cc0d994f90999a41b81e402cf6b628b540559",
+        "tools/v11_integration.py": "6c94ffd8f8f9619d17afcd0548037d95fda40e93b6ade6bc43e36d1edd27bba1"
+      }
+    }
+  }
+}

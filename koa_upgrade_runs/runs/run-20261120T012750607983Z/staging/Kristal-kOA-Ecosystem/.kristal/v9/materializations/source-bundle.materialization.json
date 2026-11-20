@@ -1,0 +1,247 @@
+{
+  "schema_version": "9.0",
+  "artifact_type": "kristal_materialization_manifest",
+  "materialization_id": "urn:kristal:koa-ecosystem:artifact:editorial-sources:materialization:native-json",
+  "source": {
+    "artifact_id": "urn:kristal:koa-ecosystem:artifact:editorial-sources",
+    "logical_contract": {
+      "id": "koa-ecosystem.editorial-source-bundle",
+      "version": "1.0"
+    },
+    "logical_commitment": {
+      "profile": "kristal.logical/jcs-sha256-v1",
+      "digest": "sha256:125617b4788b6df252ed347b10e5d5f21e3cc46b20ea2ad822098b7e9576acaf"
+    }
+  },
+  "profile": "kristal.materialization/native-json-bundle/1",
+  "partition_spec": {
+    "strategy": "native-component-boundaries"
+  },
+  "segments": [
+    {
+      "segment_key": "knowledge-base/sources/artifacts.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:9ea87ca65c04a3b6a03fcbda249219b8205e8b3a09bc4644052618c0878df454",
+        "size": 24651
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/artifacts.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/capabilities.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:ac711008bf4be0b535453db4ca1129cc73a565dae9e889f2efa95ccbf491517d",
+        "size": 37959
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/capabilities.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/components.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:ae2bdbfbceabc43c70133876e9886fd6cc5942698e835e2ec6c6882c86f46cdc",
+        "size": 75440
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/components.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/contracts.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:75ac521bbd44bdc1e06bdd91c9fd51f57be73c0eac288596ec16127ec1805fe1",
+        "size": 8877
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/contracts.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/domains.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:48deecd522f94656eb55d6d76ed845564d70e8a755f4eeeb5477227c6e7cf4ac",
+        "size": 3030
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/domains.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/external-references.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:e8fa03ad7ca66aab71ce876bf59ecfd73b430b51936ef2febbfa9c6704c005a8",
+        "size": 13114
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/external-references.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/invariants.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:5f22fcf6ea90224d00e5198391a66026893a81cdce4f868003f2333e00da29c7",
+        "size": 8222
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/invariants.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/lifecycles.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:9b5b09d693cf506991122f386443b190cf1b0a58aa8d808c9598d13b3d5d4132",
+        "size": 4141
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/lifecycles.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/needs.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:77c76bb9e7f35ec2f0c27f25639de99defa4967a12242840eaddb607bdb36f08",
+        "size": 13703
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/needs.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/operating-functions.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:47611c08e7b33bdd91ec70e609bd1cb97e1db6e093d9f046154bd0bb17efd4b4",
+        "size": 4869
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/operating-functions.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/problem-families.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:9638403881e7fc1330aaf1fdd3a352aaa7bf0d8f2e8c64c8c8854db8c8dd1430",
+        "size": 3273
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/problem-families.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/relations.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:82f63c84284eabf3d3c1761bc17be7fbbd6c977e40bde41db4c34e54c930e200",
+        "size": 961607
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/relations.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/repositories.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:2254e623acc4d6cfc6079af363a7b9555113d6fb5a19db8b6bc386016f7bf31f",
+        "size": 134583
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/repositories.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/scenario-archetypes.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:5e658e0ce86a82d09b8dc15d7fed2e0772a51f36dec23d5dc7bc70688c01e447",
+        "size": 50302
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/scenario-archetypes.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/scenario-mosaic.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:a4af527064961c34cee7f14d422fc99ca576b34c6da68559b2ac4fbda2845efe",
+        "size": 241224
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/scenario-mosaic.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/source-registry/source-registry.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:073cc1f62c744846ac18ed5a9392409cf60d230b73c80564a2d97689734d3378",
+        "size": 89076
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/source-registry/source-registry.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/utilities.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:71aec9d289f4d735f505f97859cf0aa9af8437932db0cc702b3157d838734cf4",
+        "size": 3043
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/utilities.json"
+      }
+    },
+    {
+      "segment_key": "knowledge-base/sources/workflow-patterns.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:7aa908c03e500bfe53f42ed3c009213aef60a046b25f14cb4bd3d417fe5d7c0f",
+        "size": 12758
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/sources/workflow-patterns.json"
+      }
+    }
+  ],
+  "coverage": {
+    "included": [
+      "knowledge-base/sources/artifacts.json",
+      "knowledge-base/sources/capabilities.json",
+      "knowledge-base/sources/components.json",
+      "knowledge-base/sources/contracts.json",
+      "knowledge-base/sources/domains.json",
+      "knowledge-base/sources/external-references.json",
+      "knowledge-base/sources/invariants.json",
+      "knowledge-base/sources/lifecycles.json",
+      "knowledge-base/sources/needs.json",
+      "knowledge-base/sources/operating-functions.json",
+      "knowledge-base/sources/problem-families.json",
+      "knowledge-base/sources/relations.json",
+      "knowledge-base/sources/repositories.json",
+      "knowledge-base/sources/scenario-archetypes.json",
+      "knowledge-base/sources/scenario-mosaic.json",
+      "knowledge-base/sources/source-registry/source-registry.json",
+      "knowledge-base/sources/utilities.json",
+      "knowledge-base/sources/workflow-patterns.json"
+    ],
+    "omitted": []
+  },
+  "reconstructability": {
+    "lossless": true,
+    "profile": "koa-ecosystem.editorial-source-bundle/1.0"
+  }
+}

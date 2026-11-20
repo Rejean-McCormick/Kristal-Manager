@@ -1,0 +1,2 @@
+repo=SemantiK_only_phrase_prototype
+path=C:\mycode\Konstellation\SemantiK_only_phrase_prototype

@@ -1,0 +1,43 @@
+{
+  "schema_version": "9.0",
+  "artifact_type": "kristal_materialization_manifest",
+  "materialization_id": "urn:kristal:koa-ecosystem:artifact:canonical-state:materialization:native-json",
+  "source": {
+    "artifact_id": "urn:kristal:koa-ecosystem:artifact:canonical-state",
+    "logical_contract": {
+      "id": "koa-ecosystem.canonical-knowledge-state",
+      "version": "1.0"
+    },
+    "logical_commitment": {
+      "profile": "kristal.logical/jcs-sha256-v1",
+      "digest": "sha256:8d5195171697739485ada83e69b8fae83fe95cda155d5181a8d61dff4cc40a74"
+    }
+  },
+  "profile": "kristal.materialization/native-blob/1",
+  "partition_spec": {
+    "strategy": "native-component-boundaries"
+  },
+  "segments": [
+    {
+      "segment_key": "knowledge-base/corpus/koa-ecosystem.kristal-state.json",
+      "blob": {
+        "media_type": "application/json",
+        "digest": "sha256:59089e0e0dcb7759dc45e5296e0108b9a97f9e70fc6b473301562465307e9186",
+        "size": 5457338
+      },
+      "logical_range": {
+        "component_id": "knowledge-base/corpus/koa-ecosystem.kristal-state.json"
+      }
+    }
+  ],
+  "coverage": {
+    "included": [
+      "knowledge-base/corpus/koa-ecosystem.kristal-state.json"
+    ],
+    "omitted": []
+  },
+  "reconstructability": {
+    "lossless": true,
+    "profile": "koa-ecosystem.canonical-knowledge-state/1.0"
+  }
+}

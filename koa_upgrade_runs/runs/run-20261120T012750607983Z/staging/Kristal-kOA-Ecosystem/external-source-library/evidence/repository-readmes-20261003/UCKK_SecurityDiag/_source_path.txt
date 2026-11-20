@@ -1,0 +1,2 @@
+repo=UCKK_SecurityDiag
+path=C:\mycode\UCKK\UCKK_SecurityDiag

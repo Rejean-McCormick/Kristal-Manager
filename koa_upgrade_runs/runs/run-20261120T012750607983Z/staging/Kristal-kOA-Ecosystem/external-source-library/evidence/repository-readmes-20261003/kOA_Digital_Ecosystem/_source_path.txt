@@ -1,0 +1,2 @@
+repo=kOA_Digital_Ecosystem
+path=C:\mycode\kOA_Digital_Ecosystem\kOA_Digital_Ecosystem

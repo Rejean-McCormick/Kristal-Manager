@@ -1,0 +1,2 @@
+repo=kor
+path=C:\mycode\Kor\kor

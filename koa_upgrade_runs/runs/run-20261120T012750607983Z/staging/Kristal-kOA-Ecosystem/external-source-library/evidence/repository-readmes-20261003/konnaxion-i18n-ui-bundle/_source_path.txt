@@ -1,0 +1,2 @@
+repo=konnaxion-i18n-ui-bundle
+path=C:\mycode\Konnaxion\konnaxion-i18n-ui-bundle

@@ -1,0 +1,2 @@
+repo=editorial-figure-engine
+path=C:\mycode\Editorial-figure-engine\editorial-figure-engine

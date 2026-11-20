@@ -1,0 +1,42 @@
+{
+  "profile": "kristal-icon/1.0",
+  "kristal_ref": "Kristal-kOA-Ecosystem",
+  "nature": "TWN",
+  "maturity": 3,
+  "domains": [
+    {
+      "code": "06",
+      "name": "Technologies de l’information et de la communication",
+      "color": "#4F46E5"
+    },
+    {
+      "code": "04",
+      "name": "Commerce, administration et droit",
+      "color": "#B85C5C"
+    }
+  ],
+  "rendering": {
+    "nature_icon_color": "#1e6864",
+    "sizes": [
+      16,
+      20,
+      24,
+      32,
+      40,
+      48,
+      64,
+      96,
+      128,
+      256
+    ],
+    "filename": "KR-TWN-06-04-M3.ico"
+  },
+  "classification": {
+    "origin": "kristal-icon-auto-scan/1.1",
+    "scheme": "ISCED-F 2013",
+    "level": "broad-field",
+    "publisher": "UNESCO Institute for Statistics",
+    "confidence": 1,
+    "policy": "explicit metadata > ISCED legacy mapping > structured metadata > deterministic semantic scan; unresolved cases are not forced into ISCED 00"
+  }
+}

@@ -1,0 +1,2 @@
+repo=kristal-7
+path=C:\mycode\Kristal\kristal-7

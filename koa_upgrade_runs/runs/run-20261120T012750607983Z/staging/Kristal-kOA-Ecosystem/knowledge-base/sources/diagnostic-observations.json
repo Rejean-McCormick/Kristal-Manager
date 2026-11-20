@@ -1,0 +1,22 @@
+{
+  "format": "koa.doc-server.diagnostic-observations.v1",
+  "observations": [
+    {
+      "id": "koa:diagnostic-observation:20261113T222420Z-883ebf2e",
+      "label": "kOADiag 20261113T222420Z-883ebf2e",
+      "kind": "historical_diagnostic_observation",
+      "scope": "local_ecosystem_boundaries",
+      "description": "Snapshot-relative dated diagnostic observation: PARTIAL; not promoted, not a current certification.",
+      "observed_at": "2026-11-13T22:25:48+00:00",
+      "verdict": "PARTIAL",
+      "campaign_id": "20261113T222420Z-883ebf2e",
+      "reference_status": "not_promoted",
+      "promotion_status": "none",
+      "source_summary_sha256": "7f6dc7dd0401a8bd36b7f74afb7db3f162de7bd2fb353697003fb5578093ba74",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:smartdump-run-20261113"
+      ]
+    }
+  ]
+}

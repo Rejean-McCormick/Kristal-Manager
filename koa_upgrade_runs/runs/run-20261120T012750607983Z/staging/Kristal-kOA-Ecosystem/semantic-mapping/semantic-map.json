@@ -1,0 +1,164 @@
+{
+  "format": "kristal.semantic-map/1.0-noncanonical",
+  "state_ref": "urn:kristal:koa-ecosystem:state",
+  "kristal": "Kristal-kOA-Ecosystem",
+  "source": {
+    "snapshot": "Kristal-kOA-Ecosystem_Code_snapshot.zip",
+    "snapshot_sha256": "0ddd3c558ed19a752502efd3cfbb6389dc7fd53a1a2742c2f520584fe5367bc2",
+    "original_workspace_sha256": "8ec8fd489c37700225d75c6062400191334927351ab0d4e6a3a35a7059074ba6",
+    "unchanged_state_index_sha256": "92d5e60854e8a18b90758cb887327278730c1a2e2f1f8687fa5f36066b5d78fe",
+    "mapping_basis": "MAPPING-127-KRISTALS-APPROFONDI-v2.json; crosswalk and diK CSV source audit"
+  },
+  "native_model": {
+    "kind": "semantic_graph",
+    "description": "Typed semantic graph compiled from curated editorial catalogs into the existing kristal_state/6.0 canonical state; provenance, evidence status, valuations and authority boundaries remain part of the native model.",
+    "canonical_paths": [
+      "knowledge-base/corpus/koa-ecosystem.kristal-state.json"
+    ]
+  },
+  "classification": {
+    "arketype": {
+      "primary": "ARK-02",
+      "supporting": [
+        "ARK-01"
+      ],
+      "version": "1.6.0",
+      "source": "source_assisted_mapping_2026-10-30__non_authority",
+      "native_model_evidence": [
+        {
+          "path": "kristal.workspace.json",
+          "field": "native_model.kind",
+          "value": "semantic_graph"
+        },
+        {
+          "path": "kristal.workspace.json",
+          "field": "native_model.description",
+          "value": "Typed semantic graph compiled from curated editorial catalogs into the existing kristal_state/6.0 canonical state; provenance, evidence status, valuations and authority boundaries remain part of the native model."
+        },
+        {
+          "path": "README.md",
+          "field": "intention_documentaire",
+          "value": "# Kristal kOA Ecosystem\n\n**Version:** `0.7.0`  \n**Kristal portable state baseline:** `kristal_state/6.0`  \n**Observed Kristal design baseline:** `7.0.0-draft.3.2`  \n**Semantic State Architecture:** `Kristal 9.0.0-draft.1"
+        }
+      ],
+      "review_alert": "ambiguous_primary_requires_review",
+      "role": "noncanonical_design_category"
+    },
+    "unesco": {
+      "vocabulary": "UNESCO Thesaurus",
+      "source": "Manager pinned UNESCO profile and local native-model summary",
+      "microthesauri": [
+        {
+          "code": "5.15",
+          "uri": "http://vocabularies.unesco.org/thesaurus/mt5.15",
+          "label_en": "Information management",
+          "domain": "5"
+        },
+        {
+          "code": "6.75",
+          "uri": "http://vocabularies.unesco.org/thesaurus/mt6.75",
+          "label_en": "Organization and management",
+          "domain": "6"
+        }
+      ],
+      "mapping_kind": "project_subject_level_not_concept_exact_match",
+      "verification_status": "LOCAL_CATALOG_MAPPED_NOT_CANONICAL"
+    }
+  },
+  "lexical_layers": {
+    "diK_available_in_snapshot": false,
+    "layers": [],
+    "meaning": "labels and lexical coverage; no identity authority"
+  },
+  "external_alignments": {
+    "identity_KQ_to_Q": [],
+    "property_KP_to_P": [],
+    "status_breakdown": {},
+    "counts": {
+      "KQ_to_Q": 0,
+      "KP_to_P": 0
+    },
+    "policy": "source accepted/candidate/rejected preserved as declared; never upgrade status; no external exactMatch certification"
+  },
+  "inter_kristal_links": {
+    "thematic_hypotheses": [
+      {
+        "target_kristal": "Kristal-AI",
+        "target_state_ref": "urn:kristal:ai:state",
+        "kind": "thematic_possible_overlap",
+        "basis": "gestion des ressources",
+        "status": "UNCONFIRMED_DO_NOT_ASSERT_IN_CANON"
+      },
+      {
+        "target_kristal": "Kristal-Computing",
+        "target_state_ref": "urn:kristal:state:computing",
+        "kind": "thematic_possible_overlap",
+        "basis": "informatique et information",
+        "status": "UNCONFIRMED_DO_NOT_ASSERT_IN_CANON"
+      },
+      {
+        "target_kristal": "Kristal-Data",
+        "target_state_ref": "urn:kristal:state:data",
+        "kind": "thematic_possible_overlap",
+        "basis": "gestion des ressources",
+        "status": "UNCONFIRMED_DO_NOT_ASSERT_IN_CANON"
+      },
+      {
+        "target_kristal": "Kristal-Governance",
+        "target_state_ref": "urn:kristal:state:governance",
+        "kind": "thematic_possible_overlap",
+        "basis": "gestion des ressources",
+        "status": "UNCONFIRMED_DO_NOT_ASSERT_IN_CANON"
+      },
+      {
+        "target_kristal": "Kristal-Logic",
+        "target_state_ref": "urn:kristal:state:logic",
+        "kind": "thematic_possible_overlap",
+        "basis": "informatique et information",
+        "status": "UNCONFIRMED_DO_NOT_ASSERT_IN_CANON"
+      },
+      {
+        "target_kristal": "Kristal-Organizations",
+        "target_state_ref": "urn:kristal:state:organizations",
+        "kind": "thematic_possible_overlap",
+        "basis": "gestion des ressources",
+        "status": "UNCONFIRMED_DO_NOT_ASSERT_IN_CANON"
+      },
+      {
+        "target_kristal": "Kristal-Software",
+        "target_state_ref": "urn:kristal:state:software",
+        "kind": "thematic_possible_overlap",
+        "basis": "gestion des ressources",
+        "status": "UNCONFIRMED_DO_NOT_ASSERT_IN_CANON"
+      },
+      {
+        "target_kristal": "Kristal-kOA-Koali-Sales-Pitch",
+        "target_state_ref": "urn:kristal:state:koa-sales-pitch",
+        "kind": "thematic_possible_overlap",
+        "basis": "gestion des ressources",
+        "status": "UNCONFIRMED_DO_NOT_ASSERT_IN_CANON"
+      }
+    ],
+    "shared_accepted_external_QID": [],
+    "shared_external_properties_P": [],
+    "policy": "discoverability and navigation only, never entity sameAs or canonical assertions"
+  },
+  "authority": {
+    "role": "supplementary_noncanonical_semantic_mapping",
+    "does_not_modify": [
+      "canon/state.index.json",
+      "canon/**",
+      ".kristal/v11/**",
+      "KQ",
+      "KP",
+      "KA",
+      "KS",
+      "state_ref",
+      "source crosswalks",
+      "diK source layers"
+    ],
+    "framework_certification": false,
+    "human_semantic_validation_complete": false,
+    "no_build_publish_activate": true
+  }
+}

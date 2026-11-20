@@ -1,0 +1,2 @@
+repo=LevelUpDiag-Orgo
+path=C:\mycode\Orgo\LevelUpDiag-Orgo

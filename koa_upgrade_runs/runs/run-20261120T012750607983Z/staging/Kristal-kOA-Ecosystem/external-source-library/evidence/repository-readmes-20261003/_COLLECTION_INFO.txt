@@ -1,0 +1,7 @@
+kOA Root README Collection
+Created: 2026-10-03T10:13:41
+Hardcoded repo paths: 63
+Repos with README: 62
+Repos without README: 1
+Missing/invalid paths: 0
+README files copied: 63

@@ -1,0 +1,96 @@
+{
+  "format": "kristal.local-semantic-enrichment/1.0-proposal",
+  "generated_at": "2026-10-31",
+  "identity": {
+    "title": "Kristal kOA Ecosystem",
+    "folder": "Kristal-kOA-Ecosystem",
+    "slug": "koa-ecosystem",
+    "state_ref": "urn:kristal:koa-ecosystem:state",
+    "subject_id": "koa:digital-ecosystem",
+    "subject_label": "kOA Digital Ecosystem"
+  },
+  "content_characterization": {
+    "domain": "koa-digital-ecosystem",
+    "subdomain": null,
+    "native_model_kind": "semantic_graph",
+    "native_model_description": "Typed semantic graph compiled from curated editorial catalogs into the existing kristal_state/6.0 canonical state; provenance, evidence status, valuations and authority boundaries remain part of the native model.",
+    "native_model_axes": [],
+    "native_model_invariants": null,
+    "owns_observed": [
+      "The curated cross-system map of the kOA Digital Ecosystem represented by the canonical state.",
+      "The local architectural assertions linking components, capabilities, operating functions, contracts, artifacts, workflows, lifecycles, repositories and evidence within this Kristal.",
+      "The editorial selection and qualification rules used to compile this ecosystem map."
+    ],
+    "does_not_own_observed": [
+      "Internal implementation truth of owner repositories beyond the assertions explicitly imported here.",
+      "Authority of independent supporting ecosystems, external tools or reference systems merely linked by this Kristal.",
+      "Runtime deployment or activation unless explicit evidence in the canonical state supports it.",
+      "Financial, pricing, revenue, capital or other commercial claims excluded by the documented source-selection policy."
+    ],
+    "canonical_paths_declared": [
+      "knowledge-base/corpus/koa-ecosystem.kristal-state.json"
+    ],
+    "epistemic_policy_observed": {
+      "assertion_layer": "native_in_canonical_state",
+      "ai_output_policy": "proposal_only",
+      "authority_policy": "source_scope_bounded"
+    }
+  },
+  "classification": {
+    "arketype": {
+      "primary": "ARK-02",
+      "supporting": [
+        "ARK-01"
+      ],
+      "source": "source_assisted_mapping_2026-10-30__non_authority",
+      "verification_status": "AUTOMATED_CLASSIFICATION_REVIEW_REQUIRED"
+    },
+    "usage": {
+      "profile": "PRF-20",
+      "name": "Multi-Purpose Semantic Reference",
+      "role_description": "Reuse a sourced semantic reference across teaching, museum, research and other readers.",
+      "specificity": "GENERAL_REFERENCE_NEEDS_REVIEW",
+      "present_locally": "applied_batch_20261031_not_independently_rescanned"
+    },
+    "unesco": {
+      "domain_codes": [
+        "5",
+        "6"
+      ],
+      "microthesauri": [
+        {
+          "code": "5.15",
+          "label": "Information management",
+          "domain": "5",
+          "uri": "http://vocabularies.unesco.org/thesaurus/mt5.15"
+        },
+        {
+          "code": "6.75",
+          "label": "Organization and management",
+          "domain": "6",
+          "uri": "http://vocabularies.unesco.org/thesaurus/mt6.75"
+        }
+      ],
+      "scope": "project-level proposals; not concept-level exact matching",
+      "status": "LOCALLY_MAPPED_NOT_INDEPENDENTLY_SEMANTICALLY_CERTIFIED"
+    }
+  },
+  "diagnostic_prior": {
+    "profile": "V9-State-Reader",
+    "verdict": "PASS",
+    "causes": "",
+    "note": "Snapshot diagnostic du 2026-10-31 AVANT ce correctif. Reprendre les tests après installation."
+  },
+  "mapping_safety": {
+    "asserted_concept_equivalence": false,
+    "verified_by_domain_expert": false,
+    "classification_is_authoritative": false,
+    "source": "KK.zip / mapped overlay 2026-10-30 / PRF batch 2026-10-31 / diagnostics 2026-10-31",
+    "content_changes": "none"
+  },
+  "review_actions": [
+    "Affiner PRF-20 selon l’utilisation opérationnelle réelle",
+    "Vérifier les preuves de placement UNESCO au niveau projet",
+    "Revalider Arketype avec le modèle de structure natif"
+  ]
+}

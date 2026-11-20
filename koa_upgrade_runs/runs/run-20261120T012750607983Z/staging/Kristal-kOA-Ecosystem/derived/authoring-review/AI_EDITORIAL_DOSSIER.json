@@ -1,0 +1,179 @@
+{
+  "schema": "kristal.noncanonical-ai-authoring-review/1.0",
+  "review_date_utc": "2026-11-05",
+  "language": "en",
+  "review_status": "AI_DRAFT_NOT_APPROVED",
+  "identity": {
+    "title": "kOA Ecosystem",
+    "state_ref": "urn:kristal:koa-ecosystem:state",
+    "folder": "Kristal-kOA-Ecosystem",
+    "workspace_status": "validated"
+  },
+  "semantic_assessment": {
+    "role": "Digital ecosystem federation model",
+    "scope": "Connect curated capabilities, services, references, identities, valuations and lifecycle boundaries across a digital ecosystem.",
+    "critical_distinction": "A semantic connection is not automatic service authorization.",
+    "native_kind": "semantic_graph",
+    "native_description": "Typed semantic graph compiled from curated editorial catalogs into the existing kristal_state/6.0 canonical state; provenance, evidence status, valuations and authority boundaries remain part of the native model."
+  },
+  "current_declarations": {
+    "ark": {
+      "code": "ARK-02",
+      "name": "Federation / Topology",
+      "approved": false
+    },
+    "prf": {
+      "code": "PRF-20",
+      "name": "Multi-Purpose Semantic Reference",
+      "approved": false
+    },
+    "unesco": [
+      {
+        "code": "5.15",
+        "name": "Information management",
+        "uri": "http://vocabularies.unesco.org/thesaurus/mt5.15"
+      },
+      {
+        "code": "6.75",
+        "name": "Organization and management",
+        "uri": "http://vocabularies.unesco.org/thesaurus/mt6.75"
+      }
+    ],
+    "classification_verification": "AUTOMATED_CLASSIFICATION_REVIEW_REQUIRED",
+    "classification_source": "source_assisted_mapping_2026-10-30__non_authority"
+  },
+  "reviews": {
+    "prf": {
+      "declared_retained": true,
+      "alternative_prior_draft": null,
+      "review_status": "NO_SUPPORTED_ALTERNATIVE_PRIMARY",
+      "reason_en": "No stronger use-specific profile is established from the current documented scope; the precise semantic role is recorded separately.",
+      "approval": "NONE"
+    },
+    "unesco": {
+      "declared_retained": true,
+      "old_suggested_label": "Environmental sciences and engineering",
+      "old_suggested_code": "2.55",
+      "assessment": "REJECT_UNSUPPORTED_SUGGESTION",
+      "rationale_en": "The word ecosystem denotes a digital systems and governance map, not environmental sciences.",
+      "approval": "NONE"
+    },
+    "ark": {
+      "declared_retained": true,
+      "question": null,
+      "rationale_en": "No source-grounded reassignment recommended.",
+      "approval": "NONE"
+    }
+  },
+  "observations": {
+    "source_catalog_count": 142,
+    "canonical_registered_artifact_count": 1,
+    "canonical_registered_paths_exist": true,
+    "portable_ai_index_present": false,
+    "local_kit_present": true,
+    "local_kit_has_build_discovery": false,
+    "artifacts": [
+      {
+        "path": "knowledge-base/corpus/koa-ecosystem.kristal-state.json",
+        "artifact_id": "urn:kristal:koa-ecosystem:artifact:canonical-state",
+        "logical_contract": {
+          "id": "koa-ecosystem.canonical-knowledge-state",
+          "version": "1.0"
+        }
+      }
+    ]
+  },
+  "source_anchors": [
+    {
+      "path": "kristal.workspace.json",
+      "sha256": "c0c58c7a1df521398357ad5281ac424d3c253fe6bd1f0d05fd8369187b2946bc"
+    },
+    {
+      "path": "docs/00_INTENT_AND_SCOPE.md",
+      "sha256": "8574ef8ed3e3653392f0e119737543c3f9d244235682bc03d32be36923ee9934"
+    },
+    {
+      "path": "docs/01_SEMANTIC_BOUNDARY.md",
+      "sha256": "8f1e54d3dfa3a54b89770459919880fc3a77db0b299c1a59fb0e94e86e9fdbb6"
+    },
+    {
+      "path": "docs/02_NATIVE_MODEL.md",
+      "sha256": "7ff715b5162013acdb41774baac4835ef0f89021cd6d34c1cf833b2ce574245f"
+    },
+    {
+      "path": "docs/03_EPISTEMIC_MODEL.md",
+      "sha256": "8e8d077ef69fd0830d196dc2e0a847dc7bb6096a27a8fcca7a08c993b8a5ae1f"
+    },
+    {
+      "path": "sources/source-catalog.json",
+      "sha256": "4331276c579ea9a03436a9dd5b83d7c19ca6de60890572110db951aa9d1ba961"
+    },
+    {
+      "path": "canon/state.index.json",
+      "sha256": "92d5e60854e8a18b90758cb887327278730c1a2e2f1f8687fa5f36066b5d78fe"
+    }
+  ],
+  "proposed_actions": [
+    {
+      "id": "SEMANTIC_BOUNDARY",
+      "type": "semantic_review",
+      "priority": "high",
+      "proposal": "Check and document an explicit counterexample for this boundary: A semantic connection is not automatic service authorization.",
+      "source_paths": [
+        "docs/01_SEMANTIC_BOUNDARY.md",
+        "docs/02_NATIVE_MODEL.md"
+      ],
+      "approved": false
+    },
+    {
+      "id": "NATIVE_CONTRACT",
+      "type": "model_verification",
+      "priority": "high",
+      "proposal": "Exercise typed edges and multi-axis navigation: preserve relation direction, scope and authority; do not collapse a multiplex graph into a single mandatory hierarchy.",
+      "source_paths": [
+        "docs/02_NATIVE_MODEL.md",
+        "canon/state.index.json"
+      ],
+      "approved": false
+    },
+    {
+      "id": "SOURCE_PROVENANCE",
+      "type": "source_review",
+      "priority": "normal",
+      "proposal": "Review the 142 local normalized source-catalog entries against asserted provenance; keep every external authority external.",
+      "source_paths": [
+        "sources/source-catalog.json",
+        "docs/03_EPISTEMIC_MODEL.md"
+      ],
+      "approved": false
+    },
+    {
+      "id": "CLASSIFICATION",
+      "type": "editorial_review",
+      "priority": "high",
+      "proposal": "PRF: retain Multi-Purpose Semantic Reference as **declared, unapproved**. Assess usage from actual user tasks and native evidence before replacing a generic PRF. | UNESCO: REJECT_UNSUPPORTED_SUGGESTION. Earlier scan candidate \"Environmental sciences and engineering\" is not adopted. The word ecosystem denotes a digital systems and governance map, not environmental sciences. | ARK: retain existing declared native archetype pending structured evidence and human acceptance.",
+      "source_paths": [
+        "kristal.workspace.json",
+        "docs/01_SEMANTIC_BOUNDARY.md"
+      ],
+      "approved": false
+    },
+    {
+      "id": "READ_MODEL",
+      "type": "noncanonical_read_layer",
+      "priority": "normal",
+      "proposal": "Portable AI index not observed. Before enabling any read model, use the installed Kit build/check-ai workflow; do not author a stand-alone AI manifest or infer canon from the review dossier.",
+      "source_paths": [
+        "docs/04_CANONICAL_DERIVED.md",
+        "kristal.workspace.json"
+      ],
+      "approved": false
+    }
+  ],
+  "limitations": [
+    "AI analysis of scope/native documentation and bounded canonical sampling; not exhaustive assertion-by-assertion verification.",
+    "No semantic promotion, ID allocation, source attestation or human approval.",
+    "No publishing, activation, GitHub access or C1/C2/C3 certification.",
+    "Files under derived/authoring-review are noncanonical; this document under docs/08 is an editorial proposal, not an authoritative source."
+  ]
+}

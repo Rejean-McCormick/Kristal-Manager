@@ -1,0 +1,2 @@
+repo=KristalDiag
+path=C:\mycode\Kristal\KristalDiag

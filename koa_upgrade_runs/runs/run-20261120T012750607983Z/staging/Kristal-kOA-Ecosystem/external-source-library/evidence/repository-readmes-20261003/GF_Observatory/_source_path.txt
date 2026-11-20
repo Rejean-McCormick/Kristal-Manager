@@ -1,0 +1,2 @@
+repo=GF_Observatory
+path=C:\mycode\Grammatical_Framework\GF_Observatory

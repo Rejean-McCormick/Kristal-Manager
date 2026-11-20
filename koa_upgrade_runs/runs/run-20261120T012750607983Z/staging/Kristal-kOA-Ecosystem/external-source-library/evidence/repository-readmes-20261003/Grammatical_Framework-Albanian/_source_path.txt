@@ -1,0 +1,2 @@
+repo=Grammatical_Framework-Albanian
+path=C:\mycode\Grammatical_Framework\Grammatical_Framework-Albanian

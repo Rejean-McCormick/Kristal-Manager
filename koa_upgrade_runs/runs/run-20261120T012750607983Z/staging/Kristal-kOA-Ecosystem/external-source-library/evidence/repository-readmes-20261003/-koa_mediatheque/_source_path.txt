@@ -1,0 +1,2 @@
+repo=-koa_mediatheque
+path=C:\mycode\kOA_Mediatheque\-koa_mediatheque

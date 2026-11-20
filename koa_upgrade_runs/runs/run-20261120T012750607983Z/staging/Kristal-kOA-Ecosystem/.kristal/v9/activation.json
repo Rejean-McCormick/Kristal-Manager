@@ -1,0 +1,15 @@
+{
+  "schema_version": "9.0",
+  "artifact_type": "kristal_activation",
+  "channel_id": "reference",
+  "active_state": {
+    "state_ref": "urn:kristal:koa-ecosystem:state",
+    "logical_commitment": {
+      "profile": "kristal.state-commitment/jcs-sha256-v1",
+      "digest": "sha256:c5cea1280163558bc93a3126138628df918f919482ab9278c4fb7f32c09d8322"
+    }
+  },
+  "sequence": 1,
+  "updated_at": "2026-10-06T17:21:00-04:00",
+  "signatures": []
+}

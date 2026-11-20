@@ -1,0 +1,2 @@
+repo=EncyKlopedia
+path=C:\mycode\EncyKlopedia\EncyKlopedia

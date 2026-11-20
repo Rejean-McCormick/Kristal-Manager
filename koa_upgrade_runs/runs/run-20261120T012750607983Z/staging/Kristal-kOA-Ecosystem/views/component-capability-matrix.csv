@@ -1,0 +1,257 @@
+component_id,component,capability_id,capability,role,assertion_status
+koa:encyklopedia,EncyKlopedia,koa:cap:sense-intake,Sensing / intake,support,sourced
+koa:encyklopedia,EncyKlopedia,koa:cap:source-discovery,Découverte de sources,owner,sourced
+koa:encyklopedia,EncyKlopedia,koa:cap:immutable-snapshot,Snapshot immuable + provenance,owner,sourced
+koa:encyklopedia,EncyKlopedia,koa:cap:resolve-referents,Résolution de référents,candidate_source,sourced
+koa:sentient,SenTient,koa:cap:extract-candidates,Extraction de candidats,primary,sourced
+koa:sentient,SenTient,koa:cap:resolve-referents,Résolution de référents,primary,sourced
+koa:daat,Da’at,koa:cap:resolve-referents,Résolution de référents,adapter,sourced
+koa:daat,Da’at,koa:cap:map-acl,Mapping / ACL boundary,owner,sourced
+koa:daat,Da’at,koa:cap:artifact-exchange,Échange d’artefacts,boundary,sourced
+koa:kristal,Kristal,koa:cap:structured-knowledge,État de connaissance structuré,owner,sourced
+koa:kristal,Kristal,koa:cap:validate-recognize,Validation / reconnaissance,owner,sourced
+koa:kristal,Kristal,koa:cap:reader-projection,Reader policies / projections,owner,sourced
+koa:kristal,Kristal,koa:cap:artifact-exchange,Échange d’artefacts,producer,sourced
+koa:kristal,Kristal,koa:cap:institutional-memory,Mémoire institutionnelle,structured_memory,sourced
+koa:kristal,Kristal,koa:cap:ai-assistance-bounded,Assistance IA bornée,policy_boundary,sourced
+koa:konnaxion,Konnaxion,koa:cap:consult,Consultations publiques,owner,sourced
+koa:konnaxion,Konnaxion,koa:cap:deliberate,Délibération structurée,owner,sourced
+koa:konnaxion,Konnaxion,koa:cap:decision-record,DecisionRecord / résultat publiable,owner,sourced
+koa:konnaxion,Konnaxion,koa:cap:impact-accountability,Impact / accountability,owner,sourced
+koa:konnaxion,Konnaxion,koa:cap:institutional-memory,Mémoire institutionnelle,civic/accountability_memory,sourced
+koa:konnaxion,Konnaxion,koa:cap:learning-paths,Parcours d’apprentissage,product,sourced
+koa:konnaxion,Konnaxion,koa:cap:project-spaces,Espaces de projets,product,sourced
+koa:konnaxion,Konnaxion,koa:cap:networking,Réseautage / mise en relation,product,sourced
+koa:ethikos,ethiKos,koa:cap:consult,Consultations publiques,primary,sourced
+koa:ethikos,ethiKos,koa:cap:deliberate,Délibération structurée,primary,sourced
+koa:ethikos,ethiKos,koa:cap:draft,Drafting collaboratif,primary,sourced
+koa:ethikos,ethiKos,koa:cap:decision-record,DecisionRecord / résultat publiable,process,sourced
+koa:korum,Korum,koa:cap:deliberate,Délibération structurée,owner,sourced
+koa:konsultations,Konsultations,koa:cap:consult,Consultations publiques,owner,sourced
+koa:ekoh,EkoH,koa:cap:expertise-signal,Signal d’expertise contextuel,owner,sourced
+koa:ekoh,EkoH,koa:cap:weighted-reading,Lectures pondérées explicables,context_provider,sourced
+koa:smart-vote,Smart Vote,koa:cap:vote-baseline,Vote / lecture de base,owner,sourced
+koa:smart-vote,Smart Vote,koa:cap:weighted-reading,Lectures pondérées explicables,owner,sourced
+koa:smart-vote,Smart Vote,koa:cap:decision-record,DecisionRecord / résultat publiable,reading/publish,sourced
+koa:keenkonnect,keenKonnect,koa:cap:project-spaces,Espaces de projets,owner,sourced
+koa:keenkonnect,keenKonnect,koa:cap:versioned-storage,Stockage versionné sécurisé,orchestrates,sourced
+koa:keenkonnect,keenKonnect,koa:cap:networking,Réseautage / mise en relation,support,sourced
+koa:konstruct,Konstruct,koa:cap:project-spaces,Espaces de projets,owner,sourced
+koa:stockage,Stockage,koa:cap:versioned-storage,Stockage versionné sécurisé,owner,sourced
+koa:konnected,KonnectED,koa:cap:learning-paths,Parcours d’apprentissage,owner,sourced
+koa:konnected,KonnectED,koa:cap:certification,Certification et portfolio,owner,sourced
+koa:knowledge-library,Knowledge,koa:cap:learning-paths,Parcours d’apprentissage,knowledge_library,sourced
+koa:certifikation,CertifiKation,koa:cap:certification,Certification et portfolio,owner,sourced
+koa:kreative,Kreative,koa:cap:networking,Réseautage / mise en relation,product,sourced
+koa:kreative,Kreative,koa:cap:cultural-preservation,Préservation culturelle,owner,sourced
+koa:kontact,Kontact,koa:cap:networking,Réseautage / mise en relation,owner,sourced
+koa:konservation,Konservation,koa:cap:cultural-preservation,Préservation culturelle,owner,sourced
+koa:orgo,Orgo,koa:cap:governed-work,Décision → travail gouverné,owner,sourced
+koa:orgo,Orgo,koa:cap:workflow-routing,Workflow / routing / escalation,owner,sourced
+koa:orgo,Orgo,koa:cap:reliable-integration,Intégration fiable / reconciliation,owner,sourced
+koa:orgo,Orgo,koa:cap:impact-accountability,Impact / accountability,producer,sourced
+koa:orgo,Orgo,koa:cap:institutional-memory,Mémoire institutionnelle,operational_memory,sourced
+koa:interaction-kernel,Interaction Kernel,koa:cap:interop-envelope,Interopérabilité contractuelle,owner,sourced
+koa:interaction-kernel,Interaction Kernel,koa:cap:artifact-exchange,Échange d’artefacts,protocol,sourced
+koa:interaction-kernel,Interaction Kernel,koa:cap:reliable-integration,Intégration fiable / reconciliation,semantics,sourced
+koa:koali,Koali / kOA-Linux,koa:cap:platform-admission,Admission / trust / policy,owner,sourced
+koa:koali,Koali / kOA-Linux,koa:cap:release-channels,Release channels / Release Sets,owner,sourced
+koa:koali,Koali / kOA-Linux,koa:cap:offline-operation,Opération hors-ligne / local-first,owner,sourced
+koa:koali,Koali / kOA-Linux,koa:cap:backup-recovery,Backup / restore / recovery,platform,sourced
+koa:kristal-runtime,kristal_runtime,koa:cap:runtime-activate,Activation / rollback Runtime Pack,owner,sourced
+koa:kristal-runtime,kristal_runtime,koa:cap:offline-operation,Opération hors-ligne / local-first,runtime,sourced
+koa:node-agent,kOA Node Agent,koa:cap:node-privilege,Opérations locales privilégiées,owner,sourced
+koa:node-agent,kOA Node Agent,koa:cap:runtime-activate,Activation / rollback Runtime Pack,privileged_executor,sourced
+koa:koali-spaces,Koali Spaces,koa:cap:space-compose,Composition de surfaces,owner,sourced
+koa:koali-spaces,Koali Spaces,koa:cap:offline-operation,Opération hors-ligne / local-first,presentation,sourced
+koa:semantik-architect,SemantiK Architect,koa:cap:semantic-realise,Réalisation sémantique multilingue,owner,sourced
+koa:semantik-architect,SemantiK Architect,koa:cap:artifact-exchange,Échange d’artefacts,consumer/producer,sourced
+koa:semantik-runtime-orchestrator,SemantiK Runtime Orchestrator,koa:cap:runtime-set-orchestrate,Orchestration RuntimeSet,owner,sourced
+koa:semantik-runtime-orchestrator,SemantiK Runtime Orchestrator,koa:cap:release-channels,Release channels / Release Sets,domain_orchestrator,sourced
+koa:uckk,UCKK / Univers-Cité King Klown,koa:cap:learning-paths,Parcours d’apprentissage,owner,sourced
+koa:uckk,UCKK / Univers-Cité King Klown,koa:cap:media-library,Médiathèque / diffusion,owner,sourced
+koa:uckk,UCKK / Univers-Cité King Klown,koa:cap:reader-projection,Reader policies / projections,consumer_projection,sourced
+koa:uckk,UCKK / Univers-Cité King Klown,koa:cap:institutional-memory,Mémoire institutionnelle,learning/archive_projection,sourced
+koa:uckk,UCKK / Univers-Cité King Klown,koa:cap:public-documentation,Documentation / transmission,diffusion,sourced
+koa:scenario-mosaic,Koali Scenario Mosaic,koa:cap:scenario-mapping,Cartographie de scénarios,owner,sourced
+koa:scenario-mosaic,Koali Scenario Mosaic,koa:cap:public-documentation,Documentation / transmission,mapping,sourced
+koa:kristal-farms,Kristal Farms,koa:cap:physical-compute,Compute/énergie/fibre/chaleur utile,owner,sourced
+koa:kristal-farms,Kristal Farms,koa:cap:offline-operation,Opération hors-ligne / local-first,infrastructure,sourced
+koa:king-klown,King Klown,koa:cap:narrative-mobilise,Narration / mobilisation,owner,sourced
+koa:king-klown,King Klown,koa:cap:public-documentation,Documentation / transmission,pedagogy,sourced
+koa:medikristal,MediKristal,koa:cap:structured-knowledge,État de connaissance structuré,domain_application,sourced
+koa:medikristal,MediKristal,koa:cap:validate-recognize,Validation / reconnaissance,domain_protocol,sourced
+koa:swarmcraft,SwarmCraft,koa:cap:governed-work,Décision → travail gouverné,executor,sourced
+koa:swarmcraft,SwarmCraft,koa:cap:reliable-integration,Intégration fiable / reconciliation,outcome_reporter,sourced
+koa:ourai,OurAI,koa:cap:ai-assistance-bounded,Assistance IA bornée,candidate,sourced
+koa:identity-trust,Identity & Trust,koa:cap:identity-trust,Identity & trust evidence,owner,sourced
+koa:identity-trust,Identity & Trust,koa:cap:offline-operation,Opération hors-ligne / local-first,local_authentication,sourced
+koa:governance-policy-runtime,Governance Policy Runtime,koa:cap:policy-evaluation,Évaluation de policy / obligations,owner,sourced
+koa:governance-policy-runtime,Governance Policy Runtime,koa:cap:safety-gating,Gating de sécurité des actions,policy_gate,sourced
+koa:resource-governor,Resource Governor,koa:cap:resource-governance,Admission / allocation de ressources,owner,sourced
+koa:resource-governor,Resource Governor,koa:cap:platform-admission,Admission / trust / policy,resource_gate,sourced
+koa:audit-broker,Audit Broker,koa:cap:audit-custody,Custodie d’audit / disclosure,owner,sourced
+koa:audit-broker,Audit Broker,koa:cap:impact-accountability,Impact / accountability,evidence_custody,sourced
+koa:publication-gateway,Publication Gateway,koa:cap:governed-publication,Publication gouvernée inter-domaines,owner,sourced
+koa:publication-gateway,Publication Gateway,koa:cap:reliable-integration,Intégration fiable / reconciliation,publication_reconciliation,sourced
+koa:koa-mediatheque,Médiathèque kOA,koa:cap:local-media-custody,Custodie média locale,owner,sourced
+koa:koa-mediatheque,Médiathèque kOA,koa:cap:media-library,Médiathèque / diffusion,private_local_authority,sourced
+koa:koa-mediatheque,Médiathèque kOA,koa:cap:backup-recovery,Backup / restore / recovery,media_state,sourced
+koa:koa-assembly,kOA Assembly,koa:cap:profile-resolution,Résolution déterministe de profils,owner,sourced
+koa:koa-assembly,kOA Assembly,koa:cap:platform-admission,Admission / trust / policy,composition,sourced
+koa:koa-assembly,kOA Assembly,koa:cap:release-channels,Release channels / Release Sets,release_plan,sourced
+koa:ariane,Ariane,koa:cap:ui-atlas,Atlas sémantique d’interface,system,sourced
+koa:ariane,Ariane,koa:cap:ui-navigation,Navigation vérifiée d’application,owner,sourced
+koa:ariane,Ariane,koa:cap:safety-gating,Gating de sécurité des actions,guardrail,sourced
+koa:ariane,Ariane,koa:cap:human-approval,Approbation humaine explicite,guardrail,sourced
+koa:ariane,Ariane,koa:cap:diagnostics,Diagnostics / qualification,drift/validation,sourced
+koa:ariane-atlas,Ariane Atlas,koa:cap:ui-atlas,Atlas sémantique d’interface,owner,sourced
+koa:ariane-atlas,Ariane Atlas,koa:cap:versioned-storage,Stockage versionné sécurisé,navigation_assets,sourced
+koa:ariane-runtime,Ariane Runtime / Theseus,koa:cap:ui-navigation,Navigation vérifiée d’application,owner,sourced
+koa:ariane-runtime,Ariane Runtime / Theseus,koa:cap:reliable-integration,Intégration fiable / reconciliation,verified_transition,sourced
+koa:ariane-safety,Ariane Safety / approvals,koa:cap:safety-gating,Gating de sécurité des actions,owner,sourced
+koa:ariane-safety,Ariane Safety / approvals,koa:cap:human-approval,Approbation humaine explicite,owner,sourced
+koa:ariane-safety,Ariane Safety / approvals,koa:cap:audit-custody,Custodie d’audit / disclosure,session_evidence,sourced
+koa:ariane-assist,Ariane Assist Client,koa:cap:ui-navigation,Navigation vérifiée d’application,human_guidance,sourced
+koa:ariane-assist,Ariane Assist Client,koa:cap:space-compose,Composition de surfaces,optional_surface,sourced
+koa:kamel,Kamel,koa:cap:content-assembly,Assemblage rôle × contexte × inventaire,owner,sourced
+koa:kamel,Kamel,koa:cap:knowledge-deck-rendering,Compilation / rendu de decks,owner,sourced
+koa:kamel,Kamel,koa:cap:reader-projection,Reader policies / projections,decision_support,sourced
+koa:kamel,Kamel,koa:cap:diagnostics,Diagnostics / qualification,contract_validation,sourced
+koa:konductor,Konductor,koa:cap:durable-agent-orchestration,Orchestration IA durable et bornée,owner,sourced
+koa:konductor,Konductor,koa:cap:safety-gating,Gating de sécurité des actions,runtime,sourced
+koa:konductor,Konductor,koa:cap:human-approval,Approbation humaine explicite,runtime,sourced
+koa:konductor,Konductor,koa:cap:audit-custody,Custodie d’audit / disclosure,event_stream,sourced
+koa:konfid,Konfid,koa:cap:identity-trust,Identity & trust evidence,binding_context,sourced
+koa:konfid,Konfid,koa:cap:policy-evaluation,Évaluation de policy / obligations,cross_system_authz,sourced
+koa:konfid,Konfid,koa:cap:risk-containment,Détection de risque / containment,owner,sourced
+koa:konfid,Konfid,koa:cap:human-approval,Approbation humaine explicite,critical_actions,sourced
+koa:konfid,Konfid,koa:cap:audit-custody,Custodie d’audit / disclosure,evidence_plane,sourced
+koa:ame-artificielle,EL / Âme Artificielle,koa:cap:structured-knowledge,État de connaissance structuré,semantic_graph,sourced
+koa:ame-artificielle,EL / Âme Artificielle,koa:cap:resolve-referents,Résolution de référents,graph_relations,sourced
+koa:ame-artificielle,EL / Âme Artificielle,koa:cap:immutable-snapshot,Snapshot immuable + provenance,soul_snapshot,sourced
+koa:keyflow,KeyFlow,koa:cap:sense-intake,Sensing / intake,candidate_forms,claimed
+koa:keyflow,KeyFlow,koa:cap:consult,Consultations publiques,candidate_form_flow,claimed
+koa:uckk-core,UCKK Institutional Core,koa:cap:institutional-registry,Registre institutionnel / académique,owner,sourced
+koa:uckk-core,UCKK Institutional Core,koa:cap:learning-paths,Parcours d’apprentissage,shared_registry,sourced
+koa:uckk-archive,UCKK Archive / Mediatheque,koa:cap:archive-provenance,Archive / provenance / révision,owner,sourced
+koa:uckk-archive,UCKK Archive / Mediatheque,koa:cap:media-library,Médiathèque / diffusion,archive_media,sourced
+koa:uckk-archive,UCKK Archive / Mediatheque,koa:cap:institutional-memory,Mémoire institutionnelle,learning_memory,sourced
+koa:uckk-assembly,UCKK Assembly,koa:cap:deliberate,Délibération structurée,local_assembly,sourced
+koa:uckk-assembly,UCKK Assembly,koa:cap:decision-record,DecisionRecord / résultat publiable,local_decision,sourced
+koa:uckk-challenge,UCKK Challenge,koa:cap:applied-challenges,Défis et apprentissage appliqué,owner,sourced
+koa:uckk-challenge,UCKK Challenge,koa:cap:certification,Certification et portfolio,evidence_input,sourced
+koa:uckk-integrity,UCKK Integrity,koa:cap:integrity-review,Intégrité / appel / correction,owner,sourced
+koa:uckk-integrity,UCKK Integrity,koa:cap:audit-custody,Custodie d’audit / disclosure,institutional_integrity,sourced
+koa:uckk-seed,UCKK Seed,koa:cap:institutional-registry,Registre institutionnel / académique,seed_tool,sourced
+koa:uckk-seed,UCKK Seed,koa:cap:profile-resolution,Résolution déterministe de profils,template_seed,sourced
+koa:uckk-report,UCKK Reports,koa:cap:learning-reporting,Reporting pédagogique/institutionnel,owner,sourced
+koa:uckk-report,UCKK Reports,koa:cap:impact-accountability,Impact / accountability,reporting,sourced
+koa:uckk-dashboard,UCKK Dashboard,koa:cap:space-compose,Composition de surfaces,uckk_surface,sourced
+koa:uckk-dashboard,UCKK Dashboard,koa:cap:reader-projection,Reader policies / projections,dashboard,sourced
+koa:uckk-ai-provider,UCKK AI Provider,koa:cap:ai-assistance-bounded,Assistance IA bornée,optional_provider,sourced
+koa:koali-control-panel,Koali Control Panel,koa:cap:diagnostics,Diagnostics / qualification,primary,sourced
+koa:koali-control-panel,Koali Control Panel,koa:cap:qualification-gates,Qualification / evidence gates,primary,sourced
+koa:koali-control-panel,Koali Control Panel,koa:cap:profile-resolution,Résolution déterministe de profils,secondary,sourced
+koa:koali-control-panel,Koali Control Panel,koa:cap:release-channels,Release channels / Release Sets,secondary,sourced
+koa:konnaxion-capsule-manager,Konnaxion Capsule Manager,koa:cap:repeatable-deployment,Déploiement / lifecycle reproductible,primary,sourced
+koa:konnaxion-capsule-manager,Konnaxion Capsule Manager,koa:cap:backup-recovery,Backup / restore / recovery,primary,sourced
+koa:konnaxion-capsule-manager,Konnaxion Capsule Manager,koa:cap:release-channels,Release channels / Release Sets,secondary,sourced
+koa:konnaxion-capsule-manager,Konnaxion Capsule Manager,koa:cap:node-privilege,Opérations locales privilégiées,secondary,sourced
+koa:konnaxion-worlds,Konnaxion Worlds,koa:cap:world-scoping,Contextes / Worlds isolés,primary,sourced
+koa:konnaxion-worlds,Konnaxion Worlds,koa:cap:project-spaces,Espaces de projets,primary,sourced
+koa:konnaxion-worlds,Konnaxion Worlds,koa:cap:backup-recovery,Backup / restore / recovery,secondary,sourced
+koa:orgo-worlds,Orgo Worlds,koa:cap:world-scoping,Contextes / Worlds isolés,primary,sourced
+koa:orgo-worlds,Orgo Worlds,koa:cap:workflow-routing,Workflow / routing / escalation,primary,sourced
+koa:orgo-worlds,Orgo Worlds,koa:cap:governed-work,Décision → travail gouverné,secondary,sourced
+koa:kintsugi-kompendio,Kintsugi / Kompendio,koa:cap:integration-patterns,Patterns d’intégration remplaçable,primary,sourced
+koa:kintsugi-kompendio,Kintsugi / Kompendio,koa:cap:interop-envelope,Interopérabilité contractuelle,primary,sourced
+koa:kintsugi-kompendio,Kintsugi / Kompendio,koa:cap:reliable-integration,Intégration fiable / reconciliation,secondary,sourced
+koa:qualification-tooling,Diagnostics & Conformance Tooling,koa:cap:diagnostics,Diagnostics / qualification,primary,sourced
+koa:qualification-tooling,Diagnostics & Conformance Tooling,koa:cap:qualification-gates,Qualification / evidence gates,primary,sourced
+koa:konnaxion-securitydiag,Konnaxion SecurityDiag,koa:cap:diagnostics,Diagnostics / qualification,primary,sourced
+koa:konnaxion-securitydiag,Konnaxion SecurityDiag,koa:cap:qualification-gates,Qualification / evidence gates,primary,sourced
+koa:levelupdiag-koa-linux,LevelUpDiag Koali,koa:cap:diagnostics,Diagnostics / qualification,primary,sourced
+koa:levelupdiag-koa-linux,LevelUpDiag Koali,koa:cap:qualification-gates,Qualification / evidence gates,primary,sourced
+koa:levelupdiag-konnaxion,Konnaxion LevelUpDiag,koa:cap:diagnostics,Diagnostics / qualification,primary,sourced
+koa:levelupdiag-konnaxion,Konnaxion LevelUpDiag,koa:cap:qualification-gates,Qualification / evidence gates,primary,sourced
+koa:levelupdiag-kristal,LevelUpDiag Kristal,koa:cap:diagnostics,Diagnostics / qualification,primary,sourced
+koa:levelupdiag-kristal,LevelUpDiag Kristal,koa:cap:qualification-gates,Qualification / evidence gates,primary,sourced
+koa:levelupdiag-orgo,LevelUpDiag Orgo,koa:cap:diagnostics,Diagnostics / qualification,primary,sourced
+koa:levelupdiag-orgo,LevelUpDiag Orgo,koa:cap:qualification-gates,Qualification / evidence gates,primary,sourced
+koa:levelupdiag-semantik,LevelUpDiag SemantiK Architect,koa:cap:diagnostics,Diagnostics / qualification,primary,sourced
+koa:levelupdiag-semantik,LevelUpDiag SemantiK Architect,koa:cap:qualification-gates,Qualification / evidence gates,primary,sourced
+koa:levelupdiag-medikristal,LevelUpDiag MediKristal,koa:cap:diagnostics,Diagnostics / qualification,primary,sourced
+koa:levelupdiag-medikristal,LevelUpDiag MediKristal,koa:cap:qualification-gates,Qualification / evidence gates,primary,sourced
+koa:support:gf-rgl-ai-compendium,GF RGL AI Compendium,koa:cap:gf-rgl-engineering-governance,Gouvernance d’ingénierie GF/RGL,owner,sourced
+koa:support:gf-rgl-ai-compendium,GF RGL AI Compendium,koa:cap:qualification-gates,Qualification / evidence gates,policy_provider,sourced
+koa:support:gf-wordbench,GF Wordbench,koa:cap:gf-language-validation,Validation GF avec preuves reproductibles,owner,sourced
+koa:support:gf-wordbench,GF Wordbench,koa:cap:diagnostics,Diagnostics / qualification,language_validation,sourced
+koa:support:gf-wordbench,GF Wordbench,koa:cap:qualification-gates,Qualification / evidence gates,evidence_provider,sourced
+koa:support:gf-wordbench,GF Wordbench,koa:cap:validated-multilingual-runtime-input,Artefacts linguistiques validés pour runtime multilingue,artifact_provider,sourced
+koa:support:ars-magna-lulli,Ars Magna Lulli,koa:cap:gf-portfolio-orchestration,Orchestration GitOps multi-langues,owner,sourced
+koa:support:ars-magna-lulli,Ars Magna Lulli,koa:cap:workflow-routing,Workflow / routing / escalation,gitops_pipeline,sourced
+koa:support:ars-magna-lulli,Ars Magna Lulli,koa:cap:context-continuity,Continuité de contexte,source_evidence_lineage,sourced
+koa:support:gf-observatory,GF Observatory,koa:cap:gf-evidence-observation,Observation agrégée de maturité linguistique,owner,sourced
+koa:support:gf-observatory,GF Observatory,koa:cap:diagnostics,Diagnostics / qualification,read_only_projection,sourced
+koa:support:ma-gustave-gf-ecosystem,MA-Gustave GF Language Engineering Ecosystem,koa:cap:semantic-realise,Réalisation sémantique multilingue,upstream_support,sourced
+koa:support:ma-gustave-gf-ecosystem,MA-Gustave GF Language Engineering Ecosystem,koa:cap:validated-multilingual-runtime-input,Artefacts linguistiques validés pour runtime multilingue,support_family,sourced
+koa:kor,Kor,koa:cap:reader-projection,Reader policies / projections,primary,sourced
+koa:kor,Kor,koa:cap:world-scoping,Contextes / Worlds isolés,secondary,sourced
+koa:kor,Kor,koa:cap:context-continuity,Continuité de contexte,secondary,sourced
+koa:kor,Kor,koa:cap:artifact-exchange,Échange d’artefacts,secondary,sourced
+koa:kor,Kor,koa:cap:offline-operation,Opération hors-ligne / local-first,secondary,sourced
+koa:kor,Kor,koa:cap:identity-trust,Identity & trust evidence,secondary,sourced
+koa:kompiler,Kompiler,koa:cap:reader-projection,Reader policies / projections,primary,sourced
+koa:kompiler,Kompiler,koa:cap:structured-knowledge,État de connaissance structuré,secondary,sourced
+koa:kompiler,Kompiler,koa:cap:context-continuity,Continuité de contexte,secondary,sourced
+koa:kompiler,Kompiler,koa:cap:ai-assistance-bounded,Assistance IA bornée,secondary,sourced
+koa:kompiler,Kompiler,koa:cap:artifact-exchange,Échange d’artefacts,secondary,sourced
+koa:editorial-figure-engine,Editorial Figure Engine,koa:cap:content-assembly,Assemblage rôle × contexte × inventaire,primary,sourced
+koa:editorial-figure-engine,Editorial Figure Engine,koa:cap:public-documentation,Documentation / transmission,secondary,sourced
+koa:ariane-diagnostics,Ariane Diagnostics,koa:cap:diagnostics,Diagnostics / qualification,primary,sourced
+koa:ariane-diagnostics,Ariane Diagnostics,koa:cap:qualification-gates,Qualification / evidence gates,secondary,sourced
+koa:ariane-diagnostics,Ariane Diagnostics,koa:cap:ui-navigation,Navigation vérifiée d’application,secondary,sourced
+koa:levelupdiag-ariane,LevelUpDiag Ariane,koa:cap:diagnostics,Diagnostics / qualification,primary,sourced
+koa:levelupdiag-ariane,LevelUpDiag Ariane,koa:cap:qualification-gates,Qualification / evidence gates,secondary,sourced
+koa:konnaxion-universe-worlds-manager,Konnaxion Universe & Worlds Manager,koa:cap:world-scoping,Contextes / Worlds isolés,primary,sourced
+koa:konnaxion-universe-worlds-manager,Konnaxion Universe & Worlds Manager,koa:cap:repeatable-deployment,Déploiement / lifecycle reproductible,secondary,sourced
+koa:konnaxion-universe-worlds-manager,Konnaxion Universe & Worlds Manager,koa:cap:versioned-storage,Stockage versionné sécurisé,secondary,sourced
+koa:konnaxiondiag,KonnaxionDiag,koa:cap:diagnostics,Diagnostics / qualification,primary,sourced
+koa:konnaxiondiag,KonnaxionDiag,koa:cap:qualification-gates,Qualification / evidence gates,secondary,sourced
+koa:konnaxiondiag,KonnaxionDiag,koa:cap:release-channels,Release channels / Release Sets,secondary,sourced
+koa:konnaxiondiag,KonnaxionDiag,koa:cap:safety-gating,Gating de sécurité des actions,secondary,sourced
+koa:konnaxiondiag,KonnaxionDiag,koa:cap:audit-custody,Custodie d’audit / disclosure,secondary,sourced
+koa:konnaxiondiag,KonnaxionDiag,koa:cap:risk-containment,Détection de risque / containment,secondary,sourced
+koa:konstellation-publisher,Konstellation Publisher,koa:cap:repeatable-deployment,Déploiement / lifecycle reproductible,primary,sourced
+koa:konstellation-publisher,Konstellation Publisher,koa:cap:release-channels,Release channels / Release Sets,secondary,sourced
+koa:konstellation-publisher,Konstellation Publisher,koa:cap:backup-recovery,Backup / restore / recovery,secondary,sourced
+koa:semantik-phrase-ops-console,SemantiK Phrase Ops Console,koa:cap:semantic-realise,Réalisation sémantique multilingue,primary,sourced
+koa:semantik-phrase-ops-console,SemantiK Phrase Ops Console,koa:cap:gf-language-validation,Validation GF avec preuves reproductibles,secondary,sourced
+koa:semantik-phrase-ops-console,SemantiK Phrase Ops Console,koa:cap:diagnostics,Diagnostics / qualification,secondary,sourced
+koa:semantik-phrase-ops-console,SemantiK Phrase Ops Console,koa:cap:validated-multilingual-runtime-input,Artefacts linguistiques validés pour runtime multilingue,secondary,sourced
+koa:kristaldiag,KristalDiag,koa:cap:diagnostics,Diagnostics / qualification,primary,sourced
+koa:kristaldiag,KristalDiag,koa:cap:qualification-gates,Qualification / evidence gates,secondary,sourced
+koa:kristaldiag,KristalDiag,koa:cap:validate-recognize,Validation / reconnaissance,secondary,sourced
+koa:kristaldiag,KristalDiag,koa:cap:release-channels,Release channels / Release Sets,secondary,sourced
+koa:repodiag,RepoDiag,koa:cap:diagnostics,Diagnostics / qualification,primary,sourced
+koa:repodiag,RepoDiag,koa:cap:qualification-gates,Qualification / evidence gates,secondary,sourced
+koa:uckk-moodle,UCKK Moodle,koa:cap:learning-paths,Parcours d’apprentissage,primary,sourced
+koa:uckk-moodle,UCKK Moodle,koa:cap:certification,Certification et portfolio,secondary,sourced
+koa:uckk-moodle,UCKK Moodle,koa:cap:media-library,Médiathèque / diffusion,secondary,sourced
+koa:uckk-moodle,UCKK Moodle,koa:cap:institutional-registry,Registre institutionnel / académique,secondary,sourced
+koa:uckk-ops-console,UCKK Ops Console,koa:cap:workflow-routing,Workflow / routing / escalation,primary,sourced
+koa:uckk-ops-console,UCKK Ops Console,koa:cap:repeatable-deployment,Déploiement / lifecycle reproductible,secondary,sourced
+koa:uckk-ops-console,UCKK Ops Console,koa:cap:diagnostics,Diagnostics / qualification,secondary,sourced
+koa:uckk-publisher,UCKK Publisher,koa:cap:governed-publication,Publication gouvernée inter-domaines,primary,sourced
+koa:uckk-publisher,UCKK Publisher,koa:cap:repeatable-deployment,Déploiement / lifecycle reproductible,secondary,sourced
+koa:uckk-publisher,UCKK Publisher,koa:cap:release-channels,Release channels / Release Sets,secondary,sourced
+koa:uckk-publisher,UCKK Publisher,koa:cap:backup-recovery,Backup / restore / recovery,secondary,sourced
+koa:uckk-securitydiag,UCKK SecurityDiag,koa:cap:diagnostics,Diagnostics / qualification,primary,sourced
+koa:uckk-securitydiag,UCKK SecurityDiag,koa:cap:qualification-gates,Qualification / evidence gates,secondary,sourced
+koa:uckk-securitydiag,UCKK SecurityDiag,koa:cap:risk-containment,Détection de risque / containment,secondary,sourced
+koa:konstellation,Konstellation,koa:cap:reader-projection,Reader policies / projections,primary,sourced
+koa:konstellation,Konstellation,koa:cap:structured-knowledge,État de connaissance structuré,navigation_projection,sourced
+koa:konstellation,Konstellation,koa:cap:ui-navigation,Navigation vérifiée d’application,primary,sourced
+koa:konstellation,Konstellation,koa:cap:offline-operation,Opération hors-ligne / local-first,local_first,sourced
+koa:konstellation,Konstellation,koa:cap:context-continuity,Continuité de contexte,navigation_context,sourced

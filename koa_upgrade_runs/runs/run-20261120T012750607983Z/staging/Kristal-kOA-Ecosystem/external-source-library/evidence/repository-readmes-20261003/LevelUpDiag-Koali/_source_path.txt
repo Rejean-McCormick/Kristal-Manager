@@ -1,0 +1,2 @@
+repo=LevelUpDiag-Koali
+path=C:\mycode\kOA-Linux\LevelUpDiag-Koali

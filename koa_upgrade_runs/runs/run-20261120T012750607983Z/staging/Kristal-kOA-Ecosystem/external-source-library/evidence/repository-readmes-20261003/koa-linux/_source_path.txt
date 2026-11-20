@@ -1,0 +1,2 @@
+repo=koa-linux
+path=C:\mycode\kOA-Linux\koa-linux

@@ -1,0 +1,18 @@
+{
+  "format": "koa.reader-profile.v2",
+  "profile_id": "koa:reader:operating-function-map",
+  "name": "Composants × fonctions opératoires",
+  "description": "Placement structurel neutre des composants selon leurs fonctions primaires/secondaires.",
+  "source_state": "knowledge-base/koa-ecosystem.kristal-state.json",
+  "projection": {
+    "x_axis": "component",
+    "y_axis": "operating_function",
+    "predicate": "koa:fulfills_function"
+  },
+  "policy": {
+    "preserve_assertion_status": true,
+    "preserve_relationship_role": true,
+    "show_claimed_as_claimed": true,
+    "do_not_infer_authority": true
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "format": "koa.contracts.v3",
+  "contracts": [
+    {
+      "id": "koa:contract:governance-decision-execute-1",
+      "label": "governance.decision.execute/1.0.0",
+      "version": "1.0.0",
+      "boundary": "Konnaxion → Orgo",
+      "purpose": "Transporter une décision finalisée vers l’exécution gouvernée.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:kristal-docs",
+        "src:github-kristal"
+      ]
+    },
+    {
+      "id": "koa:contract:accountability-impact-publish-1",
+      "label": "accountability.impact.publish/1.0.0",
+      "version": "1.0.0",
+      "boundary": "Orgo → Konnaxion",
+      "purpose": "Publier impact/accountability vers l’autorité civique source.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:kristal-docs",
+        "src:github-kristal"
+      ]
+    },
+    {
+      "id": "koa:contract:encyklopedia-corpus-harvest-handoff-1",
+      "label": "encyklopedia.corpus-harvest-handoff/1.0.0",
+      "version": "1.0.0",
+      "boundary": "EncyKlopedia → Da’at",
+      "purpose": "Transférer evidence immuable + candidats référents sans effectuer la validation épistémique.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:kristal-docs",
+        "src:github-kristal"
+      ]
+    },
+    {
+      "id": "koa:contract:kristal-build-request-2",
+      "label": "kristal.build.request/2.0.0",
+      "version": "2.0.0",
+      "boundary": "Kristal / build boundary",
+      "purpose": "Demander une construction/compilation Kristal sous profil IK explicite.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:kristal-docs",
+        "src:github-kristal"
+      ]
+    },
+    {
+      "id": "koa:contract:kristal-artifact-ready-2",
+      "label": "kristal.artifact.ready/2.0.0",
+      "version": "2.0.0",
+      "boundary": "Kristal → consumer projection",
+      "purpose": "Annoncer qu’un artefact Kristal est prêt sous contrat versionné.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:kristal-docs",
+        "src:github-kristal"
+      ]
+    },
+    {
+      "id": "koa:contract:uckk-univers-cite-projection-1",
+      "label": "uckk.univers-cite-projection/1.0.0",
+      "version": "1.0.0",
+      "boundary": "Kristal → UCKK / Univers-Cité",
+      "purpose": "Matérialiser une projection consommateur rebuildable sans transférer le canon.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:kristal-docs",
+        "src:github-kristal"
+      ]
+    },
+    {
+      "id": "koa:contract:kristal-standard-6",
+      "label": "Kristal Standard 6.0.0",
+      "version": "6.0.0",
+      "boundary": "Kristal knowledge contract",
+      "purpose": "Définir le contrat de Kristal State, assertions, valuations, coordinates/applicability, provenance, validation et actionability.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:kristal-docs",
+        "src:github-kristal"
+      ]
+    },
+    {
+      "id": "koa:contract:referent-registry-1",
+      "label": "Referent Registry 1.0.0",
+      "version": "1.0.0",
+      "boundary": "Kristal referent identity",
+      "purpose": "Stabiliser l’identité des référents et les règles de résolution.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:kristal-docs",
+        "src:github-kristal"
+      ]
+    },
+    {
+      "id": "koa:contract:identity-trust-1",
+      "label": "identity-and-trust.component/1.0.0",
+      "version": "1.0.0",
+      "boundary": "kOA-Linux internal component",
+      "purpose": "Contrat de composant Identity & Trust.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:contract:governance-policy-runtime-1",
+      "label": "governance-policy-runtime.component/1.0.0",
+      "version": "1.0.0",
+      "boundary": "kOA-Linux internal component",
+      "purpose": "Contrat de composant Governance Policy Runtime.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:contract:resource-governor-1",
+      "label": "resource-governor.component/1.0.0",
+      "version": "1.0.0",
+      "boundary": "kOA-Linux internal component",
+      "purpose": "Contrat de composant Resource Governor.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:contract:audit-broker-1",
+      "label": "audit-broker.component/1.0.0",
+      "version": "1.0.0",
+      "boundary": "kOA-Linux internal component",
+      "purpose": "Contrat de composant Audit Broker.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:contract:publication-gateway-1",
+      "label": "publication-gateway.component/1.0.0",
+      "version": "1.0.0",
+      "boundary": "kOA-Linux internal component",
+      "purpose": "Contrat de composant Publication Gateway.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:contract:koa-mediatheque-1",
+      "label": "koa-mediatheque.component/1.0.0",
+      "version": "1.0.0",
+      "boundary": "kOA-Linux internal component",
+      "purpose": "Contrat de composant kOA Mediatheque.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:contract:kristal-runtime-2",
+      "label": "kristal-runtime.component/2.0.0",
+      "version": "2.0.0",
+      "boundary": "kOA-Linux internal component",
+      "purpose": "Contrat de composant kristal_runtime.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:contract:koa-node-agent-1",
+      "label": "koa-node-agent.component/1.0.0",
+      "version": "1.0.0",
+      "boundary": "kOA-Linux internal component",
+      "purpose": "Contrat de composant kOA Node Agent.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:contract:ariane-spec-0-3",
+      "label": "Ariane Spec 0.3.0",
+      "version": "0.3.0",
+      "boundary": "Ariane subsystem",
+      "purpose": "Contrat de référence courant du snapshot pour le moteur de navigation, Core IR et Atlas.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-ariane",
+        "src:snapshot-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:contract:kamel-contract-set-3",
+      "label": "kamel.contract-set.v3 / 3.3.0",
+      "version": "3.3.0",
+      "boundary": "Kamel source/generated objects",
+      "purpose": "Registre de contrats CardDefinition, CardEdition, modules, AssemblyRequest, ResolvedComposition, CompiledDeck et manifests.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-kamel"
+      ]
+    },
+    {
+      "id": "koa:contract:semantik-wordbench-handoff-v1",
+      "label": "semantik-wordbench-handoff-v1",
+      "version": "1",
+      "boundary": "SemantiK candidate → GF Wordbench validation",
+      "purpose": "Fail-closed candidate bundle handoff verified by schema, artifact/report hashes, source PASS state and source bindings. Acceptance is for Wordbench validation only and is not release proof.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:gf-wordbench-snapshot"
+      ]
+    },
+    {
+      "id": "koa:contract:gf-four-system-alignment-1",
+      "label": "GF Four-System Total Alignment / 1.0",
+      "version": "1.0",
+      "boundary": "GF/RGL + Compendium + Wordbench + Lulli + Observatory",
+      "purpose": "Normative authority/non-overlap and orchestration contract: GF execution authority; Compendium reasoning/governance; Wordbench evidence; Lulli orchestration; Observatory reading model; human linguistic/publication authority.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:ars-magna-lulli-docs"
+      ]
+    }
+  ]
+}

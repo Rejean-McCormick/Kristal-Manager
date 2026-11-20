@@ -1,0 +1,1678 @@
+{
+  "format": "koa.kristal.package-manifest.v1",
+  "package": "Kristal-kOA-Ecosystem",
+  "version": "0.7.1",
+  "generated_at": "2026-11-20T01:27:52Z",
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "ba9e766905d86932af10e20f99bdafe6b4a37eab2b45a1d91e011bc12985858f",
+      "size_bytes": 99
+    },
+    {
+      "path": ".kristal/auto-scan.json",
+      "sha256": "d9376eed92a262e6eae3453044281033d6e5f62921d5c2db3f36ca4113905750",
+      "size_bytes": 1376
+    },
+    {
+      "path": ".kristal/icon-profile.json",
+      "sha256": "9c9fe31db2dec95744b5217d36d4b50991280137767dcc911ea503f5a0a4e010",
+      "size_bytes": 949
+    },
+    {
+      "path": ".kristal/normalization.json",
+      "sha256": "21ec123bead95689fd0cf356d6bb5468cb85253e3ab9d1d51db21edf2f26679a",
+      "size_bytes": 1914
+    },
+    {
+      "path": ".kristal/path-aliases.json",
+      "sha256": "d587bf1c3ccfd9819d67f2be9f76a89c26e86d4ff3b1c4975d509fe3c3572257",
+      "size_bytes": 1102
+    },
+    {
+      "path": ".kristal/v8/index/assertions-by-entity.json",
+      "sha256": "60cff66b2575f80814a35efdd5f4594b29049579ef54c7b7aff16bcb649478ef",
+      "size_bytes": 613242
+    },
+    {
+      "path": ".kristal/v8/index/identity_lookup.json",
+      "sha256": "aa40e04ada6a0fa3bb778ff0038c20d5684922da9b7ad4610b9b01843cd1cc2c",
+      "size_bytes": 625361
+    },
+    {
+      "path": ".kristal/v8/index/incoming-edges.json",
+      "sha256": "4e2dedd047673f7a3c09b40c564366c4e1d29773c6c5b4708417d44fec2cd23f",
+      "size_bytes": 185971
+    },
+    {
+      "path": ".kristal/v8/index/outgoing-edges.json",
+      "sha256": "554db63be3bcb6bff180a409452745d9a4f6c16ee565c56f0015e92ee8d6b81f",
+      "size_bytes": 444125
+    },
+    {
+      "path": ".kristal/v8/index/predicate-usage.json",
+      "sha256": "149063d112109e72405c4bacc0cf3137be4b36373d08dc4be853d83c50c066fd",
+      "size_bytes": 438060
+    },
+    {
+      "path": ".kristal/v8/lexicon-fr.json",
+      "sha256": "2efe986b0294658981cedefff09f84001076959fa12286d920dbeb0dbdf9da6d",
+      "size_bytes": 138913
+    },
+    {
+      "path": ".kristal/v8/lexicon-stack-fr.json",
+      "sha256": "f7af7c599070c4358063a31dc9e34ba2de4a6b8f92b1dd2dbf1b32e583dc56c2",
+      "size_bytes": 457
+    },
+    {
+      "path": ".kristal/v8/package.json",
+      "sha256": "484502d94cea4b6e8bc23e9d2ee7508ef01999f29fb85cee1d82cd5332334f66",
+      "size_bytes": 1122
+    },
+    {
+      "path": ".kristal/v8/portable-state.kristal-state.json",
+      "sha256": "cf41cb6edd32e569e5f0d781d7e53326899c5773b48ec9c42efef595fe909b7a",
+      "size_bytes": 5457328
+    },
+    {
+      "path": ".kristal/v8/projection-manifest.json",
+      "sha256": "c18ff01542e223611bfec1360e4514e3eabad44ddc4db5537573a834a81f8b29",
+      "size_bytes": 855
+    },
+    {
+      "path": ".kristal/v8/query-index.json",
+      "sha256": "f587abaa4035014ebe2b07f3b6544626673e4d28262a99bdfc56a51c460be3c9",
+      "size_bytes": 1671
+    },
+    {
+      "path": ".kristal/v9/activation.json",
+      "sha256": "253a44d603d146f94cadaef91051619e35312b2be04243c01a5cd15b972434dc",
+      "size_bytes": 442
+    },
+    {
+      "path": ".kristal/v9/artifacts/canonical-state.logical-artifact.json",
+      "sha256": "f2b0da608017c048de791ee388545ec6856bd9c95c7b9ce66465b404c25d6311",
+      "size_bytes": 869
+    },
+    {
+      "path": ".kristal/v9/artifacts/source-bundle.logical-artifact.json",
+      "sha256": "a99a7ebf1be9d6514844cb8d40a1c258416266f8ee2c3a1fa64cb4b0998607b2",
+      "size_bytes": 7905
+    },
+    {
+      "path": ".kristal/v9/capabilities.json",
+      "sha256": "1fbe81e8a2ae600bcc4cf2745f886eb6482cb417015ba8b39eb8b514cdf232e8",
+      "size_bytes": 927
+    },
+    {
+      "path": ".kristal/v9/derivation.json",
+      "sha256": "07dca00a6068e98d6b6adf54b8357d8821bbb6beb1f93f29946cb1c69ffc858c",
+      "size_bytes": 1762
+    },
+    {
+      "path": ".kristal/v9/exchange.json",
+      "sha256": "5e3ffea75f59672d84b948450e7f79e660417a7f1bed519cdc3bca4019cfc510",
+      "size_bytes": 1060
+    },
+    {
+      "path": ".kristal/v9/logical-contracts.json",
+      "sha256": "3c5f9f1ba64df424e658d6a8bb6a3b7222bf81e18d804558dc10caa70636004c",
+      "size_bytes": 974
+    },
+    {
+      "path": ".kristal/v9/materializations/canonical-state.materialization.json",
+      "sha256": "60325b6fc96a48b18e1735ff395683e0c8d7490d13faa0ba707e144cee605cb1",
+      "size_bytes": 1346
+    },
+    {
+      "path": ".kristal/v9/materializations/source-bundle.materialization.json",
+      "sha256": "41d6cd3b03632f9831ca58ba1e0cefb15a50cac054d8d9618cff791d155ada1c",
+      "size_bytes": 8341
+    },
+    {
+      "path": ".kristal/v9/migration-report.json",
+      "sha256": "4fdcce6a2eab4b2abe8ea3ce14d09943168c225af0d3f6de3b494c2069fe0d26",
+      "size_bytes": 1550
+    },
+    {
+      "path": ".kristal/v9/package.json",
+      "sha256": "1c08cb667b9f8429b11287d778f34e115605228883e245cc51556eae72d40190",
+      "size_bytes": 2203
+    },
+    {
+      "path": ".kristal/v9/README.md",
+      "sha256": "e506c43392a29f75a356cc65ce14dd4a64d455b1e9fee8434aa5ba3d040bde50",
+      "size_bytes": 1638
+    },
+    {
+      "path": ".kristal/v9/STANDARD",
+      "sha256": "62c2aec17ad294381557bf90dc175324d0afbb46025b779016f8d9df102c00cf",
+      "size_bytes": 14
+    },
+    {
+      "path": ".kristal/v9/state-snapshot.json",
+      "sha256": "8032ae8392b173fd6392661941d8128cac1576287389ac69a71650a7acddc411",
+      "size_bytes": 879
+    },
+    {
+      "path": ".kristal/v9/validate.py",
+      "sha256": "c362bc5de07facd0aca5d47e891f4bf90fb6813c12cce1f30d76854668d9abf6",
+      "size_bytes": 6658
+    },
+    {
+      "path": ".kristal/v9/validation-report.json",
+      "sha256": "f2b16e0411e007ec4ac9cbb691377e4a071cae88cc855eccbcc376a1ccce8e1d",
+      "size_bytes": 619
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "ebd87bf792749081e0a8cae14e3ca0bbc865f1aba71daee3d1d6036ccb94e618",
+      "size_bytes": 1410
+    },
+    {
+      "path": "build/v9/build-receipt.json",
+      "sha256": "c6ebc6012599a61a9d6e5c29fb2d968a2c45a769920668c8c8e430137546ed55",
+      "size_bytes": 539
+    },
+    {
+      "path": "build/v9/state-snapshot.json",
+      "sha256": "2050bdefd72f5e8733223c055ee85dae3f47e8e0a1c3eddb74acd8d156c4796d",
+      "size_bytes": 834
+    },
+    {
+      "path": "build/v9/v9-capabilities.json",
+      "sha256": "d09265189501362933039efd79bd003a53669caf3019ce33f63bc281b5b31016",
+      "size_bytes": 872
+    },
+    {
+      "path": "canon/domain/README.md",
+      "sha256": "0f3c7fc78b9185435e4a95a7176cea6a0b38ffdf25acefe139775ddbd80788b6",
+      "size_bytes": 352
+    },
+    {
+      "path": "canon/state.index.json",
+      "sha256": "92d5e60854e8a18b90758cb887327278730c1a2e2f1f8687fa5f36066b5d78fe",
+      "size_bytes": 1752
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "2e47e604b8e931c1e017c98bbf387b1c6ab860aa2f5df0ab9d4b74f8639755ab",
+      "size_bytes": 9287
+    },
+    {
+      "path": "derived/authoring-review/AI_EDITORIAL_DOSSIER.json",
+      "sha256": "3c953a460a7852b9afe496ee70c5cd269315d3cd0e10bdecc1d4539f974edeab",
+      "size_bytes": 6995
+    },
+    {
+      "path": "derived/reader-inventory.json",
+      "sha256": "5b5d18e1853bdaba5dde3450186013066bde4e7b28b7ab66345f40420d7baa72",
+      "size_bytes": 12929
+    },
+    {
+      "path": "derived/reader-profile.json",
+      "sha256": "3f2d47f8c1096d7dbd35751965fd81999c8c846cab8c7372c00c6c6c27810565",
+      "size_bytes": 2765
+    },
+    {
+      "path": "desktop.ini",
+      "sha256": "ef1319ee1eea7a3269e6239527605484962ceed4fdbe4ac85b09abe56b309950",
+      "size_bytes": 1196
+    },
+    {
+      "path": "docs/00_INTENT_AND_SCOPE.md",
+      "sha256": "8574ef8ed3e3653392f0e119737543c3f9d244235682bc03d32be36923ee9934",
+      "size_bytes": 621
+    },
+    {
+      "path": "docs/01_SEMANTIC_BOUNDARY.md",
+      "sha256": "8f1e54d3dfa3a54b89770459919880fc3a77db0b299c1a59fb0e94e86e9fdbb6",
+      "size_bytes": 1215
+    },
+    {
+      "path": "docs/02_NATIVE_MODEL.md",
+      "sha256": "7ff715b5162013acdb41774baac4835ef0f89021cd6d34c1cf833b2ce574245f",
+      "size_bytes": 1097
+    },
+    {
+      "path": "docs/03_EPISTEMIC_MODEL.md",
+      "sha256": "8e8d077ef69fd0830d196dc2e0a847dc7bb6096a27a8fcca7a08c993b8a5ae1f",
+      "size_bytes": 1050
+    },
+    {
+      "path": "docs/04_CANONICAL_DERIVED.md",
+      "sha256": "4df2dd3c1cc0e48a0f6c12920f413dc943d29c2c1e693f84e6fdd32851f97976",
+      "size_bytes": 1356
+    },
+    {
+      "path": "docs/05_ORIENTATIONS.md",
+      "sha256": "02c6b9e1cf1f4aa6b936b75ff8131a7726c00de2f3bc71dfd178d869e56048e0",
+      "size_bytes": 623
+    },
+    {
+      "path": "docs/06_VALIDATION.md",
+      "sha256": "9300ac38d7fc28617fda1a63b1f6f826d7993ec3219c05e06d34daf5ff36b861",
+      "size_bytes": 855
+    },
+    {
+      "path": "docs/07_HOSTING_AND_PUBLICATION.md",
+      "sha256": "6a4a1809d307ec86b770c256ba97017c317dcefa2d05306401978dca3a0edec9",
+      "size_bytes": 785
+    },
+    {
+      "path": "docs/08_AI_AUTHORING_IMPROVEMENTS.md",
+      "sha256": "718d426c43ef0eef89d56c296cb97af9fc40ef2e5036a3bfff0e16633a90a468",
+      "size_bytes": 4128
+    },
+    {
+      "path": "docs/08_GLOSSARY.md",
+      "sha256": "74e3ba51c6df103a5e7804a5d6ab57234f9835d8ceb6ebe52cae12f235345674",
+      "size_bytes": 651
+    },
+    {
+      "path": "docs/DOC_SERVER_EVOLUTION_20261119.md",
+      "sha256": "d558e6e4079b1f4deaaf868235a3747748e12b3993d8e8eaf2a4c247d0676fb3",
+      "size_bytes": 1037
+    },
+    {
+      "path": "external-source-library/evidence/README.md",
+      "sha256": "c1ef8fac628c9d9b21d567d1b0f6d25c6aca75ce881e8099ac79a934fd39d917",
+      "size_bytes": 222
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/-koa_mediatheque/_source_path.txt",
+      "sha256": "ba1be2aed72a685f5b390438d4b2f20e75f2938b2279c463bdcf16bc642c0944",
+      "size_bytes": 70
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/-koa_mediatheque/README.md",
+      "sha256": "c08b2bb6369fcf919ddb46b9879ba798a6f15003eb3aeeebde079d173620ae46",
+      "size_bytes": 11616
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/-Konstellation/_source_path.txt",
+      "sha256": "fbae22215e47e20792c087dac4e11c6d9684893d334ba4ea18c04009b629c94d",
+      "size_bytes": 64
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/-Konstellation/README.md",
+      "sha256": "ccfbfa9cc2824868c8da7432e077b4afb7ccfb9dac4aa4751227d6cad947b005",
+      "size_bytes": 7686
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/_COLLECTION_INFO.txt",
+      "sha256": "3c9ae3e8e2d64d7c77a235d329e00ed272a205ac6c5045bb795a5af454d10068",
+      "size_bytes": 176
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/_manifest.csv",
+      "sha256": "95ca6407adfec476a04274e81d3c2bca0732aab1e0e69ff21404e89c0865384e",
+      "size_bytes": 4546
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Ariane/_source_path.txt",
+      "sha256": "1eb75e2217624905030bdd766b224e3c03349a988ff5c1f8e8a60804d2170cb8",
+      "size_bytes": 41
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Ariane/README.md",
+      "sha256": "8a9f18b23c5cf2a64c72b1896f618257de2caa47ea6722a9b3b87a1825e7ad5b",
+      "size_bytes": 4741
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Ariane_Diagnostics/_source_path.txt",
+      "sha256": "7dc79b070cf7e50473d0c19c9a15b34834c5088cf024f06f0cfd9280ef44a413",
+      "size_bytes": 65
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Ariane_Diagnostics/README.md",
+      "sha256": "f09c885ad0e46d62c65f72d655cb3b6c1e062fa8dd650135f6761da36f6f517f",
+      "size_bytes": 5558
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/editorial-figure-engine/_source_path.txt",
+      "sha256": "abad70891d7891be0b642852c39720f10e958420072d5a7eaad53c9615e79bf8",
+      "size_bytes": 92
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/editorial-figure-engine/README.md",
+      "sha256": "ff25e7772fdd453c6620f19acef5983e00492433758a71ffbc84519400fe5e74",
+      "size_bytes": 5018
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/EncyKlopedia/_source_path.txt",
+      "sha256": "fb49778d3de2d46f7741027516807ed12fdbdd2e6667aa7b23526fff8b611262",
+      "size_bytes": 59
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/EncyKlopedia/README.md",
+      "sha256": "81000ff6c844c0c6c09cbd3b5c411e7787290e46f7d88d1ec675a79ef9e68edf",
+      "size_bytes": 4595
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/ETHIKOS_GENERIC_PACK_GENERATOR_MD/_source_path.txt",
+      "sha256": "a89f7259c5d340b640ec3b805745a2b04747f2bfbc2a1ad9e711a1a99bc0b6ae",
+      "size_bytes": 98
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/ETHIKOS_GENERIC_PACK_GENERATOR_MD/README.md",
+      "sha256": "aa9c98486fabd79721933a1f3afb1ac0d9c683122348e0a7544aafb7f9b0e8ca",
+      "size_bytes": 571
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/gf-core/_source_path.txt",
+      "sha256": "397abb788e8f519e1736b2dcd8ab5db387ec1b7ef771ebc4fb9ca0baa30e6ecc",
+      "size_bytes": 58
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/gf-core/README.md",
+      "sha256": "972ee260b67a6e807810267796a4ad341215a46eb5887e504d0dedab424295f2",
+      "size_bytes": 2613
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/gf-rgl/_source_path.txt",
+      "sha256": "4bedba42f3fd3905aee18526d3196b0359d9a6aa4d113b05456428950ced6dd3",
+      "size_bytes": 56
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/gf-rgl/README.md",
+      "sha256": "22f1debe9eb587e0eb04035437b9144685f7da8f151c202a571e9b6ec3da25ce",
+      "size_bytes": 5835
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/GF_Observatory/_source_path.txt",
+      "sha256": "321a89076111d6c7ddcb48b1da4f4cb5f8f09590c4b1c0cfe3cb488bbf1c143c",
+      "size_bytes": 72
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/GF_Observatory/README.md",
+      "sha256": "93db5229ad3fffa80640b3f6888e75a29bd28164fe4c94d42fe7caaeb687f0eb",
+      "size_bytes": 38
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/GF_RGL_AI_Compendium/_source_path.txt",
+      "sha256": "80be98230925a54d9dfc11cb9b3150da417b2cd467e4bf601fb401cc8ae9fafc",
+      "size_bytes": 84
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/GF_RGL_AI_Compendium/README.md",
+      "sha256": "7f5b749c98acd553a4023a96e08c88fb1556fd96596efa8667b05140bb6c0f38",
+      "size_bytes": 16525
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Grammatical_Framework-Albanian/_source_path.txt",
+      "sha256": "c6c61765c1843724da215d40a1dfee62df7a07f26c2b815d1b8dcf77277a79c9",
+      "size_bytes": 104
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Grammatical_Framework-Albanian/README.md",
+      "sha256": "da8ab0f0964047c48dba49f53eb736e2fcb90856b8f3dba2f75ff5390dd9b972",
+      "size_bytes": 34
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/interaction_kernel/_source_path.txt",
+      "sha256": "8dc906d170a1dd5d684edf1da6eda65221015d7a580fa8cb59fc74a502725392",
+      "size_bytes": 77
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/interaction_kernel/README.md",
+      "sha256": "be57ca888a51ed555f357a3a2aabf7c11d74e57e447342d628ab69be070f9039",
+      "size_bytes": 3733
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Kamel/_source_path.txt",
+      "sha256": "4eef9e8a02d57d53345c05d4ff57d680bfdeaa91ff2886d9c5eff9ba74619734",
+      "size_bytes": 38
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Kamel/README.md",
+      "sha256": "2b4acdb4398ae6521cc3dff4008148d7ab06b04fdbf34118fe6918110977cbb4",
+      "size_bytes": 9
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Kamel_AI_DB_Revision_Guide_v1.0.0/_source_path.txt",
+      "sha256": "7384267180f39d21bf89a075c3d5ad4ed2176c3169703c564f0b0a4589a73fac",
+      "size_bytes": 94
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Kamel_AI_DB_Revision_Guide_v1.0.0/README.md",
+      "sha256": "af9bf8b213c1edc9f468e5fdaa87ddc211c4228bfbe3f8a34b11f8ecc8a2b508",
+      "size_bytes": 452
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/KeyFlow(formulaires)/_source_path.txt",
+      "sha256": "96cb052f086e9cda5498526ae64cdc8053267168518650b6cea1aec94299a700",
+      "size_bytes": 67
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/KeyFlow(formulaires)/README.md",
+      "sha256": "aabc6fc791e70d290217038e70a77124c99f2f598a105b3927b58571e6d79961",
+      "size_bytes": 21586
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/koa-linux/_source_path.txt",
+      "sha256": "41e7d45c6f5431d7a7210c9c25ad5a780fc49d1b68b750b83b01ada646b1e037",
+      "size_bytes": 50
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/koa-linux/README.md",
+      "sha256": "04d8f29bff0e7b84bb2f8ac8084eb55afbf0cab513b71b71e99a43b3a5dda9e5",
+      "size_bytes": 21249
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/koa-mediatheque-workspace/_source_path.txt",
+      "sha256": "f85fb51c564469f37c7a681888f20fb6e0aa344b34b7d8a163d06edbfb4b26e9",
+      "size_bytes": 88
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/koa-mediatheque-workspace/README.md",
+      "sha256": "19ba4864999c1e382f6a49052061266efe5ea3cf180ba1075da5fcb85b1012ef",
+      "size_bytes": 595
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/kOA_Blank_Mediatheque/_source_path.txt",
+      "sha256": "edd0f44fc56afacecb9bcda5f1b0c0ab092f28d4b8fa94743239b77061b40cea",
+      "size_bytes": 64
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/kOA_Blank_Mediatheque/README.md",
+      "sha256": "19ba4864999c1e382f6a49052061266efe5ea3cf180ba1075da5fcb85b1012ef",
+      "size_bytes": 595
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/kOA_Digital_Ecosystem/_source_path.txt",
+      "sha256": "b5be1727a558ac671bda8b6388dd21c87241330f425c52d7422563b8dfd2750a",
+      "size_bytes": 86
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/kOA_Digital_Ecosystem/README.md",
+      "sha256": "1b1043e8edae839b3109960f3c56a50aa6debfa828a4e9f239cd8a5b061fe937",
+      "size_bytes": 6831
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Koali-Control-Panel/_source_path.txt",
+      "sha256": "4074854b05768c1d00de12d46f39df780a86980a3c23da8daf0e7af56c0342e9",
+      "size_bytes": 70
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Koali-Control-Panel/README.md",
+      "sha256": "8c3cf851e5a48463d58346456adda1218796d9e2392ff2f42adf5f45a9676882",
+      "size_bytes": 23755
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/koali-spaces/_source_path.txt",
+      "sha256": "5a7874852e59d48f36356c08aa70fadc0dbe7a9a81e1e90d97488c63c118ecd3",
+      "size_bytes": 56
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/koali-spaces/README.md",
+      "sha256": "fe97f771560cebe5eeb3367cfa352f9e62f01ee2deff3d8f6053bdb301970833",
+      "size_bytes": 7072
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Koali_Scenario_Mosaic/_source_path.txt",
+      "sha256": "c155536f8f38cada2ed69c04b213ccd02bb61aafbf8241fe4f224be277e6ea53",
+      "size_bytes": 74
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Koali_Scenario_Mosaic/README.md",
+      "sha256": "850234f7191880f260f23ce2695d82199dd0442f9d2327a8a9cfa60be71e8c18",
+      "size_bytes": 6194
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Kompiler/_source_path.txt",
+      "sha256": "57ab8de3ee1166a325118d2b84cdaf257210e67b3a248e8651945d2641098dde",
+      "size_bytes": 46
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Kompiler/README.md",
+      "sha256": "718c9ffa59b56f1864e47aaf7bf699bb729d3723908f0838f79e80cb32ceda11",
+      "size_bytes": 3064
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/konfid/_source_path.txt",
+      "sha256": "2333e1a414a1f897fe741c443a3320a488b5275ccc318bd9805da470befe9960",
+      "size_bytes": 41
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/konfid/README.md",
+      "sha256": "72284c34dabae93f99b09ecccc281963b9f3be60f4ad6f074675294eb3d4f329",
+      "size_bytes": 6531
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Konnaxion/_source_path.txt",
+      "sha256": "b0b3fbe5f804bc7102fc348d91d89d17f00899c314f7fbf94cd661bf24df49c9",
+      "size_bytes": 50
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Konnaxion/README.md",
+      "sha256": "41bf765b64741ed7b800b9713aac4e0c59a5e7b8e15aee890f9891b50bf5d146",
+      "size_bytes": 647
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/konnaxion-i18n-ui-bundle/_source_path.txt",
+      "sha256": "1a5c093f940aa540b0ad8814a38c83a225bbc03f08aa2352080b561221d5f85b",
+      "size_bytes": 80
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/konnaxion-i18n-ui-bundle/README.txt",
+      "sha256": "48702e501531a0a2a15b7ee7670c535c4f43feff63a48ce291443d1c24fe5fb9",
+      "size_bytes": 1345
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Konnaxion-Universe-Worlds-Manager/_source_path.txt",
+      "sha256": "9a9d0c76da2d089e70ea965cb8adf35bdd2117d224a75e5987cda9b62879a02a",
+      "size_bytes": 98
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Konnaxion-Universe-Worlds-Manager/README.md",
+      "sha256": "986354ea468f142be6f099103560f0f37b30e9e6cbb09880f216cc07dbfb2c35",
+      "size_bytes": 873
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Konnaxion_Capsule_Manager/_source_path.txt",
+      "sha256": "c94af1861c4c0a5fcada1a89a61dcdbf8cad78bcc6f62c8ea1f261a4c1e3ef3d",
+      "size_bytes": 82
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Konnaxion_Capsule_Manager/README.md",
+      "sha256": "903b2f370b63a892745179912e39bcfb3425f580e2a1e10d684d70dc5d879a61",
+      "size_bytes": 1109
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Konnaxion_Worlds/_source_path.txt",
+      "sha256": "cb14fcf12e0439d3eda98c6a491a4c72b8e810dc028f3d9e65bfe2ceb0b97cd5",
+      "size_bytes": 64
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Konnaxion_Worlds/README.md",
+      "sha256": "f5e72eb4a8aed07ff37a391f9a3994a4a483e8e772931bc2cce77ea0b84de810",
+      "size_bytes": 12720
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/KonnaxionDiag/_source_path.txt",
+      "sha256": "6afd3104a18622d03fb26a1c72c2cbfa014486e62ad306a65010914843eb3d28",
+      "size_bytes": 58
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/KonnaxionDiag/README.md",
+      "sha256": "3e2bd4e836c3250b2b921f69ead67e296b3776623889666baf2335c76b3d78f4",
+      "size_bytes": 5752
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Konstellation/_source_path.txt",
+      "sha256": "d2dbad981ad1ac2b083ccff956ce95dd8571a310e10eaf9b73e1c62eef267785",
+      "size_bytes": 62
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Konstellation/README.md",
+      "sha256": "a49492759aca7ac5d80a049b165bf8c880ee0a86f4fb93a0d394d1ea29496d0e",
+      "size_bytes": 3313
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Konstellation_Publisher/_source_path.txt",
+      "sha256": "093f3686e28e22ae44fa01fd6ffd298b600bda18ebb4f28caa730d1bf0488680",
+      "size_bytes": 82
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Konstellation_Publisher/README.md",
+      "sha256": "2c771eacfe321a4f382c9963aae767b96afdc1812c46a1062ec14a22717db2c5",
+      "size_bytes": 5200
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/kor/_source_path.txt",
+      "sha256": "46f8f38b0f927c586ad06716d4584832cd5519ee3b219e25854ca62bf67cf216",
+      "size_bytes": 32
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/kor/README.fr.md",
+      "sha256": "d08cac669ccb74b4d04e9a75a95c84ab80ae79924ec51f408e0242ee060d1462",
+      "size_bytes": 3418
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/kor/README.md",
+      "sha256": "657e24749118c1a63e475c31daaf622fc7dd2f65e4bc670aa6dc0e027c502b3c",
+      "size_bytes": 3225
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Korpus/Code_snapshot_Korpus_Index.txt",
+      "sha256": "c75110e0e273621878b3bce8c4161ae50687aad650bc36182751af6ac9fe7ad0",
+      "size_bytes": 6906
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/kristal-7/_source_path.txt",
+      "sha256": "5a521947d0a8934a47c9ae4dd88daa560bc69d9e04e16de1c2746a8918550b96",
+      "size_bytes": 48
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/kristal-7/README.md",
+      "sha256": "8eb171017a85b12213794b2ec2c20c40a56b4be0ae0c49d4b3de9755e4395b1c",
+      "size_bytes": 2193
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Kristal-Kollection/_source_path.txt",
+      "sha256": "204c263321386f592f3d4e879949a160072a730a547fbcbaa9c11c02bc32560c",
+      "size_bytes": 66
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Kristal-Kollection/README.md",
+      "sha256": "76ebc78d71e1c78dece7b6c1ff7a5b4228d530895dddbc1cc11bb75e71325dfd",
+      "size_bytes": 46
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/KristalDiag/_source_path.txt",
+      "sha256": "e337148bafe4484a561873b3799737c249401ba8c8af03cff6e71ca8e218963b",
+      "size_bytes": 52
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/KristalDiag/README.md",
+      "sha256": "f5d2e9bafccf2780181405c7fb0822db1fcaeb0b43ec7c6bdc0f324ce7693142",
+      "size_bytes": 5210
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/LevelUpDiag/_source_path.txt",
+      "sha256": "8b2e1731e370eefca25cb31276d04bbd0df3332db7686e2f4ee4802f554e839c",
+      "size_bytes": 56
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/LevelUpDiag/README.md",
+      "sha256": "3aa5a51c3b5dbdf25a0141d13393c8d89326433235100d2f1c489ba979f024ef",
+      "size_bytes": 5850
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/LevelUpDiag-Koali/_source_path.txt",
+      "sha256": "932be7a88e59344930350961c85cb06dd44faa510ef41c7855a773126b65da1a",
+      "size_bytes": 66
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/LevelUpDiag-Koali/README.md",
+      "sha256": "a3e15147bfd92b073ef9268391a9de84477cdae32bbca56f5f0245fbd84a5d75",
+      "size_bytes": 15163
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/LevelUpDiag-Orgo/_source_path.txt",
+      "sha256": "fc3eff3edd010dee448f02f00e6bded2079e2a8bd1c77e0d54626be84072019c",
+      "size_bytes": 59
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/LevelUpDiag-Orgo/README.md",
+      "sha256": "b88bb06dfadf4785381bc7e25e6f298989ab06cca22c410465ea56c7c38d6a48",
+      "size_bytes": 994
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/levelupdiag_ariane/_source_path.txt",
+      "sha256": "44cd0b2b44ec266c8674eeaad584350e8cb64c780cf7aa4fab5632606b27f3e0",
+      "size_bytes": 65
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/levelupdiag_ariane/README.md",
+      "sha256": "2ac3d4e3a2b1da66cbdf266ea80201147039932a8eeeeadf1033dddd02888198",
+      "size_bytes": 1920
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/LevelUpDiag_SemantiK_Architect/_source_path.txt",
+      "sha256": "3a7d013d1eb51710fcbe96bab840e6d18a4e442592f1be4db6794353ae011926",
+      "size_bytes": 101
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/LevelUpDiag_SemantiK_Architect/README.md",
+      "sha256": "1797f9dd05626c0edb8e16394c8d3fd0c913bac0fd9328dd58260702e05f3479",
+      "size_bytes": 5189
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/mediatheque/_source_path.txt",
+      "sha256": "e4a023322b78306990dcfb465de8c37bd12964a7045aa908726f66628a213d40",
+      "size_bytes": 66
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/mediatheque/README.md",
+      "sha256": "9eac487bd79ce0ae84cf1d7815c2754ff9533da200189ad6052e29c1da56f06a",
+      "size_bytes": 1851
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/mediatheque-content/_source_path.txt",
+      "sha256": "ab481d9727548591137b9dbf7e02f6d1b63d091958c2ad851060b5d1dbd2afc0",
+      "size_bytes": 82
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/mediatheque-content/README.md",
+      "sha256": "e94b9b429dff36a2e2c956ef84c7bd3223fd7c33155817707cf23f2d8ca45a62",
+      "size_bytes": 765
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Mediatheque-Kristal-Sources/_source_path.txt",
+      "sha256": "617bf4380f06dfa82a936dccdfce64ce54a276bf3206289723b35391090e4ef1",
+      "size_bytes": 84
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Mediatheque-Kristal-Sources/README.md",
+      "sha256": "dba26ef11a820570a6e500f04574127cbfb283710a075782fd4b58b9d7a07398",
+      "size_bytes": 9876
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Orgo/_source_path.txt",
+      "sha256": "a3fa4dff308e86cff66bee91e75544e3147a521e9ee32439e84404164d146513",
+      "size_bytes": 35
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Orgo/README.md",
+      "sha256": "3ecd9a3463d358de83c3ec594f9a8bc28ee577e0b21920025d525ed53ad4bd56",
+      "size_bytes": 4662
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/RepoDiagSimdjson/_source_path.txt",
+      "sha256": "23d784731bf9f2d30e6f141d56b90e8c1f4175d7a06589509e6ead99f005f25e",
+      "size_bytes": 63
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/RepoDiagSimdjson/README.md",
+      "sha256": "6773ae41935943d087ed944542444f5a427d667bbe419e789feea95257b5fbbb",
+      "size_bytes": 2824
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/SemantiK_Architect/_source_path.txt",
+      "sha256": "aff630a2525ec2aab635eee1804bd4c154f0fc470eac207b88ecc1555db8e3d0",
+      "size_bytes": 77
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/SemantiK_Architect/README.md",
+      "sha256": "a019d5a815425a357724ac6a5e356976234131071d552794579d718e10f45b5d",
+      "size_bytes": 5523
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/SemantiK_Architect__gf-rgl/_source_path.txt",
+      "sha256": "50fe4332a6b0f3014cab07102f46f06be9c2be985c7727f57512f30fff6a44d6",
+      "size_bytes": 73
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/SemantiK_Architect__gf-rgl/README.md",
+      "sha256": "22f1debe9eb587e0eb04035437b9144685f7da8f151c202a571e9b6ec3da25ce",
+      "size_bytes": 5835
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/SemantiK_Architect_GF_Source/_source_path.txt",
+      "sha256": "10bf2fceaf4a43855394356fc45152c006e11530f423c2552e2e88257d67f90d",
+      "size_bytes": 100
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/SemantiK_Architect_GF_Source/README.md",
+      "sha256": "18a97deab3d927ff78dea850f3407bc7d06362a2924f9e3768592ed0f2dc37ff",
+      "size_bytes": 455
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/SemantiK_only_phrase_prototype/_source_path.txt",
+      "sha256": "8c079a3d0d64f093ac3c9d0861a5539913929f4dcdaabe1bf6b0847efb5a1223",
+      "size_bytes": 96
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/SemantiK_only_phrase_prototype/README.md",
+      "sha256": "7d29757f866ef0506bfad2b6c538dd53f9fb141c18a3979bb406dd1a062bbc95",
+      "size_bytes": 1615
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/SemantiK_Phrase_Ops_Console/_source_path.txt",
+      "sha256": "42c52be334198e0d68d3fbad7ccd9ef9d6e5209a09bcac0474b31e8cad89d1e3",
+      "size_bytes": 90
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/SemantiK_Phrase_Ops_Console/README.md",
+      "sha256": "b11eb430b87bc6883fd53c4d4e3c41ef80d5d4fb7ec6afbd65fdf8d4add55611",
+      "size_bytes": 31477
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/SemantiK_Runtime_Orchestrator/_source_path.txt",
+      "sha256": "48962c55c51ca89cc49293145fb66485dd9f3fddf958789f1ea781f8b3a0e9f1",
+      "size_bytes": 99
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/SemantiK_Runtime_Orchestrator/README.md",
+      "sha256": "09eed8449136da41158fef83dab3172b3dc6f26acabd02feb1efbb6d19049215",
+      "size_bytes": 1569
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/SenTient/_source_path.txt",
+      "sha256": "c2f4370c20e05eaee7047adce1beb4c342637acfc2db93bfa76c3f9119b498d2",
+      "size_bytes": 47
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/SenTient/README.md",
+      "sha256": "32adf9121cad820aa7feec6050283c8df15d3a02ce1d33e51d09f8b2c1c97b5a",
+      "size_bytes": 9688
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/simdjson-rvv-vla/_source_path.txt",
+      "sha256": "9968e4a22d77c26ad83d37b88d12aea493b68f2fad339df2d2f3f11d0fc3c9cf",
+      "size_bytes": 63
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/simdjson-rvv-vla/README.md",
+      "sha256": "206d0dbc6815af1d69e03b39cb002fe85f65214be22a2093cafb6685efe28086",
+      "size_bytes": 14364
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/simdjson-upstream/_source_path.txt",
+      "sha256": "3f23d88d286a2f01d203328dff6411263d707f881f8dfd289fb4e8f15e02f5b1",
+      "size_bytes": 65
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/simdjson-upstream/README.md",
+      "sha256": "206d0dbc6815af1d69e03b39cb002fe85f65214be22a2093cafb6685efe28086",
+      "size_bytes": 14364
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Theophile_Konstellation_SemantiK_TestKit/_source_path.txt",
+      "sha256": "8d274a95fabfc455bed8df22018607d788eb18e7b9b230f85e69b3d4e6c947bb",
+      "size_bytes": 116
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/Theophile_Konstellation_SemantiK_TestKit/README.md",
+      "sha256": "aa24bca0f8ee5f37c3455b9a8db2449b5f3c07a2563372965a0017d1ed01d701",
+      "size_bytes": 1024
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/uckk-moodle/_source_path.txt",
+      "sha256": "39934afdc4b17ea03f4d7e5b0fcdf043e59664d1798102218b93301a818370fe",
+      "size_bytes": 49
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/uckk-moodle/README.md",
+      "sha256": "0346c4a1e35ffa2080a6b4e337d581b4dc70a41139b20b01d3247634d65eda9d",
+      "size_bytes": 10370
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/UCKK_Assets/_source_path.txt",
+      "sha256": "4f662759a15621a2e3558707fa4c7070c3044c25e9ce47f4553235d234381107",
+      "size_bytes": 49
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/UCKK_Assets/README.md",
+      "sha256": "49864191c88b4ec03ddbbd281d79faad0433f0cf764dcfac05d20571f4385479",
+      "size_bytes": 40260
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/UCKK_ops_console/_source_path.txt",
+      "sha256": "9b087c20e604e61b164968ee8f7d788714c4a155690099ccc91b627c616fa3e9",
+      "size_bytes": 59
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/UCKK_ops_console/README.md",
+      "sha256": "ff916a9aab248211c568f365d18dfadcbd1c5f535db5ede67e93d34edb45f994",
+      "size_bytes": 7102
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/UCKK_Publisher/_source_path.txt",
+      "sha256": "c63a6c8ff0d806c3ed7bdbb31c29c6c6df1a746a8d87a8db7b04800d450907e5",
+      "size_bytes": 55
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/UCKK_Publisher/README.md",
+      "sha256": "72f509d05c3d4bfd4704f507e0404db6566c5464b31f717a162b822e90ab152e",
+      "size_bytes": 10891
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/UCKK_SecurityDiag/_source_path.txt",
+      "sha256": "75b94be912ad00e4634ded7f6defc9297ee02decfffeebda769bd9e5c6302344",
+      "size_bytes": 61
+    },
+    {
+      "path": "external-source-library/evidence/repository-readmes-20261003/UCKK_SecurityDiag/README.md",
+      "sha256": "b60c4dd6fe640f22fef874fc391aa832941618f039e0094a9584adaeca793e37",
+      "size_bytes": 5957
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/ashoka/README.md",
+      "sha256": "f3a49998d12c8943967f7edd205f3008b38c058ba9164db27508704b19c4981d",
+      "size_bytes": 5580
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/business-plan/README.md",
+      "sha256": "db2860ec26e80559911b5c3c22524c93c42357c23049944f26a19015e0210fe8",
+      "size_bytes": 4869
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/civilizational-coherence/README.md",
+      "sha256": "cd0be7ac36f84bcddc0797c237374b0c639095716f671029d082ccaaee91fb72",
+      "size_bytes": 22280
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/colin-row/README.md",
+      "sha256": "de49a080844a1414cfd639eb2fc544fce8c5d299942662580ff8f44141f9e9c5",
+      "size_bytes": 3717
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/commons-zahra-sfu/00_README.md",
+      "sha256": "0fbf5d7494d6b919d8dff1e5922ec02717ea0016b4fdda61fcce15f5c6f7e7cb",
+      "size_bytes": 2976
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/freeze-vote-rebuild/README.md",
+      "sha256": "434914c3afd1f3c2e7235132fd72d0a39158bcbf0f3ca1175cb4a4cf60f6e229",
+      "size_bytes": 1560
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/hello-world/README.md",
+      "sha256": "c343925eb9c6142869a621649d31d349a46455a48d83dfa26bc99a2dfe647252",
+      "size_bytes": 9033
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/international-strategy/README.md",
+      "sha256": "c28aedf1a1153f67e0af42d78e76a0170b70f369dff46088509b6f8a33b0d488",
+      "size_bytes": 2971
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/king-klown-canon/README.md",
+      "sha256": "1a1476407f8a5f411703ac43240e92868a05a5f4cfdcc9b96f84ac2d0cac1a94",
+      "size_bytes": 2583
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/kristal-farms/README.md",
+      "sha256": "e84820ce30b3d24ee26bae5fd203a7a48df5d51d163ebbf5847485eb2d5e37b0",
+      "size_bytes": 10132
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/kristal-farms-wiki/README.md",
+      "sha256": "18df7cd7113e969ac8aec82885dffa618a2f0ccd16d788ba32b4d60b412e7e92",
+      "size_bytes": 2687
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/orphee-walk-straight/README.md",
+      "sha256": "674756e899067811fcf9117066e93e0e8fafc4c584e23c6032adc8cdc9ee275a",
+      "size_bytes": 16818
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/pi-theory/README.md",
+      "sha256": "0b0344003d4fa0fe761c7cd6f5dbac1fb523cef3c063af17e9e48baf1cc423e4",
+      "size_bytes": 2763
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/pi-theory-metadata/REPO_METADATA.md",
+      "sha256": "901244ab0b0d980d9b4242db61eed93094038235a2585586427b7f99d9b65442",
+      "size_bytes": 739
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/pi-theory-status-method/STATUS_AND_METHOD.md",
+      "sha256": "f460756e5f4d9356ea08f45511abeffe8a57366e4d5bde5896a404b8f5db8657",
+      "size_bytes": 3596
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/pi-theory-version/VERSION",
+      "sha256": "1634dd70ea5bda1473f196f3f9f071c749ee7a760b2330069ed03142a65217fa",
+      "size_bytes": 31
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/pi-theory-wiki/README.md",
+      "sha256": "905aa1a7916823e226ec655d388204629d97d0cacb12eebca9cd0b610af27b27",
+      "size_bytes": 348
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/power-dynamics/README.md",
+      "sha256": "861791bb1a5cd5ed93e3cc532ee2871ceb99e389873af7a6490941243c2ddd42",
+      "size_bytes": 18237
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/ppg-pressure-test/README.md",
+      "sha256": "2bc9a3d0a18bcae99591be4230ddcb1a05dd87283cb83f38cbdd43b3c2a64272",
+      "size_bytes": 9233
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/science-silk-road/README.md",
+      "sha256": "7854a5ba7f5f190dc06866f3282cc2f3ada7843d28424a2fe7060b38a08295e9",
+      "size_bytes": 10356
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/01/science-silk-road-wiki/Home.md",
+      "sha256": "9779ffa0fd4577c0ba12582ff566b794c1d23cdb5e2a17cc2f851a17ae59d871",
+      "size_bytes": 5528
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/02/ame-artificielle/README.md",
+      "sha256": "6d598af918afff9f1326d3f9c98ca71d7d609d0a814cf2e5ec50aace36383cb7",
+      "size_bytes": 3846
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/02/ame-artificielle-pyproject/pyproject.toml",
+      "sha256": "7caf7eb7c29060f4940fa65e9737d0e3329318f7ae2ad5a62ebdf6e62cc79be7",
+      "size_bytes": 347
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/02/ame-artificielle-wiki/Home.md",
+      "sha256": "558471fcc719776ca703ec096bbdb4b711b65a026c00fb69bd25f72265ebb24a",
+      "size_bytes": 4766
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/02/astro-signals/README.md",
+      "sha256": "ebcf78c9c9f6f5cb1c833c31862b0dc604ea2e647f0a570c8fb362eeb4ef4695",
+      "size_bytes": 3506
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/02/astro-signals-pyproject/pyproject.toml",
+      "sha256": "115a104d69f9785c729b218630e320dfdd16e6077a0928d0258979a93f879414",
+      "size_bytes": 757
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/02/formulator/README.md",
+      "sha256": "e379677b1f7c9df23935f42264081352b91438422586e4d60bfdf41581c18ac5",
+      "size_bytes": 5102
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/02/formulator-pyproject/pyproject.toml",
+      "sha256": "b2f10c46b2c5d5df16e94e928daf16f6926e7cbe49002e38900330ad791f6485",
+      "size_bytes": 365
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/02/grand-challenges/README.md",
+      "sha256": "de3870668cb4bb9037635ec6e881c2a822e4c6850afdceeeb5e15e3c1a1488cf",
+      "size_bytes": 7281
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/02/grand-challenges-changelog/IMPLEMENTATION_CHANGELOG.md",
+      "sha256": "e49f6c7d91383972309491415cc215cbad11c312a0c727c65d5e33377ff30fab",
+      "size_bytes": 1923
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/02/mathchallenges-kristal-math-shortcut.txt",
+      "sha256": "060a9fb0e4a6fc3848c3ac6808060c57cfc3f4313b0d184c31ba42017a42c878",
+      "size_bytes": 198
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/02/mathchallenges-start/START_HERE.md",
+      "sha256": "485cc8745ea6b48b80ba5c4106ac44668f46e81d8b8389e430a458fa76b8c731",
+      "size_bytes": 944
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/02/rainbow-write/rainbow_word.py",
+      "sha256": "8c236d7c2ba6c50fd695baa983b30656dfd31320f2b31c821c8d2cab37ce1b1e",
+      "size_bytes": 8785
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/02/votingmachine/README.md",
+      "sha256": "d12eb1e7df35b82e6e76c9e01dc98516c5047ed79faafab51738820d00d4c5cd",
+      "size_bytes": 7781
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/02/voxtral-audiobook-studio/README.md",
+      "sha256": "35b1dfe869629f19976b70dc0f07f1845e17be320de9d2ecb65c8b4ab8ec9e42",
+      "size_bytes": 15112
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/03/ma-gustave-profile/README.md",
+      "sha256": "e77996723e4b772f9f72e7e54a0d19d06dbb6dbc957cd239ef1d0a98ebb2a1a1",
+      "size_bytes": 1035
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/03/theophile-mini-site/README.md",
+      "sha256": "e6a5d8b26a17086ffc25bb4dca756bdb9612e2673c0853c60a81ead9009383f0",
+      "size_bytes": 3001
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/03/theophile-svg-stack/README.md",
+      "sha256": "4dd660c4fb3de410b109a67f8ab03bdb3740625c36552ebfb02942b031e22feb",
+      "size_bytes": 924
+    },
+    {
+      "path": "external-source-library/evidence/workspace-reconciliation-20261003/README.md",
+      "sha256": "919aaa566e34bc51261ff917bffe5be676797a44225ebcf5bb2ac2ec348773db",
+      "size_bytes": 904
+    },
+    {
+      "path": "knowledge-base/corpus/index.json",
+      "sha256": "f2bd9305b6f7de4f41f0ba2035391ee8a90ea2ccae89bf81d181844e50735ee1",
+      "size_bytes": 33003
+    },
+    {
+      "path": "knowledge-base/corpus/koa-ecosystem.kristal-state.json",
+      "sha256": "59eeea4938534cbd78d547107d197645d404b32c9cbce3ef2678060f44217d91",
+      "size_bytes": 6742543
+    },
+    {
+      "path": "knowledge-base/documentation/ARCHITECTURE.md",
+      "sha256": "61ed2ffc164269b739d2772647c11294494e4ce928f213a17486561e5138d807",
+      "size_bytes": 2073
+    },
+    {
+      "path": "knowledge-base/documentation/DOMAIN_MODEL.md",
+      "sha256": "8303b296e2edd2a47433031a3e946bb8c69c1a5dee1ab212cd89634415508f11",
+      "size_bytes": 2497
+    },
+    {
+      "path": "knowledge-base/documentation/KOA_20261027_RECONCILIATION.json",
+      "sha256": "6bc7a637a8c7d83a716b276f0c1f8b9f9d097e7eb82d831594ccea0deca834e8",
+      "size_bytes": 34300
+    },
+    {
+      "path": "knowledge-base/documentation/MAPPING_NOTES.md",
+      "sha256": "785b445b1d5b5be2338ec844b67a87922a73aa389793c6bd0257cc7ddaf110bf",
+      "size_bytes": 1136
+    },
+    {
+      "path": "knowledge-base/documentation/SOURCE_SELECTION.md",
+      "sha256": "4a397ea0bd760ad56c079ab02fa2af96051e436d8845c4a683bd597895d1e8a0",
+      "size_bytes": 1048
+    },
+    {
+      "path": "knowledge-base/documentation/V0.5_REPOSITORY_REFRESH.md",
+      "sha256": "6ebc188769fb2a85d6680b4d7062a83e7a9ec67a9684f1c13183d307da7236e4",
+      "size_bytes": 3223
+    },
+    {
+      "path": "knowledge-base/documentation/V0.6.1_README_SEMANTIC_INGESTION.md",
+      "sha256": "2b639138e1e506b9560a58c90a373bb7e2c9fd3c11c4206422009c132ef30bde",
+      "size_bytes": 4204
+    },
+    {
+      "path": "knowledge-base/documentation/V0.6.3_REPOSITORY_LOCATOR_CANONICALIZATION.md",
+      "sha256": "35655cc5564daf2df0dbf39939f6d310d7d44375580f97b392b35c3a4a638c4c",
+      "size_bytes": 1224
+    },
+    {
+      "path": "knowledge-base/documentation/V0.6_WORKSPACE_RECONCILIATION.md",
+      "sha256": "b8bcc7cb319e0e30d48a2311ea2bc84aace2acb8df1d8d765a8e6349ac392e67",
+      "size_bytes": 2418
+    },
+    {
+      "path": "knowledge-base/documentation/V0.7_RECONCILIATION_KOA_20261027.md",
+      "sha256": "f91af56cbb6caa7149ea6b0066e3a82d967eba2f71e06229b9d77f544dc48c40",
+      "size_bytes": 3082
+    },
+    {
+      "path": "knowledge-base/documentation/VALIDATION_v0.5.0.md",
+      "sha256": "3d0c7feb7193d98061ac62fd9bd8b10084e84988e66ff3f00b6d76d8f26d0e61",
+      "size_bytes": 1135
+    },
+    {
+      "path": "knowledge-base/documentation/VALIDATION_v0.5.1.md",
+      "sha256": "af1f2be75dc491f08b1758145990b3f098f8771a409b8b1b6c816c361ec50746",
+      "size_bytes": 1381
+    },
+    {
+      "path": "knowledge-base/documentation/VALIDATION_v0.6.0.md",
+      "sha256": "462bb2d9d71348dff556d39cf8abfdcf20262d2912c4be2da4abdc18cc9bc537",
+      "size_bytes": 1242
+    },
+    {
+      "path": "knowledge-base/documentation/VALIDATION_v0.6.1.md",
+      "sha256": "6e3006e76a524d4d6fdc9a810d840d40d935e7f1a3c70d6ed8097f2eccb5fb7c",
+      "size_bytes": 1481
+    },
+    {
+      "path": "knowledge-base/profiles/broader-initiative-map.json",
+      "sha256": "cbe1b7099f095c6ceb596b5fce6170ae428051cb0e3fd1759960fc425d240215",
+      "size_bytes": 579
+    },
+    {
+      "path": "knowledge-base/profiles/component-capability-map.json",
+      "sha256": "ff0aa5fabb70d8e75b406dac19ae91dda8a9438d20c2f7d9f603308f68384596",
+      "size_bytes": 570
+    },
+    {
+      "path": "knowledge-base/profiles/contract-map.json",
+      "sha256": "531ec7c51d1bbdb3fe3ef9dfb83f31a6cbefd78464ddcaa75b86a65d08272ca4",
+      "size_bytes": 552
+    },
+    {
+      "path": "knowledge-base/profiles/invariant-map.json",
+      "sha256": "d01465eddb7eeacdfbb3ace9e2bdb8fd88de32156458e6b1cadd1236ee32e384",
+      "size_bytes": 570
+    },
+    {
+      "path": "knowledge-base/profiles/lifecycle-map.json",
+      "sha256": "f131b9fd8071108fbb65bdf9e6401c134fb273fbd4c57599430b9853997f0875",
+      "size_bytes": 622
+    },
+    {
+      "path": "knowledge-base/profiles/need-capability-map.json",
+      "sha256": "eba62832984ce1b3b3c5458c2f89c43cd30b6a9d9f526e36e03a1605f80d72de",
+      "size_bytes": 540
+    },
+    {
+      "path": "knowledge-base/profiles/operating-function-map.json",
+      "sha256": "230cc116b9a8657c3964e215db544a633ae4973729a11e33ad84a357b826c69b",
+      "size_bytes": 617
+    },
+    {
+      "path": "knowledge-base/profiles/peripheral-app-map.json",
+      "sha256": "48a40ba170b46797fe96d04802ec31df79797c33c9b1cf411459d64154e559a5",
+      "size_bytes": 576
+    },
+    {
+      "path": "knowledge-base/profiles/problem-pattern-map.json",
+      "sha256": "3f53c5f9612258a1173e97d9180880a86751f3768c94cd721c58de4519813fb1",
+      "size_bytes": 684
+    },
+    {
+      "path": "knowledge-base/profiles/repository-map.json",
+      "sha256": "41bb9ad8b363331a5c3e3007380f22c16d7844714dcad02c7cc27e672aac04bf",
+      "size_bytes": 1009
+    },
+    {
+      "path": "knowledge-base/profiles/scenario-map.json",
+      "sha256": "c273caf392c720e308a9e41432c021e50e317b806555bd98146e3afe1c590ea1",
+      "size_bytes": 707
+    },
+    {
+      "path": "knowledge-base/profiles/support-boundary-map.json",
+      "sha256": "8cb33d4eacd8b1b9683f3c9ec8008ddadc024e689940229633d84237357d6147",
+      "size_bytes": 577
+    },
+    {
+      "path": "knowledge-base/profiles/utility-map.json",
+      "sha256": "99f9534d72555f88bd51a5b640418a3f6e82311064701183f161f60152110fde",
+      "size_bytes": 657
+    },
+    {
+      "path": "knowledge-base/profiles/workflow-pattern-map.json",
+      "sha256": "14332af115960f7c2ea6af1983748de309d85c9cc3103670236a10bf9df35be2",
+      "size_bytes": 723
+    },
+    {
+      "path": "knowledge-base/schemas/kristal-state.schema.json",
+      "sha256": "8f3df9a93d6a7c0ca8d7143946ed6f2009ae6d6b5105b8e7d7e873b5288e807c",
+      "size_bytes": 8389
+    },
+    {
+      "path": "knowledge-base/schemas/relations.schema.json",
+      "sha256": "8c91f2a485d567f96f59e65ac574b1dd681f8b3731477a623b9fc82f8f16d901",
+      "size_bytes": 1227
+    },
+    {
+      "path": "knowledge-base/sources/artifacts.json",
+      "sha256": "9ea87ca65c04a3b6a03fcbda249219b8205e8b3a09bc4644052618c0878df454",
+      "size_bytes": 24651
+    },
+    {
+      "path": "knowledge-base/sources/capabilities.json",
+      "sha256": "ac711008bf4be0b535453db4ca1129cc73a565dae9e889f2efa95ccbf491517d",
+      "size_bytes": 37959
+    },
+    {
+      "path": "knowledge-base/sources/components.json",
+      "sha256": "a00e125526e9f3e4ca89c7ed5dbf254f6732b3d361143f264d1646bc05a3b7a4",
+      "size_bytes": 86783
+    },
+    {
+      "path": "knowledge-base/sources/contracts.json",
+      "sha256": "75ac521bbd44bdc1e06bdd91c9fd51f57be73c0eac288596ec16127ec1805fe1",
+      "size_bytes": 8877
+    },
+    {
+      "path": "knowledge-base/sources/diagnostic-observations.json",
+      "sha256": "7726bd961724a42b5be2e8682c04aeb1ea09d13172303d94fb158c118965cc9f",
+      "size_bytes": 845
+    },
+    {
+      "path": "knowledge-base/sources/domains.json",
+      "sha256": "48deecd522f94656eb55d6d76ed845564d70e8a755f4eeeb5477227c6e7cf4ac",
+      "size_bytes": 3030
+    },
+    {
+      "path": "knowledge-base/sources/external-references.json",
+      "sha256": "e8fa03ad7ca66aab71ce876bf59ecfd73b430b51936ef2febbfa9c6704c005a8",
+      "size_bytes": 13114
+    },
+    {
+      "path": "knowledge-base/sources/invariants.json",
+      "sha256": "5f22fcf6ea90224d00e5198391a66026893a81cdce4f868003f2333e00da29c7",
+      "size_bytes": 8222
+    },
+    {
+      "path": "knowledge-base/sources/lifecycles.json",
+      "sha256": "9b5b09d693cf506991122f386443b190cf1b0a58aa8d808c9598d13b3d5d4132",
+      "size_bytes": 4141
+    },
+    {
+      "path": "knowledge-base/sources/needs.json",
+      "sha256": "77c76bb9e7f35ec2f0c27f25639de99defa4967a12242840eaddb607bdb36f08",
+      "size_bytes": 13703
+    },
+    {
+      "path": "knowledge-base/sources/operating-functions.json",
+      "sha256": "47611c08e7b33bdd91ec70e609bd1cb97e1db6e093d9f046154bd0bb17efd4b4",
+      "size_bytes": 4869
+    },
+    {
+      "path": "knowledge-base/sources/problem-families.json",
+      "sha256": "9638403881e7fc1330aaf1fdd3a352aaa7bf0d8f2e8c64c8c8854db8c8dd1430",
+      "size_bytes": 3273
+    },
+    {
+      "path": "knowledge-base/sources/relations.json",
+      "sha256": "532b83a7bccb9b06ca3e875f2b911b343066f38e9544fed4474fde96b174b2e3",
+      "size_bytes": 1021779
+    },
+    {
+      "path": "knowledge-base/sources/repositories.json",
+      "sha256": "60a7fc8d9b2ac79c793a7561fdc55f58d9271e8e807710abc59e8e3a6c40f6db",
+      "size_bytes": 278657
+    },
+    {
+      "path": "knowledge-base/sources/scenario-archetypes.json",
+      "sha256": "5e658e0ce86a82d09b8dc15d7fed2e0772a51f36dec23d5dc7bc70688c01e447",
+      "size_bytes": 50302
+    },
+    {
+      "path": "knowledge-base/sources/scenario-mosaic.json",
+      "sha256": "a4af527064961c34cee7f14d422fc99ca576b34c6da68559b2ac4fbda2845efe",
+      "size_bytes": 241224
+    },
+    {
+      "path": "knowledge-base/sources/selection-categories.json",
+      "sha256": "8dd08ba61d9c849ba3877ce108876b58c1abd4c25fb653fde249d324c97d4f76",
+      "size_bytes": 3241
+    },
+    {
+      "path": "knowledge-base/sources/source-registry/source-registry.json",
+      "sha256": "c1dd824872e812b8f9ff5d2e275fec01159f816246073d6fd1604bdf34393fa7",
+      "size_bytes": 96838
+    },
+    {
+      "path": "knowledge-base/sources/utilities.json",
+      "sha256": "71aec9d289f4d735f505f97859cf0aa9af8437932db0cc702b3157d838734cf4",
+      "size_bytes": 3043
+    },
+    {
+      "path": "knowledge-base/sources/workflow-patterns.json",
+      "sha256": "7aa908c03e500bfe53f42ed3c009213aef60a046b25f14cb4bd3d417fe5d7c0f",
+      "size_bytes": 12758
+    },
+    {
+      "path": "knowledge-base/tests/test_reconciliation_20261027.py",
+      "sha256": "27f8f8be69cefcf73ca08d73d1b45da86b5b9ac48daf2579dc105bb908ede6a6",
+      "size_bytes": 2759
+    },
+    {
+      "path": "knowledge-base/tools/build.py",
+      "sha256": "72d3f90fcd9d4142b3160868ae03fc79d650a89a8b9f319a76e255156849bc5d",
+      "size_bytes": 24574
+    },
+    {
+      "path": "knowledge-base/tools/query.py",
+      "sha256": "ea001fe7f5c1fe0c5bb045929642a3d7b161b12ed4e39826bf6e2a0e80f9d32f",
+      "size_bytes": 2154
+    },
+    {
+      "path": "knowledge-base/tools/validate.py",
+      "sha256": "b8e3f6bc65d3349759eaa9d8dfdee9e76d1a36210d9d2ab70c0f751fcdbfaa0f",
+      "size_bytes": 3709
+    },
+    {
+      "path": "kristal.discovery.json",
+      "sha256": "6521f0b740a4e2df9e3e3db4d9ca1ec792ebb5411d7487ab6fc63497177a947c",
+      "size_bytes": 2018
+    },
+    {
+      "path": "kristal.workspace.json",
+      "sha256": "29aff446eb12cc48f67d96db686c67d3de59cf0a3ad9d0796425107500a0457e",
+      "size_bytes": 4766
+    },
+    {
+      "path": "README.md",
+      "sha256": "911be9379c418c0b26e4567cf38318f84ef08d7d55221644b704b7fc18a0181c",
+      "size_bytes": 9715
+    },
+    {
+      "path": "semantic-mapping/CARACTERISATION-2026-10-31.md",
+      "sha256": "6bd07ea0162bc72b4559f9c7001e1acf0adcb10a01602377c5b5ee9e8c90768a",
+      "size_bytes": 805
+    },
+    {
+      "path": "semantic-mapping/enrichment-profile-2026-10-31.json",
+      "sha256": "d1bd3769a2182ae48e27e88a2ea01e31ebd64ead26504513df7dd9c65d09df78",
+      "size_bytes": 3998
+    },
+    {
+      "path": "semantic-mapping/README.md",
+      "sha256": "17b2cdad6417db550b40a6947457a2e4f6aace2e31dcd6088a1e451199bb0801",
+      "size_bytes": 1110
+    },
+    {
+      "path": "semantic-mapping/semantic-map.json",
+      "sha256": "054b65af5290bcebb99ecf3af3688d8c25359ba2b6405944cf9d1ee7f0cf8293",
+      "size_bytes": 6163
+    },
+    {
+      "path": "SMARTDUMP_INDEX.txt",
+      "sha256": "9704f83dffa2990b44a337c7bfeec56339cd98e1ed4fd3211504efe435b5a9a3",
+      "size_bytes": 25460
+    },
+    {
+      "path": "sources/source-catalog.json",
+      "sha256": "4331276c579ea9a03436a9dd5b83d7c19ca6de60890572110db951aa9d1ba961",
+      "size_bytes": 103244
+    },
+    {
+      "path": "tools/_templates/AGENTS.kristal.md",
+      "sha256": "211615e096aa531e0f933cd6562802dffa48fa4227ba3211b734f49fbafff406",
+      "size_bytes": 1416
+    },
+    {
+      "path": "tools/_templates/AI_START_HERE.md",
+      "sha256": "76cbb2c9564fc4098754faffcfe21923389a2de5839faf907edfd691d78257ca",
+      "size_bytes": 2049
+    },
+    {
+      "path": "tools/_templates/github-hosting.json",
+      "sha256": "774e87548a6917b1b25e7c610d727d19af4df081897a816a02744ff5eaf021c9",
+      "size_bytes": 378
+    },
+    {
+      "path": "tools/_templates/gitignore-kristal.txt",
+      "sha256": "ba9e766905d86932af10e20f99bdafe6b4a37eab2b45a1d91e011bc12985858f",
+      "size_bytes": 99
+    },
+    {
+      "path": "tools/_templates/projection.json",
+      "sha256": "9a93c6e5ae26d5d989458a3c7dd43fbe3b5d878a23a6db61d9cc82594d068eb2",
+      "size_bytes": 565
+    },
+    {
+      "path": "tools/_templates/readme-kristal.md",
+      "sha256": "ad2c1b129935b60f805c233e2d9e71cf88e7bf7835a15150ea9fe3dfdfa9571c",
+      "size_bytes": 739
+    },
+    {
+      "path": "tools/_templates/source-catalog.json",
+      "sha256": "4e11d46142630914cfd1fb447c6b065d9143d24d179a18edc1162f3063edfce9",
+      "size_bytes": 64
+    },
+    {
+      "path": "tools/_templates/state.index.json",
+      "sha256": "28a1ce910aa079e50199b467487fac9af0584ad43360200f5a4666d2481e1c08",
+      "size_bytes": 275
+    },
+    {
+      "path": "tools/_templates/workspace.json",
+      "sha256": "dc8adac64f8ce97e966b3e2947112b6efdfc8da332917b73f3f3251f84863b2e",
+      "size_bytes": 1656
+    },
+    {
+      "path": "tools/kristal.py",
+      "sha256": "643530473a3d119449e4fc66d6ce9b3ce66af2bca0a1d8a2ad5a12504074d30b",
+      "size_bytes": 94616
+    },
+    {
+      "path": "V9_MIGRATION_SUMMARY.json",
+      "sha256": "d70026d43c9ad4d1b195d86f4a63c8cf213a420299039985584f0f27d36d9b91",
+      "size_bytes": 530
+    },
+    {
+      "path": "validation/normalization-report.json",
+      "sha256": "063e74fd60f5b49189433b49ba4255b74888931b49fb2176aa5adf9fcecd2811",
+      "size_bytes": 1637
+    },
+    {
+      "path": "VERSION",
+      "sha256": "902311c7bb38fa1658ff403def6158ee7378fe9d6e2e284fa1c38735c31bd30b",
+      "size_bytes": 6
+    },
+    {
+      "path": "views/artifact-map.md",
+      "sha256": "b08ac257040025cc630a775ef223f55c17f9b46e92d0e12a08b0bdc02ef2cde3",
+      "size_bytes": 2488
+    },
+    {
+      "path": "views/broader-initiative-map.md",
+      "sha256": "b5ce4927e5c5e840624499498ce28dc1e5d8748e1a2758ab953e165118c5efce",
+      "size_bytes": 12427
+    },
+    {
+      "path": "views/component-capability-map.md",
+      "sha256": "4a9034cd52188d3ae0fd83e68c6db7d013a6f3048f04425c00cc7eaba9f760b9",
+      "size_bytes": 28297
+    },
+    {
+      "path": "views/component-capability-matrix.csv",
+      "sha256": "2a3980be69ff2e6a964e30b7079db182ba95850b2b4010cb3a9e2459a21d87b2",
+      "size_bytes": 28042
+    },
+    {
+      "path": "views/component-operating-function-matrix.csv",
+      "sha256": "0c28f1cd294783c48d01264ba5cc9733fedb6a2829a91d182c4312cac8279946",
+      "size_bytes": 25267
+    },
+    {
+      "path": "views/component-utility-map.md",
+      "sha256": "8015d682a30f26ef9f0eeadad20ecbbd0e199d67fe2c27668aaed9a70103265c",
+      "size_bytes": 12345
+    },
+    {
+      "path": "views/component-utility-matrix.csv",
+      "sha256": "0511a3c9811210ab24d22d90671e48cc2808d42a7c070eb604b0a5f3122e20c8",
+      "size_bytes": 25575
+    },
+    {
+      "path": "views/contract-map.md",
+      "sha256": "ef770fd657686cb94c0ed4f68427df1d4aaea5bf9b646fa9b3865aa02e4e4ce4",
+      "size_bytes": 3496
+    },
+    {
+      "path": "views/current-application-map.md",
+      "sha256": "ebf4362485bdb9b249f029b3a140cc2fa7e8e2946940fd418d5cb2c02731d57b",
+      "size_bytes": 5013
+    },
+    {
+      "path": "views/diagnostics-release-tooling.md",
+      "sha256": "4fc568427d44a68f932a2188538a2e72def8ad33dec00f2cbceb49710c827387",
+      "size_bytes": 4494
+    },
+    {
+      "path": "views/doc-server/catalog.v1.json",
+      "sha256": "d3f573686c883cc3a40df7145a465c3e5b7a94b555294d43d74a2e4717a8f70e",
+      "size_bytes": 20509
+    },
+    {
+      "path": "views/ecosystem-graph.mmd.md",
+      "sha256": "87a35c0f43fb29f2064811622b864a57d6eb92eea8435f7453a24b1e5ec206af",
+      "size_bytes": 1003
+    },
+    {
+      "path": "views/external-support-map.md",
+      "sha256": "e6429b53d2ca5d44ae175032783a1985b34a9fae40fee74b50f17ccb7b1aa10a",
+      "size_bytes": 823
+    },
+    {
+      "path": "views/gf-language-engineering-map.md",
+      "sha256": "a36c6e132c72a9c5263cddc886949c2d0c5b21e06968ded812d618261bee99b8",
+      "size_bytes": 1564
+    },
+    {
+      "path": "views/invariant-map.md",
+      "sha256": "fc904f4bd504b6c9f96661a1b229262a4600467b58beb015ac8b00c2362ddbb3",
+      "size_bytes": 1716
+    },
+    {
+      "path": "views/koa-linux-internal-components.md",
+      "sha256": "bc92d1792fcfb551043b4f298f0b2cd386d74274276bba156e2b0080e3314407",
+      "size_bytes": 1696
+    },
+    {
+      "path": "views/lifecycle-map.md",
+      "sha256": "e6d805f75ec1e602a2699ea0bf4c41a8bc3233459c59398f88fdbf0c1dca2a73",
+      "size_bytes": 1888
+    },
+    {
+      "path": "views/math-research-stack.md",
+      "sha256": "4182087433a3fdf4fc3f28a18b5cda2ec5c999dfd0ccef4005ca7f282f9be7f7",
+      "size_bytes": 1031
+    },
+    {
+      "path": "views/need-capability-map.md",
+      "sha256": "aab5e6706c9b79b2278383241334a2997639081bd83511c30e25f23ce4342944",
+      "size_bytes": 7870
+    },
+    {
+      "path": "views/operating-function-graph.mmd.md",
+      "sha256": "7ec633b355e17e813dc2b0e2d0be14413c1332b0bb3c22d73904b6961da460b8",
+      "size_bytes": 600
+    },
+    {
+      "path": "views/operating-function-map.md",
+      "sha256": "bdd4ef33960d275bf95aae1983ef71ac9f1693c54f50f1759585971f441f14e3",
+      "size_bytes": 9954
+    },
+    {
+      "path": "views/peripheral-apps-map.md",
+      "sha256": "943106be125a9e275bb38f6c1bf7ac976062b5890f7afe5a46a3b6884b607403",
+      "size_bytes": 2567
+    },
+    {
+      "path": "views/pi-theory-vs-mathchallenges.md",
+      "sha256": "216a857e774bc47e677cd7c24b6340321678239210c502502f84f652578d8c93",
+      "size_bytes": 907
+    },
+    {
+      "path": "views/problem-pattern-map.md",
+      "sha256": "1de6e4ecf09a645c475f16d15628e3b1545d0d78ab47156083c9772debff5686",
+      "size_bytes": 7682
+    },
+    {
+      "path": "views/public-ecosystem-map.md",
+      "sha256": "2eb98c4f1f474db6c35bf14969a49f39725c1db77fbf7132ec0e9dbb0eaeeb86",
+      "size_bytes": 22107
+    },
+    {
+      "path": "views/public-repository-directory.md",
+      "sha256": "7d75e6acb55b52d24b9a8c4272a04b48d0b79c30556a1fb0184a9efb3a0c0ed1",
+      "size_bytes": 14485
+    },
+    {
+      "path": "views/repository-map.md",
+      "sha256": "05f871a3203127cfe8e9d6c38df8fc09a57a035f901415eb892dcc656fea3924",
+      "size_bytes": 45092
+    },
+    {
+      "path": "views/scenario-workflow-index.csv",
+      "sha256": "74b9c380edcc2d031027d8d2b0699ccdfb8209b4fda0ffc508b248d775916f06",
+      "size_bytes": 47820
+    },
+    {
+      "path": "views/source-map.md",
+      "sha256": "a7346b86c57751e077d20fa63594c30e4b51a1f2042d8f1988745c5d9527fe96",
+      "size_bytes": 30916
+    },
+    {
+      "path": "views/support-boundary-map.md",
+      "sha256": "dc029c5af0f2cfe85c7fd36e0c288f1d339f16ef0f4a01e815b2f40e51850244",
+      "size_bytes": 821
+    },
+    {
+      "path": "views/supporting-apps-map.md",
+      "sha256": "360d0262a407c548fa60318ee1b9c2c4d069597d066eec3f947fb7a29247062b",
+      "size_bytes": 11958
+    },
+    {
+      "path": "views/uckk-subsystems.md",
+      "sha256": "9edbe918ae0c9b5df6db0f93dc6e497b3d6de5b022e05bd44e1c7fa79fe25420",
+      "size_bytes": 1034
+    },
+    {
+      "path": "views/utility-map.md",
+      "sha256": "72dafe6109d6ffe0e611b554e50c4e7bcd786ad289ab78d6718134025b7a60ec",
+      "size_bytes": 4333
+    },
+    {
+      "path": "views/workflow-pattern-map.md",
+      "sha256": "1d99fdc8d5d8986125a6bb1eb8cf577045cf2607fb0c10bac566da3d179288af",
+      "size_bytes": 11174
+    }
+  ]
+}

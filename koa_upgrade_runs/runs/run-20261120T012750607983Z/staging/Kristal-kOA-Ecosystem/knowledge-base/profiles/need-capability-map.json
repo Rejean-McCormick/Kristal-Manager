@@ -1,0 +1,18 @@
+{
+  "format": "koa.reader-profile.v2",
+  "profile_id": "koa:reader:need-capability-map",
+  "name": "Besoins → capacités",
+  "description": "Capacités qui répondent à chaque besoin.",
+  "source_state": "knowledge-base/koa-ecosystem.kristal-state.json",
+  "projection": {
+    "x_axis": "need",
+    "y_axis": "capability",
+    "predicate": "koa:addresses_need"
+  },
+  "policy": {
+    "preserve_assertion_status": true,
+    "preserve_relationship_role": true,
+    "show_claimed_as_claimed": true,
+    "do_not_infer_authority": true
+  }
+}

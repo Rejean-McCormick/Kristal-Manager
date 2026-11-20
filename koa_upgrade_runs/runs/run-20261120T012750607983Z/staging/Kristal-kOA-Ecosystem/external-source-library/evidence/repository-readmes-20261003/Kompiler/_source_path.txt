@@ -1,0 +1,2 @@
+repo=Kompiler
+path=C:\mycode\Kristal\Kompiler

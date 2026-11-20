@@ -1,0 +1,465 @@
+{
+  "format": "koa.external-references.v4",
+  "items": [
+    {
+      "id": "koa:external:falcon-2-0",
+      "label": "Falcon 2.0",
+      "kind": "deterministic_tool",
+      "description": "semantic/extraction reference",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:grammatical-framework",
+      "label": "Grammatical Framework",
+      "kind": "external_execution_authority",
+      "description": "External grammar/runtime authority for GF syntax, typing, compilation, parsing, linearization, generation, morphology and PGF production; supports kOA/SemantiK language capabilities without belonging to kOA.",
+      "source_refs": [
+        "src:ars-magna-lulli-docs",
+        "src:gf-wordbench-snapshot",
+        "src:github-konnaxion",
+        "src:kintsugi-kompendio",
+        "src:sociotechnical-os"
+      ],
+      "scope": "external_support",
+      "tags": [
+        "outside_koa_digital_ecosystem",
+        "support_only"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:external:udiron",
+      "label": "Udiron",
+      "kind": "deterministic_tool",
+      "description": "deterministic integration reference",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:ninai",
+      "label": "Ninai",
+      "kind": "external_semantic_input_reference",
+      "description": "External semantic representation/input reference handled through optional adapters at the SemantiK boundary; not a kOA component.",
+      "source_refs": [
+        "src:github-konnaxion",
+        "src:github-ma-gustave-profile",
+        "src:kintsugi-kompendio",
+        "src:sociotechnical-os"
+      ],
+      "scope": "external_support",
+      "tags": [
+        "outside_koa_digital_ecosystem",
+        "support_only"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:external:openrefine",
+      "label": "OpenRefine",
+      "kind": "external_data_reconciliation_tool",
+      "description": "External data cleaning/reconciliation tool used as a support/reference capability; it does not own kOA knowledge state.",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "scope": "external_support",
+      "tags": [
+        "outside_koa_digital_ecosystem",
+        "support_only"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:external:opentapioca",
+      "label": "OpenTapioca",
+      "kind": "external_entity_linking_tool",
+      "description": "External Wikidata entity-linking tool used as a support/reference capability; it does not own kOA referent identity or recognition.",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "scope": "external_support",
+      "tags": [
+        "outside_koa_digital_ecosystem",
+        "support_only"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:external:polis",
+      "label": "Polis",
+      "kind": "pattern_source",
+      "description": "opinion clustering/consultation pattern",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:consider-it",
+      "label": "Consider.it",
+      "kind": "pattern_source",
+      "description": "structured pro/con reasons",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:citizen-os",
+      "label": "Citizen OS",
+      "kind": "pattern_source",
+      "description": "collaborative drafting patterns",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:loomio",
+      "label": "Loomio",
+      "kind": "pattern_source",
+      "description": "proposal lifecycle/decision protocols",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:decidim",
+      "label": "Decidim",
+      "kind": "external_civic_pattern_source",
+      "description": "External source of participation-process patterns mimicked/reused by ethiKos; Decidim itself is not part of kOA Digital Ecosystem.",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "scope": "external_support",
+      "tags": [
+        "outside_koa_digital_ecosystem",
+        "support_only"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:external:consul-democracy",
+      "label": "CONSUL Democracy",
+      "kind": "pattern_source",
+      "description": "participatory mechanisms",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:liquidfeedback",
+      "label": "LiquidFeedback",
+      "kind": "pattern_source",
+      "description": "delegation/voting mathematics",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:democracyos",
+      "label": "DemocracyOS",
+      "kind": "pattern_source",
+      "description": "proposal/policy debate UX",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:kialo",
+      "label": "Kialo",
+      "kind": "pattern_source",
+      "description": "argument mapping pattern",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:openslides",
+      "label": "OpenSlides",
+      "kind": "optional_sidecar",
+      "description": "assembly/parliamentary mode",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:your-priorities",
+      "label": "Your Priorities",
+      "kind": "optional_sidecar",
+      "description": "idea intake/prioritization",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:all-our-ideas",
+      "label": "All Our Ideas",
+      "kind": "optional_sidecar",
+      "description": "pairwise ranking",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:inventree",
+      "label": "InvenTree",
+      "kind": "optional_sidecar",
+      "description": "parts/inventory lane",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:part-db",
+      "label": "Part-DB",
+      "kind": "optional_sidecar",
+      "description": "parts/inventory alternative",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:opensearch",
+      "label": "OpenSearch",
+      "kind": "optional_sidecar",
+      "description": "search/indexing",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:etherpad",
+      "label": "Etherpad",
+      "kind": "optional_sidecar",
+      "description": "collaborative editing",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:hedgedoc",
+      "label": "HedgeDoc",
+      "kind": "optional_sidecar",
+      "description": "collaborative markdown",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:seaweedfs",
+      "label": "SeaweedFS",
+      "kind": "optional_sidecar",
+      "description": "object/file storage",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:ceph",
+      "label": "Ceph",
+      "kind": "optional_sidecar",
+      "description": "storage alternative",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:minio",
+      "label": "MinIO",
+      "kind": "optional_sidecar",
+      "description": "object storage",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:gitea",
+      "label": "Gitea",
+      "kind": "optional_sidecar",
+      "description": "git forge",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:forgejo",
+      "label": "Forgejo",
+      "kind": "optional_sidecar",
+      "description": "git forge alternative",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:keycloak",
+      "label": "Keycloak",
+      "kind": "optional_sidecar",
+      "description": "OIDC identity",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:onlyoffice",
+      "label": "OnlyOffice",
+      "kind": "optional_sidecar",
+      "description": "document collaboration",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:collabora",
+      "label": "Collabora",
+      "kind": "optional_sidecar",
+      "description": "document collaboration",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:freecad",
+      "label": "FreeCAD",
+      "kind": "tool_reference",
+      "description": "CAD export/artifact lane",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:openscad",
+      "label": "OpenSCAD",
+      "kind": "tool_reference",
+      "description": "parametric CAD",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:solvespace",
+      "label": "SolveSpace",
+      "kind": "tool_reference",
+      "description": "CAD",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:three-js",
+      "label": "Three.js",
+      "kind": "viewer_reference",
+      "description": "3D web viewing",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:ifc-js",
+      "label": "IFC.js",
+      "kind": "viewer_reference",
+      "description": "IFC/BIM viewing",
+      "source_refs": [
+        "src:sociotechnical-os",
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ]
+    },
+    {
+      "id": "koa:external:simdjson",
+      "label": "simdjson",
+      "kind": "external_library",
+      "description": "External high-performance JSON parser represented by upstream and RVV/VLA local repository snapshots; support/reference only, not a kOA authority.",
+      "scope": "external_support",
+      "tags": [
+        "outside_koa_digital_ecosystem",
+        "support_only"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:repo-readme:simdjson-upstream",
+        "src:repo-readme:simdjson-rvv-vla"
+      ]
+    },
+    {
+      "id": "koa:external:moodle",
+      "label": "Moodle",
+      "kind": "external_platform",
+      "description": "External learning platform underlying the UCKK Moodle materialization; UCKK-owned projections and institutional state remain separately governed.",
+      "scope": "external_support",
+      "tags": [
+        "outside_koa_digital_ecosystem",
+        "support_only"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:repo-readme:uckk-moodle"
+      ]
+    }
+  ]
+}

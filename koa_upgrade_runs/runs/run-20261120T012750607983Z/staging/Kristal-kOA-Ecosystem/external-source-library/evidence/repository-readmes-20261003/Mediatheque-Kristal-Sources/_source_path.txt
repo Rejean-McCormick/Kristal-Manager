@@ -1,0 +1,2 @@
+repo=Mediatheque-Kristal-Sources
+path=C:\mycode\Kristal\Mediatheque-Kristal-Sources

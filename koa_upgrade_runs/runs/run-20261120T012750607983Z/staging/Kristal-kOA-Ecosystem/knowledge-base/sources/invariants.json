@@ -1,0 +1,183 @@
+{
+  "format": "koa.invariants.v1",
+  "invariants": [
+    {
+      "id": "koa:invariant:ambiguity-preservation",
+      "label": "Préservation de l’ambiguïté",
+      "description": "L’incertitude et les alternatives sont représentées explicitement plutôt que forcées silencieusement.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:invariant:architecture-not-empirical-proof",
+      "label": "Architecture ≠ validation empirique",
+      "description": "Une architecture détaillée, une couverture de scénarios, une cohérence interne ou du code public ne constituent pas à eux seuls une validation empirique, une reproduction fonctionnelle ou une preuve d’impact.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:ashoka",
+        "src:workspace-evidence:science-silk-road",
+        "src:workspace-evidence:ppg-pressure-test"
+      ]
+    },
+    {
+      "id": "koa:invariant:canon-immutability",
+      "label": "Immutabilité des références publiées",
+      "description": "Un artefact reconnu/versionné n’est pas corrigé par mutation cachée; une correction produit une nouvelle version ou un nouveau cycle.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:invariant:end-to-end-traceability",
+      "label": "Traçabilité bout-en-bout",
+      "description": "Les transitions significatives conservent la chaîne source → règle/décision → action → résultat → preuve.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:invariant:epistemic-category-separation",
+      "label": "Séparation des catégories épistémiques et de statut",
+      "description": "Fait, observation, valeur dérivée, interprétation, hypothèse, principe de design, implémentation et statut de déploiement doivent rester distinguables au lieu d’être aplatis en une seule catégorie de vérité.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:pi-theory",
+        "src:workspace-evidence:civilizational-coherence",
+        "src:workspace-evidence:business-plan",
+        "src:workspace-evidence:kristal-farms"
+      ]
+    },
+    {
+      "id": "koa:invariant:fail-closed",
+      "label": "Vérification fail-closed",
+      "description": "Une intégrité, autorisation, état ou risque indéterminé ne devient pas une permission implicite.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:invariant:governed-feedback",
+      "label": "Feedback gouverné et non mutant",
+      "description": "Le feedback ouvre un travail/cycle traçable; il ne réécrit pas directement l’état canonique ou l’autorité source.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:invariant:hypothesis-not-proof",
+      "label": "Hypothèse / sortie IA ≠ preuve",
+      "description": "Une hypothèse, contribution IA, test fini, bridge candidat ou statistique de stratégie ne devient pas une preuve mathématique par sa seule production; elle doit passer par les procédures de validation appropriées.",
+      "source_refs": [
+        "src:workspace-evidence:formulator",
+        "src:workspace-evidence:pi-theory-status-method"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:invariant:local-validation-not-global-canon",
+      "label": "Validation locale ≠ canon global",
+      "description": "Un résultat validé dans un Challenge Kristal reste local tant qu’une promotion explicite n’a pas été acceptée vers Kristal Math; les imports restent reconstruisibles et le canon global demeure en lecture seule pour le workspace.",
+      "source_refs": [
+        "src:workspace-evidence:grand-challenges"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:invariant:no-fabricated-precision",
+      "label": "Pas de précision fabriquée",
+      "description": "Une donnée inconnue ne doit pas être remplacée silencieusement par une valeur fictive; l’incertitude et son effet sur les sorties doivent rester visibles.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:astro-signals"
+      ]
+    },
+    {
+      "id": "koa:invariant:no-new-facts",
+      "label": "Articulation sans nouveaux faits",
+      "description": "Les couches de rendu/guidance ne doivent pas introduire comme faits des éléments absents de leurs sources autorisées.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:invariant:power-conversion-firewall",
+      "label": "Firewall de conversion du pouvoir",
+      "description": "Une capacité utile peut circuler entre domaines sans que crédibilité, argent, connaissance, infrastructure ou expertise ne deviennent silencieusement une souveraineté ou autorité sans rapport.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:power-dynamics"
+      ]
+    },
+    {
+      "id": "koa:invariant:render-without-recomputation",
+      "label": "Rendu sans recomputation de l’autorité",
+      "description": "Une couche de rendu ou de rapport consomme l’artefact canonique et ne recalcule pas silencieusement le résultat qu’elle présente.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:votingmachine"
+      ]
+    },
+    {
+      "id": "koa:invariant:safety-model-separation",
+      "label": "Sécurité ≠ causalité du modèle simulé",
+      "description": "Une règle de sécurité peut borner une sortie mais reste externe au modèle causal/personnalité simulée; elle ne doit pas être présentée comme une émotion, une morale ou une motivation interne du personnage.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:ame-artificielle"
+      ]
+    },
+    {
+      "id": "koa:invariant:source-owner-authority",
+      "label": "Le propriétaire de la source conserve l’autorité du claim",
+      "description": "Un dossier d’interface, de test, de publication ou de synthèse référence la source qui possède le claim; il ne devient pas silencieusement la nouvelle autorité documentaire du domaine.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:ppg-pressure-test",
+        "src:workspace-evidence:science-silk-road",
+        "src:workspace-evidence:king-klown-canon"
+      ]
+    },
+    {
+      "id": "koa:invariant:support-does-not-imply-membership",
+      "label": "Support ≠ appartenance",
+      "description": "Un outil, pattern, autorité externe ou sous-écosystème de support peut renforcer une capacité kOA sans devenir membre du kOA Digital Ecosystem ni acquérir l’autorité de son domaine.",
+      "source_refs": [
+        "src:user-ma-gustave-ownership",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:ars-magna-lulli-docs"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:invariant:validation-before-promotion",
+      "label": "Validation avant promotion",
+      "description": "Une proposition, build ou transition ne devient pas canon/active si les gates requis échouent.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    }
+  ]
+}

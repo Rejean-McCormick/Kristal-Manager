@@ -1,0 +1,46 @@
+{
+  "format": "kristal.local-normalization-report/1.0",
+  "kit_version": "3.2.2",
+  "workspace_format": "kristal.local-workspace/3.2.0",
+  "kristal": "Kristal kOA Ecosystem",
+  "strategy": "additive_compatibility_envelope",
+  "semantic_rewrite": false,
+  "original_file_integrity": {
+    "original_file_count": 291,
+    "changed_original_files": [],
+    "missing_original_files": [],
+    "status": "PASS"
+  },
+  "canonical_state": {
+    "path": "knowledge-base/corpus/koa-ecosystem.kristal-state.json",
+    "sha256": "sha256:59089e0e0dcb7759dc45e5296e0108b9a97f9e70fc6b473301562465307e9186",
+    "v6_state_id": "sha256:49a1ae35b5badab32a7aac6e5e22ae598cf3faacd53db5b955697028f0a1fd39",
+    "v9_logical_artifact_commitment": "sha256:8d5195171697739485ada83e69b8fae83fe95cda155d5181a8d61dff4cc40a74"
+  },
+  "state_snapshot": {
+    "state_ref": "urn:kristal:koa-ecosystem:state",
+    "legacy_path": ".kristal/v9/state-snapshot.json",
+    "local_kit_build_path": "build/v9/state-snapshot.json",
+    "legacy_commitment": "sha256:c5cea1280163558bc93a3126138628df918f919482ab9278c4fb7f32c09d8322",
+    "local_kit_commitment": "sha256:c5cea1280163558bc93a3126138628df918f919482ab9278c4fb7f32c09d8322",
+    "commitment_preserved": true
+  },
+  "source_catalog": {
+    "source_count": 142,
+    "source_id_policy": "preserved from koa.source-registry.v4"
+  },
+  "validation": {
+    "native_domain": "PASS",
+    "legacy_v9": "PASS",
+    "local_kit_check": "PASS",
+    "local_kit_build_v9": "PASS"
+  },
+  "publication": {
+    "performed": false,
+    "activation_performed": false
+  },
+  "portable_ai": {
+    "enabled": false,
+    "built": false
+  }
+}

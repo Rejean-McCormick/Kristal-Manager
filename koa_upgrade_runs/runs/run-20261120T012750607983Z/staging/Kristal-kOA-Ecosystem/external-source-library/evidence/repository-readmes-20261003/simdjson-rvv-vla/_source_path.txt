@@ -1,0 +1,2 @@
+repo=simdjson-rvv-vla
+path=C:\mycode\Simdjson\simdjson-rvv-vla

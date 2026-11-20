@@ -1,0 +1,18 @@
+{
+  "format": "koa.reader-profile.v2",
+  "profile_id": "koa:reader:lifecycle-map",
+  "name": "Lifecycles → participants",
+  "description": "Participants aux cycles de connaissance, décision, exécution, release, navigation, sécurité, média et apprentissage.",
+  "source_state": "knowledge-base/koa-ecosystem.kristal-state.json",
+  "projection": {
+    "x_axis": "lifecycle",
+    "y_axis": "component",
+    "predicate": "koa:participates_in"
+  },
+  "policy": {
+    "preserve_assertion_status": true,
+    "preserve_relationship_role": true,
+    "show_claimed_as_claimed": true,
+    "do_not_infer_authority": true
+  }
+}

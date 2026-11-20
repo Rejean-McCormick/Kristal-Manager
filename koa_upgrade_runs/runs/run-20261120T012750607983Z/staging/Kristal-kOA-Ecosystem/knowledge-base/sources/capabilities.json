@@ -1,0 +1,1075 @@
+{
+  "format": "koa.capabilities.v4",
+  "capabilities": [
+    {
+      "id": "koa:cap:adversarial-pressure-testing",
+      "label": "Pressure-test adversarial et falsifiable",
+      "family": "governance",
+      "description": "Soumettre une architecture à des workflows, contraintes et acteurs externes capables de la faire échouer, puis relier claim → source → challenge → evidence → revision plutôt que rechercher l’endossement.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:ppg-pressure-test",
+        "src:workspace-evidence:ashoka",
+        "src:workspace-evidence:science-silk-road"
+      ]
+    },
+    {
+      "id": "koa:cap:ai-assistance-bounded",
+      "label": "Assistance IA bornée",
+      "family": "ai",
+      "description": "Utiliser l’IA pour assister sans lui déléguer vérité, policy ou autorité.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:applied-challenges",
+      "label": "Défis et apprentissage appliqué",
+      "family": "learning",
+      "description": "Transformer apprentissage en activités, productions et résultats vérifiables.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:archive-provenance",
+      "label": "Archive / provenance / révision",
+      "family": "learning",
+      "description": "Conserver objets, preuves, provenance, révisions, validation, visibilité et exports.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:artifact-exchange",
+      "label": "Échange d’artefacts",
+      "family": "interop",
+      "description": "Transporter des références/artefacts avec profils versionnés.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:audit-custody",
+      "label": "Custodie d’audit / disclosure",
+      "family": "quality",
+      "description": "Conserver evidence d’audit, rétention, redaction, accès et chaîne de garde bornés.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:backup-recovery",
+      "label": "Backup / restore / recovery",
+      "family": "platform",
+      "description": "Préserver et restaurer l’état et les déploiements.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:bounded-research-frontier",
+      "label": "Frontière de recherche bornée",
+      "family": "research",
+      "description": "Construire un voisinage de connaissance limité à l’obligation active, reconstruisible depuis un corpus global, afin de réduire bruit et perte sémantique sans copier tout le graphe.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:formulator",
+        "src:workspace-evidence:grand-challenges"
+      ]
+    },
+    {
+      "id": "koa:cap:certification",
+      "label": "Certification et portfolio",
+      "family": "learning",
+      "description": "Parcours, évaluation, peer validation, credentials et compétences.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:challenge-research-state",
+      "label": "Mémoire de recherche Kristal par Challenge",
+      "description": "Maintenir pour chaque problème un Kristal v6 local séparant imports, résultats externes établis, recherche, validation locale et candidats à promotion explicite vers le canon global.",
+      "source_refs": [
+        "src:workspace-evidence:grand-challenges"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:cap:consult",
+      "label": "Consultations publiques",
+      "family": "civic",
+      "description": "Intake, feedback, consultation lifecycle et participation.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:content-assembly",
+      "label": "Assemblage rôle × contexte × inventaire",
+      "family": "communication",
+      "description": "Résoudre modules, sélections et politiques en composition stable pour un usage/audience.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:context-continuity",
+      "label": "Continuité de contexte",
+      "family": "coordination",
+      "description": "Préserver pourquoi, état, provenance, responsabilités et questions ouvertes lors des handoffs, changements et cycles de travail.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:scenario-archetypes-36",
+        "src:scenario-mosaic-120",
+        "src:business-plan-context"
+      ]
+    },
+    {
+      "id": "koa:cap:counterexample-first-research",
+      "label": "Recherche contre-exemple / falsification d’abord",
+      "family": "research",
+      "description": "Prioriser réfutation, contre-exemples et obligations de preuve avant de considérer une hypothèse comme candidate à fermeture.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:formulator"
+      ]
+    },
+    {
+      "id": "koa:cap:cultural-preservation",
+      "label": "Préservation culturelle",
+      "family": "culture",
+      "description": "Conserver et transmettre contenus créatifs et culturels.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:decision-record",
+      "label": "DecisionRecord / résultat publiable",
+      "family": "civic",
+      "description": "Finaliser et publier un résultat de décision gouverné.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:deliberate",
+      "label": "Délibération structurée",
+      "family": "civic",
+      "description": "Claims, arguments, raisons, alternatives et désaccord lisible.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:deterministic-canonical-computation",
+      "label": "Calcul déterministe à artefacts canoniques",
+      "family": "governance",
+      "description": "Produire des résultats byte-stables à partir d’entrées canoniques, avec politique de tie-break explicite, RNG seedé seulement lorsque requis et identifiants dérivés des bytes canoniques.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:votingmachine"
+      ]
+    },
+    {
+      "id": "koa:cap:diagnostics",
+      "label": "Diagnostics / qualification",
+      "family": "quality",
+      "description": "Évaluer code, architecture, contrats, tests, sécurité et readiness.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:draft",
+      "label": "Drafting collaboratif",
+      "family": "civic",
+      "description": "Transformer débat en propositions/textes concrets.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:durable-agent-orchestration",
+      "label": "Orchestration IA durable et bornée",
+      "family": "ai",
+      "description": "Workflow typé, routage validé, outils permissionnés, checkpoints, reprise et événements.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:evidence-first-geospatial-analysis",
+      "label": "Analyse géospatiale evidence-first",
+      "family": "physical",
+      "description": "Maintenir une base opérationnelle géospatiale gouvernée, distinguer faits/observations/dérivés/hypothèses et publier des vues ou releases immuables sans confondre proxy géographique et preuve de faisabilité.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:kristal-farms"
+      ]
+    },
+    {
+      "id": "koa:cap:expertise-signal",
+      "label": "Signal d’expertise contextuel",
+      "family": "civic",
+      "description": "Scores/domaines, qualité de contribution, contexte et historique.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:explicit-uncertainty-propagation",
+      "label": "Propagation explicite de l’incertitude",
+      "family": "knowledge",
+      "description": "Conserver un input inconnu ou incertain comme tel, propager son effet sous forme d’enveloppes/sensibilités et empêcher qu’une valeur fictive soit présentée comme un fait.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:astro-signals",
+        "src:workspace-evidence:science-silk-road"
+      ]
+    },
+    {
+      "id": "koa:cap:extract-candidates",
+      "label": "Extraction de candidats",
+      "family": "semantics",
+      "description": "Extraire claims/entities/relations candidates.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:formal-math-research",
+      "label": "Recherche mathématique formelle / preuve",
+      "description": "Planifier obligations, rechercher contre-exemples, calculer, compiler vers des vérificateurs, préserver les tentatives et produire des bundles de preuve sans confondre sorties IA/tests finis avec une preuve.",
+      "source_refs": [
+        "src:workspace-evidence:formulator"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:cap:gf-evidence-observation",
+      "label": "Observation agrégée de maturité linguistique",
+      "family": "language_support",
+      "description": "Construire des vues de maturité, readiness, tendances et bloqueurs à partir de preuves versionnées sans devenir une autorité de compilation ou de publication.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:gf-observatory-snapshot",
+        "src:ars-magna-lulli-docs"
+      ]
+    },
+    {
+      "id": "koa:cap:gf-language-validation",
+      "label": "Validation GF avec preuves reproductibles",
+      "family": "language_support",
+      "description": "Exécuter GF sur un état source précis, préserver les preuves brutes, classifier diagnostics/régressions, exécuter scénarios et évaluer une readiness bornée.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:gf-wordbench-snapshot",
+        "src:github-ma-gustave-wordbench"
+      ]
+    },
+    {
+      "id": "koa:cap:gf-portfolio-orchestration",
+      "label": "Orchestration GitOps multi-langues",
+      "family": "language_support",
+      "description": "Coordonner dépôts, contributeurs, pipelines de compilation, états de promotion et indexation immuable des preuves à l’échelle d’un portefeuille de langues.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:ars-magna-lulli-docs",
+        "src:github-ma-gustave-lulli"
+      ]
+    },
+    {
+      "id": "koa:cap:gf-rgl-engineering-governance",
+      "label": "Gouvernance d’ingénierie GF/RGL",
+      "family": "language_support",
+      "description": "Verrouiller sources/signatures, contracts, provenance, décisions, workflows, evidence policy et gates pour l’ingénierie d’une langue GF/RGL.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:gf-compendium-docs",
+        "src:ars-magna-lulli-docs"
+      ]
+    },
+    {
+      "id": "koa:cap:governed-publication",
+      "label": "Publication gouvernée inter-domaines",
+      "family": "interop",
+      "description": "Préparer/livrer une représentation autorisée vers une destination sans transférer l’autorité source.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:governed-work",
+      "label": "Décision → travail gouverné",
+      "family": "operations",
+      "description": "Transformer outcome en Signal/Workflow/Case/Task.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:human-approval",
+      "label": "Approbation humaine explicite",
+      "family": "security",
+      "description": "Suspendre une action sensible jusqu’à décision humaine traçable.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:identity-trust",
+      "label": "Identity & trust evidence",
+      "family": "security",
+      "description": "Établir et vérifier identités, credentials, bindings et trust roots sans autoriser l’action métier.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:immutable-snapshot",
+      "label": "Snapshot immuable + provenance",
+      "family": "knowledge",
+      "description": "Capturer ce qui a été vu de façon rejouable et content-addressed.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:impact-accountability",
+      "label": "Impact / accountability",
+      "family": "operations",
+      "description": "Retour d’exécution, impact et responsabilité vers le domaine source.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:independent-reproducibility",
+      "label": "Reproductibilité indépendante",
+      "family": "resilience",
+      "description": "Permettre à des acteurs hors du groupe fondateur de comprendre, reproduire, opérer, réparer ou dériver une capacité là où les droits le permettent, sans faire de la dépendance au créateur une condition de continuité.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:civilizational-coherence"
+      ]
+    },
+    {
+      "id": "koa:cap:institutional-memory",
+      "label": "Mémoire institutionnelle",
+      "family": "memory",
+      "description": "Préserver décisions, résultats, preuves, erreurs et leçons comme mémoire réutilisable.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:institutional-registry",
+      "label": "Registre institutionnel / académique",
+      "family": "learning",
+      "description": "Maintenir programmes, pathways, rôles, profils, visibilité et références partagées.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:integration-patterns",
+      "label": "Patterns d’intégration remplaçable",
+      "family": "interop",
+      "description": "Décrire comment intégrer ou imiter une capacité externe tout en conservant ownership, adaptateurs, sortie et absence de double vérité.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion",
+        "src:business-plan-context"
+      ]
+    },
+    {
+      "id": "koa:cap:integrity-review",
+      "label": "Intégrité / appel / correction",
+      "family": "learning",
+      "description": "Ouvrir, revoir, décider, corriger et tracer les cas d’intégrité.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:interop-envelope",
+      "label": "Interopérabilité contractuelle",
+      "family": "interop",
+      "description": "Commands/Queries/Events/receipts/profiles sans état central.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:knowledge-deck-rendering",
+      "label": "Compilation / rendu de decks",
+      "family": "communication",
+      "description": "Compiler une composition résolue en deck/build exportable avec contrats et manifests.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:learning-by-production",
+      "label": "Apprentissage par production transférable",
+      "family": "learning",
+      "description": "Faire de chaque activité d’apprentissage une production concrète, vérifiable, réutilisable et transférable, y compris en contexte multilingue ou à connectivité limitée.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:orphee-walk-straight"
+      ]
+    },
+    {
+      "id": "koa:cap:learning-paths",
+      "label": "Parcours d’apprentissage",
+      "family": "learning",
+      "description": "Structurer cours/parcours/challenges et progression.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:learning-reporting",
+      "label": "Reporting pédagogique/institutionnel",
+      "family": "learning",
+      "description": "Produire rapports et exports autorisés à partir des états propriétaires.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:local-media-custody",
+      "label": "Custodie média locale",
+      "family": "media",
+      "description": "Catalogue, versions, provenance, droits, renditions, import/export et backup local.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:map-acl",
+      "label": "Mapping / ACL boundary",
+      "family": "semantics",
+      "description": "Adapter payloads et faire respecter la frontière d’accès/contrat.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:media-library",
+      "label": "Médiathèque / diffusion",
+      "family": "learning",
+      "description": "Médias, archives, présentation et diffusion publique.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:media-production",
+      "label": "Production média / audio",
+      "description": "Transformer un manuscrit en segments média générés, révisables, régénérables et exportables tout en conservant un état de production explicite.",
+      "source_refs": [
+        "src:workspace-evidence:voxtral-audiobook-studio"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:cap:narrative-mobilise",
+      "label": "Narration / mobilisation",
+      "family": "diffusion",
+      "description": "Rendre les problèmes/systèmes mémorables et mobilisables.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:networking",
+      "label": "Réseautage / mise en relation",
+      "family": "collaboration",
+      "description": "Relier personnes, rôles et opportunités de collaboration.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:node-privilege",
+      "label": "Opérations locales privilégiées",
+      "family": "platform",
+      "description": "Transitions host-local minimales et autorisées.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:offline-operation",
+      "label": "Opération hors-ligne / local-first",
+      "family": "platform",
+      "description": "Maintenir les fonctions critiques avec dépendances externes réduites.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:physical-compute",
+      "label": "Compute/énergie/fibre/chaleur utile",
+      "family": "infrastructure",
+      "description": "Transformer énergie/conditions locales en capacité numérique et thermique.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:platform-admission",
+      "label": "Admission / trust / policy",
+      "family": "platform",
+      "description": "Admettre composants/artefacts selon profils, trust, policy et resources.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:policy-evaluation",
+      "label": "Évaluation de policy / obligations",
+      "family": "security",
+      "description": "Évaluer un policy set actif, retourner décision/obligations et receipt sans exécuter l’opération.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:profile-resolution",
+      "label": "Résolution déterministe de profils",
+      "family": "platform",
+      "description": "Résoudre composants, dépendances, overlays, ressources et plans à partir de contrats versionnés.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:project-spaces",
+      "label": "Espaces de projets",
+      "family": "collaboration",
+      "description": "Collaborer autour de projets/builds et artefacts.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:public-documentation",
+      "label": "Documentation / transmission",
+      "family": "diffusion",
+      "description": "Expliquer architecture, concepts et pratiques.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:qualification-gates",
+      "label": "Qualification / evidence gates",
+      "family": "assurance",
+      "description": "Évaluer code, sécurité, contrats, interfaces et readiness par diagnostics séparés et preuves reproductibles.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:business-plan-context",
+        "src:github-repo-enumeration"
+      ]
+    },
+    {
+      "id": "koa:cap:reader-projection",
+      "label": "Reader policies / projections",
+      "family": "knowledge",
+      "description": "Construire des vues rebuildables adaptées au lecteur/contexte.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:release-channels",
+      "label": "Release channels / Release Sets",
+      "family": "platform",
+      "description": "Composer et distribuer des releases cohérentes.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:reliable-integration",
+      "label": "Intégration fiable / reconciliation",
+      "family": "operations",
+      "description": "At-least-once, idempotency, outbox, receipts, reconciliation.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:repeatable-deployment",
+      "label": "Déploiement / lifecycle reproductible",
+      "family": "platform",
+      "description": "Packager, installer, vérifier, sauvegarder, restaurer et rollbacker une composition avec procédures répétables.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:business-plan-context",
+        "src:github-repo-enumeration"
+      ]
+    },
+    {
+      "id": "koa:cap:research-strategy-memory",
+      "label": "Mémoire procédurale de stratégie de recherche",
+      "family": "research",
+      "description": "Conserver séparément les méthodes, tentatives, échecs et observations de stratégie afin de transférer des tactiques entre problèmes sans transformer ces statistiques en faits du domaine.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:formulator",
+        "src:workspace-evidence:grand-challenges"
+      ]
+    },
+    {
+      "id": "koa:cap:resolve-referents",
+      "label": "Résolution de référents",
+      "family": "semantics",
+      "description": "Réconcilier identités et mappings sans transférer l’autorité.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:resource-governance",
+      "label": "Admission / allocation de ressources",
+      "family": "platform",
+      "description": "Résoudre enveloppes, admission, scheduling, throttling et dégradation selon profils.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:risk-containment",
+      "label": "Détection de risque / containment",
+      "family": "security",
+      "description": "Observer signaux de risque et coordonner step-up, restriction, suspension ou isolation sous policy.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:runtime-activate",
+      "label": "Activation / rollback Runtime Pack",
+      "family": "platform",
+      "description": "Vérifier compatibilité, activer, rollbacker et enregistrer receipts.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:runtime-set-orchestrate",
+      "label": "Orchestration RuntimeSet",
+      "family": "language",
+      "description": "Gater, promouvoir, rollbacker et ordonner l’activation de RuntimeSets.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:safety-gating",
+      "label": "Gating de sécurité des actions",
+      "family": "security",
+      "description": "Classifier le risque, bloquer l’inconnu et imposer des conditions avant side effect.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:scenario-mapping",
+      "label": "Cartographie de scénarios",
+      "family": "quality",
+      "description": "Explorer patterns/usages sans les confondre avec des déploiements.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:segment-level-media-revision",
+      "label": "Révision média au niveau segment",
+      "family": "media",
+      "description": "Segmenter une production média, conserver plusieurs versions et régénérer uniquement les passages en échec, modifiés ou rejetés avant assemblage/export final.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:voxtral-audiobook-studio"
+      ]
+    },
+    {
+      "id": "koa:cap:semantic-realise",
+      "label": "Réalisation sémantique multilingue",
+      "family": "language",
+      "description": "Planifier et réaliser une communication fidèle.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:sense-intake",
+      "label": "Sensing / intake",
+      "family": "knowledge",
+      "description": "Capturer requêtes, signaux, événements et evidence.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:source-discovery",
+      "label": "Découverte de sources",
+      "family": "knowledge",
+      "description": "Trouver/résoudre des fournisseurs et sources.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:space-compose",
+      "label": "Composition de surfaces",
+      "family": "ux",
+      "description": "Shell, routage, Space lifecycle et surfaces admises.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:structured-knowledge",
+      "label": "État de connaissance structuré",
+      "family": "knowledge",
+      "description": "Exprimer assertions atomiques, valuations, coordinates/applicability et rôles.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:ui-atlas",
+      "label": "Atlas sémantique d’interface",
+      "family": "interaction",
+      "description": "Représenter states, éléments, actions, transitions, fingerprints et outcomes attendus.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:ui-navigation",
+      "label": "Navigation vérifiée d’application",
+      "family": "interaction",
+      "description": "Observer, localiser, planifier, exécuter/guider et vérifier des transitions dans un logiciel.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:validate-recognize",
+      "label": "Validation / reconnaissance",
+      "family": "knowledge",
+      "description": "Évaluer et reconnaître sous des politiques/scopes explicites.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:validated-multilingual-runtime-input",
+      "label": "Artefacts linguistiques validés pour runtime multilingue",
+      "family": "language_support",
+      "description": "Fournir au runtime multilingue des artefacts GF/PGF immuables et des manifests/capability evidence issus d’une chaîne d’ingénierie séparée de l’exécution kOA.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:gf-wordbench-snapshot",
+        "src:ars-magna-lulli-docs",
+        "src:github-koa-digital"
+      ]
+    },
+    {
+      "id": "koa:cap:versioned-storage",
+      "label": "Stockage versionné sécurisé",
+      "family": "collaboration",
+      "description": "Versionner, stocker et rendre portable les artefacts.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:vote-baseline",
+      "label": "Vote / lecture de base",
+      "family": "civic",
+      "description": "Préserver une lecture ordinaire de la participation.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:weighted-reading",
+      "label": "Lectures pondérées explicables",
+      "family": "civic",
+      "description": "Produire des lectures supplémentaires transparentes et contestables.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:workflow-routing",
+      "label": "Workflow / routing / escalation",
+      "family": "operations",
+      "description": "Acheminer, assigner, escalader, suivre et clôturer.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:cap:world-scoping",
+      "label": "Contextes / Worlds isolés",
+      "family": "coordination",
+      "description": "Créer et changer de contextes isolés avec identité, données, releases et mappings explicitement bornés.",
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:business-plan-context",
+        "src:github-repo-enumeration"
+      ]
+    }
+  ]
+}

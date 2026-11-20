@@ -1,0 +1,2 @@
+repo=Konstellation_Publisher
+path=C:\mycode\Konstellation\Konstellation_Publisher

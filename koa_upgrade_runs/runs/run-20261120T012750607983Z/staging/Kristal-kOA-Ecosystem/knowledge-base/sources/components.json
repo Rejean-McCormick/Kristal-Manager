@@ -1,0 +1,2554 @@
+{
+  "format": "koa.component-map.v5",
+  "components": [
+    {
+      "id": "koa:ame-artificielle",
+      "label": "EL / Âme Artificielle",
+      "kind": "experimental_semantic_engine",
+      "scope": "research_adjacent",
+      "description": "Experimental psycho-causal semantic graph engine. Immutable Soul Snapshots feed bounded transient Activation Graphs; biographical change creates explicit new snapshots. Kristal is proposed as inspectable representation/provenance while the Soul Causal Engine executes activation. Symbolic layers generate hypotheses rather than scientific validation, and safety remains external to simulated personality causality.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:ame-artificielle",
+        "src:workspace-evidence:ame-artificielle-pyproject"
+      ],
+      "placement": {
+        "tier": "research_adjacent",
+        "integration_state": "independent_experiment"
+      },
+      "repository_ref": "koa:repo:ame-artificielle"
+    },
+    {
+      "id": "koa:ariane",
+      "label": "Ariane",
+      "kind": "semantic_navigation_system",
+      "scope": "peripheral_app",
+      "description": "Moteur de navigation d’applications basé sur un Atlas versionné de states/transitions, avec vérification, safety gates et approbations.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-ariane",
+        "src:snapshot-koa-linux"
+      ],
+      "placement": {
+        "tier": "peripheral_app",
+        "integration_state": "prepared_boundary_non_activable",
+        "authority_note": "Ariane reste propriétaire de son domaine; la frontière kOA-Linux est préparée mais bloquée tant que la source officielle/pin de release n’est pas résolue."
+      }
+    },
+    {
+      "id": "koa:ariane-assist",
+      "label": "Ariane Assist Client",
+      "kind": "guidance_surface",
+      "scope": "peripheral_app",
+      "description": "Surface optionnelle de guidance/overlay et validation par capture pour les workflows humains/desktop.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-ariane",
+        "src:snapshot-koa-linux"
+      ],
+      "placement": {
+        "tier": "peripheral_subsystem",
+        "integration_state": "optional"
+      }
+    },
+    {
+      "id": "koa:ariane-atlas",
+      "label": "Ariane Atlas",
+      "kind": "navigation_knowledge_map",
+      "scope": "peripheral_app",
+      "description": "Carte machine-readable d’états, éléments, transitions, fingerprints et résultats attendus d’une application.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-ariane",
+        "src:snapshot-koa-linux"
+      ],
+      "placement": {
+        "tier": "peripheral_subsystem",
+        "integration_state": "owned_by_ariane"
+      }
+    },
+    {
+      "id": "koa:ariane-diagnostics",
+      "label": "Ariane Diagnostics",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "kind": "diagnostic_suite",
+      "scope": "tooling",
+      "description": "Standalone local diagnostic consoles for the Ariane target repository.",
+      "source_refs": [
+        "src:repo-readme:ariane-diagnostics"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "independent_qualification"
+      }
+    },
+    {
+      "id": "koa:ariane-runtime",
+      "label": "Ariane Runtime / Theseus",
+      "kind": "navigation_runtime",
+      "scope": "peripheral_app",
+      "description": "Boucle observe→match→plan→act→verify qui suit l’Atlas et s’arrête en cas d’incertitude non résolue.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-ariane",
+        "src:snapshot-koa-linux"
+      ],
+      "placement": {
+        "tier": "peripheral_subsystem",
+        "integration_state": "owned_by_ariane"
+      }
+    },
+    {
+      "id": "koa:ariane-safety",
+      "label": "Ariane Safety / approvals",
+      "kind": "safety_boundary",
+      "scope": "peripheral_app",
+      "description": "Classification de risque, politiques fail-closed et approbation humaine pour les actions sensibles.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-ariane",
+        "src:snapshot-koa-linux"
+      ],
+      "placement": {
+        "tier": "peripheral_subsystem",
+        "integration_state": "owned_by_ariane"
+      }
+    },
+    {
+      "id": "koa:astro-signals",
+      "label": "Astro Signals",
+      "kind": "quantitative_astrology_application",
+      "scope": "research_adjacent",
+      "description": "Quantitative natal-chart research application using deterministic astronomical calculations, continuous geometric fields and explicit uncertainty propagation. V2.3 has a true unknown-time mode: it does not invent a birth time, sweeps the local civil day, exposes median/range plus P10/P90 sensitivity, and suppresses time-dependent claims that cannot be supported.",
+      "aliases": [
+        "Astro Signals V2.3"
+      ],
+      "tags": [
+        "experimental",
+        "quantitative-model",
+        "uncertainty"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:astro-signals",
+        "src:workspace-evidence:astro-signals-pyproject"
+      ],
+      "placement": {
+        "tier": "research_adjacent",
+        "integration_state": "independent_application"
+      },
+      "repository_ref": "koa:repo:astro-signals"
+    },
+    {
+      "id": "koa:audit-broker",
+      "label": "Audit Broker",
+      "kind": "audit_evidence_authority",
+      "scope": "digital_core",
+      "description": "Custodie bornée des enregistrements d’audit, divulgation sélective, retention et chaîne de garde.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ],
+      "placement": {
+        "tier": "core_internal",
+        "integration_state": "implemented_component"
+      }
+    },
+    {
+      "id": "koa:branded-gold",
+      "label": "Branded gold",
+      "kind": "economic_symbolic_project",
+      "scope": "movement_horizon",
+      "description": "Projet de valeur économique-symbolique identifié dans l’arborescence.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:github-profile",
+        "src:user-arborescence"
+      ]
+    },
+    {
+      "id": "koa:cannabis-symbolic",
+      "label": "Cannabis",
+      "kind": "symbolic_theme",
+      "scope": "movement_horizon",
+      "description": "Thème symbolique/mouvement identifié dans l’arborescence; sans revendication normative ou médicale.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:github-profile",
+        "src:user-arborescence"
+      ]
+    },
+    {
+      "id": "koa:certifikation",
+      "label": "CertifiKation",
+      "kind": "submodule",
+      "scope": "digital_product",
+      "description": "Parcours de certification, évaluations, validation par pairs, portfolio de compétences et interop LMS.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:cosmic-etherism",
+      "label": "Cosmic Etherism",
+      "kind": "symbolic_research",
+      "scope": "movement_horizon",
+      "description": "Axe spirituel/métaphysique/symbolique identifié dans l’arborescence.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:github-profile",
+        "src:user-arborescence"
+      ]
+    },
+    {
+      "id": "koa:daat",
+      "label": "Da’at",
+      "kind": "mapping_acl_boundary",
+      "scope": "digital_core",
+      "description": "Frontière de mapping/ACL/anti-corruption vers les contrats Kristal natifs.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ],
+      "placement": {
+        "tier": "core",
+        "integration_state": "active_or_declared_core"
+      }
+    },
+    {
+      "id": "koa:digital-ecosystem",
+      "label": "kOA Digital Ecosystem",
+      "kind": "ecosystem",
+      "scope": "digital_core",
+      "description": "Canonical system-of-systems map for cross-system ownership, explicit integration contracts, release/activation boundaries and current maturity evidence; product/platform owner repositories remain authoritative internally.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os",
+        "src:repo-readme:koa-digital-ecosystem"
+      ],
+      "placement": {
+        "tier": "core",
+        "integration_state": "active_or_declared_core"
+      }
+    },
+    {
+      "id": "koa:editorial-figure-engine",
+      "label": "Editorial Figure Engine",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "kind": "deterministic_figure_engine",
+      "scope": "tooling",
+      "description": "Deterministic code-first SVG figure engine for books, reports, academic and institutional diagrams using semantic YAML/JSON inputs and explicit editorial templates.",
+      "source_refs": [
+        "src:repo-readme:editorial-figure-engine"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "active_independent_tool"
+      }
+    },
+    {
+      "id": "koa:ekoh",
+      "label": "EkoH",
+      "kind": "shared_capability",
+      "scope": "digital_product",
+      "description": "Signaux d’expertise contextuelle, qualité de contribution, crédibilité éthique, historique et confidentialité.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:encyklopedia",
+      "label": "EncyKlopedia",
+      "kind": "knowledge_acquisition_system",
+      "scope": "digital_core",
+      "description": "Source discovery, acquisition, extraction and handoff pipeline. It prepares source evidence and immutable harvest handoffs but does not own the canonical knowledge library or final semantic meaning.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:repo-readme:encyklopedia"
+      ],
+      "placement": {
+        "tier": "core",
+        "integration_state": "active_or_declared_core"
+      }
+    },
+    {
+      "id": "koa:ethikos",
+      "label": "ethiKos",
+      "kind": "product_experience",
+      "scope": "digital_product",
+      "description": "Pipeline civique: discovery, deliberation, drafting, decision, accountability.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:formulator",
+      "label": "Formulator",
+      "kind": "formal_research_orchestrator",
+      "scope": "tooling",
+      "description": "Active MathKristal research/calculation/validation/proof-generation engine. It works from Challenge docs, challenge-local Kristal v6 and a pinned read-only MathKristal snapshot; maintains bounded KnowledgeGraph, persistent ResearchGraph and cross-Challenge StrategyGraph memories; uses counterexample-first/falsification stages and bounded human-mediated AI relay; finite tests or agent output never count as proof.",
+      "aliases": [],
+      "tags": [
+        "math",
+        "proof",
+        "research",
+        "orchestration"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:formulator",
+        "src:workspace-evidence:formulator-pyproject"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "active_research_engine"
+      },
+      "repository_ref": "koa:repo:formulator"
+    },
+    {
+      "id": "koa:governance-policy-runtime",
+      "label": "Governance Policy Runtime",
+      "kind": "policy_authority",
+      "scope": "digital_core",
+      "description": "Évalue les politiques locales versionnées et produit décisions/obligations/receipts sans exécuter l’opération gouvernée.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ],
+      "placement": {
+        "tier": "core_internal",
+        "integration_state": "implemented_component"
+      }
+    },
+    {
+      "id": "koa:identity-trust",
+      "label": "Identity & Trust",
+      "kind": "identity_trust_authority",
+      "scope": "digital_core",
+      "description": "Établit l’identité et les preuves de confiance bornées; authentifie/vérifie sans décider les autorisations métier.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ],
+      "placement": {
+        "tier": "core_internal",
+        "integration_state": "implemented_component"
+      }
+    },
+    {
+      "id": "koa:initiative",
+      "label": "kOA",
+      "kind": "initiative",
+      "scope": "broader_initiative",
+      "description": "Initiative générale reliant infrastructure sociotechnique, apprentissage/diffusion, infrastructure physique, langage/sémantique et mobilisation culturelle.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:user-arborescence"
+      ]
+    },
+    {
+      "id": "koa:interaction-kernel",
+      "label": "Interaction Kernel",
+      "kind": "interoperability_protocol",
+      "scope": "digital_core",
+      "description": "Distributed interoperability protocol and reference implementation for autonomous systems; owns versioned envelope/profile semantics, not participant databases, artifact stores or transaction coordination.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:repo-readme:interaction-kernel"
+      ],
+      "placement": {
+        "tier": "core",
+        "integration_state": "active_or_declared_core"
+      }
+    },
+    {
+      "id": "koa:kamel",
+      "label": "Kamel",
+      "kind": "knowledge_assembly_system",
+      "scope": "peripheral_app",
+      "description": "Système modulaire qui assemble rôles, contextes, inventaires, cartes et modules en decks structurés, validés et rendus pour compréhension, décision et apprentissage.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-kamel"
+      ],
+      "placement": {
+        "tier": "peripheral_app",
+        "integration_state": "adjacent_not_core"
+      }
+    },
+    {
+      "id": "koa:keenkonnect",
+      "label": "keenKonnect",
+      "kind": "product_experience",
+      "scope": "digital_product",
+      "description": "Espaces de projets/construction, collaboration, artefacts et travail partagé.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:keyflow",
+      "label": "KeyFlow",
+      "kind": "forms_intake_tool",
+      "scope": "peripheral_app",
+      "description": "Outil/formulaire observé dans l’inventaire local historique; rôle d’intake/formulaires plausible, architecture détaillée non fournie dans cette passe.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:smart-snapshot"
+      ],
+      "placement": {
+        "tier": "peripheral_app",
+        "integration_state": "candidate_unresolved"
+      }
+    },
+    {
+      "id": "koa:kin-city",
+      "label": "Kin City",
+      "kind": "narrative_project",
+      "scope": "movement_horizon",
+      "description": "Projet narratif/culturel identifié dans l’arborescence.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:github-profile",
+        "src:user-arborescence"
+      ]
+    },
+    {
+      "id": "koa:king-klown",
+      "label": "King Klown",
+      "kind": "narrative_mobilisation",
+      "scope": "broader_initiative",
+      "description": "Couche narrative et de mobilisation; interface culturelle/pédagogique sans autorité technique.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:user-arborescence"
+      ],
+      "placement": {
+        "tier": "broader_initiative",
+        "integration_state": "independent_or_adjacent"
+      }
+    },
+    {
+      "id": "koa:kintsugi-kompendio",
+      "label": "Kintsugi / Kompendio",
+      "kind": "integration_method_and_contract_catalog",
+      "scope": "digital_conceptual",
+      "description": "Cadre d’intégration par contrats et frontières explicites, incluant des modes Mimic/Annex pour composer des capacités sans double vérité ni absorption d’autorité.",
+      "aliases": [
+        "Kintsugi",
+        "Kompendio"
+      ],
+      "tags": [
+        "integration",
+        "contracts",
+        "replaceability"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion",
+        "src:business-plan-context"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "documentation_and_pattern_framework"
+      }
+    },
+    {
+      "id": "koa:knowledge-library",
+      "label": "Knowledge",
+      "kind": "submodule",
+      "scope": "digital_product",
+      "description": "Bibliothèque collaborative d’apprentissage/connaissances sous KonnectED.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:koa-assembly",
+      "label": "kOA Assembly",
+      "kind": "platform_assembly_engine",
+      "scope": "digital_core",
+      "description": "Résout profils, dépendances, ressources, stockage, services et Release Sets vers des plans de déploiement déterministes.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ],
+      "placement": {
+        "tier": "core_internal",
+        "integration_state": "implemented_component"
+      }
+    },
+    {
+      "id": "koa:koa-mediatheque",
+      "label": "Médiathèque kOA",
+      "kind": "local_media_authority",
+      "scope": "digital_core",
+      "description": "Single local Médiathèque kOA application. Application code and local content are separated physically; SQLite is the application state authority and content may live in a sibling content root.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux",
+        "src:snapshot-mediatheque",
+        "src:repo-readme:mediatheque"
+      ],
+      "placement": {
+        "tier": "core_internal",
+        "integration_state": "implemented_component"
+      }
+    },
+    {
+      "id": "koa:koali",
+      "label": "Koali / kOA-Linux",
+      "kind": "platform",
+      "scope": "digital_core",
+      "description": "Sovereign local-first, offline-capable governed operating system for kOA workloads. It owns platform profiles, admission, release/lifecycle and host composition without absorbing independent subsystem authority.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:repo-readme:koa-linux"
+      ],
+      "placement": {
+        "tier": "core",
+        "integration_state": "active_or_declared_core"
+      }
+    },
+    {
+      "id": "koa:koali-control-panel",
+      "label": "Koali Control Panel",
+      "kind": "development_orchestration_console",
+      "scope": "tooling",
+      "description": "Console de développement et d’orchestration de kOA-Linux pour workspaces, diagnostics, validation, assemblage, tests et workflows de release; elle ne possède pas l’autorité métier runtime.",
+      "aliases": [],
+      "tags": [
+        "development",
+        "qualification",
+        "operations"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:business-plan-context",
+        "src:github-repo-enumeration",
+        "src:snapshot-koa-linux"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "supporting_not_runtime_authority"
+      }
+    },
+    {
+      "id": "koa:koali-spaces",
+      "label": "Koali Spaces",
+      "kind": "presentation_runtime",
+      "scope": "digital_core",
+      "description": "Optional independently versioned experience/composition layer that composes validated product surfaces and routing while preserving product-owned UI/business authority.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:repo-readme:koali-spaces"
+      ],
+      "placement": {
+        "tier": "core",
+        "integration_state": "active_or_declared_core"
+      }
+    },
+    {
+      "id": "koa:kompiler",
+      "label": "Kompiler",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "kind": "context_compiler",
+      "scope": "digital_core",
+      "description": "Local-first context compiler that performs read-only queries against trusted knowledge surfaces, preserves provenance/conflicts, applies budgets/ranking and emits bounded context packs without becoming a source or semantic authority.",
+      "source_refs": [
+        "src:repo-readme:kompiler"
+      ],
+      "placement": {
+        "tier": "core_service",
+        "integration_state": "active_independent_tool"
+      }
+    },
+    {
+      "id": "koa:konductor",
+      "label": "Konductor",
+      "kind": "agentic_tool",
+      "scope": "tooling",
+      "description": "Runtime durable pour travail IA autonome borné: workflows typés, routage validé, outils permissionnés, checkpoints, événements, human-in-the-loop et reprise.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-konductor"
+      ],
+      "placement": {
+        "tier": "peripheral_app",
+        "integration_state": "adjacent_not_core"
+      }
+    },
+    {
+      "id": "koa:konfid",
+      "label": "Konfid",
+      "kind": "cross_system_security_plane",
+      "scope": "peripheral_app",
+      "description": "Cross-system security control plane for identity bindings, scoped authorization, risk detection, governed containment, approvals and auditable response; integrates without becoming domain-state authority.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-konfid",
+        "src:repo-readme:konfid"
+      ],
+      "placement": {
+        "tier": "peripheral_app",
+        "integration_state": "target_architecture"
+      }
+    },
+    {
+      "id": "koa:konnaxion",
+      "label": "Konnaxion",
+      "kind": "civic_coordination_system",
+      "scope": "digital_core",
+      "description": "État civique/public, coordination, consultations, délibération, DecisionRecords, accountability et expériences publiques.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ],
+      "placement": {
+        "tier": "core",
+        "integration_state": "active_or_declared_core"
+      }
+    },
+    {
+      "id": "koa:konnaxion-capsule-manager",
+      "label": "Konnaxion Capsule Manager",
+      "kind": "deployment_lifecycle_manager",
+      "scope": "digital_product",
+      "description": "Packaging, installation et lifecycle reproductibles de Konnaxion via capsules signées, profils réseau, gates, sauvegarde, restauration et rollback.",
+      "aliases": [],
+      "tags": [
+        "deployment",
+        "packaging",
+        "recovery"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:business-plan-context",
+        "src:github-repo-enumeration"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_extension"
+      }
+    },
+    {
+      "id": "koa:konnaxion-securitydiag",
+      "label": "Konnaxion SecurityDiag",
+      "kind": "security_qualification_tool",
+      "scope": "tooling",
+      "description": "Legacy Konnaxion security-diagnostic lineage consolidated into KonnaxionDiag v4.2.3.",
+      "aliases": [],
+      "tags": [
+        "diagnostics",
+        "qualification"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-repo-enumeration",
+        "src:business-plan-context",
+        "src:koa-inventory-20261027"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "capability_grouped_under_konnaxiondiag_not_separate_repository"
+      },
+      "repository_ref": "koa:repo:konnaxion-securitydiag"
+    },
+    {
+      "id": "koa:konnaxion-universe-worlds-manager",
+      "label": "Konnaxion Universe & Worlds Manager",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "kind": "world_seed_manager",
+      "scope": "digital_product",
+      "description": "Standalone manager for canonical Konnaxion Universe/World seed packs, using Konnaxion-owned Worlds services and contracts.",
+      "source_refs": [
+        "src:repo-readme:konnaxion-universe-worlds-manager"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_extension"
+      }
+    },
+    {
+      "id": "koa:konnaxion-worlds",
+      "label": "Konnaxion Worlds",
+      "kind": "multiworld_context_orchestrator",
+      "scope": "digital_product",
+      "description": "Orchestration de contextes civiques isolés avec identités/scopes, releases, snapshots, switching et garanties anti-contamination.",
+      "aliases": [],
+      "tags": [
+        "worlds",
+        "isolation",
+        "context"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:business-plan-context",
+        "src:github-repo-enumeration"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_extension"
+      }
+    },
+    {
+      "id": "koa:konnaxiondiag",
+      "label": "KonnaxionDiag",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "kind": "assurance_qualification_suite",
+      "scope": "tooling",
+      "description": "Consolidated Konnaxion functional and security qualification suite with bounded evidence, ReleaseSet qualification and signed release authorization; qualification remains separate from enforcement.",
+      "source_refs": [
+        "src:repo-readme:konnaxiondiag"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "active_consolidated_qualification"
+      }
+    },
+    {
+      "id": "koa:konnected",
+      "label": "KonnectED",
+      "kind": "product_experience",
+      "scope": "digital_product",
+      "description": "Apprentissage, connaissances, parcours et certification.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:konsensus",
+      "label": "Konsensus",
+      "kind": "submodule",
+      "scope": "digital_product",
+      "description": "Surface/étape de consensus rattachée à la navigation ethiKos.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:konservation",
+      "label": "Konservation",
+      "kind": "submodule",
+      "scope": "digital_product",
+      "description": "Contenu créatif et préservation culturelle sous Kreative.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:konstellation",
+      "label": "Konstellation",
+      "kind": "knowledge_navigation_system",
+      "scope": "digital_product",
+      "description": "Universal adaptive navigation engine for Kristals. Reader policy + structural introspection + Lens produce explicit NavigationPlans and controlled renderers; views do not create truth.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:user-arborescence",
+        "src:repo-readme:konstellation"
+      ],
+      "placement": {
+        "tier": "peripheral_app",
+        "integration_state": "independently_runnable_release_candidate"
+      }
+    },
+    {
+      "id": "koa:konstellation-publisher",
+      "label": "Konstellation Publisher",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "kind": "deployment_publisher",
+      "scope": "tooling",
+      "description": "Local Windows publisher that packages, deploys and health-checks Konstellation releases on a remote VPS behind the existing Traefik boundary.",
+      "source_refs": [
+        "src:repo-readme:konstellation-publisher"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "active_deployment_tool"
+      }
+    },
+    {
+      "id": "koa:konstruct",
+      "label": "Konstruct",
+      "kind": "submodule",
+      "scope": "digital_product",
+      "description": "Espaces de collaboration de projets sous keenKonnect.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:konsultations",
+      "label": "Konsultations",
+      "kind": "submodule",
+      "scope": "digital_product",
+      "description": "Consultations publiques, intake, feedback, ballots/snapshots selon les frontières ethiKos.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:kontact",
+      "label": "Kontact",
+      "kind": "submodule",
+      "scope": "digital_product",
+      "description": "Collaboration et réseautage sous Kreative.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:kontrol",
+      "label": "Kontrol",
+      "kind": "product_surface",
+      "scope": "digital_product",
+      "description": "Surface de contrôle/administration identifiée dans les documents de maturité Konnaxion.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:kor",
+      "label": "Kor",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "kind": "mobile_projection_client",
+      "scope": "digital_product",
+      "description": "Client mobile Kor 0.7, projection filtrée de Konnaxion et Orgo sans appropriation des états métier; intégration d’exécution intersystème non démontrée par le snapshot.",
+      "source_refs": [
+        "src:repo-readme:kor",
+        "src:snapshot-kor-20261027"
+      ],
+      "placement": {
+        "tier": "peripheral_app",
+        "integration_state": "independent_mobile_projection"
+      },
+      "repository_ref": "koa:repo:kor"
+    },
+    {
+      "id": "koa:korum",
+      "label": "Korum",
+      "kind": "submodule",
+      "scope": "digital_product",
+      "description": "Débats structurés à l’intérieur d’ethiKos.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:kreative",
+      "label": "Kreative",
+      "kind": "product_experience",
+      "scope": "digital_product",
+      "description": "Création, collaboration culturelle, réseau et préservation.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:kristal",
+      "label": "Kristal",
+      "kind": "knowledge_state_system",
+      "scope": "digital_core",
+      "description": "Portable knowledge-state standard and v7 meta-orchestration design. Current observed design baseline is 7.0.0-draft.3.2 while portable kristal_state/6.0 remains an active compatibility boundary.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:repo-readme:kristal-7"
+      ],
+      "placement": {
+        "tier": "core",
+        "integration_state": "active_or_declared_core"
+      }
+    },
+    {
+      "id": "koa:kristal-farms",
+      "label": "Kristal Farms",
+      "kind": "physical_infrastructure_program",
+      "scope": "broader_initiative",
+      "description": "Evidence-first energy/compute/infrastructure research program plus geospatial Observatory application. The canonical monorepo separates web application, governed operational data/pipelines and research; PostgreSQL/PostGIS is the intended operational source of truth and public releases are derived/immutable. The repository explicitly separates facts, observations, derived values, assumptions and unknowns and does not claim a selected or permitted build site.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:user-arborescence",
+        "src:workspace-evidence:kristal-farms"
+      ],
+      "placement": {
+        "tier": "broader_initiative",
+        "integration_state": "independent_or_adjacent"
+      }
+    },
+    {
+      "id": "koa:kristal-grand-challenges",
+      "label": "Kristal Grand Challenges",
+      "kind": "formal_math_research_workbench",
+      "scope": "research_adjacent",
+      "description": "Persistent research workbench for 12 selected mathematical grand challenges. Each Challenge owns a local Kristal v6 with imported, established_external, research, validated_local and promotion_candidates layers; global Kristal Math stays read-only and promotion is explicit, never automatic.",
+      "aliases": [],
+      "tags": [
+        "math",
+        "research",
+        "kristal-v6"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:grand-challenges",
+        "src:workspace-evidence:grand-challenges-changelog"
+      ],
+      "placement": {
+        "tier": "research_adjacent",
+        "integration_state": "persistent_challenge_workspace"
+      },
+      "repository_ref": "koa:repo:kristal-grand-challenges"
+    },
+    {
+      "id": "koa:kristal-math",
+      "label": "Kristal Math",
+      "kind": "canonical_math_knowledge_corpus",
+      "scope": "digital_knowledge",
+      "description": "Global mathematical reference corpus for definitions, formulas, theorems, refutations, dependencies and provenance. MathChallenges treats it as read-only input; challenge-local research is not automatically promoted into it.",
+      "aliases": [
+        "MathKristal"
+      ],
+      "tags": [
+        "math",
+        "kristal",
+        "canonical-memory"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:formulator",
+        "src:workspace-evidence:grand-challenges",
+        "src:mathchallenges-kristal-math-shortcut"
+      ],
+      "placement": {
+        "tier": "knowledge_corpus",
+        "integration_state": "read_only_canon_for_math_research"
+      },
+      "local_path": "C:\\mycode\\Kristal\\Kristal-Kollection\\Kristal-Math"
+    },
+    {
+      "id": "koa:kristal-runtime",
+      "label": "kristal_runtime",
+      "kind": "runtime",
+      "scope": "digital_core",
+      "description": "Vérification/compatibilité Runtime Pack, état actif, receipts activation/rollback et santé du runtime.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ],
+      "placement": {
+        "tier": "core",
+        "integration_state": "active_or_declared_core"
+      }
+    },
+    {
+      "id": "koa:kristaldiag",
+      "label": "KristalDiag",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "kind": "conformance_qualification_suite",
+      "scope": "tooling",
+      "description": "Suite de conformance et qualification indépendante Kristal v10, cible 10.0.0-draft.3.1; contrôle des contrats, manifests de publication et surfaces GitHub en lecture seule; ne publie ni n’active.",
+      "source_refs": [
+        "src:repo-readme:kristaldiag",
+        "src:snapshot-kristaldiag-20261027"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "independent_v10_conformance_suite"
+      },
+      "repository_ref": "koa:repo:kristaldiag"
+    },
+    {
+      "id": "koa:levelupdiag-ariane",
+      "label": "LevelUpDiag Ariane",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "kind": "conformance_diagnostic_tool",
+      "scope": "tooling",
+      "description": "Portable LevelUpDiag frame/profile derived from Ariane diagnostics for repeatable external-target qualification.",
+      "source_refs": [
+        "src:repo-readme:levelupdiag-ariane"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "independent_qualification"
+      }
+    },
+    {
+      "id": "koa:levelupdiag-koa-linux",
+      "label": "LevelUpDiag Koali",
+      "kind": "conformance_diagnostic_tool",
+      "scope": "tooling",
+      "description": "Diagnostic suite for the live Koali product system while retaining historical kOA-Linux stabilization/release campaigns.",
+      "aliases": [],
+      "tags": [
+        "diagnostics",
+        "qualification"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-repo-enumeration",
+        "src:business-plan-context",
+        "src:repo-readme:levelupdiag-koali"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "independent_qualification"
+      },
+      "repository_ref": "koa:repo:levelupdiag-koa-linux"
+    },
+    {
+      "id": "koa:levelupdiag-konnaxion",
+      "label": "Konnaxion LevelUpDiag",
+      "kind": "conformance_diagnostic_tool",
+      "scope": "tooling",
+      "description": "Legacy Konnaxion functional-diagnostic lineage consolidated into KonnaxionDiag v4.2.3.",
+      "aliases": [],
+      "tags": [
+        "diagnostics",
+        "qualification"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-repo-enumeration",
+        "src:business-plan-context",
+        "src:koa-inventory-20261027"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "capability_grouped_under_konnaxiondiag_not_separate_repository"
+      },
+      "repository_ref": "koa:repo:konnaxion-levelupdiag"
+    },
+    {
+      "id": "koa:levelupdiag-kristal",
+      "label": "LevelUpDiag Kristal",
+      "kind": "conformance_diagnostic_tool",
+      "scope": "tooling",
+      "description": "Kristal-specific LevelUpDiag lineage superseded by KristalDiag v7.",
+      "aliases": [],
+      "tags": [
+        "diagnostics",
+        "qualification"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-repo-enumeration",
+        "src:business-plan-context"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "superseded_lineage"
+      },
+      "repository_ref": "koa:repo:levelupdiag-kristal"
+    },
+    {
+      "id": "koa:levelupdiag-medikristal",
+      "label": "LevelUpDiag MediKristal",
+      "kind": "conformance_diagnostic_tool",
+      "scope": "tooling",
+      "description": "Outil indépendant de diagnostic/qualification pour la cible correspondante; produit des preuves et verdicts sans posséder l’état métier de la cible.",
+      "aliases": [],
+      "tags": [
+        "diagnostics",
+        "qualification"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-repo-enumeration",
+        "src:business-plan-context"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "independent_qualification"
+      },
+      "repository_ref": "koa:repo:medikristal-levelupdiag"
+    },
+    {
+      "id": "koa:levelupdiag-orgo",
+      "label": "LevelUpDiag Orgo",
+      "kind": "conformance_diagnostic_tool",
+      "scope": "tooling",
+      "description": "Outil indépendant de diagnostic/qualification pour la cible correspondante; produit des preuves et verdicts sans posséder l’état métier de la cible.",
+      "aliases": [],
+      "tags": [
+        "diagnostics",
+        "qualification"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-repo-enumeration",
+        "src:business-plan-context"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "independent_qualification"
+      },
+      "repository_ref": "koa:repo:levelupdiag-orgo"
+    },
+    {
+      "id": "koa:levelupdiag-semantik",
+      "label": "LevelUpDiag SemantiK Architect",
+      "kind": "conformance_diagnostic_tool",
+      "scope": "tooling",
+      "description": "Outil indépendant de diagnostic/qualification pour la cible correspondante; produit des preuves et verdicts sans posséder l’état métier de la cible.",
+      "aliases": [],
+      "tags": [
+        "diagnostics",
+        "qualification"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-repo-enumeration",
+        "src:business-plan-context"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "independent_qualification"
+      },
+      "repository_ref": "koa:repo:levelupdiag-semantik-architect"
+    },
+    {
+      "id": "koa:mathchallenges",
+      "label": "MathChallenges",
+      "kind": "formal_math_research_workspace",
+      "scope": "research_adjacent",
+      "description": "Local composition workspace that gives stable launch paths for Formulator, Kristal Grand Challenges and the linked Kristal Math corpus without merging their authorities.",
+      "aliases": [],
+      "tags": [
+        "math",
+        "research",
+        "workspace"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:mathchallenges-start"
+      ],
+      "placement": {
+        "tier": "research_adjacent",
+        "integration_state": "composition_workspace"
+      },
+      "repository_ref": "koa:repo:mathchallenges-workspace"
+    },
+    {
+      "id": "koa:medikristal",
+      "label": "MediKristal",
+      "kind": "domain_application",
+      "scope": "domain_application",
+      "description": "Architecture de connaissance médicale sémantique et traçable.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:user-arborescence"
+      ],
+      "placement": {
+        "tier": "domain_application",
+        "integration_state": "independent_application"
+      }
+    },
+    {
+      "id": "koa:node-agent",
+      "label": "kOA Node Agent",
+      "kind": "privileged_node_agent",
+      "scope": "digital_core",
+      "description": "Opérations locales privilégiées, étroites et autorisées de lifecycle/activation/récupération.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ],
+      "placement": {
+        "tier": "core",
+        "integration_state": "active_or_declared_core"
+      }
+    },
+    {
+      "id": "koa:omni-wiki",
+      "label": "Omni-Wiki",
+      "kind": "knowledge_project",
+      "scope": "research_adjacent",
+      "description": "Projet de wiki/connaissance observé dans les dépôts publics.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:github-profile",
+        "src:user-arborescence"
+      ]
+    },
+    {
+      "id": "koa:orgo",
+      "label": "Orgo",
+      "kind": "workflow_system",
+      "scope": "digital_core",
+      "description": "Multi-tenant workflow and coordination application that owns Signal/Case/Task/workflow operational state, business authorization and operational UI, and can run standalone.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:repo-readme:orgo"
+      ],
+      "placement": {
+        "tier": "core",
+        "integration_state": "active_or_declared_core"
+      }
+    },
+    {
+      "id": "koa:orgo-worlds",
+      "label": "Orgo Worlds",
+      "kind": "multiworld_operational_orchestrator",
+      "scope": "digital_product",
+      "description": "Contextes opérationnels isolés, releases, memberships, scenario packs et injection contrôlée vers Orgo sans écriture DB inter-système.",
+      "aliases": [],
+      "tags": [
+        "worlds",
+        "operations",
+        "scenario"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:business-plan-context",
+        "src:github-repo-enumeration"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_extension"
+      }
+    },
+    {
+      "id": "koa:orphee-walk-straight",
+      "label": "ORPHÉE: Walk Straight",
+      "kind": "applied_learning_program",
+      "scope": "broader_initiative",
+      "description": "Applied, multilingual, offline-capable learning-by-production program rooted in constrained/remote contexts. Learners are expected to produce reusable, verifiable educational resources and competence portfolios through an apprendre → produire → valider → reconnaître → transférer → améliorer loop; AI may assist but does not hold final authority.",
+      "aliases": [
+        "Projet ORPHÉE"
+      ],
+      "tags": [
+        "learning",
+        "offline",
+        "multilingual"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:orphee-walk-straight"
+      ],
+      "placement": {
+        "tier": "broader_initiative",
+        "integration_state": "independent_or_adjacent"
+      },
+      "repository_ref": "koa:repo:projet-orphee-walk-straight"
+    },
+    {
+      "id": "koa:ourai",
+      "label": "OurAI",
+      "kind": "capacity_initiative",
+      "scope": "broader_initiative",
+      "description": "Élément d’infrastructure de capacité identifié dans l’arborescence kOA.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:user-arborescence"
+      ],
+      "placement": {
+        "tier": "broader_initiative",
+        "integration_state": "independent_or_adjacent"
+      }
+    },
+    {
+      "id": "koa:pi",
+      "label": "Pi Theory",
+      "kind": "speculative_research_program",
+      "scope": "research_adjacent",
+      "description": "Speculative research program asking whether structural properties associated with π can support a broader grammar of cohesion, orientation, differentiation, integration, transition and scale. It explicitly separates established fact, reproducible observation, interpretation and testable hypothesis; its current decoding kernel is exploratory rather than established physics.",
+      "aliases": [
+        "Pi"
+      ],
+      "tags": [
+        "research",
+        "epistemic-boundaries",
+        "pi"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:pi-theory",
+        "src:workspace-evidence:pi-theory-status-method"
+      ],
+      "placement": {
+        "tier": "research_adjacent",
+        "integration_state": "independent_research_program"
+      },
+      "repository_ref": "koa:repo:pi-theory"
+    },
+    {
+      "id": "koa:power-dynamics",
+      "label": "Power Dynamics",
+      "kind": "systems_analysis_framework",
+      "scope": "research_adjacent",
+      "description": "Systems-analysis framework for how capability becomes power, compounds, propagates and converts across political, economic, monetary, epistemic and infrastructural domains. Its constitutional emphasis is on power-conversion firewalls: useful capability may interact across domains without silently becoming unrelated sovereignty.",
+      "aliases": [
+        "The kOA Power Show"
+      ],
+      "tags": [
+        "power",
+        "systems-theory",
+        "analysis"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:power-dynamics"
+      ],
+      "placement": {
+        "tier": "research_adjacent",
+        "integration_state": "analytical_framework"
+      },
+      "repository_ref": "koa:repo:power-dynamics"
+    },
+    {
+      "id": "koa:publication-gateway",
+      "label": "Publication Gateway",
+      "kind": "publication_boundary",
+      "scope": "digital_core",
+      "description": "Médie les publications entre domaines d’autorité/disclosure, préserve l’autorité source et produit une preuve terminale véridique.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ],
+      "placement": {
+        "tier": "core_internal",
+        "integration_state": "implemented_component"
+      }
+    },
+    {
+      "id": "koa:qualification-tooling",
+      "label": "Diagnostics & Conformance Tooling",
+      "kind": "qualification_tool_family",
+      "scope": "tooling",
+      "description": "Famille de diagnostics indépendants qui observent, qualifient et produisent des preuves/gates sans devenir propriétaires du runtime évalué.",
+      "aliases": [
+        "LevelUpDiag",
+        "SecurityDiag"
+      ],
+      "tags": [
+        "diagnostics",
+        "conformance",
+        "qualification"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:business-plan-context",
+        "src:github-repo-enumeration"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "independent_qualification"
+      }
+    },
+    {
+      "id": "koa:reforme-desjardins",
+      "label": "Réforme Desjardins",
+      "kind": "institutional_reform_project",
+      "scope": "movement_horizon",
+      "description": "Projet de réforme institutionnelle identifié dans l’arborescence.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:github-profile",
+        "src:user-arborescence"
+      ]
+    },
+    {
+      "id": "koa:reignbow",
+      "label": "Reignbow",
+      "kind": "institutional_reform_project",
+      "scope": "movement_horizon",
+      "description": "Projet de réforme identifié dans l’arborescence; détails hors du présent Kristal.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:github-profile",
+        "src:user-arborescence"
+      ]
+    },
+    {
+      "id": "koa:repodiag",
+      "label": "RepoDiag",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "kind": "generic_repository_diagnostics",
+      "scope": "tooling",
+      "description": "Generic external repository diagnostics runner that executes only declared validations and produces bounded machine-readable evidence.",
+      "source_refs": [
+        "src:repo-readme:repodiagsimdjson"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "active_generic_tool"
+      }
+    },
+    {
+      "id": "koa:resource-governor",
+      "label": "Resource Governor",
+      "kind": "resource_authority",
+      "scope": "digital_core",
+      "description": "Résout enveloppes, admission, allocation, scheduling, throttling et suspension sans devenir autorité métier.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux"
+      ],
+      "placement": {
+        "tier": "core_internal",
+        "integration_state": "implemented_component"
+      }
+    },
+    {
+      "id": "koa:scenario-mosaic",
+      "label": "Koali Scenario Mosaic",
+      "kind": "scenario_mapping",
+      "scope": "broader_initiative",
+      "description": "Bilingual static-first scenario atlas. Current V2 repository presents 36 canonical sociotechnical problems; the package still retains the earlier 120-scenario corpus as historical/use-pattern evidence.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:repo-readme:koali-scenario-mosaic"
+      ],
+      "placement": {
+        "tier": "broader_initiative",
+        "integration_state": "independent_or_adjacent"
+      }
+    },
+    {
+      "id": "koa:semantik-architect",
+      "label": "SemantiK Architect",
+      "kind": "language_realisation_system",
+      "scope": "digital_core",
+      "description": "Deterministic semantic-to-human multilingual communication engine aligned with portable kristal_state/6.0 and Kristal/Kristall 7 draft; owns communication planning/realization boundaries, not upstream semantic truth.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:repo-readme:semantik-architect"
+      ],
+      "placement": {
+        "tier": "core",
+        "integration_state": "active_or_declared_core"
+      }
+    },
+    {
+      "id": "koa:semantik-phrase-ops-console",
+      "label": "SemantiK Phrase Ops Console",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "kind": "multilingual_ops_console",
+      "scope": "tooling",
+      "description": "Operational multilingual lab/console for SemantiK capability verification and bounded GF Wordbench handoffs; it does not become a second language architecture.",
+      "source_refs": [
+        "src:repo-readme:semantik-phrase-ops-console"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "active_lab"
+      }
+    },
+    {
+      "id": "koa:semantik-runtime-orchestrator",
+      "label": "SemantiK Runtime Orchestrator",
+      "kind": "release_orchestrator",
+      "scope": "digital_core",
+      "description": "Fail-closed release orchestrator for SemantiK Architect RuntimeSets; owns release sequencing, promotion/rollback and activation ordering only.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:repo-readme:semantik-runtime-orchestrator"
+      ],
+      "placement": {
+        "tier": "core",
+        "integration_state": "active_or_declared_core"
+      }
+    },
+    {
+      "id": "koa:sentient",
+      "label": "SenTient",
+      "kind": "semantic_resolution_capability",
+      "scope": "digital_core",
+      "description": "Extraction, résolution et réconciliation candidates; ne crée ni reconnaissance ni autorité de référence.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ],
+      "placement": {
+        "tier": "core",
+        "integration_state": "active_or_declared_core"
+      }
+    },
+    {
+      "id": "koa:smart-vote",
+      "label": "Smart Vote",
+      "kind": "derived_reading_boundary",
+      "scope": "digital_product",
+      "description": "Lecture/décision: vote brut + lectures pondérées explicables, sans remplacer le baseline public ni fabriquer une souveraineté experte.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:stockage",
+      "label": "Stockage",
+      "kind": "submodule",
+      "scope": "digital_product",
+      "description": "Dépôt sécurisé et versionné sous keenKonnect.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:support:ars-magna-lulli",
+      "label": "Ars Magna Lulli",
+      "kind": "language_portfolio_orchestrator",
+      "scope": "supporting_ecosystem",
+      "description": "Plan de contrôle GitOps multi-langues: coordonne projets, contributeurs, dépôts, pipelines, états de promotion et indexation de preuves sans devenir l’autorité linguistique ou de validation.",
+      "aliases": [
+        "Lulli"
+      ],
+      "tags": [
+        "external_support",
+        "gf",
+        "gitops",
+        "orchestration",
+        "not_koa_digital_member"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:ars-magna-lulli-docs",
+        "src:github-ma-gustave-lulli"
+      ],
+      "placement": {
+        "tier": "supporting_ecosystem",
+        "integration_state": "independent_support_not_member"
+      }
+    },
+    {
+      "id": "koa:support:gf-observatory",
+      "label": "GF Observatory",
+      "kind": "language_evidence_observatory",
+      "scope": "supporting_ecosystem",
+      "description": "Produit compagnon indépendant et en lecture seule qui agrège des artefacts versionnés de Wordbench pour rendre visibles maturité, readiness, tendances, bloqueurs et liens de preuve; il ne compile ni ne modifie les workspaces.",
+      "aliases": [
+        "Observatory"
+      ],
+      "tags": [
+        "external_support",
+        "gf",
+        "observation",
+        "read_only",
+        "not_koa_digital_member"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:gf-observatory-snapshot",
+        "src:github-ma-gustave-observatory",
+        "src:ars-magna-lulli-docs"
+      ],
+      "placement": {
+        "tier": "supporting_ecosystem",
+        "integration_state": "independent_support_not_member"
+      }
+    },
+    {
+      "id": "koa:support:gf-rgl-ai-compendium",
+      "label": "GF RGL AI Compendium",
+      "kind": "language_engineering_governance",
+      "scope": "supporting_ecosystem",
+      "description": "Référence documentaire et de gouvernance source-grounded pour développer, réparer, tester, revoir et préparer l’upstream des langues GF/RGL; fournit contrats, provenance, workflows, evidence policy et gates sans compiler ni déclarer le succès d’exécution.",
+      "aliases": [
+        "GF Compendium",
+        "GF RGL AI Codex / Compendium"
+      ],
+      "tags": [
+        "external_support",
+        "gf",
+        "rgl",
+        "governance",
+        "not_koa_digital_member"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:gf-compendium-docs",
+        "src:github-ma-gustave-compendium",
+        "src:ars-magna-lulli-docs"
+      ],
+      "placement": {
+        "tier": "supporting_ecosystem",
+        "integration_state": "independent_support_not_member"
+      }
+    },
+    {
+      "id": "koa:support:gf-wordbench",
+      "label": "GF Wordbench",
+      "kind": "language_validation_workbench",
+      "scope": "supporting_ecosystem",
+      "description": "Workbench indépendant de validation, diagnostics, régression et release-readiness pour un projet de langue GF. GF natif reste l’autorité d’exécution; Wordbench préserve les preuves, scénarios, goldens, manifests et verdicts de gate.",
+      "aliases": [
+        "WordBench"
+      ],
+      "tags": [
+        "external_support",
+        "gf",
+        "validation",
+        "evidence",
+        "not_koa_digital_member"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:gf-wordbench-snapshot",
+        "src:github-ma-gustave-wordbench",
+        "src:ars-magna-lulli-docs"
+      ],
+      "placement": {
+        "tier": "supporting_ecosystem",
+        "integration_state": "independent_support_not_member"
+      }
+    },
+    {
+      "id": "koa:support:ma-gustave-gf-ecosystem",
+      "label": "MA-Gustave GF Language Engineering Ecosystem",
+      "kind": "supporting_ecosystem",
+      "scope": "supporting_ecosystem",
+      "description": "Sous-écosystème indépendant de support à l’ingénierie linguistique GF/RGL. Il entoure GF sans le remplacer et peut soutenir les capacités multilingues de kOA/SemantiK sans appartenir au kOA Digital Ecosystem.",
+      "aliases": [
+        "MA-Gustave GF ecosystem"
+      ],
+      "tags": [
+        "external_support",
+        "language_engineering",
+        "not_koa_digital_member"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:user-ma-gustave-ownership",
+        "src:github-ma-gustave-profile",
+        "src:ars-magna-lulli-docs"
+      ],
+      "placement": {
+        "tier": "supporting_ecosystem",
+        "integration_state": "independent_support_not_member"
+      }
+    },
+    {
+      "id": "koa:surreal",
+      "label": "Surreal",
+      "kind": "narrative_project",
+      "scope": "movement_horizon",
+      "description": "Projet narratif/culturel identifié dans l’arborescence.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "claimed",
+      "source_refs": [
+        "src:github-profile",
+        "src:user-arborescence"
+      ]
+    },
+    {
+      "id": "koa:swarmcraft",
+      "label": "SwarmCraft",
+      "kind": "execution_pattern",
+      "scope": "research_adjacent",
+      "description": "Pattern/capacité conceptuelle d’exécution bornée de tâches gouvernées; distinct d’une implémentation universelle.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ],
+      "placement": {
+        "tier": "peripheral_app",
+        "integration_state": "adjacent_not_core"
+      }
+    },
+    {
+      "id": "koa:team-builder",
+      "label": "Team Builder",
+      "kind": "shared_capability",
+      "scope": "digital_product",
+      "description": "Formation/coordination d’équipes comme capacité partagée de Konnaxion.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:kintsugi-kompendio",
+        "src:github-konnaxion"
+      ],
+      "placement": {
+        "tier": "product_subsystem",
+        "integration_state": "owned_by_konnaxion"
+      }
+    },
+    {
+      "id": "koa:uckk",
+      "label": "UCKK / Univers-Cité King Klown",
+      "kind": "learning_diffusion_system",
+      "scope": "broader_initiative",
+      "description": "Branche d’apprentissage, média et diffusion publique; consommateur/projection autorisé de certains artefacts Kristal, sans devenir le canon Kristal.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:github-profile",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ],
+      "placement": {
+        "tier": "broader_initiative",
+        "integration_state": "independent_or_adjacent"
+      }
+    },
+    {
+      "id": "koa:uckk-ai-provider",
+      "label": "UCKK AI Provider",
+      "kind": "optional_ai_extension",
+      "scope": "broader_initiative",
+      "description": "Extension IA optionnelle de la distribution; ne remplace pas les autorités institutionnelles, archive, intégrité ou décision.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-uckk",
+        "src:github-uckk"
+      ],
+      "placement": {
+        "tier": "consumer_subsystem",
+        "integration_state": "owned_by_uckk"
+      }
+    },
+    {
+      "id": "koa:uckk-archive",
+      "label": "UCKK Archive / Mediatheque",
+      "kind": "archive_media_authority",
+      "scope": "broader_initiative",
+      "description": "Archive didactique/média, evidence, provenance, revisions, exports et objets Kristal projetés.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-uckk",
+        "src:github-uckk"
+      ],
+      "placement": {
+        "tier": "consumer_subsystem",
+        "integration_state": "owned_by_uckk"
+      }
+    },
+    {
+      "id": "koa:uckk-assembly",
+      "label": "UCKK Assembly",
+      "kind": "learning_assembly_system",
+      "scope": "broader_initiative",
+      "description": "Assemblées et décisions locales UCKK, séparées de l’archive et de l’intégrité.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-uckk",
+        "src:github-uckk"
+      ],
+      "placement": {
+        "tier": "consumer_subsystem",
+        "integration_state": "owned_by_uckk"
+      }
+    },
+    {
+      "id": "koa:uckk-challenge",
+      "label": "UCKK Challenge",
+      "kind": "applied_learning_system",
+      "scope": "broader_initiative",
+      "description": "Activités/défis et résultats appliqués, avec preuve et articulation vers l’archive.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-uckk",
+        "src:github-uckk"
+      ],
+      "placement": {
+        "tier": "consumer_subsystem",
+        "integration_state": "owned_by_uckk"
+      }
+    },
+    {
+      "id": "koa:uckk-core",
+      "label": "UCKK Institutional Core",
+      "kind": "institutional_kernel",
+      "scope": "broader_initiative",
+      "description": "Noyau partagé: programmes, pathways, rôles, profils Joueur, provenance, visibilité, navigation et services de bridge.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-uckk",
+        "src:github-uckk"
+      ],
+      "placement": {
+        "tier": "consumer_subsystem",
+        "integration_state": "owned_by_uckk"
+      }
+    },
+    {
+      "id": "koa:uckk-dashboard",
+      "label": "UCKK Dashboard",
+      "kind": "presentation_surface",
+      "scope": "broader_initiative",
+      "description": "Surface de tableau de bord composant les données du noyau et des plugins sans devenir leur autorité.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-uckk",
+        "src:github-uckk"
+      ],
+      "placement": {
+        "tier": "consumer_subsystem",
+        "integration_state": "owned_by_uckk"
+      }
+    },
+    {
+      "id": "koa:uckk-integrity",
+      "label": "UCKK Integrity",
+      "kind": "integrity_case_system",
+      "scope": "broader_initiative",
+      "description": "Cas, review, appeal, corrections, invalidation et garde-fous d’intégrité institutionnelle.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-uckk",
+        "src:github-uckk"
+      ],
+      "placement": {
+        "tier": "consumer_subsystem",
+        "integration_state": "owned_by_uckk"
+      }
+    },
+    {
+      "id": "koa:uckk-moodle",
+      "label": "UCKK Moodle",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "kind": "learning_platform",
+      "scope": "broader_initiative",
+      "description": "UCKK learning-platform materialization built on Moodle, consuming governed projections while UCKK retains its own institutional/learning boundaries.",
+      "source_refs": [
+        "src:repo-readme:uckk-moodle"
+      ],
+      "placement": {
+        "tier": "consumer_subsystem",
+        "integration_state": "owned_by_uckk"
+      }
+    },
+    {
+      "id": "koa:uckk-ops-console",
+      "label": "UCKK Ops Console",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "kind": "operations_console",
+      "scope": "broader_initiative",
+      "description": "Local operations console for UCKK workflows and Moodle operations without requiring direct command memorization or manual low-level manipulation.",
+      "source_refs": [
+        "src:repo-readme:uckk-ops-console"
+      ],
+      "placement": {
+        "tier": "consumer_subsystem",
+        "integration_state": "owned_by_uckk"
+      }
+    },
+    {
+      "id": "koa:uckk-publisher",
+      "label": "UCKK Publisher",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "kind": "deployment_publisher",
+      "scope": "broader_initiative",
+      "description": "Release publisher/deploy agent workflow for immutable UCKK releases, remount verification, rollback and production publication.",
+      "source_refs": [
+        "src:repo-readme:uckk-publisher"
+      ],
+      "placement": {
+        "tier": "consumer_subsystem",
+        "integration_state": "owned_by_uckk"
+      }
+    },
+    {
+      "id": "koa:uckk-report",
+      "label": "UCKK Reports",
+      "kind": "reporting_system",
+      "scope": "broader_initiative",
+      "description": "Reporting institutionnel et exports sur les domaines UCKK autorisés.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-uckk",
+        "src:github-uckk"
+      ],
+      "placement": {
+        "tier": "consumer_subsystem",
+        "integration_state": "owned_by_uckk"
+      }
+    },
+    {
+      "id": "koa:uckk-securitydiag",
+      "label": "UCKK SecurityDiag",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "kind": "security_qualification_tool",
+      "scope": "tooling",
+      "description": "Independent security qualification suite targeting UCKK Moodle source, UCKK Publisher and the production Linux VPS.",
+      "source_refs": [
+        "src:repo-readme:uckk-securitydiag"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "independent_qualification"
+      }
+    },
+    {
+      "id": "koa:uckk-seed",
+      "label": "UCKK Seed",
+      "kind": "registry_seed_tool",
+      "scope": "broader_initiative",
+      "description": "Outil d’initialisation/versionnement des registres académiques et templates de la distribution.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-uckk",
+        "src:github-uckk"
+      ],
+      "placement": {
+        "tier": "consumer_subsystem",
+        "integration_state": "owned_by_uckk"
+      }
+    },
+    {
+      "id": "koa:voting-machine",
+      "label": "VotingMachine",
+      "kind": "governance_tool",
+      "scope": "research_adjacent",
+      "description": "VM-ENGINE v0 deterministic offline tabulation/allocation engine governed by normative specifications and canonical test packs. It produces canonical byte-stable artifacts, records seeded randomness only when a random tie occurs, and requires report renderers to consume canonical results without recomputing outcomes.",
+      "aliases": [],
+      "tags": [],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:votingmachine"
+      ],
+      "placement": {
+        "tier": "research_adjacent",
+        "integration_state": "independent_deterministic_engine"
+      },
+      "repository_ref": "koa:repo:votingmachine"
+    },
+    {
+      "id": "koa:voxtral-audiobook-studio",
+      "label": "Voxtral Audiobook Studio",
+      "kind": "audiobook_production_application",
+      "scope": "peripheral_app",
+      "description": "Local Streamlit audiobook-production workflow around Voxtral TTS: import manuscript, segment by chapter/passage, generate audio, review, selectively regenerate failed/edited passages, retain multiple segment versions, estimate cost and export chapters or complete books. Segment state makes revision granular instead of rebuilding the whole book.",
+      "aliases": [],
+      "tags": [
+        "media",
+        "audio",
+        "tts"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:workspace-evidence:voxtral-audiobook-studio"
+      ],
+      "placement": {
+        "tier": "peripheral_app",
+        "integration_state": "adjacent_media_tool_not_core"
+      },
+      "repository_ref": "koa:repo:voxtral-audiobook-studio"
+    },
+    {
+      "id": "koa:ekole",
+      "label": "Ekole",
+      "kind": "neutral_learning_engine",
+      "scope": "digital_product",
+      "description": "Cœur pédagogique neutre: moteur local, portail, espace apprenant et éditeur, consommant des paquets ekole.content-pack/0.1; ne possède pas les corpus Québec ou Pastorale.",
+      "aliases": [],
+      "tags": [
+        "intake-2026-10-27"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-ekole-20261027",
+        "src:koa-inventory-20261027"
+      ],
+      "placement": {
+        "tier": "domain_application",
+        "integration_state": "observed_local_engine_no_cross_system_qualification"
+      },
+      "repository_ref": "koa:repo:ekole"
+    },
+    {
+      "id": "koa:ekole-pastorale",
+      "label": "Ekole Pastorale",
+      "kind": "educational_content_pack",
+      "scope": "domain_content",
+      "description": "Corpus indépendant de 32 cours et 7 parcours pour le moteur Ekole; révision doctrinale, pédagogique, de protection et de licences requise avant publication.",
+      "aliases": [],
+      "tags": [
+        "intake-2026-10-27"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-ekole-pastorale-20261027",
+        "src:koa-inventory-20261027"
+      ],
+      "placement": {
+        "tier": "knowledge_corpus",
+        "integration_state": "content_pack_schema_compatible_not_published"
+      },
+      "repository_ref": "koa:repo:ekole-pastorale"
+    },
+    {
+      "id": "koa:ekole-quebec",
+      "label": "Ekole Québec",
+      "kind": "educational_content_pack",
+      "scope": "domain_content",
+      "description": "Corpus scolaire de 202 cours et 6 parcours distinct du moteur neutre; validation officielle non établie.",
+      "aliases": [],
+      "tags": [
+        "intake-2026-10-27"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-ekole-quebec-20261027",
+        "src:koa-inventory-20261027"
+      ],
+      "placement": {
+        "tier": "knowledge_corpus",
+        "integration_state": "content_pack_schema_compatible_not_certified"
+      },
+      "repository_ref": "koa:repo:ekole-quebec"
+    },
+    {
+      "id": "koa:akor",
+      "label": "Akor",
+      "kind": "collaborative_learning_design",
+      "scope": "digital_product",
+      "description": "Missions d’apprentissage concerté et rôles complémentaires; connexions à Kontexte, Kompose, Orgo, Orgo Worlds et Ekole visées, sans interopération opérationnelle démontrée.",
+      "aliases": [],
+      "tags": [
+        "intake-2026-10-27"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-akor-20261027",
+        "src:koa-inventory-20261027"
+      ],
+      "placement": {
+        "tier": "peripheral_app",
+        "integration_state": "integration_intended_unverified"
+      },
+      "repository_ref": "koa:repo:akor"
+    },
+    {
+      "id": "koa:kompose",
+      "label": "Kompose",
+      "kind": "proposed_learning_composition",
+      "scope": "digital_product",
+      "description": "Outil de composition pédagogique mentionné comme dépendance visée par Akor; dépôt distant enregistré mais dossier local déclaré absent au scan 2026-10-27.",
+      "aliases": [],
+      "tags": [
+        "intake-2026-10-27"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-akor-20261027",
+        "src:koa-inventory-20261027"
+      ],
+      "placement": {
+        "tier": "peripheral_app",
+        "integration_state": "local_checkout_missing_in_last_scan"
+      },
+      "repository_ref": "koa:repo:kompose"
+    },
+    {
+      "id": "koa:kontexte",
+      "label": "Kontexte",
+      "kind": "proposed_learning_context",
+      "scope": "digital_product",
+      "description": "Service de contexte pédagogique cité par Akor; dépôt distant enregistré mais dossier local déclaré absent au scan 2026-10-27.",
+      "aliases": [],
+      "tags": [
+        "intake-2026-10-27"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-akor-20261027",
+        "src:koa-inventory-20261027"
+      ],
+      "placement": {
+        "tier": "peripheral_app",
+        "integration_state": "local_checkout_missing_in_last_scan"
+      },
+      "repository_ref": "koa:repo:kontexte"
+    },
+    {
+      "id": "koa:inkuisite",
+      "label": "Inkuisite / Inkui",
+      "kind": "assessment_authoring_engine",
+      "scope": "domain_application",
+      "description": "Atelier local de composition d’examens, barèmes, correction et rétroaction; la revue humaine reste distincte du calcul automatique. Aucun déploiement Moodle qualifié par le snapshot.",
+      "aliases": [],
+      "tags": [
+        "intake-2026-10-27"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-inkuisite-20261027",
+        "src:koa-inventory-20261027"
+      ],
+      "placement": {
+        "tier": "domain_application",
+        "integration_state": "local_executable_unqualified_interop"
+      },
+      "repository_ref": "koa:repo:inkuisite"
+    },
+    {
+      "id": "koa:bokristal",
+      "label": "BoKristal",
+      "kind": "knowledge_distribution_prototype",
+      "scope": "peripheral_app",
+      "description": "Prototype de distribution de connaissances multi-supports; ni canonicalisation v6 ni engagements v9 garantis par la démonstration. Pas de déploiement production.",
+      "aliases": [],
+      "tags": [
+        "intake-2026-10-27"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-bokristal-20261027",
+        "src:koa-inventory-20261027"
+      ],
+      "placement": {
+        "tier": "peripheral_app",
+        "integration_state": "prototype_not_production"
+      },
+      "repository_ref": "koa:repo:bokristal"
+    },
+    {
+      "id": "koa:spek",
+      "label": "Spek",
+      "kind": "semantic_publication_engine",
+      "scope": "digital_product",
+      "description": "Moteur autonome de publication sémantique locale et multilingue; ne valide ni engagements Kristal, ni RuntimeSets GF/PGF, ni autorisation de publication.",
+      "aliases": [],
+      "tags": [
+        "intake-2026-10-27"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-spek-20261027",
+        "src:koa-inventory-20261027"
+      ],
+      "placement": {
+        "tier": "peripheral_app",
+        "integration_state": "independent_application"
+      },
+      "repository_ref": "koa:repo:spek"
+    },
+    {
+      "id": "koa:dik",
+      "label": "diK",
+      "kind": "semantic_identity_lexicon_tool",
+      "scope": "tooling",
+      "description": "Outil alpha.7 de dictionnaires KQ/KP, couverture linguistique et crosswalks Wikidata revus; cible Framework 11 draft.3, ne remplace pas les identités canoniques.",
+      "aliases": [],
+      "tags": [
+        "intake-2026-10-27"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-dik-20261027",
+        "src:koa-inventory-20261027"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "experimental_alpha_not_certified"
+      },
+      "repository_ref": "koa:repo:dik"
+    },
+    {
+      "id": "koa:kristal-authoring-kit",
+      "label": "Kristal Authoring Kit",
+      "kind": "semantic_authoring_tool",
+      "scope": "tooling",
+      "description": "Kit d’édition local v4.0.0-draft.4 avec profil v11 opt-in et construction v9/v10; enregistrements d’artefacts requis, aucune activation ou publication implicite.",
+      "aliases": [],
+      "tags": [
+        "intake-2026-10-27"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-kristal-authoring-kit-20261027",
+        "src:koa-inventory-20261027"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "v11_opt_in_unqualified_for_this_legacy_corpus"
+      },
+      "repository_ref": "koa:repo:kristal-authoring-kit"
+    },
+    {
+      "id": "koa:kristalizer",
+      "label": "Kristalizer",
+      "kind": "assisted_identity_reconciliation_tool",
+      "scope": "tooling",
+      "description": "Analyse KQ/KP et propositions Wikidata avec contrôle humain; staging hors source et builds locaux, aucune correspondance canonique exacte imposée automatiquement.",
+      "aliases": [],
+      "tags": [
+        "intake-2026-10-27"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-kristalizer-20261027",
+        "src:koa-inventory-20261027"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "analysis_and_review_no_auto_migration"
+      },
+      "repository_ref": "koa:repo:kristalizer"
+    },
+    {
+      "id": "koa:arketype",
+      "label": "Arketype",
+      "kind": "knowledge_archetype_tool",
+      "scope": "tooling",
+      "description": "Système d’archétypes cité par Ekole Pastorale; extensions ARK-20/ARK-21 candidates et non normatives, non installées implicitement.",
+      "aliases": [],
+      "tags": [
+        "intake-2026-10-27"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-ekole-pastorale-20261027",
+        "src:koa-inventory-20261027"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "candidate_extensions_only"
+      },
+      "repository_ref": "koa:repo:arketype"
+    },
+    {
+      "id": "koa:skope",
+      "label": "Skope",
+      "kind": "semantic_source_exploration",
+      "scope": "tooling",
+      "description": "Exploration/lecture sémantique mentionnée par Spek comme ressource optionnelle; intégration au moteur de publication non démontrée ici.",
+      "aliases": [],
+      "tags": [
+        "intake-2026-10-27"
+      ],
+      "assertion_status": "sourced",
+      "source_refs": [
+        "src:snapshot-spek-20261027",
+        "src:koa-inventory-20261027"
+      ],
+      "placement": {
+        "tier": "tooling",
+        "integration_state": "interface_to_be_qualified"
+      },
+      "repository_ref": "koa:repo:skope"
+    },
+    {
+      "id": "koa:doc-server",
+      "label": "kOA Doc Server (proposed)",
+      "kind": "documentation_orchestrator",
+      "scope": "tooling",
+      "description": "Proposed UI using this Kristal for categories, reference lookup and ZIP building; does not qualify maturity or execute diagnostics without approval.",
+      "source_refs": [
+        "src:owner-docserver-intent-20261119"
+      ],
+      "assertion_status": "claimed"
+    },
+    {
+      "id": "koa:ecosystem-diagnostic",
+      "label": "kOADiag",
+      "kind": "cross_repository_diagnostic_suite",
+      "scope": "tooling",
+      "description": "Local LevelUpDiag cross-repository diagnostics; observed 2026-11-13 campaign PARTIAL, not promoted.",
+      "source_refs": [
+        "src:smartdump-koadiag-20261119",
+        "src:smartdump-run-20261113"
+      ],
+      "assertion_status": "sourced"
+    }
+  ]
+}

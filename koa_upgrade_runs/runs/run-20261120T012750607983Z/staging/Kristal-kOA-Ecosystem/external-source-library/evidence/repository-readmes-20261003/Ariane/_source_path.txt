@@ -1,0 +1,2 @@
+repo=Ariane
+path=C:\mycode\Ariane\Ariane

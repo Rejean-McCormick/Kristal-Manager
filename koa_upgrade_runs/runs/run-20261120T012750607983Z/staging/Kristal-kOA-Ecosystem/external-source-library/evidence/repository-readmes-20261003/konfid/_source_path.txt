@@ -1,0 +1,2 @@
+repo=konfid
+path=C:\mycode\Konfid\konfid

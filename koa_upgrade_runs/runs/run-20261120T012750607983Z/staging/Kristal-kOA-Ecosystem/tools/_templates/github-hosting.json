@@ -1,0 +1,13 @@
+{
+  "format": "kristal.authoring-host/github/1.0",
+  "profile": "kristal.host/github/1.0",
+  "repository": "__REPOSITORY__",
+  "branch": "__BRANCH__",
+  "state_path": "__STATE_PATH__",
+  "qualify_workflow": "kristal-qualify.yml",
+  "publish_workflow": "kristal-publish.yml",
+  "framework": {
+    "repository": "__FRAMEWORK_REPOSITORY__",
+    "commit": "__FRAMEWORK_SHA__"
+  }
+}

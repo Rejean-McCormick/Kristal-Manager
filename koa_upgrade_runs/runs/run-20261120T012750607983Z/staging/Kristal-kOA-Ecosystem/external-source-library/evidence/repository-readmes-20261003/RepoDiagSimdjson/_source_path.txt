@@ -1,0 +1,2 @@
+repo=RepoDiagSimdjson
+path=C:\mycode\Simdjson\RepoDiagSimdjson

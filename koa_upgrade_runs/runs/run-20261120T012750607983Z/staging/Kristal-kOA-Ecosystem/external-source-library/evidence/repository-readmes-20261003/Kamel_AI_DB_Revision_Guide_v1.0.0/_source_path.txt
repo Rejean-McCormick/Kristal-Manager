@@ -1,0 +1,2 @@
+repo=Kamel_AI_DB_Revision_Guide_v1.0.0
+path=C:\mycode\Kamel\Kamel_AI_DB_Revision_Guide_v1.0.0

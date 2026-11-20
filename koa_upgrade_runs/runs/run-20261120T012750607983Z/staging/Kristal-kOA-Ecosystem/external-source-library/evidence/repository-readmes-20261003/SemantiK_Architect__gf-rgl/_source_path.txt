@@ -1,0 +1,2 @@
+repo=SemantiK_Architect__gf-rgl
+path=C:\mycode\SemantiK_Architect\gf-rgl

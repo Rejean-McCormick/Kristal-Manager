@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "kOA Ecosystem relation catalog",
+  "type": "object",
+  "required": [
+    "format",
+    "relations"
+  ],
+  "properties": {
+    "format": {
+      "const": "koa.relations.v2"
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "subject",
+          "predicate",
+          "object",
+          "assertion_status",
+          "source_refs"
+        ],
+        "properties": {
+          "subject": {
+            "type": "string"
+          },
+          "predicate": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "role": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "assertion_status": {
+            "enum": [
+              "claimed",
+              "sourced",
+              "reviewed",
+              "validated",
+              "hypothesis",
+              "disputed"
+            ]
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,227 @@
+component_id,component,utility_id,utility,pattern_matches,scenario_count,mean_role_weight_1_5,evidence_mode
+koa:ame-artificielle,EL / Âme Artificielle,koa:utility:find-and-understand,Find & Understand,2,,,architectural_path
+koa:ame-artificielle,EL / Âme Artificielle,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:ame-artificielle,EL / Âme Artificielle,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:ame-artificielle,EL / Âme Artificielle,koa:utility:remember-and-improve,Remember & Improve,2,,,architectural_path
+koa:ariane-runtime,Ariane Runtime / Theseus,koa:utility:organize-and-act,Organize & Act,1,,,architectural_path
+koa:ariane-runtime,Ariane Runtime / Theseus,koa:utility:respond-and-coordinate,Respond & Coordinate,3,,,architectural_path
+koa:ariane-runtime,Ariane Runtime / Theseus,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,,,architectural_path
+koa:astro-signals,Astro Signals,koa:utility:find-and-understand,Find & Understand,2,,,architectural_path
+koa:astro-signals,Astro Signals,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:astro-signals,Astro Signals,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:astro-signals,Astro Signals,koa:utility:remember-and-improve,Remember & Improve,2,,,architectural_path
+koa:audit-broker,Audit Broker,koa:utility:choose-and-govern,Choose & Govern,1,,,architectural_path
+koa:audit-broker,Audit Broker,koa:utility:organize-and-act,Organize & Act,1,,,architectural_path
+koa:audit-broker,Audit Broker,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:audit-broker,Audit Broker,koa:utility:remember-and-improve,Remember & Improve,1,,,architectural_path
+koa:certifikation,CertifiKation,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:daat,Da’at,koa:utility:find-and-understand,Find & Understand,1,,,architectural_path
+koa:daat,Da’at,koa:utility:organize-and-act,Organize & Act,1,,,architectural_path
+koa:editorial-figure-engine,Editorial Figure Engine,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:editorial-figure-engine,Editorial Figure Engine,koa:utility:collaborate-and-create,Collaborate & Create,1,,,architectural_path
+koa:editorial-figure-engine,Editorial Figure Engine,koa:utility:remember-and-improve,Remember & Improve,1,,,architectural_path
+koa:editorial-figure-engine,Editorial Figure Engine,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,,,architectural_path
+koa:ekoh,EkoH,koa:utility:find-and-understand,Find & Understand,1,,,architectural_path
+koa:ekoh,EkoH,koa:utility:collaborate-and-create,Collaborate & Create,1,,,architectural_path
+koa:ekoh,EkoH,koa:utility:choose-and-govern,Choose & Govern,2,,,architectural_path
+koa:encyklopedia,EncyKlopedia,koa:utility:find-and-understand,Find & Understand,2,,,architectural_path
+koa:encyklopedia,EncyKlopedia,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:ethikos,ethiKos,koa:utility:collaborate-and-create,Collaborate & Create,1,,,architectural_path
+koa:ethikos,ethiKos,koa:utility:choose-and-govern,Choose & Govern,3,,,architectural_path
+koa:identity-trust,Identity & Trust,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:identity-trust,Identity & Trust,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:interaction-kernel,Interaction Kernel,koa:utility:organize-and-act,Organize & Act,2,,,architectural_path
+koa:interaction-kernel,Interaction Kernel,koa:utility:respond-and-coordinate,Respond & Coordinate,3,,,architectural_path
+koa:interaction-kernel,Interaction Kernel,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,,,architectural_path
+koa:kamel,Kamel,koa:utility:collaborate-and-create,Collaborate & Create,1,,,architectural_path
+koa:kamel,Kamel,koa:utility:choose-and-govern,Choose & Govern,1,,,architectural_path
+koa:kamel,Kamel,koa:utility:remember-and-improve,Remember & Improve,1,,,architectural_path
+koa:kamel,Kamel,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,,,architectural_path
+koa:keenkonnect,keenKonnect,koa:utility:find-and-understand,Find & Understand,1,,,architectural_path
+koa:keenkonnect,keenKonnect,koa:utility:collaborate-and-create,Collaborate & Create,3,,,architectural_path
+koa:keenkonnect,keenKonnect,koa:utility:organize-and-act,Organize & Act,1,,,architectural_path
+koa:keyflow,KeyFlow,koa:utility:find-and-understand,Find & Understand,1,,,architectural_path
+koa:keyflow,KeyFlow,koa:utility:choose-and-govern,Choose & Govern,1,,,architectural_path
+koa:keyflow,KeyFlow,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:king-klown,King Klown,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:king-klown,King Klown,koa:utility:remember-and-improve,Remember & Improve,1,,,architectural_path
+koa:king-klown,King Klown,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,2,,,architectural_path
+koa:kintsugi-kompendio,Kintsugi / Kompendio,koa:utility:organize-and-act,Organize & Act,1,,,architectural_path
+koa:kintsugi-kompendio,Kintsugi / Kompendio,koa:utility:respond-and-coordinate,Respond & Coordinate,3,,,architectural_path
+koa:kintsugi-kompendio,Kintsugi / Kompendio,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,,,architectural_path
+koa:knowledge-library,Knowledge,koa:utility:learn-and-share,Learn & Share,3,,,architectural_path
+koa:knowledge-library,Knowledge,koa:utility:remember-and-improve,Remember & Improve,1,,,architectural_path
+koa:knowledge-library,Knowledge,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,,,architectural_path
+koa:koa-mediatheque,Médiathèque kOA,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:koa-mediatheque,Médiathèque kOA,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:koa-mediatheque,Médiathèque kOA,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,2,,,architectural_path
+koa:koali,Koali / kOA-Linux,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:koali,Koali / kOA-Linux,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:koali-spaces,Koali Spaces,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:koali-spaces,Koali Spaces,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:kompiler,Kompiler,koa:utility:find-and-understand,Find & Understand,2,,,architectural_path
+koa:kompiler,Kompiler,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:kompiler,Kompiler,koa:utility:collaborate-and-create,Collaborate & Create,1,,,architectural_path
+koa:kompiler,Kompiler,koa:utility:choose-and-govern,Choose & Govern,2,,,architectural_path
+koa:kompiler,Kompiler,koa:utility:organize-and-act,Organize & Act,2,,,architectural_path
+koa:kompiler,Kompiler,koa:utility:respond-and-coordinate,Respond & Coordinate,3,,,architectural_path
+koa:kompiler,Kompiler,koa:utility:remember-and-improve,Remember & Improve,2,,,architectural_path
+koa:kompiler,Kompiler,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,,,architectural_path
+koa:konnaxion,Konnaxion,koa:utility:find-and-understand,Find & Understand,2,15,3.67,scenario_observed+architectural
+koa:konnaxion,Konnaxion,koa:utility:learn-and-share,Learn & Share,3,15,4.07,scenario_observed+architectural
+koa:konnaxion,Konnaxion,koa:utility:collaborate-and-create,Collaborate & Create,3,15,4.93,scenario_observed+architectural
+koa:konnaxion,Konnaxion,koa:utility:choose-and-govern,Choose & Govern,3,15,4.67,scenario_observed+architectural
+koa:konnaxion,Konnaxion,koa:utility:organize-and-act,Organize & Act,2,15,2.87,scenario_observed+architectural
+koa:konnaxion,Konnaxion,koa:utility:respond-and-coordinate,Respond & Coordinate,2,15,3.13,scenario_observed+architectural
+koa:konnaxion,Konnaxion,koa:utility:remember-and-improve,Remember & Improve,3,15,3.4,scenario_observed+architectural
+koa:konnaxion,Konnaxion,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,15,3.53,scenario_observed+architectural
+koa:konnaxion-capsule-manager,Konnaxion Capsule Manager,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:konnaxion-worlds,Konnaxion Worlds,koa:utility:find-and-understand,Find & Understand,1,,,architectural_path
+koa:konnaxion-worlds,Konnaxion Worlds,koa:utility:collaborate-and-create,Collaborate & Create,3,,,architectural_path
+koa:konnaxion-worlds,Konnaxion Worlds,koa:utility:organize-and-act,Organize & Act,1,,,architectural_path
+koa:konnaxion-worlds,Konnaxion Worlds,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:konnected,KonnectED,koa:utility:learn-and-share,Learn & Share,3,,,architectural_path
+koa:konnected,KonnectED,koa:utility:remember-and-improve,Remember & Improve,1,,,architectural_path
+koa:konnected,KonnectED,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,,,architectural_path
+koa:konstellation,Konstellation,koa:utility:find-and-understand,Find & Understand,2,,,architectural_path
+koa:konstellation,Konstellation,koa:utility:learn-and-share,Learn & Share,2,,,architectural_path
+koa:konstellation,Konstellation,koa:utility:collaborate-and-create,Collaborate & Create,1,,,architectural_path
+koa:konstellation,Konstellation,koa:utility:choose-and-govern,Choose & Govern,2,,,architectural_path
+koa:konstellation,Konstellation,koa:utility:organize-and-act,Organize & Act,2,,,architectural_path
+koa:konstellation,Konstellation,koa:utility:respond-and-coordinate,Respond & Coordinate,3,,,architectural_path
+koa:konstellation,Konstellation,koa:utility:remember-and-improve,Remember & Improve,2,,,architectural_path
+koa:konstellation,Konstellation,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,,,architectural_path
+koa:konstellation-publisher,Konstellation Publisher,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:konstruct,Konstruct,koa:utility:find-and-understand,Find & Understand,1,,,architectural_path
+koa:konstruct,Konstruct,koa:utility:collaborate-and-create,Collaborate & Create,3,,,architectural_path
+koa:konstruct,Konstruct,koa:utility:organize-and-act,Organize & Act,1,,,architectural_path
+koa:konsultations,Konsultations,koa:utility:choose-and-govern,Choose & Govern,1,,,architectural_path
+koa:kontact,Kontact,koa:utility:find-and-understand,Find & Understand,1,,,architectural_path
+koa:kontact,Kontact,koa:utility:collaborate-and-create,Collaborate & Create,1,,,architectural_path
+koa:kor,Kor,koa:utility:find-and-understand,Find & Understand,1,,,architectural_path
+koa:kor,Kor,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:kor,Kor,koa:utility:collaborate-and-create,Collaborate & Create,1,,,architectural_path
+koa:kor,Kor,koa:utility:choose-and-govern,Choose & Govern,2,,,architectural_path
+koa:kor,Kor,koa:utility:organize-and-act,Organize & Act,2,,,architectural_path
+koa:kor,Kor,koa:utility:respond-and-coordinate,Respond & Coordinate,3,,,architectural_path
+koa:kor,Kor,koa:utility:remember-and-improve,Remember & Improve,1,,,architectural_path
+koa:kor,Kor,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,,,architectural_path
+koa:korum,Korum,koa:utility:choose-and-govern,Choose & Govern,2,,,architectural_path
+koa:kreative,Kreative,koa:utility:find-and-understand,Find & Understand,1,,,architectural_path
+koa:kreative,Kreative,koa:utility:collaborate-and-create,Collaborate & Create,1,,,architectural_path
+koa:kristal,Kristal,koa:utility:find-and-understand,Find & Understand,2,15,4.6,scenario_observed+architectural
+koa:kristal,Kristal,koa:utility:learn-and-share,Learn & Share,1,15,4.13,scenario_observed+architectural
+koa:kristal,Kristal,koa:utility:choose-and-govern,Choose & Govern,2,15,3.93,scenario_observed+architectural
+koa:kristal,Kristal,koa:utility:organize-and-act,Organize & Act,1,15,4.07,scenario_observed+architectural
+koa:kristal,Kristal,koa:utility:respond-and-coordinate,Respond & Coordinate,1,15,4.53,scenario_observed+architectural
+koa:kristal,Kristal,koa:utility:remember-and-improve,Remember & Improve,3,15,4.73,scenario_observed+architectural
+koa:kristal,Kristal,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,15,4.67,scenario_observed+architectural
+koa:kristal-farms,Kristal Farms,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:kristal-farms,Kristal Farms,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:kristal-grand-challenges,Kristal Grand Challenges,koa:utility:find-and-understand,Find & Understand,2,,,architectural_path
+koa:kristal-grand-challenges,Kristal Grand Challenges,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:kristal-grand-challenges,Kristal Grand Challenges,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:kristal-grand-challenges,Kristal Grand Challenges,koa:utility:remember-and-improve,Remember & Improve,2,,,architectural_path
+koa:kristal-math,Kristal Math,koa:utility:find-and-understand,Find & Understand,2,,,architectural_path
+koa:kristal-math,Kristal Math,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:kristal-math,Kristal Math,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:kristal-math,Kristal Math,koa:utility:remember-and-improve,Remember & Improve,2,,,architectural_path
+koa:kristal-runtime,kristal_runtime,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:kristal-runtime,kristal_runtime,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:mathchallenges,MathChallenges,koa:utility:find-and-understand,Find & Understand,1,,,architectural_path
+koa:mathchallenges,MathChallenges,koa:utility:collaborate-and-create,Collaborate & Create,1,,,architectural_path
+koa:mathchallenges,MathChallenges,koa:utility:choose-and-govern,Choose & Govern,1,,,architectural_path
+koa:mathchallenges,MathChallenges,koa:utility:organize-and-act,Organize & Act,2,,,architectural_path
+koa:mathchallenges,MathChallenges,koa:utility:respond-and-coordinate,Respond & Coordinate,3,,,architectural_path
+koa:medikristal,MediKristal,koa:utility:find-and-understand,Find & Understand,2,,,architectural_path
+koa:medikristal,MediKristal,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:medikristal,MediKristal,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:medikristal,MediKristal,koa:utility:remember-and-improve,Remember & Improve,2,,,architectural_path
+koa:orgo,Orgo,koa:utility:find-and-understand,Find & Understand,1,15,2.6,scenario_observed+architectural
+koa:orgo,Orgo,koa:utility:learn-and-share,Learn & Share,1,14,1.71,scenario_observed+architectural
+koa:orgo,Orgo,koa:utility:collaborate-and-create,Collaborate & Create,1,15,4.0,scenario_observed+architectural
+koa:orgo,Orgo,koa:utility:choose-and-govern,Choose & Govern,1,15,3.6,scenario_observed+architectural
+koa:orgo,Orgo,koa:utility:organize-and-act,Organize & Act,3,15,5.0,scenario_observed+architectural
+koa:orgo,Orgo,koa:utility:respond-and-coordinate,Respond & Coordinate,3,15,4.6,scenario_observed+architectural
+koa:orgo,Orgo,koa:utility:remember-and-improve,Remember & Improve,3,15,3.07,scenario_observed+architectural
+koa:orgo,Orgo,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,15,1.27,scenario_observed+architectural
+koa:orgo-worlds,Orgo Worlds,koa:utility:collaborate-and-create,Collaborate & Create,1,,,architectural_path
+koa:orgo-worlds,Orgo Worlds,koa:utility:choose-and-govern,Choose & Govern,1,,,architectural_path
+koa:orgo-worlds,Orgo Worlds,koa:utility:organize-and-act,Organize & Act,3,,,architectural_path
+koa:orgo-worlds,Orgo Worlds,koa:utility:respond-and-coordinate,Respond & Coordinate,2,,,architectural_path
+koa:orphee-walk-straight,ORPHÉE: Walk Straight,koa:utility:learn-and-share,Learn & Share,3,,,architectural_path
+koa:orphee-walk-straight,ORPHÉE: Walk Straight,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:orphee-walk-straight,ORPHÉE: Walk Straight,koa:utility:remember-and-improve,Remember & Improve,1,,,architectural_path
+koa:orphee-walk-straight,ORPHÉE: Walk Straight,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,2,,,architectural_path
+koa:pi,Pi Theory,koa:utility:find-and-understand,Find & Understand,2,,,architectural_path
+koa:pi,Pi Theory,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:pi,Pi Theory,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:pi,Pi Theory,koa:utility:remember-and-improve,Remember & Improve,3,,,architectural_path
+koa:pi,Pi Theory,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,,,architectural_path
+koa:power-dynamics,Power Dynamics,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:power-dynamics,Power Dynamics,koa:utility:remember-and-improve,Remember & Improve,1,,,architectural_path
+koa:power-dynamics,Power Dynamics,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,,,architectural_path
+koa:publication-gateway,Publication Gateway,koa:utility:organize-and-act,Organize & Act,1,,,architectural_path
+koa:publication-gateway,Publication Gateway,koa:utility:respond-and-coordinate,Respond & Coordinate,3,,,architectural_path
+koa:publication-gateway,Publication Gateway,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,3,,,architectural_path
+koa:scenario-mosaic,Koali Scenario Mosaic,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:scenario-mosaic,Koali Scenario Mosaic,koa:utility:remember-and-improve,Remember & Improve,1,,,architectural_path
+koa:scenario-mosaic,Koali Scenario Mosaic,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,,,architectural_path
+koa:semantik-architect,SemantiK Architect,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:semantik-architect,SemantiK Architect,koa:utility:organize-and-act,Organize & Act,1,,,architectural_path
+koa:semantik-architect,SemantiK Architect,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,2,,,architectural_path
+koa:semantik-phrase-ops-console,SemantiK Phrase Ops Console,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:semantik-phrase-ops-console,SemantiK Phrase Ops Console,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,2,,,architectural_path
+koa:sentient,SenTient,koa:utility:find-and-understand,Find & Understand,1,,,architectural_path
+koa:smart-vote,Smart Vote,koa:utility:collaborate-and-create,Collaborate & Create,1,,,architectural_path
+koa:smart-vote,Smart Vote,koa:utility:choose-and-govern,Choose & Govern,2,,,architectural_path
+koa:support:ars-magna-lulli,Ars Magna Lulli,koa:utility:find-and-understand,Find & Understand,1,,,architectural_path
+koa:support:ars-magna-lulli,Ars Magna Lulli,koa:utility:collaborate-and-create,Collaborate & Create,2,,,architectural_path
+koa:support:ars-magna-lulli,Ars Magna Lulli,koa:utility:choose-and-govern,Choose & Govern,1,,,architectural_path
+koa:support:ars-magna-lulli,Ars Magna Lulli,koa:utility:organize-and-act,Organize & Act,3,,,architectural_path
+koa:support:ars-magna-lulli,Ars Magna Lulli,koa:utility:respond-and-coordinate,Respond & Coordinate,3,,,architectural_path
+koa:support:ma-gustave-gf-ecosystem,MA-Gustave GF Language Engineering Ecosystem,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:support:ma-gustave-gf-ecosystem,MA-Gustave GF Language Engineering Ecosystem,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,2,,,architectural_path
+koa:swarmcraft,SwarmCraft,koa:utility:collaborate-and-create,Collaborate & Create,1,,,architectural_path
+koa:swarmcraft,SwarmCraft,koa:utility:choose-and-govern,Choose & Govern,1,,,architectural_path
+koa:swarmcraft,SwarmCraft,koa:utility:organize-and-act,Organize & Act,3,,,architectural_path
+koa:swarmcraft,SwarmCraft,koa:utility:respond-and-coordinate,Respond & Coordinate,3,,,architectural_path
+koa:swarmcraft,SwarmCraft,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,,,architectural_path
+koa:uckk,UCKK / Univers-Cité King Klown,koa:utility:find-and-understand,Find & Understand,1,5,1.6,scenario_observed+architectural
+koa:uckk,UCKK / Univers-Cité King Klown,koa:utility:learn-and-share,Learn & Share,3,15,3.33,scenario_observed+architectural
+koa:uckk,UCKK / Univers-Cité King Klown,koa:utility:choose-and-govern,Choose & Govern,2,8,1.75,scenario_observed+architectural
+koa:uckk,UCKK / Univers-Cité King Klown,koa:utility:respond-and-coordinate,Respond & Coordinate,1,4,2.75,scenario_observed+architectural
+koa:uckk,UCKK / Univers-Cité King Klown,koa:utility:remember-and-improve,Remember & Improve,3,9,2.0,scenario_observed+architectural
+koa:uckk,UCKK / Univers-Cité King Klown,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,3,15,5.0,scenario_observed+architectural
+koa:uckk-archive,UCKK Archive / Mediatheque,koa:utility:find-and-understand,Find & Understand,1,,,architectural_path
+koa:uckk-archive,UCKK Archive / Mediatheque,koa:utility:learn-and-share,Learn & Share,3,,,architectural_path
+koa:uckk-archive,UCKK Archive / Mediatheque,koa:utility:collaborate-and-create,Collaborate & Create,1,,,architectural_path
+koa:uckk-archive,UCKK Archive / Mediatheque,koa:utility:choose-and-govern,Choose & Govern,1,,,architectural_path
+koa:uckk-archive,UCKK Archive / Mediatheque,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:uckk-archive,UCKK Archive / Mediatheque,koa:utility:remember-and-improve,Remember & Improve,3,,,architectural_path
+koa:uckk-archive,UCKK Archive / Mediatheque,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,2,,,architectural_path
+koa:uckk-assembly,UCKK Assembly,koa:utility:collaborate-and-create,Collaborate & Create,1,,,architectural_path
+koa:uckk-assembly,UCKK Assembly,koa:utility:choose-and-govern,Choose & Govern,3,,,architectural_path
+koa:uckk-challenge,UCKK Challenge,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:uckk-core,UCKK Institutional Core,koa:utility:learn-and-share,Learn & Share,3,,,architectural_path
+koa:uckk-core,UCKK Institutional Core,koa:utility:remember-and-improve,Remember & Improve,1,,,architectural_path
+koa:uckk-core,UCKK Institutional Core,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,,,architectural_path
+koa:uckk-dashboard,UCKK Dashboard,koa:utility:choose-and-govern,Choose & Govern,1,,,architectural_path
+koa:uckk-dashboard,UCKK Dashboard,koa:utility:remember-and-improve,Remember & Improve,1,,,architectural_path
+koa:uckk-dashboard,UCKK Dashboard,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,1,,,architectural_path
+koa:uckk-moodle,UCKK Moodle,koa:utility:learn-and-share,Learn & Share,3,,,architectural_path
+koa:uckk-moodle,UCKK Moodle,koa:utility:remember-and-improve,Remember & Improve,1,,,architectural_path
+koa:uckk-moodle,UCKK Moodle,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,2,,,architectural_path
+koa:uckk-ops-console,UCKK Ops Console,koa:utility:collaborate-and-create,Collaborate & Create,1,,,architectural_path
+koa:uckk-ops-console,UCKK Ops Console,koa:utility:organize-and-act,Organize & Act,3,,,architectural_path
+koa:uckk-ops-console,UCKK Ops Console,koa:utility:respond-and-coordinate,Respond & Coordinate,2,,,architectural_path
+koa:uckk-publisher,UCKK Publisher,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:uckk-publisher,UCKK Publisher,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,3,,,architectural_path
+koa:uckk-report,UCKK Reports,koa:utility:choose-and-govern,Choose & Govern,1,,,architectural_path
+koa:uckk-report,UCKK Reports,koa:utility:organize-and-act,Organize & Act,1,,,architectural_path
+koa:uckk-report,UCKK Reports,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:uckk-report,UCKK Reports,koa:utility:remember-and-improve,Remember & Improve,1,,,architectural_path
+koa:voting-machine,VotingMachine,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:voting-machine,VotingMachine,koa:utility:respond-and-coordinate,Respond & Coordinate,1,,,architectural_path
+koa:voxtral-audiobook-studio,Voxtral Audiobook Studio,koa:utility:learn-and-share,Learn & Share,1,,,architectural_path
+koa:voxtral-audiobook-studio,Voxtral Audiobook Studio,koa:utility:disseminate-and-connect-to-the-public,Disseminate & Connect to the Public,2,,,architectural_path

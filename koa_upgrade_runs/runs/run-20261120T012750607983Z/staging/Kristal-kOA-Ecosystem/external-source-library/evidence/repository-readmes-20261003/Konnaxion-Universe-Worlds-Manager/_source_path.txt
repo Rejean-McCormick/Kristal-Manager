@@ -1,0 +1,2 @@
+repo=Konnaxion-Universe-Worlds-Manager
+path=C:\mycode\Konnaxion\Konnaxion-Universe-Worlds-Manager

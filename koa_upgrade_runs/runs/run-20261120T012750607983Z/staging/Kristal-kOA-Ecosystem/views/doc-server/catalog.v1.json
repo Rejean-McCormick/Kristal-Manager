@@ -1,0 +1,595 @@
+{
+  "format": "koa.doc-server.catalog.v1",
+  "kristal_version": "0.7.1",
+  "authority": {
+    "categories": "Kristal-kOA-Ecosystem",
+    "inventory": "kOA Digital Ecosystem",
+    "maturity": "GitHub Audit and evidence owners"
+  },
+  "warnings": [
+    "A selection is not a runtime qualification",
+    "Diagnostic observations are not promoted evidence"
+  ],
+  "categories": [
+    {
+      "id": "koa:docscope:encyclopedie",
+      "label": "Encyclopédie",
+      "default_selected": false,
+      "repositories": [
+        {
+          "id": "koa:repo:daat",
+          "full_name": "Rejean-McCormick/Daat",
+          "url": null
+        },
+        {
+          "id": "koa:repo:encyklopedia",
+          "full_name": "Rejean-McCormick/EncyKlopedia",
+          "url": "https://github.com/Rejean-McCormick/EncyKlopedia"
+        },
+        {
+          "id": "koa:repo:mediatheque-52103a8",
+          "full_name": "Rejean-McCormick/Mediatheque",
+          "url": null
+        },
+        {
+          "id": "koa:repo:skope",
+          "full_name": "Rejean-McCormick/Skope",
+          "url": null
+        }
+      ],
+      "diagnostic_components": []
+    },
+    {
+      "id": "koa:docscope:kristal",
+      "label": "Kristal",
+      "default_selected": false,
+      "repositories": [
+        {
+          "id": "koa:repo:arketype",
+          "full_name": "Rejean-McCormick/Arketype",
+          "url": null
+        },
+        {
+          "id": "koa:repo:dik",
+          "full_name": "Rejean-McCormick/diK",
+          "url": "https://github.com/Rejean-McCormick/diK"
+        },
+        {
+          "id": "koa:repo:kompiler",
+          "full_name": "Rejean-McCormick/Kompiler",
+          "url": null
+        },
+        {
+          "id": "koa:repo:konstellation",
+          "full_name": "Rejean-McCormick/Konstellation",
+          "url": "https://github.com/Rejean-McCormick/Konstellation"
+        },
+        {
+          "id": "koa:repo:konstellation-light",
+          "full_name": "Rejean-McCormick/Konstellation-Light",
+          "url": null
+        },
+        {
+          "id": "koa:repo:konstellation-publisher-9316422",
+          "full_name": "Rejean-McCormick/Konstellation-Publisher",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kristal-authoring-kit",
+          "full_name": "Rejean-McCormick/Kristal-Authoring-Kit",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kristal-framework",
+          "full_name": "Rejean-McCormick/Kristal-Framework",
+          "url": "https://github.com/Rejean-McCormick/Kristal-Framework"
+        },
+        {
+          "id": "koa:repo:kristal-integration-pack",
+          "full_name": "Rejean-McCormick/Kristal-Integration-Pack",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kristal-manager",
+          "full_name": "Rejean-McCormick/Kristal-Manager",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kristal-public",
+          "full_name": "Rejean-McCormick/kristal-public",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kristal-reference",
+          "full_name": "Rejean-McCormick/Kristal-Reference",
+          "url": "https://github.com/Rejean-McCormick/Kristal-Reference"
+        },
+        {
+          "id": "koa:repo:kristaldiag",
+          "full_name": "Rejean-McCormick/KristalDiag",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kristalizer",
+          "full_name": "Rejean-McCormick/Kristalizer",
+          "url": "https://github.com/Rejean-McCormick/Kristalizer"
+        },
+        {
+          "id": "koa:repo:levelupdiag-kristal",
+          "full_name": "Rejean-McCormick/LevelUpDiag-Kristal",
+          "url": "https://github.com/Rejean-McCormick/LevelUpDiag-Kristal"
+        }
+      ],
+      "diagnostic_components": []
+    },
+    {
+      "id": "koa:docscope:analyses",
+      "label": "Analyse et diagnostics",
+      "default_selected": false,
+      "repositories": [
+        {
+          "id": "koa:repo:grammatical-framework-audit",
+          "full_name": "Rejean-McCormick/Grammatical-Framework-audit",
+          "url": "https://github.com/Rejean-McCormick/Grammatical-Framework-audit"
+        },
+        {
+          "id": "koa:repo:koa-digital-ecosystem-github-audit",
+          "full_name": "Rejean-McCormick/kOA-Digital-Ecosystem-GitHub-Audit",
+          "url": "https://github.com/Rejean-McCormick/kOA-Digital-Ecosystem-GitHub-Audit"
+        },
+        {
+          "id": "koa:repo:konnaxion-levelupdiag",
+          "full_name": "Rejean-McCormick/Konnaxion-LevelUpDiag",
+          "url": "https://github.com/Rejean-McCormick/Konnaxion-LevelUpDiag"
+        },
+        {
+          "id": "koa:repo:konnaxion-securitydiag",
+          "full_name": "Rejean-McCormick/Konnaxion-SecurityDiag",
+          "url": "https://github.com/Rejean-McCormick/Konnaxion-SecurityDiag"
+        },
+        {
+          "id": "koa:repo:konnaxiondiag",
+          "full_name": "Rejean-McCormick/KonnaxionDiag",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kristaldiag",
+          "full_name": "Rejean-McCormick/KristalDiag",
+          "url": null
+        },
+        {
+          "id": "koa:repo:levelupdiag-koa-linux",
+          "full_name": "Rejean-McCormick/LevelUpDiag-kOA-Linux",
+          "url": "https://github.com/Rejean-McCormick/LevelUpDiag-kOA-Linux"
+        },
+        {
+          "id": "koa:repo:levelupdiag-kristal",
+          "full_name": "Rejean-McCormick/LevelUpDiag-Kristal",
+          "url": "https://github.com/Rejean-McCormick/LevelUpDiag-Kristal"
+        },
+        {
+          "id": "koa:repo:levelupdiag-orgo",
+          "full_name": "Rejean-McCormick/LevelUpDiag-Orgo",
+          "url": "https://github.com/Rejean-McCormick/LevelUpDiag-Orgo"
+        },
+        {
+          "id": "koa:repo:levelupdiag-semantik-architect",
+          "full_name": "Rejean-McCormick/LevelUpDiag_SemantiK-Architect",
+          "url": "https://github.com/Rejean-McCormick/LevelUpDiag_SemantiK-Architect"
+        },
+        {
+          "id": "koa:repo:medikristal-levelupdiag",
+          "full_name": "Rejean-McCormick/MediKristal-LevelUpDiag-",
+          "url": "https://github.com/Rejean-McCormick/MediKristal-LevelUpDiag-"
+        }
+      ],
+      "diagnostic_components": [
+        "koa:ecosystem-diagnostic"
+      ]
+    },
+    {
+      "id": "koa:docscope:ecole",
+      "label": "École",
+      "default_selected": false,
+      "repositories": [
+        {
+          "id": "koa:repo:akor",
+          "full_name": "Rejean-McCormick/Akor",
+          "url": null
+        },
+        {
+          "id": "koa:repo:ekole",
+          "full_name": "Rejean-McCormick/Ekole",
+          "url": null
+        },
+        {
+          "id": "koa:repo:ekole-atelier-images",
+          "full_name": "Rejean-McCormick/Ekole-Atelier-Images",
+          "url": "https://github.com/Rejean-McCormick/Ekole-Atelier-Images"
+        },
+        {
+          "id": "koa:repo:ekole-quebec",
+          "full_name": "Rejean-McCormick/Ekole-Quebec",
+          "url": "https://github.com/Rejean-McCormick/Ekole-Quebec"
+        },
+        {
+          "id": "koa:repo:karacter",
+          "full_name": "Rejean-McCormick/Karacter",
+          "url": "https://github.com/Rejean-McCormick/Karacter"
+        },
+        {
+          "id": "koa:repo:kolor",
+          "full_name": "Rejean-McCormick/Kolor",
+          "url": "https://github.com/Rejean-McCormick/Kolor"
+        },
+        {
+          "id": "koa:repo:kompose",
+          "full_name": "Rejean-McCormick/Kompose",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kontexte",
+          "full_name": "Rejean-McCormick/Kontexte",
+          "url": null
+        }
+      ],
+      "diagnostic_components": []
+    },
+    {
+      "id": "koa:docscope:ecole-pastorale",
+      "label": "École — Pastorale",
+      "default_selected": false,
+      "repositories": [
+        {
+          "id": "koa:repo:ekole-pastorale",
+          "full_name": "Rejean-McCormick/Ekole-Pastorale",
+          "url": null
+        }
+      ],
+      "diagnostic_components": []
+    },
+    {
+      "id": "koa:docscope:uckk",
+      "label": "Univers-Cité King Klown",
+      "default_selected": false,
+      "repositories": [
+        {
+          "id": "koa:repo:uckk",
+          "full_name": "Rejean-McCormick/UCKK",
+          "url": "https://github.com/Rejean-McCormick/UCKK"
+        },
+        {
+          "id": "koa:repo:uckk-assets",
+          "full_name": "Rejean-McCormick/UCKK-Assets",
+          "url": "https://github.com/Rejean-McCormick/UCKK-Assets"
+        },
+        {
+          "id": "koa:repo:uckk-ops-console",
+          "full_name": "Rejean-McCormick/UCKK-Ops-Console",
+          "url": "https://github.com/Rejean-McCormick/UCKK-Ops-Console"
+        }
+      ],
+      "diagnostic_components": []
+    },
+    {
+      "id": "koa:docscope:coordination",
+      "label": "Coordination et documentation kOA",
+      "default_selected": false,
+      "repositories": [
+        {
+          "id": "koa:repo:homepage-initkoa-org",
+          "full_name": "Rejean-McCormick/HomePage-initkoa.org",
+          "url": "https://github.com/Rejean-McCormick/HomePage-initkoa.org"
+        },
+        {
+          "id": "koa:repo:initkoa-docs",
+          "full_name": "Rejean-McCormick/initkoa-docs",
+          "url": "https://github.com/Rejean-McCormick/initkoa-docs"
+        },
+        {
+          "id": "koa:repo:koa-digital-ecosystem",
+          "full_name": "Rejean-McCormick/kOA-Digital-Ecosystem",
+          "url": "https://github.com/Rejean-McCormick/kOA-Digital-Ecosystem"
+        },
+        {
+          "id": "koa:repo:koa-digital-ecosystem-github-audit",
+          "full_name": "Rejean-McCormick/kOA-Digital-Ecosystem-GitHub-Audit",
+          "url": "https://github.com/Rejean-McCormick/kOA-Digital-Ecosystem-GitHub-Audit"
+        }
+      ],
+      "diagnostic_components": []
+    },
+    {
+      "id": "koa:docscope:portefeuille-c0",
+      "label": "Portefeuille officiel kOA",
+      "default_selected": false,
+      "repositories": [
+        {
+          "id": "koa:repo:akor",
+          "full_name": "Rejean-McCormick/Akor",
+          "url": null
+        },
+        {
+          "id": "koa:repo:arketype",
+          "full_name": "Rejean-McCormick/Arketype",
+          "url": null
+        },
+        {
+          "id": "koa:repo:daat",
+          "full_name": "Rejean-McCormick/Daat",
+          "url": null
+        },
+        {
+          "id": "koa:repo:dik",
+          "full_name": "Rejean-McCormick/diK",
+          "url": "https://github.com/Rejean-McCormick/diK"
+        },
+        {
+          "id": "koa:repo:ekole",
+          "full_name": "Rejean-McCormick/Ekole",
+          "url": null
+        },
+        {
+          "id": "koa:repo:ekole-atelier-images",
+          "full_name": "Rejean-McCormick/Ekole-Atelier-Images",
+          "url": "https://github.com/Rejean-McCormick/Ekole-Atelier-Images"
+        },
+        {
+          "id": "koa:repo:ekole-pastorale",
+          "full_name": "Rejean-McCormick/Ekole-Pastorale",
+          "url": null
+        },
+        {
+          "id": "koa:repo:ekole-quebec",
+          "full_name": "Rejean-McCormick/Ekole-Quebec",
+          "url": "https://github.com/Rejean-McCormick/Ekole-Quebec"
+        },
+        {
+          "id": "koa:repo:encyklopedia",
+          "full_name": "Rejean-McCormick/EncyKlopedia",
+          "url": "https://github.com/Rejean-McCormick/EncyKlopedia"
+        },
+        {
+          "id": "koa:repo:homepage-initkoa-org",
+          "full_name": "Rejean-McCormick/HomePage-initkoa.org",
+          "url": "https://github.com/Rejean-McCormick/HomePage-initkoa.org"
+        },
+        {
+          "id": "koa:repo:initkoa-docs",
+          "full_name": "Rejean-McCormick/initkoa-docs",
+          "url": "https://github.com/Rejean-McCormick/initkoa-docs"
+        },
+        {
+          "id": "koa:repo:interaction-kernel",
+          "full_name": "Rejean-McCormick/Interaction-Kernel",
+          "url": "https://github.com/Rejean-McCormick/Interaction-Kernel"
+        },
+        {
+          "id": "koa:repo:karacter",
+          "full_name": "Rejean-McCormick/Karacter",
+          "url": "https://github.com/Rejean-McCormick/Karacter"
+        },
+        {
+          "id": "koa:repo:koa-digital-ecosystem",
+          "full_name": "Rejean-McCormick/kOA-Digital-Ecosystem",
+          "url": "https://github.com/Rejean-McCormick/kOA-Digital-Ecosystem"
+        },
+        {
+          "id": "koa:repo:koa-linux-koali",
+          "full_name": "Rejean-McCormick/kOA-Linux-Koali",
+          "url": "https://github.com/Rejean-McCormick/kOA-Linux-Koali"
+        },
+        {
+          "id": "koa:repo:koali-control-panel",
+          "full_name": "Rejean-McCormick/Koali-Control-Panel",
+          "url": "https://github.com/Rejean-McCormick/Koali-Control-Panel"
+        },
+        {
+          "id": "koa:repo:koali-scenario-mosaic",
+          "full_name": "Rejean-McCormick/Koali-Scenario-Mosaic",
+          "url": "https://github.com/Rejean-McCormick/Koali-Scenario-Mosaic"
+        },
+        {
+          "id": "koa:repo:koali-spaces",
+          "full_name": "Rejean-McCormick/Koali-Spaces",
+          "url": "https://github.com/Rejean-McCormick/Koali-Spaces"
+        },
+        {
+          "id": "koa:repo:kolor",
+          "full_name": "Rejean-McCormick/Kolor",
+          "url": "https://github.com/Rejean-McCormick/Kolor"
+        },
+        {
+          "id": "koa:repo:kompiler",
+          "full_name": "Rejean-McCormick/Kompiler",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kompose",
+          "full_name": "Rejean-McCormick/Kompose",
+          "url": null
+        },
+        {
+          "id": "koa:repo:konductor",
+          "full_name": "Rejean-McCormick/Konductor",
+          "url": "https://github.com/Rejean-McCormick/Konductor"
+        },
+        {
+          "id": "koa:repo:konfid",
+          "full_name": "Rejean-McCormick/Konfid",
+          "url": "https://github.com/Rejean-McCormick/Konfid"
+        },
+        {
+          "id": "koa:repo:konnaxion",
+          "full_name": "Rejean-McCormick/Konnaxion",
+          "url": "https://github.com/Rejean-McCormick/Konnaxion"
+        },
+        {
+          "id": "koa:repo:konnaxion-capsule-manager",
+          "full_name": "Rejean-McCormick/Konnaxion-Capsule-Manager",
+          "url": "https://github.com/Rejean-McCormick/Konnaxion-Capsule-Manager"
+        },
+        {
+          "id": "koa:repo:konnaxion-worlds",
+          "full_name": "Rejean-McCormick/Konnaxion-Worlds",
+          "url": "https://github.com/Rejean-McCormick/Konnaxion-Worlds"
+        },
+        {
+          "id": "koa:repo:konnaxiondiag",
+          "full_name": "Rejean-McCormick/KonnaxionDiag",
+          "url": null
+        },
+        {
+          "id": "koa:repo:konstellation",
+          "full_name": "Rejean-McCormick/Konstellation",
+          "url": "https://github.com/Rejean-McCormick/Konstellation"
+        },
+        {
+          "id": "koa:repo:konstellation-light",
+          "full_name": "Rejean-McCormick/Konstellation-Light",
+          "url": null
+        },
+        {
+          "id": "koa:repo:konstellation-publisher-9316422",
+          "full_name": "Rejean-McCormick/Konstellation-Publisher",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kontainer",
+          "full_name": "Rejean-McCormick/Kontainer",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kontexte",
+          "full_name": "Rejean-McCormick/Kontexte",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kristal-authoring-kit",
+          "full_name": "Rejean-McCormick/Kristal-Authoring-Kit",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kristal-framework",
+          "full_name": "Rejean-McCormick/Kristal-Framework",
+          "url": "https://github.com/Rejean-McCormick/Kristal-Framework"
+        },
+        {
+          "id": "koa:repo:kristal-integration-pack",
+          "full_name": "Rejean-McCormick/Kristal-Integration-Pack",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kristal-manager",
+          "full_name": "Rejean-McCormick/Kristal-Manager",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kristal-public",
+          "full_name": "Rejean-McCormick/kristal-public",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kristaldiag",
+          "full_name": "Rejean-McCormick/KristalDiag",
+          "url": null
+        },
+        {
+          "id": "koa:repo:kristalizer",
+          "full_name": "Rejean-McCormick/Kristalizer",
+          "url": "https://github.com/Rejean-McCormick/Kristalizer"
+        },
+        {
+          "id": "koa:repo:levelupdiag-koa-linux",
+          "full_name": "Rejean-McCormick/LevelUpDiag-kOA-Linux",
+          "url": "https://github.com/Rejean-McCormick/LevelUpDiag-kOA-Linux"
+        },
+        {
+          "id": "koa:repo:levelupdiag-orgo",
+          "full_name": "Rejean-McCormick/LevelUpDiag-Orgo",
+          "url": "https://github.com/Rejean-McCormick/LevelUpDiag-Orgo"
+        },
+        {
+          "id": "koa:repo:levelupdiag-semantik-architect",
+          "full_name": "Rejean-McCormick/LevelUpDiag_SemantiK-Architect",
+          "url": "https://github.com/Rejean-McCormick/LevelUpDiag_SemantiK-Architect"
+        },
+        {
+          "id": "koa:repo:mediatheque-52103a8",
+          "full_name": "Rejean-McCormick/Mediatheque",
+          "url": null
+        },
+        {
+          "id": "koa:repo:mediatheque-blank",
+          "full_name": "Rejean-McCormick/Mediatheque-blank",
+          "url": null
+        },
+        {
+          "id": "koa:repo:medikristal",
+          "full_name": "Rejean-McCormick/MediKristal",
+          "url": "https://github.com/Rejean-McCormick/MediKristal"
+        },
+        {
+          "id": "koa:repo:medikristal-levelupdiag",
+          "full_name": "Rejean-McCormick/MediKristal-LevelUpDiag-",
+          "url": "https://github.com/Rejean-McCormick/MediKristal-LevelUpDiag-"
+        },
+        {
+          "id": "koa:repo:orgo",
+          "full_name": "Rejean-McCormick/Orgo",
+          "url": "https://github.com/Rejean-McCormick/Orgo"
+        },
+        {
+          "id": "koa:repo:orgo-worlds",
+          "full_name": "Rejean-McCormick/Orgo-Worlds",
+          "url": "https://github.com/Rejean-McCormick/Orgo-Worlds"
+        },
+        {
+          "id": "koa:repo:semantik-architect",
+          "full_name": "Rejean-McCormick/SemantiK-Architect",
+          "url": "https://github.com/Rejean-McCormick/SemantiK-Architect"
+        },
+        {
+          "id": "koa:repo:semantik-runtime-orchestrator",
+          "full_name": "Rejean-McCormick/SemantiK_Runtime_Orchestrator",
+          "url": "https://github.com/Rejean-McCormick/SemantiK_Runtime_Orchestrator"
+        },
+        {
+          "id": "koa:repo:sentient",
+          "full_name": "Rejean-McCormick/SenTient",
+          "url": "https://github.com/Rejean-McCormick/SenTient"
+        },
+        {
+          "id": "koa:repo:skope",
+          "full_name": "Rejean-McCormick/Skope",
+          "url": null
+        },
+        {
+          "id": "koa:repo:spek",
+          "full_name": "Rejean-McCormick/Spek",
+          "url": null
+        },
+        {
+          "id": "koa:repo:uckk-assets",
+          "full_name": "Rejean-McCormick/UCKK-Assets",
+          "url": "https://github.com/Rejean-McCormick/UCKK-Assets"
+        },
+        {
+          "id": "koa:repo:uckk-ops-console",
+          "full_name": "Rejean-McCormick/UCKK-Ops-Console",
+          "url": "https://github.com/Rejean-McCormick/UCKK-Ops-Console"
+        }
+      ],
+      "diagnostic_components": []
+    }
+  ],
+  "observations": [
+    {
+      "campaign_id": "20261113T222420Z-883ebf2e",
+      "observed_at": "2026-11-13T22:25:48+00:00",
+      "verdict": "PARTIAL",
+      "reference_status": "not_promoted",
+      "source_summary_sha256": "7f6dc7dd0401a8bd36b7f74afb7db3f162de7bd2fb353697003fb5578093ba74"
+    }
+  ]
+}

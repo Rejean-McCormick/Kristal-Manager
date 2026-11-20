@@ -1,0 +1,2 @@
+repo=mediatheque
+path=C:\mycode\kOA_Blank_Mediatheque\mediatheque

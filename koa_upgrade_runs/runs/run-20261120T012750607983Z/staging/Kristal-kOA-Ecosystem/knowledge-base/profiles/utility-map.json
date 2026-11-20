@@ -1,0 +1,19 @@
+{
+  "format": "koa.reader-profile.v3",
+  "profile_id": "koa:reader:utility-map",
+  "name": "Utilités → workflows",
+  "description": "Les huit familles d’utilité sont décomposées en patterns de workflow réutilisables.",
+  "source_state": "knowledge-base/koa-ecosystem.kristal-state.json",
+  "projection": {
+    "x_axis": "utility",
+    "y_axis": "workflow_pattern",
+    "predicate": "koa:includes_workflow_pattern"
+  },
+  "policy": {
+    "preserve_assertion_status": true,
+    "preserve_relationship_role": true,
+    "show_claimed_as_claimed": true,
+    "do_not_infer_authority": true,
+    "scenario_composition_is_not_runtime_evidence": true
+  }
+}

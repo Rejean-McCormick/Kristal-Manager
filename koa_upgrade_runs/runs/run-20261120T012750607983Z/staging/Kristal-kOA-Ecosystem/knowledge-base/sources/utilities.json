@@ -1,0 +1,85 @@
+{
+  "format": "koa.utilities.v1",
+  "utilities": [
+    {
+      "id": "koa:utility:find-and-understand",
+      "label": "Find & Understand",
+      "description": "Faire passer un signal, une question ou une anomalie vers un contexte structuré, sourcé et interprétable.",
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:business-plan-context"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:utility:learn-and-share",
+      "label": "Learn & Share",
+      "description": "Transformer pratique, preuves et connaissances en apprentissage transmissible, adaptable et réutilisable.",
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:business-plan-context"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:utility:collaborate-and-create",
+      "label": "Collaborate & Create",
+      "description": "Relier personnes, contexte, besoins, versions et responsabilités pendant la création collective.",
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:business-plan-context"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:utility:choose-and-govern",
+      "label": "Choose & Govern",
+      "description": "Comparer options, expertise, critères et perspectives avant une décision dont le mandat et les raisons restent visibles.",
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:business-plan-context"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:utility:organize-and-act",
+      "label": "Organize & Act",
+      "description": "Transformer objectifs, décisions et demandes en travail attribué, suivi et vérifiable.",
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:business-plan-context"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:utility:respond-and-coordinate",
+      "label": "Respond & Coordinate",
+      "description": "Maintenir une situation partagée et coordonner rapidement les responsabilités quand le contexte change ou se dégrade.",
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:business-plan-context"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:utility:remember-and-improve",
+      "label": "Remember & Improve",
+      "description": "Transformer actions, résultats, incidents et expériences en mémoire réutilisable et en meilleure capacité future.",
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:business-plan-context"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:utility:disseminate-and-connect-to-the-public",
+      "label": "Disseminate & Connect to the Public",
+      "description": "Publier, expliquer, enseigner et mettre à jour des contenus sans couper les sorties de leurs sources et versions.",
+      "source_refs": [
+        "src:scenario-mosaic-120",
+        "src:business-plan-context"
+      ],
+      "assertion_status": "sourced"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+repo=LevelUpDiag_SemantiK_Architect
+path=C:\mycode\SemantiK_Architect\LevelUpDiag_SemantiK_Architect

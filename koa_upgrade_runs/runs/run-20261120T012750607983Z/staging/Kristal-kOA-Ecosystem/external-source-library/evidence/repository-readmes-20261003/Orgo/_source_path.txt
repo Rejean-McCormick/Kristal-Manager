@@ -1,0 +1,2 @@
+repo=Orgo
+path=C:\mycode\Orgo\Orgo

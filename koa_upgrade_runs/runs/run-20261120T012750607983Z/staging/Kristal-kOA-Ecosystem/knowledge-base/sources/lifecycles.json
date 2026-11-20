@@ -1,0 +1,123 @@
+{
+  "format": "koa.lifecycles.v3",
+  "lifecycles": [
+    {
+      "id": "koa:lifecycle:acquisition",
+      "label": "Acquisition / sensing",
+      "description": "Découverte, capture, snapshot, extraction et handoff des entrées.",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:lifecycle:epistemic",
+      "label": "Compilation / reconnaissance épistémique",
+      "description": "Mapping, référents, Kristal State, validation, reconnaissance et projections de connaissance.",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:lifecycle:civic",
+      "label": "Délibération / décision",
+      "description": "Consultation, débat, drafting, lectures, décision et DecisionRecord.",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:lifecycle:execution",
+      "label": "Exécution opérationnelle",
+      "description": "Signal, Workflow, Case, Task, effets, réconciliation et accountability.",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:lifecycle:release",
+      "label": "Release / activation",
+      "description": "Admission, Release Sets, vérification, activation, rollback et recovery.",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:lifecycle:presentation",
+      "label": "Présentation",
+      "description": "Composition des Spaces, routage et surfaces.",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:lifecycle:learning",
+      "label": "Projection / apprentissage / diffusion",
+      "description": "Projection consommateur, Moodle, médias, apprentissage et diffusion.",
+      "source_refs": [
+        "src:github-koa-digital",
+        "src:smart-snapshot",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:lifecycle:interaction-navigation",
+      "label": "Navigation / interaction",
+      "description": "Observation UI → match → plan → action/guidance → vérification → recovery/approval.",
+      "source_refs": [
+        "src:snapshot-ariane",
+        "src:snapshot-koa-linux"
+      ]
+    },
+    {
+      "id": "koa:lifecycle:security-governance",
+      "label": "Sécurité / policy / containment",
+      "description": "Identity evidence → policy decision → risk/approval → enforcement borné → audit evidence.",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux",
+        "src:github-konfid"
+      ]
+    },
+    {
+      "id": "koa:lifecycle:content-assembly",
+      "label": "Assemblage / articulation",
+      "description": "Sélection rôle/contexte/inventaire → résolution → compilation → rendu → export.",
+      "source_refs": [
+        "src:snapshot-kamel"
+      ]
+    },
+    {
+      "id": "koa:lifecycle:media-custody",
+      "label": "Custodie / publication média",
+      "description": "Ingest → catalogage → integrity/renditions → lifecycle local → publication/export gouverné.",
+      "source_refs": [
+        "src:snapshot-koa-linux",
+        "src:github-koa-linux",
+        "src:snapshot-mediatheque"
+      ]
+    },
+    {
+      "id": "koa:lifecycle:gf-language-engineering",
+      "label": "Ingénierie linguistique GF/RGL",
+      "description": "Evidence/source lock → architecture/contracts → implémentation minimale → GF compiler evidence → scénarios/régressions → revue humaine → promotion/release/upstream → observation de maturité.",
+      "source_refs": [
+        "src:gf-compendium-docs",
+        "src:gf-wordbench-snapshot",
+        "src:ars-magna-lulli-docs",
+        "src:gf-observatory-snapshot"
+      ]
+    }
+  ]
+}

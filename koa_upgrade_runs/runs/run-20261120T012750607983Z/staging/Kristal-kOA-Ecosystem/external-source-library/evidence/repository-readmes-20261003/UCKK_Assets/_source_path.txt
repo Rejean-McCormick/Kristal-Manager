@@ -1,0 +1,2 @@
+repo=UCKK_Assets
+path=C:\mycode\UCKK\UCKK_Assets

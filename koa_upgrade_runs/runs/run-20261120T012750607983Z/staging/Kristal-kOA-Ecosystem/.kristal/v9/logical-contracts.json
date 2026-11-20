@@ -1,0 +1,25 @@
+{
+  "profile": "kristal.v9.logical-contract-set/1",
+  "standard_target": "9.0.0-draft.1",
+  "contracts": [
+    {
+      "id": "koa-ecosystem.canonical-knowledge-state",
+      "version": "1.0",
+      "payload_model": "native_json_component_commitment",
+      "role": "canonical_state",
+      "physical_path": "knowledge-base/corpus/koa-ecosystem.kristal-state.json"
+    },
+    {
+      "id": "koa-ecosystem.editorial-source-bundle",
+      "version": "1.0",
+      "payload_model": "native_json_source_bundle",
+      "role": "build_input",
+      "component_count": 18
+    }
+  ],
+  "collection_semantics": {
+    "source_bundle.components": "ordered_by_component_id_before_artifact_commitment",
+    "state.members": "set-like normalized by v9 state commitment profile"
+  },
+  "component_commitment_note": "Native JSON component commitments use JCS/SHA-256 or inherited v5/v6 state identity boundaries; physical paths are excluded from canonical-state logical artifact payloads."
+}

@@ -1,0 +1,5930 @@
+{
+  "schema_version": "8.0",
+  "artifact_type": "kristall_lexicon",
+  "lexicon_id": "kristal-koa-ecosystem:fr:v8-normalized",
+  "language": "fr",
+  "direction": "ltr",
+  "scope": {
+    "kind": "project",
+    "target_kristals": [
+      "Kristal-kOA-Ecosystem"
+    ]
+  },
+  "entries": [
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:addressed_by_workflow_pattern"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:addresses_need"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:aliases"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:ame-artificielle"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:applicable_to"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:architectural_membership"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:ariane"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:ariane-assist"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:ariane-atlas"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:ariane-diagnostics"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:ariane-runtime"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:ariane-safety"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:activation-graph"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:activation-receipt"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:active-research-frontier"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:approval-record"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:ariane-runtime-pack"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:astro-signals-ai-export-v2"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:atlas-exchange"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:audiobook-segment-version"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:audit-record"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:case"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:challenge-kristal-state"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:challenge-research-graph"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:corpus-harvest-handoff"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:decision-record"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:ethikos-generic-pack-instructions"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:gf-language-pack"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:gf-maturity-snapshot"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:gf-review-record"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:gf-run-bundle"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:guidance-script"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:identity-trust-evidence"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:impact-publication"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:integration-operation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:kamel-assembly-request"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:kamel-build-manifest"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:kamel-compiled-deck"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:kamel-db-revision-guide"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:kamel-resolved-composition"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:konnaxion-i18n-ui-bundle"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:korpus-corpus"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:kristal-farms-public-release"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:kristal-state"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:learning-competence-portfolio"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:media-record"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:mediatheque-content-root"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:pgf-grammar"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:policy-decision-receipt"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:pressure-test-record"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:proof-bundle"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:publication-receipt"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:rainbow-write-utility"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:reference-artifact"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:release-set"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:repository-readme-snapshot-20261003"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:resource-admission-receipt"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:runtime-pack"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:runtime-set"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:semantik-gf-source"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:semantik-only-phrase-prototype"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:signal"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:soul-snapshot"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:space-manifest"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:strategy-observation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:task"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:theophile-konstellation-testkit"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:theophile-svg-stack-tool"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:uckk-archive-item"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:uckk-assembly-record"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:uckk-challenge-result"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:uckk-integrity-case"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:voting-result"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:voting-run-record"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:workflow"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:artifact:working-artifact"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:astro-signals"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:audit-broker"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:branded-gold"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cannabis-symbolic"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:adversarial-pressure-testing"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:ai-assistance-bounded"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:applied-challenges"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:archive-provenance"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:artifact-exchange"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:audit-custody"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:backup-recovery"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:bounded-research-frontier"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:certification"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:challenge-research-state"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:consult"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:content-assembly"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:context-continuity"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:counterexample-first-research"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:cultural-preservation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:decision-record"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:deliberate"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:deterministic-canonical-computation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:diagnostics"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:draft"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:durable-agent-orchestration"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:evidence-first-geospatial-analysis"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:expertise-signal"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:explicit-uncertainty-propagation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:extract-candidates"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:formal-math-research"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:gf-evidence-observation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:gf-language-validation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:gf-portfolio-orchestration"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:gf-rgl-engineering-governance"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:governed-publication"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:governed-work"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:human-approval"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:identity-trust"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:immutable-snapshot"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:impact-accountability"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:independent-reproducibility"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:institutional-memory"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:institutional-registry"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:integration-patterns"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:integrity-review"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:interop-envelope"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:knowledge-deck-rendering"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:learning-by-production"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:learning-paths"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:learning-reporting"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:local-media-custody"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:map-acl"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:media-library"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:media-production"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:narrative-mobilise"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:networking"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:node-privilege"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:offline-operation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:physical-compute"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:platform-admission"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:policy-evaluation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:profile-resolution"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:project-spaces"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:public-documentation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:qualification-gates"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:reader-projection"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:release-channels"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:reliable-integration"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:repeatable-deployment"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:research-strategy-memory"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:resolve-referents"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:resource-governance"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:risk-containment"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:runtime-activate"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:runtime-set-orchestrate"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:safety-gating"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:scenario-mapping"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:segment-level-media-revision"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:semantic-realise"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:sense-intake"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:source-discovery"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:space-compose"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:structured-knowledge"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:ui-atlas"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:ui-navigation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:validate-recognize"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:validated-multilingual-runtime-input"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:versioned-storage"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:vote-baseline"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:weighted-reading"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:workflow-routing"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cap:world-scoping"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:carries_artifact"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:certifikation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:complements_function"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:component_refs"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:conceptual_role_in"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:conforms_to"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:connects_to"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:constrains_function"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:consumes_artifact"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:consumes_projection_of"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:continuity_gap"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:accountability-impact-publish-1"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:ariane-spec-0-3"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:audit-broker-1"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:encyklopedia-corpus-harvest-handoff-1"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:gf-four-system-alignment-1"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:governance-decision-execute-1"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:governance-policy-runtime-1"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:identity-trust-1"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:kamel-contract-set-3"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:koa-mediatheque-1"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:koa-node-agent-1"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:kristal-artifact-ready-2"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:kristal-build-request-2"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:kristal-runtime-2"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:kristal-standard-6"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:publication-gateway-1"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:referent-registry-1"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:resource-governor-1"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:semantik-wordbench-handoff-v1"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contract:uckk-univers-cite-projection-1"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:contributes_to"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:coordinated_by"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:cosmic-etherism"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:current_local_observation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:daat"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:declared_version"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:digital-ecosystem"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:discovery_status"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:domain:civic"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:domain:correctional"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:domain:culture"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:domain:education"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:domain:health"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:domain:justice"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:domain:organization"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:domain:peace-reconstruction"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:domain:research"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:domain:social-services"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:domains"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:editorial-figure-engine"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:ekoh"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:enabled_by_capability"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:encyklopedia"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:ethikos"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:evidence_status"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:exchanges_with"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:expresses_need"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:all-our-ideas"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:ceph"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:citizen-os"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:collabora"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:consider-it"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:consul-democracy"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:decidim"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:democracyos"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:etherpad"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:falcon-2-0"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:forgejo"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:freecad"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:gitea"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:grammatical-framework"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:hedgedoc"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:ifc-js"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:inventree"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:keycloak"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:kialo"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:liquidfeedback"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:loomio"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:minio"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:moodle"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:ninai"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:onlyoffice"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:openrefine"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:openscad"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:opensearch"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:openslides"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:opentapioca"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:part-db"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:polis"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:seaweedfs"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:simdjson"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:solvespace"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:three-js"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:udiron"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external:your-priorities"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external_execution_authority_for"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:external_reference_for"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:failure_mechanisms"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:family"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:feeds"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:feeds_function"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:formulator"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:fulfills_function"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:full_name"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:function:articulation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:function:canonical-memory"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:function:coordination"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:function:execution"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:function:governance"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:function:impact-feedback"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:function:intent"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:function:observation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:function:strategy"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:function:structure"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:function:synthesis"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:gates_function"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:governance-policy-runtime"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:governs_external_execution_for"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:grounds_function"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:identity-trust"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:includes_workflow_pattern"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:informs_function"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:initiative"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:instance_of_problem_family"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:integrates_with"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:interaction-kernel"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:ambiguity-preservation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:architecture-not-empirical-proof"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:canon-immutability"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:end-to-end-traceability"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:epistemic-category-separation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:fail-closed"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:governed-feedback"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:hypothesis-not-proof"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:local-validation-not-global-canon"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:no-fabricated-precision"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:no-new-facts"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:power-conversion-firewall"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:render-without-recomputation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:safety-model-separation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:source-owner-authority"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:support-does-not-imply-membership"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:invariant:validation-before-promotion"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:kamel"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:keenkonnect"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:keyflow"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:kin-city"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:kind"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:king-klown"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:kintsugi-kompendio"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:knowledge-library"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:koa-assembly"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:koa-mediatheque"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:koali"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:koali-control-panel"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:koali-spaces"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:kompiler"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:konductor"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:konfid"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:konnaxion"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:konnaxion-capsule-manager"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:konnaxion-securitydiag"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:konnaxion-universe-worlds-manager"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:konnaxion-worlds"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:konnaxiondiag"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:konnected"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:konsensus"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:konservation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:konstellation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:konstellation-publisher"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:konstruct"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:konsultations"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:kontact"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:kontrol"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:kor"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:korum"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:kreative"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:kristal"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:kristal-farms"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:kristal-grand-challenges"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:kristal-math"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:kristal-runtime"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:kristaldiag"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:levelupdiag-ariane"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:levelupdiag-koa-linux"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:levelupdiag-konnaxion"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:levelupdiag-kristal"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:levelupdiag-medikristal"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:levelupdiag-orgo"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:levelupdiag-semantik"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:lifecycle:acquisition"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:lifecycle:civic"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:lifecycle:content-assembly"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:lifecycle:epistemic"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:lifecycle:execution"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:lifecycle:gf-language-engineering"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:lifecycle:interaction-navigation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:lifecycle:learning"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:lifecycle:media-custody"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:lifecycle:presentation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:lifecycle:release"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:lifecycle:security-governance"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:local_observation_status"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:local_path"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:loop"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:manages_artifact_lifecycle"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:manages_or_produces_artifact"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:maps_into"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:mathchallenges"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:medikristal"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:accountability"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:adoption-pedagogy"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:bounded-security-control"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:collective-capacity"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:conformance-audit"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:cultural-memory"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:decision-support-articulation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:decision-to-action"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:deterministic-system-composition"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:epistemic-governance"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:expertise-without-sovereignty"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:governed-agentic-work"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:institutional-memory"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:interop-without-takeover"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:learning-diffusion"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:learning-integrity"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:legible-decisions"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:modular-replacement"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:multilingual-communication"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:offline-sovereignty"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:organizational-coherence"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:physical-resilience"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:portable-knowledge"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:present-coherently"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:private-media-custody"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:project-collaboration"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:referent-identity"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:reliable-effects"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:safe-lifecycle"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:safe-software-navigation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:signal-over-noise"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:skills-recognition"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:need:structured-deliberation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:node-agent"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:observed_at"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:observed_in_utility_scenarios"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:omni-wiki"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:optional_adapter_input_for"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:optional_sidecar_for"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:optional_sidecar_or_reference_for"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:orchestrates_support_system"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:organized_under"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:orgo"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:orgo-worlds"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:orients"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:orphee-walk-straight"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:ourai"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:owns_artifact"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:part_of"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:part_of_supporting_ecosystem"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:participates_in"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:pattern_source_for"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:peripheral_to"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:pi"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:placement_authority_note"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:placement_integration_state"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:placement_tier"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:power-dynamics"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:presented_through"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:privileged_transition_via"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:problem-family:action-learning-loops"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:problem-family:capacity-sovereignty"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:problem-family:coordination-breakdown"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:problem-family:decision-traceability"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:problem-family:distributed-intelligence"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:problem-family:evidence-vs-noise"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:problem-family:knowledge-attrition"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:problem-family:signal-context-loss"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:produces_artifact"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:produces_function"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:profiles_contract"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:projects_to"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:provides_evidence_to"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:provides_normative_context_to"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:provides_optional_evidence_projection_to"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:provides_validated_artifact_to"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:public_remote_label"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:public_remote_status"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:public_remote_url"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:publication-gateway"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:qualification-tooling"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:readme_file"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:readme_sha256"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:realizes_or_supports"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:reforme-desjardins"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:reignbow"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:released_via"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:ame-artificielle"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:ame-artificielle-wiki"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:ariane"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:ariane-diagnostics"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:astro-signals"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:book-civilizational-coherence"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:book-colin-row"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:business-plan"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:commons-zahra-sfu"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:editorial-figure-engine"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:encyklopedia"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:ethikos-generic-pack-generator-md"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:formulator"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:freeze-vote-rebuild-operational-peace-framework"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:gf-core"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:gf-rgl"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:grammatical-framework-albanian"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:grammatical-framework-audit"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:hello-world-autopsie-d-un-clown-royal"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:homepage-initkoa-org"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:initkoa-docs"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:interaction-kernel"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:international-strategy"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:kamel"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:kamel-ai-db-revision-guide-v1-0-0"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:keyflow-formulaires"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:king-klown-canon"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:koa-blank-mediatheque"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:koa-digital-ecosystem"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:koa-linux-koali"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:koa-mediatheque"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:koa-mediatheque-workspace"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:koali-control-panel"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:koali-scenario-mosaic"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:koali-spaces"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:kompiler"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:konductor"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:konfid"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:konnaxion"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:konnaxion-ashoka-systems-change-dossier"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:konnaxion-capsule-manager"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:konnaxion-i18n-ui-bundle"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:konnaxion-levelupdiag"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:konnaxion-securitydiag"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:konnaxion-universe-worlds-manager"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:konnaxion-worlds"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:konnaxiondiag"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:konstellation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:konstellation-publisher"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:konstellation-v0-5-local"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:kor"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:korpus"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:kristal-7"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:kristal-farms"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:kristal-farms-wiki"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:kristal-framework"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:kristal-grand-challenges"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:kristal-kollection"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:kristal-reference"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:kristaldiag"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:levelupdiag"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:levelupdiag-ariane"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:levelupdiag-koa-linux"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:levelupdiag-kristal"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:levelupdiag-orgo"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:levelupdiag-semantik-architect"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:ma-gustave-ars-magna-lulli"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:ma-gustave-gf-observatory"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:ma-gustave-gf-rgl-ai-compendium"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:ma-gustave-gf-wordbench"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:ma-gustave-github-profile"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:mathchallenges-workspace"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:mediatheque"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:mediatheque-content"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:mediatheque-kristal-sources"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:medikristal"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:medikristal-levelupdiag"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:omni-wiki"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:omni-wiki-rejean-king-klown"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:orgo"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:orgo-worlds"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:ourai"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:partners-for-public-good-pressure-test-koali"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:pi-theory"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:pi-theory-wiki"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:power-dynamics"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:projet-orphee-walk-straight"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:rainbow-write"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:rejean-mccormick"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:repodiagsimdjson"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:science-silk-road-koali"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:science-silk-road-koali-wiki"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:semantik-architect"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:semantik-architect-gf-rgl"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:semantik-architect-gf-source"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:semantik-only-phrase-prototype"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:semantik-phrase-ops-console"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:semantik-runtime-orchestrator"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:sentient"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:simdjson-rvv-vla"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:simdjson-upstream"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:theophile-konstellation-semantik-testkit"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:theophile-mini-site"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:theophile-svg-stack"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:uckk"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:uckk-assets"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:uckk-moodle"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:uckk-ops-console"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:uckk-publisher"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:uckk-securitydiag"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:votingmachine"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repo:voxtral-audiobook-studio"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repodiag"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repository_locator_status"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:repository_role"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:research_adjacent_to"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:resource-governor"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:returns_to_function"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:runtime_artifact_to"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:runtime_evidence"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:runtime_status"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scale"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-001"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-002"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-003"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-004"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-005"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-006"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-007"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-008"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-009"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-010"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-011"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-012"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-013"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-014"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-015"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-016"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-017"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-018"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-019"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-020"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-021"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-022"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-023"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-024"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-025"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-026"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-027"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-028"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-029"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-030"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-031"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-032"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-033"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-034"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-035"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-archetype:36:scn-036"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-001"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-002"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-003"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-004"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-005"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-006"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-007"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-008"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-009"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-010"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-011"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-012"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-013"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-014"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-015"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-016"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-017"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-018"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-019"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-020"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-021"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-022"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-023"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-024"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-025"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-026"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-027"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-028"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-029"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-030"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-031"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-032"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-033"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-034"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-035"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-036"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-037"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-038"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-039"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-040"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-041"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-042"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-043"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-044"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-045"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-046"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-047"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-048"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-049"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-050"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-051"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-052"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-053"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-054"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-055"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-056"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-057"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-058"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-059"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-060"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-061"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-062"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-063"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-064"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-065"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-066"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-067"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-068"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-069"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-070"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-071"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-072"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-073"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-074"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-075"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-076"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-077"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-078"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-079"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-080"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-081"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-082"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-083"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-084"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-085"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-086"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-087"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-088"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-089"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-090"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-091"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-092"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-093"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-094"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-095"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-096"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-097"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-098"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-099"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-100"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-101"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-102"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-103"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-104"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-105"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-106"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-107"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-108"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-109"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-110"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-111"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-112"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-113"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-114"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-115"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-116"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-117"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-118"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-119"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario-mosaic:120:scn-120"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario_composes_component"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scenario_id"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:scope"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:semantik-architect"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:semantik-phrase-ops-console"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:semantik-runtime-orchestrator"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:sentient"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:serves_utility"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:smart-vote"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:stakes"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:stockage"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:submits_to_function"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:supersedes"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:support:ars-magna-lulli"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:support:gf-observatory"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:support:gf-rgl-ai-compendium"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:support:gf-wordbench"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:support:ma-gustave-gf-ecosystem"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:supports"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:supports_capability"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:surreal"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:swarmcraft"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:tags"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:team-builder"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:transferable_to"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:type:artifact"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:type:capability"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:type:component"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:type:contract"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:type:domain"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:type:external_reference"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:type:invariant"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:type:lifecycle"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:type:need"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:type:operating_function"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:type:problem_family"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:type:repository"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:type:scenario_archetype"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:type:scenario_mosaic"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:type:utility"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:type:workflow_pattern"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:uckk"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:uckk-ai-provider"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:uckk-archive"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:uckk-assembly"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:uckk-challenge"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:uckk-core"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:uckk-dashboard"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:uckk-integrity"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:uckk-moodle"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:uckk-ops-console"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:uckk-publisher"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:uckk-report"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:uckk-securitydiag"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:uckk-seed"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:upholds_invariant"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:urgency"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:url"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:usage_palette"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:uses_contract"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:uses_workflow_pattern"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:utility:choose-and-govern"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:utility:collaborate-and-create"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:utility:disseminate-and-connect-to-the-public"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:utility:find-and-understand"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:utility:learn-and-share"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:utility:organize-and-act"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:utility:remember-and-improve"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:utility:respond-and-coordinate"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:utility_refs"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:voting-machine"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:voxtral-audiobook-studio"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:assemble-a-team-around-a-problem"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:carry-a-plan-through-execution"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:co-create-without-losing-the-why"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:compare-and-prioritize-explicitly"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:connect-decision-mandate-and-consequences"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:connect-learning-practice-and-evidence"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:coordinate-roles-and-dependencies"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:deliberate-across-perspectives"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:deliver-work-with-its-context"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:explain-publicly-without-severing-sources"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:find-the-right-expertise"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:investigate-a-signal"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:keep-media-aligned-with-knowledge"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:keep-working-in-field-offline-mode"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:maintain-a-changing-shared-situation"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:move-an-idea-to-a-prototype"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:preserve-capability-beyond-individuals"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:reconstruct-context-and-provenance"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:see-patterns-over-time"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:teach-across-language-or-connectivity-constraints"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:turn-action-into-a-lesson"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:turn-an-incident-into-coordinated-response"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:turn-knowledge-into-media-or-learning"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow-pattern:turn-practice-into-transferable-knowledge"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "koa:workflow_pattern_refs"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "rdf:type"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "rdfs:label"
+      },
+      "lexical_status": "missing"
+    },
+    {
+      "semantic_ref": {
+        "identity_space": "kristal_v6",
+        "id": "schema:description"
+      },
+      "lexical_status": "missing"
+    }
+  ]
+}

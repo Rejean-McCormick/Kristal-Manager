@@ -1,0 +1,19 @@
+{
+  "schema_version": "8.0",
+  "artifact_type": "kristall_lexicon_stack",
+  "stack_id": "kristal-koa-ecosystem:fr:v8-normalized",
+  "requested_locale": "fr",
+  "resolution_policy": {
+    "precedence": "highest_numeric_wins",
+    "on_missing": "preserve_semantic_id",
+    "on_conflict": "return_conflict",
+    "locale_fallback": []
+  },
+  "layers": [
+    {
+      "lexicon_ref": "lexicon-fr.json",
+      "precedence": 100,
+      "optional": false
+    }
+  ]
+}

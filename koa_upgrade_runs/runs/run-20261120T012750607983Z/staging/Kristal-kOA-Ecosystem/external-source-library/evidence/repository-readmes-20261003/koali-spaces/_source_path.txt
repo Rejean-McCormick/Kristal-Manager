@@ -1,0 +1,2 @@
+repo=koali-spaces
+path=C:\mycode\kOA-Linux\koali-spaces

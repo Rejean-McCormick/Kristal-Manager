@@ -1,0 +1,2 @@
+repo=Konnaxion_Capsule_Manager
+path=C:\mycode\Konnaxion\Konnaxion_Capsule_Manager

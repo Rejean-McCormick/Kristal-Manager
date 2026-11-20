@@ -1,0 +1,35 @@
+{
+  "schema_version": "9.0",
+  "artifact_type": "kristal_exchange",
+  "exchange_id": "urn:kristal:koa-ecosystem:exchange:0.6.3",
+  "state": {
+    "state_ref": "urn:kristal:koa-ecosystem:state",
+    "logical_commitment": {
+      "profile": "kristal.state-commitment/jcs-sha256-v1",
+      "digest": "sha256:c5cea1280163558bc93a3126138628df918f919482ab9278c4fb7f32c09d8322"
+    }
+  },
+  "state_blob": {
+    "media_type": "application/json",
+    "digest": "sha256:8032ae8392b173fd6392661941d8128cac1576287389ac69a71650a7acddc411",
+    "size": 879
+  },
+  "materializations": [
+    {
+      "artifact_id": "urn:kristal:koa-ecosystem:artifact:canonical-state",
+      "manifest_blob": {
+        "media_type": "application/json",
+        "digest": "sha256:60325b6fc96a48b18e1735ff395683e0c8d7490d13faa0ba707e144cee605cb1",
+        "size": 1346
+      }
+    }
+  ],
+  "derivations": [
+    {
+      "media_type": "application/json",
+      "digest": "sha256:07dca00a6068e98d6b6adf54b8357d8821bbb6beb1f93f29946cb1c69ffc858c",
+      "size": 1762
+    }
+  ],
+  "signatures": []
+}

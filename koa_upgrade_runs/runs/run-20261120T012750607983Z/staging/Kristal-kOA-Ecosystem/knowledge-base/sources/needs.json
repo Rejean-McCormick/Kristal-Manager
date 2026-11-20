@@ -1,0 +1,393 @@
+{
+  "format": "koa.needs.v3",
+  "needs": [
+    {
+      "id": "koa:need:collective-capacity",
+      "label": "Transformer le savoir et l’effort distribué en capacité collective",
+      "family": "mission",
+      "description": "Relier connaissances, expertises, décisions, exécution et mémoire.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:signal-over-noise",
+      "label": "Distinguer signal, provenance et bruit",
+      "family": "knowledge",
+      "description": "Préserver les sources, le contexte, la traçabilité et la qualité du signal.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:portable-knowledge",
+      "label": "Rendre la connaissance portable et inspectable",
+      "family": "knowledge",
+      "description": "Structurer des artefacts réutilisables, vérifiables et hors-ligne.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:referent-identity",
+      "label": "Stabiliser l’identité des référents",
+      "family": "knowledge",
+      "description": "Relier des entités sans confondre identifiants externes et autorité.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:epistemic-governance",
+      "label": "Valider/reconnaître sans fabriquer une vérité globale",
+      "family": "knowledge",
+      "description": "Séparer evidence, validation, recognition, signature et statut.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:structured-deliberation",
+      "label": "Structurer le désaccord",
+      "family": "civic",
+      "description": "Transformer discussion dispersée en raisons, alternatives, synthèses et drafts.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:legible-decisions",
+      "label": "Rendre les décisions légitimes et lisibles",
+      "family": "civic",
+      "description": "Procédures visibles, lectures explicites, raisons et DecisionRecords.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:expertise-without-sovereignty",
+      "label": "Faire émerger l’expertise sans lui céder la souveraineté",
+      "family": "civic",
+      "description": "Contextualiser la compétence et permettre des lectures pondérées contestables.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:decision-to-action",
+      "label": "Éviter les décisions sans suite",
+      "family": "operations",
+      "description": "Convertir une décision en work/cases/tasks avec responsabilité, escalation et closure.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:reliable-effects",
+      "label": "Rendre les effets distribués fiables",
+      "family": "operations",
+      "description": "Idempotence, outbox, receipts et réconciliation des effets asynchrones.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:accountability",
+      "label": "Relier action, résultat et responsabilité",
+      "family": "operations",
+      "description": "Publier impacts, traces, audits et suites.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:institutional-memory",
+      "label": "Préserver la mémoire institutionnelle",
+      "family": "memory",
+      "description": "Conserver décisions, résultats, erreurs, preuves et leçons pour le cycle suivant.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:interop-without-takeover",
+      "label": "Coopérer sans transfert implicite d’autorité",
+      "family": "interop",
+      "description": "Contrats explicites, état propriétaire, no cross-system DB writes.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:offline-sovereignty",
+      "label": "Préserver une capacité locale/offline",
+      "family": "platform",
+      "description": "Réduire la dépendance au cloud, réseau ou IA externe.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:safe-lifecycle",
+      "label": "Publier, activer, rollbacker et récupérer de façon gouvernée",
+      "family": "platform",
+      "description": "Admission, releases, activation, rollback, recovery et receipts.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:present-coherently",
+      "label": "Composer une expérience cohérente sans centraliser l’autorité",
+      "family": "ux",
+      "description": "Shell, navigation, surfaces et préférences sans posséder le business state.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:multilingual-communication",
+      "label": "Exprimer fidèlement le sens en langage humain",
+      "family": "language",
+      "description": "Planification/réalisation multilingue et contrôle de fidélité.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:learning-diffusion",
+      "label": "Transformer le corpus en apprentissage et diffusion",
+      "family": "learning",
+      "description": "Cours, médias, parcours, archives, glossaires et projections pédagogiques.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:skills-recognition",
+      "label": "Reconnaître compétences et apprentissages",
+      "family": "learning",
+      "description": "Parcours, évaluations, validation par pairs, portfolios et credentials.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:project-collaboration",
+      "label": "Outiller la construction collaborative",
+      "family": "collaboration",
+      "description": "Espaces de projets, artefacts, versions, stockage et collaboration.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:cultural-memory",
+      "label": "Préserver et transmettre la création/culture",
+      "family": "culture",
+      "description": "Conservation, archives, narration et transmission.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:physical-resilience",
+      "label": "Relier énergie, calcul et valeur locale",
+      "family": "infrastructure",
+      "description": "Infrastructure physique résiliente et capacité territoriale.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:adoption-pedagogy",
+      "label": "Rendre les systèmes compréhensibles et mobilisables",
+      "family": "diffusion",
+      "description": "Narration, scénarios, médias, livres, conférences et pédagogie.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:conformance-audit",
+      "label": "Savoir ce qui est réellement implémenté et qualifié",
+      "family": "quality",
+      "description": "Diagnostics, tests, evidence, maturity states et conformance.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:modular-replacement",
+      "label": "Pouvoir remplacer les pièces sans effondrer le système",
+      "family": "architecture",
+      "description": "Modularité, contrats stables, sidecars et anti-monolithe.",
+      "source_refs": [
+        "src:github-profile",
+        "src:sociotechnical-os",
+        "src:github-koa-digital",
+        "src:smart-snapshot"
+      ]
+    },
+    {
+      "id": "koa:need:safe-software-navigation",
+      "label": "Naviguer dans des logiciels sans deviner",
+      "family": "interaction",
+      "description": "Transformer l’interface en carte vérifiable, choisir des transitions connues et bloquer les actions risquées/indéterminées.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:need:governed-agentic-work",
+      "label": "Utiliser des agents IA sans leur céder le contrôle du runtime",
+      "family": "ai",
+      "description": "Séparer proposition du modèle, validation, workflow, outils, side effects, checkpoints et approbations.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:need:bounded-security-control",
+      "label": "Coordonner sécurité et containment sans super-administrateur",
+      "family": "security",
+      "description": "Lier identité, scopes, policy, risque, réponse et preuve tout en préservant l’autorité locale des applications.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:need:private-media-custody",
+      "label": "Conserver et préparer les médias localement sans dépendance externe",
+      "family": "media",
+      "description": "Cataloguer, versionner, dériver, sauvegarder et publier de façon gouvernée des médias locaux.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:need:decision-support-articulation",
+      "label": "Transformer une complexité en supports manipulables et décisionnels",
+      "family": "communication",
+      "description": "Assembler rôles, contextes, inventaires et preuves en vues/decks traçables adaptés à l’usage.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:need:learning-integrity",
+      "label": "Relier apprentissage, preuve, intégrité, décision et archive",
+      "family": "learning",
+      "description": "Garder distincts défis, assemblées, archives, intégrité, rapports et registres tout en les rendant composables.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:need:deterministic-system-composition",
+      "label": "Composer des profils et déploiements sans configuration implicite",
+      "family": "platform",
+      "description": "Résoudre dépendances, ressources, stockage, services et releases vers des plans reproductibles et vérifiables.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ]
+    },
+    {
+      "id": "koa:need:organizational-coherence",
+      "label": "Maintenir la cohérence entre savoir, décision, travail et résultat",
+      "family": "organization",
+      "description": "Éviter que connaissance, décision, responsabilité, exécution et mémoire se séparent à travers les systèmes et les équipes.",
+      "source_refs": [
+        "src:business-plan-context",
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    }
+  ]
+}

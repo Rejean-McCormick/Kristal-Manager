@@ -1,0 +1,2 @@
+repo=UCKK_Publisher
+path=C:\mycode\UCKK\UCKK_Publisher

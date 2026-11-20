@@ -1,0 +1,13 @@
+{
+  "format": "koa.upgrade.install.v1",
+  "campaign": "run-20261120T012701302536Z",
+  "date": "20261120T142129966127Z",
+  "target": "C:\\mycode\\Kristal\\locals\\Kristal-kOA-Ecosystem",
+  "backup": "C:\\mycode\\Kristal\\locals\\_Kristal-kOA-Ecosystem_backup_run-20261120T012701302536Z",
+  "installed_sha256": "2f82a165130de550fc33f89129e20cba9ebf9595de1673eca1a6878bf5646c53",
+  "original_sha256": "a2560d52d4991af3c4d702899566978530d4b006f4b20edf0c802a14e6c5d0c1",
+  "promoted_evidence": false,
+  "legacy_exception": false,
+  "discovery_stale_exception": true,
+  "qualification": "NOT_ESTABLISHED"
+}

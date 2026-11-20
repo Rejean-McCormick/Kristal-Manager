@@ -1,0 +1,21 @@
+{
+  "profile": "kristal-v8-normalized-package/1.0",
+  "adapter": "kristal-v8-normalizer/2.0",
+  "generated_at": "2026-10-04T15:00:00Z",
+  "kristal_ref": "Kristal-kOA-Ecosystem",
+  "source": {
+    "path": "knowledge-base/corpus/koa-ecosystem.kristal-state.json",
+    "artifact_type": "kristal_state",
+    "schema_version": "6.0",
+    "byte_sha256": "sha256:59089e0e0dcb7759dc45e5296e0108b9a97f9e70fc6b473301562465307e9186"
+  },
+  "portable_state": {
+    "path": ".kristal/v8/portable-state.kristal-state.json",
+    "schema_version": "6.0",
+    "artifact_type": "kristal_state"
+  },
+  "adapter_kind": "v6_normalization",
+  "authority_boundary": "Original source artifact remains preserved. Portable state and v8 companions are derived/rebuildable normalization artifacts.",
+  "normalization_changes": [],
+  "layout_aliases_ref": "../../path-aliases.json"
+}

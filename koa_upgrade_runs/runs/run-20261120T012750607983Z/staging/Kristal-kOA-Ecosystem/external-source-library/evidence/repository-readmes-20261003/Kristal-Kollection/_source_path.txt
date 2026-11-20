@@ -1,0 +1,2 @@
+repo=Kristal-Kollection
+path=C:\mycode\Kristal\Kristal-Kollection

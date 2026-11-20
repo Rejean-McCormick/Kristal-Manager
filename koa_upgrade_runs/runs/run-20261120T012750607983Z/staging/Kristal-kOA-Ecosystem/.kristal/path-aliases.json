@@ -1,0 +1,44 @@
+{
+  "profile": "kristal-path-aliases/1.0",
+  "generated_at": "2026-10-04T22:30:00-04:00",
+  "kristal_ref": "Kristal-kOA-Ecosystem",
+  "authority": "layout compatibility only; semantic source artifacts are not rewritten",
+  "aliases": [
+    {
+      "from": "documentation/",
+      "to": "knowledge-base/documentation/"
+    },
+    {
+      "from": "reader-profiles/",
+      "to": "knowledge-base/profiles/"
+    },
+    {
+      "from": "schemas/",
+      "to": "knowledge-base/schemas/"
+    },
+    {
+      "from": "knowledge-sources/",
+      "to": "knowledge-base/sources/"
+    },
+    {
+      "from": "developer-tools/",
+      "to": "knowledge-base/tools/"
+    },
+    {
+      "from": "evidence/",
+      "to": "external-source-library/evidence/"
+    },
+    {
+      "from": "source-registry/",
+      "to": "knowledge-base/sources/source-registry/"
+    },
+    {
+      "from": "knowledge-base/koa-ecosystem.kristal-state.json",
+      "to": "knowledge-base/corpus/koa-ecosystem.kristal-state.json"
+    },
+    {
+      "from": "knowledge-base/index.json",
+      "to": "knowledge-base/corpus/index.json"
+    }
+  ]
+}

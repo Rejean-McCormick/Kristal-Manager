@@ -1,0 +1,1499 @@
+{
+  "format": "koa.scenario-archetypes.v1",
+  "scenarios": [
+    {
+      "id": "koa:scenario-archetype:36:scn-001",
+      "scenario_id": "SCN-001",
+      "title": "A Child Is Missing. Every Minute Counts.",
+      "problem_family_ref": "koa:problem-family:coordination-breakdown",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:maintain-a-changing-shared-situation",
+        "koa:workflow-pattern:turn-an-incident-into-coordinated-response",
+        "koa:workflow-pattern:find-the-right-expertise",
+        "koa:workflow-pattern:coordinate-roles-and-dependencies"
+      ],
+      "component_refs": [
+        "koa:orgo",
+        "koa:konnaxion",
+        "koa:kristal"
+      ],
+      "failure_mechanisms": [
+        "fragmentation",
+        "resource_orchestration_failure",
+        "missing_escalation",
+        "unclosed_loop"
+      ],
+      "scale": "individual→regional",
+      "urgency": "immediate",
+      "stakes": [
+        "life",
+        "public_safety"
+      ],
+      "domains": [
+        "public_safety",
+        "emergency_response"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "The resources may already exist. The challenge is making the whole system act as one.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-002",
+      "scenario_id": "SCN-002",
+      "title": "The Patient Nobody Sees as a Whole.",
+      "problem_family_ref": "koa:problem-family:coordination-breakdown",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:maintain-a-changing-shared-situation",
+        "koa:workflow-pattern:coordinate-roles-and-dependencies",
+        "koa:workflow-pattern:deliver-work-with-its-context"
+      ],
+      "component_refs": [
+        "koa:orgo",
+        "koa:konnaxion",
+        "koa:kristal"
+      ],
+      "failure_mechanisms": [
+        "fragmentation",
+        "handoff_failure",
+        "unclosed_loop",
+        "missing_escalation"
+      ],
+      "scale": "individual→organization",
+      "urgency": "critical",
+      "stakes": [
+        "health",
+        "life",
+        "service_quality"
+      ],
+      "domains": [
+        "healthcare"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "Every professional may do their job correctly while the patient still falls through the interfaces between them.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-003",
+      "scenario_id": "SCN-003",
+      "title": "Four Agencies, One Threat, No Shared Picture.",
+      "problem_family_ref": "koa:problem-family:coordination-breakdown",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:maintain-a-changing-shared-situation",
+        "koa:workflow-pattern:turn-an-incident-into-coordinated-response",
+        "koa:workflow-pattern:coordinate-roles-and-dependencies",
+        "koa:workflow-pattern:explain-publicly-without-severing-sources"
+      ],
+      "component_refs": [
+        "koa:orgo",
+        "koa:konnaxion",
+        "koa:kristal"
+      ],
+      "failure_mechanisms": [
+        "fragmentation",
+        "interoperability_failure",
+        "resource_orchestration_failure",
+        "missing_escalation"
+      ],
+      "scale": "community→regional",
+      "urgency": "immediate",
+      "stakes": [
+        "life",
+        "public_safety"
+      ],
+      "domains": [
+        "emergency_response",
+        "public_safety"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "A crisis can cross jurisdictions faster than organizations can align facts, commands and public warnings.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-004",
+      "scenario_id": "SCN-004",
+      "title": "The Heat Wave Is Here. Who Checks the People Most at Risk?",
+      "problem_family_ref": "koa:problem-family:coordination-breakdown",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:maintain-a-changing-shared-situation",
+        "koa:workflow-pattern:coordinate-roles-and-dependencies",
+        "koa:workflow-pattern:carry-a-plan-through-execution",
+        "koa:workflow-pattern:turn-action-into-a-lesson"
+      ],
+      "component_refs": [
+        "koa:orgo",
+        "koa:konnaxion",
+        "koa:kristal"
+      ],
+      "failure_mechanisms": [
+        "fragmentation",
+        "resource_orchestration_failure",
+        "unclosed_loop",
+        "citizen_signal_ignored"
+      ],
+      "scale": "individual→regional",
+      "urgency": "critical",
+      "stakes": [
+        "health",
+        "life",
+        "equity"
+      ],
+      "domains": [
+        "public_health",
+        "community_response"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "An alert is not a response plan until somebody is responsible for reaching the person who may not survive it.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-005",
+      "scenario_id": "SCN-005",
+      "title": "During the Cyberattack, Six Teams Work in Six Different Realities.",
+      "problem_family_ref": "koa:problem-family:coordination-breakdown",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:turn-an-incident-into-coordinated-response",
+        "koa:workflow-pattern:maintain-a-changing-shared-situation",
+        "koa:workflow-pattern:coordinate-roles-and-dependencies",
+        "koa:workflow-pattern:reconstruct-context-and-provenance"
+      ],
+      "component_refs": [
+        "koa:orgo",
+        "koa:konnaxion",
+        "koa:kristal"
+      ],
+      "failure_mechanisms": [
+        "fragmentation",
+        "interoperability_failure",
+        "resource_orchestration_failure",
+        "context_loss"
+      ],
+      "scale": "organization→network",
+      "urgency": "immediate",
+      "stakes": [
+        "essential_service",
+        "money",
+        "privacy",
+        "safety"
+      ],
+      "domains": [
+        "cybersecurity",
+        "operations"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "The technical incident is only half the crisis; the other half is keeping security, operations, leadership, communications and partners synchronized.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-006",
+      "scenario_id": "SCN-006",
+      "title": "The Warning Loses Its Meaning on the Way Up.",
+      "problem_family_ref": "koa:problem-family:signal-context-loss",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:reconstruct-context-and-provenance",
+        "koa:workflow-pattern:investigate-a-signal",
+        "koa:workflow-pattern:connect-decision-mandate-and-consequences",
+        "koa:workflow-pattern:deliver-work-with-its-context"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:orgo",
+        "koa:konnaxion"
+      ],
+      "failure_mechanisms": [
+        "context_loss",
+        "signal_dilution",
+        "missing_escalation",
+        "false_certainty"
+      ],
+      "scale": "team→organization",
+      "urgency": "critical",
+      "stakes": [
+        "safety",
+        "life",
+        "money"
+      ],
+      "domains": [
+        "engineering",
+        "risk_management",
+        "leadership"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "A critical message can arrive at the top stripped of the uncertainty and reasoning that made it urgent.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-007",
+      "scenario_id": "SCN-007",
+      "title": "Eighty-Seven Complaints. The System Sees Eighty-Seven Files, Not One Crisis.",
+      "problem_family_ref": "koa:problem-family:signal-context-loss",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:investigate-a-signal",
+        "koa:workflow-pattern:see-patterns-over-time",
+        "koa:workflow-pattern:reconstruct-context-and-provenance",
+        "koa:workflow-pattern:turn-action-into-a-lesson"
+      ],
+      "component_refs": [
+        "koa:konnaxion",
+        "koa:sentient",
+        "koa:kristal",
+        "koa:orgo"
+      ],
+      "failure_mechanisms": [
+        "fragmentation",
+        "citizen_signal_ignored",
+        "signal_dilution",
+        "pattern_detection_failure"
+      ],
+      "scale": "individual→city",
+      "urgency": "high",
+      "stakes": [
+        "health",
+        "safety",
+        "rights"
+      ],
+      "domains": [
+        "public_services",
+        "environment",
+        "consumer_protection"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "Individual reports can be weak. Their pattern can be overwhelming.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-008",
+      "scenario_id": "SCN-008",
+      "title": "The Lab Knows the Water Is Dangerous. Who Must Know Next?",
+      "problem_family_ref": "koa:problem-family:signal-context-loss",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:connect-decision-mandate-and-consequences",
+        "koa:workflow-pattern:coordinate-roles-and-dependencies",
+        "koa:workflow-pattern:carry-a-plan-through-execution",
+        "koa:workflow-pattern:maintain-a-changing-shared-situation"
+      ],
+      "component_refs": [
+        "koa:orgo",
+        "koa:kristal",
+        "koa:konnaxion"
+      ],
+      "failure_mechanisms": [
+        "handoff_failure",
+        "missing_escalation",
+        "unclosed_loop",
+        "interoperability_failure"
+      ],
+      "scale": "organization→regional",
+      "urgency": "immediate",
+      "stakes": [
+        "health",
+        "life",
+        "public_safety"
+      ],
+      "domains": [
+        "public_health",
+        "laboratory",
+        "infrastructure"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "A critical result is not safe merely because somebody received it.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-009",
+      "scenario_id": "SCN-009",
+      "title": "The Expert Retires Friday.",
+      "problem_family_ref": "koa:problem-family:knowledge-attrition",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:preserve-capability-beyond-individuals",
+        "koa:workflow-pattern:turn-practice-into-transferable-knowledge",
+        "koa:workflow-pattern:reconstruct-context-and-provenance"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:konnaxion",
+        "koa:orgo"
+      ],
+      "failure_mechanisms": [
+        "knowledge_attrition",
+        "tacit_knowledge_loss",
+        "single_point_of_failure",
+        "memory_failure"
+      ],
+      "scale": "individual→organization",
+      "urgency": "significant",
+      "stakes": [
+        "safety",
+        "service_quality",
+        "continuity"
+      ],
+      "domains": [
+        "workforce",
+        "operations",
+        "engineering"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "Thirty years of judgment should not leave the building in one cardboard box.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-010",
+      "scenario_id": "SCN-010",
+      "title": "The Professor's Best Course Disappears with the Account.",
+      "problem_family_ref": "koa:problem-family:knowledge-attrition",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:turn-knowledge-into-media-or-learning",
+        "koa:workflow-pattern:connect-learning-practice-and-evidence",
+        "koa:workflow-pattern:preserve-capability-beyond-individuals",
+        "koa:workflow-pattern:teach-across-language-or-connectivity-constraints"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:konnaxion"
+      ],
+      "failure_mechanisms": [
+        "knowledge_attrition",
+        "content_silo",
+        "provenance_loss",
+        "reuse_failure"
+      ],
+      "scale": "individual→global",
+      "urgency": "low",
+      "stakes": [
+        "education",
+        "access",
+        "knowledge"
+      ],
+      "domains": [
+        "education"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "A lifetime of teaching improvement should become a reusable asset, not an abandoned folder.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-011",
+      "scenario_id": "SCN-011",
+      "title": "The Student's Best Work Dies After the Grade.",
+      "problem_family_ref": "koa:problem-family:knowledge-attrition",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:connect-learning-practice-and-evidence",
+        "koa:workflow-pattern:turn-practice-into-transferable-knowledge",
+        "koa:workflow-pattern:move-an-idea-to-a-prototype"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:konnaxion",
+        "koa:orgo"
+      ],
+      "failure_mechanisms": [
+        "memory_failure",
+        "reuse_failure",
+        "provenance_loss",
+        "knowledge_attrition"
+      ],
+      "scale": "individual→institution",
+      "urgency": "low",
+      "stakes": [
+        "education",
+        "innovation",
+        "knowledge"
+      ],
+      "domains": [
+        "education",
+        "research"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "A university can produce thousands of prototypes and investigations every year yet accumulate almost no operational memory from them.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-012",
+      "scenario_id": "SCN-012",
+      "title": "Publish the Trade Before the Last Master Leaves.",
+      "problem_family_ref": "koa:problem-family:knowledge-attrition",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:turn-practice-into-transferable-knowledge",
+        "koa:workflow-pattern:preserve-capability-beyond-individuals",
+        "koa:workflow-pattern:connect-learning-practice-and-evidence"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:konnaxion"
+      ],
+      "failure_mechanisms": [
+        "tacit_knowledge_loss",
+        "knowledge_attrition",
+        "single_point_of_failure",
+        "training_gap"
+      ],
+      "scale": "individual→sector",
+      "urgency": "significant",
+      "stakes": [
+        "continuity",
+        "safety",
+        "culture"
+      ],
+      "domains": [
+        "trades",
+        "industry",
+        "culture"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "Skills that live only in hands and stories can vanish faster than institutions realize.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-013",
+      "scenario_id": "SCN-013",
+      "title": "The Failed Experiment Nobody Can Learn From.",
+      "problem_family_ref": "koa:problem-family:knowledge-attrition",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:turn-action-into-a-lesson",
+        "koa:workflow-pattern:connect-learning-practice-and-evidence",
+        "koa:workflow-pattern:reconstruct-context-and-provenance",
+        "koa:workflow-pattern:see-patterns-over-time"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:konnaxion"
+      ],
+      "failure_mechanisms": [
+        "publication_bias",
+        "memory_failure",
+        "provenance_loss",
+        "reuse_failure"
+      ],
+      "scale": "team→global",
+      "urgency": "moderate",
+      "stakes": [
+        "research",
+        "money",
+        "health"
+      ],
+      "domains": [
+        "research",
+        "science"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "When only success becomes visible, everyone else can unknowingly pay to repeat the same failure.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-014",
+      "scenario_id": "SCN-014",
+      "title": "The Expertise Exists. The Right People Never Meet.",
+      "problem_family_ref": "koa:problem-family:distributed-intelligence",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:find-the-right-expertise",
+        "koa:workflow-pattern:assemble-a-team-around-a-problem",
+        "koa:workflow-pattern:deliberate-across-perspectives",
+        "koa:workflow-pattern:coordinate-roles-and-dependencies"
+      ],
+      "component_refs": [
+        "koa:konnaxion",
+        "koa:ekoh",
+        "koa:smart-vote",
+        "koa:kristal",
+        "koa:orgo"
+      ],
+      "failure_mechanisms": [
+        "expertise_isolation",
+        "organizational_silo",
+        "routing_failure",
+        "fragmentation"
+      ],
+      "scale": "organization→national",
+      "urgency": "high",
+      "stakes": [
+        "money",
+        "safety",
+        "public_value"
+      ],
+      "domains": [
+        "public_policy",
+        "engineering",
+        "research"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "Complex problems are often organized by department even when the solution requires a temporary community of expertise.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-015",
+      "scenario_id": "SCN-015",
+      "title": "The Family Sees the Change Before the System Does.",
+      "problem_family_ref": "koa:problem-family:distributed-intelligence",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:investigate-a-signal",
+        "koa:workflow-pattern:maintain-a-changing-shared-situation",
+        "koa:workflow-pattern:connect-decision-mandate-and-consequences",
+        "koa:workflow-pattern:deliberate-across-perspectives"
+      ],
+      "component_refs": [
+        "koa:konnaxion",
+        "koa:orgo",
+        "koa:kristal"
+      ],
+      "failure_mechanisms": [
+        "citizen_signal_ignored",
+        "missing_escalation",
+        "expertise_asymmetry",
+        "handoff_failure"
+      ],
+      "scale": "individual→organization",
+      "urgency": "critical",
+      "stakes": [
+        "health",
+        "life",
+        "dignity"
+      ],
+      "domains": [
+        "healthcare"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "Lived familiarity can reveal deterioration before a formal measurement does.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-016",
+      "scenario_id": "SCN-016",
+      "title": "Residents Keep Warning. The Institution Stops Hearing.",
+      "problem_family_ref": "koa:problem-family:distributed-intelligence",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:investigate-a-signal",
+        "koa:workflow-pattern:see-patterns-over-time",
+        "koa:workflow-pattern:deliberate-across-perspectives",
+        "koa:workflow-pattern:connect-decision-mandate-and-consequences"
+      ],
+      "component_refs": [
+        "koa:konnaxion",
+        "koa:kristal",
+        "koa:orgo"
+      ],
+      "failure_mechanisms": [
+        "citizen_signal_ignored",
+        "power_asymmetry",
+        "fragmentation",
+        "memory_failure"
+      ],
+      "scale": "community→organization",
+      "urgency": "high",
+      "stakes": [
+        "safety",
+        "rights",
+        "trust"
+      ],
+      "domains": [
+        "housing",
+        "municipal_governance",
+        "public_services"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "When persistent complainants are classified as a nuisance, the organization can erase the feedback channel that reveals systemic risk.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-017",
+      "scenario_id": "SCN-017",
+      "title": "Local Knowledge Never Enters the Decision.",
+      "problem_family_ref": "koa:problem-family:distributed-intelligence",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:deliberate-across-perspectives",
+        "koa:workflow-pattern:co-create-without-losing-the-why",
+        "koa:workflow-pattern:find-the-right-expertise",
+        "koa:workflow-pattern:reconstruct-context-and-provenance"
+      ],
+      "component_refs": [
+        "koa:konnaxion",
+        "koa:kristal",
+        "koa:sentient",
+        "koa:semantik-architect"
+      ],
+      "failure_mechanisms": [
+        "citizen_signal_ignored",
+        "expertise_isolation",
+        "semantic_mismatch",
+        "power_asymmetry"
+      ],
+      "scale": "community→national",
+      "urgency": "moderate",
+      "stakes": [
+        "rights",
+        "culture",
+        "service_quality",
+        "environment"
+      ],
+      "domains": [
+        "public_policy",
+        "planning",
+        "culture"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "A technically correct plan can still fail when it excludes the people who understand the place, practice or community it will change.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-018",
+      "scenario_id": "SCN-018",
+      "title": "A Charismatic Claim Travels Faster Than the Evidence.",
+      "problem_family_ref": "koa:problem-family:evidence-vs-noise",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:explain-publicly-without-severing-sources",
+        "koa:workflow-pattern:reconstruct-context-and-provenance",
+        "koa:workflow-pattern:deliberate-across-perspectives",
+        "koa:workflow-pattern:see-patterns-over-time"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:ekoh",
+        "koa:smart-vote",
+        "koa:konnaxion"
+      ],
+      "failure_mechanisms": [
+        "noise_amplification",
+        "false_balance",
+        "provenance_loss",
+        "expertise_mismatch"
+      ],
+      "scale": "individual→global",
+      "urgency": "high",
+      "stakes": [
+        "health",
+        "trust",
+        "public_policy"
+      ],
+      "domains": [
+        "science_communication",
+        "public_health",
+        "media"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "One confident voice can look like one side of a debate even when the underlying evidence is profoundly asymmetric.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-019",
+      "scenario_id": "SCN-019",
+      "title": "The Risk Is Real. So Is the Benefit.",
+      "problem_family_ref": "koa:problem-family:evidence-vs-noise",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:compare-and-prioritize-explicitly",
+        "koa:workflow-pattern:explain-publicly-without-severing-sources",
+        "koa:workflow-pattern:connect-learning-practice-and-evidence",
+        "koa:workflow-pattern:deliberate-across-perspectives"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:smart-vote",
+        "koa:ekoh",
+        "koa:konnaxion"
+      ],
+      "failure_mechanisms": [
+        "risk_distortion",
+        "false_certainty",
+        "context_loss",
+        "noise_amplification"
+      ],
+      "scale": "individual→national",
+      "urgency": "high",
+      "stakes": [
+        "health",
+        "trust"
+      ],
+      "domains": [
+        "public_health",
+        "risk_communication"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "Trust improves when known harms are put at the right scale instead of denied or sensationalized.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-020",
+      "scenario_id": "SCN-020",
+      "title": "The Miracle Cure Goes Viral Before the Trials Finish.",
+      "problem_family_ref": "koa:problem-family:evidence-vs-noise",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:connect-learning-practice-and-evidence",
+        "koa:workflow-pattern:explain-publicly-without-severing-sources",
+        "koa:workflow-pattern:see-patterns-over-time",
+        "koa:workflow-pattern:reconstruct-context-and-provenance"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:konnaxion",
+        "koa:smart-vote"
+      ],
+      "failure_mechanisms": [
+        "noise_amplification",
+        "premature_conclusion",
+        "provenance_loss",
+        "false_certainty"
+      ],
+      "scale": "individual→global",
+      "urgency": "high",
+      "stakes": [
+        "health",
+        "trust"
+      ],
+      "domains": [
+        "medicine",
+        "science_communication"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "Early plausibility is not the same thing as demonstrated benefit.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-021",
+      "scenario_id": "SCN-021",
+      "title": "Doubt Can Be Manufactured Faster Than Causality Can Be Explained.",
+      "problem_family_ref": "koa:problem-family:evidence-vs-noise",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:explain-publicly-without-severing-sources",
+        "koa:workflow-pattern:reconstruct-context-and-provenance",
+        "koa:workflow-pattern:see-patterns-over-time",
+        "koa:workflow-pattern:deliberate-across-perspectives"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:ekoh",
+        "koa:konnaxion",
+        "koa:smart-vote"
+      ],
+      "failure_mechanisms": [
+        "noise_amplification",
+        "conflict_of_interest",
+        "false_balance",
+        "provenance_loss"
+      ],
+      "scale": "organization→global",
+      "urgency": "high",
+      "stakes": [
+        "health",
+        "environment",
+        "trust"
+      ],
+      "domains": [
+        "public_health",
+        "regulation",
+        "science"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "Complex evidence is expensive to build. A misleading counter-claim can be cheap to repeat.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-022",
+      "scenario_id": "SCN-022",
+      "title": "One Cold Day Against a Century of Measurements.",
+      "problem_family_ref": "koa:problem-family:evidence-vs-noise",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:explain-publicly-without-severing-sources",
+        "koa:workflow-pattern:see-patterns-over-time",
+        "koa:workflow-pattern:reconstruct-context-and-provenance",
+        "koa:workflow-pattern:turn-knowledge-into-media-or-learning"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:konnaxion"
+      ],
+      "failure_mechanisms": [
+        "anecdote_overweight",
+        "scale_confusion",
+        "noise_amplification",
+        "context_loss"
+      ],
+      "scale": "individual→global",
+      "urgency": "moderate",
+      "stakes": [
+        "environment",
+        "public_policy",
+        "trust"
+      ],
+      "domains": [
+        "climate",
+        "science_communication"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "A vivid anecdote is cognitively stronger than a statistical distribution unless the evidence system makes scale visible.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-023",
+      "scenario_id": "SCN-023",
+      "title": "A Billion-Dollar Project. Nobody Can Reconstruct Why.",
+      "problem_family_ref": "koa:problem-family:decision-traceability",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:connect-decision-mandate-and-consequences",
+        "koa:workflow-pattern:reconstruct-context-and-provenance",
+        "koa:workflow-pattern:compare-and-prioritize-explicitly",
+        "koa:workflow-pattern:carry-a-plan-through-execution"
+      ],
+      "component_refs": [
+        "koa:orgo",
+        "koa:kristal",
+        "koa:konnaxion"
+      ],
+      "failure_mechanisms": [
+        "opaque_decision",
+        "context_loss",
+        "fragmentation",
+        "institutional_dependency"
+      ],
+      "scale": "organization→national",
+      "urgency": "high",
+      "stakes": [
+        "money",
+        "public_value",
+        "service_quality"
+      ],
+      "domains": [
+        "public_projects",
+        "digital_transformation"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "Costs, requirements and risks change for years; the institution must still be able to explain each major turn.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-024",
+      "scenario_id": "SCN-024",
+      "title": "Experts Should Inform the Decision, Not Own It.",
+      "problem_family_ref": "koa:problem-family:decision-traceability",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:deliberate-across-perspectives",
+        "koa:workflow-pattern:compare-and-prioritize-explicitly",
+        "koa:workflow-pattern:connect-decision-mandate-and-consequences",
+        "koa:workflow-pattern:find-the-right-expertise"
+      ],
+      "component_refs": [
+        "koa:smart-vote",
+        "koa:ekoh",
+        "koa:konnaxion",
+        "koa:kristal"
+      ],
+      "failure_mechanisms": [
+        "expertise_mismatch",
+        "legitimacy_gap",
+        "opaque_weighting",
+        "false_balance"
+      ],
+      "scale": "community→national",
+      "urgency": "moderate",
+      "stakes": [
+        "rights",
+        "public_value",
+        "trust"
+      ],
+      "domains": [
+        "governance",
+        "public_policy"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "A society needs expertise without turning expertise into unaccountable sovereignty.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-025",
+      "scenario_id": "SCN-025",
+      "title": "Make the Unpopular Decision Reconstructible.",
+      "problem_family_ref": "koa:problem-family:decision-traceability",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:connect-decision-mandate-and-consequences",
+        "koa:workflow-pattern:explain-publicly-without-severing-sources",
+        "koa:workflow-pattern:reconstruct-context-and-provenance",
+        "koa:workflow-pattern:deliberate-across-perspectives"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:konnaxion",
+        "koa:orgo"
+      ],
+      "failure_mechanisms": [
+        "opaque_decision",
+        "provenance_loss",
+        "context_loss",
+        "legitimacy_gap"
+      ],
+      "scale": "organization→national",
+      "urgency": "high",
+      "stakes": [
+        "trust",
+        "rights",
+        "money"
+      ],
+      "domains": [
+        "governance",
+        "public_administration"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "A difficult decision may remain controversial; it should not become impossible to understand.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-026",
+      "scenario_id": "SCN-026",
+      "title": "Make the Trade-Offs Visible Before Choosing.",
+      "problem_family_ref": "koa:problem-family:decision-traceability",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:compare-and-prioritize-explicitly",
+        "koa:workflow-pattern:deliberate-across-perspectives",
+        "koa:workflow-pattern:connect-decision-mandate-and-consequences",
+        "koa:workflow-pattern:co-create-without-losing-the-why"
+      ],
+      "component_refs": [
+        "koa:smart-vote",
+        "koa:ekoh",
+        "koa:konnaxion",
+        "koa:kristal"
+      ],
+      "failure_mechanisms": [
+        "criterion_ambiguity",
+        "hidden_tradeoff",
+        "opaque_weighting",
+        "expertise_isolation"
+      ],
+      "scale": "team→national",
+      "urgency": "moderate",
+      "stakes": [
+        "money",
+        "rights",
+        "environment",
+        "service_quality"
+      ],
+      "domains": [
+        "strategy",
+        "public_policy",
+        "investment"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "When every option wins on a different metric, the real decision is which values and risks receive priority.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-027",
+      "scenario_id": "SCN-027",
+      "title": "Twenty Thousand People Participate. Then Nothing Happens.",
+      "problem_family_ref": "koa:problem-family:action-learning-loops",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:deliberate-across-perspectives",
+        "koa:workflow-pattern:connect-decision-mandate-and-consequences",
+        "koa:workflow-pattern:carry-a-plan-through-execution",
+        "koa:workflow-pattern:turn-action-into-a-lesson"
+      ],
+      "component_refs": [
+        "koa:konnaxion",
+        "koa:smart-vote",
+        "koa:orgo",
+        "koa:kristal"
+      ],
+      "failure_mechanisms": [
+        "unclosed_loop",
+        "participation_without_power",
+        "memory_failure",
+        "opaque_decision"
+      ],
+      "scale": "community→national",
+      "urgency": "moderate",
+      "stakes": [
+        "trust",
+        "rights",
+        "public_value"
+      ],
+      "domains": [
+        "civic_participation",
+        "governance"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "Participation without a governed path to decision and execution can create engagement while destroying trust.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-028",
+      "scenario_id": "SCN-028",
+      "title": "Another Disaster. Another Forgotten Report.",
+      "problem_family_ref": "koa:problem-family:action-learning-loops",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:turn-action-into-a-lesson",
+        "koa:workflow-pattern:carry-a-plan-through-execution",
+        "koa:workflow-pattern:see-patterns-over-time",
+        "koa:workflow-pattern:connect-decision-mandate-and-consequences"
+      ],
+      "component_refs": [
+        "koa:orgo",
+        "koa:kristal",
+        "koa:konnaxion"
+      ],
+      "failure_mechanisms": [
+        "memory_failure",
+        "unclosed_loop",
+        "recommendation_decay",
+        "institutional_amnesia"
+      ],
+      "scale": "organization→national",
+      "urgency": "high",
+      "stakes": [
+        "life",
+        "safety",
+        "public_value"
+      ],
+      "domains": [
+        "safety",
+        "regulation",
+        "emergency_management"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "Learning fails when recommendations become documents instead of obligations with owners, deadlines and evidence of closure.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-029",
+      "scenario_id": "SCN-029",
+      "title": "Replay the Cyberattack Without Inventing Hindsight.",
+      "problem_family_ref": "koa:problem-family:action-learning-loops",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:turn-action-into-a-lesson",
+        "koa:workflow-pattern:reconstruct-context-and-provenance",
+        "koa:workflow-pattern:see-patterns-over-time",
+        "koa:workflow-pattern:maintain-a-changing-shared-situation"
+      ],
+      "component_refs": [
+        "koa:orgo",
+        "koa:kristal"
+      ],
+      "failure_mechanisms": [
+        "hindsight_bias",
+        "context_loss",
+        "memory_failure",
+        "blame_distortion"
+      ],
+      "scale": "organization→network",
+      "urgency": "high",
+      "stakes": [
+        "security",
+        "money",
+        "essential_service"
+      ],
+      "domains": [
+        "cybersecurity",
+        "learning"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "A post-mortem is misleading if it judges yesterday’s decisions using information that only became available today.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-030",
+      "scenario_id": "SCN-030",
+      "title": "New Audit. New Names. Same Risk.",
+      "problem_family_ref": "koa:problem-family:action-learning-loops",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:see-patterns-over-time",
+        "koa:workflow-pattern:turn-action-into-a-lesson",
+        "koa:workflow-pattern:connect-decision-mandate-and-consequences",
+        "koa:workflow-pattern:carry-a-plan-through-execution"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:orgo",
+        "koa:konnaxion"
+      ],
+      "failure_mechanisms": [
+        "memory_failure",
+        "recommendation_decay",
+        "fragmentation",
+        "unclosed_loop"
+      ],
+      "scale": "organization→national",
+      "urgency": "high",
+      "stakes": [
+        "money",
+        "service_quality",
+        "trust"
+      ],
+      "domains": [
+        "audit",
+        "public_administration",
+        "risk"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "An organization can produce repeated findings without building the memory that makes recurrence visible before the next failure.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-031",
+      "scenario_id": "SCN-031",
+      "title": "The Dashboard Is Green. A Small Group Is Still Falling Through.",
+      "problem_family_ref": "koa:problem-family:action-learning-loops",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:see-patterns-over-time",
+        "koa:workflow-pattern:investigate-a-signal",
+        "koa:workflow-pattern:compare-and-prioritize-explicitly",
+        "koa:workflow-pattern:deliberate-across-perspectives"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:konnaxion",
+        "koa:sentient"
+      ],
+      "failure_mechanisms": [
+        "aggregation_bias",
+        "visibility_failure",
+        "metric_fixation",
+        "citizen_signal_ignored"
+      ],
+      "scale": "individual→national",
+      "urgency": "high",
+      "stakes": [
+        "health",
+        "equity",
+        "service_quality"
+      ],
+      "domains": [
+        "performance_management",
+        "public_health"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "Average improvement can hide severe failure concentrated in a smaller population.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-032",
+      "scenario_id": "SCN-032",
+      "title": "The Government Keeps Buying Back Its Own Knowledge.",
+      "problem_family_ref": "koa:problem-family:capacity-sovereignty",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:find-the-right-expertise",
+        "koa:workflow-pattern:preserve-capability-beyond-individuals",
+        "koa:workflow-pattern:deliver-work-with-its-context",
+        "koa:workflow-pattern:connect-decision-mandate-and-consequences"
+      ],
+      "component_refs": [
+        "koa:konnaxion",
+        "koa:ekoh",
+        "koa:kristal",
+        "koa:orgo"
+      ],
+      "failure_mechanisms": [
+        "institutional_dependency",
+        "knowledge_attrition",
+        "vendor_dependency",
+        "provenance_loss"
+      ],
+      "scale": "organization→national",
+      "urgency": "high",
+      "stakes": [
+        "money",
+        "public_value",
+        "sovereignty"
+      ],
+      "domains": [
+        "public_administration",
+        "procurement",
+        "digital_transformation"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "Outside expertise should leave the public institution more capable, not more dependent.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-033",
+      "scenario_id": "SCN-033",
+      "title": "The Municipality Depends on a System It Cannot Inspect or Leave.",
+      "problem_family_ref": "koa:problem-family:capacity-sovereignty",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:reconstruct-context-and-provenance",
+        "koa:workflow-pattern:preserve-capability-beyond-individuals",
+        "koa:workflow-pattern:connect-decision-mandate-and-consequences",
+        "koa:workflow-pattern:keep-working-in-field-offline-mode"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:orgo",
+        "koa:konnaxion"
+      ],
+      "failure_mechanisms": [
+        "vendor_dependency",
+        "opacity",
+        "lock_in",
+        "power_asymmetry"
+      ],
+      "scale": "organization→city",
+      "urgency": "high",
+      "stakes": [
+        "service_quality",
+        "rights",
+        "money",
+        "sovereignty"
+      ],
+      "domains": [
+        "public_technology",
+        "procurement"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "A useful system can still become a source of domination when the institution cannot understand, contest, repair or exit it.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-034",
+      "scenario_id": "SCN-034",
+      "title": "Nobody Knows Why the Legacy System Works This Way.",
+      "problem_family_ref": "koa:problem-family:capacity-sovereignty",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:preserve-capability-beyond-individuals",
+        "koa:workflow-pattern:reconstruct-context-and-provenance",
+        "koa:workflow-pattern:see-patterns-over-time",
+        "koa:workflow-pattern:deliver-work-with-its-context"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:orgo"
+      ],
+      "failure_mechanisms": [
+        "knowledge_attrition",
+        "legacy_dependency",
+        "context_loss",
+        "single_point_of_failure"
+      ],
+      "scale": "organization→national",
+      "urgency": "high",
+      "stakes": [
+        "essential_service",
+        "security",
+        "money"
+      ],
+      "domains": [
+        "legacy_it",
+        "public_services"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "A system can remain operational long after the decisions, people and documentation that made it understandable are gone.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-035",
+      "scenario_id": "SCN-035",
+      "title": "Digitized Culture Without Context Becomes Raw Material.",
+      "problem_family_ref": "koa:problem-family:capacity-sovereignty",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:reconstruct-context-and-provenance",
+        "koa:workflow-pattern:preserve-capability-beyond-individuals",
+        "koa:workflow-pattern:deliberate-across-perspectives",
+        "koa:workflow-pattern:explain-publicly-without-severing-sources"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:konnaxion",
+        "koa:kreative",
+        "koa:konservation",
+        "koa:semantik-architect"
+      ],
+      "failure_mechanisms": [
+        "provenance_loss",
+        "rights_detachment",
+        "context_loss",
+        "power_asymmetry"
+      ],
+      "scale": "community→global",
+      "urgency": "high",
+      "stakes": [
+        "culture",
+        "rights",
+        "identity",
+        "sovereignty"
+      ],
+      "domains": [
+        "culture",
+        "archives",
+        "ai"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "Preservation without provenance, authority and rights can turn living culture into extractable data.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:scenario-archetype:36:scn-036",
+      "scenario_id": "SCN-036",
+      "title": "Essential Work Must Continue When the Network Does Not.",
+      "problem_family_ref": "koa:problem-family:capacity-sovereignty",
+      "workflow_pattern_refs": [
+        "koa:workflow-pattern:keep-working-in-field-offline-mode",
+        "koa:workflow-pattern:maintain-a-changing-shared-situation",
+        "koa:workflow-pattern:deliver-work-with-its-context",
+        "koa:workflow-pattern:preserve-capability-beyond-individuals"
+      ],
+      "component_refs": [
+        "koa:kristal",
+        "koa:orgo",
+        "koa:konnaxion"
+      ],
+      "failure_mechanisms": [
+        "central_dependency",
+        "connectivity_failure",
+        "vendor_dependency",
+        "continuity_gap"
+      ],
+      "scale": "organization→national",
+      "urgency": "critical",
+      "stakes": [
+        "essential_service",
+        "health",
+        "safety",
+        "money"
+      ],
+      "domains": [
+        "resilience",
+        "critical_infrastructure",
+        "healthcare"
+      ],
+      "evidence_status": "scenario_archetype_with_documented_parallels",
+      "runtime_status": "COMPOSED · runtime UNVERIFIED",
+      "description": "Critical knowledge and coordination should not disappear because one cloud service, vendor or connection is unavailable.",
+      "source_refs": [
+        "src:scenario-archetypes-36"
+      ],
+      "assertion_status": "sourced"
+    }
+  ]
+}

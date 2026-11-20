@@ -1,0 +1,2 @@
+repo=Konnaxion_Worlds
+path=C:\mycode\Konnaxion\Konnaxion_Worlds

@@ -1,0 +1,105 @@
+{
+  "format": "koa.domains.v1",
+  "domains": [
+    {
+      "id": "koa:domain:education",
+      "label": "Éducation",
+      "kind": "transformation_domain",
+      "description": "Apprentissage, certification, institutions éducatives et diffusion du savoir.",
+      "source_refs": [
+        "src:user-arborescence",
+        "src:github-profile"
+      ]
+    },
+    {
+      "id": "koa:domain:health",
+      "label": "Santé",
+      "kind": "transformation_domain",
+      "description": "Connaissance, opérations et coordination liées à la santé.",
+      "source_refs": [
+        "src:user-arborescence",
+        "src:github-profile"
+      ]
+    },
+    {
+      "id": "koa:domain:justice",
+      "label": "Justice",
+      "kind": "transformation_domain",
+      "description": "Processus et institutions de justice.",
+      "source_refs": [
+        "src:user-arborescence",
+        "src:github-profile"
+      ]
+    },
+    {
+      "id": "koa:domain:correctional",
+      "label": "Correctionnel",
+      "kind": "transformation_domain",
+      "description": "Institutions et processus correctionnels.",
+      "source_refs": [
+        "src:user-arborescence",
+        "src:github-profile"
+      ]
+    },
+    {
+      "id": "koa:domain:social-services",
+      "label": "Services sociaux",
+      "kind": "transformation_domain",
+      "description": "Coordination et services sociaux.",
+      "source_refs": [
+        "src:user-arborescence",
+        "src:github-profile"
+      ]
+    },
+    {
+      "id": "koa:domain:peace-reconstruction",
+      "label": "Paix / reconstruction",
+      "kind": "transformation_domain",
+      "description": "Paix opérationnelle, reconstruction et coordination post-crise.",
+      "source_refs": [
+        "src:user-arborescence",
+        "src:github-profile"
+      ]
+    },
+    {
+      "id": "koa:domain:civic",
+      "label": "Civique / gouvernance",
+      "kind": "application_family",
+      "description": "Consultation, délibération, décision et accountability.",
+      "source_refs": [
+        "src:user-arborescence",
+        "src:github-profile"
+      ]
+    },
+    {
+      "id": "koa:domain:research",
+      "label": "Recherche / R&D",
+      "kind": "application_family",
+      "description": "Recherche, innovation, evidence, projets et collaboration scientifique.",
+      "source_refs": [
+        "src:user-arborescence",
+        "src:github-profile"
+      ]
+    },
+    {
+      "id": "koa:domain:culture",
+      "label": "Culture / mémoire",
+      "kind": "application_family",
+      "description": "Création, préservation, narration, médiathèque et patrimoine.",
+      "source_refs": [
+        "src:user-arborescence",
+        "src:github-profile"
+      ]
+    },
+    {
+      "id": "koa:domain:organization",
+      "label": "Organisation / opérations",
+      "kind": "application_family",
+      "description": "Coordination du travail, workflow, cas, tâches et responsabilité.",
+      "source_refs": [
+        "src:user-arborescence",
+        "src:github-profile"
+      ]
+    }
+  ]
+}

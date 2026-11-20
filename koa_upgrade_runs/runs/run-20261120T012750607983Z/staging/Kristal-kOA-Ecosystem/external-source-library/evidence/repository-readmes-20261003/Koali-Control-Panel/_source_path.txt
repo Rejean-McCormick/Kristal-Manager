@@ -1,0 +1,2 @@
+repo=Koali-Control-Panel
+path=C:\mycode\kOA-Linux\Koali-Control-Panel

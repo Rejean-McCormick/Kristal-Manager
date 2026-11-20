@@ -1,0 +1,7 @@
+{
+  "format": "kristal.authoring-state-index/2.0.0",
+  "canonical_artifacts": [],
+  "external_references": [],
+  "derived_artifacts": [],
+  "notes": "Register authoritative Logical Artifacts here. Physical materializations, indexes, caches and build outputs stay derived."
+}

@@ -1,0 +1,87 @@
+{
+  "profile": "kristal.v9.package-manifest/1",
+  "generated_at": "2026-10-06T17:21:00-04:00",
+  "algorithm": "sha256",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "e506c43392a29f75a356cc65ce14dd4a64d455b1e9fee8434aa5ba3d040bde50",
+      "bytes": 1638
+    },
+    {
+      "path": "STANDARD",
+      "sha256": "62c2aec17ad294381557bf90dc175324d0afbb46025b779016f8d9df102c00cf",
+      "bytes": 14
+    },
+    {
+      "path": "activation.json",
+      "sha256": "253a44d603d146f94cadaef91051619e35312b2be04243c01a5cd15b972434dc",
+      "bytes": 442
+    },
+    {
+      "path": "artifacts/canonical-state.logical-artifact.json",
+      "sha256": "f2b0da608017c048de791ee388545ec6856bd9c95c7b9ce66465b404c25d6311",
+      "bytes": 869
+    },
+    {
+      "path": "artifacts/source-bundle.logical-artifact.json",
+      "sha256": "a99a7ebf1be9d6514844cb8d40a1c258416266f8ee2c3a1fa64cb4b0998607b2",
+      "bytes": 7905
+    },
+    {
+      "path": "capabilities.json",
+      "sha256": "1fbe81e8a2ae600bcc4cf2745f886eb6482cb417015ba8b39eb8b514cdf232e8",
+      "bytes": 927
+    },
+    {
+      "path": "derivation.json",
+      "sha256": "07dca00a6068e98d6b6adf54b8357d8821bbb6beb1f93f29946cb1c69ffc858c",
+      "bytes": 1762
+    },
+    {
+      "path": "exchange.json",
+      "sha256": "5e3ffea75f59672d84b948450e7f79e660417a7f1bed519cdc3bca4019cfc510",
+      "bytes": 1060
+    },
+    {
+      "path": "logical-contracts.json",
+      "sha256": "3c5f9f1ba64df424e658d6a8bb6a3b7222bf81e18d804558dc10caa70636004c",
+      "bytes": 974
+    },
+    {
+      "path": "materializations/canonical-state.materialization.json",
+      "sha256": "60325b6fc96a48b18e1735ff395683e0c8d7490d13faa0ba707e144cee605cb1",
+      "bytes": 1346
+    },
+    {
+      "path": "materializations/source-bundle.materialization.json",
+      "sha256": "41d6cd3b03632f9831ca58ba1e0cefb15a50cac054d8d9618cff791d155ada1c",
+      "bytes": 8341
+    },
+    {
+      "path": "migration-report.json",
+      "sha256": "4fdcce6a2eab4b2abe8ea3ce14d09943168c225af0d3f6de3b494c2069fe0d26",
+      "bytes": 1550
+    },
+    {
+      "path": "package.json",
+      "sha256": "1c08cb667b9f8429b11287d778f34e115605228883e245cc51556eae72d40190",
+      "bytes": 2203
+    },
+    {
+      "path": "state-snapshot.json",
+      "sha256": "8032ae8392b173fd6392661941d8128cac1576287389ac69a71650a7acddc411",
+      "bytes": 879
+    },
+    {
+      "path": "validate.py",
+      "sha256": "c362bc5de07facd0aca5d47e891f4bf90fb6813c12cce1f30d76854668d9abf6",
+      "bytes": 6658
+    },
+    {
+      "path": "validation-report.json",
+      "sha256": "f2b16e0411e007ec4ac9cbb691377e4a071cae88cc855eccbcc376a1ccce8e1d",
+      "bytes": 619
+    }
+  ]
+}

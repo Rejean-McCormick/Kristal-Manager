@@ -1,0 +1,57 @@
+{
+  "profile": "kristal-v9-semantic-state-package/1.0",
+  "framework_version": "9.0.0-draft.1",
+  "kristal_ref": "Kristal-kOA-Ecosystem",
+  "content_version": "0.6.3",
+  "conformance_profile": "V9-Full",
+  "state_snapshot": "state-snapshot.json",
+  "activation": "activation.json",
+  "exchange": "exchange.json",
+  "capabilities": "capabilities.json",
+  "derivation": "derivation.json",
+  "logical_artifacts": [
+    {
+      "role": "canonical_state",
+      "path": "artifacts/canonical-state.logical-artifact.json",
+      "artifact_id": "urn:kristal:koa-ecosystem:artifact:canonical-state",
+      "logical_commitment": {
+        "profile": "kristal.logical/jcs-sha256-v1",
+        "digest": "sha256:8d5195171697739485ada83e69b8fae83fe95cda155d5181a8d61dff4cc40a74"
+      }
+    },
+    {
+      "role": "build_input",
+      "path": "artifacts/source-bundle.logical-artifact.json",
+      "artifact_id": "urn:kristal:koa-ecosystem:artifact:editorial-sources",
+      "logical_commitment": {
+        "profile": "kristal.logical/jcs-sha256-v1",
+        "digest": "sha256:125617b4788b6df252ed347b10e5d5f21e3cc46b20ea2ad822098b7e9576acaf"
+      }
+    }
+  ],
+  "materializations": [
+    {
+      "path": "materializations/canonical-state.materialization.json",
+      "artifact_id": "urn:kristal:koa-ecosystem:artifact:canonical-state",
+      "profile": "kristal.materialization/native-blob/1"
+    },
+    {
+      "path": "materializations/source-bundle.materialization.json",
+      "artifact_id": "urn:kristal:koa-ecosystem:artifact:editorial-sources",
+      "profile": "kristal.materialization/native-json-bundle/1"
+    }
+  ],
+  "inherited": {
+    "v8_package": ".kristal/v8/package.json",
+    "portable_v6_state": ".kristal/v8/portable-state.kristal-state.json",
+    "canonical_source": "knowledge-base/corpus/koa-ecosystem.kristal-state.json"
+  },
+  "noncanonical_companions": [
+    "knowledge-base/corpus/index.json",
+    ".kristal/v8/"
+  ],
+  "authority_boundary": "V9 is additive. Existing domain canonical/source authority is preserved; v8 query indexes and read models remain derived/rebuildable.",
+  "semantic_rewrite": false,
+  "validation_report": "validation-report.json",
+  "validator": "validate.py"
+}

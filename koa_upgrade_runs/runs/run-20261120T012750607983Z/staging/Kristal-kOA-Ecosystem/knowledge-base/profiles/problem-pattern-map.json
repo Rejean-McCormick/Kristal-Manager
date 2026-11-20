@@ -1,0 +1,19 @@
+{
+  "format": "koa.reader-profile.v3",
+  "profile_id": "koa:reader:problem-pattern-map",
+  "name": "Familles de problèmes → workflows",
+  "description": "Patterns observés dans les 36 scénarios canoniques pour chaque famille de rupture.",
+  "source_state": "knowledge-base/koa-ecosystem.kristal-state.json",
+  "projection": {
+    "x_axis": "problem_family",
+    "y_axis": "workflow_pattern",
+    "predicate": "koa:addressed_by_workflow_pattern"
+  },
+  "policy": {
+    "preserve_assertion_status": true,
+    "preserve_relationship_role": true,
+    "show_claimed_as_claimed": true,
+    "do_not_infer_authority": true,
+    "scenario_composition_is_not_runtime_evidence": true
+  }
+}

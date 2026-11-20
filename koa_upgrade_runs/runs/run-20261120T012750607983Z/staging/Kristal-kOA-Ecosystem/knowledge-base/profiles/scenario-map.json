@@ -1,0 +1,19 @@
+{
+  "format": "koa.reader-profile.v3",
+  "profile_id": "koa:reader:scenario-map",
+  "name": "Scénarios → workflows/composants",
+  "description": "Scénarios éditoriaux, patterns, utilités et rôles de composants; runtime explicitement non vérifié sauf preuve séparée.",
+  "source_state": "knowledge-base/koa-ecosystem.kristal-state.json",
+  "projection": {
+    "x_axis": "scenario",
+    "y_axis": "workflow/component",
+    "predicate": "koa:uses_workflow_pattern"
+  },
+  "policy": {
+    "preserve_assertion_status": true,
+    "preserve_relationship_role": true,
+    "show_claimed_as_claimed": true,
+    "do_not_infer_authority": true,
+    "scenario_composition_is_not_runtime_evidence": true
+  }
+}

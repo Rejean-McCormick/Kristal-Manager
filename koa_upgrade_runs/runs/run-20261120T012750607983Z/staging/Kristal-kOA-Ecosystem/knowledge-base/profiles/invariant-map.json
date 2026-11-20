@@ -1,0 +1,18 @@
+{
+  "format": "koa.reader-profile.v2",
+  "profile_id": "koa:reader:invariant-map",
+  "name": "Invariants → systèmes",
+  "description": "Invariants techniques et systèmes/fonctions qui les portent.",
+  "source_state": "knowledge-base/koa-ecosystem.kristal-state.json",
+  "projection": {
+    "x_axis": "invariant",
+    "y_axis": "component/function",
+    "predicate": "koa:upholds_invariant"
+  },
+  "policy": {
+    "preserve_assertion_status": true,
+    "preserve_relationship_role": true,
+    "show_claimed_as_claimed": true,
+    "do_not_infer_authority": true
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "format": "koa.operating-functions.v1",
+  "functions": [
+    {
+      "id": "koa:function:intent",
+      "label": "Intention & mandat",
+      "family": "orientation",
+      "description": "But, critères de réussite, contraintes éthiques et conditions qui bornent le système.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:function:observation",
+      "label": "Observation & sources",
+      "family": "knowledge_input",
+      "description": "Capture de matière, signaux, evidence, provenance et état observable sans promotion prématurée.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:function:structure",
+      "label": "Structure & règles",
+      "family": "knowledge_control",
+      "description": "Schémas, contrats, ontologies, profils, configurations et règles versionnées qui donnent une forme vérifiable.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:function:canonical-memory",
+      "label": "Mémoire canonique",
+      "family": "knowledge_control",
+      "description": "Artefacts validés, versionnés, inspectables et portables servant de référence sans mutation cachée.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:function:coordination",
+      "label": "Coordination & relations",
+      "family": "collective",
+      "description": "Identités, rôles, collaboration, participation, réseau et distribution des contributions.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:function:governance",
+      "label": "Gouvernance & limites",
+      "family": "collective",
+      "description": "Gates, policy, autorisation, ordre de cycle de vie, sécurité, conformité, contestation et refus fail-closed.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:function:synthesis",
+      "label": "Synthèse & réconciliation",
+      "family": "knowledge_processing",
+      "description": "Résolution explicite des propositions, ambiguïtés, référents, désaccords et interprétations sans invention silencieuse.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:function:strategy",
+      "label": "Stratégie & trajectoire",
+      "family": "action_design",
+      "description": "Priorisation, scénarios, plans et choix de trajectoires alignés sur le mandat et les contraintes.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:function:articulation",
+      "label": "Articulation & interface",
+      "family": "action_design",
+      "description": "Communication humaine, rendu, pédagogie, navigation et présentation fidèle des structures et décisions.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:function:execution",
+      "label": "Exécution & orchestration",
+      "family": "realization",
+      "description": "Transformation des plans et décisions en travail, actions, transitions runtime, publications et opérations bornées.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    },
+    {
+      "id": "koa:function:impact-feedback",
+      "label": "Impact & apprentissage",
+      "family": "realization",
+      "description": "Résultats, preuves, accountability, confiance, reporting et feedback renvoyé dans un nouveau cycle gouverné.",
+      "source_refs": [
+        "src:functional-architecture-note",
+        "src:github-koa-digital",
+        "src:sociotechnical-os"
+      ],
+      "assertion_status": "sourced"
+    }
+  ]
+}
