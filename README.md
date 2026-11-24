@@ -4,11 +4,11 @@
 
 > **UNESCO taxonomy integration (2026-10-27):** Kristal Manager now reads the pinned Framework v7 UNESCO Thesaurus reference (7 domains, 88 microthesauri) alongside ISCED-F 2013 icon broad fields. These are separate axes, not guessed classifications. The **Actions → UNESCO classification audit…** overlay exports offline JSON and HTML; no Kristal source is modified. See [UNESCO_CLASSIFICATION_2026-10-27.md](UNESCO_CLASSIFICATION_2026-10-27.md).
 
-**Édition consolidée — icônes Windows + diagnostic guidé :** consulter [CONSOLIDATION_2026-10-27.md](CONSOLIDATION_2026-10-27.md).
+**Édition consolidée — icônes Windows + diagnostic guidé :** le document historique `CONSOLIDATION_2026-10-27.md` n’est pas présent dans la capture du 23 novembre 2026. Pour le fonctionnement documenté, voir [les autorisations d’icônes locales](docs/LOCAL_FOLDER_ICONS_OPT_IN.md) et [la réconciliation des références](docs/README_LINKS_RECONCILIATION_2026-11-23.md).
 
 # Kristal Manager
 
-**Mise à jour icônes sur le Manager 19 h 24 :** lire [MISE_A_JOUR_ICONES_1924.md](MISE_A_JOUR_ICONES_1924.md). Les icônes Windows existantes sont affichées dans la table ; le générateur Windows original reste séparé.
+**Mise à jour historique des icônes (19 h 24) :** `MISE_A_JOUR_ICONES_1924.md` est absent de la capture. Voir [le guide actuel des autorisations et limites](docs/LOCAL_FOLDER_ICONS_OPT_IN.md). L’ancien récit de livraison n’est pas restauré sans source authentique.
 
 **Local content update:** `0.1.0-alpha.15` · **Framework target:** `10.0.0-draft.3.2` · **Operational status:** **read-only inventory and content catalogue available; GitHub synchronization disabled**.
 
@@ -149,17 +149,19 @@ The original `tests/test_core.py` remains available as an **unresolved compatibi
 
 ## Relevant documentation
 
-- [Architecture](ARCHITECTURE.md)
-- [Current recovery status](docs/RECOVERY_STATUS.md)
-- [Konstellation inventory handoff](docs/KONSTELLATION_INVENTORY.md)
-- [v10 alignment and security gates](docs/V10_ALIGNMENT.md)
-- [C2 signed evidence requirements](docs/C2_PUBLICATION_CONTROL.md)
+- [Documentation générale et statut de spécification](docs/README.md) — ne pas assimiler la cible à la livraison.
+- [Audit daté de l’existant](docs/01-audit/existant.md) et [modules de l’implémentation vNext](docs/13-implementation-vnext/README.md) — périmètres datés, à relire avec le code courant.
+- [Architecture cible](docs/02-architecture/architecture-cible.md) — **cible**, pas preuve de déploiement.
+- [Compatibilité V9/V10/V11](docs/05-moteurs/compatibilite-v9-v10-v11.md) — garde-fous documentés.
+- [Publication et séparation des droits](docs/09-securite/publication-et-separation-des-droits.md) — politique et contrôles, non autorisation de publier.
+- [Qualification de récupération du 4 novembre](docs/QUALIFICATION_RECOVERY_2026-11-04.md) — preuves limitées à leur portée.
+- [Réconciliation des neuf références historiques absentes](docs/README_LINKS_RECONCILIATION_2026-11-23.md) — état précis des documents introuvables, sans reconstitution fictive.
 
 No public/private Kristal collection was modified or published by this release artifact.
 
 ## Authentic original runtime found in Git history
 
-After preparing this recovery build, an audit of repository history located the full authentic Python backend in commit **`237b1b539332da5d87bed4b185ea03794aad1057`**, from which the current public branch removed its Python package. See [Historical runtime recovery](docs/HISTORICAL_RUNTIME_RECOVERY.md) and `tools/restore_original_backend.py`. This is preferable to treating the recovery's intentionally disabled sync routines as their eventual implementation. The exporter works **offline** against a full local Git clone, stages verifiable source for review, and never changes the checkout or contacts GitHub.
+A previous repository-history audit reported an authentic Python backend at commit **`237b1b539332da5d87bed4b185ea03794aad1057`**. That is a **historical claim**, not a verified recovery in this capture. The referenced `docs/HISTORICAL_RUNTIME_RECOVERY.md` and `tools/restore_original_backend.py` are **absent from the SmartDump of 23 November 2026**. Consequently, this README does not provide an executable restoration procedure; do not infer that the old Git sync engine has been restored. See [the source-reference reconciliation](docs/README_LINKS_RECONCILIATION_2026-11-23.md).
 
 **Operator caution:** `GitSink.bat` is an inherited generic Git helper that may stage/commit/push all changes; it is **not** used by the Manager launcher or recovery tests. Do not invoke it as an alignment or publication step.
 
@@ -225,15 +227,11 @@ It never deletes modified files or recursively scans workspaces.
 Old package-manifest evidence is archived in `docs/snapshots/`; the new
 root package manifest is regenerated for this distribution.
 
-**Private collection staging:** [`stage-public-candidate`](docs/PRIVATE_STAGE_C3.md) generates exact Kit-derived C3 candidate surfaces, never an unattended Git push.
+**Private collection staging (historical reference):** the former guide `docs/PRIVATE_STAGE_C3.md` is missing from the capture, and no corresponding `stage-public-candidate` tool was identified there. Its existence, availability and C3 qualification **are not established by this README**. Refer to [the documentation reconciliation](docs/README_LINKS_RECONCILIATION_2026-11-23.md). No Git push is authorized.
 
-## Publication GitHub depuis le Manager (nouvelle intégration)
+## Publication GitHub depuis le Manager — documentation à qualifier
 
-Ouvrir **Publier sur GitHub…** dans l'interface. Le Manager réalise la
-préparation privée, le commit local C3 puis le push uniquement avec les preuves
-C1/C2 signées et la confirmation explicite de l'opérateur.
-Voir [docs/MANAGER_PUBLICATION_GITHUB_UI.md](docs/MANAGER_PUBLICATION_GITHUB_UI.md).
-Le Wiki GitHub natif demeure désactivé tant qu'il n'est pas activé côté GitHub.
+La page [Interface de publication GitHub](docs/MANAGER_PUBLICATION_GITHUB_UI.md) décrit une interface et des garde-fous C1/C2/C3. **Elle ne constitue pas une preuve que le parcours fonctionne dans cette capture.** Le statut opérationnel indiqué au début de ce README demeure : **synchronisation GitHub désactivée**, mutations distantes bloquées tant que le moteur et ses contrôles ne sont pas restaurés et qualifiés. Ne lancer aucune publication sur la seule foi de ce guide. Voir [la réconciliation du 23 novembre](docs/README_LINKS_RECONCILIATION_2026-11-23.md).
 
 ### Scan global détaillé des champs — 2026-11-01
 
