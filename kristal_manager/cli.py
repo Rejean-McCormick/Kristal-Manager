@@ -84,8 +84,46 @@ def main(argv=None):
     p.add_argument('--policy-dir',required=True,type=Path)
     p.add_argument('--confirm-independent-approval',action='store_true')
     p.add_argument('--push',action='store_true',help='Actual public push; default is gate-only')
+    p=sub.add_parser('audit-local-public',help='V5.13 local-canon to public-read-surface integrity audit; never edits either tree')
+    p.add_argument('--locals',required=True,type=Path,help='Canonical locals directory or ZIP snapshot')
+    p.add_argument('--public',required=True,type=Path,help='Hosted public checkout or ZIP snapshot')
+    p.add_argument('--output',type=Path,help='Optional NEW private JSON report outside input trees')
+    p.add_argument('--full',action='store_true',help='Print full per-workspace report to stdout; default is summary only')
+    p=sub.add_parser('build-semantic-observatory',help='V5.14 read-only local semantic occurrences into NEW private candidate SQLite')
+    p.add_argument('--locals',required=True,type=Path,help='Canonical locals directory or local ZIP snapshot')
+    p.add_argument('--db',required=True,type=Path,help='NEW private SQLite outside any source tree')
+    p.add_argument('--report',type=Path,help='Optional NEW private JSON summary')
+    p=sub.add_parser('semantic-observatory-query',help='Query all matching unselected revisions (ID, exact term, Wikidata identifier)')
+    p.add_argument('--db',required=True,type=Path)
+    p.add_argument('--q',required=True)
+    p.add_argument('--limit',type=int,default=30)
+    p.add_argument('--namespace-id',help='Optional exact Kristal namespace to disambiguate reused KQ/KP IDs')
     args=parser.parse_args(argv)
     try:
+        if args.command=='build-semantic-observatory':
+            from .semantic_federation_inventory import build_semantic_inventory
+            result=build_semantic_inventory(args.locals,args.db,args.report)
+            print(json.dumps(result,ensure_ascii=False,indent=2))
+            return 3 if result['status']=='BLOCKED_INTEGRITY' else 0
+        if args.command=='semantic-observatory-query':
+            from .semantic_federation_inventory import query_semantic_inventory
+            result=query_semantic_inventory(args.db,args.q,args.limit,args.namespace_id)
+            print(json.dumps(result,ensure_ascii=False,indent=2))
+            return 0
+        if args.command=='audit-local-public':
+            from .local_first_audit import audit_local_first, write_private_report
+            report=audit_local_first(args.locals,args.public)
+            if args.output:
+                dest=write_private_report(report,args.output,args.locals,args.public)
+                print(json.dumps({'report':str(dest),'status':report['status'],
+                                  'blocker_count':report['blocker_count'],
+                                  'counts':report['counts']},ensure_ascii=False,indent=2))
+            else:
+                summary=report if args.full else {'status':report['status'],
+                        'blocker_count':report['blocker_count'],'counts':report['counts'],
+                        'policy':report['policy']}
+                print(json.dumps(summary,ensure_ascii=False,indent=2))
+            return 3 if report['blocker_count'] else 0
         if args.command=='prepare-public-commit':
             from .publication_flow import prepare_local_commit
             result=prepare_local_commit(candidate=args.candidate,checkout=args.checkout,
