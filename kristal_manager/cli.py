@@ -2,6 +2,7 @@
 from __future__ import annotations
 import argparse
 import json
+import sqlite3
 from pathlib import Path
 from .core import scan_roots, detect_kristal, ManagerError
 from .inventory import inventory,save_private_inventory,konstellation_preview
@@ -98,8 +99,30 @@ def main(argv=None):
     p.add_argument('--q',required=True)
     p.add_argument('--limit',type=int,default=30)
     p.add_argument('--namespace-id',help='Optional exact Kristal namespace to disambiguate reused KQ/KP IDs')
+    p=sub.add_parser('reconcile-semantic-observatory',help='V5.15 read-only V5.14 reconciliation into NEW private review SQLite + JSON')
+    p.add_argument('--source-db',required=True,type=Path,help='Existing V5.14 candidate inventory SQLite')
+    p.add_argument('--review-db',required=True,type=Path,help='NEW private review-cases SQLite')
+    p.add_argument('--report',required=True,type=Path,help='NEW private review summary JSON')
+    p=sub.add_parser('semantic-review-cases',help='Page through unselected V5.15 review cases and provenance')
+    p.add_argument('--review-db',required=True,type=Path)
+    p.add_argument('--kind',help='Optional case kind')
+    p.add_argument('--namespace-id',help='Optional namespace filter')
+    p.add_argument('--semantic-id',help='Optional exact semantic ID filter')
+    p.add_argument('--limit',type=int,default=30)
+    p.add_argument('--offset',type=int,default=0)
     args=parser.parse_args(argv)
     try:
+        if args.command=='reconcile-semantic-observatory':
+            from .semantic_reconciliation_v515 import reconcile_semantic_inventory
+            result=reconcile_semantic_inventory(args.source_db,args.review_db,args.report)
+            print(json.dumps(result,ensure_ascii=False,indent=2))
+            return 0
+        if args.command=='semantic-review-cases':
+            from .semantic_reconciliation_v515 import list_reconciliation_cases
+            result=list_reconciliation_cases(args.review_db,args.kind,args.namespace_id,
+                                             args.semantic_id,args.limit,args.offset)
+            print(json.dumps(result,ensure_ascii=False,indent=2))
+            return 0
         if args.command=='build-semantic-observatory':
             from .semantic_federation_inventory import build_semantic_inventory
             result=build_semantic_inventory(args.locals,args.db,args.report)
@@ -209,7 +232,7 @@ def main(argv=None):
         if args.command=='verify' and result['operational_result'] in ('BLOCKED','ATTENTION_REQUIRED'):
             return 3
         return 0
-    except (ManagerError,OSError,ValueError) as e:
+    except (ManagerError,OSError,ValueError,sqlite3.Error) as e:
         parser.exit(2,f'ERROR: {e}\n')
 
 if __name__=='__main__':
