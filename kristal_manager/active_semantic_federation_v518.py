@@ -177,8 +177,9 @@ def _ingest_active(db, namespace: str, slug: str, projection: dict, counts: Coun
                        (namespace, sid, qid))
         if not record.get("labels"):
             counts["identities_without_active_label"] += 1
-            db.execute("INSERT INTO review_queue VALUES (?,?,?,?)",
-                       (namespace, sid, "MISSING_ACTIVE_LABEL", _json({"owner_slug": slug})))
+            if record["kind"] in ("entity", "property"):
+                db.execute("INSERT INTO review_queue VALUES (?,?,?,?)",
+                           (namespace, sid, "MISSING_ACTIVE_LABEL", _json({"owner_slug": slug})))
         else:
             counts["identities_with_active_label"] += 1
         if len(candidates) > 1 and not accepted:
