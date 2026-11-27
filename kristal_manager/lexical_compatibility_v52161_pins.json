@@ -1,0 +1,322 @@
+{
+  "astronomy": {
+    "1e967f58044199155ecba6f02931f67512e7bc6e348b7e0e7e80df294d3f6aba": {
+      "language": "en",
+      "missing": 35,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-en.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "77b15e26e28fcdf1a9a1c0fab8a3731b1cad71a2d9c598147aa1d8fd7cf577d4": {
+      "language": "und",
+      "missing": 445,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-und.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "e2f3f93834c4aa48f5f5b702563f406be71927f257394b178f844fb892444685": {
+      "language": "fr",
+      "missing": 35,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-fr.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    }
+  },
+  "biodiversity": {
+    "33c808ed9b556348e4ee4ffcd9a9412d61fb3e33fbb640a9d980aa58a3dfe04a": {
+      "language": "en",
+      "missing": 9,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-en.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "5478f19000bd24fe34518ca201248a66eca66220f27020b1dce00ae5c51f4c99": {
+      "language": "und",
+      "missing": 119,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-und.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "5b0458013f4f1a396f511cc7403ed549b0c5956f32d302a3a00926dacfd56b51": {
+      "language": "fr",
+      "missing": 9,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-fr.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    }
+  },
+  "chemistry": {
+    "47a8d951ab5b466cabf3283677762be0563377b89f86c50be0d0dfa7f71cdff5": {
+      "language": "und",
+      "missing": 1919,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-und.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "609fd73a693a43e4eaf9bd1f9e4ca7624e3eb691b6aaf6e06750b94caf1a23ba": {
+      "language": "fr",
+      "missing": 87,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-fr.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "a58a1d4ae89eee5b456082d98ce73d4d8149a4eedc30b37dad74846c1f8a01e8": {
+      "language": "en",
+      "missing": 89,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-en.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    }
+  },
+  "fungi": {
+    "3316392b6b04301f5b75a5229fd5bef10f7c457c7b45ac85580910b6bf5a6e46": {
+      "language": "en",
+      "missing": 28,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-en.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "cc6be7d889ae4bb536c9975bd8e3dda86b2ac9f79f7052ca33cdbf6bd5026b08": {
+      "language": "und",
+      "missing": 423,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-und.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "d4c4a14f671caac59431c374a9f715e39a22985e7bea338406b8060cc6f703de": {
+      "language": "fr",
+      "missing": 23,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-fr.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    }
+  },
+  "geographyspace": {
+    "1b089a0b01aeed673991c78a208b332e5820522112eceb4f19cae2d3b22eb888": {
+      "language": "en",
+      "missing": 16,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-en.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "252704a7157118c7f1c51b2be44f99db085c4981c75a60b61de496653c5b711b": {
+      "language": "fr",
+      "missing": 14,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-fr.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "74206802788976c749e12ae3a2739abef75b0f62223c0e55d53e5baba5427f82": {
+      "language": "und",
+      "missing": 258,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-und.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    }
+  },
+  "history": {
+    "5bf3305ed61840639f2824e4370674edb73961f378c2c44b678e76590ef364ba": {
+      "language": "en",
+      "missing": 5,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-en.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "73816af9839ec9550d89951b3b7155ec0606742cf9d8af0057c46f85c730ce52": {
+      "language": "und",
+      "missing": 885,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-und.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "fdb4b88c271094a9a0cdc4539d2ad5de9d86fc49ae6e1b4aca6c893c93681cf1": {
+      "language": "fr",
+      "missing": 5,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-fr.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    }
+  },
+  "historytech": {
+    "450e275b685ac3ff871f9e9f4f1e5df167bdbf486e390e5a6e0b1d5431d119fc": {
+      "language": "en",
+      "missing": 60,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-en.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "8df7fc77cda57ccafc550b21f21b490f605466204c245a56d427b12ae0dfd167": {
+      "language": "fr",
+      "missing": 59,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-fr.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "be897dfef86d94487a11502c8e279c70c84094cd7b3933191badd6aad40b88ed": {
+      "language": "und",
+      "missing": 1256,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-und.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    }
+  },
+  "literature": {
+    "795eb9dd46be9439cbc95fca29e192c0c63fe25a91386c53a65a1b31a18bfe68": {
+      "language": "fr",
+      "missing": 47,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-fr.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "a3c8d1281d35817cafe6ab8225e440449d32d6c139d27e2d00c3f2001d97fc77": {
+      "language": "en",
+      "missing": 55,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-en.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "af9b4382ed2cf925feccc65f1695097f2b7694a68e35243cb85d2fa218329afb": {
+      "language": "und",
+      "missing": 912,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-und.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    }
+  },
+  "mineralogy": {
+    "5cf34f4b659ed1381893504fee4fa6c75cbfb38a2d8ccde3391e5b3327b057c3": {
+      "language": "und",
+      "missing": 674,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-und.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "bff779c90edf06b00f35d918f7fc28c7753fc47248dfabc1d4e90705f5955b5b": {
+      "language": "fr",
+      "missing": 44,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-fr.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "ffa69e8a027822201833cc8713e018e4b909acd77244033cbfd472c33ae3269e": {
+      "language": "en",
+      "missing": 47,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-en.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    }
+  },
+  "mythology": {
+    "45620a13cbb4e1d7a9f6f823cf9fd1904ab8bf5889b9b4263bcc04e5f4f38514": {
+      "language": "und",
+      "missing": 418,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-und.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "8a8cba5f8af7ef5dc12fb505cde518ee3e962813958b64b88ddd97cd74db7fa1": {
+      "language": "en",
+      "missing": 5,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-en.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "f674899295ba0032320f33549bf9d30215a4a7dbb0a9a05c7eb3c4083a227e7c": {
+      "language": "fr",
+      "missing": 5,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-fr.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    }
+  },
+  "paleontology": {
+    "29fd19227b25a0ea2a05f407d2a31cc2c6d7442b580036b4488c7b2b07661647": {
+      "language": "fr",
+      "missing": 28,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-fr.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "c69d732534f3d55aadf998b9b0cb8ba842551bc8516b8383f4c61a9040eea2df": {
+      "language": "en",
+      "missing": 31,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-en.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "cb23f198441ad756ebd49c1c48ee81ac35644bad00b5d90c0bdb7ad6f3b422e6": {
+      "language": "und",
+      "missing": 491,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-und.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    }
+  },
+  "solarsystem": {
+    "00a5ad303d6fa61399418a299d256db92b367dde3dae051407e1aa0e077ad2b7": {
+      "language": "und",
+      "missing": 2187,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-und.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "38ac01f5ce88e9121d2d2d8768843ef8f2ba5b1dacecebe11a505bd4e75efbbc": {
+      "language": "fr",
+      "missing": 28,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-fr.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "b682ebf0a5b1bc731b27594171bb5351791d8c4739a7ac4ddbf60b9bfd54e8a0": {
+      "language": "en",
+      "missing": 28,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-en.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    }
+  },
+  "sports": {
+    "891dae3772ddec33847b0c4cd155c562eb5c6e261acee8ca88dd8b523ff164ad": {
+      "language": "und",
+      "missing": 474,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-und.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "a681df5a61e9af6e51edb22ed30b3fcc4b642c4b36c9ed600e40c2e07fa68bbd": {
+      "language": "fr",
+      "missing": 17,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-fr.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "de30685092d201170d9329595a9a2389d2f7e9ccee31c0759a36341c30e894c9": {
+      "language": "en",
+      "missing": 19,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-en.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    }
+  },
+  "theatre": {
+    "12b1b36d76083052f6058f682e36844a5ab8f548faa54ed06ef1d210629b7704": {
+      "language": "und",
+      "missing": 598,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-und.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "87efaecd1279e477ba20a134d338b7d33300db6c05793812f9fa543c28091f82": {
+      "language": "en",
+      "missing": 47,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-en.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "b655631a9c3fcff4fdb02dd76d4808898526b38cb94002d0dd63c14756dad645": {
+      "language": "fr",
+      "missing": 34,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-fr.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    }
+  },
+  "visualarts": {
+    "2b56362af03cc38eab983f4829eb70d2e4b87ad859aac1f40e70cfb020a78c3f": {
+      "language": "fr",
+      "missing": 23,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-fr.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "e20afeeca0546b9dd3f49bc8a27137a9e63c9d3ba53ab674c1d982fa5fbd2de4": {
+      "language": "und",
+      "missing": 591,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-und.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "eb833f7be200488f0b19252ae1042839ef8368daab72fe867568c019d86b6dea": {
+      "language": "en",
+      "missing": 31,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-en.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    }
+  },
+  "zoology": {
+    "6ef6d660fb44cb5cf8b913cd9ecb7d6ba408da0ecced8a38c5852dcb033d19e1": {
+      "language": "fr",
+      "missing": 60,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-fr.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "e42718b9878fce4cb38f156e16c1e8fc2d180ce1d4ad1c6a355ffb9d21438239": {
+      "language": "en",
+      "missing": 66,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-en.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    },
+    "f6ef1615c4133bc9175e054b367c26e4bb455baf3b97f87d017402adf9860435": {
+      "language": "und",
+      "missing": 1073,
+      "source_path": "canon/domain/v11/wikidata-structured-20261026-v3/dictionaries/wikidata-und.jsonl",
+      "source_snapshot": "wikidata-20261026-rebuilt-v2"
+    }
+  }
+}

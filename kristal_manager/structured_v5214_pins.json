@@ -1,0 +1,272 @@
+{
+  "aging": {
+    "directory": "Kristal-Aging",
+    "files": {
+      "canon/domain/canonical_state.payload.json": "e267c3b1f345b7e1c48ad86d27e6870b64379c85e7bae3b0abbea8db278715bf",
+      "canon/domain/identity_registry.payload.json": "50856556c4440e7d27027ae475ce1ef4ce2641557ee66e96b29f68feed760753",
+      "canon/state.index.json": "1e96cfb47891e3751c33a2fe5567a2adc3435e0300abe43b2428b1cf37e1615e",
+      "knowledge-base/corpus/aging.kristal-state.json": "59167e2a836b8e3a00dc74b487c29ebb7517819187479748e32458b9f92a6554",
+      "knowledge-base/corpus/aging.referents.json": "3a79f3d5586e22629afb6212e381fab3a2735960c32152aff08e26523491b74c",
+      "knowledge-base/corpus/coverage-report.json": "9bb5a7bc1ff671939751ffef2a4e8fa69d716163258cbed73db1863c29eb42ee",
+      "knowledge-base/corpus/index.json": "c4ec04cb5e44c750f6d29de6f95bf7e5769067a4b71e28e3937c75a78f134c30",
+      "knowledge-base/corpus/network-summary.json": "006951a963275f936ed09ace3ebf7b4523ebc07c0cf37d6fc2abcca215569cab",
+      "knowledge-base/corpus/trajectory-model.json": "a4453a96382561a005ec40c6acf91db04b6ced3da058c2e08561fe6ff27ac1ca",
+      "knowledge-base/corpus/validation-report.json": "7658c748391c1ab1da33e454a5ada4c52b0bd5a64a06fda06c65dcb6c43c4940",
+      "kristal.workspace.json": "605700609a82fda822a7bc4a8bfc90e5ef1780cdf2df0878bb11efdf8ea8bded"
+    },
+    "state": "knowledge-base/corpus/aging.kristal-state.json",
+    "assertions": 228
+  },
+  "homecare": {
+    "directory": "Kristal-HomeCare",
+    "files": {
+      "canon/domain/domain-state.payload.json": "595cb7d8995f2e1480c37779b191f671504cde8e55e95519229662ba55b02ce3",
+      "canon/domain/resource-basis.payload.json": "63d30e62c6e01599492c91f6c3f939a7579fb97a9ff3cdb950136f0522b0a48f",
+      "canon/state.index.json": "5f69b30aea299539b8bac45b40e1eedb280ed618881954aaa6c03479d730be51",
+      "knowledge-base/corpus/homecare.structured-epistemic-state.json": "52b6d2d2b044ec992ae20fb824710f7f80623fdccc10e4a0f3b330b14ab1a9cb",
+      "knowledge-base/corpus/index.json": "98a5fa92df15b925037a27fac6528ad3076cb7f00f43e05f64827f583350dc68",
+      "knowledge-base/corpus/referents.json": "17a5f19ad72813ddf3c6ce287b95fa870c168f0afee2e9cb676a8429d58925b3",
+      "kristal.workspace.json": "9f338ba4a3900abf52e691645eb1da0fee0a291dd1cf529ddecbb32f2176134a"
+    },
+    "state": "knowledge-base/corpus/homecare.structured-epistemic-state.json",
+    "assertions": 419
+  },
+  "k-monetary-system": {
+    "directory": "Kristal-K-Monetary-System-Socio-Monetary-Transition-Model",
+    "files": {
+      "canon/domain/causal-model.json": "5849d470538794c8b791854c9ca3b3c339112fb31dba5be44f62aa0a3b94bdad",
+      "canon/domain/distribution-model.json": "5ba03ab1b751beb28b05b57c48cb3dab4f43499f1955cfd78b553dd0d85d59c3",
+      "canon/domain/event-ledger.json": "521399eb65fe1b8958fb11dcbae8e981c69b5aa4a0489340343176d0b13ab205",
+      "canon/domain/monetary-constitution.json": "e09f03cb93e54d0c41d226a0fadc37233b8bde424abfc64cc339d43473839201",
+      "canon/domain/multiangle/d01-strategie-d-influence-et-contrepouvoirs.json": "e0aed5d9490b754a2e484034b8061a68c5919d9d034173d062f2937d838c5f34",
+      "canon/domain/multiangle/d02-desjardins-mandat-et-processus.json": "5197d6963df088466fea96def512f5befd4282de4bcd5aba0159ea0c387cd434",
+      "canon/domain/multiangle/d04-lingots-brandes-art-et-reserves.json": "240ebb043f165fce92dbe4911418996b0347dd6a40104deb6c57cfb62eb77ce2",
+      "canon/domain/multiangle/d05-km-regimes-et-regles-monetaires.json": "debbeda52b0e9052bf97b7b7d3f454473122d2fc6aae960c27431aeae637626d",
+      "canon/domain/multiangle/d06-kc-participation-productive.json": "4c43b215f49273c91797a48a211232c263940f2858e3b5a1b906d9043ca8b5c5",
+      "canon/domain/multiangle/d11-transition-scenarios-et-sorties.json": "889b897c9134c25daf7142f8bc046596a9a4e1a009a34d90e07d1e962222824a",
+      "canon/domain/multiangle/d13-medias-marque-et-conflits.json": "b8d97f3344eea9bf698e53cca88ae84421fb718b238f2389a0620653d19f4de1",
+      "canon/domain/multiangle/d14-clauses-invariantes.json": "c2f45a1de47e1706c6202a004682562108495dc0b10e9d098a1e204bbc4af1d7",
+      "canon/domain/multiangle/graph.json": "62b00c21dcd15ac4a09e4eafb652a512b9810e3e77f0072496bfe6056aca3c55",
+      "canon/domain/system.json": "64cad563a8db13ca0219d58a8caab9eba8ed47bb40f74b0b12eb63e7860cb127",
+      "canon/domain/transition-statechart.json": "be244f712dcd3ee586cd48ba827792d0fdf8122b525a47a04db8873470fcad1b",
+      "canon/epistemic/assumptions.json": "c2bd14ff95e252dc9fe3d9a80c998ebd1ae086de1e33ea975ee24efdc91f559f",
+      "canon/epistemic/counterarguments.json": "f8924cca897bc0de40eabc128243fa4d88097d6155aa0018ffaf43d1ab8ec951",
+      "canon/epistemic/evidence-register.json": "4658c2d4c7c92922a79f6faa798d54a2ae8ad20eb6dd658b4b59651af1c0ad41",
+      "canon/epistemic/hypotheses.json": "e64e9e1e910e04155d08f3f1ebde8a68d9e750c047d5938d7416f2c647d2e6e1",
+      "canon/epistemic/multiangle/arbitrages.json": "c60568f08455e4e3cad1c4d259af2f707415d029e5ca219b00af511d277adf0c",
+      "canon/epistemic/multiangle/claims.json": "c35e4fc26bd0abc4e4186f9345f03cacb7dec91d3d1d4ef8791919690379747e",
+      "canon/epistemic/multiangle/provenance.json": "ee2b3db47985b9627d3fa37b15ccb61542eba9bed08b6884b3af757869c7728d",
+      "canon/epistemic/multiangle/risques.json": "da4c098dd56bf3e9c675245e3aa0bc2c59225cad9152b9801362648c696c181c",
+      "canon/epistemic/validation-state.json": "754832e3085e174e1d9ee0510e5caf95c584e35936aaa9dd84733083d43637c6",
+      "canon/operations/debt-transition.json": "ced93ddd8ed134ea606c13da5b759a32fe487b69b39fb1dc112e83119ee13e8c",
+      "canon/operations/monetary-policy.json": "e80a6750b5577316d28b98ed96fce1fe58e6de671b96541b32f17f7e42446647",
+      "canon/operations/multiangle/d03-ristournes-et-biens-collectifs.json": "258db6dad69838a95823db8ea748833c7f8a3301eb1e12fd56db2c62d6334119",
+      "canon/operations/multiangle/d07-dette-finances-publiques.json": "ec23fde8617ef33bb56e02ed71049a8cc78930c883f786612ec30a7536fd1a4f",
+      "canon/operations/multiangle/d08-philanthropie-et-reddition.json": "c5a3ababd41c5cb3ea901b26c727356a390b422afdd0f78a851c55f382474067",
+      "canon/operations/multiangle/d09-identite-ethikos-konnaxion.json": "4a10b9b23cfa37d39b123537aaaf855788522c85776cb262be62336c608b3449",
+      "canon/operations/multiangle/d10-pme-education-innovation-territoires.json": "b6215a77d7e33d05018bfebe634221cc1ac72c6497ae6600d0893c7054710db7",
+      "canon/operations/multiangle/d12-banque-credit-risques.json": "6c4041ddfb7a37ac395553d9bc8134cf29e13f60af73c10ea021c1c42f315973",
+      "canon/operations/payment-settlement.json": "6c5fdf11c9bec5ba8ba91636a3bfb0174212040ca72aaea9a432d538a7099e78",
+      "canon/operations/simulation-model.json": "0e35cf8fe02b1dbaaaaecb92a681b7d1ed37cad5c60923c0428cc07d44a0bbfa",
+      "canon/operations/smart-vote-policy-interface.json": "887bd9a6009f9930d288c4f574247995c27814d957bed14e1cf98adcaf2b4f22",
+      "canon/operations/social-dividend.json": "e949da9a1b93c51ebd4921facfd209691ad48d8c9d96823e48c089aaa3d61d06",
+      "canon/state.index.json": "92cb5e65bd9384eb23f5e610f20458c0e8e1aa86710c029d1be4c41246fd259e",
+      "kristal.workspace.json": "b6bfd6a301cbc6b7d5354c96b5b07cb2739fef8516738a98a9ea4744cdb74258"
+    },
+    "state": null,
+    "assertions": 0
+  },
+  "king-klown-media": {
+    "directory": "Kristal-King-Klown-4-2-0-MEDIA",
+    "files": {
+      "canon/artifacts/aliases.logical-artifact.json": "8b45d73e0a844ceab0249825252770e2d50e9c39c0370820b662ae995b627161",
+      "canon/artifacts/contradictions.logical-artifact.json": "a335b3029354b8261387599e0e4de50a987ff843908ac320983619ecdb295bd8",
+      "canon/artifacts/core.logical-artifact.json": "deaacb0da1b05a36e14541af5a06cc75e95747e628b595bf0b7e0ac8a3939f7d",
+      "canon/artifacts/creator-clarifications.logical-artifact.json": "65944f3c9dc1470afb3a740e456eaf2f7fed815f0e4865ef35218bfe976d22f7",
+      "canon/artifacts/entities.logical-artifact.json": "02fbed2233936981c1c0a9789dc060dbc531953d2ebfe713a9ca7a0053f003e8",
+      "canon/artifacts/events.logical-artifact.json": "722acd755bd6fe4835e1da2f9d77b7045ce1e95260625c7c430603b953ae4767",
+      "canon/artifacts/media.logical-artifact.json": "449d13ca219573ad6b6a897fedf582597ccef5d11b26f65e5f194a01d96fca68",
+      "canon/artifacts/reader-policy.logical-artifact.json": "01f143bdcf8afc0427f54d0bdeff8e5acc6bb47def99ba787734270296e55182",
+      "canon/artifacts/works.logical-artifact.json": "4b68503955f2e8a28152647d5783af1ae7697c39a8e2c01185ae4b5850328a25",
+      "canon/state.index.json": "1495809d0f87a8ee2ebbdbc040e3f1f97bad37d3e777e7f63a01fedbd0dcb617",
+      "knowledge-base/corpus/kristal_state.json": "27c4bb6ef25dad66e6e1027ff90c878d88f086629ea649676fb2b50832bdd4cd",
+      "kristal.workspace.json": "35c6966a5bc75e11484ad934f838efce9e1300767e95af777d320c968f5d9d3b"
+    },
+    "state": "knowledge-base/corpus/kristal_state.json",
+    "assertions": 346
+  },
+  "koa-sales-pitch": {
+    "directory": "Kristal-kOA-Koali-Sales-Pitch",
+    "files": {
+      "canon/domain/sales-pitch.kristal-state.json": "1d90c23af770b205da0ee04032040ed6b1b62966a2cecf490997a66fd33d3478",
+      "canon/state.index.json": "c85b3d41616745df89aa0f802705eb14841608de5ca9a6924fc55d86dd986a8c",
+      "knowledge-base/corpus/index.json": "b2b53774c58015498c54c344cdd456ddea9ffd98f57a8e43156773dea5de4f48",
+      "knowledge-base/corpus/sales-pitch.kristal-state.json": "1d90c23af770b205da0ee04032040ed6b1b62966a2cecf490997a66fd33d3478",
+      "kristal.workspace.json": "e784d44d018d1c4249e23724efe5bc3a99121245424ffbf331aca55a08f5e78a"
+    },
+    "state": "knowledge-base/corpus/sales-pitch.kristal-state.json",
+    "assertions": 142
+  },
+  "pi-theory": {
+    "directory": "Kristal-PiTheory",
+    "files": {
+      "canon/logical/domain-state.logical-artifact.json": "69a1b22a358e9e1e5a7e0ee0f6b755e17cf2af76e5c4f04f0f4c7bc627fb1b61",
+      "canon/logical/resource-basis.logical-artifact.json": "4f43cfe960ee030dc691ab927bf2aa0004ec9c84e825094534d9b6e8b72807c5",
+      "canon/state.index.json": "7bb48f1691b254cbbcb272bb50530530fd0e795c6c5eb546b3f999e7a6b09f2b",
+      "knowledge-base/corpus/coverage-report.json": "01ca6ecca2b351734960ee76f8a004f7e02bd9ce2e80d4bc8aed33a7fb2f765d",
+      "knowledge-base/corpus/index.json": "a542ae8fb979af02c8766de66a87a8536df46365e2b999c68568bdf0d35ec237",
+      "knowledge-base/corpus/method-ledger.json": "23ceed5d541f38100cfe1f32f134a62d863b668c89760360f24c21cfdb1f2534",
+      "knowledge-base/corpus/mirror-register.json": "7749d30014c32e326d8346cc2cea741b1c28e4c2d99ccc0a26daeac1c8a4f94a",
+      "knowledge-base/corpus/ontological-arc.json": "f3220f795393ae3653b6badb34b33ddccbde9f5e68b23e76b15c05ededf4fbaa",
+      "knowledge-base/corpus/pi-mathematical-background.json": "c971fe82123d5f388d8535e9dc3486ff3a1cd538dc50d78c4539701ad6b4b719",
+      "knowledge-base/corpus/pi-theory.kristal-state.json": "c0b9ed03dba3e5d9112b645fdec8af139f8bf213adab110598a2881a28627441",
+      "knowledge-base/corpus/referents.json": "8c4947900f0107261c9650051312a08760989fea50da82b8629d2f0598b2a1e7",
+      "knowledge-base/corpus/research-program.json": "427877046e914d9748387808e68a83bede433d9af7c2f7dc2631ac71315dd3fc",
+      "knowledge-base/corpus/search-documents.json": "45fca38ea2ece5f489005898d8ae5a981fe2341ebfd50528ad11a7ac1aebd53c",
+      "knowledge-base/corpus/validation-report.json": "0186bcd7c4d3d9c3fa5b3d92fb10434d8bc1ee5c6ad30868f90409406581bc18",
+      "knowledge-base/corpus/version-conflicts.json": "dbfaa518a6b409b9101f38cf7d277f887ac54f2cd9982c24e643a204f248fcee",
+      "kristal.workspace.json": "c170663c58645ac2428f803a77273fef9d26f7e07b686f7db7d44c18a8136107"
+    },
+    "state": "knowledge-base/corpus/pi-theory.kristal-state.json",
+    "assertions": 62
+  },
+  "pitheory-prime-bridge": {
+    "directory": "Kristal-Pi-Theory-Prime-Bridge-Spiral-Mirror-Equivariance-Invariant-Regime-Key",
+    "files": {
+      "canon/domain/alpha-omega-coherence-agents.json": "529a0d2aedc06f8c3820123fcb25a02b9f9b556bd48debb1728a0a4ef8d9162e",
+      "canon/domain/bridge-model.json": "e1e26419dc918fbd7599f271eb87b3cbb056fe76c8899e1d5434c2cfc0227cd0",
+      "canon/domain/core-resilience-return.json": "cb52e2959ac79bd804e0fbb8d66693afad73666177bd8e86000d503146af8937",
+      "canon/domain/cross-domain-alignment.json": "1bb38dd7b2c820712424ff055747f5af2bcb8d9b9808cd3bfb90abf3690b8b2b",
+      "canon/domain/efimov-rg-limit-cycle.json": "705bd199fe99575cad96b6237a839315a909b8c62b3bb65b6d5ee69818a1fa94",
+      "canon/domain/external-math-kernel.json": "9ad685835620a0eafb3e27569373a3f7a33a594614abb5f6b35c3c7d25060081",
+      "canon/domain/invariant-descent.json": "d68069c1adb844d4e0394d2bc5915a3cd4e2da0cf9ba9515a09f199824913568",
+      "canon/domain/invariant-regime-key.json": "6bb5ba5f152ff0e5ca5005c2c3e299ed438e74e0c51db2390e925a60ee54deff",
+      "canon/domain/mirror-equivariance.json": "a6aff358be795a4a23dead71831bbfd0a6a78984bc32130c8bdd8035b74eca31",
+      "canon/domain/mirror-parallel-branch.json": "66aa083e3c047e5de8c0eacbe774455b9d24c54d0d9da37a1cd1b3dffe76a0f6",
+      "canon/domain/null-models.json": "723ae21ea8e4e2089bb44cd4c501c99a4971d11c28e6b19cdb1d105601d082c5",
+      "canon/domain/origin-stabilization-metaorganization.json": "5a07c7fbe21eaffe5da2cf178a5459ef98c381fac43c995b66c6f14d1cc343aa",
+      "canon/domain/preregistration.json": "0ab1bdb87beaa3d12974baa0cc4a4b6566479f56531403c75e9dbb426e7be3a2",
+      "canon/domain/prime-signature.json": "5e6e697b5bda38e808a8792273ee9d3ea7aeb90c58234c15449f22c3092b9a81",
+      "canon/domain/reaction-lab.json": "7f817d3f565ec8a2ec8fd12a3a79e0a4185498ac81cb92d7371b9041b418d416",
+      "canon/domain/regime-map.json": "7cedea29ddb0b6d715012a601ae3c298e1664f7847f42c5fdfb0bcd644ef9065",
+      "canon/domain/research-program.json": "55361db971dae230ae83d15874733ace27f1c2883800de5cb528784cbbb30a40",
+      "canon/domain/spiral-return-model.json": "b1305d9b1b3cecf69d333c553715c9e7a9cd2027efbc456efa70f9103bb6cf75",
+      "canon/domain/transfer-program.json": "5a4b36a41e5dda9a8beeda56b9dc18ab552633df2a00934ab3648ee2b38cba5f",
+      "canon/domain/transition-selection.json": "c0a9893afe97269a201fc8f8d229ec7c95ab4c28df730409487ffd95d423700b",
+      "canon/epistemic/claim-ledger.json": "f0a652ef8fa71d73245681885e10e6457c115b8e16d89b3b6a38ad6d9f6f4b8b",
+      "canon/epistemic/relation-types.json": "d43bfdf68e539c57e5ad87f1297031fae6491fd1545e1535b3594584c65d5c95",
+      "canon/epistemic/research-claims-2026-10-08.json": "c10c807c08400b38dd131ff2851cf693779e293336af870d2e3d70f9d740c0c6",
+      "canon/epistemic/research-concept-ownership-2026-10-08.json": "f4bff4992caf772889859063becc81d7d410ca6b2dd4f78c1a62eec94e7a03ed",
+      "canon/epistemic/research-relations-2026-10-08.json": "c985019c56b38810e570e420125e06e810edffd1e675a1a95c7bc97d625dfd25",
+      "canon/epistemic/scientific-literature-2026-10-08.json": "7902e49deb79e0c693e470914683e7e15d790be5c47e68518fd961e6433f9637",
+      "canon/epistemic/scientific-literature-links-2026-10-08.json": "e28c3907b37ac88de7bbe8a5e4852b1c8cf2479b61f03a82d607a3030feabd27",
+      "canon/epistemic/validation-ladder.json": "760362d2c9b50d64194392f23142a892643b291753bbd5c2e47fcbdd5870076a",
+      "canon/operations/descent.py": "cbec63f654f4e0f6140f434ee1a27c4423b05537757379cb2d0ae7982718734b",
+      "canon/operations/score_prime_signature.py": "8a2b17326d9e8d98c20dca7931f89462e5d098d1103e1729b4f705ecf2160c21",
+      "canon/operations/transition_selection.py": "65fc038cb9b593cb7800a314f05ad306388b985f5fa3c4c90d02bfb8dafbce07",
+      "canon/operations/verify_core_resilience.py": "cbfea4e299d5b2dd3c44f66b2e9e5614e35c8e7795da0e0bce192c70543286bf",
+      "canon/operations/verify_descent.py": "e07ce5f3a859067332ca71498218744a348424c8e26a8320086410505ef1fc31",
+      "canon/operations/verify_efimov_rg.py": "2ce64d234703b810d3ccb38de0b67865c2d64c10a4dd4dc7d5fa085c18e86d3a",
+      "canon/operations/verify_invariant_key.py": "24fb6d6d6afba39fed0536f320dde7e0a43b37385cb601b6281c671b73d237a7",
+      "canon/operations/verify_mirror_branch.py": "9af42e2e89f98264a7e57c1c3f8e3fc547c350b528a2d1d2dc6352abcdedac74",
+      "canon/operations/verify_mirror_equivariance.py": "3297ffc4bbfd1b161bdcc2d89a29a66d7ee0e44aa43fc997488bc902db6167a1",
+      "canon/operations/verify_prime_bridge.py": "317378107d4b9a84b4ef0dba9009f8e7a69c14c54d9a400fadae50b5c5e656d5",
+      "canon/operations/verify_spiral_return.py": "707fcc5344e6f5ffae03f5cd0b166674a16c1803191b018fc788b2942611db60",
+      "canon/operations/verify_transition_selection.py": "c4989157616499a0c0273a47d00f9c27dd588d48714e55d2c7593ae22e252e55",
+      "canon/state.index.json": "1fed3f038a6ac195a3c7d664ebdebd1bbb9aaef68fd64febea6100c2ce74ec0e",
+      "kristal.workspace.json": "0b409e37e1da84223bc08853656d17d72bb006b3f2b4730861cde814dc000e91"
+    },
+    "state": null,
+    "assertions": 0
+  },
+  "policeops": {
+    "directory": "Kristal-PoliceOps",
+    "files": {
+      "canon/state.index.json": "ff166944cbf31716deac28e0091fff942dd21c9a74ee528295849ac65347cb68",
+      "knowledge-base/corpus/index.json": "1e8b6bd0fb4a5cb07f19a0d92dc4a2250791c806ad2d0a20e82963243e39a36d",
+      "knowledge-base/corpus/policeops.structured-epistemic-state.json": "82dd16117faf516961d06a02e1c3e48fc863fc97135363bb381aa5cad5591494",
+      "kristal.workspace.json": "43840c1bf469a5301a6cd6b07d662002a60fd0b2ae9b7626709e743b2f2d3d8f"
+    },
+    "state": "knowledge-base/corpus/policeops.structured-epistemic-state.json",
+    "assertions": 538
+  },
+  "power-dynamics": {
+    "directory": "Kristal-Power-Topologie-du-pouvoir-Power-Dynamics",
+    "files": {
+      "canon/state.index.json": "ce438ff75f345231a8754c55c04b284d9cd1ee155b0e956db9717ec45d51bb28",
+      "knowledge-base/corpus/evidence-links.json": "f2155247e56c212c151058915b8eb40995dbf8acba895cf30bfdd7ae4bd41637",
+      "knowledge-base/corpus/index.json": "456e02d330f6aeac6baafc816d0b55b3971904fb59383e2be8104b27785e2680",
+      "knowledge-base/corpus/power-topology.structured-epistemic-state.json": "91573ba1f265a43a06d0661bfb9d491f3e3aa40e946ab31481f736b8d0f82404",
+      "kristal.workspace.json": "0ce55b3e41a7c5fed9f894b4dfec1c1a51b15413e3fb07dc470d26b5a070e314"
+    },
+    "state": "knowledge-base/corpus/power-topology.structured-epistemic-state.json",
+    "assertions": 7759
+  },
+  "prime-numbers": {
+    "directory": "Kristal-prime-numbers",
+    "files": {
+      "canon/domain/v9-logical-payload.json": "041c52d32af2ffacb2f1b03610aeb7dfe08a59572569385932dd4bda67a74827",
+      "canon/state.index.json": "16a1f40707cdf42bb14c75c062aa2ed3396fd48f5ce9de09965b2008f9c66598",
+      "kristal.workspace.json": "86b4f6075dd71afd91a2b075652c8f5c38f6c21815005e0ffb8c9a0f08299829"
+    },
+    "state": null,
+    "assertions": 0
+  },
+  "recipes": {
+    "directory": "Kristal-Recipes",
+    "files": {
+      "canon/domain/v9-logical-payload.json": "6b721c16453294221607876d4ed4c24ed329a237f535190f0f74bc8ace524c4a",
+      "canon/state.index.json": "465a04b1406d7f4abbc0a59def07e44998db208f0cbc1fd0ea66f8d5a2e60bdd",
+      "knowledge-base/corpus/alias-index.json": "5d2d2f34ab83d43b7ae573021afc034c2437f9a71e3fa1292bd6ac8f26ed8898",
+      "knowledge-base/corpus/classification-index.json": "7ceef96fca4e8c4c40a88b592ba773e05e607de5f10e6bfdc57f1754a30b136c",
+      "knowledge-base/corpus/coverage-report.json": "0a758089cb10c45b75015e0f7a47d2ef51f8dcaf37c79bc6a7ffd19c9fcdd226",
+      "knowledge-base/corpus/duplicate-candidates.json": "74a3d9a842a06f324844d7e7027c778f870810f75510d6673c854abeca19f4ff",
+      "knowledge-base/corpus/family-variation-space.json": "12d2acce589139af37d68a38c90f0e458fd4c10e1f2266ec8d3b4b95ea6703a1",
+      "knowledge-base/corpus/functional-role-index.json": "2938b8e5d26b9b0b99a71d8dfa8dbdcdee73a42d7d98cb266d49430adec3efaa",
+      "knowledge-base/corpus/index.json": "95ad071622196f9fad9dcdcc688d8597f19f110c016307fa9052b1e6ac9907be",
+      "knowledge-base/corpus/mechanism-index.json": "d617efa30a267378a9bb21ca9c3640f65f618429ab14d9414984946ee9b16ca9",
+      "knowledge-base/corpus/preparation-observations.json": "98d04e50a08cc5bd1d789517dc3704a60267b08f96eeb1f780783171a95d2ead",
+      "knowledge-base/corpus/procedural-fingerprints.json": "7c2fbb28298f2a7162c44c3a114eb1197206ca68a972ed4a00b1b50ecce4f0a8",
+      "knowledge-base/corpus/recipes.structured-epistemic-state.json": "5d47a475f5b6abc709fc3b9e4f227d5c31f87499243d4b6ea0cc059fdb92e4e7",
+      "knowledge-base/corpus/referents.json": "0dd8d45108a2314354a3252fb4f26bb440e460e841439123adcd9458dd737503",
+      "knowledge-base/corpus/search-documents.json": "53288aa408d4bd31afc97cbc12f2c9fc2bd35b269749385e050f067817dbff6c",
+      "knowledge-base/corpus/sensory-index.json": "8af468ed310861f1e75d31b133e7a0b007664e2d27e1c8ab9bf12fa5665b5859",
+      "knowledge-base/corpus/substitution-index.json": "8e5de6aa98e48959ee3e125b9e7c51c72ff569c021e3a415df0c44ce24bb6527",
+      "knowledge-base/corpus/transition-index.json": "c9c436614b5d120649d0a829a37a62e70bf88952b4bc1dca4c5bf646b9b7b33d",
+      "knowledge-base/corpus/troubleshooting-index.json": "d65501daa7db7cb05bdb477770bf9725627a4fb143c9d21766a6f960efeaecff",
+      "kristal.workspace.json": "6b888c1541d4ea0ee155464d54e25f74ed642a06da359f95fb376e9f8462025e"
+    },
+    "state": "knowledge-base/corpus/recipes.structured-epistemic-state.json",
+    "assertions": 6
+  },
+  "scolqc": {
+    "directory": "Kristal-ScolQc-Education-Quebec",
+    "files": {
+      "canon/artifacts/authoring-basis.logical-artifact.json": "0f233450b8ab1a0ddfb4bccd555e5913c550ba71639cf7890823af225d15688e",
+      "canon/artifacts/canonical-state.logical-artifact.json": "7eff1b7d60b65b22a3a44f5ceedc4b445b6ac12794fffaf131ed02ad7e634ac0",
+      "canon/artifacts/contract-basis.logical-artifact.json": "f8bc3906496f89113a3896b72461e25ac4aab6552c2996c2a81edd359b494d5d",
+      "canon/artifacts/domain-state.logical-artifact.json": "60b17a4d1b012c72a07771771cb8c77a6a10389b8af6806e1f55ca71018107bd",
+      "canon/state.index.json": "e405b6187e913c8d6ef689a0a54e117cafab4573840ab4ddd20d4be5275d3d46",
+      "knowledge-base/corpus/education-quebec.structured-epistemic-state.json": "2bd09f6984bb7beaf98a9d4e2964c2b15fa7eb10af6e81b15843a11e1a5feabc",
+      "knowledge-base/corpus/index.json": "de54896c56ecf0a85f5b03ba8e4bb71d471fd43f8e3b267a30a7d25feefb5c31",
+      "kristal.workspace.json": "8386b7d94b3f805383b327d0bbafb8e8adaed773d73c33ff408b478ad0c69e8f"
+    },
+    "state": "knowledge-base/corpus/education-quebec.structured-epistemic-state.json",
+    "assertions": 2943
+  },
+  "vehiclediag": {
+    "directory": "Kristal-VehiculeDiag",
+    "files": {
+      "canon/domain/reference-model.json": "32a438d150af1460f256804fcd631ad198ba300f9c34e9e64ddbac44fa9c0290",
+      "canon/epistemic/epistemic-overlay.json": "1d699d72577b3335046a65e75143d5c5d13c4e3a1c82e7a9b38bbbc1a0d62c84",
+      "canon/state.index.json": "98a628aa20349763bacf86596585059f1cd1d29e008f105d1c843a0ddc1e07b7",
+      "knowledge-base/corpus/graph.json": "b20469b348866dc28baa6a0bf53bdd312f35a01fcf2ada7b58e99d3ccce85ff2",
+      "knowledge-base/corpus/index.json": "c7ffb5e66338a6b087e559a85862cbf3febd50bb4a60463f805368fcb05f9e4b",
+      "knowledge-base/corpus/referents.json": "dca7fdf90f77041796ac008cabb95938c9284de2d9d54fb1afaa43beab7622b1",
+      "knowledge-base/corpus/vehiclediag.structured-epistemic-state.json": "504bc4d536db165d792b4410a017809b5300a05016dc3bd09c26d76ac67c0d4a",
+      "kristal.workspace.json": "8465563964063d5e446d441d610cb670bf450bbc11e8ae7e90796b12a2fad7fc"
+    },
+    "state": "knowledge-base/corpus/vehiclediag.structured-epistemic-state.json",
+    "assertions": 833
+  }
+}

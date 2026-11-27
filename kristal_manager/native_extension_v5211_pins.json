@@ -1,0 +1,162 @@
+{
+  "aging": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "registry": "knowledge-base/corpus/aging.referents.json",
+      "state": "knowledge-base/corpus/aging.kristal-state.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json"
+    },
+    "sha256": {
+      "index": "c4ec04cb5e44c750f6d29de6f95bf7e5769067a4b71e28e3937c75a78f134c30",
+      "registry": "3a79f3d5586e22629afb6212e381fab3a2735960c32152aff08e26523491b74c",
+      "state": "59167e2a836b8e3a00dc74b487c29ebb7517819187479748e32458b9f92a6554",
+      "state_index": "1e96cfb47891e3751c33a2fe5567a2adc3435e0300abe43b2428b1cf37e1615e",
+      "workspace": "605700609a82fda822a7bc4a8bfc90e5ef1780cdf2df0878bb11efdf8ea8bded"
+    }
+  },
+  "botany": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "registry": "knowledge-base/corpus/botany.referents.json",
+      "state": "knowledge-base/corpus/botany.kristal-state.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json"
+    },
+    "sha256": {
+      "index": "64dbdbf534e8e6c0f5bc5b6f60431226f3b80945c2e642c26b98d16979866d7e",
+      "registry": "652ec7963530815b0679dcf01f5789e2fb92e19ff47947c2d70817ce6cce2df4",
+      "state": "61587440b608b8bc867db424dc49a401e9716e9d47fe710e8a4fd93680e02932",
+      "state_index": "7c69a524ff91b245538e3d3b5a8314d4a22f9e7790e800f9255231148b9b670c",
+      "workspace": "b70d517129c44253db442e21e8f2a8c501c5ee914239de990ada4c04c51be453"
+    }
+  },
+  "civilengineering": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "registry": "knowledge-base/corpus/referents.json",
+      "state": "knowledge-base/corpus/civil-engineering.kristal-state.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json"
+    },
+    "sha256": {
+      "index": "f9e68e56d81d673f21c867a4e38fd9e2750ca235fa710197dc4d454800f5fb84",
+      "registry": "903dae58790016e3288dad368649d311ebfbec3237d57d57b82897be20b2e0d2",
+      "state": "12ace6b639ad82d282c450e4c5fd35a3bedc3bd7124906315cc34cba885ddb45",
+      "state_index": "8f37f20ab5c20a2106b38c5aec841bc862fd33ac0cb45d1caae8c4f6b629e8e6",
+      "workspace": "16b182d4b22eea32f89cd7385fda80e5b0fea0f90a08099e3d3b9cbff07b63a7"
+    }
+  },
+  "controlsystems": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "registry": "knowledge-base/corpus/referents.json",
+      "state": "knowledge-base/corpus/controlsystems.kristal-state.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json"
+    },
+    "sha256": {
+      "index": "efd4d57a4e256e339f05e84b2b0f2fee8d2007f700b721bff6747dcbfa8a1c04",
+      "registry": "6f767af14ea6ab11cca191faabcff242144f1d76e59eaaab49b8e1255922aafd",
+      "state": "b1eb280f02845646f5ac72440db320e1016ae2e497deedef28beb6b5919d9c2b",
+      "state_index": "9b6afe38486a7cc5180115bc23332bded6d4daa311b6fec067c0a83cdfc35807",
+      "workspace": "e75fbede09c23e0c79f42550fadc89f7270dfc493af99accda002603de3c3002"
+    }
+  },
+  "data": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "registry": "knowledge-base/corpus/referents.json",
+      "state": "knowledge-base/corpus/data.kristal-state.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json"
+    },
+    "sha256": {
+      "index": "e9abf056ab5f826fabcc5e5460e0aa9b169680086ae0d3f066dc13fd6d8955fa",
+      "registry": "f36c0e949d7e1cdb83e026e1bb4e2e5fcb1ffb4ecb5bcabf7d84fed07bce68a8",
+      "state": "c858b3558e29d8e2b4817a8ce3f0ced1879a593726ded9a4f51b7c2eadf9ed70",
+      "state_index": "9d81572fa0417e5b2f55578294848d87244ec385798e8b9e0630175a1992c60d",
+      "workspace": "962404cd1696ab50a3a6da6fb7bddc302cf6ca1e47e5269fd1fa560258e82448"
+    }
+  },
+  "design": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "registry": "knowledge-base/corpus/referents.json",
+      "state": "knowledge-base/corpus/design.kristal-state.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json"
+    },
+    "sha256": {
+      "index": "ac9debdecbe49ffc247638ecc30c7997e3e44fa251a1489ec1b61de0cfb7ee6c",
+      "registry": "69fdd3faf124e99ede9eaa8e4e4b8c4e6e8f76dbfa053310b2a9785e4decbdc9",
+      "state": "a92e7b235709a0bab3303d8ac0f77f478a6c8f90e82d7f7a44f66a3e919e31d2",
+      "state_index": "8fe1dbbb6bd5a8bfe7c8bd16ffd29df44f5c030fcd8f659af86b2e2d8a61c83d",
+      "workspace": "dea8afee5d01595ab482bf52a7834434ff92962ca9140a001ac82ddc33998e12"
+    }
+  },
+  "forensics": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "registry": "knowledge-base/corpus/referents.json",
+      "state": "knowledge-base/corpus/forensics.kristal-state.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json"
+    },
+    "sha256": {
+      "index": "3de9005509e9c699f5f675660462558cbaf6ee18881124351d1f1d8841ef8976",
+      "registry": "a43b7b2f57e61a7a1a09e73e5abd2ae25e97d13dc4c88a332ee9bdfab418b2e2",
+      "state": "b5fa7fcc9e143d051f4ed2e9663658ef12a1b325d77ebd695c1c16bcef140122",
+      "state_index": "495e02f552b6e07286389ee30bb6611cf1c8c293bd0d0b8bf510d13dcdbdecdc",
+      "workspace": "f68bbf900492856b9cdc1da834fb900428c737af31572c3209c940c5f474f485"
+    }
+  },
+  "games": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "registry": "knowledge-base/corpus/referents.json",
+      "state": "knowledge-base/corpus/games.kristal-state.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json"
+    },
+    "sha256": {
+      "index": "1650005fd68dda81c279669474d6b44489a54ed0f7e6aa5d21298a76c6fba3ab",
+      "registry": "a9355ee9e9177e71d162ad337b39bca96cb8ed8930f5e4f0c95044ac3a2f21f0",
+      "state": "e990d1610cb78767b427cea22152667d85d91b122ac652ba94d8ad7cfaf04386",
+      "state_index": "4dffd64e3ca9ea16252fe8f9784047820d87523e853bf6aa647e41e0d9255663",
+      "workspace": "80f2eae6774e539739172ff9a35e057b7fc07a97c19a181052a6eaaf8c206983"
+    }
+  },
+  "mind": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "registry": "knowledge-base/corpus/referents.json",
+      "state": "knowledge-base/corpus/mind.kristal-state.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json"
+    },
+    "sha256": {
+      "index": "2249ccd283782c2e39f4a5f7bf1e74f7eeafbb027940e95c65d2ffae47475eda",
+      "registry": "06787c2919fb4a6489ec15f527ef335fc6fe72b045ddbe5b63a2414b900bface",
+      "state": "ca403f130063baaf5ae66691acec5139b2bca1049e05e23f8cc3dcb43ec94859",
+      "state_index": "dd6ac8084a6b6afa103a35b4ac56b2b10fbb559aec1cfe8d5d004f5b0376851c",
+      "workspace": "35ac420aae5f41d648c586af8b04f5852ec58d8fa68e9214c22ea436cbe1eca9"
+    }
+  },
+  "weather": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "registry": "knowledge-base/corpus/weather.referents.json",
+      "state": "knowledge-base/corpus/weather.kristal-state.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json"
+    },
+    "sha256": {
+      "index": "90046a6ef207e8d6de1b77698bd73b3dd92f383ff9f39e001f3f2a4b64365f37",
+      "registry": "2a26ed7028662b04130743ff2778a1a92dc09e1413bede2f4a846e1bc507761b",
+      "state": "24367b8764efdb030cd2acee3fc7e2257717f819058d87685d8cd63653d5e264",
+      "state_index": "7675ef3468c991951fa074331f82e9edbee4a8da17fe9e4dd9fed4faaa702964",
+      "workspace": "c1dd165368a7564a797fe4238719f999bb4fbe46d3be8c3305c737e34f8d6a15"
+    }
+  }
+}

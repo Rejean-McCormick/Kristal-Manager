@@ -1,0 +1,152 @@
+{
+  "development": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json",
+      "registry": "knowledge-base/corpus/referents.json",
+      "state": "knowledge-base/corpus/development.kristal-state.json",
+      "source_catalog": "knowledge-base/sources/source_catalog.json"
+    },
+    "sha256": {
+      "index": "ecb31de94e83d35587cce2beb239d592b192f76189d0be7cb8f9e59b22f8096c",
+      "state_index": "2e4f3943ac55e14c2b215faaefbd8df75d93894a769554620438a4a013cd8733",
+      "workspace": "7f787d865b2785baa1464bf3c7fcb0261fcd26174b6853d7a3ac7db3eeadaf4c",
+      "registry": "1e2bd157fac19def78f3b4768f88d14d3a652a4cbbe932f66fb7bf4efebcc3ee",
+      "state": "b4037b96c9249bd769c6e2446e5cb165a242482d3e4b2ee588656c7be705e5eb",
+      "source_catalog": "fbc64066b64ef8941e98e0a56114598439a93a8e0c3c627d66b7e691df0f5703"
+    }
+  },
+  "electricalengineering": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json",
+      "registry": "knowledge-base/corpus/referents.json",
+      "state": "knowledge-base/corpus/electrical-engineering.kristal-state.json",
+      "source_catalog": "knowledge-base/sources/source-catalog.json",
+      "evidence_registry": "knowledge-base/sources/evidence-registry.json"
+    },
+    "sha256": {
+      "index": "94f986f2b10220b0b4d0a6b66f0b7f4ee3ea581afe440a685930885493f133e0",
+      "state_index": "5c31d40a72b6bd9b02795697cedce1e89da3c02cd93f0c5c6ced272090ebd9b1",
+      "workspace": "98a8e310275da24eea4ff51a81b037df98d6937fd7709ffd96c23e65f8115035",
+      "registry": "c4d857e9afe5b38a732cd30250bc116909adb6ef747c550a47ca8645a96e50bf",
+      "state": "9b7df1cbc1c48407437bcd2b2763d6d9a9c306b743440ef6c6e40d957630cb6c",
+      "source_catalog": "b22cad8efdcdbdae81a61c863327d8cb3f84f8ab755421dc8cbe9991743d147b",
+      "evidence_registry": "f42b9ec6e5f7bc08e0dde3a54cb484fd9d7e7c14740b1c8c494607a2928a62cf"
+    }
+  },
+  "electronics": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json",
+      "registry": "knowledge-base/corpus/referents.json",
+      "state": "knowledge-base/corpus/electronics.kristal-state.json",
+      "source_catalog": "knowledge-base/sources/source-catalog.json"
+    },
+    "sha256": {
+      "index": "d593238e35144cc0842463e870575a208df037d936b3c07cd312e9415c722b68",
+      "state_index": "481165890b00b32cf2224149325952f7a5c635e688fa8cafbb44d4998713fcbb",
+      "workspace": "7c490042fe23168c6702c8276605bd6edd38f1ab3a5048e5a6f1cf4c72e44d68",
+      "registry": "ddc09a5667d12fd7e5d809a0a6f4dbc8635539c86da2b343c1011b0f9880a78e",
+      "state": "7fb140c779f8bf551e5e6d582c1b4e9968cc296a2d8402f86238b52c2d75ecaf",
+      "source_catalog": "deefafbe04d4992e86d9c7929700d5ebc7577fcd2bbd9594387b97bd6013729a"
+    }
+  },
+  "hci": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json",
+      "registry": "knowledge-base/corpus/referents.json",
+      "state": "knowledge-base/corpus/hci.kristal-state.json",
+      "source_catalog": "knowledge-base/sources/source-catalog.json"
+    },
+    "sha256": {
+      "index": "4e0a71170baea8ced8d056d319b81e8d03814790c0545634557ea69130cba92e",
+      "state_index": "a77c7ea5a831ed9ec9de751b9ce939796bb8f48f1ee8a57c7c88bbd1f7db7f4f",
+      "workspace": "b237266fdfb63438ff31cafceacaea2c4a9af2ecfb1150556a9406da8da774ff",
+      "registry": "52490da7109ad795539aa5083c58c69729b3e8672f4c732e081e46127696fb0d",
+      "state": "29211736325ee6e3b346f29c531370a2281d28832b39bfc66fe3f0afde4da582",
+      "source_catalog": "feab91b65d14f5c68d8229523a5d7084bc125cad807db0f8220042b7eba92ca2"
+    }
+  },
+  "logic": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json",
+      "registry": "knowledge-base/corpus/referents.json",
+      "state": "knowledge-base/corpus/logic.kristal-state.json",
+      "formal_schemata": "knowledge-base/sources/formal_schemata.json"
+    },
+    "sha256": {
+      "index": "f88d5cf3d989921800992b956c326ff4d9983014acf95a21718dddfb67705dbc",
+      "state_index": "85a3b61a223d891753866ad78bcc8a53fac45fd87c53fd38b2c25d096c954118",
+      "workspace": "f3fd98c33a5dccb727c7561f60ee65446fd7152e0b580f0e121b6bc07a2987bf",
+      "registry": "c2b460f5d98d25bf1f381fa0cd6ea12a3bf787fd65f15d806f494f7caee223e5",
+      "state": "5f36ede0b4f91aa19070a487db2380bb4c66dea524b1bf412d22de7020f45ca1",
+      "formal_schemata": "a2950e764bcce126dc8c0f18795df95e0cdaa91aa0c0b6aa24771d83bde754ab"
+    }
+  },
+  "logistics": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json",
+      "registry": "knowledge-base/corpus/referents.json",
+      "state": "knowledge-base/corpus/logistics.kristal-state.json",
+      "source_catalog": "knowledge-base/sources/source-catalog.json"
+    },
+    "sha256": {
+      "index": "e9425b518ae9389c2e45254e2ed6620b9749adada1471d2ce4dad2a894a6efaa",
+      "state_index": "47b07f4229903d2f29069b6bae6294f87a8bc5912c11a1c8b9ef9a3184bfc360",
+      "workspace": "80f8d6f57d6983a0333c585f89d3c6fe69a517161ae1e29ad397c41e27a39cd7",
+      "registry": "2c177aac5161121ed6a23a052e400a36a9284a15a32fd524500ecdc868fb1253",
+      "state": "176ee6d3dd73dbdb9173286e5806aa1453f00f9f7a892284b0e56a77885f2a57",
+      "source_catalog": "02c7b283477264a99893392eabfcf901f72f35b9e90fcb65263500b8752459b1"
+    }
+  },
+  "robotics": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json",
+      "registry": "knowledge-base/corpus/referents.json",
+      "state": "knowledge-base/corpus/robotics.kristal-state.json",
+      "source_catalog": "knowledge-base/sources/source-catalog.json",
+      "evidence_registry": "knowledge-base/sources/evidence-registry.json"
+    },
+    "sha256": {
+      "index": "442a9c6de785b0d85f39128d339e77a731c08f10b5988f4d060e08fa52744183",
+      "state_index": "56d0dec68b5f18003c41b5463d686fb9b0b53509309a7ba278eda8740c522c9e",
+      "workspace": "24ca7965aa0909c689d1ecbf691159c6ad84d684d332740bac69beeee3320085",
+      "registry": "741de7f621610e1fe5e4d57b357b8ce17d4255ed49ae42874dd7e1db3eb23c8c",
+      "state": "e1f5bf8a1fb553237fd282a6015e3d6ab0cbd16c296ff1b0df99c734edb4f9dc",
+      "source_catalog": "61d4501f62745e993cb23ce027b91c2551f58cb07bb62d224f34c6abef83f8c6",
+      "evidence_registry": "907334292ed55b902e57feab5aa331e4ab4788efed575a9bcb5dd854aec90778"
+    }
+  },
+  "software": {
+    "paths": {
+      "index": "knowledge-base/corpus/index.json",
+      "state_index": "canon/state.index.json",
+      "workspace": "kristal.workspace.json",
+      "registry": "knowledge-base/corpus/referents.json",
+      "state": "knowledge-base/corpus/software.kristal-state.json",
+      "source_catalog": "knowledge-base/sources/source-catalog.json",
+      "evidence_registry": "knowledge-base/sources/evidence-registry.json"
+    },
+    "sha256": {
+      "index": "40b4b2d1670c185badea21b4dc7d2911248a7f00157bd7319a9938b1fea8afee",
+      "state_index": "9beb940b9cc490d3a824c056bbfbaabb07c38dae98e2aeb63906c63189fb49b0",
+      "workspace": "65f284e83875889de6c2c22a70889a7463eb1af085d0fd4e496eedcb534d2ff9",
+      "registry": "22c11da9f4099c467affb795e263560ac7cb17e623c99b638687c2942afee8cd",
+      "state": "7a616f85fe98351cf65d1090e2c7d1adc80e22bb027815b37e14b66e41ead5e4",
+      "source_catalog": "2206bad0ff2b9a4a52de69ce69462e8ae47e72e433cfaef0a8cdc674a2b8f129",
+      "evidence_registry": "08cddd62e0d98da95720d95c3ed90dbdea690e57bb1d4f494ce975d1d6a83c8d"
+    }
+  }
+}
