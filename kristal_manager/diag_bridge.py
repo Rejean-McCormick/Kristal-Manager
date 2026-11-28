@@ -87,10 +87,12 @@ def _fingerprint(root: Path) -> dict:
         '.kristal/v9/logical-artifact.json', '.kristal/v9/package-manifest.json',
         '.kristal/v9/derivation.json', '.kristal/v9/exchange.json',
     ]
-    artifact_dir = root / '.kristal' / 'v9' / 'artifacts'
-    if artifact_dir.is_dir() and not artifact_dir.is_symlink():
-        rels += [p.relative_to(root).as_posix() for p in sorted(artifact_dir.glob('*.json'))
-                 if p.is_file() and not p.is_symlink()]
+    for relative in ('.kristal/v9/artifacts', 'build/v9/artifacts', 'build/v9/materializations'):
+        artifact_dir = root / relative
+        if artifact_dir.is_dir() and not artifact_dir.is_symlink():
+            rels += [p.relative_to(root).as_posix() for p in sorted(artifact_dir.glob('*.json'))
+                     if p.is_file() and not p.is_symlink() and p.resolve().is_relative_to(root)]
+    rels += ['build/v9/v9-capabilities.json', 'build/v9/derivation.json']
     result = {}
     for rel in rels:
         p = root / rel
@@ -248,6 +250,19 @@ def _extract_official_findings(evidence_current: Path, summary: dict) -> list[di
     return out
 
 
+def _official_target(root: Path, profile: str) -> Path:
+    if profile != 'V9-State-Reader':
+        return root
+    from .core import detect_kristal
+
+    workspace = detect_kristal(root)
+    if (workspace and not workspace['state_conflict'] and workspace['state_source'] == 'build-v9'
+            and not (root / 'build').is_symlink() and not (root / 'build/v9').is_symlink()):
+        # KristalDiag prunes nested build directories during a workspace-level scan.
+        return root / 'build/v9'
+    return root
+
+
 def run_official_diagnostic(workspace: str | Path, *, profile: str = 'V9-State-Reader',
                             script: str | Path | None = None,
                             output_root: str | Path | None = None, timeout: int = 600) -> dict:
@@ -284,8 +299,9 @@ def run_official_diagnostic(workspace: str | Path, *, profile: str = 'V9-State-R
     control = output_base / f'{slug}-{run_id}'
     control.mkdir(parents=True, exist_ok=False)
 
+    target = _official_target(root, profile)
     before = _fingerprint(root)
-    argv = [sys.executable, str(entry), 'conform', str(root), '--profile', profile,
+    argv = [sys.executable, str(entry), 'conform', str(target), '--profile', profile,
             '--control-dir', str(control), '--json']
     completed_code = None
     timed_out = False
@@ -319,7 +335,7 @@ def run_official_diagnostic(workspace: str | Path, *, profile: str = 'V9-State-R
     # Do not trust malformed or unrelated text as a real KristalDiag verdict.
     if not (isinstance(summary, dict) and summary.get('schema') == 'kristaldiag.summary.v1'
             and summary.get('tool') == 'KristalDiag'
-            and Path(str(summary.get('target_root', ''))).resolve() == root
+            and Path(str(summary.get('target_root', ''))).resolve() == target
             and summary.get('profile') == profile):
         summary = None
 
@@ -329,7 +345,7 @@ def run_official_diagnostic(workspace: str | Path, *, profile: str = 'V9-State-R
         'format': 'kristal.manager-kristaldiag/1.0',
         'engine': 'KristalDiag (bundled source integrated into Manager)',
         'executed_at': _utc_now(),
-        'workspace': str(root), 'profile': profile,
+        'workspace': str(root), 'diagnostic_target': str(target), 'profile': profile,
         'program': str(entry), 'process_status': status, 'returncode': completed_code,
         'external_report': summary, 'verdict': summary.get('verdict') if summary else None,
         'counts': summary.get('counts', {}) if summary else {},
